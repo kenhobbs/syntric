@@ -1,0 +1,240 @@
+{
+	"key": "group_59093e3000860",
+	"title": "Event",
+	"fields": [
+		{
+			"key": "field_596d18f66340e",
+			"label": "Settings",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"hide_admin": 0,
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_590b73c246359",
+			"label": "Start Date",
+			"name": "syn_event_start_date",
+			"type": "date_picker",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "50",
+				"class": "",
+				"id": ""
+			},
+			"hide_admin": 0,
+			"display_format": "F j, Y",
+			"return_format": "F j, Y",
+			"first_day": 1
+		},
+		{
+			"key": "field_590b73c24635a",
+			"label": "Start Time",
+			"name": "syn_event_start_time",
+			"type": "time_picker",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "50",
+				"class": "",
+				"id": ""
+			},
+			"hide_admin": 0,
+			"display_format": "g:i A",
+			"return_format": "g:i A"
+		},
+		{
+			"key": "field_590b74004635b",
+			"label": "End Date",
+			"name": "syn_event_end_date",
+			"type": "date_picker",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "50",
+				"class": "",
+				"id": ""
+			},
+			"hide_admin": 0,
+			"display_format": "F j, Y",
+			"return_format": "F j, Y",
+			"first_day": 1
+		},
+		{
+			"key": "field_590b742b4635c",
+			"label": "End Time",
+			"name": "syn_event_end_time",
+			"type": "time_picker",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "50",
+				"class": "",
+				"id": ""
+			},
+			"hide_admin": 0,
+			"display_format": "g:i A",
+			"return_format": "g:i A"
+		},
+		{
+			"key": "field_596d1a9543eb7",
+			"label": "Location",
+			"name": "syn_event_location",
+			"type": "text",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "50",
+				"class": "",
+				"id": ""
+			},
+			"hide_admin": 0,
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": "",
+			"show_column": 0,
+			"show_column_weight": 1000,
+			"allow_quickedit": 0,
+			"allow_bulkedit": 0
+		},
+		{
+			"key": "field_590ccddc0240e",
+			"label": "Calendar ID",
+			"name": "syn_event_calendar_id",
+			"type": "post_object",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "50",
+				"class": "",
+				"id": ""
+			},
+			"post_type": [
+				"syn_calendar"
+			],
+			"taxonomy": [],
+			"allow_null": 0,
+			"multiple": 0,
+			"return_format": "id",
+			"ui": 1
+		},
+		{
+			"key": "field_596d19106340f",
+			"label": "Sync Details",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"hide_admin": 0,
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_590cfa05bcba4",
+			"label": "Last Sync",
+			"name": "syn_event_last_sync",
+			"type": "text",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_590cf9e7bcba2",
+			"label": "Event ID",
+			"name": "syn_event_event_id",
+			"type": "text",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_590cf9f6bcba3",
+			"label": "Recurring ID",
+			"name": "syn_event_recurring_id",
+			"type": "text",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "syn_event"
+			}
+		]
+	],
+	"menu_order": 1,
+	"position": "acf_after_title",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1509727244
+}

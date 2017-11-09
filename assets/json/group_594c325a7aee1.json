@@ -1,0 +1,372 @@
+{
+	"key": "group_594c325a7aee1",
+	"title": "ADA Compliance",
+	"fields": [
+		{
+			"key": "field_594af4f3cf31d",
+			"label": "Enable ADA Compliance",
+			"name": "syn_enable_ada_compliance",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"hide_admin": 0,
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_594c3ba1eea11",
+			"label": "Global",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_594af4f3cf31d",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"hide_admin": 0,
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_594c359feea0a",
+			"label": "Global Recipients",
+			"name": "syn_ada_recipients",
+			"type": "user",
+			"value": null,
+			"instructions": "Select users who should receive notification of non-compliant content (site-wide).",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"hide_admin": 0,
+			"role": "",
+			"allow_null": 0,
+			"multiple": 1
+		},
+		{
+			"key": "field_594c39d7eea0f",
+			"label": "Block New",
+			"name": "syn_ada_block_new",
+			"type": "true_false",
+			"value": null,
+			"instructions": "Prevent new content from being published until compliant.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"hide_admin": 0,
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_594c3af5eea10",
+			"label": "Block Updates",
+			"name": "syn_ada_block_updates",
+			"type": "true_false",
+			"value": null,
+			"instructions": "Prevent existing content from publishing updates until compliant. Last compliant version will be published until new content passes compliance test.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"hide_admin": 0,
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_594c3bbbeea12",
+			"label": "Scopes",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_594af4f3cf31d",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"hide_admin": 0,
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_594c3630eea0b",
+			"label": "Scopes",
+			"name": "syn_ada_scopes",
+			"type": "repeater",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"hide_admin": 0,
+			"collapsed": "field_594c3c496f6da",
+			"min": 0,
+			"max": 0,
+			"layout": "block",
+			"button_label": "Add Scope",
+			"sub_fields": [
+				{
+					"key": "field_594c3c496f6da",
+					"label": "Pages",
+					"name": "syn_ada_scope_pages",
+					"type": "page_link",
+					"value": null,
+					"instructions": "Select the pages to be tested in this scope",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"hide_admin": 0,
+					"post_type": [
+						"page"
+					],
+					"taxonomy": [],
+					"allow_null": 0,
+					"allow_archives": 0,
+					"multiple": 1
+				},
+				{
+					"key": "field_594c3923eea0e",
+					"label": "Recursive",
+					"name": "syn_ada_scope_recursive",
+					"type": "true_false",
+					"value": null,
+					"instructions": "Test all pages below the selected pages",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"hide_admin": 0,
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_594c372beea0d",
+					"label": "Recipients",
+					"name": "syn_ada_scope_recipients",
+					"type": "user",
+					"value": null,
+					"instructions": "Select users who should receive notification of non-compliant content in this scope.",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"hide_admin": 0,
+					"role": "",
+					"allow_null": 0,
+					"multiple": 1
+				}
+			]
+		},
+		{
+			"key": "field_594c85aced260",
+			"label": "Logs",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_594af4f3cf31d",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"hide_admin": 0,
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_594c8449ed25b",
+			"label": "Logs",
+			"name": "syn_ada_logs",
+			"type": "repeater",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"hide_admin": 0,
+			"collapsed": "field_594c845fed25c",
+			"min": 0,
+			"max": 0,
+			"layout": "block",
+			"button_label": "Add Entry",
+			"sub_fields": [
+				{
+					"key": "field_594c845fed25c",
+					"label": "Page",
+					"name": "syn_ada_log_page",
+					"type": "page_link",
+					"value": null,
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"hide_admin": 0,
+					"post_type": [
+						"page"
+					],
+					"taxonomy": [],
+					"allow_null": 0,
+					"allow_archives": 0,
+					"multiple": 0
+				},
+				{
+					"key": "field_594c84beed25d",
+					"label": "Date",
+					"name": "syn_ada_log_date",
+					"type": "date_time_picker",
+					"value": null,
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"hide_admin": 0,
+					"display_format": "n\/j\/Y g:i a",
+					"return_format": "n\/j\/Y g:i a",
+					"first_day": 1
+				},
+				{
+					"key": "field_594c851ded25f",
+					"label": "Author",
+					"name": "syn_ada_log_user",
+					"type": "user",
+					"value": null,
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"hide_admin": 0,
+					"role": "",
+					"allow_null": 0,
+					"multiple": 0
+				},
+				{
+					"key": "field_594c84f2ed25e",
+					"label": "Description",
+					"name": "syn_ada_log_description",
+					"type": "textarea",
+					"value": null,
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"hide_admin": 0,
+					"default_value": "",
+					"placeholder": "",
+					"maxlength": "",
+					"rows": 4,
+					"new_lines": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "syntric-ada-compliance"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 0,
+	"description": "",
+	"modified": 1509793963
+}

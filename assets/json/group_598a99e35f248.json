@@ -1,0 +1,1659 @@
+{
+	"key": "group_598a99e35f248",
+	"title": "Page Widgets",
+	"fields": [
+		{
+			"key": "field_598a9db813a14",
+			"label": "Attachments Widget",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_59ab355321321",
+			"label": "Activate Attachments Widget",
+			"name": "syn_attachments_active",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_59ab352a21320",
+			"label": "Attachments Widget Title",
+			"name": "syn_attachments_title",
+			"type": "text",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab355321321",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_59ab31b721319",
+			"label": "Attachment Groups",
+			"name": "syn_attachments",
+			"type": "repeater",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab355321321",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "field_59ab34f82131e",
+			"min": 0,
+			"max": 0,
+			"layout": "block",
+			"button_label": "Add Attachment Group",
+			"collapse_all_repeater": 1,
+			"btn-icon-only": 1,
+			"sub_fields": [
+				{
+					"key": "field_59ab34f82131e",
+					"label": "Header",
+					"name": "header",
+					"type": "text",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_59ab35002131f",
+					"label": "Description",
+					"name": "description",
+					"type": "textarea",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"maxlength": "",
+					"rows": 3,
+					"new_lines": ""
+				},
+				{
+					"key": "field_59ab31cb2131a",
+					"label": "Attachments",
+					"name": "attachments",
+					"type": "repeater",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"collapsed": "field_59aa3d1ffdab4",
+					"min": 0,
+					"max": 0,
+					"layout": "block",
+					"button_label": "Add Attachment",
+					"collapse_all_repeater": 1,
+					"btn-icon-only": 1,
+					"sub_fields": [
+						{
+							"key": "field_59aa3d1ffdab4",
+							"label": "Attachment Type",
+							"name": "attachment_type",
+							"type": "select",
+							"value": null,
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "20",
+								"class": "",
+								"id": ""
+							},
+							"choices": {
+								"file": "File",
+								"internal_link": "Internal link",
+								"external_link": "External link"
+							},
+							"default_value": [],
+							"allow_null": 0,
+							"multiple": 0,
+							"ui": 0,
+							"ajax": 0,
+							"return_format": "array",
+							"placeholder": ""
+						},
+						{
+							"key": "field_59aa3cc87a51a",
+							"label": "File",
+							"name": "file",
+							"type": "file",
+							"value": null,
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_59aa3d1ffdab4",
+										"operator": "==",
+										"value": "file"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "80",
+								"class": "",
+								"id": ""
+							},
+							"return_format": "array",
+							"library": "all",
+							"min_size": "",
+							"max_size": "",
+							"mime_types": "pdf,doc,docx,xls,xlsx,ppt,pptx"
+						},
+						{
+							"key": "field_59aa3e42fdab5",
+							"label": "Internal Link",
+							"name": "internal_link",
+							"type": "post_object",
+							"value": null,
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_59aa3d1ffdab4",
+										"operator": "==",
+										"value": "internal_link"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "80",
+								"class": "",
+								"id": ""
+							},
+							"post_type": [
+								"post",
+								"page",
+								"syn_calendar"
+							],
+							"taxonomy": [],
+							"allow_null": 0,
+							"multiple": 0,
+							"return_format": "object",
+							"ui": 1
+						},
+						{
+							"key": "field_59aa3cc87a51c",
+							"label": "Link Title",
+							"name": "title",
+							"type": "text",
+							"value": null,
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_59aa3d1ffdab4",
+										"operator": "==",
+										"value": "external_link"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "30",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": "",
+							"maxlength": ""
+						},
+						{
+							"key": "field_59aa3cc87a51d",
+							"label": "Web Address",
+							"name": "url",
+							"type": "url",
+							"value": null,
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_59aa3d1ffdab4",
+										"operator": "==",
+										"value": "external_link"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "30",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": ""
+						},
+						{
+							"key": "field_59aa3cc87a51e",
+							"label": "New Window",
+							"name": "new_window",
+							"type": "true_false",
+							"value": null,
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_59aa3d1ffdab4",
+										"operator": "==",
+										"value": "external_link"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "20",
+								"class": "",
+								"id": ""
+							},
+							"message": "",
+							"default_value": 0,
+							"ui": 1,
+							"ui_on_text": "",
+							"ui_off_text": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"key": "field_59b705bae7599",
+			"label": "Calendar Widget",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_59b720b6e759d",
+			"label": "Activate Calendar Widget",
+			"name": "syn_calendar_active",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_59b75b89b8567",
+			"label": "Calendar Widget Title",
+			"name": "syn_calendar_title",
+			"type": "text",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59b720b6e759d",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_59b2606c98c04",
+			"label": "Calendar",
+			"name": "syn_calendar_id",
+			"type": "select",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59b720b6e759d",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "50",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"0": "+ New calendar",
+				"6460": "Demo Calendar",
+				"7585": "Escalon USD"
+			},
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_59b25f40a698e",
+			"label": "Events to display",
+			"name": "syn_calendar_events",
+			"type": "number",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59b720b6e759d",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"default_value": 5,
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"min": 1,
+			"max": "",
+			"step": 1
+		},
+		{
+			"key": "field_59b25f43a698f",
+			"label": "Include Event Date",
+			"name": "syn_calendar_include_date",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59b720b6e759d",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 1,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_598ff1017eb9b",
+			"label": "Google Calendar ID",
+			"name": "syn_new_calendar_id",
+			"type": "text",
+			"value": null,
+			"instructions": "Value can be found in the calendar settings at <a href=\"https:\/\/calendar.google.com\/calendar\/\" target=\"_blank\">Google Calendars<\/a>.",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59b720b6e759d",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_59b2606c98c04",
+						"operator": "==",
+						"value": "0"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_598ff10d7eb9d",
+			"label": "Sync Now",
+			"name": "syn_new_calendar_sync_now",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59b720b6e759d",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_59b2606c98c04",
+						"operator": "==",
+						"value": "0"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_598ff1097eb9c",
+			"label": "Schedule Sync",
+			"name": "syn_new_calendar_sync",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59b720b6e759d",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_59b2606c98c04",
+						"operator": "==",
+						"value": "0"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_598ff10f7eb9e",
+			"label": "Sync Frequency",
+			"name": "syn_new_calendar_sync_frequency",
+			"type": "select",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59b720b6e759d",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_59b2606c98c04",
+						"operator": "==",
+						"value": "0"
+					},
+					{
+						"field": "field_598ff1097eb9c",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"hourly": "Hourly",
+				"daily": "Daily"
+			},
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_598ff1127eb9f",
+			"label": "Sync Range",
+			"name": "syn_new_calendar_sync_range",
+			"type": "select",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59b720b6e759d",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_59b2606c98c04",
+						"operator": "==",
+						"value": "0"
+					},
+					{
+						"field": "field_598ff1097eb9c",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"1 year": "Sync up to 1 year forward",
+				"2 years": "Sync up to 2 years forward"
+			},
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_598ff1187eba0",
+			"label": "Delete Events (hidden)",
+			"name": "syn_new_calendar_delete_events",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "50",
+				"class": "hidden",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_598ff11c7eba1",
+			"label": "Delete After (hidden)",
+			"name": "syn_new_calendar_delete_after",
+			"type": "select",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "50",
+				"class": "hidden",
+				"id": ""
+			},
+			"choices": {
+				"1 month": "Delete after 1 month",
+				"3 months": "Delete after 3 months",
+				"6 months": "Delete after 6 months",
+				"1 year": "Delete after 1 year",
+				"2 years": "Delete after 2 years"
+			},
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_59a5b62d88d98",
+			"label": "Contact Widget",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_59ab362921325",
+			"label": "Activate Contact Widget",
+			"name": "syn_contact_active",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_59ab362121324",
+			"label": "Contact Widget Title",
+			"name": "syn_contact_title",
+			"type": "text",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab362921325",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_59af57222831c",
+			"label": "Contact Type",
+			"name": "syn_contact_contact_type",
+			"type": "select",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab362921325",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"person": "Person",
+				"organization": "Organization"
+			},
+			"default_value": [
+				"person"
+			],
+			"allow_null": 0,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_59ee88baeabb3",
+			"label": "Default Organization",
+			"name": "syn_contact_default",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab362921325",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_59af57222831c",
+						"operator": "==",
+						"value": "organization"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"message": "This organization",
+			"default_value": 1,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_59af572228ee6",
+			"label": "Person",
+			"name": "syn_contact_person",
+			"type": "select",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab362921325",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_59af57222831c",
+						"operator": "==",
+						"value": "person"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"134": "Amanda Sanchez",
+				"135": "Amy Trimble",
+				"184": "Anthony Varni",
+				"136": "Ashley Weckerly",
+				"189": "Syntric Author",
+				"185": "Barbara Carmona",
+				"137": "Brenda Fisher",
+				"139": "Cathleen Chapman",
+				"140": "Cecilia Estrada",
+				"188": "Syntric Contributor",
+				"138": "Cris Astabie",
+				"141": "Darla Towner",
+				"190": "Syntric Editor",
+				"148": "Jacqueline Villines",
+				"145": "Janette Cortes",
+				"144": "Jeanann Carnes",
+				"146": "Jessica Martinez",
+				"147": "Jessica Ruiz",
+				"142": "John Azevedo",
+				"143": "Joshuasasasas Blanchardiio",
+				"150": "Kayla Lawrence",
+				"186": "Ken Hobbs",
+				"149": "Kenny Hobbs",
+				"152": "Kimberly Simmons",
+				"151": "Krystal Rodriguez",
+				"154": "Laurie Craig",
+				"153": "Leticia Contreras",
+				"155": "Lucy Ornelas",
+				"165": "Magnolia Ruiz",
+				"156": "Maira Rodriguez",
+				"163": "Margarita Kibler",
+				"160": "Maria Morales",
+				"157": "Martin Miller",
+				"164": "Matthew Loretelli",
+				"158": "Mayra Bravo",
+				"166": "Melanie Vander",
+				"161": "Melissa Bennett",
+				"162": "Monica Gwin",
+				"159": "Monique Cuadras",
+				"167": "Oralia Sage",
+				"170": "Paige Rodenburg",
+				"168": "Patricia Jefferson",
+				"169": "Priscilla Price",
+				"172": "Rosa Meza",
+				"173": "Rosa Rodriguez",
+				"171": "Ruth Gligorea",
+				"176": "Sarah Nelson",
+				"177": "Sarah Shank",
+				"175": "Stacie Keyser",
+				"187": "Syntric Subscriber",
+				"178": "Susan Thompson",
+				"174": "Suzette Campbell",
+				"1": "Syntric School",
+				"180": "Teresa Hoff",
+				"179": "Theresa Adrian",
+				"182": "Tricia Russell",
+				"181": "Trinette Marquis",
+				"109": "Trini Marquis",
+				"183": "Yarissa Cruz"
+			},
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_59af5722292a4",
+			"label": "Organization",
+			"name": "syn_contact_organization",
+			"type": "select",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab362921325",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_59af57222831c",
+						"operator": "==",
+						"value": "organization"
+					},
+					{
+						"field": "field_59ee88baeabb3",
+						"operator": "!=",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"id-1937146817-2040227973-1025020578": "Syntric USD",
+				"id-1093359345-1461687414-1877645451": "SchoolPRPro High School",
+				"id-596255435-714896445-2110829287": "WASC Elementary"
+			},
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_59af5722286fd",
+			"label": "Include Fields",
+			"name": "syn_contact_include_person_fields",
+			"type": "checkbox",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab362921325",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_59af57222831c",
+						"operator": "==",
+						"value": "person"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"title": "Title",
+				"email": "Email",
+				"phone": "Phone"
+			},
+			"allow_custom": 0,
+			"save_custom": 0,
+			"default_value": [
+				"title",
+				"email",
+				"phone"
+			],
+			"layout": "vertical",
+			"toggle": 0,
+			"return_format": "array"
+		},
+		{
+			"key": "field_59af572228b29",
+			"label": "Include Fields",
+			"name": "syn_contact_include_organization_fields",
+			"type": "checkbox",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab362921325",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_59af57222831c",
+						"operator": "==",
+						"value": "organization"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"address": "Address",
+				"email": "Email",
+				"phone": "Phone",
+				"fax": "Fax",
+				"url": "Website",
+				"logo": "Logo"
+			},
+			"allow_custom": 0,
+			"save_custom": 0,
+			"default_value": [
+				"address",
+				"city_state_zip_code",
+				"email",
+				"phone",
+				"fax",
+				"url",
+				"logo"
+			],
+			"layout": "vertical",
+			"toggle": 0,
+			"return_format": "array"
+		},
+		{
+			"key": "field_598a9de513a16",
+			"label": "Microblog Widget",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_59ab366c21327",
+			"label": "Activate Microblog Widget",
+			"name": "syn_microblog_active",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_59ab365321326",
+			"label": "Microblog Widget Title",
+			"name": "syn_microblog_title",
+			"type": "text",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab366c21327",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_59b441f2a32bb",
+			"label": "Microblog Category",
+			"name": "syn_microblog_category",
+			"type": "taxonomy",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "hidden",
+				"id": ""
+			},
+			"taxonomy": "category",
+			"field_type": "select",
+			"allow_null": 1,
+			"add_term": 0,
+			"save_terms": 1,
+			"load_terms": 1,
+			"return_format": "object",
+			"multiple": 0
+		},
+		{
+			"key": "field_59d1b5b49978f",
+			"label": "Microblog Term",
+			"name": "syn_microblog_term",
+			"type": "taxonomy",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "hidden",
+				"id": ""
+			},
+			"taxonomy": "microblog",
+			"field_type": "select",
+			"allow_null": 1,
+			"add_term": 0,
+			"save_terms": 1,
+			"load_terms": 1,
+			"return_format": "object",
+			"multiple": 0
+		},
+		{
+			"key": "field_59d4b242abf31",
+			"label": "Category",
+			"name": "",
+			"type": "message",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab366c21327",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"message": "Generated automatically",
+			"new_lines": "",
+			"esc_html": 0
+		},
+		{
+			"key": "field_59d4b278abf32",
+			"label": "Microblog",
+			"name": "",
+			"type": "message",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab366c21327",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"message": "Generated automatically",
+			"new_lines": "",
+			"esc_html": 0
+		},
+		{
+			"key": "field_59aca70f2d9cd",
+			"label": "Posts to display:",
+			"name": "syn_microblog_posts",
+			"type": "number",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab366c21327",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "20",
+				"class": "",
+				"id": ""
+			},
+			"default_value": 5,
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"min": 1,
+			"max": "",
+			"step": 1
+		},
+		{
+			"key": "field_59aca7a42d9ce",
+			"label": "Include Post Date",
+			"name": "syn_microblog_include_date",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab366c21327",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "30",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 1,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_59cfd0c08c935",
+			"label": "Add New Post",
+			"name": "syn_new_microblog_post",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab366c21327",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_59cfd09c8c934",
+			"label": "Microblog Post Title",
+			"name": "syn_new_microblog_post_title",
+			"type": "text",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab366c21327",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_59cfd0c08c935",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_59cfd16f8c936",
+			"label": "Microblog Post Content",
+			"name": "syn_new_microblog_post_content",
+			"type": "wysiwyg",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab366c21327",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_59cfd0c08c935",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"tabs": "all",
+			"toolbar": "full",
+			"media_upload": 1,
+			"delay": 1
+		},
+		{
+			"key": "field_598a9e4613a18",
+			"label": "Roster Widget",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_59ab36d12132b",
+			"label": "Activate Roster Widget",
+			"name": "syn_roster_active",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_59ab36be2132a",
+			"label": "Roster Widget Title",
+			"name": "syn_roster_title",
+			"type": "text",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab36d12132b",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_59ab495554793",
+			"label": "People",
+			"name": "syn_roster_people",
+			"type": "repeater",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab36d12132b",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "75",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "field_59af852be10d5",
+			"min": 0,
+			"max": 0,
+			"layout": "table",
+			"button_label": "Add Person",
+			"collapse_all_repeater": 0,
+			"btn-icon-only": 1,
+			"sub_fields": [
+				{
+					"key": "field_59af852be10d5",
+					"label": "Person",
+					"name": "person",
+					"type": "select",
+					"value": null,
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"134": "Amanda Sanchez",
+						"135": "Amy Trimble",
+						"184": "Anthony Varni",
+						"136": "Ashley Weckerly",
+						"189": "Syntric Author",
+						"185": "Barbara Carmona",
+						"137": "Brenda Fisher",
+						"139": "Cathleen Chapman",
+						"140": "Cecilia Estrada",
+						"188": "Syntric Contributor",
+						"138": "Cris Astabie",
+						"141": "Darla Towner",
+						"190": "Syntric Editor",
+						"148": "Jacqueline Villines",
+						"145": "Janette Cortes",
+						"144": "Jeanann Carnes",
+						"146": "Jessica Martinez",
+						"147": "Jessica Ruiz",
+						"142": "John Azevedo",
+						"143": "Joshuasasasas Blanchardiio",
+						"150": "Kayla Lawrence",
+						"186": "Ken Hobbs",
+						"149": "Kenny Hobbs",
+						"152": "Kimberly Simmons",
+						"151": "Krystal Rodriguez",
+						"154": "Laurie Craig",
+						"153": "Leticia Contreras",
+						"155": "Lucy Ornelas",
+						"165": "Magnolia Ruiz",
+						"156": "Maira Rodriguez",
+						"163": "Margarita Kibler",
+						"160": "Maria Morales",
+						"157": "Martin Miller",
+						"164": "Matthew Loretelli",
+						"158": "Mayra Bravo",
+						"166": "Melanie Vander",
+						"161": "Melissa Bennett",
+						"162": "Monica Gwin",
+						"159": "Monique Cuadras",
+						"167": "Oralia Sage",
+						"170": "Paige Rodenburg",
+						"168": "Patricia Jefferson",
+						"169": "Priscilla Price",
+						"172": "Rosa Meza",
+						"173": "Rosa Rodriguez",
+						"171": "Ruth Gligorea",
+						"176": "Sarah Nelson",
+						"177": "Sarah Shank",
+						"175": "Stacie Keyser",
+						"187": "Syntric Subscriber",
+						"178": "Susan Thompson",
+						"174": "Suzette Campbell",
+						"1": "Syntric School",
+						"180": "Teresa Hoff",
+						"179": "Theresa Adrian",
+						"182": "Tricia Russell",
+						"181": "Trinette Marquis",
+						"109": "Trini Marquis",
+						"183": "Yarissa Cruz"
+					},
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"ajax": 0,
+					"return_format": "value",
+					"placeholder": ""
+				}
+			]
+		},
+		{
+			"key": "field_59685755d41a0",
+			"label": "Include Fields",
+			"name": "syn_roster_include_fields",
+			"type": "checkbox",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59ab36d12132b",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"titles": "Titles",
+				"email": "Email",
+				"phone": "Phone"
+			},
+			"allow_custom": 0,
+			"save_custom": 0,
+			"default_value": [
+				"titles",
+				"email",
+				"phone"
+			],
+			"layout": "vertical",
+			"toggle": 0,
+			"return_format": "array"
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "page"
+			},
+			{
+				"param": "current_user",
+				"operator": "==",
+				"value": "viewing_back"
+			}
+		],
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "page"
+			},
+			{
+				"param": "current_user",
+				"operator": "==",
+				"value": "viewing_front"
+			}
+		]
+	],
+	"menu_order": 2,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1509727619
+}

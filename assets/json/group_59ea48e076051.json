@@ -1,0 +1,177 @@
+{
+	"key": "group_59ea48e076051",
+	"title": "Social Media",
+	"fields": [
+		{
+			"key": "field_59ea48f94ac56",
+			"label": "Facebook Pages",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_59a8d46396914",
+			"label": "Facebook Pages",
+			"name": "syn_facebook_pages",
+			"type": "repeater",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "field_598fba990e65e",
+			"min": 0,
+			"max": 0,
+			"layout": "block",
+			"button_label": "Add Facebook Page",
+			"collapse_all_repeater": 1,
+			"btn-icon-only": 1,
+			"sub_fields": [
+				{
+					"key": "field_598fba990e65e",
+					"label": "Name",
+					"name": "name",
+					"type": "text",
+					"value": null,
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_598fba990e660",
+					"label": "Page",
+					"name": "page",
+					"type": "text",
+					"value": null,
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_598fba990e662",
+					"label": "Access Token",
+					"name": "access_token",
+					"type": "text",
+					"value": null,
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_59d1f1dbf7063",
+					"label": "Facebook Page ID",
+					"name": "facebook_page_id",
+					"type": "text",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				}
+			]
+		},
+		{
+			"key": "field_59ea49114ac57",
+			"label": "Twitter Feeds",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_59f6bd3e8a516",
+			"label": "Twitter Feeds Coming Soon",
+			"name": "",
+			"type": "message",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "Twitter Feeds are not currently available.  They are scheduled for release by the end of 2017.",
+			"new_lines": "wpautop",
+			"esc_html": 0
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "syntric-social-media"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1509727758
+}

@@ -1,0 +1,54 @@
+{
+	"key": "group_59c5d0f68dd2f",
+	"title": "Teacher Page Settings",
+	"fields": [
+		{
+			"key": "field_59c592539d05b",
+			"label": "Teacher",
+			"name": "syn_page_teacher",
+			"type": "select",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"186": "Ken Hobbs"
+			},
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "page"
+			},
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "page-templates\/teacher.php"
+			}
+		]
+	],
+	"menu_order": 10,
+	"position": "side",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1509727812
+}

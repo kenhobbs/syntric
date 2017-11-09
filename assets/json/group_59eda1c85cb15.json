@@ -1,0 +1,116 @@
+{
+	"key": "group_59eda1c85cb15",
+	"title": "Departments",
+	"fields": [
+		{
+			"key": "field_59bb8b3093aff",
+			"label": "Active",
+			"name": "syn_departments_active",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_59b8bcc420475",
+			"label": "Departments",
+			"name": "syn_departments",
+			"type": "repeater",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59bb8b3093aff",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "field_59b8bcde20476",
+			"min": 0,
+			"max": 0,
+			"layout": "table",
+			"button_label": "Add Department",
+			"collapse_all_repeater": 0,
+			"btn-icon-only": 1,
+			"sub_fields": [
+				{
+					"key": "field_59b8bcde20476",
+					"label": "Department",
+					"name": "department",
+					"type": "text",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_59bb8c3393b02",
+					"label": "Department ID",
+					"name": "department_id",
+					"type": "text",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "1",
+						"class": "hidden",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "syntric-departments"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1509727210
+}

@@ -1,0 +1,144 @@
+{
+	"key": "group_59755a7cc1980",
+	"title": "Widget: Calendars Menu",
+	"fields": [
+		{
+			"key": "field_59b595a694ed5",
+			"label": "Dynamic:",
+			"name": "syn_calendars_menu_widget_dynamic",
+			"type": "radio",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"choices": [
+				"No"
+			],
+			"allow_null": 0,
+			"other_choice": 0,
+			"save_other_choice": 0,
+			"default_value": 0,
+			"layout": "horizontal",
+			"return_format": "value"
+		},
+		{
+			"key": "field_59755a7cd4b5b",
+			"label": "Title:",
+			"name": "syn_calendars_menu_widget_title",
+			"type": "text",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59b595a694ed5",
+						"operator": "==",
+						"value": "0"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "Calendars",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_59e3c4e2aae40",
+			"label": "",
+			"name": "syn_calendars_menu_widget_all_calendars",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "All calendars",
+			"default_value": 1,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_59e3bb8a7ea4e",
+			"label": "Calendars",
+			"name": "syn_calendars_menu_widget_calendars",
+			"type": "relationship",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59e3c4e2aae40",
+						"operator": "!=",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"post_type": [
+				"syn_calendar"
+			],
+			"taxonomy": [],
+			"filters": "",
+			"elements": "",
+			"min": "",
+			"max": "",
+			"return_format": "object"
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "widget",
+				"operator": "==",
+				"value": "syn-calendars-menu-widget"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "left",
+	"instruction_placement": "label",
+	"hide_on_screen": [
+		"permalink",
+		"the_content",
+		"excerpt",
+		"custom_fields",
+		"discussion",
+		"comments",
+		"revisions",
+		"slug",
+		"author",
+		"format",
+		"page_attributes",
+		"featured_image",
+		"categories",
+		"tags",
+		"send-trackbacks"
+	],
+	"active": 1,
+	"description": "",
+	"modified": 1509727857
+}

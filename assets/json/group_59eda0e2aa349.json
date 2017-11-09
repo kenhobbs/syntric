@@ -1,0 +1,121 @@
+{
+	"key": "group_59eda0e2aa349",
+	"title": "Courses",
+	"fields": [
+		{
+			"key": "field_59b8bd0c20477",
+			"label": "Courses",
+			"name": "syn_courses",
+			"type": "repeater",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "field_59b8bd1b20478",
+			"min": 0,
+			"max": 0,
+			"layout": "table",
+			"button_label": "Add Course",
+			"collapse_all_repeater": 0,
+			"btn-icon-only": 1,
+			"sub_fields": [
+				{
+					"key": "field_59bb8bf493b01",
+					"label": "Department",
+					"name": "department",
+					"type": "select",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"id-2040897388-752304541-1411741476": "Arts",
+						"id-1185042063-1341354796-1832532734": "CTE",
+						"id-1279125767-1351269013-828438742": "English",
+						"id-809586432-1048324422-1074753439": "Foreign Languages",
+						"id-1298811312-712594165-1610792525": "Mathematics",
+						"id-1526872682-1547429408-1396619469": "Physical Education & Health",
+						"id-1709568394-1782388424-1579918998": "Sciences",
+						"id-599600823-282234850-69920155": "Social Sciences",
+						"id-524852117-2036490172-913286242": "Special Education"
+					},
+					"default_value": [],
+					"allow_null": 0,
+					"multiple": 0,
+					"ui": 0,
+					"ajax": 0,
+					"return_format": "value",
+					"placeholder": ""
+				},
+				{
+					"key": "field_59b8bd1b20478",
+					"label": "Course",
+					"name": "course",
+					"type": "text",
+					"value": null,
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_59bb6fbf70f0d",
+					"label": "Course ID",
+					"name": "course_id",
+					"type": "text",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "1",
+						"class": "hidden",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "syntric-courses"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1509794596
+}

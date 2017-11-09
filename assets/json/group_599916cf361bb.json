@@ -1,0 +1,287 @@
+{
+	"key": "group_599916cf361bb",
+	"title": "Filters",
+	"fields": [
+		{
+			"key": "field_59a1e3cb53654",
+			"label": "Filters",
+			"name": "filters",
+			"type": "repeater",
+			"value": null,
+			"instructions": "Filters are rules that allow you to show and\/or hide pages and posts.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "field_59a1e3e053655",
+			"min": 0,
+			"max": 0,
+			"layout": "table",
+			"button_label": "Add Rule",
+			"collapse_all_repeater": 0,
+			"btn-icon-only": 1,
+			"sub_fields": [
+				{
+					"key": "field_59a1e3e053655",
+					"label": "Parameter",
+					"name": "parameter",
+					"type": "select",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "40",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"post_type": "Post Type",
+						"post_category": "Post Category",
+						"page_template": "Page Template",
+						"post": "Post",
+						"page": "Page"
+					},
+					"default_value": [],
+					"allow_null": 0,
+					"multiple": 0,
+					"ui": 0,
+					"ajax": 0,
+					"return_format": "array",
+					"placeholder": ""
+				},
+				{
+					"key": "field_59a1e46953656",
+					"label": "Operator",
+					"name": "operator",
+					"type": "select",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "20",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"is": "is",
+						"is_not": "is not"
+					},
+					"default_value": [],
+					"allow_null": 0,
+					"multiple": 0,
+					"ui": 0,
+					"ajax": 0,
+					"return_format": "array",
+					"placeholder": ""
+				},
+				{
+					"key": "field_59b5d1015d65f",
+					"label": "Value",
+					"name": "value",
+					"type": "group",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "40",
+						"class": "p0 p-0 m0 m-0 border0 border-0",
+						"id": ""
+					},
+					"layout": "block",
+					"sub_fields": [
+						{
+							"key": "field_59a1f43953657",
+							"label": "",
+							"name": "post_type_value",
+							"type": "select",
+							"value": null,
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_59a1e3e053655",
+										"operator": "==",
+										"value": "post_type"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"choices": {
+								"post": "Post",
+								"page": "Page",
+								"syn_calendar": "Calendar",
+								"syn_event": "Event"
+							},
+							"default_value": [],
+							"allow_null": 0,
+							"multiple": 0,
+							"ui": 0,
+							"ajax": 0,
+							"return_format": "array",
+							"placeholder": ""
+						},
+						{
+							"key": "field_59a1f5f853659",
+							"label": "",
+							"name": "post_category_value",
+							"type": "taxonomy",
+							"value": null,
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_59a1e3e053655",
+										"operator": "==",
+										"value": "post_category"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"taxonomy": "category",
+							"field_type": "select",
+							"allow_null": 0,
+							"add_term": 0,
+							"save_terms": 0,
+							"load_terms": 0,
+							"return_format": "id",
+							"multiple": 0
+						},
+						{
+							"key": "field_59a1f76e5365c",
+							"label": "",
+							"name": "page_template_value",
+							"type": "select",
+							"value": null,
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_59a1e3e053655",
+										"operator": "==",
+										"value": "page_template"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"choices": {
+								"page.php": "Default",
+								"page-templates\/class.php": "Class",
+								"page-templates\/department.php": "Department",
+								"page-templates\/teacher.php": "Teacher",
+								"page-templates\/teachers.php": "Teachers"
+							},
+							"default_value": [],
+							"allow_null": 0,
+							"multiple": 0,
+							"ui": 0,
+							"ajax": 0,
+							"return_format": "array",
+							"placeholder": ""
+						},
+						{
+							"key": "field_59a1f8455365d",
+							"label": "",
+							"name": "page_value",
+							"type": "post_object",
+							"value": null,
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_59a1e3e053655",
+										"operator": "==",
+										"value": "page"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"post_type": [
+								"page"
+							],
+							"taxonomy": [],
+							"allow_null": 0,
+							"multiple": 0,
+							"return_format": "id",
+							"ui": 1
+						},
+						{
+							"key": "field_59a1f6305365a",
+							"label": "",
+							"name": "post_value",
+							"type": "post_object",
+							"value": null,
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_59a1e3e053655",
+										"operator": "==",
+										"value": "post"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"post_type": [
+								"post"
+							],
+							"taxonomy": [],
+							"allow_null": 0,
+							"multiple": 0,
+							"return_format": "id",
+							"ui": 1
+						}
+					]
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "syntric-clonables"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1510170304
+}

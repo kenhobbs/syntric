@@ -1,0 +1,252 @@
+{
+	"key": "group_59c5b38407016",
+	"title": "Teacher Classes",
+	"fields": [
+		{
+			"key": "field_59c5b229f02a9",
+			"label": "Classes",
+			"name": "syn_classes",
+			"type": "repeater",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "field_59c5b1d230ea1",
+			"min": 0,
+			"max": 0,
+			"layout": "table",
+			"button_label": "Add Class",
+			"collapse_all_repeater": 0,
+			"btn-icon-only": 1,
+			"sub_fields": [
+				{
+					"key": "field_59c5b18a30e9f",
+					"label": "Term",
+					"name": "term",
+					"type": "select",
+					"value": null,
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"2017-2018 1st Semester": "2017-2018 - 1st Semester",
+						"2017-2018 2nd Semester": "2017-2018 - 2nd Semester",
+						"2017-2018 All Year": "2017-2018 - All Year",
+						"2018-2019 1st Semester": "2018-2019 - 1st Semester",
+						"2018-2019 2nd Semester": "2018-2019 - 2nd Semester",
+						"2018-2019 All Year": "2018-2019 - All Year",
+						"2019-2020 1st Semester": "2019-2020 - 1st Semester",
+						"2019-2020 2nd Semester": "2019-2020 - 2nd Semester",
+						"2019-2020 All Year": "2019-2020 - All Year"
+					},
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"ajax": 0,
+					"return_format": "label",
+					"placeholder": ""
+				},
+				{
+					"key": "field_59c5b1be30ea0",
+					"label": "Period",
+					"name": "period",
+					"type": "select",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "10",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"id-1084852922-183121581-594537861": "1",
+						"id-1630140219-1561953601-966553053": "2",
+						"id-805829457-1181475848-246365597": "3",
+						"id-1226136014-1844127394-819395351": "4",
+						"id-1971299264-142661298-1127041694": "5",
+						"id-1607474895-1836537960-357599098": "6",
+						"id-1504437601-133113732-490029720": "7",
+						"id-211159905-18097864-1398685487": "Before School",
+						"id-1656810231-652567899-13165057": "After School"
+					},
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"ajax": 0,
+					"return_format": "label",
+					"placeholder": ""
+				},
+				{
+					"key": "field_59c5b1d230ea1",
+					"label": "Course",
+					"name": "course",
+					"type": "select",
+					"value": null,
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "-collapsed-target",
+						"id": ""
+					},
+					"choices": {
+						"id-474247380-1146110031-1166995209": "Beginning Art",
+						"id-716137491-608007958-872226822": "Advanced Art",
+						"id-862693620-1192259750-1961767268": "Drama",
+						"id-170314793-645094908-1479602615": "Band",
+						"id-1996645346-1675383025-1137641455": "English Language Development I",
+						"id-1381196080-2120684271-254571098": "English Language Development II",
+						"id-1879308519-1606145948-1906290767": "AP English Language",
+						"id-1038541985-1196883118-1284284766": "AP English Literature",
+						"id-2051068513-1078378986-1921099652": "Integrated Math 1",
+						"id-1725894009-706977769-915284413": "Integrated Math 2",
+						"id-1721919617-1497843089-1630537778": "AP Statistics",
+						"id-197038244-1916880228-191640268": "AP Calculus",
+						"id-611100146-482668724-1413508244": "Biology",
+						"id-587923268-1599492364-152208373": "Chemistry",
+						"id-356268922-1139939384-1685358298": "AP Biology",
+						"id-670285395-515173987-47276157": "AP Chemistry",
+						"id-1478802812-206589450-1546230541": "__Test Course"
+					},
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"ajax": 0,
+					"return_format": "label",
+					"placeholder": ""
+				},
+				{
+					"key": "field_59c5b1e130ea2",
+					"label": "Room",
+					"name": "room",
+					"type": "select",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "10",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"id-1683227391-1823300312-2136064425": "201",
+						"id-842760795-1035696307-1039385083": "303",
+						"id-873228441-141650154-2072016757": "409",
+						"id-1611277948-388381361-1918953190": "555",
+						"id-1452624383-284915639-1192441263": "605",
+						"id-1219780927-1473331518-724850094": "773",
+						"id-1475065740-1707155159-697885247": "999"
+					},
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"ajax": 0,
+					"return_format": "label",
+					"placeholder": ""
+				},
+				{
+					"key": "field_59d16c8161f7d",
+					"label": "Include Page?",
+					"name": "include_page",
+					"type": "checkbox",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "10",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"1": "&nbsp;"
+					},
+					"allow_custom": 0,
+					"save_custom": 0,
+					"default_value": [],
+					"layout": "vertical",
+					"toggle": 0,
+					"return_format": "value"
+				},
+				{
+					"key": "field_59d127e512d9a",
+					"label": "Class Page",
+					"name": "",
+					"type": "message",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"message": "Generated automatically",
+					"new_lines": "",
+					"esc_html": 0
+				},
+				{
+					"key": "field_59c5b1f230ea3",
+					"label": "Class ID",
+					"name": "class_id",
+					"type": "text",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "1",
+						"class": "hidden",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "page"
+			},
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "page-templates\/teacher.php"
+			}
+		]
+	],
+	"menu_order": 1,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1509790950
+}

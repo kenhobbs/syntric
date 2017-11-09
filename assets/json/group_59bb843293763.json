@@ -1,0 +1,41 @@
+{
+	"key": "group_59bb843293763",
+	"title": "Classes",
+	"fields": [
+		{
+			"key": "field_59cdd095c90ac",
+			"label": "Classes",
+			"name": "",
+			"type": "enhanced_message",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"enhanced_message": "<?php syn_list_classes(); ?>",
+			"hide_label": "yes"
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "syntric-classes"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1509727072
+}

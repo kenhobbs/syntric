@@ -1,0 +1,321 @@
+{
+	"key": "group_59095a81e316b",
+	"title": "Calendar",
+	"fields": [
+		{
+			"key": "field_59b6f6e6ba124",
+			"label": "Settings",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_59b80aa817de3",
+			"label": "Google Calendar ID",
+			"name": "syn_calendar_id",
+			"type": "text",
+			"value": null,
+			"instructions": "Value can be found in the calendar settings at <a href=\"https:\/\/calendar.google.com\/calendar\/\" target=\"_blank\">Google Calendars<\/a>.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_59b80ad117de5",
+			"label": "Sync Now",
+			"name": "syn_calendar_sync_now",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "20",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_59b80ac417de4",
+			"label": "Schedule Sync",
+			"name": "syn_calendar_sync",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "20",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_59b80afc17de6",
+			"label": "Sync Frequency",
+			"name": "syn_calendar_sync_frequency",
+			"type": "select",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59b80ac417de4",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "30",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"hourly": "Hourly",
+				"daily": "Daily"
+			},
+			"default_value": [],
+			"allow_null": 0,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_59b80b1a17de7",
+			"label": "Sync Range",
+			"name": "syn_calendar_sync_range",
+			"type": "select",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59b80ac417de4",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "30",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"1 year": "Sync up to 1 year forward",
+				"2 years": "Sync up to 2 years forward"
+			},
+			"default_value": [],
+			"allow_null": 0,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_59b80b3b17de8",
+			"label": "Delete Events",
+			"name": "syn_calendar_delete_events",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "20",
+				"class": "hidden",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 0,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_59b80b7817de9",
+			"label": "Delete After",
+			"name": "syn_calendar_delete_after",
+			"type": "select",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "80",
+				"class": "hidden",
+				"id": ""
+			},
+			"choices": {
+				"1 month": "Delete after 1 month",
+				"3 months": "Delete after 3 months",
+				"6 months": "Delete after 6 months",
+				"1 year": "Delete after 1 year",
+				"2 years": "Delete after 2 years"
+			},
+			"default_value": [],
+			"allow_null": 0,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_592762a87765c",
+			"label": "Events",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_590fd39e55e3a",
+			"label": "Events",
+			"name": "",
+			"type": "enhanced_message",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"enhanced_message": "<?php\r\n$post_id = get_the_ID();;\r\n$args = array(\r\n\t'numberposts' => - 1,\r\n\t'post_type'   => 'syn_event',\r\n\t'post_status' => 'publish',\r\n\t'meta_key'    => 'syn_event_start_date',\r\n\t'orderby'     => 'meta_value',\r\n\t'order'       => 'ASC',\r\n\t'meta_query'  => array(\r\n\t\tarray(\r\n\t\t\t'key'     => 'syn_event_calendar_id',\r\n\t\t\t'value'   => $post_id ,\r\n\t\t\t'compare' => '=',\r\n\t\t)\r\n\t)\r\n);\r\n$events = get_posts( $args ); \r\n\r\nif ( $events ) :\r\n?>\r\n\r\n\r\n<table width=\"100%\" cellpadding=\"6\" cellspacing=\"0\" border=\"1\" frame=\"void\" rules=\"rows\" sortable=\"sortable\" style=\"border-color: #eee;\">\r\n<thead>\r\n<tr align=\"left\">\r\n<th>Event<\/th>\r\n<th>Date\/Time<\/th>\r\n<th>Location<\/th>\r\n<\/tr>\r\n<\/thead>\r\n<tbody>\r\n\r\n<?php\r\nforeach ( $events as $event ) : \r\n$event_id = $event->ID;\r\n$dates = syn_get_event_dates( $event_id );\r\n?>\r\n\r\n<tr>\r\n<td nowrap><?php echo get_the_title( $event_id ); ?><\/td>\r\n<td nowrap><?php echo $dates; ?><\/td>\r\n<td><?php echo get_field( 'syn_event_location', $event_id  ); ?><\/td>\r\n<\/tr>\r\n\r\n<?php \r\nendforeach;\r\n ?>\r\n\r\n<\/tbody>\r\n<\/table>\r\n\r\n<?php\r\nelse :\r\necho '<p>No events<\/p>';\r\nendif;\r\n?>",
+			"hide_label": "no"
+		},
+		{
+			"key": "field_59d7eee4363c3",
+			"label": "Sync Results",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_598ff1acca26e",
+			"label": "Last Sync",
+			"name": "syn_calendar_last_sync",
+			"type": "text",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_598ff1afca26f",
+			"label": "Last Sync Result",
+			"name": "syn_calendar_last_sync_result",
+			"type": "textarea",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"maxlength": "",
+			"rows": 12,
+			"new_lines": ""
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "syn_calendar"
+			}
+		]
+	],
+	"menu_order": 1,
+	"position": "acf_after_title",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": [
+		"the_content",
+		"excerpt",
+		"custom_fields",
+		"discussion",
+		"comments",
+		"revisions",
+		"slug",
+		"author",
+		"format",
+		"page_attributes",
+		"featured_image",
+		"categories",
+		"tags",
+		"send-trackbacks"
+	],
+	"active": 1,
+	"description": "",
+	"modified": 1509726816
+}

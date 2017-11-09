@@ -1,0 +1,550 @@
+{
+	"key": "group_59f005d5019ad",
+	"title": "Google Maps",
+	"fields": [
+		{
+			"key": "field_59a726ca08765",
+			"label": "Google Maps",
+			"name": "syn_google_maps",
+			"type": "repeater",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "field_598fcd1ee58b8",
+			"min": 0,
+			"max": 0,
+			"layout": "block",
+			"button_label": "Add Google Map",
+			"collapse_all_repeater": 0,
+			"btn-icon-only": 1,
+			"sub_fields": [
+				{
+					"key": "field_598fcd1ee58b8",
+					"label": "Name",
+					"name": "name",
+					"type": "text",
+					"value": null,
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "-collapsed-target",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_598fcd1ee58bf",
+					"label": "Include Markers",
+					"name": "include_markers",
+					"type": "true_false",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_598fcd1ee58c3",
+					"label": "Markers",
+					"name": "markers",
+					"type": "repeater",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_598fcd1ee58bf",
+								"operator": "==",
+								"value": "1"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"collapsed": "field_59b118daf73d0",
+					"min": 0,
+					"max": 0,
+					"layout": "block",
+					"button_label": "Add Marker",
+					"collapse_all_repeater": 1,
+					"btn-icon-only": 1,
+					"sub_fields": [
+						{
+							"key": "field_59efde970195f",
+							"label": "Default Organization",
+							"name": "default_organization",
+							"type": "true_false",
+							"value": null,
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"message": "This organization",
+							"default_value": 1,
+							"ui": 1,
+							"ui_on_text": "",
+							"ui_off_text": ""
+						},
+						{
+							"key": "field_59b118daf73d0",
+							"label": "Organization",
+							"name": "organization",
+							"type": "select",
+							"value": null,
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_59efde970195f",
+										"operator": "!=",
+										"value": "1"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"choices": {
+								"id-1937146817-2040227973-1025020578": "Syntric USD",
+								"id-1093359345-1461687414-1877645451": "SchoolPRPro High School",
+								"id-596255435-714896445-2110829287": "WASC Elementary"
+							},
+							"default_value": [],
+							"allow_null": 1,
+							"multiple": 0,
+							"ui": 0,
+							"ajax": 0,
+							"return_format": "value",
+							"placeholder": ""
+						},
+						{
+							"key": "field_598fcd1ee58ce",
+							"label": "Latitude",
+							"name": "lat",
+							"type": "number",
+							"value": null,
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": "",
+							"min": "",
+							"max": "",
+							"step": ""
+						},
+						{
+							"key": "field_598fcd1ee58cf",
+							"label": "Longitude",
+							"name": "lng",
+							"type": "number",
+							"value": null,
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": "",
+							"min": "",
+							"max": "",
+							"step": ""
+						},
+						{
+							"key": "field_598fcd1ee58d0",
+							"label": "Icon",
+							"name": "icon",
+							"type": "image",
+							"value": null,
+							"instructions": "PNG 32px x 32px",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"return_format": "url",
+							"preview_size": "full",
+							"library": "all",
+							"min_width": 32,
+							"min_height": 32,
+							"min_size": "",
+							"max_width": 32,
+							"max_height": 32,
+							"max_size": "",
+							"mime_types": "png"
+						}
+					]
+				},
+				{
+					"key": "field_598fcd1ee58c0",
+					"label": "Center Latitude",
+					"name": "center_lat",
+					"type": "number",
+					"value": null,
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_598fcd1ee58bf",
+								"operator": "!=",
+								"value": "1"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "33",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"min": "",
+					"max": "",
+					"step": ""
+				},
+				{
+					"key": "field_598fcd1ee58c1",
+					"label": "Center Longitude",
+					"name": "center_lng",
+					"type": "number",
+					"value": null,
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_598fcd1ee58bf",
+								"operator": "!=",
+								"value": "1"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "33",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"min": "",
+					"max": "",
+					"step": ""
+				},
+				{
+					"key": "field_598fcd1ee58c2",
+					"label": "Zoom Level",
+					"name": "zoom_level",
+					"type": "select",
+					"value": null,
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_598fcd1ee58bf",
+								"operator": "!=",
+								"value": "1"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "34",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"5": "5",
+						"6": "6",
+						"7": "7",
+						"8": "8",
+						"9": "9",
+						"10": "10",
+						"11": "11",
+						"12": "12",
+						"13": "13",
+						"14": "14",
+						"15": "15",
+						"16": "16",
+						"17": "17",
+						"18": "18",
+						"19": "19",
+						"20": "20"
+					},
+					"default_value": [
+						16
+					],
+					"allow_null": 0,
+					"multiple": 0,
+					"ui": 0,
+					"ajax": 0,
+					"return_format": "value",
+					"placeholder": ""
+				},
+				{
+					"key": "field_59a7276adc98b",
+					"label": "Include Styles",
+					"name": "include_styles",
+					"type": "true_false",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_598fcd1ee58be",
+					"label": "Styles",
+					"name": "styles",
+					"type": "textarea",
+					"value": null,
+					"instructions": "Include <a href=\"https:\/\/mapstyle.withgoogle.com\/\" target=\"_blank\">Google Maps Styles<\/a> to customize map appearance",
+					"required": 0,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_59a7276adc98b",
+								"operator": "==",
+								"value": "1"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"maxlength": "",
+					"rows": "",
+					"new_lines": ""
+				},
+				{
+					"key": "field_598fcd1ee58d2",
+					"label": "Include Boundary",
+					"name": "include_boundary",
+					"type": "true_false",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "hidden",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_598fcd1ee58d3",
+					"label": "Boundary Coordinates",
+					"name": "boundary_coordinates",
+					"type": "textarea",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "hidden",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"maxlength": "",
+					"rows": "",
+					"new_lines": ""
+				},
+				{
+					"key": "field_598fcd1ee58ba",
+					"label": "Map Type",
+					"name": "map_type",
+					"type": "select",
+					"value": null,
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "25",
+						"class": "hidden",
+						"id": ""
+					},
+					"choices": {
+						"roadmap": "Roadmap",
+						"satellite": "Satellite"
+					},
+					"default_value": [
+						"roadmap"
+					],
+					"allow_null": 0,
+					"multiple": 0,
+					"ui": 0,
+					"ajax": 0,
+					"return_format": "value",
+					"placeholder": ""
+				},
+				{
+					"key": "field_598fcd1ee58bb",
+					"label": "Map Type Control",
+					"name": "map_type_control",
+					"type": "true_false",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "25",
+						"class": "hidden",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 1,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_598fcd1ee58bc",
+					"label": "Zoom Control",
+					"name": "zoom_control",
+					"type": "true_false",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "25",
+						"class": "hidden",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 1,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_598fcd1ee58bd",
+					"label": "Street View Control",
+					"name": "street_view_control",
+					"type": "true_false",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "25",
+						"class": "hidden",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 1,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_59a750ac2313f",
+					"label": "Google Map ID",
+					"name": "google_map_id",
+					"type": "text",
+					"value": null,
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "syntric-google-maps"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1509794367
+}

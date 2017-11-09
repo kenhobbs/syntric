@@ -1,0 +1,185 @@
+{
+	"key": "group_594f070b1200e",
+	"title": "Widget: Upcoming Events",
+	"fields": [
+		{
+			"key": "field_59b25d834e5a3",
+			"label": "Dynamic:",
+			"name": "syn_upcoming_events_widget_dynamic",
+			"type": "radio",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"choices": [
+				"No",
+				"Yes"
+			],
+			"allow_null": 0,
+			"other_choice": 0,
+			"save_other_choice": 0,
+			"default_value": 0,
+			"layout": "horizontal",
+			"return_format": "value"
+		},
+		{
+			"key": "field_596c62117fa7e",
+			"label": "Title:",
+			"name": "syn_upcoming_events_widget_title",
+			"type": "text",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59b25d834e5a3",
+						"operator": "==",
+						"value": "0"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "Upcoming Events",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_595358dfd2396",
+			"label": "Calendar:",
+			"name": "syn_upcoming_events_widget_calendar_id",
+			"type": "select",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59b25d834e5a3",
+						"operator": "==",
+						"value": "0"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"6460": "Demo Calendar",
+				"7585": "Escalon USD"
+			},
+			"default_value": [],
+			"allow_null": 0,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_59535930d2397",
+			"label": "Events to display:",
+			"name": "syn_upcoming_events_widget_events",
+			"type": "number",
+			"value": null,
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59b25d834e5a3",
+						"operator": "==",
+						"value": "0"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": 5,
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"min": 1,
+			"max": "",
+			"step": 1
+		},
+		{
+			"key": "field_59535962d2398",
+			"label": "",
+			"name": "syn_upcoming_events_widget_include_date",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59b25d834e5a3",
+						"operator": "==",
+						"value": "0"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "Include event date",
+			"default_value": 1,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "widget",
+				"operator": "==",
+				"value": "syn-upcoming-events-widget"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "left",
+	"instruction_placement": "label",
+	"hide_on_screen": [
+		"permalink",
+		"the_content",
+		"excerpt",
+		"custom_fields",
+		"discussion",
+		"comments",
+		"revisions",
+		"slug",
+		"author",
+		"format",
+		"page_attributes",
+		"featured_image",
+		"categories",
+		"tags",
+		"send-trackbacks"
+	],
+	"active": 1,
+	"description": "",
+	"modified": 1509728120
+}

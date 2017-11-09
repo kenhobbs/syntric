@@ -1,0 +1,357 @@
+{
+	"key": "group_596d53505d63e",
+	"title": "Data Functions",
+	"fields": [
+		{
+			"key": "field_59c693d78c8f4",
+			"label": "Custom Fields Orphan Scan",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_5976990647847",
+			"label": "Run Orphan Scan",
+			"name": "syn_data_run_orphan_scan",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_59ce7c2d40e88",
+			"label": "Delete Orphans",
+			"name": "syn_data_delete_orphans",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5976990647847",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "75",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_59c695d4c7dfa",
+			"label": "Orphan Scan Console",
+			"name": "syn_data_orphan_scan_console",
+			"type": "textarea",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"maxlength": "",
+			"rows": 20,
+			"new_lines": ""
+		},
+		{
+			"key": "field_59c6939a8c8f2",
+			"label": "Import Users",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_596f129520f55",
+			"label": "Instructions",
+			"name": "",
+			"type": "message",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "<p>Insert new users and update existing users from a CSV file.<\/p>\r\n<p>File columns<\/p>\r\n<ol>\r\n<li>ID (int, required) Enter 0 (zero) for new user<\/li>\r\n<li>Email (string, required)<\/li>\r\n<li>Role (string, required)<\/li>\r\n<li>First Name (string, required)<\/li>\r\n<li>Last Name (string, required)<\/li>\r\n<li>Title (string, optional) Separate titles with a forward slash (\/)<\/li>\r\n<li>Phone (string, optional) Area code and phone number, numbers only<\/li>\r\n<li>Extension (string, optional) Numbers only<\/li>\r\n<li>Is Teacher (boolean, optional) If user is a teacher.  Will create a teacher page if true.<\/li>\r\n<\/ol>",
+			"new_lines": "",
+			"esc_html": 0
+		},
+		{
+			"key": "field_597835d3a14ab",
+			"label": "Run Users Import",
+			"name": "syn_data_run_users_import",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_596d535df6faa",
+			"label": "Users File",
+			"name": "syn_data_users_file",
+			"type": "file",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_597835d3a14ab",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "75",
+				"class": "",
+				"id": ""
+			},
+			"return_format": "array",
+			"library": "all",
+			"min_size": "",
+			"max_size": "",
+			"mime_types": "csv"
+		},
+		{
+			"key": "field_59880a6deecd6",
+			"label": "Has Header Row",
+			"name": "syn_data_users_file_has_header_row",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_597835d3a14ab",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_59dd08dab17b7",
+			"label": "Run Users Export",
+			"name": "syn_data_run_users_export",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_59dcf5b48e958",
+			"label": "Users Import\/Export Console",
+			"name": "syn_data_users_import_console",
+			"type": "textarea",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"maxlength": "",
+			"rows": 12,
+			"new_lines": ""
+		},
+		{
+			"key": "field_59c693b18c8f3",
+			"label": "Update Users Phone",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_59783437a14a9",
+			"label": "Update Users Phone",
+			"name": "syn_data_run_users_phone_update",
+			"type": "true_false",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_596f15e8a7e49",
+			"label": "Phone",
+			"name": "syn_data_users_phone",
+			"type": "text",
+			"value": null,
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59783437a14a9",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_59d6ecea7aca0",
+			"label": "Update Users Password",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_59c17b3890d35",
+			"label": "Update Users Password",
+			"name": "syn_data_run_users_password_update",
+			"type": "true_false",
+			"value": null,
+			"instructions": "This will update all user passwords to their email address",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "syntric-data-functions"
+			}
+		]
+	],
+	"menu_order": 10,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1509727111
+}
