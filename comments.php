@@ -9,7 +9,7 @@
 			<div class="row">
 				<div class="col">
 					<h1>Site Review</h1>
-					<p>Site in is review. Submit feedback using the form below.</p>
+					<p>Submit feedback using the form below.</p>
 				</div>
 			</div>
 			<div class="row">
