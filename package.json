@@ -1,0 +1,47 @@
+{
+	"name": "syntric",
+	"version": "0.1",
+	"description": "Syntric Wordpress theme framework",
+	"main": "index.js",
+	"scripts": {
+		"postinstall": "gulp copy-assets"
+	},
+	"engines": {
+		"npm": ">=2.1.8"
+	},
+	"keywords": [
+		"wordpress",
+		"theme",
+		"framework",
+		"bootstrap"
+	],
+	"author": "Ken Hobbs",
+	"license": "GPL-2.0",
+	"bugs": {
+		"url": "http://syntric.com"
+	},
+	"homepage": "http://syntric.com",
+	"dependencies": {
+		"bootstrap": "^4.0.0-alpha.6",
+		"browser-sync": "^2.18.7",
+		"del": "^2.2.2",
+		"font-awesome": "^4.7.0",
+		"gulp": "^3.9.1",
+		"gulp-clone": "^1.0.0",
+		"gulp-concat": "^2.6.1",
+		"gulp-cssnano": "^2.1.2",
+		"gulp-ignore": "^2.0.2",
+		"gulp-imagemin": "^3.1.1",
+		"gulp-merge": "^0.1.1",
+		"gulp-plumber": "^1.1.0",
+		"gulp-rename": "^1.2.2",
+		"gulp-rimraf": "^0.2.1",
+		"gulp-sass": "^3.1.0",
+		"gulp-sourcemaps": "^2.4.1",
+		"gulp-uglify": "^2.0.1",
+		"gulp-watch": "^4.3.11",
+		"merge2": "^1.0.3",
+		"run-sequence": "^1.2.2"
+	},
+	"devDependencies": {}
+}
