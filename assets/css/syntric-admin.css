@@ -151,6 +151,75 @@
 #pageparentdiv .inside p:last-of-type {
 	display: none; }
 
+/********** Admin Columns customizations ***********/
+table.wp-list-table tbody.cacie-enabled td .cacie-cell-action {
+	margin-bottom: 0;
+	margin-right: 0;
+	color: #0074a2; }
+
+table.wp-list-table tbody.cacie-enabled td .cacie-cell-action:hover {
+	color: #00a0d2; }
+
+.cacie-action-icon:after,
+table.wp-list-table tbody.cacie-enabled td .cacie-cell-action:after {
+	width: 16px;
+	height: 16px;
+	line-height: 16px;
+	vertical-align: baseline; }
+
+.widefat td,
+.widefat td ol,
+.widefat td p,
+.widefat td ul {
+	font-size: 14px; }
+
+table.wp-list-table tbody:not(.cacie-enabled) .cacie-cell-actions {
+	display: none; }
+
+table.wp-list-table tbody.cacie-enabled .cacie-cell-actions {
+	display: inline-block; }
+
+#the-list > tr.level-1 .column-title_raw {
+	padding-left: 40px; }
+
+#the-list > tr.level-2 .column-title_raw {
+	padding-left: 80px; }
+
+#the-list > tr.level-3 .column-title_raw {
+	padding-left: 120px; }
+
+#the-list > tr.level-4 .column-title_raw {
+	padding-left: 160px; }
+
+.cacie-action-icon.active:before,
+table.wp-list-table tbody.cacie-enabled td .active.cacie-cell-action:before,
+table.wp-list-table tbody.cacie-enabled td.cacie-editable-media.cacie-nonempty .cacie-cell-action:before,
+table.wp-list-table tbody.cacie-enabled td:hover .cacie-cell-action:before {
+	display: none; }
+
+.cacie-action-icon.active,
+table.wp-list-table tbody.cacie-enabled td .active.cacie-cell-action,
+table.wp-list-table tbody.cacie-enabled td.cacie-editable-media.cacie-nonempty .cacie-cell-action,
+table.wp-list-table tbody.cacie-enabled td:hover .cacie-cell-action {
+	color: #00a0d2; }
+
+#nav-menu-footer,
+#nav-menu-header,
+#your-profile #rich_editing, .checkbox,
+.control-section .accordion-section-title,
+.menu-item-handle, .postbox .hndle,
+.side-info, .sidebar-name,
+.stuffbox .hndle,
+.widefat tfoot td,
+.widefat tfoot th,
+.widefat thead td,
+.widefat thead th,
+.widget .widget-top {
+	line-height: 1.5em; }
+
+table.media .column-title .filename {
+	display: none; }
+
 /*************** ACF customizations ***************/
 /*#acf-group_594aae200426f .inside {
 	background-color: #fff;
