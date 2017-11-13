@@ -11,7 +11,7 @@ function syn_remove_user_profile_fields( $fields ) {
 	return $fields;
 }
 
-add_action( 'wp_login', 'syn_wp_login' );
+add_action( 'wp_login', 'syn_wp_login', 10, 2 );
 function syn_wp_login( $user_login, $user ) {
 	if ( $user instanceof WP_User ) {
 		$args = array(
