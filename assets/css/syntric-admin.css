@@ -117,6 +117,9 @@ table.widefat {
 	margin-right: 6px;
 	margin-left: 0; }
 
+#wp-content-editor-tools {
+	background-color: transparent; }
+
 .wp-core-ui .button,
 .wp-core-ui .button-secondary,
 .wp-core-ui .ac-button {
@@ -125,6 +128,19 @@ table.widefat {
 	-webkit-box-shadow: none !important;
 	-moz-box-shadow: none !important;
 	box-shadow: none !important; }
+
+.wp-core-ui .button-primary {
+	text-shadow: none !important; }
+
+.form-table th {
+	font-weight: normal; }
+
+/**** Toolbar publish button ********/
+.wpuxss-tpb .ab-item,
+.wpuxss-tpb .ab-icon,
+.wpuxss-tpb .ab-icon:before,
+.wpuxss-tpb .ab-label {
+	color: #ffffff !important; }
 
 /******* User/Profile form customizations ********/
 #your-profile h2:first-of-type {
@@ -173,9 +189,6 @@ table.widefat {
 	display: none; }
 
 /************ Page Attributes meta box ************/
-#pageparentdiv .inside p:last-of-type {
-	display: none; }
-
 /********** Admin Columns customizations ***********/
 table.wp-list-table tbody.cacie-enabled td .cacie-cell-action {
 	margin-bottom: 0;
@@ -264,10 +277,7 @@ table.media .column-title .filename {
 	color: #999 !important; }
 
 #poststuff #post-body > .postbox-container > .ui-sortable > .acf-postbox {
-	border: none; }
-
-#poststuff #post-body > .postbox-container > .ui-sortable > .acf-postbox > .acf-fields > .acf-field-repeater > .acf-label {
-	display: none; }
+	padding-bottom: 20px; }
 
 .widget-content .acf-label label {
 	font-weight: normal !important; }

@@ -45,7 +45,7 @@ var renderMap = function (config) {
 		var boundaryCoordinates = (includeBoundary && typeof config.boundary_coordinates !== 'undefined') ? config.boundary_coordinates : [];
 		//console.log(markers);
 		var center = (includeMarkers) ? {lat: parseFloat(markers[0].lat), lng: parseFloat(markers[0].lng)} : {lat: parseFloat(config.center_lat), lng: parseFloat(config.center_lng)};
-		var zoom = (includeMarkers) ? 13 : config.zoom;
+		var zoom = (includeMarkers) ? 16 : config.zoom;
 		var styles = [];
 		if (config.styles) {
 			styles = config.styles;
