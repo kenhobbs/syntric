@@ -565,50 +565,6 @@ img {
 	background-image: none;
 	border-color: #003d5c; }
 
-.___jumbotron-wrapper {
-	background-color: #006699; }
-
-.___jumbotron-wrapper .container .row .col {
-	margin: 3rem 0;
-	padding: 3rem 2rem; }
-
-.___jumbotron-wrapper .container .row .col .jumbotron-headline {
-	font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-	color: #ffffff;
-	font-size: 4rem;
-	margin: 0;
-	font-weight: 400; }
-
-.___jumbotron-wrapper .container .row .col .jumbotron-caption {
-	display: block;
-	clear: both;
-	color: #ffffff;
-	font-size: 1.5rem; }
-
-.___jumbotron-wrapper .container .row .col .jumbotron-button {
-	color: #ffffff;
-	background-color: #008B8B;
-	border-color: #008B8B; }
-
-.___jumbotron-wrapper .container .row .col .jumbotron-button:hover {
-	color: #ffffff;
-	background-color: #005858;
-	border-color: #004e4e; }
-
-.___jumbotron-wrapper .container .row .col .jumbotron-button:focus, .___jumbotron-wrapper .container .row .col .jumbotron-button.focus {
-	box-shadow: 0 0 0 2px rgba(0, 139, 139, 0.5); }
-
-.___jumbotron-wrapper .container .row .col .jumbotron-button.disabled, .___jumbotron-wrapper .container .row .col .jumbotron-button:disabled {
-	background-color: #008B8B;
-	border-color: #008B8B; }
-
-.___jumbotron-wrapper .container .row .col .jumbotron-button:active, .___jumbotron-wrapper .container .row .col .jumbotron-button.active,
-.show > .___jumbotron-wrapper .container .row .col .jumbotron-button.dropdown-toggle {
-	color: #ffffff;
-	background-color: #005858;
-	background-image: none;
-	border-color: #004e4e; }
-
 .breadcrumb-wrapper {
 	background-color: #006699;
 	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
@@ -717,6 +673,10 @@ img {
 
 .content-wrapper main.content-area > *:not(.fc-unthemed) table tbody tr:nth-of-type(even) {
 	background-color: #eeeeee; }
+
+.content-wrapper main.content-area table.teachers-roster tr td:first-of-type,
+.content-wrapper main.content-area table.teachers-roster tr td:nth-of-type(2) {
+	width: 250px; }
 
 .calendar-nav {
 	margin-bottom: 1rem;
@@ -1146,6 +1106,10 @@ section.main-bottom-sidebar .widget .map-wrapper {
 	height: 400px;
 	width: 100%; }
 
+.footer-sidebar .syn-contact-widget .widget-body,
+.header-sidebar .syn-contact-widget .widget-body {
+	min-height: 180px; }
+
 .footer-1.footer-sidebar {
 	background-position: center center;
 	background-size: cover;
@@ -1436,9 +1400,6 @@ aside.main-left-sidebar .syn-facebook-page-widget .widget-body .widget-item .wid
 aside.main-right-sidebar .syn-facebook-page-widget .widget-body .widget-item .widget-entry .entry-image {
 	display: none; }
 
-.syn-contact-widget .widget-body {
-	min-height: 180px; }
-
 .syn-contact-widget .widget-body .widget-item .widget-entry {
 	display: flex;
 	flex-direction: row;
@@ -1448,7 +1409,7 @@ aside.main-right-sidebar .syn-facebook-page-widget .widget-body .widget-item .wi
 	padding-right: 1.5rem; }
 
 .syn-contact-widget .widget-body .widget-item .widget-entry .entry-image img {
-	max-width: 75px;
+	max-width: 100px;
 	height: auto; }
 
 .syn-contact-widget .widget-body .widget-item .widget-entry .entry-header {

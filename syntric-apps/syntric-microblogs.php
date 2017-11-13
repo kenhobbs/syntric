@@ -169,8 +169,23 @@ function syn_save_microblog( $post_id ) {
 			if ( is_int( $cat_id ) && is_int( $term_id ) ) {
 				wp_set_post_categories( $post->ID, array( (int) $cat_id ), false );
 				wp_set_post_terms( $post->ID, array( (int) $term_id ), 'microblog', false );
-				update_field( 'syn_microblog_page', $post->ID, 'microblog_' . $term_id );
+				//update_field( 'syn_microblog_page', $post->ID, 'microblog_' . $term_id );
 			}
 		}
 	}
+}
+
+function syn_get_user_microblogs( $user_id ) {
+	$args                 = array(
+		'numberposts'  => - 1,
+		'post_type'    => 'page',
+		'author'       => $user_id,
+		'post_status'  => array( 'publish', 'pending', 'draft', 'future' ),
+		'meta_key'     => 'syn_microblog_active',
+		'meta_value'   => 1,
+		'meta_compare' => '=',
+	);
+	$user_microblog_pages = get_posts( $args );
+
+	return $user_microblog_pages;
 }

@@ -244,16 +244,23 @@ function syn_admin_menu() {
 	remove_submenu_page( 'index.php', 'update-core.php' );
 	// Remove for all but administrator
 	if ( current_user_can( 'editor' ) ) {
+		remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Microblog (taxonomy)
 		remove_menu_page( 'jetpack' ); // Jetpack
 		remove_menu_page( 'users.php' ); // Users
+		remove_menu_page( 'edit-comments.php' ); // Comments
 		remove_menu_page( 'themes.php' ); // Appearance
 		remove_menu_page( 'plugins.php' ); // Plugins
 		remove_menu_page( 'tools.php' ); // Tools
 		remove_menu_page( 'settings.php' ); // Settings
 		remove_menu_page( 'edit.php?post_type=acf-field-group' ); // Custom Fields
+		// todo: need to add in Headers, maybe Users
+		
+		
+		
 	}
 	// Remove menu items from authors - this is the roll assigned to Teachers
 	if ( current_user_can( 'author' ) ) {
+		remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Microblog (taxonomy)
 		remove_menu_page( 'jetpack' ); // Jetpack
 		remove_menu_page( 'admin.php?page=syntric-organization' ); // Organization
 		remove_menu_page( 'edit.php?post_type=syn_calendar' ); // Calendars
@@ -261,12 +268,12 @@ function syn_admin_menu() {
 		remove_menu_page( 'admin.php?page=syntric-google-maps' ); // Google Maps
 		remove_menu_page( 'users.php' ); // Users
 		remove_menu_page( 'profile.php' ); // Profile
+		remove_menu_page( 'edit-comments.php' ); // Comments
 		remove_menu_page( 'themes.php' ); // Appearance
 		remove_menu_page( 'plugins.php' ); // Plugins
 		remove_menu_page( 'tools.php' ); // Tools
 		remove_menu_page( 'settings.php' ); // Settings
 		remove_menu_page( 'edit.php?post_type=acf-field-group' ); // Custom Fields
-		remove_menu_page( 'edit-comments.php' ); // Comments
 	}
 }
 
@@ -275,15 +282,71 @@ function syn_admin_menu() {
  */
 add_action( 'admin_bar_menu', 'syn_admin_bar', 999 );
 function syn_admin_bar( $wp_admin_bar ) {
-	if ( ! is_admin() ) {
-		$site_name_node        = $wp_admin_bar->get_node( 'site-name' );
-		$site_name_node->title = 'Admin';
-		$wp_admin_bar->add_node( $site_name_node );
-	} else {
+	// Modify the Site Name menu item/dropdown for both front-end and admin
+	if ( is_admin() ) {
 		$site_name_node        = $wp_admin_bar->get_node( 'site-name' );
 		$site_name_node->title = 'Website';
 		$wp_admin_bar->add_node( $site_name_node );
+		// Add some targeted links in the dropdown here...for Teachers - My Page (Or maybe that should go in My Account (upper right),
+		// for everyone links to Home Page, Calendars, News and more as appropriate and that make sense for the Org type
+	} else {
+		$site_name_node        = $wp_admin_bar->get_node( 'site-name' );
+		$site_name_node->title = 'Admin';
+		$wp_admin_bar->add_node( $site_name_node );
+		$wp_admin_bar->remove_node( 'appearance' );
+		$wp_admin_bar->remove_node( 'themes' );
+		$wp_admin_bar->remove_node( 'widgets' );
+		$wp_admin_bar->remove_node( 'menus' );
+		$wp_admin_bar->remove_node( 'header' );
+		// Pages menu item
+		$pages_node         = new stdClass();
+		$pages_node->id     = 'pages';
+		$pages_node->title  = 'Pages';
+		$pages_node->parent = 'site-name';
+		$pages_node->href   = '/wp-admin/edit.php?post_type=page';
+		$pages_node->group  = '';
+		$pages_node->meta   = array();
+		$wp_admin_bar->add_node( $pages_node );
+		// Posts menu item
+		$posts_node         = new stdClass();
+		$posts_node->id     = 'posts';
+		$posts_node->title  = 'Posts';
+		$posts_node->parent = 'site-name';
+		$posts_node->href   = '/wp-admin/edit.php';
+		$posts_node->group  = '';
+		$posts_node->meta   = array();
+		$wp_admin_bar->add_node( $posts_node );
+		if ( current_user_can( 'administrator' ) || current_user_can( 'editor' ) ) {
+			// Jumbotrons menu item
+			$jumbotrons_node         = new stdClass();
+			$jumbotrons_node->id     = 'jumbotrons';
+			$jumbotrons_node->title  = 'Jumbotrons';
+			$jumbotrons_node->parent = 'site-name';
+			$jumbotrons_node->href   = '/wp-admin/admin.php?page=syntric-jumbotrons';
+			$jumbotrons_node->group  = '';
+			$jumbotrons_node->meta   = array();
+			$wp_admin_bar->add_node( $jumbotrons_node );
+			// Users menu item
+			$users_node         = new stdClass();
+			$users_node->id     = 'users';
+			$users_node->title  = 'Users';
+			$users_node->parent = 'site-name';
+			$users_node->href   = '/wp-admin/users.php';
+			$users_node->group  = '';
+			$users_node->meta   = array();
+			$wp_admin_bar->add_node( $users_node );
+			// Headers menu item
+			$headers_node         = new stdClass();
+			$headers_node->id     = 'headers';
+			$headers_node->title  = 'Headers';
+			$headers_node->parent = 'site-name';
+			$headers_node->href   = '/wp-admin/customize.php?return=%2Fwp-admin%2F&autofocus%5Bcontrol%5D=header_image';
+			$headers_node->group  = '';
+			$headers_node->meta   = array();
+			$wp_admin_bar->add_node( $headers_node );
+		}
 	}
+	// Modify the Account menu item/dropdown - drop "Howdy" and have only 2 dropdowns: Profile and Logout
 	$my_account_node        = $wp_admin_bar->get_node( 'my-account' );
 	$my_account_node->title = str_replace( 'Howdy, ', '', $my_account_node->title );
 	$wp_admin_bar->add_node( $my_account_node );
@@ -293,15 +356,69 @@ function syn_admin_bar( $wp_admin_bar ) {
 	$logout_node        = $wp_admin_bar->get_node( 'logout' );
 	$logout_node->title = str_replace( 'Log Out', 'Logout', $logout_node->title );
 	$wp_admin_bar->add_node( $logout_node );
-	if ( ! current_user_can( 'administrator' ) && ! current_user_can( 'editor' ) ) {
+	// Change up the New Content menu item/dropdown as appropriate for the users role
+	if ( current_user_can( 'subscriber' ) || current_user_can( 'contributor' ) ) {
+		// Remove New Content for subscribers and contributors
 		$wp_admin_bar->remove_node( 'new-content' );
-		$wp_admin_bar->remove_node( 'dashboard' );
+	} elseif ( current_user_can( 'author' ) ) {
+		// for now, just take the New Content completely away from authors
+		$wp_admin_bar->remove_node( 'new-content' );
+		// todo: For the New Content menu item/dropdown for authors (aka teachers) list each of their microblogs?  Teacher and class pages?  Change New Content to My Content?
+		// already created a function syn_get_user_microblogs for this...
+	} elseif ( current_user_can( 'administrator' ) ) {
+		// Modify the New Content menu item/dropdown...New > Page, Post, Jumbotron, Person, Header
+		$new_content_node = $wp_admin_bar->get_node( 'new-content' );
+		//$wp_admin_bar->remove_node( 'new-post' );
+		$wp_admin_bar->remove_node( 'new-media' );
+		$wp_admin_bar->remove_node( 'new-link' );
+		// Post, User
+		$post_node = $wp_admin_bar->get_node( 'new-post' );
+		//$page_node = $wp_admin_bar->get_node('new-page');
+		$user_node = $wp_admin_bar->get_node( 'new-user' );
+		// Remove them, only Page is left..
+		$wp_admin_bar->remove_node( 'new-post' );
+		$wp_admin_bar->remove_node( 'new-user' );
+		$wp_admin_bar->add_node( $post_node );
+		$jumbotron_node         = new stdClass();
+		$jumbotron_node->id     = 'jumbotron';
+		$jumbotron_node->title  = 'Jumbotron';
+		$jumbotron_node->parent = 'new-content';
+		$jumbotron_node->href   = '/wp-admin/admin.php?page=syntric-jumbotrons';
+		$jumbotron_node->group  = '';
+		$jumbotron_node->meta   = array();
+		$wp_admin_bar->add_node( $jumbotron_node );
+		$wp_admin_bar->add_node( $user_node );
+		// Headers menu item
+		$header_node         = new stdClass();
+		$header_node->id     = 'header';
+		$header_node->title  = 'Header';
+		$header_node->parent = 'new-content';
+		$header_node->href   = '/wp-admin/customize.php?return=%2Fwp-admin%2F&autofocus%5Bcontrol%5D=header_image';
+		$header_node->group  = '';
+		$header_node->meta   = array();
+		$wp_admin_bar->add_node( $header_node );
 	}
+	// Remove the following menu items for everyone
 	$wp_admin_bar->remove_node( 'comments' );
 	$wp_admin_bar->remove_node( 'search' );
 	$wp_admin_bar->remove_node( 'wp-logo' );
 	$wp_admin_bar->remove_node( 'user-info' );
 	$wp_admin_bar->remove_node( 'view-site' );
+	$wp_admin_bar->remove_node( 'customize' );
+	// Move the "Edit" menu item right section of the admin bar
+	if ( is_admin() ) {
+		$view_node = $wp_admin_bar->get_node( 'view' );
+		if ( $view_node ) {
+			$view_node->parent = 'top-secondary';
+			$wp_admin_bar->add_node( $view_node );
+		}
+	} else {
+		$edit_node = $wp_admin_bar->get_node( 'edit' );
+		if ( $edit_node ) {
+			$edit_node->parent = 'top-secondary';
+			$wp_admin_bar->add_node( $edit_node );
+		}
+	}
 }
 
 /**
@@ -1798,7 +1915,7 @@ function syn_display_teachers() {
 	$teachers = syn_get_teachers();
 	if ( $teachers ) {
 		echo '<h2>Teacher Roster</h2>';
-		echo '<table>';
+		echo '<table class="teachers-roster">';
 		echo '<thead>';
 		echo '<tr>';
 		echo '<th scope="col">Name</th>';
@@ -1827,7 +1944,7 @@ function syn_display_teachers() {
 				}
 			}
 			echo '<tr valign="top">';
-			echo '<td>';
+			echo '<td nowrap="nowrap">';
 			if ( $teacher_page_published ) {
 				echo '<a href="' . get_the_permalink( $teacher_page->ID ) . '">';
 			}
@@ -1836,8 +1953,8 @@ function syn_display_teachers() {
 				echo '</a>';
 			}
 			echo '</td>';
-			echo '<td><a href="mailto:' . antispambot( $email, true ) . '" class="teachers-list-email" title="Email">' . antispambot( $email ) . '</a></td>';
-			echo '<td>' . implode( '<br>', $class_array ) . '</td>';
+			echo '<td nowrap="nowrap"><a href="mailto:' . antispambot( $email, true ) . '" class="teachers-list-email" title="Email">' . antispambot( $email ) . '</a></td>';
+			echo '<td>' . implode( ', ', $class_array ) . '</td>';
 			echo '</tr>';
 		}
 		echo '</tbody>';
@@ -1854,7 +1971,7 @@ function syn_display_teacher_classes() {
 				$periods_active = get_field( 'syn_periods_active', 'option' );
 				$rooms_active   = get_field( 'syn_rooms_active', 'option' );
 				echo '<h2>Classes</h2>';
-				echo '<table>';
+				echo '<table class="teacher-classes">';
 				echo '<thead>';
 				echo '<tr>';
 				echo '<th scope="col">Term</th>';
@@ -1911,7 +2028,7 @@ function syn_display_department_courses() {
 				}
 				array_multisort( $c, SORT_ASC, $courses );
 				echo '<h2>Courses</h2>';
-				echo '<table>';
+				echo '<table class="departement-courses">';
 				echo '<thead>';
 				echo '<tr>';
 				echo '<th scope="col">Course</th>';
@@ -2095,15 +2212,16 @@ function syn_list_classes() {
 		echo '<table class="admin-list classes">';
 		echo '<thead>';
 		echo '<tr>';
-		echo '<th scope="col">Class</th>';
-		echo '<th scope="col">Status</th>';
 		echo '<th scope="col">Term</th>';
+		echo '<th scope="col">Class</th>';
 		if ( $periods_active ) {
 			echo '<th scope="col">Period</th>';
 		}
 		if ( $rooms_active ) {
 			echo '<th scope="col">Room</th>';
 		}
+		echo '<th scope="col">Status</th>';
+
 		echo '</tr>';
 		echo '</thead>';
 		$current_teacher = 0;
@@ -2117,15 +2235,8 @@ function syn_list_classes() {
 				echo '<thead>';
 				echo '<tr class="list-group-header">';
 				echo '<td colspan="' . $cols . '">';
-				//echo $teacher->user_firstname . ' ' . $teacher->user_lastname;
 				if ( $teacher_page ) :
-					/*if ( 'publish' != $teacher_page_status ) :
-						echo ' - ' . $teacher_page_status;
-					endif;*/
-					//echo '<div class="edit-view-links">';
 					echo '<a href="/wp-admin/post.php?action=edit&post=' . $teacher_page->ID . '">' . $teacher->user_firstname . ' ' . $teacher->user_lastname . '</a>';
-				//echo ' | <a href="/wp-admin/post.php?action=edit&post=' . $teacher_page->ID . '">' . 'View' . '</a>';
-				//echo '</div>';
 				else :
 					echo $teacher->user_firstname . ' ' . $teacher->user_lastname;
 				endif;
@@ -2139,25 +2250,17 @@ function syn_list_classes() {
 			if ( $classes ) {
 				foreach ( $classes as $class ) {
 					$class_page = syn_get_teacher_class_page( $teacher->ID, $class[ 'class_id' ] );
-					//$class_page_status = $class_page->post_status;
 					$period = ( $periods_active && isset( $class[ 'period' ] ) ) ? $class[ 'period' ] : '';
 					$room   = ( $rooms_active && isset( $class[ 'room' ] ) ) ? $class[ 'room' ] : '';
 					echo '<tr>';
+					echo '<td class="term">' . $class[ 'term' ] . '</td>';
 					echo '<td>';
-					//echo $class[ 'course' ];
-					//echo syn_get_post_breadcrumbs( $class_page->ID );
 					if ( $class_page ) :
-						//echo '<div class="edit-view-links">';
 						echo '<a href="/wp-admin/post.php?action=edit&post=' . $class_page->ID . '">' . $class_page->post_title . '</a>';
-					//echo ' | <a href="' . get_permalink( $class_page->ID ) . '">' . 'View' . '</a>';
-					//echo '</div>';
 					else :
 						echo $class_page->post_title;
 					endif;
 					echo '</td>';
-					$status = ( 'publish' == $class_page->post_status ) ? 'Published' : $class_page->post_status;
-					echo '<td class="status">' . $status . '</td>';
-					echo '<td class="term">' . $class[ 'term' ] . '</td>';
 					if ( $periods_active ) {
 						$period_label = ( $period ) ? 'Period ' . $period : '';
 						echo '<td class="period">' . $period_label . '</td>';
@@ -2166,6 +2269,8 @@ function syn_list_classes() {
 						$room_label = ( $room ) ? 'Room ' . $room : '';
 						echo '<td class="room">' . $room_label . '</td>';
 					}
+					$status = ( 'publish' == $class_page->post_status ) ? 'Published' : $class_page->post_status;
+					echo '<td class="status">' . $status . '</td>';
 					echo '</tr>';
 				}
 			} else {

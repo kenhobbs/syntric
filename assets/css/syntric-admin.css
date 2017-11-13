@@ -1,3 +1,7 @@
+body {
+	font-family: 'Roboto', -apple-system, "Helvetica Neue", sans-serif;
+	background: #ffffff; }
+
 /******* Syntric classes ******/
 #pending_pages_dashboard_widget,
 #pending_posts_dashboard_widget,
@@ -15,7 +19,8 @@
 	padding: 1rem 0;
 	font-size: 1.3em;
 	display: inline-block;
-	border: none; }
+	border: none;
+	font-weight: normal; }
 
 #pending_pages_dashboard_widget .handlediv,
 #pending_posts_dashboard_widget .handlediv,
@@ -46,9 +51,10 @@
 	width: 100%; }
 
 .admin-list thead tr th {
-	padding: 8px 10px;
+	padding: 10px;
 	color: #32373c;
 	font-weight: 400 !important;
+	border-top: 1px solid #e1e1e1;
 	border-bottom: 1px solid #e1e1e1; }
 
 .admin-list tbody tr:nth-of-type(odd) {
@@ -56,7 +62,7 @@
 
 .admin-list td, .admin-list th {
 	text-align: left;
-	padding: 8px 10px;
+	padding: 10px;
 	border: none;
 	background-color: transparent; }
 
@@ -67,13 +73,13 @@
 	text-transform: capitalize; }
 
 .admin-list td.template, .admin-list td.status, .admin-list td.category, .admin-list td.period, .admin-list td.room, .admin-list td.published, .admin-list td.submitted, .admin-list th.template, .admin-list th.status, .admin-list th.category, .admin-list th.period, .admin-list th.room, .admin-list th.published, .admin-list th.submitted {
-	width: 10%; }
+	width: 100px; }
 
 .admin-list td.owner, .admin-list th.owner {
-	width: 15%; }
+	width: 150px; }
 
 .admin-list td.term, .admin-list th.term {
-	width: 20%; }
+	width: 200px; }
 
 .admin-list .edit-view-links {
 	display: inline-block;
@@ -82,6 +88,16 @@
 
 .admin-list .list-group-header {
 	background-color: rgba(0, 133, 186, 0.1) !important; }
+
+.row-actions {
+	font-size: 14px; }
+
+table.widefat {
+	border: none; }
+
+.postbox .inside,
+.stuffbox .inside {
+	font-size: 14px; }
 
 #acf-group_59bb843293763 {
 	border: none; }
@@ -100,6 +116,15 @@
 	float: left;
 	margin-right: 6px;
 	margin-left: 0; }
+
+.wp-core-ui .button,
+.wp-core-ui .button-secondary,
+.wp-core-ui .ac-button {
+	margin: 0 !important;
+	vertical-align: baseline !important;
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important; }
 
 /******* User/Profile form customizations ********/
 #your-profile h2:first-of-type {
@@ -215,7 +240,9 @@ table.wp-list-table tbody.cacie-enabled td:hover .cacie-cell-action {
 .widefat thead td,
 .widefat thead th,
 .widget .widget-top {
-	line-height: 1.5em; }
+	line-height: 1.5em;
+	border-top: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1; }
 
 table.media .column-title .filename {
 	display: none; }
@@ -228,8 +255,19 @@ table.media .column-title .filename {
 }*/
 .acf-field .acf-label label,
 .acf-tab-button {
-	font-size: 13px !important;
-	font-weight: 600 !important; }
+	font-size: 14px !important;
+	font-weight: normal !important; }
+
+.acf-label .description {
+	text-decoration: none;
+	font-style: normal;
+	color: #999 !important; }
+
+#poststuff #post-body > .postbox-container > .ui-sortable > .acf-postbox {
+	border: none; }
+
+#poststuff #post-body > .postbox-container > .ui-sortable > .acf-postbox > .acf-fields > .acf-field-repeater > .acf-label {
+	display: none; }
 
 .widget-content .acf-label label {
 	font-weight: normal !important; }
@@ -424,13 +462,13 @@ form#your-profile ul.acf-checkbox-list li {
 	display: block;
 	background-color: #fff !important;
 	color: #444 !important;
-	margin: 1px 0 0 !important; }
+	margin: 4px 0 0 !important; }
 
 .acf-field-repeater.acf-field .acf-row-handle.order a.acf-icon.-collapse:hover {
 	display: block;
 	background-color: #444 !important;
 	color: #ffffff !important;
-	margin: 1px 0 0 !important; }
+	margin: 4px 0 0 !important; }
 
 .acf-field-repeater.acf-field .acf-row-handle.remove a.acf-icon.-plus {
 	display: none; }
@@ -439,6 +477,9 @@ form#your-profile ul.acf-checkbox-list li {
 	display: block;
 	background-color: #fff !important;
 	color: #444 !important; }
+
+.wrap .add-new-h2, .wrap .add-new-h2:active, .wrap .page-title-action, .wrap .page-title-action:active {
+	font-weight: normal; }
 
 .acf-field-repeater[data-name="syn_departments"] .acf-row-handle.order a.acf-icon.-collapse,
 .acf-field-repeater[data-name="syn_courses"] .acf-row-handle.order a.acf-icon.-collapse,
@@ -552,6 +593,91 @@ form#your-profile ul.acf-checkbox-list li {
 	margin-top: 0;
 	padding-top: 8px; }
 
+.ac-button.ac-button-toggle-edit:after {
+	display: none; }
+
+.tablenav {
+	margin: 0 !important;
+	height: auto; }
+
+.tablenav .actions {
+	padding: 14px 0 !important;
+	margin: 0 !important; }
+
+.tablenav .actions > select,
+.tablenav .actions > input,
+.tablenav .actions a.ac-button,
+.tablenav .actions a.reset-sorting {
+	margin: 0 4px 0 0 !important;
+	vertical-align: top !important;
+	top: 0 !important; }
+
+.tablenav .actions > .button,
+.tablenav .actions > .ac-button,
+.tablenav .actions > .reset-sorting {
+	color: #555;
+	border-color: #ccc;
+	background: #f7f7f7;
+	line-height: 14px;
+	height: auto;
+	padding: 6px 10px; }
+
+.tablenav-pages {
+	padding: 14px 0 !important;
+	margin: 0 !important;
+	height: auto; }
+
+.tablenav-pages .displaying-num,
+.tablenav-pages .tablenav-paging-text,
+.tablenav-pages .total-pages {
+	font-size: 14px; }
+
+.tablenav-pages .pagination-links .tablenav-pages-navspan,
+.tablenav-pages .pagination-links a {
+	font-size: 16px;
+	color: #555;
+	border-color: #ccc;
+	background: #f7f7f7;
+	padding: 5px 10px;
+	height: auto; }
+
+.tablenav-pages .current-page {
+	padding: 2px;
+	line-height: 28px;
+	height: 28px;
+	font-size: 14px; }
+
+.ac-button.add-new-h2.ac-button-toggle-edit {
+	vertical-align: top !important; }
+
+body.users-php .tablenav .actions a.add-new-h2 {
+	vertical-align: top !important; }
+
+/*.tablenav .ac-button,
+.tablenav .reset-sorting,
+.ac-button.add-new-h2.ac-button-toggle-edit {
+
+	//box-shadow: 0 1px 0 #ccc;
+
+	//display: inline-block;
+	text-decoration: none;
+	font-size: 13px;
+	//line-height: 26px;
+	//height: 28px;
+	//padding: 0 10px 1px;
+	//margin: 1px 8px 4px 0;
+	//cursor: pointer;
+	//border-width: 1px;
+	border-style: solid;
+	-webkit-appearance: none;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	white-space: nowrap;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	top: 0 !important;
+}*/
 /*************** FontAwesome Icons for admin menu ***************/
 .dashicons, .dashicons-before:before {
 	font-size: 16px; }
@@ -647,3 +773,21 @@ form#your-profile ul.acf-checkbox-list li {
 .dashicons-admin-settings:before {
 	font-family: FontAwesome !important;
 	content: '\f085'; }
+
+#wp-admin-bar-site-name > .ab-item:before {
+	font-family: FontAwesome !important;
+	content: '\f0ac' !important; }
+
+#wp-admin-bar-new-content > .ab-item > .ab-icon:before {
+	font-family: FontAwesome !important;
+	content: '\f196' !important;
+	top: 0 !important; }
+
+#wp-admin-bar-view > .ab-item:before {
+	font-family: FontAwesome !important;
+	content: '\f06e';
+	top: 1px; }
+
+#wp-admin-bar-my-account > .ab-item:before {
+	font-family: FontAwesome !important;
+	content: '\f2be' !important; }

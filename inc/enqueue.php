@@ -91,6 +91,7 @@ function syn_enqueue_scripts() {
  */
 add_action( 'admin_enqueue_scripts', 'syn_enqueue_admin_scripts' );
 function syn_enqueue_admin_scripts( $hook ) {
+	wp_enqueue_style( 'google-fonts-stylesheet', '//fonts.googleapis.com/css?family=Roboto:300,400:500:700' );
 	// Font Awesome
 	wp_enqueue_style( 'fontawesome-stylesheet', get_stylesheet_directory_uri() . '/assets/libs/fontawesome-v4.7.0/fontawesome.css', null, '4.7.0' );
 	wp_enqueue_style( 'syntric-admin-stylesheet', get_template_directory_uri() . '/assets/css/syntric-admin.min.css' );
