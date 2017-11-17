@@ -254,9 +254,6 @@ function syn_admin_menu() {
 		remove_menu_page( 'settings.php' ); // Settings
 		remove_menu_page( 'edit.php?post_type=acf-field-group' ); // Custom Fields
 		// todo: need to add in Headers, maybe Users
-		
-		
-		
 	}
 	// Remove menu items from authors - this is the roll assigned to Teachers
 	if ( current_user_can( 'author' ) ) {
@@ -1051,21 +1048,7 @@ function syn_load_nav_menu( $field ) {
 	return $field;
 }
 
-function syn_get_page_template( $post_id ) {
-	if ( 'page' == get_post_type( $post_id ) ) {
-		$page_meta              = get_post_meta( $post_id );
-		$page_template_path     = $page_meta[ '_wp_page_template' ];
-		$page_template_path_arr = explode( '/', $page_template_path[ 0 ] );
-		$page_template_file     = $page_template_path_arr[ count( $page_template_path_arr ) - 1 ];
-		$page_template_file_arr = explode( '.', $page_template_file );
-		$page_template          = $page_template_file_arr[ 0 ];
-
-		return $page_template;
-	}
-
-	return false;
-}
-
+/*************************************** Course *****************************************/
 function syn_get_course_teachers( $course_id ) {
 	$teacher_pages = syn_get_teachers_pages();
 	$teachers      = array();
@@ -1092,7 +1075,110 @@ function syn_get_course_teachers( $course_id ) {
 	return $teachers;
 }
 
-// Teacher
+/*************************************** Teachers (page template) Page *****************************************/
+// todo: Look at this...was only getting published pages, quickly changed to all...is that correct?
+function syn_get_teachers_page() {
+	$post_args = array(
+		'numberposts'  => - 1,
+		'post_type'    => 'page',
+		'post_status'  => array( 'publish', 'draft', 'future', 'pending', 'private' ),
+		'meta_key'     => '_wp_page_template',
+		'meta_value'   => 'page-templates/teachers.php',
+		'meta_compare' => '=',
+	);
+	$posts     = get_posts( $post_args );
+	if ( 0 == count( $posts ) ) {
+		// create and return a new teachers page
+		$post_id = syn_create_teachers_page();
+		$post    = get_post( $post_id, OBJECT );
+
+		return $post;
+	} elseif ( 1 < count( $posts ) ) {
+		// Children test
+		// ...more than one teachers pages exist...determine which takes precedence, migrate children, trash extras, return winner
+		$has_children       = array();
+		$has_not_children   = array();
+		$post_children_args = array(
+			'numberposts' => - 1,
+			'post_status' => array( 'publish', 'draft', 'future', 'pending', 'private' ),
+			'post_parent' => 0, // change for each iteration
+		);
+		foreach ( $posts as $post ) {
+			$post_children_args[ 'post_parent' ] = $post->ID;
+			$post_children                       = get_posts( $post_children_args );
+			if ( count( $post_children ) ) {
+				$has_children[] = $post;
+			} else {
+				$has_not_children[] = $post;
+			}
+		}
+		if ( 1 == count( $has_children ) ) {
+			if ( count( $has_not_children ) ) {
+				syn_trash_pages( $has_not_children );
+			}
+
+			return $has_children[ 0 ];
+		}
+		// Published test
+		// ...if only one post_status is published, return it
+		$is_published     = array();
+		$is_not_published = array();
+		foreach ( $posts as $post ) {
+			if ( 'publish' == $post->post_status ) {
+				$is_published[] = $post;
+			} else {
+				$is_not_published[] = $post;
+			}
+		}
+		if ( 1 == count( $is_published ) ) {
+			if ( count( $is_not_published ) ) {
+				syn_trash_pages( $is_not_published );
+			}
+
+			return $is_published[ 0 ];
+		}
+		// ran out of tests...will return first teachers page
+		// todo: should send an error or notice that there are more than one teachers pages
+	}
+
+	return $posts[ 0 ];
+}
+
+function syn_create_teachers_page() {
+	$site_owner       = get_field( 'syn_organization_person', 'option' );
+	$site_owner       = ( is_int( $site_owner ) ) ? $site_owner : 1;
+	$args             = array(
+		'post_type'   => 'page',
+		'post_title'  => 'Teachers',
+		'post_name'   => 'teachers',
+		'post_author' => $site_owner,
+		'post_parent' => 0,
+		'post_status' => 'draft',
+	);
+	$teachers_page_id = wp_insert_post( $args );
+	update_post_meta( $teachers_page_id, '_wp_page_template', 'page-templates/teachers.php' );
+
+	return $teachers_page_id;
+}
+
+function syn_update_teachers_page( $post_id ) {
+	$teachers_page = get_post( $post_id, OBJECT );
+	if ( $teachers_page instanceof WP_Post ) {
+		$args             = array(
+			'ID'         => $post_id,
+			'post_title' => 'Teachers',
+			'post_name'  => 'teachers',
+		);
+		$teachers_page_id = wp_update_post( $args );
+		update_post_meta( $teachers_page_id, '_wp_page_template', 'page-templates/teachers.php' );
+
+		return $teachers_page_id;
+	}
+
+	return false;
+}
+
+/*************************************** Teacher *****************************************/
 function syn_get_teacher( $user_id ) {
 	if ( ! isset( $user_id ) || ! is_numeric( $user_id ) ) {
 		return false;
@@ -1108,6 +1194,7 @@ function syn_get_teacher( $user_id ) {
 	return false;
 }
 
+/*************************************** Teacher Page *****************************************/
 function syn_get_teacher_page( $teacher_id, $include_trash = false ) {
 	$post_statuses = array( 'publish', 'draft', 'future', 'pending', 'private' );
 	if ( $include_trash ) {
@@ -1136,6 +1223,86 @@ function syn_get_teacher_page( $teacher_id, $include_trash = false ) {
 	}
 
 	return $posts;
+}
+
+function syn_save_teacher_page( $teacher_id ) {
+	$teacher = syn_get_teacher( $teacher_id );
+	if ( $teacher instanceof WP_User ) {
+		$teacher_meta  = get_user_meta( $teacher_id );
+		$first_name    = $teacher_meta[ 'first_name' ][ 0 ];
+		$last_name     = $teacher_meta[ 'last_name' ][ 0 ];
+		$post_title    = $first_name . ' ' . $last_name;
+		$post_name     = syn_sluggify( $post_title );
+		$teachers_page = syn_get_teachers_page(); // Teachers page
+		if ( $teachers_page instanceof WP_Post ) {// todo: test this...make sure a teachers page is always returned
+			$args         = array(
+				'post_type'   => 'page',
+				'post_title'  => $post_title,
+				'post_name'   => $post_name,
+				'post_author' => $teacher_id,
+				'post_parent' => $teachers_page->ID,
+			);
+			$teacher_page = syn_get_teacher_page( $teacher_id, true );
+			if ( $teacher_page ) {
+				$args[ 'ID' ]           = $teacher_page->ID;
+				$args[ 'post_content' ] = $teacher_page->post_content;
+				$args[ 'post_status' ]  = ( 'trash' != $teacher_page->post_status ) ? $teacher_page->post_status : 'draft';
+				$teacher_page_id        = wp_update_post( $args );
+			} else {
+				$args[ 'post_content' ] = syn_get_teacher_page_content();
+				$args[ 'post_status' ]  = 'draft';
+				$teacher_page_id        = wp_insert_post( $args );
+			}
+			update_post_meta( $teacher_page_id, '_wp_page_template', 'page-templates/teacher.php' );
+			update_field( 'syn_page_teacher', $teacher_id, $teacher_page_id );
+		}
+	}
+}
+
+function syn_get_teacher_page_content() {
+	return '<h2>Bio</h2>
+<p>Write a bio about yourself. Consider including:</p>
+<ul>
+	<li>Birthplace</li>
+	<li>Places lived</li>
+	<li>Schools attended</li>
+	<li>Hobbies</li>
+	<li>Family</li>
+	<li>Unique or meaningful life experiences</li>
+</ul>
+<p>Do not list classes.  A list of classes is generated automatically from the Classes entered below.</p>
+<p>Do not include contact information. Instead activate and configure the Contact Widget below.</p>';
+}
+
+function syn_trash_teacher_page( $teacher_id ) {
+	$teacher_page = syn_get_teacher_page( $teacher_id ); // returns WP_Post object
+	if ( $teacher_page ) {
+		$teacher_class_pages = syn_get_teacher_class_pages( $teacher_id );
+		if ( $teacher_class_pages ) {
+			foreach ( $teacher_class_pages as $teacher_class_page ) {
+				wp_delete_post( $teacher_class_page->ID );
+			}
+		}
+		wp_delete_post( $teacher_page->ID );
+		update_field( 'syn_user_page', null, 'user_' . $teacher_id );
+	}
+}
+
+/*************************************** Teacher Class *****************************************/
+function syn_get_teacher_class( $teacher_id, $class_id ) {
+	if ( $teacher_id && $class_id ) {
+		$teacher_page    = syn_get_teacher_page( $teacher_id );
+		$teacher_classes = syn_get_teacher_classes( $teacher_page->ID );
+		if ( $teacher_classes ) {
+			foreach ( $teacher_classes as $teacher_class ) {
+				if ( $class_id == $teacher_class[ 'class_id' ] ) {
+					return $teacher_class;
+				}
+			}
+		}
+	}
+
+	return false;
 }
 
 /**
@@ -1181,6 +1348,13 @@ function syn_get_teacher_class_page( $teacher_id, $class_id, $include_trash = fa
 	return $posts;
 }
 
+/*************************************** Teacher Classes *****************************************/
+function syn_get_teacher_classes( $post_id ) {
+	$classes = get_field( 'syn_classes', $post_id );
+
+	return $classes;
+}
+
 /**
  * Get a teacher's class pages
  *
@@ -1193,7 +1367,7 @@ function syn_get_teacher_class_pages( $teacher_id, $include_trash = false ) {
 	if ( $include_trash ) {
 		$post_statuses[] = 'trash';
 	}
-	$args                = array(
+	$args  = array(
 		'numberposts' => - 1,
 		'post_type'   => 'page',
 		'post_status' => $post_statuses,
@@ -1210,57 +1384,9 @@ function syn_get_teacher_class_pages( $teacher_id, $include_trash = false ) {
 			),
 		),
 	);
-	$teacher_class_pages = get_posts( $args );
+	$posts = get_posts( $args );
 
-	return $teacher_class_pages;
-}
-
-function syn_save_teacher_page( $teacher_id ) {
-	$teacher = syn_get_teacher( $teacher_id );
-	if ( $teacher instanceof WP_User ) {
-		$teacher_meta  = get_user_meta( $teacher_id );
-		$first_name    = $teacher_meta[ 'first_name' ][ 0 ];
-		$last_name     = $teacher_meta[ 'last_name' ][ 0 ];
-		$post_title    = $first_name . ' ' . $last_name;
-		$post_name     = syn_sluggify( $post_title );
-		$teachers_page = syn_get_teachers_page(); // Teachers page
-		if ( $teachers_page instanceof WP_Post ) {// todo: test this...make sure a teachers page is always returned
-			$args         = array(
-				'post_type'   => 'page',
-				'post_title'  => $post_title,
-				'post_name'   => $post_name,
-				'post_author' => $teacher_id,
-				'post_parent' => $teachers_page->ID,
-			);
-			$teacher_page = syn_get_teacher_page( $teacher_id, true );
-			if ( $teacher_page ) {
-				$args[ 'ID' ]           = $teacher_page->ID;
-				$args[ 'post_content' ] = $teacher_page->post_content;
-				$args[ 'post_status' ]  = ( 'trash' != $teacher_page->post_status ) ? $teacher_page->post_status : 'draft';
-				$teacher_page_id        = wp_update_post( $args );
-			} else {
-				$args[ 'post_content' ] = syn_get_teacher_page_content();
-				$args[ 'post_status' ]  = 'draft';
-				$teacher_page_id        = wp_insert_post( $args );
-			}
-			update_post_meta( $teacher_page_id, '_wp_page_template', 'page-templates/teacher.php' );
-			update_field( 'syn_page_teacher', $teacher_id, $teacher_page_id );
-		}
-	}
-}
-
-function syn_trash_teacher_page( $teacher_id ) {
-	$teacher_page = syn_get_teacher_page( $teacher_id ); // returns WP_Post object
-	if ( $teacher_page ) {
-		$teacher_class_pages = syn_get_teacher_class_pages( $teacher_id );
-		if ( $teacher_class_pages ) {
-			foreach ( $teacher_class_pages as $teacher_class_page ) {
-				wp_delete_post( $teacher_class_page->ID );
-			}
-		}
-		wp_delete_post( $teacher_page->ID );
-		update_field( 'syn_user_page', null, 'user_' . $teacher_id );
-	}
+	return $posts;
 }
 
 function syn_save_teacher_classes( $teacher_id ) {
@@ -1368,7 +1494,18 @@ function syn_trash_teacher_class_pages( $teacher_id ) {
 	return false;
 }
 
-// Teachers
+function syn_get_class_page_content() {
+	return '<h2>Overview</h2>
+<p>Write an overview of the class. Consider including:</p>
+<ul>
+	<li>Major topics</li>
+	<li>Prequisites</li>
+	<li>Classes that require this class as a prerequisite</li>
+	<li>Grading policy</li>
+</ul>';
+}
+
+/*************************************** Teachers *****************************************/
 function syn_get_teachers() {
 	$teachers = get_users( array(
 		'meta_key'   => 'last_name',
@@ -1384,143 +1521,7 @@ function syn_get_teachers() {
 	return $teachers;
 }
 
-function syn_get_teachers_classes() {
-	$teachers_pages = syn_get_teachers_pages();
-	$classes        = array();
-	foreach ( $teachers_pages as $teacher_page ) {
-		$teacher_classes = syn_get_teacher_classes( $teacher_page->ID );
-		$classes         = array_merge( $classes, $teacher_classes );
-	}
-
-	return $classes;
-}
-
-// todo: Look at this...was only getting published pages, quickly changed to all...is that correct?
-function syn_get_teachers_page() {
-	$post_args = array(
-		'numberposts'  => - 1,
-		'post_type'    => 'page',
-		'post_status'  => array( 'publish', 'draft', 'future', 'pending', 'private' ),
-		'meta_key'     => '_wp_page_template',
-		'meta_value'   => 'page-templates/teachers.php',
-		'meta_compare' => '=',
-	);
-	$posts     = get_posts( $post_args );
-	if ( 0 == count( $posts ) ) {
-		// create and return a new teachers page
-		$post_id = syn_create_teachers_page();
-		$post    = get_post( $post_id, OBJECT );
-
-		return $post;
-	} elseif ( 1 < count( $posts ) ) {
-		// Children test
-		// ...more than one teachers pages exist...determine which takes precedence, migrate children, trash extras, return winner
-		$has_children       = array();
-		$has_not_children   = array();
-		$post_children_args = array(
-			'numberposts' => - 1,
-			'post_status' => array( 'publish', 'draft', 'future', 'pending', 'private' ),
-			'post_parent' => 0, // change for each iteration
-		);
-		foreach ( $posts as $post ) {
-			$post_children_args[ 'post_parent' ] = $post->ID;
-			$post_children                       = get_posts( $post_children_args );
-			if ( count( $post_children ) ) {
-				$has_children[] = $post;
-			} else {
-				$has_not_children[] = $post;
-			}
-		}
-		if ( 1 == count( $has_children ) ) {
-			if ( count( $has_not_children ) ) {
-				syn_trash_pages( $has_not_children );
-			}
-
-			return $has_children[ 0 ];
-		}
-		// Published test
-		// ...if only one post_status is published, return it
-		$is_published     = array();
-		$is_not_published = array();
-		foreach ( $posts as $post ) {
-			if ( 'publish' == $post->post_status ) {
-				$is_published[] = $post;
-			} else {
-				$is_not_published[] = $post;
-			}
-		}
-		if ( 1 == count( $is_published ) ) {
-			if ( count( $is_not_published ) ) {
-				syn_trash_pages( $is_not_published );
-			}
-
-			return $is_published[ 0 ];
-		}
-		// ran out of tests...will return first teachers page
-		// todo: should send an error or notice that there are more than one teachers pages
-	}
-
-	return $posts[ 0 ];
-}
-
-function syn_trash_pages( $posts ) {
-	if ( is_array( $posts ) ) {
-		foreach ( $posts as $post ) {
-			if ( $post instanceof WP_Post ) {
-				wp_delete_post( $post->ID, false );
-			} else {
-				wp_delete_post( $post[ 'ID' ] );
-			}
-		}
-
-		return true;
-	} elseif ( $posts instanceof WP_Post ) {
-		wp_delete_post( $posts->ID );
-
-		return true;
-	} elseif ( is_int( $posts ) ) {
-		wp_delete_post( $posts );
-
-		return true;
-	}
-
-	return false;
-}
-
-function syn_create_teachers_page() {
-	$site_owner       = get_field( 'syn_organization_person', 'option' );
-	$site_owner       = ( is_int( $site_owner ) ) ? $site_owner : 1;
-	$args             = array(
-		'post_type'   => 'page',
-		'post_title'  => 'Teachers',
-		'post_name'   => 'teachers',
-		'post_author' => $site_owner,
-		'post_parent' => 0,
-		'post_status' => 'draft',
-	);
-	$teachers_page_id = wp_insert_post( $args );
-	update_post_meta( $teachers_page_id, '_wp_page_template', 'page-templates/teachers.php' );
-
-	return $teachers_page_id;
-}
-
-function syn_update_teachers_page( $post_id ) {
-	$teachers_page = get_post( $post_id, OBJECT );
-	if ( $teachers_page instanceof WP_Post ) {
-		$args             = array(
-			'ID'         => $post_id,
-			'post_title' => 'Teachers',
-			'post_name'  => 'teachers',
-		);
-		$teachers_page_id = wp_update_post( $args );
-		update_post_meta( $teachers_page_id, '_wp_page_template', 'page-templates/teachers.php' );
-
-		return $teachers_page_id;
-	}
-
-	return false;
-}
-
+/*************************************** Teachers Pages *****************************************/
 function syn_get_teachers_pages( $include_trash = false ) {
 	$post_statuses = array( 'publish', 'draft', 'future', 'pending', 'private' );
 	if ( $include_trash ) {
@@ -1543,63 +1544,53 @@ function syn_get_teachers_pages( $include_trash = false ) {
 	return $posts;
 }
 
-function syn_sluggify( $string ) {
-	$slug = str_replace( ' ', '-', $string );
-	$slug = preg_replace( "/[^A-Za-z0-9\-]/", '', $slug );
-	$slug = str_replace( '--', '-', $slug );
-	$slug = str_replace( '---', '-', $slug );
-
-	return $slug;
-}
-
-function syn_get_teacher_page_content() {
-	return '<h2>Bio</h2>
-<p>Write a bio about yourself. Consider including:</p>
-<ul>
-	<li>Birthplace</li>
-	<li>Places lived</li>
-	<li>Schools attended</li>
-	<li>Hobbies</li>
-	<li>Family</li>
-	<li>Unique or meaningful life experiences</li>
-</ul>
-<p>Do not list classes.  A list of classes is generated automatically from the Classes entered below.</p>
-<p>Do not include contact information. Instead activate and configure the Contact Widget below.</p>';
-}
-
-function syn_get_teacher_class( $teacher_id, $class_id ) {
-	if ( $teacher_id && $class_id ) {
-		$teacher_page    = syn_get_teacher_page( $teacher_id );
+/*************************************** Teachers Classes *****************************************/
+function syn_get_teachers_classes() {
+	$teachers_pages = syn_get_teachers_pages();
+	$classes        = array();
+	foreach ( $teachers_pages as $teacher_page ) {
 		$teacher_classes = syn_get_teacher_classes( $teacher_page->ID );
-		if ( $teacher_classes ) {
-			foreach ( $teacher_classes as $teacher_class ) {
-				if ( $class_id == $teacher_class[ 'class_id' ] ) {
-					return $teacher_class;
-				}
-			}
-		}
+		$classes         = array_merge( $classes, $teacher_classes );
 	}
-
-	return false;
-}
-
-function syn_get_teacher_classes( $post_id ) {
-	$classes = get_field( 'syn_classes', $post_id );
 
 	return $classes;
 }
 
-function syn_get_class_page_content() {
-	return '<h2>Overview</h2>
-<p>Write an overview of the class. Consider including:</p>
-<ul>
-	<li>Major topics</li>
-	<li>Prequisites</li>
-	<li>Classes that require this class as a prerequisite</li>
-	<li>Grading policy</li>
-</ul>';
+function syn_get_teachers_class_pages( $include_trash = false ) {
+	$teachers    = syn_get_teachers();
+	$teacher_ids = array();
+	if ( $teachers ) {
+		foreach ( $teachers as $teacher ) {
+			$teacher_ids[] = $teacher->ID;
+		}
+	}
+	$post_statuses = array( 'publish', 'draft', 'future', 'pending', 'private' );
+	if ( $include_trash ) {
+		$post_statuses[] = 'trash';
+	}
+	$args  = array(
+		'numberposts' => - 1,
+		'post_type'   => 'page',
+		'post_status' => $post_statuses,
+		'meta_query'  => array(
+			array(
+				'key'     => 'syn_page_class_teacher',
+				'value'   => $teacher_ids,
+				'compare' => 'in',
+			),
+			array(
+				'key'     => '_wp_page_template',
+				'value'   => 'page-templates/class.php',
+				'compare' => '=',
+			),
+		),
+	);
+	$posts = get_posts( $args );
+
+	return $posts;
 }
 
+/*************************************** Organization(s) *****************************************/
 function syn_get_organization() {
 	$organization = get_field( 'syn_organization', 'option' );
 	if ( $organization ) {
@@ -1681,6 +1672,54 @@ function syn_organization_is_school() {
 	}
 
 	return false;
+}
+
+function syn_trash_pages( $posts ) {
+	if ( is_array( $posts ) ) {
+		foreach ( $posts as $post ) {
+			if ( $post instanceof WP_Post ) {
+				wp_delete_post( $post->ID, false );
+			} else {
+				wp_delete_post( $post[ 'ID' ] );
+			}
+		}
+
+		return true;
+	} elseif ( $posts instanceof WP_Post ) {
+		wp_delete_post( $posts->ID );
+
+		return true;
+	} elseif ( is_int( $posts ) ) {
+		wp_delete_post( $posts );
+
+		return true;
+	}
+
+	return false;
+}
+
+function syn_get_page_template( $post_id ) {
+	if ( 'page' == get_post_type( $post_id ) ) {
+		$page_meta              = get_post_meta( $post_id );
+		$page_template_path     = $page_meta[ '_wp_page_template' ];
+		$page_template_path_arr = explode( '/', $page_template_path[ 0 ] );
+		$page_template_file     = $page_template_path_arr[ count( $page_template_path_arr ) - 1 ];
+		$page_template_file_arr = explode( '.', $page_template_file );
+		$page_template          = $page_template_file_arr[ 0 ];
+
+		return $page_template;
+	}
+
+	return false;
+}
+
+function syn_sluggify( $string ) {
+	$slug = str_replace( ' ', '-', $string );
+	$slug = preg_replace( "/[^A-Za-z0-9\-]/", '', $slug );
+	$slug = str_replace( '--', '-', $slug );
+	$slug = str_replace( '---', '-', $slug );
+
+	return $slug;
 }
 
 /**
@@ -2221,7 +2260,6 @@ function syn_list_classes() {
 			echo '<th scope="col">Room</th>';
 		}
 		echo '<th scope="col">Status</th>';
-
 		echo '</tr>';
 		echo '</thead>';
 		$current_teacher = 0;
@@ -2250,8 +2288,8 @@ function syn_list_classes() {
 			if ( $classes ) {
 				foreach ( $classes as $class ) {
 					$class_page = syn_get_teacher_class_page( $teacher->ID, $class[ 'class_id' ] );
-					$period = ( $periods_active && isset( $class[ 'period' ] ) ) ? $class[ 'period' ] : '';
-					$room   = ( $rooms_active && isset( $class[ 'room' ] ) ) ? $class[ 'room' ] : '';
+					$period     = ( $periods_active && isset( $class[ 'period' ] ) ) ? $class[ 'period' ] : '';
+					$room       = ( $rooms_active && isset( $class[ 'room' ] ) ) ? $class[ 'room' ] : '';
 					echo '<tr>';
 					echo '<td class="term">' . $class[ 'term' ] . '</td>';
 					echo '<td>';
@@ -2286,6 +2324,68 @@ function syn_list_classes() {
 	} else {
 		echo '<p>There are no teachers or you do not have permission to view them</p>';
 	}
+}
+
+// quick nav
+function syn_qn_all_pages() {
+	$args  = array(
+		'numberposts' => - 1,
+		'orderby'     => 'post_title',
+		'order'       => 'ASC',
+		'post_type'   => 'page',
+		'post_status' => array( 'publish', 'draft', 'future', 'pending', 'private' ),
+	);
+	$posts = get_posts( $args );
+	echo '<ul class="admin_pages_sidenav">';
+	if ( $posts ) {
+		$link_to_edit = get_admin_url() . '/post.php?action=edit&post=';
+		foreach ( $posts as $post ) {
+			$status        = ( 'publish' != $post->post_status ) ? ' - ' . ucfirst( $post->post_status ) : '';
+			$page_template = syn_get_page_template( $post->ID );
+			//slog( $page_template );
+			$template = ( 'default' != $page_template ) ? ' (' . ucfirst( $page_template ) . ')' : '';
+			echo '<li><a href="' . $link_to_edit . $post->ID . '">' . $post->post_title . '</a>' . $template . $status . '</li>';
+		}
+	} else {
+		echo '<li>No pages</li>';
+	}
+	echo '</ul>';
+}
+
+function syn_qn_teachers_pages() {
+	$posts = syn_get_teachers_pages();
+	echo '<ul class="admin_pages_sidenav">';
+	if ( $posts ) {
+		$link_to_edit = get_admin_url() . '/post.php?action=edit&post=';
+		foreach ( $posts as $post ) {
+			$status = ( 'publish' != $post->post_status ) ? ' - ' . ucfirst( $post->post_status ) : '';
+			echo '<li><a href="' . $link_to_edit . $post->ID . '">' . $post->post_title . '</a>' . $status . '</li>';
+		}
+	} else {
+		echo '<li>No teacher pages</li>';
+	}
+	echo '</ul>';
+}
+
+function syn_qn_teachers_class_pages() {
+	$posts = syn_get_teachers_class_pages();
+	echo '<ul class="admin_pages_sidenav">';
+	if ( $posts ) {
+		$link_to_edit = get_admin_url() . '/post.php?action=edit&post=';
+		$teacher_id   = 0;
+		foreach ( $posts as $post ) {
+			$teacher = syn_get_teacher( get_field( 'syn_page_class_teacher', $post->ID ) );
+			if ( $teacher_id != $teacher->ID ) {
+				echo '<li><strong>' . $teacher->display_name . '</strong></li>';
+				$teacher_id = $teacher->ID;
+			}
+			$status = ( 'publish' != $post->post_status ) ? ' - ' . ucfirst( $post->post_status ) : '';
+			echo '<li><a href="' . $link_to_edit . $post->ID . '">' . $post->post_title . '</a>' . $status . '</li>';
+		}
+	} else {
+		echo '<li>No class pages</li>';
+	}
+	echo '</ul>';
 }
 
 function syn_get_time_interval( $date_time ) {

@@ -1,140 +1,137 @@
 {
-	"key": "group_59b8c17541486",
-	"title": "Quick Nav",
-	"fields": [
-		{
-			"key": "field_59c8293265356",
-			"label": "Teachers",
-			"name": "",
-			"type": "tab",
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"placement": "top",
-			"endpoint": 0
-		},
-		{
-			"key": "field_59c8294465357",
-			"label": "Teacher Pages",
-			"name": "",
-			"type": "enhanced_message",
-			"value": null,
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"enhanced_message": "<?php $pages = get_posts( array(\r\n'numberposts' => -1, \r\n'post_type' => 'page',\r\n'post_status' => array( 'publish', 'draft', 'future', 'pending', 'private' ), \r\n'meta_key' => '_wp_page_template',\r\n'meta_value' => 'page-templates\/teacher.php',\r\n'meta_compare' => '=',\r\n'orderby' => 'post_title', \r\n'order' => 'ASC', \r\n) ); ?>\r\n<ul class=\"admin_pages_sidenav\">\r\n<?php\r\n$link_to_edit = get_admin_url() . '\/post.php?action=edit&post='; \r\nforeach ( $pages as $page ) {\r\necho '<li><a href=\"' . $link_to_edit . $page->ID . '\">' . get_the_title( $page->ID ) . '<\/a> (' . $page->post_status . ')<\/li>';\r\n}\r\nwp_reset_postdata();\r\n?>\r\n<\/ul>",
-			"hide_label": "no"
-		},
-		{
-			"key": "field_59cf35ca6030a",
-			"label": "Classes",
-			"name": "",
-			"type": "tab",
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"placement": "top",
-			"endpoint": 0
-		},
-		{
-			"key": "field_59cf35fd6030b",
-			"label": "Class Pages",
-			"name": "",
-			"type": "enhanced_message",
-			"value": null,
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"enhanced_message": "<?php $pages = get_posts( array(\r\n'numberposts' => -1, \r\n'post_type' => 'page',\r\n'post_status' => array( 'publish', 'draft', 'future', 'pending', 'private' ), \r\n'meta_key' => '_wp_page_template',\r\n'meta_value' => 'page-templates\/class.php',\r\n'meta_compare' => '=',\r\n'orderby' => 'post_title', \r\n'order' => 'ASC', \r\n) ); ?>\r\n<ul class=\"admin_pages_sidenav\">\r\n<?php\r\n$link_to_edit = get_admin_url() . '\/post.php?action=edit&post='; \r\nforeach ( $pages as $page ) {\r\n$teacher_id = get_field('syn_page_class_teacher', $page->ID);\r\n$teacher = syn_get_teacher($teacher_id);\r\necho '<li>' . $teacher->display_name . ' - <a href=\"' . $link_to_edit . $page->ID . '\">' . get_the_title( $page->ID ) . '<\/a> (' . $page->post_status . ')<\/li>';\r\n}\r\nwp_reset_postdata();\r\n?>\r\n<\/ul>",
-			"hide_label": "no"
-		},
-		{
-			"key": "field_59c828fc65355",
-			"label": "All Pages",
-			"name": "",
-			"type": "tab",
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"placement": "top",
-			"endpoint": 0
-		},
-		{
-			"key": "field_592d1a7dae144",
-			"label": "All Pages",
-			"name": "published_pages",
-			"type": "enhanced_message",
-			"value": null,
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"enhanced_message": "<?php $pages = get_posts( array('numberposts' => -1, 'orderby' => 'post_title', 'order' => 'ASC', 'post_type' => 'page', 'post_status' => array( 'publish', 'draft', 'future', 'pending', 'private' ))); ?>\r\n<ul class=\"admin_pages_sidenav\">\r\n<?php\r\n$link_to_edit = get_admin_url() . '\/post.php?action=edit&post='; \r\nforeach ( $pages as $page ) {\r\necho '<li><a href=\"' . $link_to_edit . $page->ID . '\">' . get_the_title( $page->ID ) . '<\/a> (' . $page->post_status . ')<\/li>';\r\n}\r\nwp_reset_postdata();\r\n?>\r\n<\/ul>",
-			"hide_label": "no"
-		}
-	],
-	"location": [
-		[
-			{
-				"param": "post_type",
-				"operator": "==",
-				"value": "page"
-			},
-			{
-				"param": "current_user_role",
-				"operator": "==",
-				"value": "administrator"
-			}
-		],
-		[
-			{
-				"param": "post_type",
-				"operator": "==",
-				"value": "page"
-			},
-			{
-				"param": "current_user_role",
-				"operator": "==",
-				"value": "editor"
-			}
-		]
-	],
-	"menu_order": 999,
-	"position": "side",
-	"style": "default",
-	"label_placement": "top",
-	"instruction_placement": "label",
-	"hide_on_screen": "",
-	"active": 1,
-	"description": "",
-	"modified": 1509790792
+    "key": "group_59b8c17541486",
+    "title": "Quick Nav",
+    "fields": [
+        {
+            "key": "field_5a0cd936cca79",
+            "label": "Teachers",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5a0cd944cca7a",
+            "label": "",
+            "name": "",
+            "type": "enhanced_message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "enhanced_message": "<?php syn_qn_teachers_pages(); ?>",
+            "hide_label": "yes"
+        },
+        {
+            "key": "field_5a0cd8b2cca77",
+            "label": "Classes",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5a0cd8d8cca78",
+            "label": "",
+            "name": "",
+            "type": "enhanced_message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "enhanced_message": "<?php syn_qn_teachers_class_pages(); ?>",
+            "hide_label": "yes"
+        },
+        {
+            "key": "field_59c828fc65355",
+            "label": "All",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_592d1a7dae144",
+            "label": "",
+            "name": "published_pages",
+            "type": "enhanced_message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "enhanced_message": "<?php syn_qn_all_pages(); ?>",
+            "hide_label": "yes"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            },
+            {
+                "param": "current_user_role",
+                "operator": "==",
+                "value": "administrator"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            },
+            {
+                "param": "current_user_role",
+                "operator": "==",
+                "value": "editor"
+            }
+        ]
+    ],
+    "menu_order": 999,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1510824922
 }

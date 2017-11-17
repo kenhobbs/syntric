@@ -9,6 +9,8 @@ function syn_enqueue_scripts() {
 	$is_dev         = syn_is_dev();
 	$the_theme      = wp_get_theme();
 	$theme_filename = ( ! $is_dev ) ? 'syntric.min' : 'syntric';
+	$http_host      = syn_get_http_host();
+	$host_filename  = ( ! $is_dev ) ? $http_host . '.min' : $http_host;
 	// Deregister jQuery - in order to enqueue it strategically
 	wp_deregister_script( 'jquery' );
 	/**
@@ -25,7 +27,11 @@ function syn_enqueue_scripts() {
 	// FullCalendar print
 	//wp_enqueue_style( 'fullcalendar-print-stylesheet', get_stylesheet_directory_uri() . '/assets/libs/fullcalendar/fullcalendar.print.css', null, '3.6.1' );
 	// Master theme stylesheet
-	wp_enqueue_style( 'syntric-stylesheet', get_stylesheet_directory_uri() . '/assets/css/' . $theme_filename . '.css', array(), $the_theme->get( 'Version' ) );
+	if ( file_exists( get_stylesheet_directory() . '/assets/css/' . $host_filename . '.css' ) ) {
+		wp_enqueue_style( 'host-stylesheet', get_stylesheet_directory_uri() . '/assets/css/' . $host_filename . '.css', array(), $the_theme->get( 'Version' ) );
+	} else {
+		wp_enqueue_style( 'syntric-stylesheet', get_stylesheet_directory_uri() . '/assets/css/' . $theme_filename . '.css', array(), $the_theme->get( 'Version' ) );
+	}
 	// Theme stylesheet
 	wp_enqueue_style( 'theme-stylesheet', get_stylesheet_uri(), array(), $the_theme->get( 'Version' ) );
 	/**

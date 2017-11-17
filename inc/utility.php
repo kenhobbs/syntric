@@ -11,6 +11,10 @@ function syn_is_dev() {
 	return false;
 }
 
+function syn_get_http_host() {
+	return $_SERVER[ 'HTTP_HOST' ];
+}
+
 function syn_get_top_ancestor_id( $post_id ) {
 	$p = get_post( $post_id );
 	if ( $p->post_parent ) {
