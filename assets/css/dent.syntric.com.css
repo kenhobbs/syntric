@@ -1,5 +1,4 @@
-/*
-$side-widget-border: solid 1px $side-widget-background;
+/*$side-widget-border: solid 1px $side-widget-background;
 $side-widget-title-background: $side-widget-background;
 $side-widget-title-color: $side-widget-text;
 $side-widget-title-padding: 0.75rem;
@@ -7,10 +6,8 @@ $side-widget-title-font-size: 1.25rem;
 $side-widget-body-background: $white;
 $side-widget-body-color: $text-color;
 $side-widget-body-link-color: $link-color;
-$side-widget-body-link-color-hover: $gray-lightest;
-*/
-/*
-$side-widget-border: solid 1px $side-widget-background;
+$side-widget-body-link-color-hover: $gray-lightest;*/
+/*$side-widget-border: solid 1px $side-widget-background;
 $side-widget-title-background: $side-widget-background;
 $side-widget-title-color: $side-widget-text;
 $side-widget-title-padding: 0.75rem;
@@ -18,8 +15,7 @@ $side-widget-title-font-size: 1.25rem;
 $side-widget-body-background: $white;
 $side-widget-body-color: $text-color;
 $side-widget-body-link-color: $link-color;
-$side-widget-body-link-color-hover: $gray-lightest;
-*/
+$side-widget-body-link-color-hover: $gray-lightest;*/
 @media screen and (max-width: 600px) {
 	#wpadminbar {
 		position: fixed !important; }

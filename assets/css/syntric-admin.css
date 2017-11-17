@@ -16,26 +16,26 @@ body {
 #recently_published_pages_dashboard_widget h2.hndle.ui-sortable-handle,
 #recently_published_posts_dashboard_widget h2.hndle.ui-sortable-handle,
 #class_list_dashboard_widget h2.hndle.ui-sortable-handle {
-  padding: 1rem 0;
-  font-size: 1.3em;
-  display: inline-block;
-  border: none;
-  font-weight: normal; }
+	padding: 1rem 0;
+	font-size: 1.3em;
+	display: inline-block;
+	border: none;
+	font-weight: normal; }
 
 #pending_pages_dashboard_widget .handlediv,
 #pending_posts_dashboard_widget .handlediv,
 #recently_published_pages_dashboard_widget .handlediv,
 #recently_published_posts_dashboard_widget .handlediv,
 #class_list_dashboard_widget .handlediv {
-  display: none; }
+	display: none; }
 
 #pending_pages_dashboard_widget .inside,
 #pending_posts_dashboard_widget .inside,
 #recently_published_pages_dashboard_widget .inside,
 #recently_published_posts_dashboard_widget .inside,
 #class_list_dashboard_widget .inside {
-  margin: 0;
-  padding: 0; }
+	margin: 0;
+	padding: 0; }
 
 .wp-list-table .dashicons {
   width: 20px;
@@ -51,43 +51,43 @@ body {
   width: 100%; }
 
 .admin-list thead tr th {
-  padding: 10px;
-  color: #32373c;
-  font-weight: 400 !important;
-  border-top: 1px solid #e1e1e1;
-  border-bottom: 1px solid #e1e1e1; }
+	padding: 10px;
+	color: #32373c;
+	font-weight: 400 !important;
+	border-top: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1; }
 
 .admin-list tbody tr:nth-of-type(odd) {
-  background-color: #f9f9f9; }
+	background-color: #f9f9f9; }
 
 .admin-list td, .admin-list th {
-  text-align: left;
-  padding: 10px;
-  border: none;
-  background-color: transparent; }
+	text-align: left;
+	padding: 10px;
+	border: none;
+	background-color: transparent; }
 
 .admin-list td .post-breadcrumb-ancestors, .admin-list th .post-breadcrumb-ancestors {
-  color: #999; }
+	color: #999; }
 
 .admin-list td.template, .admin-list td.status, .admin-list td.category, .admin-list td.term, .admin-list td.period, .admin-list td.room, .admin-list th.template, .admin-list th.status, .admin-list th.category, .admin-list th.term, .admin-list th.period, .admin-list th.room {
-  text-transform: capitalize; }
+	text-transform: capitalize; }
 
 .admin-list td.template, .admin-list td.status, .admin-list td.category, .admin-list td.period, .admin-list td.room, .admin-list td.published, .admin-list td.submitted, .admin-list th.template, .admin-list th.status, .admin-list th.category, .admin-list th.period, .admin-list th.room, .admin-list th.published, .admin-list th.submitted {
-  width: 100px; }
+	width: 100px; }
 
 .admin-list td.owner, .admin-list th.owner {
-  width: 150px; }
+	width: 150px; }
 
 .admin-list td.term, .admin-list th.term {
-  width: 200px; }
+	width: 200px; }
 
 .admin-list .edit-view-links {
-  display: inline-block;
-  float: right;
-  color: #ddd; }
+	display: inline-block;
+	float: right;
+	color: #ddd; }
 
 .admin-list .list-group-header {
-  background-color: rgba(0, 133, 186, 0.1) !important; }
+	background-color: rgba(0, 133, 186, 0.1) !important; }
 
 .row-actions {
   font-size: 14px; }
@@ -212,7 +212,7 @@ table.wp-list-table tbody.cacie-enabled td .cacie-cell-action {
   color: #0074a2; }
 
 table.wp-list-table tbody.cacie-enabled td .cacie-cell-action:hover {
-  color: #00a0d2; }
+	color: #00a0d2; }
 
 .cacie-action-icon:after,
 table.wp-list-table tbody.cacie-enabled td .cacie-cell-action:after {
@@ -315,11 +315,9 @@ form#your-profile ul.acf-checkbox-list li {
   form#your-profile .acf-label {
     margin: 0;
     padding: 10px 10px 0 0; }
-
   form#createuser .acf-input,
   form#your-profile .acf-input {
     padding: 4px 10px 6px 0; }
-
   form#createuser .acf-input input[type="text"],
   form#your-profile .acf-input input[type="text"],
   #url {
@@ -329,12 +327,11 @@ form#your-profile ul.acf-checkbox-list li {
     font-size: 16px;
     line-height: 1.5;
     padding: 7px 10px; }
-
   form#createuser ul.acf-radio-list li,
   form#createuser ul.acf-checkbox-list li,
   form#your-profile ul.acf-radio-list li,
   form#your-profile ul.acf-checkbox-list li {
-    margin-bottom: 4px; }
+	  margin-bottom: 4px; }
 }
 
 .acf-icon.small {
@@ -425,14 +422,14 @@ form#your-profile ul.acf-checkbox-list li {
 .acf-postbox .acf-field-59ad9e7a1595f > .acf-label,
 .acf-postbox .acf-field-59cdd095c90ac > .acf-label,
 .acf-postbox .acf-field-59b8bd0c20477 > .acf-label {
-  display: none !important; }
+	display: none !important; }
 
 .acf-postbox .hndle.ui-sortable-handle,
 .acf-postbox .handlediv {
-  display: none !important; }
+	display: none !important; }
 
 .acf-postbox .field-repeater-toggle-all, .acf-postbox .field-flexible-toggle {
-  margin-bottom: 6px !important; }
+	margin-bottom: 6px !important; }
 
 .acf-switch:not(.-on),
 .acf-switch:not(.-on):hover {
@@ -481,8 +478,8 @@ form#your-profile ul.acf-checkbox-list li {
   background-color: #f1f1f1 !important; }
 
 .acf-repeater .acf-row-handle span {
-  color: #444;
-  font-weight: 600; }
+	color: #444;
+	font-weight: 600; }
 
 .acf-field-repeater.acf-field .acf-row-handle.order a.acf-icon.-collapse:not(:hover) {
   display: block;
@@ -627,26 +624,26 @@ form#your-profile ul.acf-checkbox-list li {
   height: auto; }
 
 .tablenav .actions {
-  padding: 14px 0 !important;
-  margin: 0 !important; }
+	padding: 14px 0 !important;
+	margin: 0 !important; }
 
 .tablenav .actions > select,
 .tablenav .actions > input,
 .tablenav .actions a.ac-button,
 .tablenav .actions a.reset-sorting {
-  margin: 0 4px 0 0 !important;
-  vertical-align: top !important;
-  top: 0 !important; }
+	margin: 0 4px 0 0 !important;
+	vertical-align: top !important;
+	top: 0 !important; }
 
 .tablenav .actions > .button,
 .tablenav .actions > .ac-button,
 .tablenav .actions > .reset-sorting {
-  color: #555;
-  border-color: #ccc;
-  background: #f7f7f7;
-  line-height: 14px;
-  height: auto;
-  padding: 6px 10px; }
+	color: #555;
+	border-color: #ccc;
+	background: #f7f7f7;
+	line-height: 14px;
+	height: auto;
+	padding: 6px 10px; }
 
 .tablenav-pages {
   padding: 14px 0 !important;
@@ -656,16 +653,16 @@ form#your-profile ul.acf-checkbox-list li {
 .tablenav-pages .displaying-num,
 .tablenav-pages .tablenav-paging-text,
 .tablenav-pages .total-pages {
-  font-size: 14px; }
+	font-size: 14px; }
 
 .tablenav-pages .pagination-links .tablenav-pages-navspan,
 .tablenav-pages .pagination-links a {
-  font-size: 16px;
-  color: #555;
-  border-color: #ccc;
-  background: #f7f7f7;
-  padding: 5px 10px;
-  height: auto; }
+	font-size: 16px;
+	color: #555;
+	border-color: #ccc;
+	background: #f7f7f7;
+	padding: 5px 10px;
+	height: auto; }
 
 .tablenav-pages .current-page {
   padding: 2px;

@@ -6,11 +6,11 @@
  */
 add_action( 'wp_enqueue_scripts', 'syn_enqueue_scripts' );
 function syn_enqueue_scripts() {
-	$is_dev         = syn_is_dev();
+	//$is_dev         = syn_is_dev();
 	$the_theme      = wp_get_theme();
-	$theme_filename = ( ! $is_dev ) ? 'syntric.min' : 'syntric';
-	$http_host      = syn_get_http_host();
-	$host_filename  = ( ! $is_dev ) ? $http_host . '.min' : $http_host;
+	//$theme_filename = ( ! $is_dev ) ? 'syntric.min' : 'syntric';
+	//$http_host      = syn_get_http_host();
+	//$host_filename  = ( ! $is_dev ) ? $http_host . '.min' : $http_host;
 	// Deregister jQuery - in order to enqueue it strategically
 	wp_deregister_script( 'jquery' );
 	/**
@@ -27,13 +27,9 @@ function syn_enqueue_scripts() {
 	// FullCalendar print
 	//wp_enqueue_style( 'fullcalendar-print-stylesheet', get_stylesheet_directory_uri() . '/assets/libs/fullcalendar/fullcalendar.print.css', null, '3.6.1' );
 	// Master theme stylesheet
-	if ( file_exists( get_stylesheet_directory() . '/assets/css/' . $host_filename . '.css' ) ) {
-		wp_enqueue_style( 'host-stylesheet', get_stylesheet_directory_uri() . '/assets/css/' . $host_filename . '.css', array(), $the_theme->get( 'Version' ) );
-	} else {
-		wp_enqueue_style( 'syntric-stylesheet', get_stylesheet_directory_uri() . '/assets/css/' . $theme_filename . '.css', array(), $the_theme->get( 'Version' ) );
-	}
-	// Theme stylesheet
-	wp_enqueue_style( 'theme-stylesheet', get_stylesheet_uri(), array(), $the_theme->get( 'Version' ) );
+	wp_enqueue_style( 'master-theme-stylesheet', syn_get_theme_stylesheet_uri(), array(), $the_theme->get( 'Version' ) );
+	// Child theme stylesheet
+	wp_enqueue_style( 'child-theme-stylesheet', get_stylesheet_uri(), array(), $the_theme->get( 'Version' ) );
 	/**
 	 * Scripts in header
 	 */
@@ -56,7 +52,7 @@ function syn_enqueue_scripts() {
 	// Google Calendar for FullCalendar
 	//wp_enqueue_script( 'gcal', get_stylesheet_directory_uri() . '/assets/libs/fullcalendar/gcal.js', array( 'jquery', 'fullcalendar' ), '3.6.1', true );
 	// Syntric theme script
-	wp_enqueue_script( 'syntric', get_template_directory_uri() . '/assets/js/' . $theme_filename . '.js', array( 'jquery' ), $the_theme->get( 'Version' ), false );
+	wp_enqueue_script( 'syntric', get_template_directory_uri() . '/assets/js/syntric.min.js', array( 'jquery' ), $the_theme->get( 'Version' ), false );
 	// Syntric API script
 	wp_enqueue_script( 'syntric-api', get_template_directory_uri() . '/assets/js/syntric-api.min.js', array( 'jquery' ), $the_theme->get( 'Version' ), false );
 	/**
@@ -88,18 +84,4 @@ function syn_enqueue_scripts() {
 	//wp_enqueue_script( 'bootstrap-script', '//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js', null, '4.0.0a', true );
 	// Google Translate
 	//wp_enqueue_script( 'google-translate-script', '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit', null, null, true );
-}
-
-/**
- * Enqueue admin stylesheets and javascript
- *
- * $hook is the current admin page filename (same as global $pagenow)
- */
-add_action( 'admin_enqueue_scripts', 'syn_enqueue_admin_scripts' );
-function syn_enqueue_admin_scripts( $hook ) {
-	wp_enqueue_style( 'google-fonts-stylesheet', '//fonts.googleapis.com/css?family=Roboto:300,400:500:700' );
-	// Font Awesome
-	wp_enqueue_style( 'fontawesome-stylesheet', get_stylesheet_directory_uri() . '/assets/libs/fontawesome-v4.7.0/fontawesome.css', null, '4.7.0' );
-	wp_enqueue_style( 'syntric-admin-stylesheet', get_template_directory_uri() . '/assets/css/syntric-admin.min.css' );
-	wp_enqueue_script( 'syntric-admin', get_template_directory_uri() . '/assets/js/syntric-admin.min.js' );
 }

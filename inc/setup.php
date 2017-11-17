@@ -105,8 +105,10 @@ if ( ! function_exists( 'syn_theme_setup' ) ) {
 		) );
 		/**
 		 * Add support for editor stylesheet
+		 *
+		 * This is deprecated.  Using add_editor_style() in admin_init action hook
 		 */
-		add_theme_support( 'editor-style' );
+		//add_theme_support( 'editor-style' );
 		//~~~~~~~~~ Misc theme features
 		/**
 		 * Add ability to integrate translations using textdomain
@@ -227,6 +229,7 @@ if ( ! function_exists( 'syn_print_banner_styles' ) ) {
 		}
 	}
 }
+
 /**
  * Set content width
  * todo: is this necessary?  wth does it do?
