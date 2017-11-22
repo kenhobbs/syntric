@@ -156,8 +156,9 @@ function syn_list_people() {
 				echo '<td nowrap>';
 				echo '<input type="checkbox" name="user_' . $person->ID . '-is_teacher" value="' . $is_teacher . '" ' . $is_teacher_checked . '">';
 				if ( $teacher_page ) {
+					$status = ( 'publish' != $teacher_page->post_status ) ? ' - ' . $teacher_page->post_status : '';
 					echo '<span style="margin-left: 6px;">';
-					echo $teacher_page->post_title . ' (' . $teacher_page->post_status . ')';
+					echo $teacher_page->post_title . ucfirst( $status );
 					echo '</span>';
 					if ( 'trash' != $teacher_page->post_status ) {
 						echo '<span style="float: right;">';

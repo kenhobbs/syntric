@@ -30,13 +30,15 @@ var base = {
 
 // File watcher
 gulp.task('watch', function () {
-	gulp.watch(base.src_sass + '**.scss', ['compileSASS']);
-	gulp.watch(base.src_js + '**.js', ['compileScripts']);
-	gulp.watch(base.src_img + '*.*', ['compressImages']);
+	gulp.watch(base.src_sass + '*.scss', ['compileSASS']);
+	gulp.watch(base.src_js + '*.js', ['compileScripts']);
+	gulp.watch(base.src_img + '*.jpg', ['compressImages']);
+	gulp.watch(base.src_img + '*.png', ['compressImages']);
+	gulp.watch(base.src_img + '*.gif', ['compressImages']);
 });
 
 gulp.task('compileSASS', function () {
-	gulp.src(base.src_sass + '**.scss')
+	gulp.src(base.src_sass + '*.scss')
 	.pipe(plumber())
 	.pipe(compileSASS())
 	.pipe(gulp.dest(base.build_css))
@@ -49,7 +51,7 @@ gulp.task('compileSASS', function () {
 });
 
 gulp.task('compileScripts', function () {
-	gulp.src(base.src_js + '**.js')
+	gulp.src(base.src_js + '*.js')
 	.pipe(plumber())
 	.pipe(gulp.dest(base.build_js))
 	.pipe(plumber())

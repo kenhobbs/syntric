@@ -6,11 +6,7 @@
  */
 add_action( 'wp_enqueue_scripts', 'syn_enqueue_scripts' );
 function syn_enqueue_scripts() {
-	//$is_dev         = syn_is_dev();
 	$the_theme      = wp_get_theme();
-	//$theme_filename = ( ! $is_dev ) ? 'syntric.min' : 'syntric';
-	//$http_host      = syn_get_http_host();
-	//$host_filename  = ( ! $is_dev ) ? $http_host . '.min' : $http_host;
 	// Deregister jQuery - in order to enqueue it strategically
 	wp_deregister_script( 'jquery' );
 	/**

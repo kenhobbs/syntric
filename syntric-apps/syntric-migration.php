@@ -76,9 +76,10 @@ function syn_migration_index_files( $post_id ) {
 			//$ext             = pathinfo( $remote_filename, PATHINFO_EXTENSION );
 			//if ( in_array( $ext, array( 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', ) ) ) {
 			$remote_title = $anchor[ 'tag-content' ];
-			$remote_url   = $anchor[ 'href' ];
-			$local_title  = syn_migration_sanitize_title( $anchor[ 'tag-content' ] );
-			$local_title  = ( ! empty( trim( $local_title ) ) ) ? $local_title : 'Hidden File ' . $remote_filename;
+			// todo: VERY Important...need to add a field for the base hostname as below.  this also appears in the image loop below
+			$remote_url  = 'http://pgs-acusd-ca.schoolloop.com' . $anchor[ 'href' ];
+			$local_title = syn_migration_sanitize_title( $anchor[ 'tag-content' ] );
+			$local_title = ( ! empty( trim( $local_title ) ) ) ? $local_title : 'Hidden File ' . $remote_filename;
 			//$local_filename = syn_migration_title_to_filename( $local_title );
 			$file_row = array(
 				'remote_title'    => $remote_title,
@@ -93,30 +94,34 @@ function syn_migration_index_files( $post_id ) {
 			//}
 		}
 	}
-	//update_field( 'syn_migration_images', array(), $post_id );
-	//$images = syn_migration_tag_attributes( $page->post_content, 'img' );
+	update_field( 'syn_migration_images', array(), $post_id );
+	$images = syn_migration_tag_attributes( $page->post_content, 'img' );
 	if ( isset( $images ) ) {
 		$image_count = 1;
 		foreach ( $images as $image ) {
-			$image_details = syn_migration_image_details( $image[ 'src' ] );
-			for ( $part = 1; $part <= $image_details[ 'parts' ]; $part ++ ) {
-				$remote_filename = basename( $image_details[ 'part_' . $part ] );
-				//$ext             = pathinfo( $remote_filename, PATHINFO_EXTENSION );
-				$remote_url = $image_details[ 'part_' . $part ];
-				//if ( in_array( $ext, array( 'png', 'jpg', 'jpeg', 'gif', 'tif', 'tiff', ) ) ) {
-				$title          = $page->post_title . ' ' . $image_count . '-' . $part;
-				$title          = syn_migration_sanitize_title( $title );
-				$title_filename = syn_migration_title_to_filename( $title );
-				$image_row      = array(
-					'remote_filename' => $remote_filename,
-					'remote_url'      => $remote_url,
-					'local_title'     => $title,
-					'local_filename'  => $title_filename,
-					'local_file'      => '',
-				);
-				add_row( 'syn_migration_images', $image_row, $post_id );
-				//}
-			}
+			$remote_filename = basename( $image[ 'src' ] );
+			$remote_url      = $image[ 'src' ];
+			$local_title     = $page->post_title . ' image ' . $image_count;
+			$local_title     = syn_migration_sanitize_title( $local_title );
+			//$image_details = syn_migration_image_details( $image[ 'src' ] );
+			//for ( $part = 1; $part <= $image_details[ 'parts' ]; $part ++ ) {
+			//$remote_filename = basename( $image_details[ 'part_' . $part ] );
+			//$ext             = pathinfo( $remote_filename, PATHINFO_EXTENSION );
+			//$remote_url = $image_details[ 'part_' . $part ];
+			//if ( in_array( $ext, array( 'png', 'jpg', 'jpeg', 'gif', 'tif', 'tiff', ) ) ) {
+			//$title          = $page->post_title . ' ' . $image_count . '-' . $part;
+			//$title          = syn_migration_sanitize_title( $title );
+			//$title_filename = syn_migration_title_to_filename( $title );
+			$image_row = array(
+				'remote_filename' => $remote_filename,
+				'remote_url'      => $remote_url,
+				'local_title'     => $local_title,
+				'local_filename'  => '...generated from Local Title',
+				'local_file'      => '',
+			);
+			add_row( 'syn_migration_images', $image_row, $post_id );
+			//}
+			//}
 			$image_count ++;
 		}
 	}
@@ -134,8 +139,8 @@ function syn_migration_sync_files( $post_id ) {
 		while ( have_rows( 'syn_migration_files', $post_id ) ) : the_row();
 			$remote_file    = wp_remote_get( get_sub_field( 'remote_url' ) );
 			$local_title    = get_sub_field( 'local_title' );
-			$local_filename = syn_migration_title_to_filename( $local_title ) . '.' . $ext;
 			$ext            = pathinfo( get_sub_field( 'remote_filename' ), PATHINFO_EXTENSION );
+			$local_filename = syn_migration_title_to_filename( $local_title ) . '.' . $ext;
 			if ( $ext == 'pdf' ) {
 				add_filter( 'upload_dir', 'syn_pdf_upload_dir' );
 			} elseif ( in_array( $ext, array( 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx' ) ) ) {
@@ -163,31 +168,49 @@ function syn_migration_sync_files( $post_id ) {
 			update_sub_field( 'local_filename', basename( $uploaded_file[ 'file' ] ) );
 		endwhile;
 	}
-	/*if ( have_rows( 'syn_migration_images', $post_id ) ) {
+	if ( have_rows( 'syn_migration_images', $post_id ) ) {
 		while ( have_rows( 'syn_migration_images', $post_id ) ) : the_row();
-			$ext = pathinfo( get_sub_field( 'remote_filename' ), PATHINFO_EXTENSION );
+			$remote_file    = wp_remote_get( get_sub_field( 'remote_url' ) );
+			$local_title    = get_sub_field( 'local_title' );
+			$ext            = pathinfo( get_sub_field( 'remote_filename' ), PATHINFO_EXTENSION );
+			$local_filename = syn_migration_title_to_filename( $local_title ) . '.' . $ext;
+			add_filter( 'upload_dir', 'syn_image_upload_dir' );
+			$uploaded_file = wp_upload_bits( $local_filename, null, wp_remote_retrieve_body( $remote_file ) );
+			remove_filter( 'upload_dir', 'syn_image_upload_dir' );
+			$attachment_args = [
+				'post_status'    => 'inherit',
+				'post_mime_type' => $uploaded_file[ 'type' ],
+				'parent_id'      => $post_id,
+				'post_title'     => $local_title,
+			];
+			$attachment_id   = wp_insert_attachment( $attachment_args, $uploaded_file[ 'file' ], $post_id );
+			//wp_set_post_terms( $attachment_id, array( $ext ), 'file_type' );
+			update_sub_field( 'local_file', $attachment_id );
+			update_sub_field( 'local_filename', basename( $uploaded_file[ 'file' ] ) );
+			/*$ext = pathinfo( get_sub_field( 'remote_filename' ), PATHINFO_EXTENSION );
+			$remote_url = get_sub_field( 'remote_url' );
 			add_filter( 'upload_dir', 'syn_image_upload_dir' );
 			// See https://developer.wordpress.org/reference/functions/media_handle_sideload/
-			$remote_url = get_sub_field( 'remote_url' );
-			$tmp = download_url( $remote_url );
+			$tmp        = download_url( $remote_url );
+			remove_filter( 'upload_dir', 'syn_image_upload_dir' );
 			$file_array = array(
-				'name' => get_sub_field( 'local_title' ),
+				'name'     => get_sub_field( 'local_title' ),
 				'tmp_name' => $tmp,
 			);
-			if ( is_wp_error( $tmp )) {
-				@unlink( $file_array['tmp_name'] );
+			if ( is_wp_error( $tmp ) ) {
+				@unlink( $file_array[ 'tmp_name' ] );
 				//return $tmp;
 			}
-			$attachment_id = media_handle_sideload( $file_array, $post_id);
+			$attachment_id = media_handle_sideload( $file_array, $post_id );
 			if ( is_wp_error( $attachment_id ) ) {
-				@unlink( $file_array['tmp_name']);
+				@unlink( $file_array[ 'tmp_name' ] );
 				//return $attachment_id;
 			}
 			wp_set_post_terms( $attachment_id, strtoupper( $ext ), 'file_type' );
-			update_sub_field( 'local_file', $attachment_id );
-			remove_filter( 'upload_dir', 'syn_image_upload_dir' );
+			update_sub_field( 'local_file', $attachment_id );*/
+
 		endwhile;
-	}*/
+	}
 	update_field( 'syn_migration_files_synced', 1, $post_id );
 	update_field( 'syn_migration_run_next', '', $post_id );
 	/*if ( get_field( 'syn_migration_run_all', $post_id ) ) {
@@ -218,7 +241,7 @@ function syn_migration_convert_links( $post_id ) {
 		endwhile;
 		wp_update_post( array( 'ID' => $post_id, 'post_content' => $content ) );
 	}
-	/*if ( have_rows( 'syn_migration_images', $post_id ) ) {
+	if ( have_rows( 'syn_migration_images', $post_id ) ) {
 		while ( have_rows( 'syn_migration_images', $post_id ) ) : the_row();
 			$remote_url = get_sub_field( 'remote_url' );
 			$file       = get_sub_field( 'local_file' );
@@ -226,7 +249,7 @@ function syn_migration_convert_links( $post_id ) {
 			$content    = str_replace( $remote_url, $url, $content );
 		endwhile;
 		wp_update_post( array( 'ID' => $post_id, 'post_content' => $content ) );
-	}*/
+	}
 	update_field( 'syn_migration_links_converted', 1, $post_id );
 	update_field( 'syn_migration_run_next', '', $post_id );
 }
