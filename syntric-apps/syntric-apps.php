@@ -7,37 +7,6 @@ $current_user = wp_get_current_user();
 /**
  * Include Syntric App files
  */
-/*
-require get_template_directory() . '/syntric-apps/syntric-academic-calendar.php';
-require get_template_directory() . '/syntric-apps/syntric-ada-compliance.php';
-require get_template_directory() . '/syntric-apps/syntric-buildings.php';
-require get_template_directory() . '/syntric-apps/syntric-calendar.php';
-require get_template_directory() . '/syntric-apps/syntric-class-page-settings.php';
-require get_template_directory() . '/syntric-apps/syntric-classes.php';
-require get_template_directory() . '/syntric-apps/syntric-courses.php';
-require get_template_directory() . '/syntric-apps/syntric-data-functions.php';
-require get_template_directory() . '/syntric-apps/syntric-department-page-settings.php';
-require get_template_directory() . '/syntric-apps/syntric-departments.php';
-require get_template_directory() . '/syntric-apps/syntric-event.php';
-require get_template_directory() . '/syntric-apps/syntric-filters.php';
-require get_template_directory() . '/syntric-apps/syntric-google.php';
-require get_template_directory() . '/syntric-apps/syntric-google-maps.php';
-require get_template_directory() . '/syntric-apps/syntric-jumbotrons.php';
-require get_template_directory() . '/syntric-apps/syntric-organization.php';
-require get_template_directory() . '/syntric-apps/syntric-organizations.php';
-require get_template_directory() . '/syntric-apps/syntric-page-widgets.php';
-require get_template_directory() . '/syntric-apps/syntric-people.php';
-require get_template_directory() . '/syntric-apps/syntric-periods.php';
-require get_template_directory() . '/syntric-apps/syntric-post-settings.php';
-require get_template_directory() . '/syntric-apps/syntric-quick-nav.php';
-require get_template_directory() . '/syntric-apps/syntric-rooms.php';
-require get_template_directory() . '/syntric-apps/syntric-sidebars-widgets.php';
-require get_template_directory() . '/syntric-apps/syntric-social-media.php';
-require get_template_directory() . '/syntric-apps/syntric-teacher-classes.php';
-require get_template_directory() . '/syntric-apps/syntric-teacher-page-settings.php';
-require get_template_directory() . '/syntric-apps/syntric-work-info.php';
-
-*/
 require get_template_directory() . '/syntric-apps/syntric-acf.php';
 require get_template_directory() . '/syntric-apps/syntric-calendars.php';
 require get_template_directory() . '/syntric-apps/syntric-microblogs.php';
@@ -546,6 +515,7 @@ function syn_menu_order( $menu_order ) {
 
 // remove the Welcome to Wordpress dashboard panel
 remove_action( 'welcome_panel', 'wp_welcome_panel' );
+
 // disable default dashboard widgets
 add_action( 'admin_init', 'syn_clear_dashboard' );
 function syn_clear_dashboard() {
@@ -566,16 +536,15 @@ function syn_clear_dashboard() {
 // add new dashboard widgets
 add_action( 'wp_dashboard_setup', 'syn_dashboard_setup' );
 function syn_dashboard_setup() {
-	global $wp_meta_boxes;
+	$pending_pages_title = ( get_field( 'syn_user_is_teacher', 'user_' . get_current_user_id() ) ) ? 'My Pages Pending Approval' : 'Pages Pending Approval';
+	add_meta_box( 'pending_pages_dashboard_widget', $pending_pages_title, 'syn_list_pendings', 'dashboard', 'normal', 'core', array( 'post_type' => 'page' ) );
+	$pending_posts_title = ( get_field( 'syn_user_is_teacher', 'user_' . get_current_user_id() ) ) ? 'My Posts Pending Approval' : 'Posts Pending Approval';
+	add_meta_box( 'pending_posts_dashboard_widget', $pending_posts_title, 'syn_list_pendings', 'dashboard', 'normal', 'core', array( 'post_type' => 'post' ) );
+	$recently_published_pages_title = ( get_field( 'syn_user_is_teacher', 'user_' . get_current_user_id() ) ) ? 'My Recently Published Pages' : 'Recently Published Pages';
+	add_meta_box( 'recently_published_pages_dashboard_widget', $recently_published_pages_title, 'syn_list_recently_published', 'dashboard', 'side', 'core', array( 'post_type' => 'page' ) );
+	$recently_published_posts_title = ( get_field( 'syn_user_is_teacher', 'user_' . get_current_user_id() ) ) ? 'My Recently Published Posts' : 'Recently Published Posts';
+	add_meta_box( 'recently_published_posts_dashboard_widget', $recently_published_posts_title, 'syn_list_recently_published', 'dashboard', 'side', 'core', array( 'post_type' => 'post' ) );
 	if ( syn_organization_is_school() ) {
-		$pending_pages_title = ( get_field( 'syn_user_is_teacher', 'user_' . get_current_user_id() ) ) ? 'My Pages Pending Approval' : 'Pages Pending Approval';
-		add_meta_box( 'pending_pages_dashboard_widget', $pending_pages_title, 'syn_list_pendings', 'dashboard', 'normal', 'core', array( 'post_type' => 'page' ) );
-		$pending_posts_title = ( get_field( 'syn_user_is_teacher', 'user_' . get_current_user_id() ) ) ? 'My Posts Pending Approval' : 'Posts Pending Approval';
-		add_meta_box( 'pending_posts_dashboard_widget', $pending_posts_title, 'syn_list_pendings', 'dashboard', 'normal', 'core', array( 'post_type' => 'post' ) );
-		$recently_published_pages_title = ( get_field( 'syn_user_is_teacher', 'user_' . get_current_user_id() ) ) ? 'My Recently Published Pages' : 'Recently Published Pages';
-		add_meta_box( 'recently_published_pages_dashboard_widget', $recently_published_pages_title, 'syn_list_recently_published', 'dashboard', 'side', 'core', array( 'post_type' => 'page' ) );
-		$recently_published_posts_title = ( get_field( 'syn_user_is_teacher', 'user_' . get_current_user_id() ) ) ? 'My Recently Published Posts' : 'Recently Published Posts';
-		add_meta_box( 'recently_published_posts_dashboard_widget', $recently_published_posts_title, 'syn_list_recently_published', 'dashboard', 'side', 'core', array( 'post_type' => 'post' ) );
 		$class_list_title = ( get_field( 'syn_user_is_teacher', 'user_' . get_current_user_id() ) ) ? 'My Classes' : 'Teachers + Classes';
 		add_meta_box( 'class_list_dashboard_widget', $class_list_title, 'syn_list_classes', 'dashboard', 'normal', 'core' );
 	}
@@ -583,14 +552,14 @@ function syn_dashboard_setup() {
 
 add_filter( 'screen_layout_columns', 'syn_screen_layout_columns' );
 function syn_screen_layout_columns( $columns ) {
-	$columns[ 'dashboard' ] = 1;
+	$columns[ 'dashboard' ] = 2;
 
 	return $columns;
 }
 
 add_filter( 'get_user_option_screen_layout_dashboard', 'syn_layout_dashboard' );
 function syn_layout_dashboard() {
-	return 1;
+	return 2;
 }
 
 /**
@@ -1733,7 +1702,7 @@ function syn_get_final_footer() {
 	echo '<div class="container-fluid">';
 	echo '<div class="row">';
 	echo '<div class="col-lg-12">';
-	echo '<div class="non-discrimination">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment.</div>';
+	echo '<div class="non-discrimination">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment. For more information or to contact our Title IX coordinator please visit the Title IX page.</div>';
 	echo '</div>';
 	echo '</div>';
 	echo '<div class="row">';
@@ -2161,7 +2130,7 @@ function syn_list_pendings( $deprecated, $mb_args ) {
 		}
 	} else {
 		echo '<tr>';
-		echo '<td colspan="4">No ' . $post_type . 's are pending</td>';
+		echo '<td colspan="5">No ' . $post_type . 's are pending</td>';
 		echo '</tr>';
 	}
 	echo '</tbody>';

@@ -3398,11 +3398,11 @@
 
 			actions.id = 'qunit-modulefilter-actions';
 			actions.innerHTML = '<button style=';
-			display:none;
+			none;
 			'>Apply</button>' + '<button type=';
 			reset;
 			' style=';
-			display:none;
+			none;
 			'>Reset</button>' + '<label class=';
 			clickable;
 			' + (config.moduleId.length ? ';

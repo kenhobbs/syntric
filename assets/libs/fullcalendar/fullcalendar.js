@@ -7914,7 +7914,7 @@ TODO: devise a better system
 		},
 
 		applyDateScroll: function (scroll) {
-		 // subclasses must implement
+			// subclasses must implement
 		},
 
 		/* Event Drag-n-Drop
@@ -8692,12 +8692,11 @@ TODO: devise a better system
 
 			if (sections) {
 				if (!el) {
-					el = this.el = $('<div class='
+					el = this.el = $('<div class=';
 					fc - toolbar;
 					'+ toolbarOptions.extraClasses + ';
 					'/>';
 				)
-					;
 				}
 				else {
 					el.empty();
@@ -9833,7 +9832,7 @@ TODO: devise a better system
 				el.toggleClass('fc-rtl', opts.isRTL);
 			});
 
-			this.contentEl = $('<div class='
+			this.contentEl = $('<div class=';
 			fc - view - container;
 			'/>';
 		).
@@ -9933,15 +9932,13 @@ TODO: devise a better system
 				this.bindViewHandlers(newView);
 
 				newView.setElement(
-					$('<div class='
+					$('<div class=';
 				fc - view;
 				fc - ' + viewType + ' - view;
 				' />';
 			).
 				appendTo(this.contentEl);
 			)
-				;
-
 				this.toolbarsManager.proxyCall('activateButton', viewType);
 			}
 

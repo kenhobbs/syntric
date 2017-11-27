@@ -64,7 +64,7 @@ class Event {
 	public function toArray() {
 
 		// Start with the misc properties (don't worry, PHP won't affect the original array)
-		$array = $this->properties;
+		$array            = $this->properties;
 		$array[ 'title' ] = $this->title;
 		// Figure out the date format. This essentially encodes allDay into the date string.
 		if ( $this->allDay ) {
