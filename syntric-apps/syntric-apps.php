@@ -1749,7 +1749,8 @@ function syn_get_navbar_brand() {
 	//'title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '"'
 	$out = '<a class="navbar-brand" href="' . esc_url( home_url( '/' ) ) . '" rel="home">';
 	if ( has_custom_logo() ) {
-		$out .= wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'full', false, array( 'alt' => 'Logo' ) );
+		$logo_alt = $organization . ' Logo';
+		$out      .= wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'full', false, array( 'alt' => $logo_alt ) );
 	}
 	$out .= '<span class="display-name">';
 	$out .= $organization;

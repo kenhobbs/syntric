@@ -128,7 +128,7 @@ class Syntric_Contact_Widget extends WP_Widget {
 						if ( in_array( 'url', $include_fields ) ) :
 							echo $tab . $tab . $tab . $tab . $tab . '<a href="' . $url . '" class="entry-logo-link" title="Go to ' . $organization . '">' . $lb;
 						endif;
-						echo $tab . $tab . $tab . $tab . '<img src="' . $logo[ 'url' ] . '" class="entry-logo" alt="Logo">' . $lb;
+						echo $tab . $tab . $tab . $tab . '<img src="' . $logo[ 'url' ] . '" class="entry-logo" alt="' . $organization . ' Logo">' . $lb;
 						if ( in_array( 'url', $include_fields ) ) :
 							echo '</a>';
 						endif;

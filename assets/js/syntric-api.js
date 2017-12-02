@@ -39,6 +39,6 @@
 				alert('Error loading calendar');
 			}
 		});
-	};
+	}
 
 })(jQuery);
