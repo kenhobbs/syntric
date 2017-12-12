@@ -13,7 +13,7 @@ function syn_enqueue_scripts() {
 	 * Stylesheets
 	 */
 	// Google Fonts @ CDN
-	wp_enqueue_style( 'google-fonts-stylesheet', '//fonts.googleapis.com/css?family=Roboto:100,300,400:500:700:900|Roboto+Condensed:300:400|Open+Sans' );
+	wp_enqueue_style( 'google-fonts-stylesheet', '//fonts.googleapis.com/css?family=Roboto:300,400:500|Open+Sans' );
 	// Font Awesome
 	wp_enqueue_style( 'fontawesome-stylesheet', get_stylesheet_directory_uri() . '/assets/libs/fontawesome-v4.7.0/fontawesome.css', null, null );
 	// Bootstrap 4.0

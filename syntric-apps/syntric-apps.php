@@ -841,7 +841,10 @@ function syn_load_organizations( $field ) {
 
 function syn_load_people( $field ) {
 	if ( 'select' == $field[ 'type' ] ) {
-		$people = get_users();
+		$people = get_users( array(
+			'meta_key' => 'last_name',
+			'orderby' => 'meta_value'
+		) );
 		if ( $people ) {
 			$choices = array();
 			foreach ( $people as $person ) {
@@ -1714,19 +1717,20 @@ function syn_get_final_footer() {
 	echo '</div>';
 	echo '<div class="row">';
 	echo '<div class="col-lg-4">';
-	echo '&copy; ' . date( 'Y' ) . ' ' . $organization;
+	echo '<div class="copyright">&copy; ' . date( 'Y' ) . ' ' . $organization . '</div>';
 	echo '</div>';
 	echo '<div class="col-lg-4 text-lg-center">';
-	echo 'Privacy Policy / Accessibility / Terms of Use';
+	//echo '<div class="notices">Privacy Policy / Accessibility / Terms of Use</div>';
 	echo '</div>';
-	echo '<div class="col-lg-4 text-lg-right">';
+	echo '<div class="col-lg-4 text-lg-right"><div class="login-bug">';
 	if ( is_user_logged_in() ) {
-		echo '<a href="' . wp_logout_url( get_the_permalink() ) . '" class="login-button">Logout</a>';
+		echo '<a href="' . wp_logout_url( get_the_permalink() ) . '" class="login">Logout</a>';
 	} else {
-		echo '<a href="' . wp_login_url( get_the_permalink() ) . '" class="login-button">Login</a>';
+		echo '<a href="' . wp_login_url( get_the_permalink() ) . '" class="login">Login</a>';
 	}
-	echo 'Website by <a href="http://www.syntric.com" target="_blank" class="footer-bug">Syntric</a>';
-	echo '</div>';
+	//echo 'Website by <a href="http://www.syntric.com" target="_blank" class="footer-bug">Syntric</a>';
+	echo 'Website by <a href="http://www.syntric.com" target="_blank" class="bug"><img src="' . get_stylesheet_directory_uri() . '/assets/images/syntric-logo-bug.png" alt="Syntric logo"></a>';
+	echo '</div></div>';
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';
@@ -1870,14 +1874,18 @@ function syn_get_breadcrumbs() {
 }
 
 function syn_get_banner() {
+	// todo: come back and fix this...kinda clunky
 	if ( has_header_image() ) {
 		$header_image           = get_header_image();
 		$banner_style_attribute = ' style="background-image: url(' . $header_image . '); min-height: 400px;" ';
-		//$banner_style_attribute = ' style="min-height: 400px;" ';
-		echo '<div class="banner-wrapper hidden-md-down hidden-print" aria-hidden="true"' . $banner_style_attribute . 'role="banner">';
+	} else {
+		$banner_style_attribute = ' style="min-height: 0;" ';
+
 	}
-	echo syn_get_jumbotron();
-	if ( has_header_image() ) {
+	$jumbotrons = get_field( 'syn_jumbotrons', 'option' );
+	if ( has_header_image() || $jumbotrons ) {
+		echo '<div class="banner-wrapper hidden-md-down hidden-print" aria-hidden="true"' . $banner_style_attribute . 'role="banner">';
+		echo syn_get_jumbotron();
 		echo '</div>';
 	}
 }

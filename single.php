@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-	<div id="single-wrapper" class="content-wrapper">
+	<div id="single-wrapper" class="content-wrapper <?php echo get_post_type(); ?>-wrapper">
 		<div class="<?php echo esc_html( get_theme_mod( 'syntric_container_type' ) ); ?>">
 			<div class="row">
 				<?php syn_get_sidebars( 'main', 'left' ); ?>
@@ -25,7 +25,7 @@
 					syn_get_sidebars( 'main', 'top' );
 					if ( have_posts() ) {
 						while ( have_posts() ) : the_post();
-							get_template_part( 'loop-templates/content-single' );
+							get_template_part( 'loop-templates/content', 'single' );
 						endwhile;
 					} else {
 						get_template_part( 'loop-templates/content', 'none' );

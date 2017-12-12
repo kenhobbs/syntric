@@ -24,7 +24,7 @@
 		echo '<span class="post-category">' . syn_get_taxonomies_terms() . '</span>';
 		echo '<span class="post-date">' . get_the_date() . '</span>';
 	} elseif ( 'page' == get_post_type() ) {
-		echo '<span class="post-category">Page</span>';
+		//echo '<span class="post-category">Page</span>';
 	}
 	echo '</header>';
 	if ( $has_content ) :

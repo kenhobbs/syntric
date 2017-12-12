@@ -217,7 +217,7 @@ function syn_sync_calendar( $args ) {
 		//$delete_after = ( $calendar_fields[ 'syn_calendar_delete_after' ] ) ? $calendar_fields[ 'syn_calendar_delete_after' ] : '';
 	}
 	$time_min = date_create();
-	date_sub( $time_min, date_interval_create_from_date_string( '1 day' ) ); // take off a day for good measure
+	//date_sub( $time_min, date_interval_create_from_date_string( '1 day' ) ); // take off a day for good measure
 	$time_min = date_format( $time_min, 'c' );
 	$time_max = date_create();
 	date_add( $time_max, date_interval_create_from_date_string( $sync_range ) );

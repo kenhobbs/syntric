@@ -113,7 +113,7 @@ class Syntric_Roster_Widget extends WP_Widget {
 				}
 				if ( 'table' == $layout ) {
 					echo $tab . $tab . '<tr>' . $lb;
-					echo $tab . $tab . $tab . '<td>' . $first_name . ' ' . $last_name . '</td>' . $lb;
+					echo $tab . $tab . $tab . '<td nowrap="nowrap">' . $first_name . ' ' . $last_name . '</td>' . $lb;
 					if ( in_array( 'titles', $include_fields ) ) {
 						echo $tab . $tab . $tab . '<td>' . $title . '</td>' . $lb;
 					}

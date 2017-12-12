@@ -9,17 +9,17 @@
 							<?php echo get_the_title(); ?>
 						</h1>
 					</header>
-					<?php
-					syn_get_sidebars( 'main', 'top' );
-					if ( have_posts() ) {
-						while ( have_posts() ) : the_post();
-							get_template_part( 'loop-templates/content', 'page' );
-						endwhile;
-					} else {
-						get_template_part( 'loop-templates/content-none' );
-					}
-					syn_get_sidebars( 'main', 'bottom' );
-					?>
+					<?php syn_get_sidebars( 'main', 'top' ); ?>
+					<?php if ( have_posts() ) : ?>
+						<?php while ( have_posts() ) : the_post(); ?>
+							<?php if ( syn_has_content( the_content() ) ) : ?>
+								<article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
+									<?php the_content(); ?>
+								</article>
+							<?php endif; ?>
+						<?php endwhile; ?>
+					<?php endif; ?>
+					<?php syn_get_sidebars( 'main', 'bottom' ); ?>
 				</main>
 				<?php syn_get_sidebars( 'main', 'right' ); ?>
 			</div>

@@ -5,21 +5,22 @@
 	 *
 	 * See https://fullcalendar.io/
 	 */
-	renderCalendar = function (events) {
+	renderCalendar = function(events) {
+		console.log(window.innerWidth);
 		var args = {
 			themeSystem: 'standard',
 			header: {
 				left: 'prev,today,next',
 				center: 'title',
-				right: 'listDay,listWeek,month,listYear'
+				right: 'listDay,listWeek,month,listMonth,listYear'
 			},
 			navLinks: false, // can click day/week names to navigate views
 			selectable: false,
 			eventLimit: false, // allow "more" link when too many events
-			defaultView: 'month',
+			defaultView: (window.innerWidth > 768) ? 'month' : 'listMonth',
 			//googleCalendarApiKey: google_api_key,
 			events: events,
-			columnFormat: 'dddd',
+			columnFormat: 'ddd',
 			timeFormat: 'h:mmA',
 			// agenda formatting
 			allDayText: 'All day',
@@ -30,14 +31,14 @@
 			minTime: '06:00:00',
 			// list formatting
 			noEventsMessage: 'No events',
-			customButtons: {
+			/*customButtons: {
 				accessibleView: {
 					text: 'Accessible',
-					click: function () {
+					click: function() {
 						alert('clicked the custom button!');
 					}
 				}
-			},
+			},*/
 			views: {
 				month: {
 					titleFormat: 'MMMM YYYY',
@@ -47,31 +48,31 @@
 				},
 				listDay: {
 					titleFormat: 'dddd, MMMM D, YYYY',
-					listDayFormat: 'MMMM D, YYYY',
-					listDayAltFormat: 'dddd',
+					listDayFormat: 'dddd, MMMM D, YYYY',
+					listDayAltFormat: null,
 					displayEventTime: true,
-					displayEventEnd: false
+					displayEventEnd: true
 				},
 				listWeek: {
 					titleFormat: 'MMMM D, YYYY',
-					listDayFormat: 'MMMM D, YYYY',
-					listDayAltFormat: 'dddd',
+					listDayFormat: 'dddd, MMMM D, YYYY',
+					listDayAltFormat: null,
 					displayEventTime: true,
 					displayEventEnd: true
 				},
 				listMonth: {
 					titleFormat: 'MMMM YYYY',
-					listDayFormat: 'MMMM D, YYYY',
-					listDayAltFormat: 'dddd',
+					listDayFormat: 'dddd, MMMM D, YYYY',
+					listDayAltFormat: null,
 					displayEventTime: true,
-					displayEventEnd: false
+					displayEventEnd: true
 				},
 				listYear: {
 					titleFormat: 'YYYY',
-					listDayFormat: 'MMMM D, YYYY',
-					listDayAltFormat: 'dddd',
+					listDayFormat: 'dddd, MMMM D, YYYY',
+					listDayAltFormat: null,
 					displayEventTime: true,
-					displayEventEnd: false
+					displayEventEnd: true
 				}
 			},
 			buttonText: {
@@ -86,18 +87,17 @@
 				prev: '<',
 				next: '>'
 			},
-			eventRender: function (event, element) {
+			eventRender: function(event, element) {
 				var eventDateTime = (event.allDay) ? event.start.format('LL') : event.start.format('dddd, MMMM D, YYYY h:mmA');
 				var eventTitle = event.title;
 				var eventDescription = event.description;
-				console.log(eventDescription);
 				var anchorTitle = document.createAttribute('title');
 				anchorTitle.value = eventDateTime + '-' + eventTitle;
 				if (element[0].tagName == 'A') {
 					element[0].attributes.setNamedItem(anchorTitle);
 				} else if (element[0].tagName == 'TR') {
 					if (element[0].children.length) {
-						for (var i = 0; i < element[0].children.length; i++) {
+						for ( var i=0; i<element[0].children.length; i++) {
 							if (element[0].children[i].firstElementChild && element[0].children[i].firstElementChild.tagName == 'A') {
 								element[0].children[i].firstElementChild.attributes.setNamedItem(anchorTitle);
 							}
@@ -108,10 +108,6 @@
 		};
 		$('#full-calendar').empty().fullCalendar(args);
 	};
-
-	function toggleFullcalendar(el) {
-		console.log(el);
-	}
 
 	function renderFullcalendarMenu(selector_id, google_calendar_id) {
 		var calendar = $('#' + selector_id).fullCalendar();
@@ -268,10 +264,7 @@
 
 	// autorun the following functions on document loaded...
 	setBannerHeight('banner-wrapper');
-	//renderFullcalendar('full-calendar', 'h3itr7s65em501ll04j962gcoo@group.calendar.google.com', 'AIzaSyCaAthMp8rrKiwtwYxNsJwN0d1XI4ItYsM');
 
-	//console.log('acf javascript object');
-	//console.log(acf);
 	/**
 	 * Skip Link Focus
 	 *
