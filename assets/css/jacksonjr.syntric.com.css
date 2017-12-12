@@ -7785,7 +7785,7 @@ img.alignright {
 .banner-wrapper .jumbotron-wrapper .container {
 	padding: 3rem 2rem;
 	background-color: #134163 !important;
-	border: 2px solid #134163 !important;
+	border: 1px solid #134163 !important;
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;
 	border-radius: 0; }
@@ -7795,13 +7795,15 @@ img.alignright {
 	color: #ffffff;
 	font-size: 4rem;
 	margin: 0;
-	font-weight: 400; }
+	font-weight: 400;
+	text-shadow: 0 0 2px rgba(0, 0, 0, 0.8); }
 
 .banner-wrapper .jumbotron-wrapper .container .jumbotron-caption {
 	display: block;
 	clear: both;
 	color: #ffffff;
-	font-size: 2rem; }
+	font-size: 2rem;
+	text-shadow: 0 0 2px rgba(0, 0, 0, 0.8); }
 
 .banner-wrapper .jumbotron-wrapper .container .jumbotron-button {
 	color: #ffffff;
@@ -8380,7 +8382,8 @@ section.main-bottom-sidebar .widget .map-wrapper {
 
 .footer-1.footer-sidebar {
 	background-position: center center;
-	background-size: cover; }
+	background-size: cover;
+	background-image: url("/wp-content/themes/syntric/assets/images/dotted-pattern.png"); }
 
 .footer-1.footer-sidebar .sidebar-wrapper {
 	background-color: #134163;
@@ -8395,7 +8398,7 @@ section.main-bottom-sidebar .widget .map-wrapper {
 .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body,
 .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget {
 	background-color: #0f334e;
-	border: 1px solid none;
+	border: 1px solid #1b5d8e;
 	border-radius: 0;
 	color: #ffffff; }
 
@@ -8424,7 +8427,7 @@ section.main-bottom-sidebar .widget .map-wrapper {
 .footer-2.footer-sidebar .sidebar-wrapper .widget .widget-body,
 .footer-2.footer-sidebar .sidebar-wrapper .widget .textwidget {
 	background-color: #4d0000;
-	border: 1px solid none;
+	border: 1px solid #990000;
 	border-radius: 0;
 	color: #ffffff; }
 
@@ -8450,7 +8453,7 @@ section.main-bottom-sidebar .widget .map-wrapper {
 .footer-3.footer-sidebar .sidebar-wrapper .widget .textwidget {
 	min-height: 180px;
 	background-color: #4d0000;
-	border: 1px solid none;
+	border: 1px solid #990000;
 	border-radius: 0;
 	color: #ffffff; }
 
