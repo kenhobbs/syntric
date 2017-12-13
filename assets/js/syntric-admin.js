@@ -8,10 +8,10 @@
 		$('#in-' + taxonomy + '-' + id + ', #in-popular-' + taxonomy + '-' + id).prop('checked', c);
 	});*/
 	//#recently_published_pages_dashboard_widget > div > table > tbody > tr:nth-child(1)
-	$('tr').on('click', function () {
+	$('tr').on('click', function() {
 		console.log('row click');
 		alert('foo bar');
-	});
+	})
 //#pending_pages_dashboard_widget > div > table > tbody > tr
 })(jQuery);
 
@@ -19,7 +19,7 @@
  * Add header, description and file name to syn_attachments_list Flexible Content field headers in Page Attachments group
  */
 function appendAttachmentFile() {
-	alert('appendAttachmentFile fired in syntric-admin.js');
+	alert( 'appendAttachmentFile fired in syntric-admin.js');
 	var synAttachmentsList = $('.acf-field-5946b1f65b90e');
 	if (synAttachmentsList) {
 		var alfcHeaderLayouts = $(synAttachmentsList).find('.values div[data-layout="syn_header_layout"]');
@@ -49,7 +49,7 @@ function appendAttachmentFile() {
 }
 
 function openMediaWindow() {
-	alert('openMediaWindow fired in syntric-admin.js');
+	alert( 'openMediaWindow fired in syntric-admin.js');
 	if (this.window === undefined) {
 		this.window = wp.media({
 			title: 'Insert Images',

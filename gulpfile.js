@@ -23,9 +23,10 @@ var ignore = require('gulp-ignore');
 //var rimraf = require('gulp-rimraf');
 //var clone = require('gulp-clone');
 //var merge = require('gulp-merge');
-var sourcemaps = require('gulp-sourcemaps');
+//var sourcemaps = require('gulp-sourcemaps');
 //var browserSync = require('browser-sync').create();
 //var del = require('del');
+var cached = require('gulp-cached');
 
 var theme = 'syntric';
 var src_dir = './src/';
@@ -77,71 +78,110 @@ var dist_dir = './assets/';
 var dirs = {
 	src_dir: src_dir,
 
-	src_sass: src_dir + 'sass/',
-	src_js: src_dir + 'js/',
-	src_img: src_dir + 'img/',
+	src_sass: './src/sass/',
+	src_js: './src/js/',
+	src_img: './src/img/',
 
-	src_admin_sass: src_dir + 'admin/sass/',
-	src_admin_js: src_dir + 'admin/js/',
-	src_admin_img: src_dir + 'admin/img/',
+	src_admin_sass: './src/sass/',
+	src_admin_js: './src/js/',
+	src_admin_img: './src/img/',
 
 	dist_dir: dist_dir,
 
-	dist_css: dist_dir + 'css/',
-	dist_js: dist_dir + 'js/',
-	dist_img: dist_dir + 'img/',
+	dist_css: './assets/css/',
+	dist_js: './assets/js/',
+	dist_img: './assets/images/',
 
-	dist_admin_css: dist_dir + 'admin/css/',
-	dist_admin_js: dist_dir + 'admin/js/',
-	dist_admin_img: dist_dir + 'admin/img/'
+	dist_admin_css: './assets/css/',
+	dist_admin_js: './assets/js/',
+	dist_admin_img: './assets/images/'
 };
+/** Domain mappings.  This needs to be updated whenever a new site is added **/
+var domainMappings = {
+	'amadorcoe.syntric.com.min': 'www.amadorcoe.org.min',
+	'amadorhs.syntric.com.min': 'www.amadorcoe.org.amadorhs.min',
+	'argonauths.syntric.com.min': 'www.amadorcoe.org.argonauths.min',
+	'ionejr.syntric.com.min': 'www.amadorcoe.org.ionejr.min',
+	'jacksonjr.syntric.com.min': 'www.amadorcoe.org.jacksonjr.min',
+	'shenandoah.syntric.com.min': 'www.amadorcoe.org.shenandoah.min',
+	'ione.syntric.com.min': 'www.amadorcoe.org.ione.min',
+	'jackson.syntric.com.min': 'www.amadorcoe.org.jackson.min',
+	'pinegrove.syntric.com.min': 'www.amadorcoe.org.pinegrove.min',
+	'pioneer.syntric.com.min': 'www.amadorcoe.org.pioneer.min',
+	'plymouth.syntric.com.min': 'www.amadorcoe.org.plymouth.min',
+	'suttercreek.syntric.com.min': 'www.amadorcoe.org.suttercreek.min',
+	'scprimary.syntric.com.min': 'www.amadorcoe.org.scprimary.min',
+	'northstar.syntric.com.min': 'www.amadorcoe.org.northstar.min',
+	'independent.syntric.com.min': 'www.amadorcoe.org.independent.min',
+	'escalonusd.syntric.com.min': 'www.escalonusd.org.min',
+	'escalonhs.syntric.com.min': 'www.escalonhigh.org.min',
+	'elportal.syntric.com.min': 'www.elportalmiddle.org.min',
+	'collegeville.syntric.com.min': 'www.collegevilleschool.org.min',
+	'dent.syntric.com.min': 'www.dentschool.org.min',
+	'farmington.syntric.com.min': 'www.farmingtonschool.org.min',
+	'vanallen.syntric.com.min': 'www.vanallenschool.org.min',
+	'eca.syntric.com.min': 'www.escaloncharteracademy.org.min',
+	'vista.syntric.com.min': 'www.vistahighschool.org.min',
+}
 // Gulp watcher args
 var watcherArgs = {
-	ignoreInitial: true, // true
-
-
+	ignoreInitial: true
 };
 // File watcher
 gulp.task('watch', function () {
 	// SCSS watchers
-	gulp.watch(dirs.src_sass + '*.scss', ['compileSASS']);
-	gulp.watch(dirs.src_admin_sass + '*.scss', ['compileAdminSASS']);
+	gulp.watch([dirs.src_sass + '*.scss', '!' + dirs.src_sass + '*-admin.scss', '!' + dirs.src_sass + '_*.scss'], watcherArgs, ['compileSASS']);
+	gulp.watch([dirs.src_admin_sass + '*-admin.scss'], watcherArgs, ['compileAdminSASS']);
 	// Javascript watchers
-	gulp.watch(dirs.src_js + '*.js', ['compileJS']);
-	gulp.watch(dirs.src_admin_js + '*.js', ['compileAdminJS']);
+	gulp.watch([dirs.src_js + '*.js', '!' + dirs.src_js + '*-admin.js', '!' + dirs.src_js + '_*.js'], watcherArgs, ['compileJS']);
+	gulp.watch(dirs.src_admin_js + '*-admin.js', watcherArgs, ['compileAdminJS']);
 	// Image watchers
-	gulp.watch(dirs.src_img + '*.*', ['compressImages']);
-	gulp.watch(dirs.src_admin_img + '*.*', ['compressAdminImages']);
+	//gulp.watch(dirs.src_img + '*.*', watcherArgs, ['compressImages']);
+	////gulp.watch(dirs.src_admin_img + '*.*', watcherArgs, ['compressAdminImages']);
+	// Copy/rename for domains
+	////gulp.watch(dirs.dist_css + '*.com.min.css', watcherArgs, ['generateDomainCSS']);
+	////gulp.watch(dirs.dist_css + '*.com.min.css.map', watcherArgs, ['generateDomainCSSMap']);
 });
 
 gulp.task('compileSASS', function () {
-	gulp.src([dirs.src_sass + '*.scss', '!' + dirs.src_sass + '_*.scss' ])
+	return gulp.src([dirs.src_sass + '*.scss', '!' + dirs.src_sass + '*-admin.scss', '!' + dirs.src_sass + '_*.scss' ])
+	.pipe(cached('sassFiles'))
 	.pipe(plumber())
 	.pipe(compileSASS())
 	.pipe(gulp.dest(dirs.dist_css))
-	.pipe(sourcemaps.init({loadMaps: true}))
+	//.pipe(sourcemaps.init({loadMaps: true}))
+	//.pipe(sourcemaps.init())
 	.pipe(plumber())
 	.pipe(rename({suffix: '.min'}))
 	.pipe(minifyCSS({discardComments: {removeAll: true}}))
-	.pipe(sourcemaps.write('./'))
+	//.pipe(sourcemaps.write('./'))
+	.pipe(gulp.dest(dirs.dist_css))
+	.pipe(plumber())
+	.pipe(rename(function(path) {
+		path.basename = domainMappings[path.basename];
+	}))
+	.pipe(minifyCSS({discardComments: {removeAll: true}}))
 	.pipe(gulp.dest(dirs.dist_css));
 });
 
 gulp.task('compileAdminSASS', function () {
-	gulp.src([dirs.src_admin_sass + '*.scss', '!' + dirs.src_admin_sass + '_*.scss' ])
+	return gulp.src([dirs.src_admin_sass + '*-admin.scss'])
+	.pipe(cached('sassAdminFiles'))
 	.pipe(plumber())
 	.pipe(compileSASS())
 	.pipe(gulp.dest(dirs.dist_admin_css))
-	.pipe(sourcemaps.init({loadMaps: true}))
+	//.pipe(sourcemaps.init({loadMaps: true}))
 	.pipe(plumber())
 	.pipe(rename({suffix: '.min'}))
 	.pipe(minifyCSS({discardComments: {removeAll: true}}))
-	.pipe(sourcemaps.write('./'))
+	//.pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest(dirs.dist_admin_css));
+	console.log('compileAdminSASS completed');
 });
 
 gulp.task('compileJS', function () {
-	gulp.src([dirs.src_js + '*.js', '!' + dirs.src_js + '_*.js' ])
+	return gulp.src([dirs.src_js + '*.js', '!' + dirs.src_js + '_*.js' ])
+	.pipe(cached('jsFiles'))
 	.pipe(plumber())
 	.pipe(gulp.dest(dirs.dist_js))
 	.pipe(plumber())
@@ -152,6 +192,7 @@ gulp.task('compileJS', function () {
 
 gulp.task('compileAdminJS', function () {
 	return gulp.src([dirs.src_admin_js + '*.js', '!' + dirs.src_admin_js + '_*.js' ])
+	.pipe(cached('jsAdminFiles'))
 	.pipe(plumber())
 	.pipe(gulp.dest(dirs.dist_admin_js))
 	.pipe(plumber())
@@ -171,6 +212,16 @@ gulp.task('compressAdminImages', function () {
 	.pipe(compressImage())
 	.pipe(gulp.dest(dirs.dist_admin_img));
 });
+
+gulp.task('generateDomainCSS', function () {
+	gulp.src([dirs.dist_css + '*.com.min.css'])
+	.pipe(rename(function(path) {
+		console.log(path);
+		path.basename = domainMappings[path.basename];
+		console.log(path);
+	}))
+	.pipe(gulp.dest(dirs.dist_css));
+})
 
 //
 //

@@ -57,4 +57,6 @@ require get_template_directory() . '/inc/utility.php';
 /**
  * Syntric Apps
  */
-require get_template_directory() . '/syntric-apps/syntric-apps.php';
+if ( is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) ) {
+	require get_template_directory() . '/syntric-apps/syntric-apps.php';
+}
