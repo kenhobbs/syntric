@@ -6851,34 +6851,30 @@ section.main-bottom-sidebar .widget .map-wrapper {
 .header-sidebar .syn-contact-widget .widget-body {
   min-height: 180px; }
 
-.footer-1.footer-sidebar {
-  background-position: center center;
-  background-size: cover;
-  background-image: url(http://amadorcoe.syntric.com/wp-content/themes/syntric/assets/images/dotted-pattern.png); }
-  .footer-1.footer-sidebar .sidebar-wrapper {
-    background-color: rgba(28, 97, 148, 0.98);
-    /*background: -webkit-linear-gradient(left top, lighten($first-footer-background, 5%), darken($first-footer-background, 5%));
+.footer-1.footer-sidebar .sidebar-wrapper {
+  background-color: rgba(28, 97, 148, 0.98);
+  /*background: -webkit-linear-gradient(left top, lighten($first-footer-background, 5%), darken($first-footer-background, 5%));
 		background: -o-linear-gradient(right bottom, lighten($first-footer-background, 5%), darken($first-footer-background, 5%));
 		background: -moz-linear-gradient(right bottom, lighten($first-footer-background, 5%), darken($first-footer-background, 5%));
 		background: linear-gradient(to right bottom, lighten($first-footer-background, 5%), darken($first-footer-background, 5%));*/ }
-    .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-title {
+  .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-title {
+    color: #ffffff; }
+  .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body,
+  .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget {
+    background-color: #660000;
+    border: 1px solid #990000;
+    border-radius: 0;
+    color: #ffffff; }
+    .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a,
+    .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a {
       color: #ffffff; }
-    .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body,
-    .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget {
-      background-color: #660000;
-      border: 1px solid #990000;
-      border-radius: 0;
-      color: #ffffff; }
-      .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a,
-      .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a {
+      .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a.widget-entry:hover, .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a.widget-entry.active, .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a.widget-entry.active:hover,
+      .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry:hover,
+      .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry.active,
+      .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry.active:hover {
+        background-color: maroon;
+        background: maroon;
         color: #ffffff; }
-        .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a.widget-entry:hover, .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a.widget-entry.active, .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a.widget-entry.active:hover,
-        .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry:hover,
-        .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry.active,
-        .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry.active:hover {
-          background-color: maroon;
-          background: maroon;
-          color: #ffffff; }
 
 .footer-2.footer-sidebar .sidebar-wrapper {
   background-color: #134163;

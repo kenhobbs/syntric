@@ -515,7 +515,6 @@ function syn_menu_order( $menu_order ) {
 
 // remove the Welcome to Wordpress dashboard panel
 remove_action( 'welcome_panel', 'wp_welcome_panel' );
-
 // disable default dashboard widgets
 add_action( 'admin_init', 'syn_clear_dashboard' );
 function syn_clear_dashboard() {
@@ -843,7 +842,7 @@ function syn_load_people( $field ) {
 	if ( 'select' == $field[ 'type' ] ) {
 		$people = get_users( array(
 			'meta_key' => 'last_name',
-			'orderby' => 'meta_value'
+			'orderby'  => 'meta_value',
 		) );
 		if ( $people ) {
 			$choices = array();
@@ -1880,7 +1879,6 @@ function syn_get_banner() {
 		$banner_style_attribute = ' style="background-image: url(' . $header_image . '); min-height: 400px;" ';
 	} else {
 		$banner_style_attribute = ' style="min-height: 0;" ';
-
 	}
 	$jumbotrons = get_field( 'syn_jumbotrons', 'option' );
 	if ( has_header_image() || $jumbotrons ) {
@@ -2383,6 +2381,23 @@ function syn_get_time_interval( $date_time ) {
 	}
 
 	return $pub_since;
+}
+
+/*************************************** After footer (after all scripts are loaded) *****************************************/
+add_action( 'wp_print_footer_scripts', 'syn_print_after_footer', 99 );
+function syn_print_after_footer() {
+	$lb  = "\n";
+	$tab = "\t";
+	echo '<script type="text/javascript">' . $lb;
+	//echo $tab . '(function ($) {' . $lb;
+	if ( 'syn_calendar' == get_post_type() ) :
+	echo $tab . $tab . 'fetchCalendarEvents(' . get_the_ID() . ');' . $lb;
+	endif;
+	if ( have_rows( 'syn_google_maps', 'option' ) ) :
+		echo $tab .$tab .  'renderMaps();' . $lb;
+	endif;
+	//echo $tab . '})(jQuery);' . $lb;
+	echo '</script>' . $lb;
 }
 
 function _______notinuse________syn_list_unpublished_pages() {

@@ -216,17 +216,16 @@ add_filter( 'send_email_change_email', '__return_false' );
  * Print <style> section in footer for custom header height (by screen size)
  */
 add_action( 'wp_print_footer_scripts', 'syn_print_banner_styles', 99 );
-if ( ! function_exists( 'syn_print_banner_styles' ) ) {
-	function syn_print_banner_styles() {
-		$cookies = $_COOKIE;
-		if ( isset( $cookies[ 'bannerHeight' ] ) ) {
-			$n = "\n";
-			echo $n . '<style type="text/css">';
-			echo '.banner-wrapper {';
-			echo 'height: ' . $cookies[ 'bannerHeight' ] . 'px;';
-			echo '}';
-			echo '</style>';
-		}
+function syn_print_banner_styles() {
+	$cookies = $_COOKIE;
+	if ( isset( $cookies[ 'bannerHeight' ] ) ) {
+		$lb  = "\n";
+		$tab = "\t";
+		echo $lb . '<style type="text/css">' . $lb;
+		echo $tab . '.banner-wrapper {' . $lb;
+		echo $tab . $tab . 'height: ' . $cookies[ 'bannerHeight' ] . 'px;' . $lb;
+		echo $tab . '}' . $lb;
+		echo '</style>' . $lb;
 	}
 }
 

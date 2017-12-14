@@ -39,7 +39,7 @@ class Syntric_Google_Map_Widget extends WP_Widget {
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
 			echo $tab . '<div id="' . $unique_id . '" class="map-wrapper">' . $lb;
-			syn_get_google_map( $google_map_id, $unique_id );
+			//syn_get_google_map( $google_map_id, $unique_id );
 			echo $tab . '</div>' . $lb;
 			echo $args[ 'after_widget' ] . $lb;
 		endif;

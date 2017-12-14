@@ -24,16 +24,12 @@ function syn_prepare_google_map_fields( $field ) {
 /**
  * Enqueue Google Maps API and local scripts
  */
-add_action( 'wp_enqueue_scripts', 'syn_google_maps_enqueue_scripts' );
+//add_action( 'wp_enqueue_scripts', 'syn_google_maps_enqueue_scripts' );
 function syn_google_maps_enqueue_scripts() {
-	if ( have_rows( 'syn_google_maps', 'option' ) ) {
-		$api_key = get_field( 'syn_google_api_key', 'option' );
-		if ( $api_key ) {
-			wp_enqueue_script( 'google-maps', '//maps.google.com/maps/api/js?key=' . $api_key . '&libraries=places,geometry', null, null, false );
-		} else {
-			wp_enqueue_script( 'google-maps', '//maps.google.com/maps/api/js?libraries=places,geometry', null, null, false );
-		}
-		wp_enqueue_script( 'syntric-google-maps', get_template_directory_uri() . '/syntric-apps/assets/js/syntric-google-maps.js', null, null, false );
+	$google_api_key = get_field( 'syn_google_api_key', 'option' );
+	if ( have_rows( 'syn_google_maps', 'option' ) && $google_api_key ) {
+		wp_enqueue_script( 'syntric-google-maps', get_template_directory_uri() . '/syntric-apps/assets/js/syntric-google-maps.js', array( 'jquery'), null, true );
+		wp_enqueue_script( 'google-maps', '//maps.google.com/maps/api/js?key=' . $google_api_key . '&libraries=places,geometry', array('syntric-google-maps'), null, true );
 	}
 }
 
@@ -74,7 +70,9 @@ function syn_get_google_map( $google_map_id, $container ) {
 				}*/
 				?>
 				<script type="text/javascript">
-					renderMap(<?php echo $google_map_config_json; ?>);
+					(function ($) {
+						renderMap(<?php echo $google_map_config_json; ?>);
+					})(jQuery);
 				</script>
 				<?php
 				break;

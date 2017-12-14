@@ -30,7 +30,7 @@ function syn_enqueue_scripts() {
 	 * Scripts in header
 	 */
 	// jQuery
-	wp_enqueue_script( 'jquery', get_stylesheet_directory_uri() . '/assets/libs/jquery/3.2.1/jquery.min.js', null, null, false );
+	wp_enqueue_script( 'jquery', get_stylesheet_directory_uri() . '/assets/libs/jquery/3.2.1/jquery.min.js', null, null, true );
 	// moment
 	wp_enqueue_script( 'moment', get_stylesheet_directory_uri() . '/assets/libs/fullcalendar/lib/moment.min.js', null, null, true );
 	// tether.js for Bootstrap tooltips
@@ -44,13 +44,13 @@ function syn_enqueue_scripts() {
 	wp_enqueue_script( 'fullcalendar', get_stylesheet_directory_uri() . '/assets/libs/fullcalendar/fullcalendar.min.js', array(
 		'jquery',
 		'moment',
-	), null, false );
+	), null, true );
 	// Google Calendar for FullCalendar
 	//wp_enqueue_script( 'gcal', get_stylesheet_directory_uri() . '/assets/libs/fullcalendar/gcal.js', array( 'jquery', 'fullcalendar' ), '3.6.1', true );
 	// Syntric theme script
-	wp_enqueue_script( 'syntric', get_template_directory_uri() . '/assets/js/syntric.min.js', array( 'jquery' ), null, false );
+	wp_enqueue_script( 'syntric', get_template_directory_uri() . '/assets/js/syntric.min.js', array( 'jquery' ), null, true );
 	// Syntric API script
-	wp_enqueue_script( 'syntric-api', get_template_directory_uri() . '/assets/js/syntric-api.min.js', array( 'jquery' ), null, false );
+	wp_enqueue_script( 'syntric-api', get_template_directory_uri() . '/assets/js/syntric-api.min.js', array( 'jquery' ), null, true );
 	/**
 	 * Scripts in footer
 	 */

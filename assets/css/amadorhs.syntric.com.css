@@ -23,12 +23,6 @@ $side-widget-body-border-top-right-radius: $border-radius;
 $side-widget-body-border-bottom-left-radius: $border-radius;
 $side-widget-body-border-bottom-right-radius: $border-radius;
 **************************************************************************/
-/*$third-footer-widget-body-background: #333333;
-$third-footer-widget-body-border: lighten(#333333, 10%);
-$third-footer-widget-body-text: #ffffff;
-$third-footer-widget-body-link-text: #ffffff;
-$third-footer-widget-body-link-background-hover: lighten(#333333, 5%);
-$third-footer-widget-body-link-text-hover: #ffffff;*/
 /*!
  * Bootstrap v4.0.0-alpha.6 (https://getbootstrap.com)
  * Copyright 2011-2017 The Bootstrap Authors
@@ -6317,8 +6311,8 @@ img {
     padding: 3rem 0; }
     .banner-wrapper .jumbotron-wrapper .container {
       padding: 3rem 2rem;
-      background-color: rgba(102, 102, 102, 0.7) !important;
-      border: 1px solid #666666 !important;
+      background-color: rgba(51, 51, 51, 0.7) !important;
+      border: 1px solid #333333 !important;
       -webkit-border-radius: 0;
       -moz-border-radius: 0;
       border-radius: 0; }
@@ -6608,7 +6602,7 @@ img {
       text-align: center;
       border: solid 4px #ffffff; }
     .content-wrapper.syn_calendar-wrapper .fc-day-top.fc-today .fc-day-number {
-      background-color: #666666;
+      background-color: #333333;
       color: #ffffff;
       border-radius: 50%; }
 
@@ -6620,8 +6614,8 @@ img {
       margin-left: 1rem; }
     .page-header .page-title .badge {
       padding: 0.3rem 0.5rem;
-      background-color: #666666;
-      border: solid 1px #666666;
+      background-color: #333333;
+      border: solid 1px #333333;
       color: #ffffff;
       -webkit-border-radius: 13.5px;
       -moz-border-radius: 13.5px;
@@ -6851,37 +6845,33 @@ section.main-bottom-sidebar .widget .map-wrapper {
 .header-sidebar .syn-contact-widget .widget-body {
   min-height: 180px; }
 
-.footer-1.footer-sidebar {
-  background-position: center center;
-  background-size: cover;
-  background-image: url(http://amadorcoe.syntric.com/wp-content/themes/syntric/assets/images/dotted-pattern.png); }
-  .footer-1.footer-sidebar .sidebar-wrapper {
-    background-color: rgba(0, 51, 153, 0.98);
-    /*background: -webkit-linear-gradient(left top, lighten($first-footer-background, 5%), darken($first-footer-background, 5%));
+.footer-1.footer-sidebar .sidebar-wrapper {
+  background-color: #333333;
+  /*background: -webkit-linear-gradient(left top, lighten($first-footer-background, 5%), darken($first-footer-background, 5%));
 		background: -o-linear-gradient(right bottom, lighten($first-footer-background, 5%), darken($first-footer-background, 5%));
 		background: -moz-linear-gradient(right bottom, lighten($first-footer-background, 5%), darken($first-footer-background, 5%));
 		background: linear-gradient(to right bottom, lighten($first-footer-background, 5%), darken($first-footer-background, 5%));*/ }
-    .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-title {
+  .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-title {
+    color: #ffffff; }
+  .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body,
+  .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget {
+    background-color: #003366;
+    border: 1px solid #004d99;
+    border-radius: 0;
+    color: #ffffff; }
+    .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a,
+    .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a {
       color: #ffffff; }
-    .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body,
-    .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget {
-      background-color: #003366;
-      border: 1px solid #004d99;
-      border-radius: 0;
-      color: #ffffff; }
-      .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a,
-      .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a {
+      .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a.widget-entry:hover, .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a.widget-entry.active, .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a.widget-entry.active:hover,
+      .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry:hover,
+      .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry.active,
+      .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry.active:hover {
+        background-color: #004080;
+        background: #004080;
         color: #ffffff; }
-        .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a.widget-entry:hover, .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a.widget-entry.active, .footer-1.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a.widget-entry.active:hover,
-        .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry:hover,
-        .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry.active,
-        .footer-1.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry.active:hover {
-          background-color: #004080;
-          background: #004080;
-          color: #ffffff; }
 
 .footer-2.footer-sidebar .sidebar-wrapper {
-  background-color: #666666;
+  background-color: #003366;
   /*background: -webkit-linear-gradient(left top, lighten($second-footer-background, 5%), darken($second-footer-background, 5%));
 		background: -o-linear-gradient(right bottom, lighten($second-footer-background, 5%), darken($second-footer-background, 5%));
 		background: -moz-linear-gradient(right bottom, lighten($second-footer-background, 5%), darken($second-footer-background, 5%));
@@ -6890,8 +6880,8 @@ section.main-bottom-sidebar .widget .map-wrapper {
     color: #ffffff; }
   .footer-2.footer-sidebar .sidebar-wrapper .widget .widget-body,
   .footer-2.footer-sidebar .sidebar-wrapper .widget .textwidget {
-    background-color: #666666;
-    border: 1px solid gray;
+    background-color: #333333;
+    border: 1px solid #4d4d4d;
     border-radius: 0;
     color: #ffffff; }
     .footer-2.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a,
@@ -6901,19 +6891,19 @@ section.main-bottom-sidebar .widget .map-wrapper {
       .footer-2.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry:hover,
       .footer-2.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry.active,
       .footer-2.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry.active:hover {
-        background-color: #737373;
-        background: #737373;
+        background-color: #404040;
+        background: #404040;
         color: #ffffff; }
 
 .footer-3.footer-sidebar .sidebar-wrapper {
-  background-color: #003366; }
+  background-color: #333333; }
   .footer-3.footer-sidebar .sidebar-wrapper .widget .widget-title {
     color: #ffffff; }
   .footer-3.footer-sidebar .sidebar-wrapper .widget .widget-body,
   .footer-3.footer-sidebar .sidebar-wrapper .widget .textwidget {
     min-height: 180px;
-    background-color: #003399;
-    border: 1px solid #0044cc;
+    background-color: #003366;
+    border: 1px solid #004d99;
     border-radius: 0;
     color: #ffffff; }
     .footer-3.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a,
@@ -6923,8 +6913,8 @@ section.main-bottom-sidebar .widget .map-wrapper {
       .footer-3.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry:hover,
       .footer-3.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry.active,
       .footer-3.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry.active:hover {
-        background-color: #003cb3;
-        background: #003cb3;
+        background-color: #004080;
+        background: #004080;
         color: #ffffff; }
 
 .footer-4.footer-sidebar .sidebar-wrapper {
@@ -6934,8 +6924,8 @@ section.main-bottom-sidebar .widget .map-wrapper {
   .footer-4.footer-sidebar .sidebar-wrapper .widget .widget-body,
   .footer-4.footer-sidebar .sidebar-wrapper .widget .textwidget {
     min-height: 180px;
-    background-color: #003399;
-    border: 1px solid #0044cc;
+    background-color: #333333;
+    border: 1px solid #4d4d4d;
     border-radius: 0;
     color: #ffffff; }
     .footer-4.footer-sidebar .sidebar-wrapper .widget .widget-body .widget-item a,
@@ -6945,13 +6935,13 @@ section.main-bottom-sidebar .widget .map-wrapper {
       .footer-4.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry:hover,
       .footer-4.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry.active,
       .footer-4.footer-sidebar .sidebar-wrapper .widget .textwidget .widget-item a.widget-entry.active:hover {
-        background-color: #003cb3;
-        background: #003cb3;
+        background-color: #404040;
+        background: #404040;
         color: #ffffff; }
 
 .final-footer {
-  background-color: #000000;
-  border-top: 1px solid #666666;
+  background-color: #333333;
+  border-top: 1px solid #333333;
   color: #ffffff;
   padding: 1rem 0;
   font-size: 0.8125rem; }

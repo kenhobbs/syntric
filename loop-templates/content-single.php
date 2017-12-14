@@ -4,11 +4,11 @@
 	<div id="full-calendar">
 		<?php the_title(); ?> is loading...
 	</div>
-	<script type="text/javascript">
+	<!--<script type="text/javascript">
 		(function ($) {
-			fetchCalendarEvents(<?php echo get_the_ID(); ?>);
+			fetchCalendarEvents(<?php /*echo get_the_ID(); */?>);
 		})(jQuery);
-	</script>
+	</script>-->
 <?php elseif ( 'syn_event' == get_post_type() ) : ?>
 	<?php $dates = syn_get_event_dates( get_the_ID() ); //todo: simplify this to a single function call; ?>
 	<?php $location = get_field( 'syn_event_location', get_the_ID() ); ?>
