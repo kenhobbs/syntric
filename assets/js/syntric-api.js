@@ -22,7 +22,7 @@
 		});
 	});*/
 
-	fetchCalendarEvents = function( post_id ) {
+	fetchCalendar = function( post_id ) {
 		$.ajax({
 			url: syntric_api.ajax_url,
 			method: 'post',

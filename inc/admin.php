@@ -40,7 +40,6 @@ function syn_remove_admin_help_tab() {
 add_action( 'admin_init', 'syn_add_editor_stylesheet' );
 function syn_add_editor_stylesheet() {
 	$editor_stylesheet = syn_get_theme_stylesheet_uri();
-	slog( $editor_stylesheet );
 	add_editor_style( $editor_stylesheet );
 }
 

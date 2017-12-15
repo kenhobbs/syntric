@@ -15,11 +15,11 @@ function syn_enqueue_scripts() {
 	// Google Fonts @ CDN
 	wp_enqueue_style( 'google-fonts-stylesheet', '//fonts.googleapis.com/css?family=Roboto:300,400:500|Open+Sans' );
 	// Font Awesome
-	wp_enqueue_style( 'fontawesome-stylesheet', get_stylesheet_directory_uri() . '/assets/libs/fontawesome-v4.7.0/fontawesome.css', null, null );
+	//wp_enqueue_style( 'fontawesome-stylesheet', get_stylesheet_directory_uri() . '/assets/libs/fontawesome-v4.7.0/fontawesome.css', null, null );
 	// Bootstrap 4.0
-	wp_enqueue_style( 'bootstrap-stylesheet', get_stylesheet_directory_uri() . '/assets/libs/bootstrap/4.0.0-beta/dist/css/bootstrap.min.css', null, null );
+	//wp_enqueue_style( 'bootstrap-stylesheet', get_stylesheet_directory_uri() . '/assets/libs/bootstrap/4.0.0-beta/dist/css/bootstrap.min.css', null, null );
 	// FullCalendar
-	wp_enqueue_style( 'fullcalendar-stylesheet', get_stylesheet_directory_uri() . '/assets/libs/fullcalendar/fullcalendar.min.css', null, null );
+	//wp_enqueue_style( 'fullcalendar-stylesheet', get_stylesheet_directory_uri() . '/assets/libs/fullcalendar/fullcalendar.min.css', null, null );
 	// FullCalendar print
 	//wp_enqueue_style( 'fullcalendar-print-stylesheet', get_stylesheet_directory_uri() . '/assets/libs/fullcalendar/fullcalendar.print.css', null, '3.6.1' );
 	// Master theme stylesheet
@@ -36,17 +36,9 @@ function syn_enqueue_scripts() {
 	// tether.js for Bootstrap tooltips
 	wp_enqueue_script( 'tether', get_stylesheet_directory_uri() . '/assets/libs/bootstrap/4.0.0-beta/assets/js/vendor/popper.min.js', null, null, true );
 	// Bootstrap script
-	wp_enqueue_script( 'bootstrap', get_stylesheet_directory_uri() . '/assets/libs/bootstrap/4.0.0-beta/dist/js/bootstrap.min.js', array(
-		'jquery',
-		'tether',
-	), null, true );
+	wp_enqueue_script( 'bootstrap', get_stylesheet_directory_uri() . '/assets/libs/bootstrap/4.0.0-beta/dist/js/bootstrap.min.js', array( 'jquery', 'tether' ), null, true );
 	// FullCalendar
-	wp_enqueue_script( 'fullcalendar', get_stylesheet_directory_uri() . '/assets/libs/fullcalendar/fullcalendar.min.js', array(
-		'jquery',
-		'moment',
-	), null, true );
-	// Google Calendar for FullCalendar
-	//wp_enqueue_script( 'gcal', get_stylesheet_directory_uri() . '/assets/libs/fullcalendar/gcal.js', array( 'jquery', 'fullcalendar' ), '3.6.1', true );
+	wp_enqueue_script( 'fullcalendar', get_stylesheet_directory_uri() . '/assets/libs/fullcalendar/fullcalendar.min.js', array( 'jquery', 'moment' ), null, true );
 	// Syntric theme script
 	wp_enqueue_script( 'syntric', get_template_directory_uri() . '/assets/js/syntric.min.js', array( 'jquery' ), null, true );
 	// Syntric API script
@@ -55,7 +47,7 @@ function syn_enqueue_scripts() {
 	 * Scripts in footer
 	 */
 	// Google translate
-	//wp_enqueue_script( 'google-translate-script', get_stylesheet_directory_uri() . '/assets/libs/google-translate/translate_a/element.js?cb=googleTranslateElementInit', null, null, true );
+	wp_enqueue_script( 'google-translate-script', get_stylesheet_directory_uri() . '/assets/libs/google-translate/translate_a/element.js?cb=googleTranslateElementInit', null, null, true );
 	// Comment reply
 	// if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) wp_enqueue_script( 'comment-reply' );
 	//
@@ -63,10 +55,7 @@ function syn_enqueue_scripts() {
 	//
 	// Localize the Syntric API script (syntric-api.js) sending it's requests via /wp-admin/admin-ajax.php
 	$fetch_calendar_events_nonce = wp_create_nonce( 'fetch_calendar_events' );
-	wp_localize_script( 'syntric-api', 'syntric_api', array(
-		'ajax_url' => admin_url( 'admin-ajax.php' ),
-		'nonce'    => $fetch_calendar_events_nonce,
-	) );
+	wp_localize_script( 'syntric-api', 'syntric_api', array(	'ajax_url' => admin_url( 'admin-ajax.php' ), 'nonce' => $fetch_calendar_events_nonce ) );
 	//
 	// CDN versions for stylesheets and javascript scripts
 	//

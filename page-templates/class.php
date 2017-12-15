@@ -13,11 +13,11 @@ $rooms_active   = get_field( 'syn_rooms_active', 'option' );
 $class_id       = get_field( 'syn_page_class' );
 $class          = syn_get_teacher_class( $teacher_id, $class_id );
 get_header(); ?>
-	<div id="class-wrapper" class="content-wrapper">
+	<div id="class-wrapper" class="content-type-wrapper <?php echo get_post_type(); ?>-content-wrapper">
 		<div class="<?php echo esc_html( get_theme_mod( 'syntric_container_type' ) ); ?>">
 			<div class="row">
 				<?php syn_get_sidebars( 'main', 'left' ); ?>
-				<main id="content" class="col content-area">
+				<main id="content" class="col content-area content">
 					<header class="page-header">
 						<h1 class="page-title">
 							<?php the_title(); ?><?php

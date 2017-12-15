@@ -64,6 +64,7 @@ class Syntric_Contact_Widget extends WP_Widget {
 				$first_name = $user_meta[ 'first_name' ][ 0 ];
 				$last_name  = $user_meta[ 'last_name' ][ 0 ];
 				$title_     = get_field( 'syn_user_title', 'user_' . $user_id );
+				$title_     = str_replace( ',', '<br>', $title_ );
 				$email      = $user->data->user_email;
 				$phone      = get_field( 'syn_user_phone', 'user_' . $user_id );
 				$ext        = get_field( 'syn_user_extension', 'user_' . $user_id );

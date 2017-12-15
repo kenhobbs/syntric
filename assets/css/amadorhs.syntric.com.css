@@ -1580,34 +1580,74 @@ select.form-control:focus::-ms-value {
   border-width: 1px 0; }
   .form-control-static.form-control-sm, .input-group-sm > .form-control-static.form-control,
   .input-group-sm > .form-control-static.input-group-addon,
-  .input-group-sm > .input-group-btn > .form-control-static.btn, .form-control-static.form-control-lg, .input-group-lg > .form-control-static.form-control,
+  .input-group-sm > .input-group-btn > .form-control-static.btn,
+  .input-group-sm > .input-group-btn > .form-control-static.jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left
+  .input-group-sm > .input-group-btn > .form-control-static.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .input-group-sm > .input-group-btn > .form-control-static.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .input-group-sm > .input-group-btn > .form-control-static.fc-button, .pagination-nav
+  .input-group-sm > .input-group-btn > a.form-control-static, .form-control-static.form-control-lg, .input-group-lg > .form-control-static.form-control,
   .input-group-lg > .form-control-static.input-group-addon,
-  .input-group-lg > .input-group-btn > .form-control-static.btn {
+  .input-group-lg > .input-group-btn > .form-control-static.btn,
+  .input-group-lg > .input-group-btn > .form-control-static.jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left
+  .input-group-lg > .input-group-btn > .form-control-static.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .input-group-lg > .input-group-btn > .form-control-static.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .input-group-lg > .input-group-btn > .form-control-static.fc-button, .pagination-nav
+  .input-group-lg > .input-group-btn > a.form-control-static {
     padding-right: 0;
     padding-left: 0; }
 
 .form-control-sm, .input-group-sm > .form-control,
 .input-group-sm > .input-group-addon,
-.input-group-sm > .input-group-btn > .btn {
+.input-group-sm > .input-group-btn > .btn,
+.input-group-sm > .input-group-btn > .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left
+.input-group-sm > .input-group-btn > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-right
+.input-group-sm > .input-group-btn > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-center
+.input-group-sm > .input-group-btn > .fc-button, .pagination-nav
+.input-group-sm > .input-group-btn > a {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   border-radius: 0.2rem; }
 
 select.form-control-sm:not([size]):not([multiple]), .input-group-sm > select.form-control:not([size]):not([multiple]),
 .input-group-sm > select.input-group-addon:not([size]):not([multiple]),
-.input-group-sm > .input-group-btn > select.btn:not([size]):not([multiple]) {
+.input-group-sm > .input-group-btn > select.btn:not([size]):not([multiple]),
+.input-group-sm > .input-group-btn > select.jumbotron-button:not([size]):not([multiple]), .fc.fc-unthemed .fc-toolbar .fc-left
+.input-group-sm > .input-group-btn > select.fc-button:not([size]):not([multiple]),
+.fc.fc-unthemed .fc-toolbar .fc-right
+.input-group-sm > .input-group-btn > select.fc-button:not([size]):not([multiple]),
+.fc.fc-unthemed .fc-toolbar .fc-center
+.input-group-sm > .input-group-btn > select.fc-button:not([size]):not([multiple]) {
   height: 1.8125rem; }
 
 .form-control-lg, .input-group-lg > .form-control,
 .input-group-lg > .input-group-addon,
-.input-group-lg > .input-group-btn > .btn {
+.input-group-lg > .input-group-btn > .btn,
+.input-group-lg > .input-group-btn > .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left
+.input-group-lg > .input-group-btn > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-right
+.input-group-lg > .input-group-btn > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-center
+.input-group-lg > .input-group-btn > .fc-button, .pagination-nav
+.input-group-lg > .input-group-btn > a {
   padding: 0.75rem 1.5rem;
   font-size: 1.25rem;
   border-radius: 0.3rem; }
 
 select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.form-control:not([size]):not([multiple]),
 .input-group-lg > select.input-group-addon:not([size]):not([multiple]),
-.input-group-lg > .input-group-btn > select.btn:not([size]):not([multiple]) {
+.input-group-lg > .input-group-btn > select.btn:not([size]):not([multiple]),
+.input-group-lg > .input-group-btn > select.jumbotron-button:not([size]):not([multiple]), .fc.fc-unthemed .fc-toolbar .fc-left
+.input-group-lg > .input-group-btn > select.fc-button:not([size]):not([multiple]),
+.fc.fc-unthemed .fc-toolbar .fc-right
+.input-group-lg > .input-group-btn > select.fc-button:not([size]):not([multiple]),
+.fc.fc-unthemed .fc-toolbar .fc-center
+.input-group-lg > .input-group-btn > select.fc-button:not([size]):not([multiple]) {
   height: 3.16667rem; }
 
 .form-group {
@@ -1765,7 +1805,9 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
     .form-inline .has-feedback .form-control-feedback {
       top: 0; } }
 
-.btn {
+.btn, .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-right .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-center .fc-button, .pagination-nav a {
   display: inline-block;
   font-weight: normal;
   line-height: 1.25;
@@ -1778,19 +1820,50 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   font-size: 1rem;
   border-radius: 0;
   transition: all 0.2s ease-in-out; }
-  .btn:focus, .btn:hover {
+  .btn:focus, .jumbotron-button:focus, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:focus,
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:focus,
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:focus, .pagination-nav a:focus, .btn:hover, .jumbotron-button:hover, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:hover,
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:hover,
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:hover, .pagination-nav a:hover {
     text-decoration: none; }
-  .btn:focus, .btn.focus {
+  .btn:focus, .jumbotron-button:focus, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:focus,
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:focus,
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:focus, .pagination-nav a:focus, .btn.focus, .focus.jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .focus.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .focus.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .focus.fc-button, .pagination-nav a.focus {
     outline: 0;
     box-shadow: 0 0 0 2px rgba(2, 117, 216, 0.25); }
-  .btn.disabled, .btn:disabled {
+  .btn.disabled, .disabled.jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .disabled.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .disabled.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .disabled.fc-button, .pagination-nav a.disabled, .btn:disabled, .jumbotron-button:disabled, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:disabled,
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:disabled,
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:disabled, .pagination-nav a:disabled {
     cursor: not-allowed;
     opacity: .65; }
-  .btn:active, .btn.active {
+  .btn:active, .jumbotron-button:active, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:active,
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:active,
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:active, .pagination-nav a:active, .btn.active, .active.jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .active.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .active.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .active.fc-button, .pagination-nav a.active {
     background-image: none; }
 
-a.btn.disabled,
-fieldset[disabled] a.btn {
+a.btn.disabled, a.disabled.jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left a.disabled.fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-right a.disabled.fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-center a.disabled.fc-button, .pagination-nav a.disabled,
+fieldset[disabled] a.btn,
+fieldset[disabled] a.jumbotron-button,
+fieldset[disabled] .fc.fc-unthemed .fc-toolbar .fc-left a.fc-button, .fc.fc-unthemed .fc-toolbar .fc-left
+fieldset[disabled] a.fc-button,
+fieldset[disabled]
+.fc.fc-unthemed .fc-toolbar .fc-right a.fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-right
+fieldset[disabled] a.fc-button,
+fieldset[disabled]
+.fc.fc-unthemed .fc-toolbar .fc-center a.fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-center
+fieldset[disabled] a.fc-button,
+fieldset[disabled] .pagination-nav a, .pagination-nav
+fieldset[disabled] a {
   pointer-events: none; }
 
 .btn-primary {
@@ -2052,12 +2125,16 @@ fieldset[disabled] a.btn {
     .btn-link:disabled:focus, .btn-link:disabled:hover {
       text-decoration: none; }
 
-.btn-lg, .btn-group-lg > .btn {
+.btn-group-lg > .btn, .btn-group-lg > .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-lg > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-right .btn-group-lg > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-center .btn-group-lg > .fc-button, .pagination-nav .btn-group-lg > a, .btn-lg, .jumbotron-button {
   padding: 0.75rem 1.5rem;
   font-size: 1.25rem;
   border-radius: 0.3rem; }
 
-.btn-sm, .btn-group-sm > .btn {
+.btn-sm, .btn-group-sm > .btn, .btn-group-sm > .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-sm > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-right .btn-group-sm > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-center .btn-group-sm > .fc-button, .pagination-nav .btn-group-sm > a {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   border-radius: 0.2rem; }
@@ -2208,25 +2285,259 @@ tbody.collapse.show {
   position: relative;
   display: inline-flex;
   vertical-align: middle; }
-  .btn-group > .btn,
-  .btn-group-vertical > .btn {
+  .btn-group > .btn, .btn-group > .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group > .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn-group > .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn-group > .fc-button, .pagination-nav .btn-group > a,
+  .btn-group-vertical > .btn,
+  .btn-group-vertical > .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left
+  .btn-group-vertical > .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .btn-group-vertical > .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .btn-group-vertical > .fc-button, .pagination-nav
+  .btn-group-vertical > a {
     position: relative;
     flex: 0 1 auto; }
-    .btn-group > .btn:hover,
-    .btn-group-vertical > .btn:hover {
+    .btn-group > .btn:hover, .btn-group > .jumbotron-button:hover, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group > .fc-button:hover,
+    .fc.fc-unthemed .fc-toolbar .fc-right .btn-group > .fc-button:hover,
+    .fc.fc-unthemed .fc-toolbar .fc-center .btn-group > .fc-button:hover, .pagination-nav .btn-group > a:hover,
+    .btn-group-vertical > .btn:hover,
+    .btn-group-vertical > .jumbotron-button:hover, .fc.fc-unthemed .fc-toolbar .fc-left
+    .btn-group-vertical > .fc-button:hover,
+    .fc.fc-unthemed .fc-toolbar .fc-right
+    .btn-group-vertical > .fc-button:hover,
+    .fc.fc-unthemed .fc-toolbar .fc-center
+    .btn-group-vertical > .fc-button:hover, .pagination-nav
+    .btn-group-vertical > a:hover {
       z-index: 2; }
-    .btn-group > .btn:focus, .btn-group > .btn:active, .btn-group > .btn.active,
+    .btn-group > .btn:focus, .btn-group > .jumbotron-button:focus, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group > .fc-button:focus,
+    .fc.fc-unthemed .fc-toolbar .fc-right .btn-group > .fc-button:focus,
+    .fc.fc-unthemed .fc-toolbar .fc-center .btn-group > .fc-button:focus, .pagination-nav .btn-group > a:focus, .btn-group > .btn:active, .btn-group > .jumbotron-button:active, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group > .fc-button:active,
+    .fc.fc-unthemed .fc-toolbar .fc-right .btn-group > .fc-button:active,
+    .fc.fc-unthemed .fc-toolbar .fc-center .btn-group > .fc-button:active, .pagination-nav .btn-group > a:active, .btn-group > .btn.active, .btn-group > .active.jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group > .active.fc-button,
+    .fc.fc-unthemed .fc-toolbar .fc-right .btn-group > .active.fc-button,
+    .fc.fc-unthemed .fc-toolbar .fc-center .btn-group > .active.fc-button, .pagination-nav .btn-group > a.active,
     .btn-group-vertical > .btn:focus,
+    .btn-group-vertical > .jumbotron-button:focus, .fc.fc-unthemed .fc-toolbar .fc-left
+    .btn-group-vertical > .fc-button:focus,
+    .fc.fc-unthemed .fc-toolbar .fc-right
+    .btn-group-vertical > .fc-button:focus,
+    .fc.fc-unthemed .fc-toolbar .fc-center
+    .btn-group-vertical > .fc-button:focus, .pagination-nav
+    .btn-group-vertical > a:focus,
     .btn-group-vertical > .btn:active,
-    .btn-group-vertical > .btn.active {
+    .btn-group-vertical > .jumbotron-button:active, .fc.fc-unthemed .fc-toolbar .fc-left
+    .btn-group-vertical > .fc-button:active,
+    .fc.fc-unthemed .fc-toolbar .fc-right
+    .btn-group-vertical > .fc-button:active,
+    .fc.fc-unthemed .fc-toolbar .fc-center
+    .btn-group-vertical > .fc-button:active, .pagination-nav
+    .btn-group-vertical > a:active,
+    .btn-group-vertical > .btn.active,
+    .btn-group-vertical > .active.jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left
+    .btn-group-vertical > .active.fc-button,
+    .fc.fc-unthemed .fc-toolbar .fc-right
+    .btn-group-vertical > .active.fc-button,
+    .fc.fc-unthemed .fc-toolbar .fc-center
+    .btn-group-vertical > .active.fc-button, .pagination-nav
+    .btn-group-vertical > a.active {
       z-index: 2; }
-  .btn-group .btn + .btn,
+  .btn-group .btn + .btn, .btn-group .jumbotron-button + .btn, .btn-group .fc.fc-unthemed .fc-toolbar .fc-left .fc-button + .btn, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group .fc-button + .btn, .btn-group
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button + .btn,
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn-group .fc-button + .btn, .btn-group
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button + .btn,
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn-group .fc-button + .btn, .btn-group .pagination-nav a + .btn, .pagination-nav .btn-group a + .btn, .btn-group .btn + .jumbotron-button, .btn-group .jumbotron-button + .jumbotron-button, .btn-group .fc.fc-unthemed .fc-toolbar .fc-left .fc-button + .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group .fc-button + .jumbotron-button, .btn-group
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button + .jumbotron-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn-group .fc-button + .jumbotron-button, .btn-group
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button + .jumbotron-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn-group .fc-button + .jumbotron-button, .btn-group .pagination-nav a + .jumbotron-button, .pagination-nav .btn-group a + .jumbotron-button, .btn-group .fc.fc-unthemed .fc-toolbar .fc-left .btn + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group .btn + .fc-button, .btn-group .fc.fc-unthemed .fc-toolbar .fc-left .jumbotron-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group .jumbotron-button + .fc-button, .btn-group .fc.fc-unthemed .fc-toolbar .fc-left .fc-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group .fc-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-right .btn-group .fc-left .fc-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-center .btn-group .fc-left .fc-button + .fc-button, .btn-group .pagination-nav .fc.fc-unthemed .fc-toolbar .fc-left a + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group .pagination-nav a + .fc-button, .pagination-nav .btn-group .fc.fc-unthemed .fc-toolbar .fc-left a + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left .pagination-nav .btn-group a + .fc-button, .btn-group
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn-group .btn + .fc-button, .btn-group
+  .fc.fc-unthemed .fc-toolbar .fc-right .jumbotron-button + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn-group .jumbotron-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group .fc-right .fc-button + .fc-button, .btn-group .fc.fc-unthemed .fc-toolbar .fc-right .fc-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-right .btn-group .fc-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-center .btn-group .fc-right .fc-button + .fc-button, .btn-group .pagination-nav
+  .fc.fc-unthemed .fc-toolbar .fc-right a + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn-group .pagination-nav a + .fc-button, .pagination-nav .btn-group
+  .fc.fc-unthemed .fc-toolbar .fc-right a + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .pagination-nav .btn-group a + .fc-button, .btn-group
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn-group .btn + .fc-button, .btn-group
+  .fc.fc-unthemed .fc-toolbar .fc-center .jumbotron-button + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn-group .jumbotron-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group .fc-center .fc-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-right .btn-group .fc-center .fc-button + .fc-button, .btn-group .fc.fc-unthemed .fc-toolbar .fc-center .fc-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-center .btn-group .fc-button + .fc-button, .btn-group .pagination-nav
+  .fc.fc-unthemed .fc-toolbar .fc-center a + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn-group .pagination-nav a + .fc-button, .pagination-nav .btn-group
+  .fc.fc-unthemed .fc-toolbar .fc-center a + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .pagination-nav .btn-group a + .fc-button, .btn-group .pagination-nav .btn + a, .pagination-nav .btn-group .btn + a, .btn-group .pagination-nav .jumbotron-button + a, .pagination-nav .btn-group .jumbotron-button + a, .btn-group .fc.fc-unthemed .fc-toolbar .fc-left .pagination-nav .fc-button + a, .pagination-nav .btn-group .fc.fc-unthemed .fc-toolbar .fc-left .fc-button + a, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group .pagination-nav .fc-button + a, .pagination-nav .fc.fc-unthemed .fc-toolbar .fc-left .btn-group .fc-button + a, .btn-group
+  .fc.fc-unthemed .fc-toolbar .fc-right .pagination-nav .fc-button + a, .pagination-nav .btn-group
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button + a,
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn-group .pagination-nav .fc-button + a, .pagination-nav
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn-group .fc-button + a, .btn-group
+  .fc.fc-unthemed .fc-toolbar .fc-center .pagination-nav .fc-button + a, .pagination-nav .btn-group
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button + a,
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn-group .pagination-nav .fc-button + a, .pagination-nav
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn-group .fc-button + a, .btn-group .pagination-nav a + a, .pagination-nav .btn-group a + a,
   .btn-group .btn + .btn-group,
+  .btn-group .jumbotron-button + .btn-group,
+  .btn-group .fc.fc-unthemed .fc-toolbar .fc-left .fc-button + .btn-group, .fc.fc-unthemed .fc-toolbar .fc-left
+  .btn-group .fc-button + .btn-group,
+  .btn-group
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button + .btn-group,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .btn-group .fc-button + .btn-group,
+  .btn-group
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button + .btn-group,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .btn-group .fc-button + .btn-group,
+  .btn-group .pagination-nav a + .btn-group, .pagination-nav
+  .btn-group a + .btn-group,
   .btn-group .btn-group + .btn,
+  .btn-group .btn-group + .jumbotron-button,
+  .btn-group .fc.fc-unthemed .fc-toolbar .fc-left .btn-group + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left
+  .btn-group .btn-group + .fc-button,
+  .btn-group
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn-group + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .btn-group .btn-group + .fc-button,
+  .btn-group
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn-group + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .btn-group .btn-group + .fc-button,
+  .btn-group .pagination-nav .btn-group + a, .pagination-nav
+  .btn-group .btn-group + a,
   .btn-group .btn-group + .btn-group,
   .btn-group-vertical .btn + .btn,
+  .btn-group-vertical .jumbotron-button + .btn,
+  .btn-group-vertical .fc.fc-unthemed .fc-toolbar .fc-left .fc-button + .btn, .fc.fc-unthemed .fc-toolbar .fc-left
+  .btn-group-vertical .fc-button + .btn,
+  .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button + .btn,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .btn-group-vertical .fc-button + .btn,
+  .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button + .btn,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .btn-group-vertical .fc-button + .btn,
+  .btn-group-vertical .pagination-nav a + .btn, .pagination-nav
+  .btn-group-vertical a + .btn,
+  .btn-group-vertical .btn + .jumbotron-button,
+  .btn-group-vertical .jumbotron-button + .jumbotron-button,
+  .btn-group-vertical .fc.fc-unthemed .fc-toolbar .fc-left .fc-button + .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left
+  .btn-group-vertical .fc-button + .jumbotron-button,
+  .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button + .jumbotron-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .btn-group-vertical .fc-button + .jumbotron-button,
+  .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button + .jumbotron-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .btn-group-vertical .fc-button + .jumbotron-button,
+  .btn-group-vertical .pagination-nav a + .jumbotron-button, .pagination-nav
+  .btn-group-vertical a + .jumbotron-button,
+  .btn-group-vertical .fc.fc-unthemed .fc-toolbar .fc-left .btn + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left
+  .btn-group-vertical .btn + .fc-button,
+  .btn-group-vertical .fc.fc-unthemed .fc-toolbar .fc-left .jumbotron-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left
+  .btn-group-vertical .jumbotron-button + .fc-button,
+  .btn-group-vertical .fc.fc-unthemed .fc-toolbar .fc-left .fc-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left
+  .btn-group-vertical .fc-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-right
+  .btn-group-vertical .fc-left .fc-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-center
+  .btn-group-vertical .fc-left .fc-button + .fc-button,
+  .btn-group-vertical .pagination-nav .fc.fc-unthemed .fc-toolbar .fc-left a + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left
+  .btn-group-vertical .pagination-nav a + .fc-button, .pagination-nav
+  .btn-group-vertical .fc.fc-unthemed .fc-toolbar .fc-left a + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left .pagination-nav
+  .btn-group-vertical a + .fc-button,
+  .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .btn-group-vertical .btn + .fc-button,
+  .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-right .jumbotron-button + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .btn-group-vertical .jumbotron-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left
+  .btn-group-vertical .fc-right .fc-button + .fc-button,
+  .btn-group-vertical .fc.fc-unthemed .fc-toolbar .fc-right .fc-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-right
+  .btn-group-vertical .fc-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-center
+  .btn-group-vertical .fc-right .fc-button + .fc-button,
+  .btn-group-vertical .pagination-nav
+  .fc.fc-unthemed .fc-toolbar .fc-right a + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .btn-group-vertical .pagination-nav a + .fc-button, .pagination-nav
+  .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-right a + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .pagination-nav
+  .btn-group-vertical a + .fc-button,
+  .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .btn-group-vertical .btn + .fc-button,
+  .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-center .jumbotron-button + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .btn-group-vertical .jumbotron-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left
+  .btn-group-vertical .fc-center .fc-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-right
+  .btn-group-vertical .fc-center .fc-button + .fc-button,
+  .btn-group-vertical .fc.fc-unthemed .fc-toolbar .fc-center .fc-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-center
+  .btn-group-vertical .fc-button + .fc-button,
+  .btn-group-vertical .pagination-nav
+  .fc.fc-unthemed .fc-toolbar .fc-center a + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .btn-group-vertical .pagination-nav a + .fc-button, .pagination-nav
+  .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-center a + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .pagination-nav
+  .btn-group-vertical a + .fc-button,
+  .btn-group-vertical .pagination-nav .btn + a, .pagination-nav
+  .btn-group-vertical .btn + a,
+  .btn-group-vertical .pagination-nav .jumbotron-button + a, .pagination-nav
+  .btn-group-vertical .jumbotron-button + a,
+  .btn-group-vertical .fc.fc-unthemed .fc-toolbar .fc-left .pagination-nav .fc-button + a, .pagination-nav
+  .btn-group-vertical .fc.fc-unthemed .fc-toolbar .fc-left .fc-button + a, .fc.fc-unthemed .fc-toolbar .fc-left
+  .btn-group-vertical .pagination-nav .fc-button + a, .pagination-nav .fc.fc-unthemed .fc-toolbar .fc-left
+  .btn-group-vertical .fc-button + a,
+  .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-right .pagination-nav .fc-button + a, .pagination-nav
+  .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button + a,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .btn-group-vertical .pagination-nav .fc-button + a, .pagination-nav
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .btn-group-vertical .fc-button + a,
+  .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-center .pagination-nav .fc-button + a, .pagination-nav
+  .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button + a,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .btn-group-vertical .pagination-nav .fc-button + a, .pagination-nav
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .btn-group-vertical .fc-button + a,
+  .btn-group-vertical .pagination-nav a + a, .pagination-nav
+  .btn-group-vertical a + a,
   .btn-group-vertical .btn + .btn-group,
+  .btn-group-vertical .jumbotron-button + .btn-group,
+  .btn-group-vertical .fc.fc-unthemed .fc-toolbar .fc-left .fc-button + .btn-group, .fc.fc-unthemed .fc-toolbar .fc-left
+  .btn-group-vertical .fc-button + .btn-group,
+  .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button + .btn-group,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .btn-group-vertical .fc-button + .btn-group,
+  .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button + .btn-group,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .btn-group-vertical .fc-button + .btn-group,
+  .btn-group-vertical .pagination-nav a + .btn-group, .pagination-nav
+  .btn-group-vertical a + .btn-group,
   .btn-group-vertical .btn-group + .btn,
+  .btn-group-vertical .btn-group + .jumbotron-button,
+  .btn-group-vertical .fc.fc-unthemed .fc-toolbar .fc-left .btn-group + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left
+  .btn-group-vertical .btn-group + .fc-button,
+  .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn-group + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .btn-group-vertical .btn-group + .fc-button,
+  .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn-group + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .btn-group-vertical .btn-group + .fc-button,
+  .btn-group-vertical .pagination-nav .btn-group + a, .pagination-nav
+  .btn-group-vertical .btn-group + a,
   .btn-group-vertical .btn-group + .btn-group {
     margin-left: -1px; }
 
@@ -2236,16 +2547,24 @@ tbody.collapse.show {
   .btn-toolbar .input-group {
     width: auto; }
 
-.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle), .btn-group > .jumbotron-button:not(:first-child):not(:last-child):not(.dropdown-toggle), .fc.fc-unthemed .fc-toolbar .fc-left .btn-group > .fc-button:not(:first-child):not(:last-child):not(.dropdown-toggle),
+.fc.fc-unthemed .fc-toolbar .fc-right .btn-group > .fc-button:not(:first-child):not(:last-child):not(.dropdown-toggle),
+.fc.fc-unthemed .fc-toolbar .fc-center .btn-group > .fc-button:not(:first-child):not(:last-child):not(.dropdown-toggle), .pagination-nav .btn-group > a:not(:first-child):not(:last-child):not(.dropdown-toggle) {
   border-radius: 0; }
 
-.btn-group > .btn:first-child {
+.btn-group > .btn:first-child, .btn-group > .jumbotron-button:first-child, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group > .fc-button:first-child,
+.fc.fc-unthemed .fc-toolbar .fc-right .btn-group > .fc-button:first-child,
+.fc.fc-unthemed .fc-toolbar .fc-center .btn-group > .fc-button:first-child, .pagination-nav .btn-group > a:first-child {
   margin-left: 0; }
-  .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+  .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle), .btn-group > .jumbotron-button:first-child:not(:last-child):not(.dropdown-toggle), .fc.fc-unthemed .fc-toolbar .fc-left .btn-group > .fc-button:first-child:not(:last-child):not(.dropdown-toggle),
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn-group > .fc-button:first-child:not(:last-child):not(.dropdown-toggle),
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn-group > .fc-button:first-child:not(:last-child):not(.dropdown-toggle), .pagination-nav .btn-group > a:first-child:not(:last-child):not(.dropdown-toggle) {
     border-bottom-right-radius: 0;
     border-top-right-radius: 0; }
 
-.btn-group > .btn:last-child:not(:first-child),
+.btn-group > .btn:last-child:not(:first-child), .btn-group > .jumbotron-button:last-child:not(:first-child), .fc.fc-unthemed .fc-toolbar .fc-left .btn-group > .fc-button:last-child:not(:first-child),
+.fc.fc-unthemed .fc-toolbar .fc-right .btn-group > .fc-button:last-child:not(:first-child),
+.fc.fc-unthemed .fc-toolbar .fc-center .btn-group > .fc-button:last-child:not(:first-child), .pagination-nav .btn-group > a:last-child:not(:first-child),
 .btn-group > .dropdown-toggle:not(:first-child) {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0; }
@@ -2253,15 +2572,21 @@ tbody.collapse.show {
 .btn-group > .btn-group {
   float: left; }
 
-.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn {
+.btn-group > .btn-group:not(:first-child):not(:last-child) > .btn, .btn-group > .btn-group:not(:first-child):not(:last-child) > .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group > .btn-group:not(:first-child):not(:last-child) > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-right .btn-group > .btn-group:not(:first-child):not(:last-child) > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-center .btn-group > .btn-group:not(:first-child):not(:last-child) > .fc-button, .pagination-nav .btn-group > .btn-group:not(:first-child):not(:last-child) > a {
   border-radius: 0; }
 
-.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child,
+.btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child, .btn-group > .btn-group:first-child:not(:last-child) > .jumbotron-button:last-child, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group > .btn-group:first-child:not(:last-child) > .fc-button:last-child,
+.fc.fc-unthemed .fc-toolbar .fc-right .btn-group > .btn-group:first-child:not(:last-child) > .fc-button:last-child,
+.fc.fc-unthemed .fc-toolbar .fc-center .btn-group > .btn-group:first-child:not(:last-child) > .fc-button:last-child, .pagination-nav .btn-group > .btn-group:first-child:not(:last-child) > a:last-child,
 .btn-group > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0; }
 
-.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child {
+.btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child, .btn-group > .btn-group:last-child:not(:first-child) > .jumbotron-button:first-child, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group > .btn-group:last-child:not(:first-child) > .fc-button:first-child,
+.fc.fc-unthemed .fc-toolbar .fc-right .btn-group > .btn-group:last-child:not(:first-child) > .fc-button:first-child,
+.fc.fc-unthemed .fc-toolbar .fc-center .btn-group > .btn-group:last-child:not(:first-child) > .fc-button:first-child, .pagination-nav .btn-group > .btn-group:last-child:not(:first-child) > a:first-child {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0; }
 
@@ -2269,17 +2594,25 @@ tbody.collapse.show {
 .btn-group.open .dropdown-toggle {
   outline: 0; }
 
-.btn + .dropdown-toggle-split {
+.btn + .dropdown-toggle-split, .jumbotron-button + .dropdown-toggle-split, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button + .dropdown-toggle-split,
+.fc.fc-unthemed .fc-toolbar .fc-right .fc-button + .dropdown-toggle-split,
+.fc.fc-unthemed .fc-toolbar .fc-center .fc-button + .dropdown-toggle-split, .pagination-nav a + .dropdown-toggle-split {
   padding-right: 0.75rem;
   padding-left: 0.75rem; }
-  .btn + .dropdown-toggle-split::after {
+  .btn + .dropdown-toggle-split::after, .jumbotron-button + .dropdown-toggle-split::after, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button + .dropdown-toggle-split::after,
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button + .dropdown-toggle-split::after,
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button + .dropdown-toggle-split::after, .pagination-nav a + .dropdown-toggle-split::after {
     margin-left: 0; }
 
-.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split {
+.btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .btn-group-sm > .jumbotron-button + .dropdown-toggle-split, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-sm > .fc-button + .dropdown-toggle-split,
+.fc.fc-unthemed .fc-toolbar .fc-right .btn-group-sm > .fc-button + .dropdown-toggle-split,
+.fc.fc-unthemed .fc-toolbar .fc-center .btn-group-sm > .fc-button + .dropdown-toggle-split, .pagination-nav .btn-group-sm > a + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem; }
 
-.btn-lg + .dropdown-toggle-split, .btn-group-lg > .btn + .dropdown-toggle-split {
+.btn-group-lg > .btn + .dropdown-toggle-split, .btn-group-lg > .jumbotron-button + .dropdown-toggle-split, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-lg > .fc-button + .dropdown-toggle-split,
+.fc.fc-unthemed .fc-toolbar .fc-right .btn-group-lg > .fc-button + .dropdown-toggle-split,
+.fc.fc-unthemed .fc-toolbar .fc-center .btn-group-lg > .fc-button + .dropdown-toggle-split, .pagination-nav .btn-group-lg > a + .dropdown-toggle-split, .btn-lg + .dropdown-toggle-split, .jumbotron-button + .dropdown-toggle-split {
   padding-right: 1.125rem;
   padding-left: 1.125rem; }
 
@@ -2288,43 +2621,112 @@ tbody.collapse.show {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center; }
-  .btn-group-vertical .btn,
+  .btn-group-vertical .btn, .btn-group-vertical .jumbotron-button, .btn-group-vertical .fc.fc-unthemed .fc-toolbar .fc-left .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-vertical .fc-button, .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn-group-vertical .fc-button, .btn-group-vertical
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn-group-vertical .fc-button, .btn-group-vertical .pagination-nav a, .pagination-nav .btn-group-vertical a,
   .btn-group-vertical .btn-group {
     width: 100%; }
-  .btn-group-vertical > .btn + .btn,
+  .btn-group-vertical > .btn + .btn, .btn-group-vertical > .jumbotron-button + .btn, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-vertical > .fc-button + .btn,
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn-group-vertical > .fc-button + .btn,
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn-group-vertical > .fc-button + .btn, .pagination-nav .btn-group-vertical > a + .btn, .btn-group-vertical > .btn + .jumbotron-button, .btn-group-vertical > .jumbotron-button + .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-vertical > .fc-button + .jumbotron-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn-group-vertical > .fc-button + .jumbotron-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn-group-vertical > .fc-button + .jumbotron-button, .pagination-nav .btn-group-vertical > a + .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-vertical > .btn + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-vertical > .jumbotron-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-vertical > .fc-button + .fc-button, .pagination-nav .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-vertical > a + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left .pagination-nav .btn-group-vertical > a + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn-group-vertical > .btn + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn-group-vertical > .jumbotron-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-right .btn-group-vertical > .fc-button + .fc-button, .pagination-nav
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn-group-vertical > a + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .pagination-nav .btn-group-vertical > a + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn-group-vertical > .btn + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn-group-vertical > .jumbotron-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-center .btn-group-vertical > .fc-button + .fc-button, .pagination-nav
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn-group-vertical > a + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .pagination-nav .btn-group-vertical > a + .fc-button, .pagination-nav .btn-group-vertical > .btn + a, .pagination-nav .btn-group-vertical > .jumbotron-button + a, .fc.fc-unthemed .fc-toolbar .fc-left .pagination-nav .btn-group-vertical > .fc-button + a, .pagination-nav .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-vertical > .fc-button + a,
+  .fc.fc-unthemed .fc-toolbar .fc-right .pagination-nav .btn-group-vertical > .fc-button + a, .pagination-nav
+  .fc.fc-unthemed .fc-toolbar .fc-right .btn-group-vertical > .fc-button + a,
+  .fc.fc-unthemed .fc-toolbar .fc-center .pagination-nav .btn-group-vertical > .fc-button + a, .pagination-nav
+  .fc.fc-unthemed .fc-toolbar .fc-center .btn-group-vertical > .fc-button + a, .pagination-nav .btn-group-vertical > a + a,
   .btn-group-vertical > .btn + .btn-group,
+  .btn-group-vertical > .jumbotron-button + .btn-group, .fc.fc-unthemed .fc-toolbar .fc-left
+  .btn-group-vertical > .fc-button + .btn-group,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .btn-group-vertical > .fc-button + .btn-group,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .btn-group-vertical > .fc-button + .btn-group, .pagination-nav
+  .btn-group-vertical > a + .btn-group,
   .btn-group-vertical > .btn-group + .btn,
+  .btn-group-vertical > .btn-group + .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left
+  .btn-group-vertical > .btn-group + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .btn-group-vertical > .btn-group + .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .btn-group-vertical > .btn-group + .fc-button, .pagination-nav
+  .btn-group-vertical > .btn-group + a,
   .btn-group-vertical > .btn-group + .btn-group {
     margin-top: -1px;
     margin-left: 0; }
 
-.btn-group-vertical > .btn:not(:first-child):not(:last-child) {
+.btn-group-vertical > .btn:not(:first-child):not(:last-child), .btn-group-vertical > .jumbotron-button:not(:first-child):not(:last-child), .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-vertical > .fc-button:not(:first-child):not(:last-child),
+.fc.fc-unthemed .fc-toolbar .fc-right .btn-group-vertical > .fc-button:not(:first-child):not(:last-child),
+.fc.fc-unthemed .fc-toolbar .fc-center .btn-group-vertical > .fc-button:not(:first-child):not(:last-child), .pagination-nav .btn-group-vertical > a:not(:first-child):not(:last-child) {
   border-radius: 0; }
 
-.btn-group-vertical > .btn:first-child:not(:last-child) {
+.btn-group-vertical > .btn:first-child:not(:last-child), .btn-group-vertical > .jumbotron-button:first-child:not(:last-child), .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-vertical > .fc-button:first-child:not(:last-child),
+.fc.fc-unthemed .fc-toolbar .fc-right .btn-group-vertical > .fc-button:first-child:not(:last-child),
+.fc.fc-unthemed .fc-toolbar .fc-center .btn-group-vertical > .fc-button:first-child:not(:last-child), .pagination-nav .btn-group-vertical > a:first-child:not(:last-child) {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0; }
 
-.btn-group-vertical > .btn:last-child:not(:first-child) {
+.btn-group-vertical > .btn:last-child:not(:first-child), .btn-group-vertical > .jumbotron-button:last-child:not(:first-child), .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-vertical > .fc-button:last-child:not(:first-child),
+.fc.fc-unthemed .fc-toolbar .fc-right .btn-group-vertical > .fc-button:last-child:not(:first-child),
+.fc.fc-unthemed .fc-toolbar .fc-center .btn-group-vertical > .fc-button:last-child:not(:first-child), .pagination-nav .btn-group-vertical > a:last-child:not(:first-child) {
   border-top-right-radius: 0;
   border-top-left-radius: 0; }
 
-.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn {
+.btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .btn, .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-right .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-center .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > .fc-button, .pagination-nav .btn-group-vertical > .btn-group:not(:first-child):not(:last-child) > a {
   border-radius: 0; }
 
-.btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child,
+.btn-group-vertical > .btn-group:first-child:not(:last-child) > .btn:last-child, .btn-group-vertical > .btn-group:first-child:not(:last-child) > .jumbotron-button:last-child, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-vertical > .btn-group:first-child:not(:last-child) > .fc-button:last-child,
+.fc.fc-unthemed .fc-toolbar .fc-right .btn-group-vertical > .btn-group:first-child:not(:last-child) > .fc-button:last-child,
+.fc.fc-unthemed .fc-toolbar .fc-center .btn-group-vertical > .btn-group:first-child:not(:last-child) > .fc-button:last-child, .pagination-nav .btn-group-vertical > .btn-group:first-child:not(:last-child) > a:last-child,
 .btn-group-vertical > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0; }
 
-.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child {
+.btn-group-vertical > .btn-group:last-child:not(:first-child) > .btn:first-child, .btn-group-vertical > .btn-group:last-child:not(:first-child) > .jumbotron-button:first-child, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-vertical > .btn-group:last-child:not(:first-child) > .fc-button:first-child,
+.fc.fc-unthemed .fc-toolbar .fc-right .btn-group-vertical > .btn-group:last-child:not(:first-child) > .fc-button:first-child,
+.fc.fc-unthemed .fc-toolbar .fc-center .btn-group-vertical > .btn-group:last-child:not(:first-child) > .fc-button:first-child, .pagination-nav .btn-group-vertical > .btn-group:last-child:not(:first-child) > a:first-child {
   border-top-right-radius: 0;
   border-top-left-radius: 0; }
 
-[data-toggle="buttons"] > .btn input[type="radio"],
+[data-toggle="buttons"] > .btn input[type="radio"], [data-toggle="buttons"] > .jumbotron-button input[type="radio"], .fc.fc-unthemed .fc-toolbar .fc-left [data-toggle="buttons"] > .fc-button input[type="radio"],
+.fc.fc-unthemed .fc-toolbar .fc-right [data-toggle="buttons"] > .fc-button input[type="radio"],
+.fc.fc-unthemed .fc-toolbar .fc-center [data-toggle="buttons"] > .fc-button input[type="radio"], .pagination-nav [data-toggle="buttons"] > a input[type="radio"],
 [data-toggle="buttons"] > .btn input[type="checkbox"],
+[data-toggle="buttons"] > .jumbotron-button input[type="checkbox"], .fc.fc-unthemed .fc-toolbar .fc-left
+[data-toggle="buttons"] > .fc-button input[type="checkbox"],
+.fc.fc-unthemed .fc-toolbar .fc-right
+[data-toggle="buttons"] > .fc-button input[type="checkbox"],
+.fc.fc-unthemed .fc-toolbar .fc-center
+[data-toggle="buttons"] > .fc-button input[type="checkbox"], .pagination-nav
+[data-toggle="buttons"] > a input[type="checkbox"],
 [data-toggle="buttons"] > .btn-group > .btn input[type="radio"],
-[data-toggle="buttons"] > .btn-group > .btn input[type="checkbox"] {
+[data-toggle="buttons"] > .btn-group > .jumbotron-button input[type="radio"], .fc.fc-unthemed .fc-toolbar .fc-left
+[data-toggle="buttons"] > .btn-group > .fc-button input[type="radio"],
+.fc.fc-unthemed .fc-toolbar .fc-right
+[data-toggle="buttons"] > .btn-group > .fc-button input[type="radio"],
+.fc.fc-unthemed .fc-toolbar .fc-center
+[data-toggle="buttons"] > .btn-group > .fc-button input[type="radio"], .pagination-nav
+[data-toggle="buttons"] > .btn-group > a input[type="radio"],
+[data-toggle="buttons"] > .btn-group > .btn input[type="checkbox"],
+[data-toggle="buttons"] > .btn-group > .jumbotron-button input[type="checkbox"], .fc.fc-unthemed .fc-toolbar .fc-left
+[data-toggle="buttons"] > .btn-group > .fc-button input[type="checkbox"],
+.fc.fc-unthemed .fc-toolbar .fc-right
+[data-toggle="buttons"] > .btn-group > .fc-button input[type="checkbox"],
+.fc.fc-unthemed .fc-toolbar .fc-center
+[data-toggle="buttons"] > .btn-group > .fc-button input[type="checkbox"], .pagination-nav
+[data-toggle="buttons"] > .btn-group > a input[type="checkbox"] {
   position: absolute;
   clip: rect(0, 0, 0, 0);
   pointer-events: none; }
@@ -2371,13 +2773,27 @@ tbody.collapse.show {
   border-radius: 0; }
   .input-group-addon.form-control-sm,
   .input-group-sm > .input-group-addon,
-  .input-group-sm > .input-group-btn > .input-group-addon.btn {
+  .input-group-sm > .input-group-btn > .input-group-addon.btn,
+  .input-group-sm > .input-group-btn > .input-group-addon.jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left
+  .input-group-sm > .input-group-btn > .input-group-addon.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .input-group-sm > .input-group-btn > .input-group-addon.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .input-group-sm > .input-group-btn > .input-group-addon.fc-button, .pagination-nav
+  .input-group-sm > .input-group-btn > a.input-group-addon {
     padding: 0.25rem 0.5rem;
     font-size: 0.875rem;
     border-radius: 0.2rem; }
   .input-group-addon.form-control-lg,
   .input-group-lg > .input-group-addon,
-  .input-group-lg > .input-group-btn > .input-group-addon.btn {
+  .input-group-lg > .input-group-btn > .input-group-addon.btn,
+  .input-group-lg > .input-group-btn > .input-group-addon.jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left
+  .input-group-lg > .input-group-btn > .input-group-addon.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .input-group-lg > .input-group-btn > .input-group-addon.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .input-group-lg > .input-group-btn > .input-group-addon.fc-button, .pagination-nav
+  .input-group-lg > .input-group-btn > a.input-group-addon {
     padding: 0.75rem 1.5rem;
     font-size: 1.25rem;
     border-radius: 0.3rem; }
@@ -2388,10 +2804,38 @@ tbody.collapse.show {
 .input-group .form-control:not(:last-child),
 .input-group-addon:not(:last-child),
 .input-group-btn:not(:last-child) > .btn,
+.input-group-btn:not(:last-child) > .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left
+.input-group-btn:not(:last-child) > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-right
+.input-group-btn:not(:last-child) > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-center
+.input-group-btn:not(:last-child) > .fc-button, .pagination-nav
+.input-group-btn:not(:last-child) > a,
 .input-group-btn:not(:last-child) > .btn-group > .btn,
+.input-group-btn:not(:last-child) > .btn-group > .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left
+.input-group-btn:not(:last-child) > .btn-group > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-right
+.input-group-btn:not(:last-child) > .btn-group > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-center
+.input-group-btn:not(:last-child) > .btn-group > .fc-button, .pagination-nav
+.input-group-btn:not(:last-child) > .btn-group > a,
 .input-group-btn:not(:last-child) > .dropdown-toggle,
 .input-group-btn:not(:first-child) > .btn:not(:last-child):not(.dropdown-toggle),
-.input-group-btn:not(:first-child) > .btn-group:not(:last-child) > .btn {
+.input-group-btn:not(:first-child) > .jumbotron-button:not(:last-child):not(.dropdown-toggle), .fc.fc-unthemed .fc-toolbar .fc-left
+.input-group-btn:not(:first-child) > .fc-button:not(:last-child):not(.dropdown-toggle),
+.fc.fc-unthemed .fc-toolbar .fc-right
+.input-group-btn:not(:first-child) > .fc-button:not(:last-child):not(.dropdown-toggle),
+.fc.fc-unthemed .fc-toolbar .fc-center
+.input-group-btn:not(:first-child) > .fc-button:not(:last-child):not(.dropdown-toggle), .pagination-nav
+.input-group-btn:not(:first-child) > a:not(:last-child):not(.dropdown-toggle),
+.input-group-btn:not(:first-child) > .btn-group:not(:last-child) > .btn,
+.input-group-btn:not(:first-child) > .btn-group:not(:last-child) > .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left
+.input-group-btn:not(:first-child) > .btn-group:not(:last-child) > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-right
+.input-group-btn:not(:first-child) > .btn-group:not(:last-child) > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-center
+.input-group-btn:not(:first-child) > .btn-group:not(:last-child) > .fc-button, .pagination-nav
+.input-group-btn:not(:first-child) > .btn-group:not(:last-child) > a {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0; }
 
@@ -2401,10 +2845,38 @@ tbody.collapse.show {
 .input-group .form-control:not(:first-child),
 .input-group-addon:not(:first-child),
 .input-group-btn:not(:first-child) > .btn,
+.input-group-btn:not(:first-child) > .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left
+.input-group-btn:not(:first-child) > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-right
+.input-group-btn:not(:first-child) > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-center
+.input-group-btn:not(:first-child) > .fc-button, .pagination-nav
+.input-group-btn:not(:first-child) > a,
 .input-group-btn:not(:first-child) > .btn-group > .btn,
+.input-group-btn:not(:first-child) > .btn-group > .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left
+.input-group-btn:not(:first-child) > .btn-group > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-right
+.input-group-btn:not(:first-child) > .btn-group > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-center
+.input-group-btn:not(:first-child) > .btn-group > .fc-button, .pagination-nav
+.input-group-btn:not(:first-child) > .btn-group > a,
 .input-group-btn:not(:first-child) > .dropdown-toggle,
 .input-group-btn:not(:last-child) > .btn:not(:first-child),
-.input-group-btn:not(:last-child) > .btn-group:not(:first-child) > .btn {
+.input-group-btn:not(:last-child) > .jumbotron-button:not(:first-child), .fc.fc-unthemed .fc-toolbar .fc-left
+.input-group-btn:not(:last-child) > .fc-button:not(:first-child),
+.fc.fc-unthemed .fc-toolbar .fc-right
+.input-group-btn:not(:last-child) > .fc-button:not(:first-child),
+.fc.fc-unthemed .fc-toolbar .fc-center
+.input-group-btn:not(:last-child) > .fc-button:not(:first-child), .pagination-nav
+.input-group-btn:not(:last-child) > a:not(:first-child),
+.input-group-btn:not(:last-child) > .btn-group:not(:first-child) > .btn,
+.input-group-btn:not(:last-child) > .btn-group:not(:first-child) > .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left
+.input-group-btn:not(:last-child) > .btn-group:not(:first-child) > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-right
+.input-group-btn:not(:last-child) > .btn-group:not(:first-child) > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-center
+.input-group-btn:not(:last-child) > .btn-group:not(:first-child) > .fc-button, .pagination-nav
+.input-group-btn:not(:last-child) > .btn-group:not(:first-child) > a {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0; }
 
@@ -2415,21 +2887,55 @@ tbody.collapse.show {
   position: relative;
   font-size: 0;
   white-space: nowrap; }
-  .input-group-btn > .btn {
+  .input-group-btn > .btn, .input-group-btn > .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .input-group-btn > .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .input-group-btn > .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .input-group-btn > .fc-button, .pagination-nav .input-group-btn > a {
     position: relative;
     flex: 1; }
-    .input-group-btn > .btn + .btn {
+    .input-group-btn > .btn + .btn, .input-group-btn > .jumbotron-button + .btn, .fc.fc-unthemed .fc-toolbar .fc-left .input-group-btn > .fc-button + .btn,
+    .fc.fc-unthemed .fc-toolbar .fc-right .input-group-btn > .fc-button + .btn,
+    .fc.fc-unthemed .fc-toolbar .fc-center .input-group-btn > .fc-button + .btn, .pagination-nav .input-group-btn > a + .btn, .input-group-btn > .btn + .jumbotron-button, .input-group-btn > .jumbotron-button + .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .input-group-btn > .fc-button + .jumbotron-button,
+    .fc.fc-unthemed .fc-toolbar .fc-right .input-group-btn > .fc-button + .jumbotron-button,
+    .fc.fc-unthemed .fc-toolbar .fc-center .input-group-btn > .fc-button + .jumbotron-button, .pagination-nav .input-group-btn > a + .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .input-group-btn > .btn + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left .input-group-btn > .jumbotron-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left .input-group-btn > .fc-button + .fc-button, .pagination-nav .fc.fc-unthemed .fc-toolbar .fc-left .input-group-btn > a + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-left .pagination-nav .input-group-btn > a + .fc-button,
+    .fc.fc-unthemed .fc-toolbar .fc-right .input-group-btn > .btn + .fc-button,
+    .fc.fc-unthemed .fc-toolbar .fc-right .input-group-btn > .jumbotron-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-right .input-group-btn > .fc-button + .fc-button, .pagination-nav
+    .fc.fc-unthemed .fc-toolbar .fc-right .input-group-btn > a + .fc-button,
+    .fc.fc-unthemed .fc-toolbar .fc-right .pagination-nav .input-group-btn > a + .fc-button,
+    .fc.fc-unthemed .fc-toolbar .fc-center .input-group-btn > .btn + .fc-button,
+    .fc.fc-unthemed .fc-toolbar .fc-center .input-group-btn > .jumbotron-button + .fc-button, .fc.fc-unthemed .fc-toolbar .fc-center .input-group-btn > .fc-button + .fc-button, .pagination-nav
+    .fc.fc-unthemed .fc-toolbar .fc-center .input-group-btn > a + .fc-button,
+    .fc.fc-unthemed .fc-toolbar .fc-center .pagination-nav .input-group-btn > a + .fc-button, .pagination-nav .input-group-btn > .btn + a, .pagination-nav .input-group-btn > .jumbotron-button + a, .fc.fc-unthemed .fc-toolbar .fc-left .pagination-nav .input-group-btn > .fc-button + a, .pagination-nav .fc.fc-unthemed .fc-toolbar .fc-left .input-group-btn > .fc-button + a,
+    .fc.fc-unthemed .fc-toolbar .fc-right .pagination-nav .input-group-btn > .fc-button + a, .pagination-nav
+    .fc.fc-unthemed .fc-toolbar .fc-right .input-group-btn > .fc-button + a,
+    .fc.fc-unthemed .fc-toolbar .fc-center .pagination-nav .input-group-btn > .fc-button + a, .pagination-nav
+    .fc.fc-unthemed .fc-toolbar .fc-center .input-group-btn > .fc-button + a, .pagination-nav .input-group-btn > a + a {
       margin-left: -1px; }
-    .input-group-btn > .btn:focus, .input-group-btn > .btn:active, .input-group-btn > .btn:hover {
+    .input-group-btn > .btn:focus, .input-group-btn > .jumbotron-button:focus, .fc.fc-unthemed .fc-toolbar .fc-left .input-group-btn > .fc-button:focus,
+    .fc.fc-unthemed .fc-toolbar .fc-right .input-group-btn > .fc-button:focus,
+    .fc.fc-unthemed .fc-toolbar .fc-center .input-group-btn > .fc-button:focus, .pagination-nav .input-group-btn > a:focus, .input-group-btn > .btn:active, .input-group-btn > .jumbotron-button:active, .fc.fc-unthemed .fc-toolbar .fc-left .input-group-btn > .fc-button:active,
+    .fc.fc-unthemed .fc-toolbar .fc-right .input-group-btn > .fc-button:active,
+    .fc.fc-unthemed .fc-toolbar .fc-center .input-group-btn > .fc-button:active, .pagination-nav .input-group-btn > a:active, .input-group-btn > .btn:hover, .input-group-btn > .jumbotron-button:hover, .fc.fc-unthemed .fc-toolbar .fc-left .input-group-btn > .fc-button:hover,
+    .fc.fc-unthemed .fc-toolbar .fc-right .input-group-btn > .fc-button:hover,
+    .fc.fc-unthemed .fc-toolbar .fc-center .input-group-btn > .fc-button:hover, .pagination-nav .input-group-btn > a:hover {
       z-index: 3; }
-  .input-group-btn:not(:last-child) > .btn,
+  .input-group-btn:not(:last-child) > .btn, .input-group-btn:not(:last-child) > .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .input-group-btn:not(:last-child) > .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .input-group-btn:not(:last-child) > .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .input-group-btn:not(:last-child) > .fc-button, .pagination-nav .input-group-btn:not(:last-child) > a,
   .input-group-btn:not(:last-child) > .btn-group {
     margin-right: -1px; }
-  .input-group-btn:not(:first-child) > .btn,
+  .input-group-btn:not(:first-child) > .btn, .input-group-btn:not(:first-child) > .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .input-group-btn:not(:first-child) > .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .input-group-btn:not(:first-child) > .fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .input-group-btn:not(:first-child) > .fc-button, .pagination-nav .input-group-btn:not(:first-child) > a,
   .input-group-btn:not(:first-child) > .btn-group {
     z-index: 2;
     margin-left: -1px; }
-    .input-group-btn:not(:first-child) > .btn:focus, .input-group-btn:not(:first-child) > .btn:active, .input-group-btn:not(:first-child) > .btn:hover,
+    .input-group-btn:not(:first-child) > .btn:focus, .input-group-btn:not(:first-child) > .jumbotron-button:focus, .fc.fc-unthemed .fc-toolbar .fc-left .input-group-btn:not(:first-child) > .fc-button:focus,
+    .fc.fc-unthemed .fc-toolbar .fc-right .input-group-btn:not(:first-child) > .fc-button:focus,
+    .fc.fc-unthemed .fc-toolbar .fc-center .input-group-btn:not(:first-child) > .fc-button:focus, .pagination-nav .input-group-btn:not(:first-child) > a:focus, .input-group-btn:not(:first-child) > .btn:active, .input-group-btn:not(:first-child) > .jumbotron-button:active, .fc.fc-unthemed .fc-toolbar .fc-left .input-group-btn:not(:first-child) > .fc-button:active,
+    .fc.fc-unthemed .fc-toolbar .fc-right .input-group-btn:not(:first-child) > .fc-button:active,
+    .fc.fc-unthemed .fc-toolbar .fc-center .input-group-btn:not(:first-child) > .fc-button:active, .pagination-nav .input-group-btn:not(:first-child) > a:active, .input-group-btn:not(:first-child) > .btn:hover, .input-group-btn:not(:first-child) > .jumbotron-button:hover, .fc.fc-unthemed .fc-toolbar .fc-left .input-group-btn:not(:first-child) > .fc-button:hover,
+    .fc.fc-unthemed .fc-toolbar .fc-right .input-group-btn:not(:first-child) > .fc-button:hover,
+    .fc.fc-unthemed .fc-toolbar .fc-center .input-group-btn:not(:first-child) > .fc-button:hover, .pagination-nav .input-group-btn:not(:first-child) > a:hover,
     .input-group-btn:not(:first-child) > .btn-group:focus,
     .input-group-btn:not(:first-child) > .btn-group:active,
     .input-group-btn:not(:first-child) > .btn-group:hover {
@@ -3222,7 +3728,9 @@ tbody.collapse.show {
   .badge:empty {
     display: none; }
 
-.btn .badge {
+.btn .badge, .jumbotron-button .badge, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button .badge,
+.fc.fc-unthemed .fc-toolbar .fc-right .fc-button .badge,
+.fc.fc-unthemed .fc-toolbar .fc-center .fc-button .badge, .pagination-nav a .badge {
   position: relative;
   top: -1px; }
 
@@ -6058,11 +6566,112 @@ img {
     margin-left: 25px;
     margin-bottom: 10px; }
 
-.btn {
-  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0; }
+.highlight {
+  background-color: #ffff00;
+  padding: 4px 10px; }
+
+/*display: inline-block;
+font-weight: 400;
+line-height: 1.25;
+text-align: center;
+white-space: nowrap;
+vertical-align: middle;
+user-select: none;
+border: 1px solid transparent;
+padding: .5rem 1rem;
+font-size: 1rem;
+transition: all .2s ease-in-out;*/
+.btn-first,
+.btn-primary {
+  color: #ffffff;
+  background-color: #003366;
+  border-color: #003366; }
+  .btn-first:hover,
+  .btn-primary:hover {
+    color: #ffffff;
+    background-color: #001a33;
+    border-color: #001429; }
+  .btn-first:focus, .btn-first.focus,
+  .btn-primary:focus,
+  .btn-primary.focus {
+    box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.5); }
+  .btn-first.disabled, .btn-first:disabled,
+  .btn-primary.disabled,
+  .btn-primary:disabled {
+    background-color: #003366;
+    border-color: #003366; }
+  .btn-first:active, .btn-first.active,
+  .show > .btn-first.dropdown-toggle,
+  .btn-primary:active,
+  .btn-primary.active,
+  .show >
+  .btn-primary.dropdown-toggle {
+    color: #ffffff;
+    background-color: #001a33;
+    background-image: none;
+    border-color: #001429; }
+
+.btn-second, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-right .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-center .fc-button, .pagination-nav a {
+  color: #ffffff;
+  background-color: #333333;
+  border-color: #333333; }
+  .btn-second:hover, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:hover,
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:hover,
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:hover, .pagination-nav a:hover {
+    color: #ffffff;
+    background-color: #1a1a1a;
+    border-color: #141414; }
+  .btn-second:focus, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:focus,
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:focus,
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:focus, .pagination-nav a:focus, .btn-second.focus, .fc.fc-unthemed .fc-toolbar .fc-left .focus.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .focus.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .focus.fc-button, .pagination-nav a.focus {
+    box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.5); }
+  .btn-second.disabled, .fc.fc-unthemed .fc-toolbar .fc-left .disabled.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .disabled.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .disabled.fc-button, .pagination-nav a.disabled, .btn-second:disabled, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:disabled,
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:disabled,
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:disabled, .pagination-nav a:disabled {
+    background-color: #333333;
+    border-color: #333333; }
+  .btn-second:active, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:active,
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:active,
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:active, .pagination-nav a:active, .btn-second.active, .fc.fc-unthemed .fc-toolbar .fc-left .active.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .active.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .active.fc-button, .pagination-nav a.active,
+  .show > .btn-second.dropdown-toggle, .fc.fc-unthemed .fc-toolbar .fc-left
+  .show > .dropdown-toggle.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .show > .dropdown-toggle.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .show > .dropdown-toggle.fc-button, .pagination-nav
+  .show > a.dropdown-toggle {
+    color: #ffffff;
+    background-color: #1a1a1a;
+    background-image: none;
+    border-color: #141414; }
+
+.btn-third {
+  color: #ffffff;
+  background-color: #003399;
+  border-color: #003399; }
+  .btn-third:hover {
+    color: #ffffff;
+    background-color: #002266;
+    border-color: #001f5c; }
+  .btn-third:focus, .btn-third.focus {
+    box-shadow: 0 0 0 2px rgba(0, 51, 153, 0.5); }
+  .btn-third.disabled, .btn-third:disabled {
+    background-color: #003399;
+    border-color: #003399; }
+  .btn-third:active, .btn-third.active,
+  .show > .btn-third.dropdown-toggle {
+    color: #ffffff;
+    background-color: #002266;
+    background-image: none;
+    border-color: #001f5c; }
 
 .widget {
   margin: 0 0 2rem;
@@ -6303,308 +6912,282 @@ img {
   background-position: center center;
   background-size: cover;
   min-height: 400px !important; }
-  .banner-wrapper .custom-logo {
-    margin-top: 1rem;
-    max-height: 150px;
-    width: auto; }
-  .banner-wrapper .jumbotron-wrapper {
-    padding: 3rem 0; }
-    .banner-wrapper .jumbotron-wrapper .container {
-      padding: 3rem 2rem;
-      background-color: rgba(51, 51, 51, 0.7) !important;
-      border: 1px solid #333333 !important;
-      -webkit-border-radius: 0;
-      -moz-border-radius: 0;
-      border-radius: 0; }
-      .banner-wrapper .jumbotron-wrapper .container .jumbotron-headline {
-        font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-        color: #ffffff;
-        font-size: 4rem;
-        margin: 0;
-        font-weight: 400;
-        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8); }
-      .banner-wrapper .jumbotron-wrapper .container .jumbotron-caption {
-        display: block;
-        clear: both;
-        color: #ffffff;
-        font-size: 2rem;
-        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8); }
-      .banner-wrapper .jumbotron-wrapper .container .jumbotron-button {
-        color: #ffffff;
-        background-color: #003366;
-        border-color: #003366; }
-        .banner-wrapper .jumbotron-wrapper .container .jumbotron-button:hover {
-          color: #ffffff;
-          background-color: #001a33;
-          border-color: #001429; }
-        .banner-wrapper .jumbotron-wrapper .container .jumbotron-button:focus, .banner-wrapper .jumbotron-wrapper .container .jumbotron-button.focus {
-          box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.5); }
-        .banner-wrapper .jumbotron-wrapper .container .jumbotron-button.disabled, .banner-wrapper .jumbotron-wrapper .container .jumbotron-button:disabled {
-          background-color: #003366;
-          border-color: #003366; }
-        .banner-wrapper .jumbotron-wrapper .container .jumbotron-button:active, .banner-wrapper .jumbotron-wrapper .container .jumbotron-button.active,
-        .show > .banner-wrapper .jumbotron-wrapper .container .jumbotron-button.dropdown-toggle {
-          color: #ffffff;
-          background-color: #001a33;
-          background-image: none;
-          border-color: #001429; }
+
+.jumbotron-wrapper {
+  padding: 3rem 0; }
+  .jumbotron-wrapper .container {
+    padding: 3rem 2rem;
+    background-color: rgba(51, 51, 51, 0.7) !important;
+    border: 1px solid #333333 !important;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0; }
+
+.jumbotron-headline {
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: #ffffff;
+  font-size: 4rem;
+  margin: 0;
+  font-weight: 400;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8); }
+
+.jumbotron-caption {
+  display: block;
+  clear: both;
+  color: #ffffff;
+  font-size: 2rem;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8); }
+
+.jumbotron-button {
+  color: #ffffff;
+  background-color: #003366;
+  border-color: #003366; }
+  .jumbotron-button:hover {
+    color: #ffffff;
+    background-color: #001a33;
+    border-color: #001429; }
+  .jumbotron-button:focus, .jumbotron-button.focus {
+    box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.5); }
+  .jumbotron-button.disabled, .jumbotron-button:disabled {
+    background-color: #003366;
+    border-color: #003366; }
+  .jumbotron-button:active, .jumbotron-button.active,
+  .show > .jumbotron-button.dropdown-toggle {
+    color: #ffffff;
+    background-color: #001a33;
+    background-image: none;
+    border-color: #001429; }
 
 .breadcrumb-wrapper {
   background-color: #003366;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.25);
   border-radius: 0; }
-  .breadcrumb-wrapper .breadcrumb {
-    font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    background-color: #003366;
-    margin: 0;
-    padding: 1rem 0; }
-    .breadcrumb-wrapper .breadcrumb .breadcrumb-item:before,
-    .breadcrumb-wrapper .breadcrumb .breadcrumb-item.active,
-    .breadcrumb-wrapper .breadcrumb a, .breadcrumb-wrapper .breadcrumb span {
-      color: #ffffff;
-      font-size: 1rem; }
 
-.content-wrapper:not(.syn_calendar-wrapper) {
-  padding-top: 2rem; }
-  @media (min-width: 992px) {
-    .content-wrapper:not(.syn_calendar-wrapper) main.content-area {
-      min-height: 420px; } }
-  .content-wrapper:not(.syn_calendar-wrapper) main.content-area article {
-    margin-bottom: 2rem; }
-    .content-wrapper:not(.syn_calendar-wrapper) main.content-area article .post-header {
+.breadcrumb {
+  font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  background-color: #003366;
+  margin: 0;
+  padding: 1rem 0; }
+  .breadcrumb .breadcrumb-item:before,
+  .breadcrumb .breadcrumb-item.active,
+  .breadcrumb a, .breadcrumb span {
+    color: #ffffff;
+    font-size: 1rem; }
+
+.content-type-wrapper {
+  padding: 2rem 0; }
+
+@media (min-width: 992px) {
+  main.content {
+    min-height: 420px; } }
+
+article {
+  margin-bottom: 2rem; }
+  article .post-header {
+    margin-bottom: 0.5rem; }
+    article .post-header .post-title {
       margin-bottom: 0.5rem; }
-      .content-wrapper:not(.syn_calendar-wrapper) main.content-area article .post-header .post-title {
-        margin-bottom: 0.5rem; }
-      .content-wrapper:not(.syn_calendar-wrapper) main.content-area article .post-header .post-date,
-      .content-wrapper:not(.syn_calendar-wrapper) main.content-area article .post-header .post-location,
-      .content-wrapper:not(.syn_calendar-wrapper) main.content-area article .post-header .post-category,
-      .content-wrapper:not(.syn_calendar-wrapper) main.content-area article .post-header .post-subtitle {
-        font-size: 0.875rem;
-        display: block; }
-    .content-wrapper:not(.syn_calendar-wrapper) main.content-area article .post-content {
-      /*.card {
-					border-color: $second-background;
-					.card-img-top {
-						border-bottom-left-radius: 0;
-						border-bottom-right-radius: 0;
-					}
-					.card-img-bottom {
-						border-top-left-radius: 0;
-						border-top-right-radius: 0;
-					}
-					.card-text {
-						color: $second-text;
-					}
-				}*/ }
-      .content-wrapper:not(.syn_calendar-wrapper) main.content-area article .post-content img {
-        border-radius: 0; }
-    .content-wrapper:not(.syn_calendar-wrapper) main.content-area article .read-more {
-      margin-left: 10px;
+    article .post-header .post-date,
+    article .post-header .post-location,
+    article .post-header .post-category,
+    article .post-header .post-subtitle {
+      font-size: 0.875rem;
+      display: block; }
+  article .post-content img {
+    border-radius: 0; }
+  article .read-more {
+    margin-left: 10px;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    font-weight: 400; }
+
+table {
+  margin-bottom: 1rem;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  border-collapse: separate;
+  width: 100%; }
+  table caption {
+    font-size: 1.5rem;
+    font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 400;
+    caption-side: top;
+    color: #333333;
+    margin: 0;
+    padding: 0.5rem 0; }
+  table thead tr > th {
+    font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    background-color: #003366;
+    color: #ffffff; }
+  table tbody tr > td {
+    padding: 8px 16px;
+    border: none; }
+  table tbody tr:nth-of-type(even) {
+    background-color: #ffffff; }
+  table tbody tr:nth-of-type(odd) {
+    background-color: #eeeeee; }
+
+.table-plain td {
+  padding: 0.5rem 0.75rem; }
+
+.teachers-roster tr td:first-of-type,
+.teachers-roster tr td:nth-of-type(2) {
+  width: 250px; }
+
+.fc.fc-unthemed {
+  margin-bottom: 2rem; }
+  .fc.fc-unthemed .fc-toolbar {
+    margin: 0; }
+    .fc.fc-unthemed .fc-toolbar .fc-left,
+    .fc.fc-unthemed .fc-toolbar .fc-right,
+    .fc.fc-unthemed .fc-toolbar .fc-center {
+      margin: 0; }
+      .fc.fc-unthemed .fc-toolbar .fc-left .fc-button-group, .fc.fc-unthemed .fc-toolbar .fc-left h2,
+      .fc.fc-unthemed .fc-toolbar .fc-right .fc-button-group,
+      .fc.fc-unthemed .fc-toolbar .fc-right h2,
+      .fc.fc-unthemed .fc-toolbar .fc-center .fc-button-group,
+      .fc.fc-unthemed .fc-toolbar .fc-center h2 {
+        margin: 0 0 0.75rem 0;
+        clear: both; }
+      .fc.fc-unthemed .fc-toolbar .fc-left .fc-button,
+      .fc.fc-unthemed .fc-toolbar .fc-right .fc-button,
+      .fc.fc-unthemed .fc-toolbar .fc-center .fc-button {
+        /*font-size: 0.8125rem;
+				padding: 0.25rem 0.75rem;*/ }
+        .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:not(:last-of-type),
+        .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:not(:last-of-type),
+        .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:not(:last-of-type) {
+          margin-right: 4px; }
+        .fc.fc-unthemed .fc-toolbar .fc-left .fc-button span,
+        .fc.fc-unthemed .fc-toolbar .fc-left .fc-button span:after,
+        .fc.fc-unthemed .fc-toolbar .fc-right .fc-button span,
+        .fc.fc-unthemed .fc-toolbar .fc-right .fc-button span:after,
+        .fc.fc-unthemed .fc-toolbar .fc-center .fc-button span,
+        .fc.fc-unthemed .fc-toolbar .fc-center .fc-button span:after {
+          height: auto;
+          margin: 0;
+          top: auto;
+          font-weight: 400;
+          font-size: 1rem; }
+        .fc.fc-unthemed .fc-toolbar .fc-left .fc-button.fc-state-disabled,
+        .fc.fc-unthemed .fc-toolbar .fc-right .fc-button.fc-state-disabled,
+        .fc.fc-unthemed .fc-toolbar .fc-center .fc-button.fc-state-disabled {
+          opacity: 1; }
+      @media (max-width: 767px) {
+        .fc.fc-unthemed .fc-toolbar .fc-left,
+        .fc.fc-unthemed .fc-toolbar .fc-right,
+        .fc.fc-unthemed .fc-toolbar .fc-center {
+          display: block;
+          float: left;
+          clear: both;
+          text-align: left; }
+          .fc.fc-unthemed .fc-toolbar .fc-left .fc-month-button,
+          .fc.fc-unthemed .fc-toolbar .fc-right .fc-month-button,
+          .fc.fc-unthemed .fc-toolbar .fc-center .fc-month-button {
+            display: none; }
+          .fc.fc-unthemed .fc-toolbar .fc-left .fc-listMonth-button,
+          .fc.fc-unthemed .fc-toolbar .fc-right .fc-listMonth-button,
+          .fc.fc-unthemed .fc-toolbar .fc-center .fc-listMonth-button {
+            display: block; } }
+      @media (min-width: 768px) {
+        .fc.fc-unthemed .fc-toolbar .fc-left .fc-month-button,
+        .fc.fc-unthemed .fc-toolbar .fc-right .fc-month-button,
+        .fc.fc-unthemed .fc-toolbar .fc-center .fc-month-button {
+          display: block; }
+        .fc.fc-unthemed .fc-toolbar .fc-left .fc-listMonth-button,
+        .fc.fc-unthemed .fc-toolbar .fc-right .fc-listMonth-button,
+        .fc.fc-unthemed .fc-toolbar .fc-center .fc-listMonth-button {
+          display: none; } }
+  .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    height: auto !important; }
+    .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-heading td {
+      font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
       font-size: 0.8125rem;
+      font-weight: 400;
+      padding: 8px;
+      background-color: #eeeeee;
+      text-transform: uppercase; }
+    .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item {
+      background-color: #ffffff; }
+      .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item:hover {
+        background-color: #ffffff; }
+        .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item:hover td, .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item:hover a {
+          text-decoration: underline;
+          background-color: #ffffff; }
+      .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item .fc-list-item-time {
+        padding-right: 0;
+        color: #003366;
+        background-color: #ffffff; }
+      .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item .fc-list-item-marker {
+        width: 0;
+        padding: 0; }
+        .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item .fc-list-item-marker .fc-event-dot {
+          display: none; }
+      .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item .fc-list-item-title {
+        color: #003366;
+        background-color: #ffffff; }
+  .fc.fc-unthemed .fc-view-container .fc-view.fc-month-view table thead.fc-head th.fc-day-header {
+    padding: 0.5rem 0; }
+    .fc.fc-unthemed .fc-view-container .fc-view.fc-month-view table thead.fc-head th.fc-day-header span {
+      font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      font-size: 0.875rem;
       text-transform: uppercase;
       font-weight: 400; }
-  .content-wrapper:not(.syn_calendar-wrapper) table {
-    margin-bottom: 1rem;
+  .fc.fc-unthemed .fc-view-container .fc-view.fc-month-view table tbody.fc-body div.fc-scroller {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    height: auto !important; }
+    .fc.fc-unthemed .fc-view-container .fc-view.fc-month-view table tbody.fc-body div.fc-scroller .fc-bg td.fc-today {
+      background-color: transparent; }
+  .fc.fc-unthemed .fc-view-container .fc-day-grid-event {
+    margin: 2px 4px;
+    padding: 0.5rem;
+    font-size: 0.875rem;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
-    border-collapse: separate; }
-    .content-wrapper:not(.syn_calendar-wrapper) table:not(.table-plain) {
-      width: 100%; }
-      .content-wrapper:not(.syn_calendar-wrapper) table:not(.table-plain) caption {
-        font-size: 1.5rem;
-        font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-        font-weight: 400;
-        caption-side: top;
-        color: #333333;
-        margin: 0;
-        padding: 0.5rem 0; }
-      .content-wrapper:not(.syn_calendar-wrapper) table:not(.table-plain) thead tr > th {
-        font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-        font-weight: 400;
-        font-size: 0.875rem;
-        text-transform: uppercase;
-        padding: 8px 16px;
-        background-color: #003366;
-        color: #ffffff; }
-      .content-wrapper:not(.syn_calendar-wrapper) table:not(.table-plain) tbody tr > td {
-        padding: 8px 16px;
-        border: none; }
-      .content-wrapper:not(.syn_calendar-wrapper) table:not(.table-plain) tbody tr:nth-of-type(even) {
-        background-color: #ffffff; }
-      .content-wrapper:not(.syn_calendar-wrapper) table:not(.table-plain) tbody tr:nth-of-type(odd) {
-        background-color: #eeeeee; }
-    .content-wrapper:not(.syn_calendar-wrapper) table.table-plain td {
-      padding: 0.5rem 0.75rem; }
-    .content-wrapper:not(.syn_calendar-wrapper) table.teachers-roster tr td:first-of-type,
-    .content-wrapper:not(.syn_calendar-wrapper) table.teachers-roster tr td:nth-of-type(2) {
-      width: 250px; }
-
-.content-wrapper.syn_calendar-wrapper {
-  padding-top: 2rem; }
-  .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed {
-    margin-bottom: 2rem; }
-    .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar {
-      margin: 0; }
-      .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-left,
-      .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-right,
-      .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-center {
-        margin: 0; }
-        .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-left .fc-button-group, .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-left h2,
-        .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-right .fc-button-group,
-        .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-right h2,
-        .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-center .fc-button-group,
-        .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-center h2 {
-          margin: 0 0 0.75rem 0;
-          clear: both; }
-        .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-left .fc-button,
-        .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-right .fc-button,
-        .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-center .fc-button {
-          background-repeat: no-repeat;
-          background: none;
-          box-shadow: none;
-          text-shadow: none;
-          border-radius: 0;
-          border-color: #003366;
-          background-color: #003366;
-          color: #ffffff;
-          height: auto;
-          font-size: 0.8125rem;
-          padding: 0.25rem 0.75rem; }
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:hover, .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-left .fc-button.fc-state-active,
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:hover,
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-right .fc-button.fc-state-active,
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:hover,
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-center .fc-button.fc-state-active {
-            background-color: #00264d; }
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:not(:last-of-type),
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:not(:last-of-type),
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:not(:last-of-type) {
-            margin-right: 4px; }
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-left .fc-button span,
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-left .fc-button span:after,
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-right .fc-button span,
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-right .fc-button span:after,
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-center .fc-button span,
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-center .fc-button span:after {
-            height: auto;
-            margin: 0;
-            top: auto;
-            font-weight: 400;
-            font-size: 1rem; }
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-left .fc-button.fc-state-disabled,
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-right .fc-button.fc-state-disabled,
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-center .fc-button.fc-state-disabled {
-            opacity: 1; }
-        @media (max-width: 767px) {
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-left,
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-right,
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-center {
-            display: block;
-            float: left;
-            clear: both;
-            text-align: left; }
-            .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-left .fc-month-button,
-            .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-right .fc-month-button,
-            .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-center .fc-month-button {
-              display: none; }
-            .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-left .fc-listMonth-button,
-            .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-right .fc-listMonth-button,
-            .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-center .fc-listMonth-button {
-              display: block; } }
-        @media (min-width: 768px) {
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-left .fc-month-button,
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-right .fc-month-button,
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-center .fc-month-button {
-            display: block; }
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-left .fc-listMonth-button,
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-right .fc-listMonth-button,
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-toolbar .fc-center .fc-listMonth-button {
-            display: none; } }
-    .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller {
-      overflow-x: visible !important;
-      overflow-y: visible !important;
-      height: auto !important; }
-      .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-heading td {
-        font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-        font-size: 0.8125rem;
-        font-weight: 400;
-        padding: 8px;
-        background-color: #eeeeee;
-        text-transform: uppercase; }
-      .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item {
-        background-color: #ffffff; }
-        .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item:hover {
-          background-color: #ffffff; }
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item:hover td, .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item:hover a {
-            text-decoration: underline;
-            background-color: #ffffff; }
-        .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item .fc-list-item-time {
-          padding-right: 0;
-          color: #003366;
-          background-color: #ffffff; }
-        .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item .fc-list-item-marker {
-          width: 0;
-          padding: 0; }
-          .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item .fc-list-item-marker .fc-event-dot {
-            display: none; }
-        .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item .fc-list-item-title {
-          color: #003366;
-          background-color: #ffffff; }
-    .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-view.fc-month-view table thead.fc-head th.fc-day-header {
-      padding: 0.5rem 0; }
-      .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-view.fc-month-view table thead.fc-head th.fc-day-header span {
-        font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-        font-size: 0.875rem;
-        text-transform: uppercase;
+    background-color: #003366;
+    color: #ffffff;
+    border: solid 1px #00264d; }
+    .fc.fc-unthemed .fc-view-container .fc-day-grid-event:hover {
+      background-color: #004080;
+      background: #004080; }
+    .fc.fc-unthemed .fc-view-container .fc-day-grid-event .fc-content {
+      white-space: normal;
+      overflow: visible; }
+      .fc.fc-unthemed .fc-view-container .fc-day-grid-event .fc-content .fc-time {
         font-weight: 400; }
-    .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-view.fc-month-view table tbody.fc-body div.fc-scroller {
-      overflow-x: visible !important;
-      overflow-y: visible !important;
-      height: auto !important; }
-      .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-view.fc-month-view table tbody.fc-body div.fc-scroller .fc-bg td.fc-today {
-        background-color: transparent; }
-    .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-day-grid-event {
-      margin: 2px 4px;
-      padding: 0.5rem;
-      font-size: 0.875rem;
-      -webkit-border-radius: 0;
-      -moz-border-radius: 0;
-      border-radius: 0;
-      background-color: #003366;
-      color: #ffffff;
-      border: solid 1px #00264d; }
-      .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-day-grid-event:hover {
-        background-color: #004080;
-        background: #004080; }
-      .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-day-grid-event .fc-content {
-        white-space: normal;
-        overflow: visible; }
-        .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-day-grid-event .fc-content .fc-time {
-          font-weight: 400; }
-    .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-list-empty-wrap2 {
-      position: relative; }
-      .content-wrapper.syn_calendar-wrapper .fc.fc-unthemed .fc-view-container .fc-list-empty-wrap2 .fc-list-empty {
-        background-color: #ffffff;
-        text-align: left;
-        padding: 8px 14px;
-        border: none;
-        border-top: none; }
-  .content-wrapper.syn_calendar-wrapper .fc-day-top {
-    background: transparent !important; }
-    .content-wrapper.syn_calendar-wrapper .fc-day-top .fc-day-number {
-      font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-      font-size: 0.8125rem;
-      line-height: 26px;
-      background-color: transparent;
-      height: 100%;
-      width: 26px;
-      text-align: center;
-      border: solid 4px #ffffff; }
-    .content-wrapper.syn_calendar-wrapper .fc-day-top.fc-today .fc-day-number {
-      background-color: #333333;
-      color: #ffffff;
-      border-radius: 50%; }
+  .fc.fc-unthemed .fc-view-container .fc-list-empty-wrap2 {
+    position: relative; }
+    .fc.fc-unthemed .fc-view-container .fc-list-empty-wrap2 .fc-list-empty {
+      background-color: #ffffff;
+      text-align: left;
+      padding: 8px 14px;
+      border: none;
+      border-top: none; }
+
+.fc-day-top {
+  background: transparent !important; }
+  .fc-day-top .fc-day-number {
+    font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    font-size: 0.8125rem;
+    line-height: 26px;
+    background-color: transparent;
+    height: 100%;
+    width: 26px;
+    text-align: center;
+    border: solid 4px #ffffff; }
+  .fc-day-top.fc-today .fc-day-number {
+    background-color: #333333;
+    color: #ffffff;
+    border-radius: 50%; }
 
 .page-header {
   margin-bottom: 1rem; }
@@ -6633,19 +7216,24 @@ img {
       color: #ffffff; }
 
 .pagination-nav {
-  padding: 2rem 0; }
-  .pagination-nav ul.pagination li a {
-    margin: 0 0.125rem;
-    padding: 0.5rem 1rem;
-    border-radius: 0;
-    border: 1px solid rgba(0, 51, 102, 0.7); }
-    .pagination-nav ul.pagination li a:hover {
-      text-decoration: none;
-      background-color: #eeeeee;
-      background: #eeeeee; }
-  .pagination-nav ul.pagination li.active a {
-    background-color: #003366;
-    color: #ffffff; }
+  padding: 2rem 0;
+  /*&.active {
+				a {
+					background-color: $first-background;
+					color: $first-text;
+				}
+			}*/ }
+  .pagination-nav a {
+    /*padding: 0.5rem 1rem;
+				border-radius: $border-radius;
+				border: 1px solid rgba($first-background, 0.7);
+				&:hover {
+					text-decoration: none;
+					background-color: #eeeeee;
+					background: #eeeeee;
+				}*/ }
+    .pagination-nav a:not(:last-of-type) {
+      margin-right: 4px; }
 
 .no-content {
   text-align: center;
@@ -6728,51 +7316,39 @@ img {
   height: 250px;
   width: 100%; }
 
-article.page .widget .widget-title,
-section.main-top-sidebar .widget .widget-title,
-section.main-bottom-sidebar .widget .widget-title {
+section.main-top-sidebar .widget-title,
+section.main-bottom-sidebar .widget-title {
   margin-bottom: 1rem; }
 
-article.page .widget .widget-body,
-article.page .widget .textwidget,
-section.main-top-sidebar .widget .widget-body,
-section.main-top-sidebar .widget .textwidget,
-section.main-bottom-sidebar .widget .widget-body,
-section.main-bottom-sidebar .widget .textwidget {
+section.main-top-sidebar .widget-body,
+section.main-top-sidebar .textwidget,
+section.main-bottom-sidebar .widget-body,
+section.main-bottom-sidebar .textwidget {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
   background-color: rgba(0, 51, 102, 0.05); }
-  article.page .widget .widget-body .widget-item a.widget-entry,
-  article.page .widget .textwidget .widget-item a.widget-entry,
-  section.main-top-sidebar .widget .widget-body .widget-item a.widget-entry,
-  section.main-top-sidebar .widget .textwidget .widget-item a.widget-entry,
-  section.main-bottom-sidebar .widget .widget-body .widget-item a.widget-entry,
-  section.main-bottom-sidebar .widget .textwidget .widget-item a.widget-entry {
+  section.main-top-sidebar .widget-body .widget-item a.widget-entry,
+  section.main-top-sidebar .textwidget .widget-item a.widget-entry,
+  section.main-bottom-sidebar .widget-body .widget-item a.widget-entry,
+  section.main-bottom-sidebar .textwidget .widget-item a.widget-entry {
     color: #003366; }
-    article.page .widget .widget-body .widget-item a.widget-entry:hover, article.page .widget .widget-body .widget-item a.widget-entry.active, article.page .widget .widget-body .widget-item a.widget-entry.active:hover,
-    article.page .widget .textwidget .widget-item a.widget-entry:hover,
-    article.page .widget .textwidget .widget-item a.widget-entry.active,
-    article.page .widget .textwidget .widget-item a.widget-entry.active:hover,
-    section.main-top-sidebar .widget .widget-body .widget-item a.widget-entry:hover,
-    section.main-top-sidebar .widget .widget-body .widget-item a.widget-entry.active,
-    section.main-top-sidebar .widget .widget-body .widget-item a.widget-entry.active:hover,
-    section.main-top-sidebar .widget .textwidget .widget-item a.widget-entry:hover,
-    section.main-top-sidebar .widget .textwidget .widget-item a.widget-entry.active,
-    section.main-top-sidebar .widget .textwidget .widget-item a.widget-entry.active:hover,
-    section.main-bottom-sidebar .widget .widget-body .widget-item a.widget-entry:hover,
-    section.main-bottom-sidebar .widget .widget-body .widget-item a.widget-entry.active,
-    section.main-bottom-sidebar .widget .widget-body .widget-item a.widget-entry.active:hover,
-    section.main-bottom-sidebar .widget .textwidget .widget-item a.widget-entry:hover,
-    section.main-bottom-sidebar .widget .textwidget .widget-item a.widget-entry.active,
-    section.main-bottom-sidebar .widget .textwidget .widget-item a.widget-entry.active:hover {
+    section.main-top-sidebar .widget-body .widget-item a.widget-entry:hover, section.main-top-sidebar .widget-body .widget-item a.widget-entry.active, section.main-top-sidebar .widget-body .widget-item a.widget-entry.active:hover,
+    section.main-top-sidebar .textwidget .widget-item a.widget-entry:hover,
+    section.main-top-sidebar .textwidget .widget-item a.widget-entry.active,
+    section.main-top-sidebar .textwidget .widget-item a.widget-entry.active:hover,
+    section.main-bottom-sidebar .widget-body .widget-item a.widget-entry:hover,
+    section.main-bottom-sidebar .widget-body .widget-item a.widget-entry.active,
+    section.main-bottom-sidebar .widget-body .widget-item a.widget-entry.active:hover,
+    section.main-bottom-sidebar .textwidget .widget-item a.widget-entry:hover,
+    section.main-bottom-sidebar .textwidget .widget-item a.widget-entry.active,
+    section.main-bottom-sidebar .textwidget .widget-item a.widget-entry.active:hover {
       text-decoration: underline;
       /*background-color: #eeeeee;
 						background: #eeeeee;*/ }
 
-article.page .widget .map-wrapper,
-section.main-top-sidebar .widget .map-wrapper,
-section.main-bottom-sidebar .widget .map-wrapper {
+section.main-top-sidebar .map-wrapper,
+section.main-bottom-sidebar .map-wrapper {
   min-height: 250px;
   height: 250px;
   width: 100%; }

@@ -13,8 +13,6 @@
 <body <?php body_class(); ?>>
 	<div id="fb-root"></div>
 	<div class="print-header print-header-name d-print-block" aria-hidden="true"><?php echo get_bloginfo( 'name', 'display' ); ?></div>
-	<div class="print-header d-print-block" aria-hidden="true">All rights reserved</div>
-	<div class="print-header d-print-block" aria-hidden="true">Printed from <?php echo get_the_permalink(); ?></div>
 	<a class="sr-only sr-only-focusable d-print-none" href="#content"><?php esc_html_e( 'Skip to content', 'syntric' ); ?></a>
 	<nav class="primary-nav-wrapper navbar navbar-expand-lg d-print-none">
 		<div class="navbar-brand-toggler-wrapper d-flex justify-content-between align-items-center">
@@ -33,6 +31,5 @@
 	</nav>
 	<?php get_search_form(); ?>
 	<?php syn_get_banner(); ?>
-	<?php //syn_get_jumbotron(); ?>
 	<?php syn_get_sidebars( 'header' ); ?>
 	<?php syn_get_breadcrumbs(); ?>

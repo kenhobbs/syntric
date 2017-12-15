@@ -10,30 +10,26 @@ add_filter( 'tiny_mce_before_init', 'syn_tiny_mce_before_init', 20 );
 function syn_tiny_mce_before_init( $settings ) {
 	$style_formats = array(
 		array(
-			'title'    => 'Lead Paragraph',
+			'title'    => 'Unstyled List',
+			'selector' => 'ul',
+			'classes'  => 'list-unstyled',
+			'wrapper'  => true,
+		),
+		array(
+			'title'    => 'Highlight',
 			'selector' => 'p',
-			'classes'  => 'lead',
+			'classes'  => 'highlight',
+			'wrapper'  => true,
+		),
+		array(
+			'title'    => 'Button',
+			'selector' => 'a',
+			'classes'  => 'btn btn-first',
 			'wrapper'  => true,
 		),
 		array(
 			'title'  => 'Small',
 			'inline' => 'small',
-		),
-		array(
-			'title'   => 'Blockquote',
-			'block'   => 'blockquote',
-			'classes' => 'blockquote',
-			'wrapper' => true,
-		),
-		array(
-			'title'   => 'Blockquote Footer',
-			'block'   => 'footer',
-			'classes' => 'blockquote-footer',
-			'wrapper' => true,
-		),
-		array(
-			'title'  => 'Cite',
-			'inline' => 'cite',
 		),
 	);
 	if ( isset( $settings[ 'style_formats' ] ) ) {
@@ -45,9 +41,9 @@ function syn_tiny_mce_before_init( $settings ) {
 	return $settings;
 }
 
-add_action( 'admin_init', 'syn_add_editor_style' );
+//add_action( 'admin_init', 'syn_add_editor_style' );
 function syn_add_editor_style() {
-	add_editor_style( '/assets/css/syntric.min.css' );
+	//add_editor_style( '/assets/css/syntric.min.css' );
 	// todo: stylesheets aren't working in TinyMCE...maybe because this isn't using "custom-editor"?  find out
-	//wp_enqueue_style( 'custom-editor', get_template_directory_uri() . '/assets/css/editor-style.css' );
+	//wp_enqueue_style( 'editor-style', get_template_directory_uri() . '/assets/css/editor-style.css' );
 }

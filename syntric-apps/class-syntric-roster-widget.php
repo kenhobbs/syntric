@@ -84,6 +84,7 @@ class Syntric_Roster_Widget extends WP_Widget {
 				$first_name = $user_meta[ 'first_name' ][ 0 ];
 				$last_name  = $user_meta[ 'last_name' ][ 0 ];
 				$title      = get_field( 'syn_user_title', 'user_' . $user_id );
+				$title      = str_replace( ',', '<br>', $title );
 				$email      = $user->data->user_email;
 				$phone      = get_field( 'syn_user_phone', 'user_' . $user_id );
 				$ext        = get_field( 'syn_user_extension', 'user_' . $user_id );
@@ -112,7 +113,7 @@ class Syntric_Roster_Widget extends WP_Widget {
 					echo $tab . '</li>' . $lb;
 				}
 				if ( 'table' == $layout ) {
-					echo $tab . $tab . '<tr>' . $lb;
+					echo $tab . $tab . '<tr valign="top">' . $lb;
 					echo $tab . $tab . $tab . '<td nowrap="nowrap">' . $first_name . ' ' . $last_name . '</td>' . $lb;
 					if ( in_array( 'titles', $include_fields ) ) {
 						echo $tab . $tab . $tab . '<td>' . $title . '</td>' . $lb;

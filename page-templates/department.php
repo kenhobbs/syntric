@@ -8,11 +8,11 @@
  */
 ?>
 <?php get_header(); ?>
-<div id="department-wrapper" class="content-wrapper">
+<div id="department-wrapper" class="content-type-wrapper <?php echo get_post_type(); ?>-content-wrapper">
 	<div class="<?php echo esc_html( get_theme_mod( 'syntric_container_type' ) ); ?>">
 		<div class="row">
 			<?php syn_get_sidebars( 'main', 'left' ); ?>
-			<main id="content" class="col content-area">
+			<main id="content" class="col content-area content">
 				<header class="page-header">
 					<h1 class="page-title">
 						<?php the_title(); ?>

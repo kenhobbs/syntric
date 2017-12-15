@@ -1805,7 +1805,7 @@ function syn_get_breadcrumbs() {
 	if ( is_front_page() ) {
 		return;
 	}
-	$breadcrumbs = '<div class="breadcrumb-wrapper">';
+	$breadcrumbs = '<div class="breadcrumb-wrapper d-print-none">';
 	$breadcrumbs .= '<div class="' . esc_html( get_theme_mod( 'syntric_container_type' ) ) . '">';
 	$breadcrumbs .= '<nav class="breadcrumb">';
 	$breadcrumbs .= '<a class="breadcrumb-item" href="' . home_url() . '">Home</a>';
@@ -1915,7 +1915,7 @@ function syn_get_jumbotron() {
 			if ( $jumbotron[ 'include_button' ] ) {
 				$button_href   = ( 'page' == $jumbotron[ 'button_target' ] ) ? $jumbotron[ 'button_page' ] : $jumbotron[ 'button_url' ];
 				$window_target = ( 'page' == $jumbotron[ 'button_target' ] ) ? '_self' : '_blank';
-				echo '<a href="' . $button_href . '" class="jumbotron-button btn btn-lg" target="' . $window_target . '">';
+				echo '<a href="' . $button_href . '" class="jumbotron-button" target="' . $window_target . '">';
 				echo $jumbotron[ 'button_text' ];
 				echo '</a>';
 			}
@@ -2391,99 +2391,11 @@ function syn_print_after_footer() {
 	echo '<script type="text/javascript">' . $lb;
 	//echo $tab . '(function ($) {' . $lb;
 	if ( 'syn_calendar' == get_post_type() ) :
-	echo $tab . $tab . 'fetchCalendarEvents(' . get_the_ID() . ');' . $lb;
+	echo $tab . $tab . 'fetchCalendar(' . get_the_ID() . ');' . $lb;
 	endif;
 	if ( have_rows( 'syn_google_maps', 'option' ) ) :
-		echo $tab .$tab .  'renderMaps();' . $lb;
+		//echo $tab . $tab . 'fetchMaps();' . $lb;
 	endif;
 	//echo $tab . '})(jQuery);' . $lb;
 	echo '</script>' . $lb;
-}
-
-function _______notinuse________syn_list_unpublished_pages() {
-	$args   = array(
-		'numberposts'   => - 1,
-		'post_type'     => array( 'page', 'post' ),
-		'post_status'   => array( 'draft', 'future', 'pending' ),
-		'orderby'       => array( 'menu_order' => 'ASC' ),
-		'no_found_rows' => true,
-	);
-	$unpubs = get_posts( $args );
-	echo '<table class="admin-list">';
-	echo '<thead>';
-	echo '<tr>';
-	echo '<th scope="col">Status</th>';
-	echo '<th scope="col">Page</th>';
-	echo '<th scope="col">Page Type</th>';
-	echo '<th scope="col">Author</th>';
-	echo '</tr>';
-	echo '</thead>';
-	echo '<tbody>';
-	foreach ( $unpubs as $unpub ) {
-		echo '<tr>';
-		echo '<td style="text-transform: capitalize;">' . $unpub->post_status . '</td>';
-		echo '<td>';
-		echo syn_get_post_breadcrumbs( $unpub->ID );
-		echo '<span style="margin-left: 20px;">';
-		echo '<a href="/wp-admin/post.php?action=edit&post=' . $unpub->ID . '">' . 'Edit' . '</a>';
-		echo ' | <a href="' . get_permalink( $unpub->ID ) . '">' . 'View' . '</a>';
-		echo '</span>';
-		echo '</td>';
-		echo '<td style="text-transform: capitalize;">' . syn_get_page_template( $unpub->ID ) . '</td>';
-		echo '<td>' . get_the_author_meta( 'display_name', $unpub->post_author ) . '</td>';
-		echo '</tr>';
-	}
-	echo '</tbody>';
-	echo '</table>';
-}
-
-function _____notinuse__________syn_list_teachers() {
-	$teachers = syn_get_teachers();
-	if ( $teachers ) {
-		echo '<table class="admin-list">';
-		echo '<thead>';
-		echo '<tr>';
-		echo '<th scope="col">Name</th>';
-		echo '<th scope="col">Title</th>';
-		echo '<th scope="col">Email</th>';
-		echo '<th scope="col">Classes</th>';
-		echo '</tr>';
-		echo '</thead>';
-		echo '<tbody>';
-		foreach ( $teachers as $teacher ) {
-			$full_name              = $teacher->display_name;
-			$title                  = get_field( 'syn_user_title', 'user_' . $teacher->ID );
-			$email                  = $teacher->data->user_email;
-			$teacher_page           = syn_get_teacher_page( $teacher->ID );
-			$teacher_page_published = ( $teacher_page && 'publish' == $teacher_page->post_status ) ? true : false;
-			$teacher_classes        = ( $teacher_page_published ) ? get_field( 'syn_classes', $teacher_page->ID ) : false;
-			$class_array            = array();
-			if ( $teacher_classes ) {
-				foreach ( $teacher_classes as $class ) {
-					$class_page = syn_get_teacher_class_page( $teacher->ID, $class[ 'class_id' ] );
-					if ( $class_page instanceof WP_Post && 'publish' == $class_page->post_status ) {
-						$class_array[] = '<a href="' . get_the_permalink( $class_page->ID ) . '">' . $class_page->post_title . '</a>';
-					} else {
-						$class_array[] = $class[ 'course' ];
-					}
-				}
-			}
-			echo '<tr valign="top">';
-			echo '<td>';
-			if ( $teacher_page_published ) {
-				echo '<a href="' . get_the_permalink( $teacher_page->ID ) . '">';
-			}
-			echo $full_name;
-			if ( $teacher_page_published ) {
-				echo '</a>';
-			}
-			echo '</td>';
-			echo '<td>' . $title . '</td>';
-			echo '<td><a href="mailto:' . antispambot( $email, true ) . '" class="teachers-list-email" title="Email">' . antispambot( $email ) . '</a></td>';
-			echo '<td>' . implode( '<br>', $class_array ) . '</td>';
-			echo '</tr>';
-		}
-		echo '</tbody>';
-		echo '</table>';
-	}
 }
