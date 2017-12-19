@@ -425,12 +425,12 @@ function syn_before_delete_calendar( $post_id ) {
 }
 
 /**
- * AJAX handler for public and private
+ * AJAX handler fetching public and private and calendars
  */
-add_action( 'wp_ajax_nopriv_fetch_calendar_events', 'syn_fetch_calendar_events' );
-add_action( 'wp_ajax_fetch_calendar_events', 'syn_fetch_calendar_events' );
+add_action( 'wp_ajax_nopriv_syn_fetch_calendar_events', 'syn_fetch_calendar_events' );
+add_action( 'wp_ajax_syn_fetch_calendar_events', 'syn_fetch_calendar_events' );
 function syn_fetch_calendar_events() {
-	check_ajax_referer( 'fetch_calendar_events' );
+	check_ajax_referer( 'syn_fetch_calendar_events' );
 	$args   = array(
 		'numberposts'      => - 1,
 		'post_type'        => 'syn_event',

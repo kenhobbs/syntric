@@ -57,6 +57,8 @@ require get_template_directory() . '/inc/utility.php';
 /**
  * Syntric Apps
  */
+// since is_plugin_active is in plugin.php and is loaded late, need to include the file before calling the function
+include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 if ( is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) ) {
 	require get_template_directory() . '/syntric-apps/syntric-apps.php';
 }

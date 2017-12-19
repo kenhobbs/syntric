@@ -176,6 +176,9 @@ function syn_sidebar_active_widgets( $sidebar_id, $post_id ) {
 			} else {
 				$active_widgets[] = $widget;
 			}
+		} else {
+			// handle WP widgets here
+			$active_widgets[] = $widget;
 		}
 	}
 

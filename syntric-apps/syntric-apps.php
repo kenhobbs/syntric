@@ -1748,16 +1748,13 @@ function syn_get_final_footer() {
  * }
  * }*/
 function syn_get_navbar_brand() {
-	$organization = get_field( 'syn_organization', 'option' );
-	//'title="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '"'
-	$out = '<a class="navbar-brand" href="' . esc_url( home_url( '/' ) ) . '" rel="home">';
+	$organization = esc_attr( get_bloginfo( 'name', 'display' ) );
+	$out          = '<a class="navbar-brand" href="' . esc_url( home_url( '/' ) ) . '" rel="home">';
 	if ( has_custom_logo() ) {
 		$logo_alt = $organization . ' Logo';
 		$out      .= wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'full', false, array( 'alt' => $logo_alt ) );
 	}
-	$out .= '<span class="display-name">';
 	$out .= $organization;
-	$out .= '</span>';
 	$out .= '</a>';
 
 	return $out;
@@ -1882,7 +1879,7 @@ function syn_get_banner() {
 	}
 	$jumbotrons = get_field( 'syn_jumbotrons', 'option' );
 	if ( has_header_image() || $jumbotrons ) {
-		echo '<div class="banner-wrapper hidden-md-down hidden-print" aria-hidden="true"' . $banner_style_attribute . 'role="banner">';
+		echo '<div class="banner-wrapper d-none d-lg-block d-print-none" aria-hidden="true"' . $banner_style_attribute . 'role="banner">';
 		echo syn_get_jumbotron();
 		echo '</div>';
 	}
@@ -2389,13 +2386,13 @@ function syn_print_after_footer() {
 	$lb  = "\n";
 	$tab = "\t";
 	echo '<script type="text/javascript">' . $lb;
-	//echo $tab . '(function ($) {' . $lb;
+	echo $tab . '(function ($) {' . $lb;
 	if ( 'syn_calendar' == get_post_type() ) :
-	echo $tab . $tab . 'fetchCalendar(' . get_the_ID() . ');' . $lb;
+		echo $tab . $tab . 'fetchCalendar(' . get_the_ID() . ');' . $lb;
 	endif;
 	if ( have_rows( 'syn_google_maps', 'option' ) ) :
-		//echo $tab . $tab . 'fetchMaps();' . $lb;
+		echo $tab . $tab . 'fetchMaps();' . $lb;
 	endif;
-	//echo $tab . '})(jQuery);' . $lb;
+	echo $tab . '})(jQuery);' . $lb;
 	echo '</script>' . $lb;
 }

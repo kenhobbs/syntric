@@ -51,7 +51,7 @@ function syn_add_editor_stylesheet() {
 add_action( 'admin_enqueue_scripts', 'syn_enqueue_admin_scripts' );
 function syn_enqueue_admin_scripts( $hook ) {
 	wp_enqueue_style( 'google-fonts-stylesheet', '//fonts.googleapis.com/css?family=Roboto:300,400:500:700' );
-	wp_enqueue_style( 'fontawesome-stylesheet', get_stylesheet_directory_uri() . '/assets/libs/fontawesome-v4.7.0/fontawesome.css', null, '4.7.0' );
+	wp_enqueue_script( 'fontawesome', 'https://use.fontawesome.com/f45398b257.js', null, '5.0.1', false );
 	wp_enqueue_style( 'syntric-admin-stylesheet', get_template_directory_uri() . '/assets/css/syntric-admin.min.css' );
 	wp_enqueue_script( 'syntric-admin', get_template_directory_uri() . '/assets/js/syntric-admin.min.js' );
 }
@@ -65,13 +65,15 @@ function syn_enqueue_admin_scripts( $hook ) {
  * @return string Full URI to a theme stylesheet
  */
 function syn_get_theme_stylesheet_uri() {
-	$is_dev          = syn_is_dev();
+	//$is_dev          = syn_is_dev();
 	$http_host       = syn_get_http_host();
-	$host_style      = ( ! $is_dev ) ? $http_host . '.min' : $http_host;
-	$default_style   = ( ! $is_dev ) ? 'syntric.min' : 'syntric';
-	$host_file       = get_stylesheet_directory() . '/assets/css/' . $host_style . '.css';
-	$theme_style     = ( file_exists( $host_file ) ) ? $host_style : $default_style;
-	$theme_style_uri = get_stylesheet_directory_uri() . '/assets/css/' . $theme_style . '.css';
+	//$host_style      = ( ! $is_dev ) ? $http_host . '.min' : $http_host;
+	//$host_style      = $http_host . '.min';
+	//$default_style   = ( ! $is_dev ) ? 'syntric.min' : 'syntric';
+	//$host_file       = get_stylesheet_directory() . '/assets/css/' . $host_style . '.css';
+	//$theme_style     = ( file_exists( $host_file ) ) ? $host_style : $default_style;
+	//$theme_style_uri = get_stylesheet_directory_uri() . '/assets/css/' . $theme_style . '.css';
+	$theme_style_uri = get_stylesheet_directory_uri() . '/assets/css/' . $http_host . '.min.css';
 
 	return $theme_style_uri;
 }

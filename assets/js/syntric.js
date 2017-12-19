@@ -1,12 +1,23 @@
 (function ($) {
+	fetchCalendar = function (post_id) {
+		$.ajax({
+			url: syntric_calendars_api.ajax_url,
+			method: 'post',
+			data: {
+				_ajax_nonce: syntric_calendars_api.nonce,
+				action: 'syn_fetch_calendar_events',
+				post_id: post_id
+			},
+			success: function (response, xhr, message) {
+				renderCalendar(response);
+			},
+			error: function (error) {
+				alert('Error loading calendar');
+			}
+		});
+	};
 
-	/**
-	 * Render Google Calendar with FullCalendar javascript library
-	 *
-	 * See https://fullcalendar.io/
-	 */
-	renderCalendar = function(events) {
-		//console.log(window.innerWidth);
+	renderCalendar = function (events) {
 		var args = {
 			themeSystem: 'standard',
 			header: {
@@ -87,7 +98,7 @@
 				prev: '<',
 				next: '>'
 			},
-			eventRender: function(event, element) {
+			eventRender: function (event, element) {
 				var eventDateTime = (event.allDay) ? event.start.format('LL') : event.start.format('dddd, MMMM D, YYYY h:mmA');
 				var eventTitle = event.title;
 				var eventDescription = event.description;
@@ -97,7 +108,7 @@
 					element[0].attributes.setNamedItem(anchorTitle);
 				} else if (element[0].tagName == 'TR') {
 					if (element[0].children.length) {
-						for ( var i=0; i<element[0].children.length; i++) {
+						for (var i = 0; i < element[0].children.length; i++) {
 							if (element[0].children[i].firstElementChild && element[0].children[i].firstElementChild.tagName == 'A') {
 								element[0].children[i].firstElementChild.attributes.setNamedItem(anchorTitle);
 							}
@@ -109,23 +120,45 @@
 		$('#full-calendar').empty().fullCalendar(args);
 	};
 
-	fetchMaps = function() {
-		var mapWidgets = $('.map-wrapper');
-		var config = {};
-		for (var i=0; i<mapWidgets.length; i++) {
-			config.container = mapWidgets[i].id;
-
+	fetchMaps = function () {
+		var mapWidgets = $('.widget .map');
+		var mapConfigs = [];
+		for (var i = 0; i < mapWidgets.length; i++) {
+			mapConfigs.push({
+				containerId: mapWidgets[i].id,
+				mapId: mapWidgets[i].dataset.id
+			});
 		}
+		for (var m = 0; m < mapConfigs.length; m++) {
+			$.ajax({
+				url: syntric_maps_api.ajax_url,
+				method: 'post',
+				data: {
+					_ajax_nonce: syntric_maps_api.nonce,
+					action: 'syn_fetch_map',
+					container_id: mapConfigs[m].containerId,
+					map_id: mapConfigs[m].mapId
+				},
+				success: function (response, xhr, message) {
+					renderMap(response);
+				},
+				error: function (error) {
+					alert('Error loading calendar');
+				}
+			});
+		}
+	};
 
-		return;
-		var container = document.getElementById(config.container);
+	var map;
+
+	renderMap = function (config) {
+		var container = document.getElementById(config.container_id);
 		if (container) {
-			container.className = 'map-wrapper hidden-print';
+			container.className = 'map';
 			var includeMarkers = (typeof config.include_markers !== 'undefined') ? config.include_markers : false;
 			var markers = (includeMarkers && typeof config.markers !== 'undefined') ? config.markers : [];
 			var includeBoundary = (typeof config.include_boundary !== 'undefined') ? config.include_boundary : false;
 			var boundaryCoordinates = (includeBoundary && typeof config.boundary_coordinates !== 'undefined') ? config.boundary_coordinates : [];
-			//console.log(markers);
 			var center = (includeMarkers) ? {lat: parseFloat(markers[0].lat), lng: parseFloat(markers[0].lng)} : {lat: parseFloat(config.center_lat), lng: parseFloat(config.center_lng)};
 			var zoom = (includeMarkers) ? 17 : config.zoom;
 			var styles = [];
@@ -361,6 +394,86 @@
 		map = null;
 	};
 
+	/**
+	 *  addMarker function
+	 *
+	 *  Adds a marker to a Google Map
+	 *
+	 *  @type    function
+	 *
+	 *  @param    markerConfig
+	 *  @param    map
+	 *  @return    n/a
+	 */
+	function addMarker(markerConfig, map) {
+		var latlng = new google.maps.LatLng(parseFloat(markerConfig.lat), parseFloat(markerConfig.lng));
+		var title = (markerConfig.name) ? markerConfig.name : '';
+		var icon = (markerConfig.icon) ? markerConfig.icon : '/wp-content/themes/syntric/syntric-apps/assets/images/google-map-marker.png';
+		var marker = new google.maps.Marker({
+			position: latlng,
+			map: map,
+			title: title,
+			icon: {
+				url: icon,
+				size: new google.maps.Size(32, 32)
+			}
+		});
+		map.markers.push(marker);
+		/*var infoWindowContent = '';
+		//infoWindowContent += (markerConfig.name || markerConfig.address || markerConfig.address_2 || markerConfig.city || markerConfig.state || markerConfig.zip_code) ? '<p>' : '';
+		infoWindowContent += '<p>';
+		infoWindowContent += (markerConfig.name) ? markerConfig.name + '<br>' : '';
+		infoWindowContent += (markerConfig.address) ? markerConfig.address + '<br>' : '';
+		infoWindowContent += (markerConfig.address_2) ? markerConfig.address_2 + '<br>' : '';
+		infoWindowContent += (markerConfig.city) ? markerConfig.city : ' ';
+		infoWindowContent += (markerConfig.state) ? ', ' + markerConfig.state + ' ' : '';
+		infoWindowContent += (markerConfig.zip_code) ? markerConfig.zip_code : '';
+		infoWindowContent += (markerConfig.city || markerConfig.state || markerConfig.zip_code) ? '<br>' : '';
+		//infoWindowContent += (markerConfig.name || markerConfig.address || markerConfig.address_2 || markerConfig.city || markerConfig.state || markerConfig.zip_code) ? '</p>' : '';
+		infoWindowContent += (markerConfig.phone) ? markerConfig.phone : '';
+		infoWindowContent += (markerConfig.extension) ? ' ext. ' + markerConfig.extension : '';
+		infoWindowContent += (markerConfig.phone || markerConfig.extension) ? '<br>' : '';
+		infoWindowContent += (markerConfig.email) ? markerConfig.email + '<br>' : '';
+		infoWindowContent += (markerConfig.url) ? markerConfig.url : '';
+		infoWindowContent += '</p>';
+		var infoWindow = new google.maps.InfoWindow({
+			content: infoWindowContent
+		});
+		infoWindows.push(infoWindow);
+		google.maps.event.addListener(marker, 'click', function () {
+			for (var i = 0; i < infoWindows.length; i++) {
+				infoWindows[i].close();
+			}
+			infoWindow.open(map, marker);
+		});*/
+	}
+
+	/**
+	 *  centerMap function
+	 *
+	 *  Centers map to contain all markers
+	 *
+	 *  @type    function
+	 *
+	 *  @param    map (Google Map object)
+	 *  @return    n/a
+	 */
+	function centerMap(map, coordinates) {
+		if (typeof coordinates === 'object' && coordinates.length >= 1) {
+			if (coordinates.length === 1) {
+				var coordinate = new google.maps.LatLng(coordinates[0].lat, coordinates[0].lng);
+				map.setCenter(coordinate);
+			} else {
+				var bounds = new google.maps.LatLngBounds();
+				for (var i = 0; i < coordinates.length; i++) {
+					var latlng = new google.maps.LatLng(coordinates[i].lat, coordinates[i].lng);
+					bounds.extend(latlng);
+				}
+				map.fitBounds(bounds);
+			}
+		}
+	}
+
 	function renderFullcalendarMenu(selector_id, google_calendar_id) {
 		var calendar = $('#' + selector_id).fullCalendar();
 		var eventSources = calendar.fullCalendar('getEventSources');
@@ -427,8 +540,8 @@
 		}
 	}
 
-	// Call function to set banner height
-	// todo: is this still in use and if so can the argument be variable-ized?
+// Call function to set banner height
+// todo: is this still in use and if so can the argument be variable-ized?
 
 	/**
 	 * Convert ACF "*" on required fields to "(required)" for ADA
@@ -507,15 +620,14 @@
 	/**
 	 * Google Translate widget
 	 */
-	googleTranslateElementInit = function() {
-		console.log('googleTranslateElementInit');
+	googleTranslateElementInit = function () {
 		new google.translate.TranslateElement({
 			pageLanguage: 'en',
 			autoDisplay: false
 		}, 'google-translate');
-	}
+	};
 
-	// autorun the following functions on document loaded...
+// autorun the following functions on document loaded...
 	setBannerHeight('banner-wrapper');
 
 	/**
@@ -547,5 +659,6 @@
 			}
 		}, false);
 	}
-})(jQuery);
 
+
+})(jQuery);
