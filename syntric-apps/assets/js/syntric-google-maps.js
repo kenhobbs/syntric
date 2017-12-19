@@ -12,7 +12,7 @@ var map;
  */
 var infoWindows = [];
 
-var renderMapWidgets = function () {
+var ___renderMapWidgets = function () {
 
 
 	return;
@@ -282,7 +282,7 @@ var renderMapWidgets = function () {
  *                            config.zoom_control - currently unused (magic value)
  *  @return    n/a
  */
-var renderMap = function (config) {
+var __renderMap = function (config) {
 	var container = document.getElementById(config.container);
 	if (container) {
 		container.className = 'map-wrapper hidden-print';
@@ -537,7 +537,7 @@ var renderMap = function (config) {
  *  @param    map
  *  @return    n/a
  */
-function addMarker(markerConfig, map) {
+function ___addMarker(markerConfig, map) {
 	var latlng = new google.maps.LatLng(parseFloat(markerConfig.lat), parseFloat(markerConfig.lng));
 	var title = (markerConfig.name) ? markerConfig.name : '';
 	var icon = (markerConfig.icon) ? markerConfig.icon : '/wp-content/themes/syntric/syntric-apps/assets/images/google-map-marker.png';
@@ -590,7 +590,7 @@ function addMarker(markerConfig, map) {
  *  @param    map (Google Map object)
  *  @return    n/a
  */
-function centerMap(map, coordinates) {
+function ___centerMap(map, coordinates) {
 	if (typeof coordinates === 'object' && coordinates.length >= 1) {
 		if (coordinates.length === 1) {
 			var coordinate = new google.maps.LatLng(coordinates[0].lat, coordinates[0].lng);

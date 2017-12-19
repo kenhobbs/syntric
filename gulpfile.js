@@ -15,36 +15,37 @@ var compileSASS = require('gulp-sass');
 var watch = require('gulp-watch');
 var minifyCSS = require('gulp-cssnano');
 var rename = require('gulp-rename');
-//var concat = require('gulp-concat');
+var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 //var merge2 = require('merge2');
 var compressImage = require('gulp-imagemin');
-var ignore = require('gulp-ignore');
+//var ignore = require('gulp-ignore');
 //var rimraf = require('gulp-rimraf');
 //var clone = require('gulp-clone');
 //var merge = require('gulp-merge');
-//var sourcemaps = require('gulp-sourcemaps');
+var sourcemaps = require('gulp-sourcemaps');
 //var browserSync = require('browser-sync').create();
 //var del = require('del');
 var cached = require('gulp-cached');
+var gap = require('gulp-append-prepend');
 
 var theme = 'syntric';
 var src_dir = './src/';
 var dist_dir = './assets/';
 
 /**
- * Directories for source and build stylesheets, scripts and images.  
- * 
+ * Directories for source and build stylesheets, scripts and images.
+ *
  * It is important to keep build directory structure unchanged because
- * these magic values are also used in the Wordpress PHP to enqueue 
+ * these magic values are also used in the Wordpress PHP to enqueue
  * the sheets and scripts.
- * 
+ *
  * Syntric theme structure:
- * 
+ *
  * All preprocessed files are in /src (aka source) and processed files are
  * in /dist (aka build or distribute).  The node_modules is also in
  * the theme root directory (ie /node_modules).
- * 
+ *
  * Within each of source and build directories there are /css or /sass,
  * /js and /img folders. All three folders are mirrored in /admin for
  * each of the /src and /assets folders.
@@ -52,22 +53,22 @@ var dist_dir = './assets/';
  * The result...
  *
  * /theme root
- * 		/dist (compiled, other files and folders likely to co-reside here)
- * 			/css
- * 			/js
- * 			/img
- * 			/admin
- * 				/css
- * 				/js
- * 				/img
- * 		/src (precompiled)
- * 			/sass
- * 			/js
- * 			/img
- * 			/admin
- * 				/sass
- * 				/js
- * 				/img
+ *        /dist (compiled, other files and folders likely to co-reside here)
+ *            /css
+ *            /js
+ *            /img
+ *            /admin
+ *                /css
+ *                /js
+ *                /img
+ *        /src (precompiled)
+ *            /sass
+ *            /js
+ *            /img
+ *            /admin
+ *                /sass
+ *                /js
+ *                /img
  *
  * Note that either /src or /dist can have other files and folders co-residing
  * within them (bootstrap, jquery, vendor, json, etc).
@@ -96,7 +97,10 @@ var dirs = {
 	dist_admin_js: './assets/js/',
 	dist_admin_img: './assets/images/'
 };
-/** Domain mappings.  This needs to be updated whenever a new site is added **/
+
+/**
+ *  Domain mappings.  This needs to be updated whenever a new site is added
+ */
 var domainMappings = {
 	'amadorcoe.syntric.com.min': 'www.amadorcoe.org.min',
 	'amadorhs.syntric.com.min': 'www.amadorcoe.org.amadorhs.min',
@@ -122,19 +126,21 @@ var domainMappings = {
 	'vanallen.syntric.com.min': 'www.vanallenschool.org.min',
 	'eca.syntric.com.min': 'www.escaloncharteracademy.org.min',
 	'vista.syntric.com.min': 'www.vistahighschool.org.min',
-}
+	'master.localhost.min': 'master.syntric.com.min'
+};
 // Gulp watcher args
 var watcherArgs = {
 	ignoreInitial: true
 };
 // File watcher
 gulp.task('watch', function () {
-	// SCSS watchers
-	gulp.watch([dirs.src_sass + '*.scss', '!' + dirs.src_sass + '*-admin.scss', '!' + dirs.src_sass + '_*.scss'], watcherArgs, ['compileSASS']);
-	gulp.watch([dirs.src_admin_sass + '*-admin.scss'], watcherArgs, ['compileAdminSASS']);
+	// SASS watchers
+	gulp.watch([dirs.src_sass + '*.scss', '!' + dirs.src_sass + '*-admin.scss', '!' + dirs.src_sass + '_*.scss'], {ignoreInitial: true}, ['compileSASS']);
+	gulp.watch([dirs.src_admin_sass + '*-admin.scss'], {ignoreInitial: true}, ['compileAdminSASS']);
 	// Javascript watchers
-	gulp.watch([dirs.src_js + '*.js', '!' + dirs.src_js + '*-admin.js', '!' + dirs.src_js + '_*.js'], watcherArgs, ['compileJS']);
-	gulp.watch(dirs.src_admin_js + '*-admin.js', watcherArgs, ['compileAdminJS']);
+	gulp.watch([dirs.src_js + 'syntric*.js', '!' + dirs.src_js + '*-admin.js', '!' + dirs.src_js + '_*.js'], {ignoreInitial: true}, ['compileJS']);
+	gulp.watch(dirs.src_admin_js + '*-admin.js', {ignoreInitial: true}, ['compileAdminJS']);
+	gulp.watch(dirs.src_admin_js + 'customizer.js', {ignoreInitial: true}, ['compileCustomizerJS']);
 	// Image watchers
 	//gulp.watch(dirs.src_img + '*.*', watcherArgs, ['compressImages']);
 	////gulp.watch(dirs.src_admin_img + '*.*', watcherArgs, ['compressAdminImages']);
@@ -143,24 +149,44 @@ gulp.task('watch', function () {
 	////gulp.watch(dirs.dist_css + '*.com.min.css.map', watcherArgs, ['generateDomainCSSMap']);
 });
 
+/*
 gulp.task('compileSASS', function () {
-	return gulp.src([dirs.src_sass + '*.scss', '!' + dirs.src_sass + '*-admin.scss', '!' + dirs.src_sass + '_*.scss' ])
-	.pipe(cached('sassFiles'))
+	gulp.src(base.src_sass + '*.scss')
 	.pipe(plumber())
 	.pipe(compileSASS())
+	.pipe(gulp.dest(base.build_css))
+	.pipe(sourcemaps.init({loadMaps: true}))
+	.pipe(plumber())
+	.pipe(rename({suffix: '.min'}))
+	.pipe(minifyCSS({discardComments: {removeAll: true}}))
+	.pipe(sourcemaps.write('./'))
+	.pipe(gulp.dest(base.build_css));
+});
+ */
+gulp.task('compileSASS', function () {
+	return gulp.src([dirs.src_sass + '*.scss', '!' + dirs.src_sass + '*-admin.scss', '!' + dirs.src_sass + '_*.scss'])
+	.pipe(plumber())
+
+	.pipe(cached('sassFiles'))
+	.pipe(plumber())
+
+	.pipe(compileSASS())
 	.pipe(gulp.dest(dirs.dist_css))
-	//.pipe(sourcemaps.init({loadMaps: true}))
 	//.pipe(sourcemaps.init())
 	.pipe(plumber())
+
 	.pipe(rename({suffix: '.min'}))
 	.pipe(minifyCSS({discardComments: {removeAll: true}}))
 	//.pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest(dirs.dist_css))
 	.pipe(plumber())
-	.pipe(rename(function(path) {
+
+	.pipe(rename(function (path) {
+		console.log(path);
 		path.basename = domainMappings[path.basename];
+		console.log(path);
 	}))
-	.pipe(minifyCSS({discardComments: {removeAll: true}}))
+	//.pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest(dirs.dist_css));
 });
 
@@ -169,36 +195,49 @@ gulp.task('compileAdminSASS', function () {
 	.pipe(cached('sassAdminFiles'))
 	.pipe(plumber())
 	.pipe(compileSASS())
-	.pipe(gulp.dest(dirs.dist_admin_css))
+	//.pipe(gulp.dest(dirs.dist_admin_css))
 	//.pipe(sourcemaps.init({loadMaps: true}))
-	.pipe(plumber())
+	//.pipe(plumber())
 	.pipe(rename({suffix: '.min'}))
 	.pipe(minifyCSS({discardComments: {removeAll: true}}))
 	//.pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest(dirs.dist_admin_css));
-	console.log('compileAdminSASS completed');
 });
 
 gulp.task('compileJS', function () {
-	return gulp.src([dirs.src_js + '*.js', '!' + dirs.src_js + '_*.js' ])
+	return gulp.src([dirs.src_js + 'syntric*.js', '!' + dirs.src_js + '*-admin.js', '!' + dirs.src_js + '_*.js'])
 	.pipe(cached('jsFiles'))
-	.pipe(plumber())
-	.pipe(gulp.dest(dirs.dist_js))
-	.pipe(plumber())
+	.pipe(concat(theme + '.js'))
+	.pipe(gap.prependText('(function($) {'))
+	.pipe(gap.appendText('})(jQuery);'))
+	//.pipe(plumber())
+	//.pipe(gulp.dest(dirs.dist_js))
+	//.pipe(plumber())
 	.pipe(rename({suffix: '.min'}))
 	.pipe(uglify())
 	.pipe(gulp.dest(dirs.dist_js));
 });
 
 gulp.task('compileAdminJS', function () {
-	return gulp.src([dirs.src_admin_js + '*.js', '!' + dirs.src_admin_js + '_*.js' ])
+	return gulp.src(dirs.src_admin_js + '*-admin.js')
 	.pipe(cached('jsAdminFiles'))
 	.pipe(plumber())
+	.pipe(concat(theme + '-admin.js'))
 	.pipe(gulp.dest(dirs.dist_admin_js))
 	.pipe(plumber())
-	.pipe(rename(theme + '.min'))
+	.pipe(rename(theme + '-admin.min'))
 	.pipe(uglify())
 	.pipe(gulp.dest(dirs.dist_admin_js));
+});
+gulp.task('compileCustomizerJS', function () {
+	return gulp.src(dirs.src_js + 'customizer.js')
+	.pipe(cached('jsCustomizerFiles'))
+	.pipe(plumber())
+	.pipe(gulp.dest(dirs.dist_js))
+	.pipe(plumber())
+	.pipe(rename('customizer.min'))
+	.pipe(uglify())
+	.pipe(gulp.dest(dirs.dist_js));
 });
 
 gulp.task('compressImages', function () {
@@ -215,13 +254,13 @@ gulp.task('compressAdminImages', function () {
 
 gulp.task('generateDomainCSS', function () {
 	gulp.src([dirs.dist_css + '*.com.min.css'])
-	.pipe(rename(function(path) {
+	.pipe(rename(function (path) {
 		console.log(path);
 		path.basename = domainMappings[path.basename];
 		console.log(path);
 	}))
 	.pipe(gulp.dest(dirs.dist_css));
-})
+});
 
 //
 //
