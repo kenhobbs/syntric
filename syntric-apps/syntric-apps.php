@@ -1716,7 +1716,8 @@ function syn_get_final_footer() {
 	echo '<div class="container-fluid">';
 	echo '<div class="row">';
 	echo '<div class="col-lg-12">';
-	echo '<div class="non-discrimination">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment. For more information or to contact our Title IX coordinator please visit the Title IX page.</div>';
+	//echo '<div class="non-discrimination">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment. For more information or to contact our Title IX coordinator please visit the Title IX page.</div>';
+	echo '<div class="non-discrimination">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment.</div>';
 	echo '</div>';
 	echo '</div>';
 	echo '<div class="row">';
