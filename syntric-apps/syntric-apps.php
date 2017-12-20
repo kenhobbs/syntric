@@ -209,6 +209,12 @@ function syn_admin_menu() {
 	$current_user = wp_get_current_user();
 	$role = $current_user->roles ? $current_user->roles[0] : false;
 	$syntric_user = get_user_by( 'login', 'syntric' );
+	// Remove for everyone
+	remove_menu_page( 'link-manager.php' ); // Links
+	remove_submenu_page( 'themes.php', 'theme-editor.php' );
+	remove_submenu_page( 'plugins.php', 'plugin-editor.php' );
+	remove_submenu_page( 'index.php', 'update-core.php' );
+	// Remove for everyone but Syntric
 	if ( $current_user->ID != $syntric_user->ID ) {
 		remove_menu_page( 'edit.php?post_type=acf-field-group' ); // Custom Fields
 		remove_menu_page( 'wpmudev' ); // WPMU Dev
@@ -217,12 +223,7 @@ function syn_admin_menu() {
 		remove_submenu_page( 'tools.php', 'syntric-clonables');
 		remove_submenu_page( 'options-general.php', 'codepress-admin-columns');
 	}
-	// Remove for everyone
-	remove_menu_page( 'link-manager.php' ); // Links
-	remove_submenu_page( 'themes.php', 'theme-editor.php' );
-	remove_submenu_page( 'plugins.php', 'plugin-editor.php' );
-	remove_submenu_page( 'index.php', 'update-core.php' );
-	// Remove for all but administrator
+	// Remove for editors
 	if ( 'editor' == $role ) {
 		remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Microblog (taxonomy)
 		remove_menu_page( 'jetpack' ); // Jetpack
@@ -235,7 +236,7 @@ function syn_admin_menu() {
 		remove_menu_page( 'edit.php?post_type=acf-field-group' ); // Custom Fields
 		// todo: need to add in Headers, maybe Users
 	}
-	// Remove menu items from authors - this is the roll assigned to Teachers
+	// Remove for authors (Teachers)
 	if ( 'author' == $role ) {
 		remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Microblog (taxonomy)
 		remove_menu_page( 'jetpack' ); // Jetpack
