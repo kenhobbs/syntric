@@ -42,7 +42,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 		'page_title' => $organization_type_label,
 		'menu_title' => $organization_type_label,
 		'menu_slug'  => 'syntric-organization',
-		'capability' => 'manage_options',
+		'capability' => 'edit_others_pages',
 		'position'   => '59.1',
 		'redirect'   => false,
 	) );
@@ -52,7 +52,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 		'menu_title'  => $organizations_type_label,
 		'menu_slug'   => 'syntric-organizations',
 		'parent_slug' => 'syntric-organization',
-		'capability'  => 'manage_options',
+		'capability'  => 'edit_others_pages',
 	) );
 	// People
 	acf_add_options_sub_page( array(
@@ -60,7 +60,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 		'menu_title'  => 'People',
 		'menu_slug'   => 'syntric-people',
 		'parent_slug' => 'syntric-organization',
-		'capability'  => 'manage_options',
+		'capability'  => 'edit_others_pages',
 	) );
 	// Academic Calendar
 	acf_add_options_sub_page( array(
@@ -68,7 +68,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 		'menu_title'  => 'Acedemic Calendar',
 		'menu_slug'   => 'syntric-academic-calendar',
 		'parent_slug' => 'syntric-organization',
-		'capability'  => 'manage_options',
+		'capability'  => 'edit_others_pages',
 	) );
 	// Departments
 	acf_add_options_sub_page( array(
@@ -76,7 +76,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 		'menu_title'  => 'Departments',
 		'menu_slug'   => 'syntric-departments',
 		'parent_slug' => 'syntric-organization',
-		'capability'  => 'manage_options',
+		'capability'  => 'edit_others_pages',
 	) );
 	if ( $organization_is_school ) {
 		// Buildings
@@ -85,7 +85,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 			'menu_title'  => 'Buildings',
 			'menu_slug'   => 'syntric-buildings',
 			'parent_slug' => 'syntric-organization',
-			'capability'  => 'manage_options',
+			'capability'  => 'edit_others_pages',
 		) );
 		// Rooms
 		acf_add_options_sub_page( array(
@@ -93,7 +93,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 			'menu_title'  => 'Rooms',
 			'menu_slug'   => 'syntric-rooms',
 			'parent_slug' => 'syntric-organization',
-			'capability'  => 'manage_options',
+			'capability'  => 'edit_others_pages',
 		) );
 		// Periods
 		acf_add_options_sub_page( array(
@@ -101,7 +101,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 			'menu_title'  => 'Periods',
 			'menu_slug'   => 'syntric-periods',
 			'parent_slug' => 'syntric-organization',
-			'capability'  => 'manage_options',
+			'capability'  => 'edit_others_pages',
 		) );
 		/*// Courses/Classes
 		acf_add_options_page( array(
@@ -117,7 +117,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 			'menu_title'  => 'Courses',
 			'menu_slug'   => 'syntric-courses',
 			'parent_slug' => 'syntric-organization',
-			'capability'  => 'manage_options',
+			'capability'  => 'edit_others_pages',
 		) );
 		// Classes
 		acf_add_options_sub_page( array(
@@ -125,7 +125,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 			'menu_title'  => 'Classes',
 			'menu_slug'   => 'syntric-classes',
 			'parent_slug' => 'syntric-organization',
-			'capability'  => 'manage_options',
+			'capability'  => 'edit_others_pages',
 		) );
 	}
 	// Jumbotrons
@@ -133,7 +133,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 		'page_title' => 'Jumbotrons',
 		'menu_title' => 'Jumbotrons',
 		'menu_slug'  => 'syntric-jumbotrons',
-		'capability' => 'manage_options',
+		'capability' => 'edit_others_pages',
 		'redirect'   => false,
 	) );
 	// Google Maps
@@ -141,7 +141,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 		'page_title' => 'Google Maps',
 		'menu_title' => 'Google Maps',
 		'menu_slug'  => 'syntric-google-maps',
-		'capability' => 'manage_options',
+		'capability' => 'edit_others_pages',
 		'redirect'   => false,
 	) );
 	// Lists
@@ -206,13 +206,24 @@ if ( function_exists( 'acf_add_options_page' ) ) {
  */
 add_action( 'admin_menu', 'syn_admin_menu', 999 );
 function syn_admin_menu() {
+	$current_user = wp_get_current_user();
+	$role = $current_user->roles ? $current_user->roles[0] : false;
+	$syntric_user = get_user_by( 'login', 'syntric' );
+	if ( $current_user->ID != $syntric_user->ID ) {
+		remove_menu_page( 'edit.php?post_type=acf-field-group' ); // Custom Fields
+		remove_menu_page( 'wpmudev' ); // WPMU Dev
+		remove_menu_page( 'wp-defender' ); // WP Defender
+		remove_submenu_page( 'tools.php', 'syntric-data-functions');
+		remove_submenu_page( 'tools.php', 'syntric-clonables');
+		remove_submenu_page( 'options-general.php', 'codepress-admin-columns');
+	}
 	// Remove for everyone
 	remove_menu_page( 'link-manager.php' ); // Links
 	remove_submenu_page( 'themes.php', 'theme-editor.php' );
 	remove_submenu_page( 'plugins.php', 'plugin-editor.php' );
 	remove_submenu_page( 'index.php', 'update-core.php' );
 	// Remove for all but administrator
-	if ( current_user_can( 'editor' ) ) {
+	if ( 'editor' == $role ) {
 		remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Microblog (taxonomy)
 		remove_menu_page( 'jetpack' ); // Jetpack
 		remove_menu_page( 'users.php' ); // Users
@@ -225,7 +236,7 @@ function syn_admin_menu() {
 		// todo: need to add in Headers, maybe Users
 	}
 	// Remove menu items from authors - this is the roll assigned to Teachers
-	if ( current_user_can( 'author' ) ) {
+	if ( 'author' == $role ) {
 		remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Microblog (taxonomy)
 		remove_menu_page( 'jetpack' ); // Jetpack
 		remove_menu_page( 'admin.php?page=syntric-organization' ); // Organization
@@ -2390,9 +2401,9 @@ function syn_print_after_footer() {
 	if ( 'syn_calendar' == get_post_type() ) :
 		echo $tab . $tab . 'fetchCalendar(' . get_the_ID() . ');' . $lb;
 	endif;
-	if ( have_rows( 'syn_google_maps', 'option' ) ) :
+	//if ( have_rows( 'syn_google_maps', 'option' ) ) :
 		echo $tab . $tab . 'fetchMaps();' . $lb;
-	endif;
+	//endif;
 	echo $tab . '})(jQuery);' . $lb;
 	echo '</script>' . $lb;
 }

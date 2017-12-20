@@ -20,10 +20,10 @@
 			</div>
 			<?php if ( is_user_logged_in() ) : ?>
 				<div class="row">
-					<div class="col-lg-6">
+					<div class="col-lg-4">
 						<?php comment_form(); ?>
 					</div>
-					<div class="col-lg-6">
+					<div class="col-lg-8">
 						<h2>Feedback &amp; Replies</h2>
 						<?php if ( have_comments() ) : ?>
 							<ul class="comments-list">
