@@ -209,12 +209,6 @@ function syn_admin_menu() {
 	$current_user = wp_get_current_user();
 	$role = $current_user->roles ? $current_user->roles[0] : false;
 	$syntric_user = get_user_by( 'login', 'syntric' );
-	// Remove for everyone
-	remove_menu_page( 'link-manager.php' ); // Links
-	remove_submenu_page( 'themes.php', 'theme-editor.php' );
-	remove_submenu_page( 'plugins.php', 'plugin-editor.php' );
-	remove_submenu_page( 'index.php', 'update-core.php' );
-	// Remove for everyone but Syntric
 	if ( $current_user->ID != $syntric_user->ID ) {
 		remove_menu_page( 'edit.php?post_type=acf-field-group' ); // Custom Fields
 		remove_menu_page( 'wpmudev' ); // WPMU Dev
@@ -223,7 +217,12 @@ function syn_admin_menu() {
 		remove_submenu_page( 'tools.php', 'syntric-clonables');
 		remove_submenu_page( 'options-general.php', 'codepress-admin-columns');
 	}
-	// Remove for editors
+	// Remove for everyone
+	remove_menu_page( 'link-manager.php' ); // Links
+	remove_submenu_page( 'themes.php', 'theme-editor.php' );
+	remove_submenu_page( 'plugins.php', 'plugin-editor.php' );
+	remove_submenu_page( 'index.php', 'update-core.php' );
+	// Remove for all but administrator
 	if ( 'editor' == $role ) {
 		remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Microblog (taxonomy)
 		remove_menu_page( 'jetpack' ); // Jetpack
@@ -236,7 +235,7 @@ function syn_admin_menu() {
 		remove_menu_page( 'edit.php?post_type=acf-field-group' ); // Custom Fields
 		// todo: need to add in Headers, maybe Users
 	}
-	// Remove for authors (Teachers)
+	// Remove menu items from authors - this is the roll assigned to Teachers
 	if ( 'author' == $role ) {
 		remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Microblog (taxonomy)
 		remove_menu_page( 'jetpack' ); // Jetpack
@@ -1716,8 +1715,7 @@ function syn_get_final_footer() {
 	echo '<div class="container-fluid">';
 	echo '<div class="row">';
 	echo '<div class="col-lg-12">';
-	//echo '<div class="non-discrimination">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment. For more information or to contact our Title IX coordinator please visit the Title IX page.</div>';
-	echo '<div class="non-discrimination">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment.</div>';
+	echo '<div class="non-discrimination">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment. For more information or to contact our Title IX coordinator please visit the Title IX page.</div>';
 	echo '</div>';
 	echo '</div>';
 	echo '<div class="row">';
@@ -2308,7 +2306,15 @@ function syn_list_classes() {
 		}
 		echo '</table>';
 	} else {
-		echo '<p>There are no teachers or you do not have permission to view them</p>';
+		echo '<table class="admin-list classes">';
+		echo '<tbody>';
+		echo '<tr>';
+		echo '<td>';
+		echo 'There are no teachers or you do not have permission to view them';
+		echo '</td>';
+		echo '</tr>';
+		echo '</tbody>';
+		echo '</table>';
 	}
 }
 

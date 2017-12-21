@@ -52,7 +52,7 @@ function syn_nav_menu() {
 		'menu_class'          => 'navbar-nav mr-auto',
 		'depth'               => 2,
 		'fallback_cb'         => '',
-		'submenu_classes'     => 'dropdown-menu',
+		'submenu_classes'     => 'dropdown-menu dropdown-menu-right',
 		'item_classes'        => 'nav-item',
 		'link_classes'        => 'nav-link',
 		'parent_item_classes' => 'dropdown',
