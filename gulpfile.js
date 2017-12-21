@@ -17,17 +17,17 @@ var minifyCSS = require('gulp-cssnano');
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-//var merge2 = require('merge2');
 var compressImage = require('gulp-imagemin');
+var cached = require('gulp-cached');
+var gap = require('gulp-append-prepend');
+//var sourcemaps = require('gulp-sourcemaps');
+//var merge2 = require('merge2');
 //var ignore = require('gulp-ignore');
 //var rimraf = require('gulp-rimraf');
 //var clone = require('gulp-clone');
 //var merge = require('gulp-merge');
-var sourcemaps = require('gulp-sourcemaps');
 //var browserSync = require('browser-sync').create();
 //var del = require('del');
-var cached = require('gulp-cached');
-var gap = require('gulp-append-prepend');
 
 var theme = 'syntric';
 var src_dir = './src/';
@@ -134,35 +134,21 @@ var watcherArgs = {
 };
 // File watcher
 gulp.task('watch', function () {
+
 	// SASS watchers
 	gulp.watch([dirs.src_sass + '*.scss', '!' + dirs.src_sass + '*-admin.scss', '!' + dirs.src_sass + '_*.scss'], {ignoreInitial: true}, ['compileSASS']);
 	gulp.watch([dirs.src_admin_sass + '*-admin.scss'], {ignoreInitial: true}, ['compileAdminSASS']);
+
 	// Javascript watchers
 	gulp.watch([dirs.src_js + 'syntric*.js', '!' + dirs.src_js + '*-admin.js', '!' + dirs.src_js + '_*.js'], {ignoreInitial: true}, ['compileJS']);
 	gulp.watch(dirs.src_admin_js + '*-admin.js', {ignoreInitial: true}, ['compileAdminJS']);
 	gulp.watch(dirs.src_admin_js + 'customizer.js', {ignoreInitial: true}, ['compileCustomizerJS']);
+
 	// Image watchers
 	//gulp.watch(dirs.src_img + '*.*', watcherArgs, ['compressImages']);
-	////gulp.watch(dirs.src_admin_img + '*.*', watcherArgs, ['compressAdminImages']);
-	// Copy/rename for domains
-	////gulp.watch(dirs.dist_css + '*.com.min.css', watcherArgs, ['generateDomainCSS']);
-	////gulp.watch(dirs.dist_css + '*.com.min.css.map', watcherArgs, ['generateDomainCSSMap']);
+	//gulp.watch(dirs.src_admin_img + '*.*', watcherArgs, ['compressAdminImages']);
 });
 
-/*
-gulp.task('compileSASS', function () {
-	gulp.src(base.src_sass + '*.scss')
-	.pipe(plumber())
-	.pipe(compileSASS())
-	.pipe(gulp.dest(base.build_css))
-	.pipe(sourcemaps.init({loadMaps: true}))
-	.pipe(plumber())
-	.pipe(rename({suffix: '.min'}))
-	.pipe(minifyCSS({discardComments: {removeAll: true}}))
-	.pipe(sourcemaps.write('./'))
-	.pipe(gulp.dest(base.build_css));
-});
- */
 gulp.task('compileSASS', function () {
 	return gulp.src([dirs.src_sass + '*.scss', '!' + dirs.src_sass + '*-admin.scss', '!' + dirs.src_sass + '_*.scss'])
 	.pipe(plumber())
@@ -172,12 +158,10 @@ gulp.task('compileSASS', function () {
 
 	.pipe(compileSASS())
 	.pipe(gulp.dest(dirs.dist_css))
-	//.pipe(sourcemaps.init())
 	.pipe(plumber())
 
 	.pipe(rename({suffix: '.min'}))
 	.pipe(minifyCSS({discardComments: {removeAll: true}}))
-	//.pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest(dirs.dist_css))
 	.pipe(plumber())
 
@@ -186,7 +170,10 @@ gulp.task('compileSASS', function () {
 		path.basename = domainMappings[path.basename];
 		console.log(path);
 	}))
-	//.pipe(sourcemaps.write('./'))
+	.pipe(gulp.dest(dirs.dist_css))
+	.pipe(plumber())
+
+	.pipe(rename({prefix: ''}))
 	.pipe(gulp.dest(dirs.dist_css));
 });
 
@@ -195,12 +182,8 @@ gulp.task('compileAdminSASS', function () {
 	.pipe(cached('sassAdminFiles'))
 	.pipe(plumber())
 	.pipe(compileSASS())
-	//.pipe(gulp.dest(dirs.dist_admin_css))
-	//.pipe(sourcemaps.init({loadMaps: true}))
-	//.pipe(plumber())
 	.pipe(rename({suffix: '.min'}))
 	.pipe(minifyCSS({discardComments: {removeAll: true}}))
-	//.pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest(dirs.dist_admin_css));
 });
 
@@ -210,9 +193,6 @@ gulp.task('compileJS', function () {
 	.pipe(concat(theme + '.js'))
 	.pipe(gap.prependText('(function($) {'))
 	.pipe(gap.appendText('})(jQuery);'))
-	//.pipe(plumber())
-	//.pipe(gulp.dest(dirs.dist_js))
-	//.pipe(plumber())
 	.pipe(rename({suffix: '.min'}))
 	.pipe(uglify())
 	.pipe(gulp.dest(dirs.dist_js));
@@ -251,95 +231,3 @@ gulp.task('compressAdminImages', function () {
 	.pipe(compressImage())
 	.pipe(gulp.dest(dirs.dist_admin_img));
 });
-
-gulp.task('generateDomainCSS', function () {
-	gulp.src([dirs.dist_css + '*.com.min.css'])
-	.pipe(rename(function (path) {
-		console.log(path);
-		path.basename = domainMappings[path.basename];
-		console.log(path);
-	}))
-	.pipe(gulp.dest(dirs.dist_css));
-});
-
-//
-//
-// Bone yard
-//
-//
-
-/*
-
-gulp.task('uglifyAdminScripts', function () {
-	return gulp.src(dirs.dist_js + '*-admin.js')
-	.pipe(plumber())
-	.pipe(rename(theme + '-admin.min.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest(dirs.dist_js));
-});
-
-gulp.task('compileCustomizerScripts', function () {
-	return gulp.src(dirs.src_js + '_' + 'customizer.js')
-	.pipe(plumber())
-	.pipe(rename('customizer.js'))
-	.pipe(gulp.dest(dirs.dist_js));
-});
-
-gulp.task('uglifyCustomizerScripts', function () {
-	return gulp.src(dirs.dist_js + 'customizer.js')
-	.pipe(plumber())
-	.pipe(rename('customizer.min.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest(dirs.dist_js));
-});
-
-gulp.task('minifyCSS', function () {
- gulp.src(dirs.dist_css + theme + '*.css')
- .pipe(sourcemaps.init({loadMaps: true}))
- .pipe(plumber())
- .pipe(rename({suffix: '.min'}))
- .pipe(minifyCSS({discardComments: {removeAll: true}}))
- .pipe(sourcemaps.write('./'))
- .pipe(gulp.dest(dirs.dist_css));
- });*/
-
-/*gulp.task('compileAdminSASS', function () {
- return gulp.src(dirs.src_sass + theme + '-admin.scss')
- .pipe(plumber())
- .pipe(compileSASS())
- .pipe(gulp.dest(dirs.dist_css));
- });*/
-
-/*gulp.task('minifyAdminCSS', function () {
- return gulp.src(dirs.dist_css + theme + '-admin.css')
- .pipe(sourcemaps.init({loadMaps: true}))
- .pipe(plumber())
- .pipe(rename(theme + '-admin.min.css'))
- .pipe(minifyCSS({discardComments: {removeAll: true}}))
- .pipe(sourcemaps.write('./'))
- .pipe(gulp.dest(dirs.dist_css));
- });*/
-
-/*gulp.task('uglifyScripts', function () {
- return gulp.src(dirs.dist_js + theme + '.js')
- .pipe(plumber())
- .pipe(rename(theme + '.min.js'))
- .pipe(uglify())
- .pipe(gulp.dest(dirs.dist_js));
- });*/
-
-// Uglifies and concat all JS files into one
-/*gulp.task('admin-scripts', function () {
- var scripts = [
- dirs.js + '_syntric-admin.js'
- ];
- gulp.src(scripts)
- .pipe(concat(theme + '-admin.min.js'))
- .pipe(uglify())
- .pipe(gulp.dest(dirs.js));
-
- gulp.src(scripts)
- .pipe(concat(theme + '-admin.js'))
- .pipe(gulp.dest(dirs.js));
- });*/
-
