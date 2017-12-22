@@ -1736,43 +1736,22 @@ fieldset[disabled] .comments-wrapper .comment-form a.submit, .comments-wrapper .
 fieldset[disabled] a.submit {
   pointer-events: none; }
 
-.btn-primary, .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button,
-.fc.fc-unthemed .fc-toolbar .fc-right .fc-button,
-.fc.fc-unthemed .fc-toolbar .fc-center .fc-button, .final-footer .login-bug .login, .comments-wrapper .comment-form .submit {
+.btn-primary, .jumbotron-button, .final-footer .login-bug .login, .comments-wrapper .comment-form .submit {
   color: #fff;
   background-color: #660000;
   border-color: #660000; }
-  .btn-primary:hover, .jumbotron-button:hover, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:hover,
-  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:hover,
-  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:hover, .final-footer .login-bug .login:hover, .comments-wrapper .comment-form .submit:hover {
+  .btn-primary:hover, .jumbotron-button:hover, .final-footer .login-bug .login:hover, .comments-wrapper .comment-form .submit:hover {
     color: #fff;
     background-color: #400000;
     border-color: #330000; }
-  .btn-primary:focus, .jumbotron-button:focus, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:focus,
-  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:focus,
-  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:focus, .final-footer .login-bug .login:focus, .comments-wrapper .comment-form .submit:focus, .btn-primary.focus, .focus.jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .focus.fc-button,
-  .fc.fc-unthemed .fc-toolbar .fc-right .focus.fc-button,
-  .fc.fc-unthemed .fc-toolbar .fc-center .focus.fc-button, .final-footer .login-bug .focus.login, .comments-wrapper .comment-form .focus.submit {
+  .btn-primary:focus, .jumbotron-button:focus, .final-footer .login-bug .login:focus, .comments-wrapper .comment-form .submit:focus, .btn-primary.focus, .focus.jumbotron-button, .final-footer .login-bug .focus.login, .comments-wrapper .comment-form .focus.submit {
     box-shadow: 0 0 0 0.2rem rgba(102, 0, 0, 0.5); }
-  .btn-primary.disabled, .disabled.jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .disabled.fc-button,
-  .fc.fc-unthemed .fc-toolbar .fc-right .disabled.fc-button,
-  .fc.fc-unthemed .fc-toolbar .fc-center .disabled.fc-button, .final-footer .login-bug .disabled.login, .comments-wrapper .comment-form .disabled.submit, .btn-primary:disabled, .jumbotron-button:disabled, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:disabled,
-  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:disabled,
-  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:disabled, .final-footer .login-bug .login:disabled, .comments-wrapper .comment-form .submit:disabled {
+  .btn-primary.disabled, .disabled.jumbotron-button, .final-footer .login-bug .disabled.login, .comments-wrapper .comment-form .disabled.submit, .btn-primary:disabled, .jumbotron-button:disabled, .final-footer .login-bug .login:disabled, .comments-wrapper .comment-form .submit:disabled {
     background-color: #660000;
     border-color: #660000; }
-  .btn-primary:not([disabled]):not(.disabled):active, .jumbotron-button:not([disabled]):not(.disabled):active, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:not([disabled]):not(.disabled):active,
-  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:not([disabled]):not(.disabled):active,
-  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:not([disabled]):not(.disabled):active, .final-footer .login-bug .login:not([disabled]):not(.disabled):active, .comments-wrapper .comment-form .submit:not([disabled]):not(.disabled):active, .btn-primary:not([disabled]):not(.disabled).active, .jumbotron-button:not([disabled]):not(.disabled).active, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:not([disabled]):not(.disabled).active,
-  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:not([disabled]):not(.disabled).active,
-  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:not([disabled]):not(.disabled).active, .final-footer .login-bug .login:not([disabled]):not(.disabled).active, .comments-wrapper .comment-form .submit:not([disabled]):not(.disabled).active,
+  .btn-primary:not([disabled]):not(.disabled):active, .jumbotron-button:not([disabled]):not(.disabled):active, .final-footer .login-bug .login:not([disabled]):not(.disabled):active, .comments-wrapper .comment-form .submit:not([disabled]):not(.disabled):active, .btn-primary:not([disabled]):not(.disabled).active, .jumbotron-button:not([disabled]):not(.disabled).active, .final-footer .login-bug .login:not([disabled]):not(.disabled).active, .comments-wrapper .comment-form .submit:not([disabled]):not(.disabled).active,
   .show > .btn-primary.dropdown-toggle,
-  .show > .dropdown-toggle.jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left
-  .show > .dropdown-toggle.fc-button,
-  .fc.fc-unthemed .fc-toolbar .fc-right
-  .show > .dropdown-toggle.fc-button,
-  .fc.fc-unthemed .fc-toolbar .fc-center
-  .show > .dropdown-toggle.fc-button, .final-footer .login-bug
+  .show > .dropdown-toggle.jumbotron-button, .final-footer .login-bug
   .show > .dropdown-toggle.login, .comments-wrapper .comment-form
   .show > .dropdown-toggle.submit {
     color: #fff;
@@ -1780,22 +1759,21 @@ fieldset[disabled] a.submit {
     border-color: #260000;
     box-shadow: 0 0 0 0.2rem rgba(102, 0, 0, 0.5); }
 
-.btn-secondary, .pagination-nav a {
+.btn-secondary {
   color: #fff;
   background-color: #666666;
   border-color: #666666; }
-  .btn-secondary:hover, .pagination-nav a:hover {
+  .btn-secondary:hover {
     color: #fff;
     background-color: #535353;
     border-color: #4d4d4d; }
-  .btn-secondary:focus, .pagination-nav a:focus, .btn-secondary.focus, .pagination-nav a.focus {
+  .btn-secondary:focus, .btn-secondary.focus {
     box-shadow: 0 0 0 0.2rem rgba(102, 102, 102, 0.5); }
-  .btn-secondary.disabled, .pagination-nav a.disabled, .btn-secondary:disabled, .pagination-nav a:disabled {
+  .btn-secondary.disabled, .btn-secondary:disabled {
     background-color: #666666;
     border-color: #666666; }
-  .btn-secondary:not([disabled]):not(.disabled):active, .pagination-nav a:not([disabled]):not(.disabled):active, .btn-secondary:not([disabled]):not(.disabled).active, .pagination-nav a:not([disabled]):not(.disabled).active,
-  .show > .btn-secondary.dropdown-toggle, .pagination-nav
-  .show > a.dropdown-toggle {
+  .btn-secondary:not([disabled]):not(.disabled):active, .btn-secondary:not([disabled]):not(.disabled).active,
+  .show > .btn-secondary.dropdown-toggle {
     color: #fff;
     background-color: #4d4d4d;
     border-color: #464646;
@@ -1921,22 +1899,44 @@ fieldset[disabled] a.submit {
     border-color: #131313;
     box-shadow: 0 0 0 0.2rem rgba(51, 51, 51, 0.5); }
 
-.btn-outline-primary {
+.btn-outline-primary, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-right .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-center .fc-button, .pagination-nav a {
   color: #660000;
   background-color: transparent;
   background-image: none;
   border-color: #660000; }
-  .btn-outline-primary:hover {
+  .btn-outline-primary:hover, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:hover,
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:hover,
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:hover, .pagination-nav a:hover {
     color: #fff;
     background-color: #660000;
     border-color: #660000; }
-  .btn-outline-primary:focus, .btn-outline-primary.focus {
+  .btn-outline-primary:focus, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:focus,
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:focus,
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:focus, .pagination-nav a:focus, .btn-outline-primary.focus, .fc.fc-unthemed .fc-toolbar .fc-left .focus.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .focus.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .focus.fc-button, .pagination-nav a.focus {
     box-shadow: 0 0 0 0.2rem rgba(102, 0, 0, 0.5); }
-  .btn-outline-primary.disabled, .btn-outline-primary:disabled {
+  .btn-outline-primary.disabled, .fc.fc-unthemed .fc-toolbar .fc-left .disabled.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right .disabled.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center .disabled.fc-button, .pagination-nav a.disabled, .btn-outline-primary:disabled, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:disabled,
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:disabled,
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:disabled, .pagination-nav a:disabled {
     color: #660000;
     background-color: transparent; }
-  .btn-outline-primary:not([disabled]):not(.disabled):active, .btn-outline-primary:not([disabled]):not(.disabled).active,
-  .show > .btn-outline-primary.dropdown-toggle {
+  .btn-outline-primary:not([disabled]):not(.disabled):active, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:not([disabled]):not(.disabled):active,
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:not([disabled]):not(.disabled):active,
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:not([disabled]):not(.disabled):active, .pagination-nav a:not([disabled]):not(.disabled):active, .btn-outline-primary:not([disabled]):not(.disabled).active, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:not([disabled]):not(.disabled).active,
+  .fc.fc-unthemed .fc-toolbar .fc-right .fc-button:not([disabled]):not(.disabled).active,
+  .fc.fc-unthemed .fc-toolbar .fc-center .fc-button:not([disabled]):not(.disabled).active, .pagination-nav a:not([disabled]):not(.disabled).active,
+  .show > .btn-outline-primary.dropdown-toggle, .fc.fc-unthemed .fc-toolbar .fc-left
+  .show > .dropdown-toggle.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-right
+  .show > .dropdown-toggle.fc-button,
+  .fc.fc-unthemed .fc-toolbar .fc-center
+  .show > .dropdown-toggle.fc-button, .pagination-nav
+  .show > a.dropdown-toggle {
     color: #fff;
     background-color: #660000;
     border-color: #660000;
@@ -2112,9 +2112,9 @@ fieldset[disabled] a.submit {
   line-height: 1.5;
   border-radius: 0.3rem; }
 
-.btn-sm, .btn-group-sm > .btn, .btn-group-sm > .jumbotron-button, .pagination-nav .btn-group-sm > a, .comments-wrapper .comment-form .btn-group-sm > .submit, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button,
-.fc.fc-unthemed .fc-toolbar .fc-right .fc-button,
-.fc.fc-unthemed .fc-toolbar .fc-center .fc-button, .final-footer .login-bug .login {
+.btn-sm, .btn-group-sm > .btn, .btn-group-sm > .jumbotron-button, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-sm > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-right .btn-group-sm > .fc-button,
+.fc.fc-unthemed .fc-toolbar .fc-center .btn-group-sm > .fc-button, .pagination-nav .btn-group-sm > a, .comments-wrapper .comment-form .btn-group-sm > .submit, .final-footer .login-bug .login {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   line-height: 1.5;
@@ -2757,9 +2757,7 @@ tbody.collapse.show {
 
 .btn-sm + .dropdown-toggle-split, .btn-group-sm > .btn + .dropdown-toggle-split, .btn-group-sm > .jumbotron-button + .dropdown-toggle-split, .fc.fc-unthemed .fc-toolbar .fc-left .btn-group-sm > .fc-button + .dropdown-toggle-split,
 .fc.fc-unthemed .fc-toolbar .fc-right .btn-group-sm > .fc-button + .dropdown-toggle-split,
-.fc.fc-unthemed .fc-toolbar .fc-center .btn-group-sm > .fc-button + .dropdown-toggle-split, .pagination-nav .btn-group-sm > a + .dropdown-toggle-split, .final-footer .login-bug .btn-group-sm > .login + .dropdown-toggle-split, .comments-wrapper .comment-form .btn-group-sm > .submit + .dropdown-toggle-split, .fc.fc-unthemed .fc-toolbar .fc-left .fc-button + .dropdown-toggle-split,
-.fc.fc-unthemed .fc-toolbar .fc-right .fc-button + .dropdown-toggle-split,
-.fc.fc-unthemed .fc-toolbar .fc-center .fc-button + .dropdown-toggle-split, .final-footer .login-bug .login + .dropdown-toggle-split {
+.fc.fc-unthemed .fc-toolbar .fc-center .btn-group-sm > .fc-button + .dropdown-toggle-split, .pagination-nav .btn-group-sm > a + .dropdown-toggle-split, .final-footer .login-bug .btn-group-sm > .login + .dropdown-toggle-split, .comments-wrapper .comment-form .btn-group-sm > .submit + .dropdown-toggle-split, .final-footer .login-bug .login + .dropdown-toggle-split {
   padding-right: 0.375rem;
   padding-left: 0.375rem; }
 
@@ -6823,9 +6821,6 @@ img {
   -moz-box-shadow: none;
   box-shadow: none; }
 
-.btn-secondary, .pagination-nav a {
-  color: #ffffff; }
-
 .widget {
   margin: 0 0 2rem;
   font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; }
@@ -7072,6 +7067,7 @@ article {
 table {
   margin-bottom: 1rem;
   border-collapse: separate;
+  border-spacing: 1px;
   width: 100%; }
   table caption {
     font-size: 1.5rem;
@@ -7120,7 +7116,6 @@ table {
       .fc.fc-unthemed .fc-toolbar .fc-left .fc-button,
       .fc.fc-unthemed .fc-toolbar .fc-right .fc-button,
       .fc.fc-unthemed .fc-toolbar .fc-center .fc-button {
-        text-transform: uppercase;
         height: auto;
         margin-left: 0; }
         .fc.fc-unthemed .fc-toolbar .fc-left .fc-button:not(:last-of-type),
@@ -7167,42 +7162,49 @@ table {
         .fc.fc-unthemed .fc-toolbar .fc-right .fc-listMonth-button,
         .fc.fc-unthemed .fc-toolbar .fc-center .fc-listMonth-button {
           display: none; } }
-  .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller {
-    overflow-x: visible !important;
-    overflow-y: visible !important;
-    height: auto !important; }
-    .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-heading td {
-      font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-      font-size: 0.8125rem;
-      font-weight: 400;
-      padding: 8px;
-      background-color: #eeeeee;
-      text-transform: uppercase; }
-    .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item {
-      background-color: #ffffff; }
-      .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item:hover {
-        background-color: #ffffff; }
-        .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item:hover td, .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item:hover a {
-          text-decoration: underline;
+  .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view {
+    border-color: #ffffff; }
+    .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller {
+      overflow-x: visible !important;
+      overflow-y: visible !important;
+      height: auto !important; }
+      .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table {
+        margin-bottom: 0; }
+        .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-heading td {
+          font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+          font-size: 0.875rem;
+          font-weight: 400;
+          padding: 1rem 0 0.25rem;
+          background-color: #ffffff;
+          border-top: none;
+          text-transform: uppercase; }
+        .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item {
           background-color: #ffffff; }
-      .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item .fc-list-item-time {
-        padding-right: 0;
-        color: #660000;
-        background-color: #ffffff; }
-      .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item .fc-list-item-marker {
-        width: 0;
-        padding: 0; }
-        .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item .fc-list-item-marker .fc-event-dot {
-          display: none; }
-      .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item .fc-list-item-title {
-        color: #660000;
-        background-color: #ffffff; }
+          .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item:hover {
+            background-color: #ffffff; }
+            .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item:hover td, .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item:hover a {
+              text-decoration: underline;
+              background-color: #ffffff; }
+          .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item .fc-list-item-time {
+            padding-right: 0;
+            color: #660000;
+            background-color: #ffffff; }
+          .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item .fc-list-item-marker {
+            width: 0;
+            padding: 0; }
+            .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item .fc-list-item-marker .fc-event-dot {
+              display: none; }
+          .fc.fc-unthemed .fc-view-container .fc-view.fc-list-view .fc-scroller table.fc-list-table .fc-list-item .fc-list-item-title {
+            color: #660000;
+            background-color: #ffffff; }
   .fc.fc-unthemed .fc-view-container .fc-view.fc-month-view table {
     margin: 0; }
     .fc.fc-unthemed .fc-view-container .fc-view.fc-month-view table tr, .fc.fc-unthemed .fc-view-container .fc-view.fc-month-view table td {
       background-color: transparent; }
     .fc.fc-unthemed .fc-view-container .fc-view.fc-month-view table .fc-day-header {
-      padding: 0.5rem 0; }
+      padding: 0.5rem 0;
+      background-color: #ffffff;
+      color: #333333; }
       .fc.fc-unthemed .fc-view-container .fc-view.fc-month-view table .fc-day-header span {
         font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
         font-size: 0.875rem;
@@ -7240,16 +7242,16 @@ table {
   background: transparent !important; }
   .fc-day-top .fc-day-number {
     font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    font-size: 0.8125rem;
-    line-height: 26px;
-    background-color: transparent;
+    font-size: 0.875rem;
+    line-height: 2;
+    background-color: #ffffff;
     height: 100%;
-    width: 26px;
-    text-align: center;
-    border: solid 4px #ffffff; }
+    width: 1.75rem;
+    text-align: center; }
   .fc-day-top.fc-today .fc-day-number {
-    background-color: #660000;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #333333;
+    border: solid 1px #333333;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%; }
