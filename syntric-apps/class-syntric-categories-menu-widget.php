@@ -38,20 +38,15 @@ class Syntric_Categories_Menu_Widget extends WP_Widget {
 			$tab          = "\t";
 			$sidebar      = syn_widget_sidebar( $args[ 'widget_id' ] );
 			$title        = get_field( 'syn_categories_menu_widget_title', 'widget_' . $args[ 'widget_id' ] );
-			$menu_classes = 'widget-body nav';
-			$item_classes = 'widget-item nav-item';
-			$link_classes = 'widget-entry nav-link';
 			echo $args[ 'before_widget' ] . $lb;
 			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			echo '<ul class="' . $menu_classes . '">' . $lb;
+			echo '<ul>' . $lb;
 			foreach ( $categories as $category ) {
-				echo $tab . '<li class="' . $item_classes . '">' . $lb;
-				echo $tab . $tab . '<a href="' . get_category_link( $category ) . '" class="' . $link_classes . '">' . $lb;
-				echo $tab . $tab . $tab . '<span class="entry-header">' . $lb;
+				echo $tab . '<li>' . $lb;
+				echo $tab . $tab . '<a href="' . get_category_link( $category ) . '">' . $lb;
 				echo $tab . $tab . $tab . $tab . '<span class="entry-title">' . $category->name . '</span>' . $lb;
-				echo $tab . $tab . $tab . '</span>' . $lb;
 				echo $tab . $tab . '</a>' . $lb;
 				echo $tab . '</li>' . $lb;
 			};

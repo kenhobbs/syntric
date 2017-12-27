@@ -53,6 +53,8 @@ function syn_register_microblog_taxonomy() {
 
 /**
  * Setup default categories, taxonomies and terms after 'Microblog' taxonomy is registered
+ *
+ * News should be default category with ID of 1
  */
 add_action( 'registered_taxonomy', 'syn_setup_terms', 10, 3 );
 function syn_setup_terms( $taxonomy, $object_type, $args ) {

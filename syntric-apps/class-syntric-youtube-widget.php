@@ -1,20 +1,20 @@
 <?php
 
 /**
- * Syntric_Google_Map_Widget
+ * Syntric_YouTube_Widget
  */
-class Syntric_Google_Map_Widget extends WP_Widget {
+class Syntric_YouTube_Widget extends WP_Widget {
 	/**
 	 * Set up a new widget instance
 	 */
 	public function __construct() {
 		$widget_ops = array(
-			'classname'                   => 'syn-google-map-widget',
-			'description'                 => __( 'Displays a Google Map.' ),
+			'classname'                   => 'syn-youtube-widget',
+			'description'                 => __( 'Displays a YouTube video.' ),
 			'customize_selective_refresh' => true,
 		);
-		parent::__construct( 'syn-google-map-widget', __( 'Google Map' ), $widget_ops );
-		$this->alt_option_name = 'syn-google-map-widget';
+		parent::__construct( 'syn-youtube-widget', __( 'YouTube' ), $widget_ops );
+		$this->alt_option_name = 'syn-youtube-widget';
 	}
 
 	/**
@@ -28,32 +28,32 @@ class Syntric_Google_Map_Widget extends WP_Widget {
 		if ( ! isset( $args[ 'widget_id' ] ) ) {
 			$args[ 'widget_id' ] = $this->id;
 		}
-		$dynamic = get_field( 'syn_google_map_widget_dynamic', 'widget_' . $args[ 'widget_id' ] );
+		$dynamic = get_field( 'syn_youtube_widget_dynamic', 'widget_' . $args[ 'widget_id' ] );
 		if ( $dynamic ) {
-			$active = get_field( 'syn_google_map_active', $post->ID );
+			$active = get_field( 'syn_youtube_active', $post->ID );
 			if ( ! $active ) {
 				return;
 			}
-			$title = get_field( 'syn_google_map_title', $post->ID );
-			$google_map_id = get_field( 'syn_google_map_id', $post->ID );
+			$title = get_field( 'syn_youtube_title', $post->ID );
+			$video_id = get_field( 'syn_youtube_video_id', $post->ID );
 		} else {
-			$title = get_field( 'syn_google_map_widget_title', 'widget_' . $args['widget_id'] );
-			$google_map_id = get_field( 'syn_google_map_widget_map_id', 'widget_' . $args[ 'widget_id' ] );
+			$title = get_field( 'syn_youtube_widget_title', 'widget_' . $args['widget_id'] );
+			$video_id = get_field( 'syn_youtube_widget_video_id', 'widget_' . $args['widget_id'] );
 		}
-		if ( isset( $google_map_id ) && ! empty( $google_map_id ) ) :
-			$sidebar      = syn_widget_sidebar( $args[ 'widget_id' ] );
-			$unique_id = syn_generate_permanent_id();
+		if ( isset( $video_id ) && ! empty( $video_id ) ) :
+			//$sidebar      = syn_widget_sidebar( $args[ 'widget_id' ] );
 			$lb        = "\n";
 			$tab       = "\t";
 			echo $args[ 'before_widget' ] . $lb;
 			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			echo $tab . '<div id="' . $unique_id . '" data-id="' . $google_map_id . '" class="map">' . $lb;
+			echo $tab . '<div class="embed-responsive embed-responsive-16by9">' . $lb;
+			echo $tab . $tab . '<iframe type="text/html" class="embed-responsive-item" src="https://www.youtube.com/embed/' . $video_id . '?rel=0&showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>' . $lb;
+			echo $tab . '</div>' . $lb;
 			echo $args[ 'after_widget' ] . $lb;
 		endif;
 	}
-
 	/**
 	 * Update settings for the current widget instance
 	 *

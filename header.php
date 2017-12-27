@@ -14,16 +14,8 @@
 	<div id="fb-root"></div>
 	<div class="print-header print-header-name d-print-block" aria-hidden="true"><?php echo get_bloginfo( 'name', 'display' ); ?></div>
 	<a class="sr-only sr-only-focusable d-print-none" href="#content"><?php esc_html_e( 'Skip to content', 'syntric' ); ?></a>
-	<nav class="primary-nav-wrapper navbar navbar-expand-lg navbar-dark d-print-none">
-		<?php echo syn_get_navbar_brand(); ?>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-collapse" aria-controls="nav-collapse" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="fa fa-bars"></span>
-		</button>
-		<div id="nav-collapse" class="collapse navbar-collapse" aria-expanded="false">
-			<?php syn_nav_menu(); ?>
-		</div>
-	</nav>
+	<?php syn_primary_nav(); ?>
 	<?php get_search_form(); ?>
-	<?php syn_get_banner(); ?>
-	<?php syn_get_breadcrumbs(); ?>
-	<?php syn_get_sidebars( 'header' ); ?>
+	<?php syn_banner(); ?>
+	<?php syn_breadcrumbs(); ?>
+	<?php syn_sidebar( 'header' ); ?>

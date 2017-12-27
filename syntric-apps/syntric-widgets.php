@@ -3,11 +3,31 @@
  * Syntric Apps: Widgets
  */
 /**
- * Register/unregister custom widgets and sidebars.  Standard sidebars are registered in /inc/widgets.php
+ * Load custom widget fields
  */
 add_filter( 'acf/load_field/name=syn_contact_widget_organization', 'syn_load_organizations' );
 add_filter( 'acf/load_field/name=syn_contact_widget_person', 'syn_load_people' );
 add_filter( 'acf/load_field/name=syn_upcoming_events_widget_calendar_id', 'syn_load_google_calendars' );
+
+// todo: dynamically load widgets on widget option page instead of using checkbox options
+add_filter( 'acf/load_field/name=syn_widgets_wordpress', 'syn_load_wordpress_widgets' );
+function syn_load_wordpress_widgets( $field ) {
+	$choices     = array();
+	$wp_widget_factory = $GLOBALS[ 'wp_widget_factory' ];
+	$wp_widgets        = $wp_widget_factory->widgets;
+	if ( $wp_widgets ) {
+		foreach ( $wp_widgets as $key => $value ) {
+			$choices[ $key ] = $value->name;
+		}
+		$field[ 'choices' ] = $choices;
+	}
+
+	return $field;
+}
+
+/**
+ * Register/unregister custom widgets.
+ */
 add_action( 'widgets_init', 'syn_widgets_init', 20 );
 function syn_widgets_init() {
 	/**

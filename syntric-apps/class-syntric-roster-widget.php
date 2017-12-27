@@ -51,7 +51,7 @@ class Syntric_Roster_Widget extends WP_Widget {
 			echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 		endif;
 		if ( 'aside' == $layout ) {
-			echo '<ul class="widget-body">' . $lb;
+			echo '<div class="textwidget">' . $lb;
 		}
 		if ( 'table' == $layout ) {
 			echo '<table>' . $lb;
@@ -90,27 +90,18 @@ class Syntric_Roster_Widget extends WP_Widget {
 				$ext        = get_field( 'syn_user_extension', 'user_' . $user_id );
 				$ext        = ( isset( $ext ) && ! empty( $ext ) ) ? ' x' . $ext : '';
 				if ( 'aside' == $layout ) {
-					echo $tab . '<li class="widget-item">' . $lb;
-					echo $tab . $tab . '<div class="widget-entry">' . $lb;
-					echo $tab . $tab . $tab . '<span class="entry-header">';
-					echo $tab . $tab . $tab . '<span class="entry-name">' . $first_name . ' ' . $last_name . '</span>' . $lb;
-					/*if ( in_array( 'titles', $include_fields ) ) {
-						echo $tab . $tab . $tab . '<span class="entry-title">' . $titles . '</span>' . $lb;
-					}*/
+					echo $tab . '<div class="contact-entry d-flex flex-column">' . $lb;
+					echo $tab . $tab . '<span class="entry-name">' . $first_name . ' ' . $last_name . '</span>' . $lb;
 					if ( in_array( 'titles', $include_fields ) ) {
-						echo $tab . $tab . $tab . '<span class="entry-title">' . $title . '</span>' . $lb;
+						echo $tab . $tab . '<span class="entry-title">' . $title . '</span>' . $lb;
 					}
 					if ( in_array( 'email', $include_fields ) ) {
-						echo $tab . $tab . $tab . '<span class="entry-email">';
-						echo $tab . $tab . $tab . $tab . '<a href="mailto:' . antispambot( $email, true ) . '" title="Email">' . antispambot( $email ) . '</a>';
-						echo $tab . $tab . $tab . '</span>' . $lb;
+						echo $tab . $tab . '<a href="mailto:' . antispambot( $email, true ) . '" class="entry-email" title="Email">' . antispambot( $email ) . '</a>';
 					}
 					if ( in_array( 'phone', $include_fields ) ) {
-						echo $tab . $tab . $tab . $tab . '<span class="entry-phone">' . $phone . $ext . '</span>' . $lb;
+						echo $tab . $tab . '<span class="entry-phone">' . $phone . $ext . '</span>' . $lb;
 					}
-					echo $tab . $tab . $tab . '</span>' . $lb;
-					echo $tab . $tab . '</div>' . $lb;
-					echo $tab . '</li>' . $lb;
+					echo $tab . '</div>' . $lb;
 				}
 				if ( 'table' == $layout ) {
 					echo $tab . $tab . '<tr valign="top">' . $lb;
@@ -129,13 +120,9 @@ class Syntric_Roster_Widget extends WP_Widget {
 			endwhile;
 		else :
 			if ( 'aside' == $layout ) :
-				echo $tab . '<li class="widget-item">' . $lb;
-				echo $tab . $tab . '<div class="widget-entry">' . $lb;
-				echo $tab . $tab . $tab . '<span class="entry-header">' . $lb;
-				echo $tab . $tab . $tab . $tab . '<span class="entry-title">No people</span>' . $lb;
-				echo $tab . $tab . $tab . '</span>' . $lb;
-				echo $tab . $tab . '</div>' . $lb;
-				echo $tab . '</li>' . $lb;
+				/*echo $tab . '<li>' . $lb;
+				echo $tab . $tab . '<span class="entry-title">No people</span>' . $lb;
+				echo $tab . '</li>' . $lb;*/
 			endif;
 			if ( 'table' == $layout ) :
 				echo $tab . $tab . '<tr>' . $lb;
@@ -144,7 +131,7 @@ class Syntric_Roster_Widget extends WP_Widget {
 			endif;
 		endif;
 		if ( 'aside' == $layout ) {
-			echo '</ul>' . $lb;
+			echo '</div>' . $lb;
 		}
 		if ( 'table' == $layout ) {
 			echo $tab . '</tbody>' . $lb;

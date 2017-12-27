@@ -45,27 +45,21 @@ class Syntric_Microblogs_Menu_Widget extends WP_Widget {
 			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			echo '<ul class="widget-body">' . $lb;
+			echo '<ul>' . $lb;
 			$has_one = false;
 			foreach ( $microblogs as $microblog ) {
 				//if ( 0 < $microblog->parent ) {
-				echo $tab . '<li class="widget-item">' . $lb;
-				echo $tab . $tab . '<a href="' . get_term_link( (int) $microblog->term_id ) . '" class="widget-entry">' . $lb;
-				echo $tab . $tab . $tab . '<span class="entry-header">' . $lb;
+				echo $tab . '<li>' . $lb;
+				echo $tab . $tab . '<a href="' . get_term_link( (int) $microblog->term_id ) . '">' . $lb;
 				echo $tab . $tab . $tab . $tab . '<span class="entry-title">' . get_cat_name( $microblog->term_id ) . '</span>' . $lb;
-				echo $tab . $tab . $tab . '</span>' . $lb;
 				echo $tab . $tab . '</a>' . $lb;
 				echo $tab . '</li>' . $lb;
 				$has_one = true;
 				//}
 			};
 			if ( ! $has_one ) {
-				echo $tab . '<li class="widget-item">' . $lb;
-				echo $tab . $tab . '<span class="widget-entry">' . $lb;
-				echo $tab . $tab . $tab . '<span class="entry-header">' . $lb;
+				echo $tab . '<li>' . $lb;
 				echo $tab . $tab . $tab . $tab . '<span class="entry-title">' . 'No microblogs' . '</span>' . $lb;
-				echo $tab . $tab . $tab . '</span>' . $lb;
-				echo $tab . $tab . '</a>' . $lb;
 				echo $tab . '</li>' . $lb;
 			}
 			echo '</ul>' . $lb;

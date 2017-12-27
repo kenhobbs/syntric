@@ -62,27 +62,21 @@ class Syntric_Classes_Widget extends WP_Widget {
 		if ( ! empty( $title ) ) :
 			echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 		endif;
-		echo '<ul class="widget-body nav">' . $lb;
+		echo '<ul>' . $lb;
 		if ( $posts->have_posts() ) :
 			while ( $posts->have_posts() ) : $posts->the_post();
-				echo $tab . '<li class="widget-item nav-item">' . $lb;
-				echo $tab . $tab . '<a href="' . get_the_permalink() . '" class="widget-entry nav-link">' . $lb;
-				echo $tab . $tab . $tab . '<span class="entry-header">';
+				echo $tab . '<li>' . $lb;
+				echo $tab . $tab . '<a href="' . get_the_permalink() . '">' . $lb;
 				echo $tab . $tab . $tab . $tab . '<span class="entry-title">' . get_the_title() . '</span>';
 				if ( $show_date ) :
 					echo $tab . $tab . $tab . $tab . '<span class="entry-date">' . get_the_date() . '</span>';
 				endif;
-				echo $tab . $tab . $tab . '</span>' . $lb;
 				echo $tab . $tab . '</a>';
 				echo $tab . '</li>' . $lb;
 			endwhile;
 		else :
-			echo $tab . '<li class="widget-item nav-item">' . $lb;
-			echo $tab . $tab . '<div class="widget-entry nav-link">' . $lb;
-			echo $tab . $tab . $tab . '<span class="entry-header">' . $lb;
-			echo $tab . $tab . $tab . $tab . '<span class="entry-title">No posts</span>' . $lb;
-			echo $tab . $tab . $tab . '</span>' . $lb;
-			echo $tab . $tab . '</div>' . $lb;
+			echo $tab . '<li>' . $lb;
+			echo $tab . $tab . '<span class="entry-title">No posts</span>' . $lb;
 			echo $tab . '</li>' . $lb;
 		endif;
 		echo '</ul>' . $lb;

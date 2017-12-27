@@ -46,15 +46,11 @@ class Syntric_Nav_Menu_Widget extends WP_Widget {
 				'container_class' => '',
 				'menu'            => $nav_menu,
 				'menu_id'         => '',
-				'menu_class'      => 'widget-body nav',
+				//'menu_class'      => '',
 				'depth'           => $depth,
 				'fallback_cb'     => '',
-				'link_before'     => '<span class="entry-header"><span class="entry-title">',
-				'link_after'      => '</span></span>',
-				'submenu_classes' => 'nav',
-				'item_classes'    => 'widget-item nav-item',
-				'link_classes'    => 'widget-entry nav-link',
-				'widget'          => true,
+				//'link_before'     => '',
+				//'link_after'      => '',
 			);
 			$nav_menu_filtered_args = apply_filters( 'widget_nav_menu_args', $nav_menu_args, $nav_menu, $args, $instance );
 			wp_nav_menu( $nav_menu_filtered_args );

@@ -123,7 +123,8 @@ function syn_register_event() {
 /**
  * Add posts lists dropdown for filtering
  */
-add_action( 'restrict_manage_posts', 'syn_calendar_restrict_manage_posts', 10 );
+// Using filter from Admin Columns Pro
+//add_action( 'restrict_manage_posts', 'syn_calendar_restrict_manage_posts', 10 );
 function syn_calendar_restrict_manage_posts() {
 	global $post_type;
 	if ( is_admin() && $post_type == 'syn_event' ) {
@@ -415,10 +416,10 @@ function syn_before_delete_calendar( $post_id ) {
 	if ( 'syn_calendar' == $post->post_type ) {
 		// Remove any sync schedules
 		wp_clear_scheduled_hook( 'syn_calendar_sync', array( 'post_id' => $post_id, 'post_type' => 'syn_calendar' ) );
-		$events = syn_get_calendar_events( $post_id, null, 'all', - 1 );
-		if ( $events ) {
-			foreach ( $events as $event ) {
-				wp_delete_post( $event, true );
+		$event_ids = syn_get_calendar_events( $post_id, null, 'all', - 1, 'ids' );
+		if ( $event_ids ) {
+			foreach ( $event_ids as $event_id ) {
+				wp_delete_post( $event_id, true );
 			}
 		}
 	}
@@ -701,7 +702,7 @@ function syn_get_calendar_ids() {
  *
  * @return array of events
  */
-function syn_get_calendar_events( $post_id, $ref_date = null, $range = 'month', $numberposts = - 1 ) {
+function syn_get_calendar_events( $post_id, $ref_date = null, $range = 'month', $numberposts = - 1, $fields = '*' ) {
 	$calendar = get_post( $post_id );
 	if ( 'syn_calendar' != $calendar->post_type ) {
 		return;
@@ -725,10 +726,12 @@ function syn_get_calendar_events( $post_id, $ref_date = null, $range = 'month', 
 			'meta_key'         => 'syn_event_start_date',
 			'orderby'          => 'meta_value_num',
 			'order'            => 'ASC',
-			'fields'           => 'ids',
 			'suppress_filters' => false,
 			'no_found_rows'    => true,
 		);
+		if ( '*' != $fields ) {
+			$args['fields'] = $fields;
+		}
 	} else {
 		$calendar_date = date_create( $ref_date );
 		$meta_query    = array();
@@ -772,10 +775,12 @@ function syn_get_calendar_events( $post_id, $ref_date = null, $range = 'month', 
 			'meta_compare'     => '>=',
 			'orderby'          => 'meta_value_num',
 			'order'            => 'ASC',
-			'fields'           => 'ids',
 			'suppress_filters' => false,
 			'no_found_rows'    => true,
 		);
+		if ( '*' != $fields ) {
+			$args['fields'] = $fields;
+		}
 	}
 	add_filter( 'posts_distinct', 'syn_posts_distinct' );
 	$events = get_posts( $args );
@@ -830,18 +835,12 @@ function syn_convert_time_string_to_meta( $time_str ) {
 }
 
 function syn_get_event_dates( $post_id ) {
-	//global $post;
-	$ret = new stdClass();
-	//$post_id    = ( empty( $event_id ) ) ? get_the_ID() : $event_id;
 	$start_date = get_field( 'syn_event_start_date', $post_id );
 	$end_date   = get_field( 'syn_event_end_date', $post_id );
 	$start_time = get_field( 'syn_event_start_time', $post_id );
 	$end_time   = get_field( 'syn_event_end_time', $post_id );
-	//$location   = get_field( 'syn_event_location', $post_id );
 	$start_date = date_create( $start_date );
 	$end_date   = date_create( $end_date );
-	//$ret->mon   = date_format( $start_date, 'M' );
-	//$ret->day   = date_format( $start_date, 'j' );
 	$dates = date_format( $start_date, 'F j, Y' );
 	if ( $start_date != $end_date ) {
 		if ( empty( $start_time ) || empty( $end_time ) ) {
@@ -858,10 +857,8 @@ function syn_get_event_dates( $post_id ) {
 		$dates .= ' ' . $start_time;
 	}
 	if ( ! empty( $end_time ) && $start_time != $end_time ) {
-		$dates .= ' - ' . $end_time;
+		$dates .= '-' . $end_time;
 	}
-	//$ret->dates    = $dates;
-	//$ret->location = ( ! empty( $location ) ) ? $location : '';
 	return $dates;
 }
 
@@ -915,7 +912,12 @@ function syn_get_calendars() {
 	return $calendars;
 }
 
-function syn_render_accessible_calendar( $post_id = null, $ref_date = null ) {
+//
+//
+// Bone yard...be careful here...
+//
+//
+function ________notinuse______syn_render_accessible_calendar( $post_id = null, $ref_date = null ) {
 	global $post;
 	if ( ! isset( $post_id ) ) {
 		$post_id = $post->ID;
@@ -928,7 +930,7 @@ function syn_render_accessible_calendar( $post_id = null, $ref_date = null ) {
 	$previous_ref_date = date_format( $previous_month, 'Ym01' );
 	$next_month        = date_add( $calendar_date, date_interval_create_from_date_string( '2 months' ) );
 	$next_ref_date     = date_format( $next_month, 'Ym01' );
-	$events            = syn_get_calendar_events( $post_id, $ref_date, $range, '-1' );
+	$event_ids            = syn_get_calendar_events( $post_id, $ref_date, $range, '-1', 'ids' );
 	?>
 	<nav class="calendar-nav">
 		<div class="row">
@@ -944,9 +946,9 @@ function syn_render_accessible_calendar( $post_id = null, $ref_date = null ) {
 		</div>
 	</nav>
 	<?php
-	if ( $events ) {
-		foreach ( $events as $post ) {
-			setup_postdata( $post );
+	if ( $event_ids ) {
+		foreach ( $event_ids as $event_id ) {
+			setup_postdata( $event_id );
 			get_template_part( 'loop-templates/content-excerpt' );
 		}
 		wp_reset_postdata();
@@ -959,11 +961,6 @@ function syn_render_accessible_calendar( $post_id = null, $ref_date = null ) {
 	}
 }
 
-//
-//
-// Bone yard...be careful here...
-//
-//
 function _________notinuse_____syn_render_calendar( $post_id = null ) {
 	global $post;
 	$calendar_id = ( isset( $post_id ) ) ? $post_id : $post->ID;
@@ -1181,9 +1178,9 @@ function ____________notinuse__________syn_calendar_event_count( $post_id ) {
 		return false;
 	}
 	$event_count = 0;
-	$events      = syn_get_calendar_events( $calendar_id, null, 'all', - 1 );
-	if ( $events ) {
-		$event_count = count( $events );
+	$event_ids      = syn_get_calendar_events( $calendar_id, null, 'all', - 1, 'ids' );
+	if ( $event_ids ) {
+		$event_count = count( $event_ids );
 	}
 	// Since we have spent money on the lookup, update the value in calendar meta
 	update_field( 'syn_calendar_event_count', $event_count, $calendar_id );

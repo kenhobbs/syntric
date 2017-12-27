@@ -8,11 +8,13 @@
 function syn_posts_where_search( $where ) {
 	if ( ! is_admin() && is_search() && is_main_query() && isset( $_REQUEST[ 's' ] ) ) {
 		$where = "
+			AND wp_posts.post_content <> '' AND wp_posts.post_content != ''
 			AND (
 			wp_posts.post_title LIKE '%" . get_search_query() . "%' 
 			OR wp_posts.post_content LIKE '%" . get_search_query() . "%'
 			OR wp_posts.post_excerpt LIKE '%" . get_search_query() . "%'
-			) 
+			)
+			AND wp_posts.post_parent > 0
 			AND wp_posts.post_type IN ('post', 'page', 'syn_calendar')
 			AND wp_posts.post_status = 'publish'
 		";

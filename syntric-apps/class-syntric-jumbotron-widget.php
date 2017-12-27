@@ -33,8 +33,8 @@ class Syntric_Jumbotron_Widget extends WP_Widget {
 		$jumbotron_dynamic = get_field( 'syn_jumbotron_widget_dynamic', 'widget_' . $args[ 'widget_id' ] );
 		$jumbotron         = false;
 		if ( $jumbotron_dynamic ) {
-			$jumbotron_active = get_field( 'syn_jumbotron_active', $post->ID );
-			if ( ! $jumbotron_active ) {
+			$active = get_field( 'syn_jumbotron_active', $post->ID );
+			if ( ! $active ) {
 				return;
 			}
 			$start_datetime      = get_field( 'syn_jumbotron_start_datetime', $post->ID );

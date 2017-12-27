@@ -6,8 +6,7 @@
 				<header class="page-header">
 					<h1 class="page-title">
 						Search Results
-						<span class="badge badge-pill"><?php echo $wp_query->found_posts . ' results'; ?></span>
-						<!-- found for "' . get_search_query() . '"'-->
+						<span class="badge badge-pill badge-secondary"><?php echo $wp_query->found_posts . ' results'; ?></span>
 					</h1>
 				</header>
 				<?php

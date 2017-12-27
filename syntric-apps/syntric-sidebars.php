@@ -61,7 +61,7 @@ function syn_sidebars_init() {
 /**
  * Get sidebars for page template, section and location
  */
-function syn_get_sidebars( $section, $location = null ) {
+function syn_sidebar( $section, $location = null ) {
 	global $post;
 	global $wp_registered_sidebars;
 	if ( ! $post ) {
@@ -120,10 +120,10 @@ function syn_get_sidebars( $section, $location = null ) {
 					$wp_sidebar_class = $wp_sidebar[ 'class' ];
 					$widgets_classes  = implode( ' ', $widgets_classes );
 					if ( 'main' == $section && in_array( $sidebar_location, array( 'left', 'right' ) ) ) {
-						echo '<aside class="' . $wp_sidebar_class . ' col-lg-3 ' . $sidebar_section . '-' . $sidebar_location . '-sidebar ' . $widgets_classes . ' hidden-print">' . $lb;
+						echo '<aside class="' . $wp_sidebar_class . ' col-lg-3 ' . $sidebar_section . '-' . $sidebar_location . '-sidebar ' . $widgets_classes . ' d-print-none">' . $lb;
 						dynamic_sidebar( $sidebar_id );
 						echo '</aside>' . $lb;
-					} elseif ( 'main' == $section ) {
+					} elseif ( 'main' == $section && in_array( $sidebar_location, array( 'top', 'bottom' ) ) ) {
 						echo '<section class="' . $wp_sidebar_class . ' ' . $sidebar_section . '-' . $sidebar_location . '-sidebar ' . $widgets_classes . '">' . $lb;
 						dynamic_sidebar( $sidebar_id );
 						echo '</section>' . $lb;
@@ -131,14 +131,14 @@ function syn_get_sidebars( $section, $location = null ) {
 						$sidebar_layout    = $sidebar[ 'layout' ][ 'value' ];
 						$container_classes = ( 'container-bleed' == $sidebar_layout ) ? 'container-bleed' : $sidebar_layout;
 						$row_classes       = ( 'container-bleed' == $sidebar_layout ) ? 'row no-gutters' : 'row';
-						echo '<section class="' . $wp_sidebar_class . ' ' . $sidebar_section . '-sidebar ' . $widgets_classes . ' hidden-print">' . $lb;
-						echo $tab . '<div class="sidebar-wrapper">' . $lb;
+						echo '<section class="' . $wp_sidebar_class . ' ' . $sidebar_section . '-sidebar ' . $widgets_classes . ' d-print-none">' . $lb;
+						//echo $tab . '<div class="sidebar-wrapper">' . $lb;
 						echo $tab . $tab . '<div class="' . $container_classes . '">' . $lb;
 						echo $tab . $tab . $tab . '<div class="' . $row_classes . '">' . $lb;
 						dynamic_sidebar( $sidebar_id );
 						echo $tab . $tab . $tab . '</div>' . $lb;
 						echo $tab . $tab . '</div>' . $lb;
-						echo $tab . '</div>' . $lb;
+						//echo $tab . '</div>' . $lb;
 						echo '</section>' . $lb;
 					}
 				}
@@ -160,8 +160,9 @@ function syn_sidebar_active_widgets( $sidebar_id, $post_id ) {
 	$sidebar_widgets  = $sidebars_widgets[ $sidebar_id ];
 	$active_widgets   = array();
 	foreach ( $sidebar_widgets as $widget ) {
+		//slog($widget);
 		$widget_array = explode( '-', $widget );
-		if ( $widget_array[ 0 ] == 'syn' ) {
+		if ( $widget_array[ 0 ] == 'syn' || 'nav_menu' == $widget ) {
 			array_pop( $widget_array );
 			$widget_name = implode( '_', $widget_array );
 			$dynamic     = get_field( $widget_name . '_dynamic', 'widget_' . $widget );
@@ -187,6 +188,8 @@ function syn_sidebar_active_widgets( $sidebar_id, $post_id ) {
 
 /**
  * Dynamically create responsive columns for horizontal sidebars
+ *
+ * todo: handle cases where number of widgets is an odd number
  */
 add_filter( 'dynamic_sidebar_params', 'syn_dynamic_sidebar_params' );
 function syn_dynamic_sidebar_params( $params ) {
@@ -197,7 +200,7 @@ function syn_dynamic_sidebar_params( $params ) {
 			if ( $params[ 0 ][ 'id' ] == $sidebar[ 'sidebar_id' ] ) {
 				$active_widgets = syn_sidebar_active_widgets( $params[ 0 ][ 'id' ], $post->ID );
 				$widget_count   = count( $active_widgets );
-				if ( 'main' != $sidebar[ 'section' ][ 'value' ] && 0 < $widget_count ) {
+				if ( 0 < $widget_count && ( 'header' == $sidebar['section']['value'] || 'footer' == $sidebar['section']['value'] ) ) {
 					$params[ 0 ][ 'before_widget' ] = str_replace( 'class="', 'class="col-lg-' . floor( 12 / $widget_count ) . ' ', $params[ 0 ][ 'before_widget' ] );
 				}
 			}

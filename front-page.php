@@ -1,8 +1,8 @@
 <?php
 get_header();
-syn_get_sidebars( 'main', 'left' );
-syn_get_sidebars( 'main', 'top' );
-syn_get_sidebars( 'main', 'bottom' );
-syn_get_sidebars( 'main', 'right' );
+syn_sidebar( 'main', 'left' );
+syn_sidebar( 'main', 'top' );
+syn_sidebar( 'main', 'bottom' );
+syn_sidebar( 'main', 'right' );
 get_footer();
 ?>

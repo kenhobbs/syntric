@@ -33,23 +33,20 @@ class Syntric_Full_Calendars_Menu_Widget extends WP_Widget {
 			$tab          = "\t";
 			$sidebar      = syn_widget_sidebar( $args[ 'widget_id' ] );
 			$title        = get_field( 'syn_full_calendars_menu_widget_title', 'widget_' . $args[ 'widget_id' ] );
-			$menu_classes = 'widget-body nav';
-			$item_classes = 'widget-item nav-item';
-			$link_classes = 'widget-entry nav-link';
 			$ref_date     = ( isset( $_GET[ 'ref_date' ] ) ) ? $_GET[ 'ref_date' ] : date( 'Ymd' );
 			echo $args[ 'before_widget' ] . $lb;
 			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
 			echo '<form id="full-calendar-menu">';
-			echo '<ul class="' . $menu_classes . '">' . $lb;
+			echo '<ul>' . $lb;
 			foreach ( $calendars as $calendar ) {
-				echo $tab . '<li class="' . $item_classes . '">' . $lb;
+				echo $tab . '<li>' . $lb;
 				//echo $tab . $tab . '<a href="' . get_the_permalink( $calendar->ID ) . '?ref_date=' . $ref_date . '" class="' . $link_classes . '">' . $lb;
 				//echo $tab . $tab . '<div class="form-check form-check-inline"><label class="form-check-label" for="\' + google_calendar_id + \'"><input class="form-check-input" id="\' + google_calendar_id + \'" type="checkbox" name="googleCalendarId" checked value="\' + google_calendar_id + \'">\' + calendar_title + \'</label></div>';
-				/*echo $tab . $tab . $tab . '<span class="entry-header">' . $lb;
+				/*
 				echo $tab . $tab . $tab . $tab . '<span class="entry-title">' . $calendar->post_title . '</span>' . $lb;
-				echo $tab . $tab . $tab . '</span>' . $lb;*/
+				*/
 				//echo $tab . $tab . '</a>' . $lb;
 				echo $tab . '</li>' . $lb;
 			};

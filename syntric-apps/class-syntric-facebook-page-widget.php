@@ -44,25 +44,23 @@ class Syntric_Facebook_Page_Widget extends WP_Widget {
 			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			echo '<ul class="widget-body nav">' . $lb;
+			echo '<ul>' . $lb;
 			$post_counter = 1;
 			if ( $facebook_posts->data ) {
 				foreach ( $facebook_posts->data as $facebook_post ) :
 					if ( property_exists( $facebook_post, 'message' ) ) {
-						echo $tab . '<li class="widget-item nav-item">' . $lb;
-						echo $tab . $tab . '<a href="' . $facebook_post->permalink_url . '" class="widget-entry nav-link" target="_blank">' . $lb;
+						echo $tab . '<li>' . $lb;
+						echo $tab . $tab . '<a href="' . $facebook_post->permalink_url . '" target="_blank">' . $lb;
 						if ( $include_image && isset( $facebook_post->picture ) ) :
 							echo $tab . $tab . $tab . '<span class="entry-image">' . $lb;
 							echo $tab . $tab . $tab . $tab . '<img src="' . $facebook_post->picture . '" class="entry-image" alt="Related photo" aria-hidden="true">' . $lb;
 							echo $tab . $tab . $tab . '</span>' . $lb;
 						endif;
-						echo $tab . $tab . $tab . '<span class="entry-header">' . $lb;
 						$publish_date = date_create( $facebook_post->created_time );
 						$publish_date = date_format( $publish_date, 'F j, Y' );
 						echo $tab . $tab . $tab . $tab . '<span class="entry-date">' . $publish_date . '</span>' . $lb;
 						$more = ( 250 < strlen( $facebook_post->message ) ) ? '<span class="widget-more-link">Read More</span>' : '';
 						echo $tab . $tab . $tab . $tab . '<span class="entry-excerpt">' . substr( $facebook_post->message, 0, 250 ) . $more . '</span>' . $lb;
-						echo $tab . $tab . $tab . '</span>' . $lb; // entry-col
 						echo $tab . $tab . '</a>' . $lb;
 						echo $tab . '</li>' . $lb;
 						if ( $post_counter == $number ) {
@@ -72,12 +70,8 @@ class Syntric_Facebook_Page_Widget extends WP_Widget {
 					}
 				endforeach;
 			} else {
-				echo $tab . '<li class="widget-item nav-item">' . $lb;
-				echo $tab . $tab . '<div class="widget-entry nav-link">' . $lb;
-				echo $tab . $tab . $tab . '<span class="entry-header">' . $lb;
-				echo $tab . $tab . $tab . $tab . '<span class="entry-title">No posts</span>' . $lb;
-				echo $tab . $tab . $tab . '</span>' . $lb;
-				echo $tab . $tab . '</div>' . $lb;
+				echo $tab . '<li>' . $lb;
+				echo $tab . $tab . '<span class="entry-title">No posts</span>' . $lb;
 				echo $tab . '</li>' . $lb;
 			}
 			echo '</ul>' . $lb;

@@ -36,35 +36,26 @@ class Syntric_Calendars_Menu_Widget extends WP_Widget {
 		}
 		$lb           = "\n";
 		$tab          = "\t";
-		$menu_classes = 'widget-body nav';
-		$item_classes = 'widget-item nav-item';
-		$link_classes = 'widget-entry nav-link calendar-menu-link';
 		$sidebar      = syn_widget_sidebar( $args[ 'widget_id' ] );
 		$title        = get_field( 'syn_calendars_menu_widget_title', 'widget_' . $args[ 'widget_id' ] );
 		echo $args[ 'before_widget' ] . $lb;
 		if ( ! empty( $title ) ) :
 			echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 		endif;
-		echo '<ul class="' . $menu_classes . '">' . $lb;
+		echo '<ul>' . $lb;
 		if ( $calendars ) :
 			$ref_date = ( isset( $_GET[ 'ref_date' ] ) ) ? $_GET[ 'ref_date' ] : date( 'Ymd' );
 			foreach ( $calendars as $calendar ) {
-				$active = ( $post->ID == $calendar->ID ) ? ' active' : '';
-				echo $tab . '<li class="' . $item_classes . '">' . $lb;
-				echo $tab . $tab . '<a href="' . get_the_permalink( $calendar->ID ) . '?ref_date=' . $ref_date . '" data-id="' . $calendar->ID . '" class="' . $link_classes . $active . '">' . $lb;
-				echo $tab . $tab . $tab . '<span class="entry-header">' . $lb;
+				$active = ( $post->ID == $calendar->ID ) ? ' class="active"' : '';
+				echo $tab . '<li>' . $lb;
+				echo $tab . $tab . '<a href="' . get_the_permalink( $calendar->ID ) . '?ref_date=' . $ref_date . '" data-id="' . $calendar->ID . '"' . $active . '>' . $lb;
 				echo $tab . $tab . $tab . $tab . '<span class="entry-title">' . $calendar->post_title . '</span>' . $lb;
-				echo $tab . $tab . $tab . '</span>' . $lb;
 				echo $tab . $tab . '</a>' . $lb;
 				echo $tab . '</li>' . $lb;
 			};
 		else :
-			echo $tab . '<li class="' . $item_classes . '">' . $lb;
-			echo $tab . $tab . '<div class="' . $link_classes . '">' . $lb;
-			echo $tab . $tab . $tab . '<span class="entry-header">' . $lb;
+			echo $tab . '<li>' . $lb;
 			echo $tab . $tab . $tab . $tab . '<span class="entry-title">No calendars</span>' . $lb;
-			echo $tab . $tab . $tab . '</span>' . $lb;
-			echo $tab . $tab . '</div>' . $lb;
 			echo $tab . '</li>' . $lb;
 		endif;
 		echo '</ul>' . $lb;

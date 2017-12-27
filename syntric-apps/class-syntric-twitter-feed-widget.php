@@ -70,7 +70,7 @@ class Syntric_Twitter_Feed_Widget extends WP_Widget {
 				endif;
 				echo $tab . $tab . $tab . '</span>' . $lb;
 				echo $tab . $tab . $tab . '<span class="entry-col">' . $lb;
-				echo $tab . $tab . $tab . $tab . '<span class="entry-header">' . $lb;
+				//echo $tab . $tab . $tab . $tab . '<span class="entry-header">' . $lb;
 				//echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-title">' . $facebook_post->name . '</span>' . $lb;
 				if ( $include_date ) :
 					$publish_date = date_create( $facebook_post->created_time );
@@ -82,7 +82,7 @@ class Syntric_Twitter_Feed_Widget extends WP_Widget {
 					$more = ( 250 < strlen( $facebook_post->message ) ) ? '...read more <i class="fa fa-angle-right" aria-hidden="true"></i>' : '';
 					echo $tab . $tab . $tab . $tab . '<span class="entry-excerpt">' . substr( $facebook_post->message, 0, 250 ) . $more . '</span>' . $lb;
 				endif;
-				echo $tab . $tab . $tab . '</span>' . $lb; // entry-col
+				//echo $tab . $tab . $tab . '</span>' . $lb; // entry-col
 				if ( $include_img && isset( $facebook_post->picture ) ) :
 
 				endif;

@@ -16,26 +16,26 @@ get_header(); ?>
 	<div id="class-wrapper" class="content-type-wrapper <?php echo get_post_type(); ?>-content-wrapper">
 		<div class="<?php echo esc_html( get_theme_mod( 'syntric_container_type' ) ); ?>">
 			<div class="row">
-				<?php syn_get_sidebars( 'main', 'left' ); ?>
+				<?php syn_sidebar( 'main', 'left' ); ?>
 				<main id="content" class="col content-area content">
 					<header class="page-header">
 						<h1 class="page-title">
 							<?php the_title(); ?><?php
-							echo '<span class="badge badge-dark">' . $class[ 'term' ] . '</span>';
+							echo '<span class="badge badge-pill badge-secondary">' . $class[ 'term' ] . '</span>';
 							if ( $teacher ) {
-								echo '<span class="badge badge-dark">' . $teacher->display_name . '</span>';
+								echo '<span class="badge badge-pill badge-secondary">' . $teacher->display_name . '</span>';
 							}
 							if ( $periods_active && ! empty( $class[ 'period' ] ) ) {
-								echo '<span class="badge badge-dark">Period ' . $class[ 'period' ] . '</span>';
+								echo '<span class="badge badge-pill badge-secondary">Period ' . $class[ 'period' ] . '</span>';
 							}
 							if ( $rooms_active && ! empty( $class[ 'room' ] ) ) {
-								echo '<span class="badge badge-dark">Room ' . $class[ 'room' ] . '</span>';
+								echo '<span class="badge badge-pill badge-secondary">Room ' . $class[ 'room' ] . '</span>';
 							}
 							?>
 						</h1>
 					</header>
 					<?php
-					syn_get_sidebars( 'main', 'top' );
+					syn_sidebar( 'main', 'top' );
 					if ( have_posts() ) {
 						while ( have_posts() ) : the_post();
 							get_template_part( 'loop-templates/content-class' );
@@ -43,10 +43,10 @@ get_header(); ?>
 					} else {
 						get_template_part( 'loop-templates/content-none' );
 					}
-					syn_get_sidebars( 'main', 'bottom' );
+					syn_sidebar( 'main', 'bottom' );
 					?>
 				</main>
-				<?php syn_get_sidebars( 'main', 'right' ); ?>
+				<?php syn_sidebar( 'main', 'right' ); ?>
 			</div>
 		</div>
 	</div>

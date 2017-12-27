@@ -207,15 +207,15 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 add_action( 'admin_menu', 'syn_admin_menu', 999 );
 function syn_admin_menu() {
 	$current_user = wp_get_current_user();
-	$role = $current_user->roles ? $current_user->roles[0] : false;
+	$role         = $current_user->roles ? $current_user->roles[ 0 ] : false;
 	$syntric_user = get_user_by( 'login', 'syntric' );
 	if ( $current_user->ID != $syntric_user->ID ) {
 		remove_menu_page( 'edit.php?post_type=acf-field-group' ); // Custom Fields
 		remove_menu_page( 'wpmudev' ); // WPMU Dev
 		remove_menu_page( 'wp-defender' ); // WP Defender
-		remove_submenu_page( 'tools.php', 'syntric-data-functions');
-		remove_submenu_page( 'tools.php', 'syntric-clonables');
-		remove_submenu_page( 'options-general.php', 'codepress-admin-columns');
+		remove_submenu_page( 'tools.php', 'syntric-data-functions' );
+		remove_submenu_page( 'tools.php', 'syntric-clonables' );
+		remove_submenu_page( 'options-general.php', 'codepress-admin-columns' );
 	}
 	// Remove for everyone
 	remove_menu_page( 'link-manager.php' ); // Links
@@ -1709,7 +1709,7 @@ function syn_sluggify( $string ) {
  * be edited.  It does need to be modified to reflect current site.
  * todo: move non-discrimination copy into an option. perhaps make translation element toggelable.
  */
-function syn_get_final_footer() {
+function syn_final_footer() {
 	$organization = get_field( 'syn_organization', 'option' );
 	echo '<div class="final-footer hidden-print">';
 	echo '<div class="container-fluid">';
@@ -1734,9 +1734,9 @@ function syn_get_final_footer() {
 	echo '</div>';
 	echo '<div class="col-lg-4 text-lg-right"><div class="login-bug">';
 	if ( is_user_logged_in() ) {
-		echo '<a href="' . wp_logout_url( get_the_permalink() ) . '" class="login">Logout</a>';
+		echo '<a href="' . wp_logout_url( get_the_permalink() ) . '" class="login-button btn btn-sm btn-primary">Logout</a>';
 	} else {
-		echo '<a href="' . wp_login_url( get_the_permalink() ) . '" class="login">Login</a>';
+		echo '<a href="' . wp_login_url( get_the_permalink() ) . '" class="login-button btn btn-sm btn-primary">Login</a>';
 	}
 	//echo 'Website by <a href="http://www.syntric.com" target="_blank" class="footer-bug">Syntric</a>';
 	echo 'Website by <a href="http://www.syntric.com" target="_blank" class="bug"><img src="' . get_stylesheet_directory_uri() . '/assets/images/syntric-logo-bug.png" alt="Syntric logo"></a>';
@@ -1747,68 +1747,9 @@ function syn_get_final_footer() {
 }
 
 /**
- * function syn_footer_logo( $height ) {
- * $custom_logo_id = get_theme_mod( 'custom_logo' );
- * if ( $custom_logo_id ) {
- * $image  = wp_get_attachment_image_src( $custom_logo_id, 'thumbnail' );
- * $ar     = $height / $image[ 2 ];
- * $width  = $image[ 1 ] * $ar;
- * $height = $image[ 2 ] * $ar;
- * $out    = '<img src="' . $image[ 0 ] . '" width="' . $width . '" height="' . $height . '" alt="Logo">';
- * echo $out;
- * }
- * }*/
-function syn_get_navbar_brand() {
-	$organization = esc_attr( get_bloginfo( 'name', 'display' ) );
-	$out          = '<a class="navbar-brand" href="' . esc_url( home_url( '/' ) ) . '" rel="home">';
-	if ( has_custom_logo() ) {
-		$logo_alt = $organization . ' Logo';
-		$out      .= wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'full', false, array( 'alt' => $logo_alt ) );
-	}
-	$out .= $organization;
-	$out .= '</a>';
-
-	return $out;
-}
-
-function syn_get_post_breadcrumbs( $post_id ) {
-	return get_the_title( $post_id );
-	/*
-	 * This is bypassed ATM, not sure if I want a breadcrumb...
-	 */
-	$post_type      = get_post_type( $post_id );
-	$post_parent_id = wp_get_post_parent_id( $post_id );
-	if ( 0 !== (int) $post_parent_id ) {
-		$post_breadcrumbs = '<span class="post-breadcrumb-ancestors">';
-		if ( 'page' == $post_type ) {
-			$ancestor_ids = array_reverse( get_post_ancestors( $post_id ) );
-			if ( $ancestor_ids ) {
-				$ancestor_count = 1;
-				foreach ( $ancestor_ids as $ancestor_id ) {
-					$ancestor         = get_post( $ancestor_id );
-					$post_breadcrumbs .= esc_html( $ancestor->post_title );
-					if ( count( $ancestor_ids ) != $ancestor_count ) {
-						$post_breadcrumbs .= ' > ';
-					}
-					$ancestor_count ++;
-				}
-			}
-		} elseif ( 'post' == $post_type ) {
-			$category_ids     = wp_get_post_categories( $post_id );
-			$category         = get_category( $category_ids[ 0 ] );
-			$post_breadcrumbs .= $category->name;
-		}
-		$post_breadcrumbs .= '</span>';
-	}
-	$post_breadcrumbs = ( isset( $post_breadcrumbs ) && ! empty( $post_breadcrumbs ) ) ? $post_breadcrumbs . ' > ' . get_the_title( $post_id ) : get_the_title( $post_id );
-
-	return $post_breadcrumbs;
-}
-
-/**
  * Outputs a breadcrumb nav based on where one is in the site
  */
-function syn_get_breadcrumbs() {
+function syn_breadcrumbs() {
 	global $post;
 	if ( is_front_page() ) {
 		return;
@@ -1880,7 +1821,7 @@ function syn_get_breadcrumbs() {
 	echo $breadcrumbs;
 }
 
-function syn_get_banner() {
+function syn_banner() {
 	// todo: come back and fix this...kinda clunky
 	if ( has_header_image() ) {
 		$header_image           = get_header_image();
@@ -1891,12 +1832,12 @@ function syn_get_banner() {
 	$jumbotrons = get_field( 'syn_jumbotrons', 'option' );
 	if ( has_header_image() || $jumbotrons ) {
 		echo '<div class="banner-wrapper d-none d-lg-block d-print-none" aria-hidden="true"' . $banner_style_attribute . 'role="banner">';
-		echo syn_get_jumbotron();
+		echo syn_jumbotron();
 		echo '</div>';
 	}
 }
 
-function syn_get_jumbotron() {
+function syn_jumbotron() {
 	global $post;
 	if ( ! $post ) {
 		return;
@@ -1923,7 +1864,7 @@ function syn_get_jumbotron() {
 			if ( $jumbotron[ 'include_button' ] ) {
 				$button_href   = ( 'page' == $jumbotron[ 'button_target' ] ) ? $jumbotron[ 'button_page' ] : $jumbotron[ 'button_url' ];
 				$window_target = ( 'page' == $jumbotron[ 'button_target' ] ) ? '_self' : '_blank';
-				echo '<a href="' . $button_href . '" class="jumbotron-button" target="' . $window_target . '">';
+				echo '<a href="' . $button_href . '" class="jumbotron-button btn btn-lg btn-primary" target="' . $window_target . '">';
 				echo $jumbotron[ 'button_text' ];
 				echo '</a>';
 			}
@@ -2410,8 +2351,48 @@ function syn_print_after_footer() {
 		echo $tab . $tab . 'fetchCalendar(' . get_the_ID() . ');' . $lb;
 	endif;
 	//if ( have_rows( 'syn_google_maps', 'option' ) ) :
-		echo $tab . $tab . 'fetchMaps();' . $lb;
+	echo $tab . $tab . 'fetchMaps();' . $lb;
 	//endif;
 	echo $tab . '})(jQuery);' . $lb;
 	echo '</script>' . $lb;
+}
+
+
+//
+//
+// Bone yard
+//
+//
+function ___________________syn_get_post_breadcrumbs( $post_id ) {
+	return get_the_title( $post_id );
+	/*
+	 * This is bypassed ATM, not sure if I want a breadcrumb...
+	 */
+	$post_type      = get_post_type( $post_id );
+	$post_parent_id = wp_get_post_parent_id( $post_id );
+	if ( 0 !== (int) $post_parent_id ) {
+		$post_breadcrumbs = '<span class="post-breadcrumb-ancestors">';
+		if ( 'page' == $post_type ) {
+			$ancestor_ids = array_reverse( get_post_ancestors( $post_id ) );
+			if ( $ancestor_ids ) {
+				$ancestor_count = 1;
+				foreach ( $ancestor_ids as $ancestor_id ) {
+					$ancestor         = get_post( $ancestor_id );
+					$post_breadcrumbs .= esc_html( $ancestor->post_title );
+					if ( count( $ancestor_ids ) != $ancestor_count ) {
+						$post_breadcrumbs .= ' > ';
+					}
+					$ancestor_count ++;
+				}
+			}
+		} elseif ( 'post' == $post_type ) {
+			$category_ids     = wp_get_post_categories( $post_id );
+			$category         = get_category( $category_ids[ 0 ] );
+			$post_breadcrumbs .= $category->name;
+		}
+		$post_breadcrumbs .= '</span>';
+	}
+	$post_breadcrumbs = ( isset( $post_breadcrumbs ) && ! empty( $post_breadcrumbs ) ) ? $post_breadcrumbs . ' > ' . get_the_title( $post_id ) : get_the_title( $post_id );
+
+	return $post_breadcrumbs;
 }

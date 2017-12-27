@@ -36,45 +36,38 @@ class Syntric_Attachments_Widget extends WP_Widget {
 		$tab          = "\t";
 		$sidebar      = syn_widget_sidebar( $args[ 'widget_id' ] );
 		$title        = get_field( 'syn_attachments_title', $post->ID );
-		$list_classes = 'widget-body nav';
-		$item_classes = 'widget-item nav-item';
-		$link_classes = 'widget-entry nav-link';
 		echo $args[ 'before_widget' ] . $lb;
 		if ( ! empty( $title ) ) :
 			echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 		endif;
-		echo '<ul class="' . $list_classes . '">' . $lb;
+		echo '<ul>' . $lb;
 		if ( have_rows( 'syn_attachments', $post->ID ) ) :
 			while ( have_rows( 'syn_attachments', $post->ID ) ) : the_row();
-				echo $tab . '<li class="' . $item_classes . '">' . $lb;
+				echo $tab . '<li>' . $lb;
 				$header      = get_sub_field( 'header' );
 				$description = get_sub_field( 'description' );
-				echo $tab . $tab . '<span class="widget-entry">' . $lb;
-				echo $tab . $tab . $tab . '<span class="entry-header">' . $lb;
-				echo $tab . $tab . $tab . $tab . '<h3 class="entry-title">' . $header . '</h3>' . $lb;
-				echo $tab . $tab . $tab . '</span>' . $lb;
+				echo $tab . $tab . $tab . $tab . '<h3 class="entry-header">' . $header . '</h3>' . $lb;
 				if ( $description ) {
 					echo $tab . $tab . $tab . '<span class="entry-description">' . $description . '</span>' . $lb;
 				}
-				echo $tab . $tab . '</span>' . $lb;
 				if ( have_rows( 'attachments' ) ) {
 					while ( have_rows( 'attachments' ) ) : the_row();
 						$attachment_type = get_sub_field( 'attachment_type' );
 						switch ( $attachment_type[ 'value' ] ) :
 							case 'file' :
 								$file = get_sub_field( 'file' );
-								echo $tab . $tab . '<a href="' . $file[ 'url' ] . '" class="' . $link_classes . '" target="_blank"><span class="entry-link">' . $file[ 'title' ] . '</span></a>' . $lb;
+								echo $tab . $tab . '<a href="' . $file[ 'url' ] . '" " target="_blank"><span class="entry-link">' . $file[ 'title' ] . '</span></a>' . $lb;
 								break;
 							case 'internal_link' :
 								$internal_link = get_sub_field( 'internal_link' );
-								echo $tab . $tab . '<a href="' . get_the_permalink( $internal_link->ID ) . '" class="' . $link_classes . '"><span class="entry-link">' . $internal_link->post_title . '</span></a>' . $lb;
+								echo $tab . $tab . '<a href="' . get_the_permalink( $internal_link->ID ) . '"><span class="entry-link">' . $internal_link->post_title . '</span></a>' . $lb;
 								break;
 							case 'external_link' :
 								$title           = get_sub_field( 'title' );
 								$url             = get_sub_field( 'url' );
 								$open_new_window = get_sub_field( 'new_window' );
 								$target          = ( $open_new_window ) ? '_blank' : '_self';
-								echo $tab . $tab . '<a href="' . $url . '" class="' . $link_classes . '" target="' . $target . '"><span class="entry-link">' . $title . '</span></a>' . $lb;
+								echo $tab . $tab . '<a href="' . $url . '" class=" target="' . $target . '"><span class="entry-link">' . $title . '</span></a>' . $lb;
 								break;
 						endswitch;
 					endwhile;
@@ -82,10 +75,8 @@ class Syntric_Attachments_Widget extends WP_Widget {
 				echo $tab . '</li>' . $lb;
 			endwhile;
 		else :
-			echo $tab . '<li class="widget-item">' . $lb;
-			echo $tab . $tab . '<div class="widget-entry">' . $lb;
+			echo $tab . '<li>' . $lb;
 			echo $tab . $tab . $tab . '<span class="entry-content">No attachments</span>' . $lb;
-			echo $tab . $tab . '</div>' . $lb;
 			echo $tab . '</li>' . $lb;
 		endif;
 		echo '</ul>' . $lb;
