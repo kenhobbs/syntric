@@ -5962,13 +5962,11 @@ a.text-dark:focus, a.text-dark:hover {
 /***********************************************
 ** @extend(ables)
 ***********************************************/
-.box-shadow-level-1, table, .search-wrapper .search-form > .input-group, .jumbotron-wrapper .container, .breadcrumb-wrapper, .widget > ul,
-.widget > div {
+.box-shadow-level-1, .search-wrapper .search-form > .input-group, .jumbotron-wrapper .container, .breadcrumb-wrapper {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
 
-.box-shadow-level-1-hover, table:hover, .widget > ul:hover,
-.widget > div:hover {
+.box-shadow-level-1-hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
 .box-shadow-level-2 {
@@ -6081,31 +6079,6 @@ img {
   .card .card-body .btn, .card .card-body .fc button, .fc .card .card-body button {
     margin-top: 0.75rem; }
 
-table {
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 2rem;
-  background-color: #fff;
-  border: 1px solid #ccc; }
-  table td,
-  table th {
-    padding: 0.5rem 1rem; }
-    table td:not(:last-of-type),
-    table th:not(:last-of-type) {
-      border-right: 1px solid #ccc; }
-  table tr:not(:last-of-type) > td,
-  table tr:not(:last-of-type) > th {
-    border-bottom: 1px solid #ccc; }
-  table thead th {
-    vertical-align: bottom;
-    background-color: #600;
-    color: #fff;
-    font-weight: normal; }
-  table tbody tr:hover {
-    background-color: rgba(0, 0, 0, 0.075); }
-  table tbody tr td {
-    vertical-align: top; }
-
 /*table {
 	width: 100%;
 	max-width: 100%;
@@ -6181,8 +6154,7 @@ table {
     background-color: #fff;
     background-image: none;
     border: solid 1px #fff;
-    letter-spacing: 0.00125rem;
-    text-transform: capitalize; }
+    letter-spacing: 0.00125rem; }
     @media (max-width: 991px) {
       .search-wrapper .search-form .search-input,
       .search-wrapper .search-form .search-button {
@@ -6400,78 +6372,6 @@ table {
     padding: 2rem 0; } }
 
 .content {
-  /*> table,
-	.widget > table {
-		background-color: #fff;
-		@extend .table;
-		@extend .table-bordered;
-		@extend .box-shadow-level-1;
-		thead > th {
-			font-family: $header-font;
-			font-weight: normal;
-			background-color: $table-th-background;
-			color: $table-th-text;
-		}
-	}*/
-  /*table {
-		margin-bottom: 1rem;
-		background-color: #fff;
-		@extend .border-radius-common;
-		border-collapse: separate;
-		border-spacing: 1px;
-		border-color: #999;
-		width: 100%;
-		caption {
-			font-size: 1.5rem;
-			font-family: $header-font;
-			font-weight: $header-weight;
-			caption-side: top;
-			color: $header-text;
-			margin: 0;
-			padding: 0.5rem 0;
-		}
-		thead {
-			tr {
-				> th {
-					font-family: $header-font;
-					font-weight: $header-weight;
-					font-size: 0.875rem;
-					text-transform: uppercase;
-					padding: 8px 16px;
-					//height: 40px;
-					background-color: $table-th-background;
-					color: $table-th-text;
-				}
-			}
-		}
-		tbody {
-			tr > td {
-				padding: 8px 16px;
-				//border: none;
-			}
-			tr:nth-of-type(even) {
-				//background-color: $table-even-row-background;
-			}
-			tr:nth-of-type(odd) {
-				//background-color: $table-odd-row-background;
-			}
-		}
-		//&.table-plain {
-		&.table-plain {
-			th,
-			td {
-				padding: 0.5rem 1rem;
-			}
-		}
-		&.table-roster {
-			tr {
-				td:first-of-type,
-				td:nth-of-type(2) {
-					width: 250px;
-				}
-			}
-		}
-	}*/
   /*> .gallery {
 	}*/ }
   .content h1.page-title {
@@ -6505,6 +6405,40 @@ table {
       font-size: 0.8125rem;
       text-transform: uppercase;
       font-weight: 400; }
+  .content > table,
+  .content .widget > table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 2rem;
+    background-color: #fff;
+    border: 1px solid #ccc; }
+    .content > table td,
+    .content > table th,
+    .content .widget > table td,
+    .content .widget > table th {
+      padding: 0.5rem 1rem; }
+      .content > table td:not(:last-of-type),
+      .content > table th:not(:last-of-type),
+      .content .widget > table td:not(:last-of-type),
+      .content .widget > table th:not(:last-of-type) {
+        border-right: 1px solid #ccc; }
+    .content > table tr:not(:last-of-type) > td,
+    .content > table tr:not(:last-of-type) > th,
+    .content .widget > table tr:not(:last-of-type) > td,
+    .content .widget > table tr:not(:last-of-type) > th {
+      border-bottom: 1px solid #ccc; }
+    .content > table thead th,
+    .content .widget > table thead th {
+      vertical-align: bottom;
+      background-color: #600;
+      color: #fff;
+      font-weight: normal; }
+    .content > table tbody tr:hover,
+    .content .widget > table tbody tr:hover {
+      background-color: rgba(0, 0, 0, 0.075); }
+    .content > table tbody tr td,
+    .content .widget > table tbody tr td {
+      vertical-align: top; }
   @media (min-width: 992px) {
     .content {
       min-height: 420px; } }
@@ -6524,6 +6458,13 @@ table {
 		@extend .box-shadow-level-1;
 		p:last-of-type {
 			margin-bottom: 0;
+		}
+	}*/
+  /*> ul,
+	> div {
+		@extend .box-shadow-level-1;
+		&:hover {
+			@extend .box-shadow-level-1-hover;
 		}
 	}*/ }
   .widget .widget-title {
