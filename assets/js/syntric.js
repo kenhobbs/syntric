@@ -540,9 +540,6 @@
 		}
 	}
 
-// Call function to set banner height
-// todo: is this still in use and if so can the argument be variable-ized?
-
 	/**
 	 * Convert ACF "*" on required fields to "(required)" for ADA
 	 */

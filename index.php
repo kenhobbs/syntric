@@ -1,11 +1,9 @@
 <?php get_header(); ?>
-<div id="index-wrapper" class="content-type-wrapper <?php echo get_post_type(); ?>-content-wrapper">
+<div id="index-wrapper" class="content-wrapper <?php echo get_post_type(); ?>-wrapper">
 	<div class="<?php echo esc_html( get_theme_mod( 'syntric_container_type' ) ); ?>">
 		<div class="row">
 			<main id="content" class="col content-area content">
-				<header class="page-header">
-					<h1 class="page-title"><?php the_title(); ?></h1>
-				</header>
+				<h1 class="page-title" role="heading"><?php the_title(); ?></h1>
 				<?php get_template_part( 'loop-templates/content', 'none' ); ?>
 			</main>
 		</div>

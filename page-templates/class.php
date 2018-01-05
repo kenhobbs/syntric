@@ -13,27 +13,23 @@ $rooms_active   = get_field( 'syn_rooms_active', 'option' );
 $class_id       = get_field( 'syn_page_class' );
 $class          = syn_get_teacher_class( $teacher_id, $class_id );
 get_header(); ?>
-	<div id="class-wrapper" class="content-type-wrapper <?php echo get_post_type(); ?>-content-wrapper">
+	<div id="class-wrapper" class="content-wrapper <?php echo get_post_type(); ?>-wrapper">
 		<div class="<?php echo esc_html( get_theme_mod( 'syntric_container_type' ) ); ?>">
 			<div class="row">
 				<?php syn_sidebar( 'main', 'left' ); ?>
 				<main id="content" class="col content-area content">
-					<header class="page-header">
-						<h1 class="page-title">
-							<?php the_title(); ?><?php
-							echo '<span class="badge badge-pill badge-secondary">' . $class[ 'term' ] . '</span>';
-							if ( $teacher ) {
-								echo '<span class="badge badge-pill badge-secondary">' . $teacher->display_name . '</span>';
-							}
-							if ( $periods_active && ! empty( $class[ 'period' ] ) ) {
-								echo '<span class="badge badge-pill badge-secondary">Period ' . $class[ 'period' ] . '</span>';
-							}
-							if ( $rooms_active && ! empty( $class[ 'room' ] ) ) {
-								echo '<span class="badge badge-pill badge-secondary">Room ' . $class[ 'room' ] . '</span>';
-							}
-							?>
-						</h1>
-					</header>
+					<h1 class="page-title" role="heading"><?php the_title(); ?><?php
+						echo '<span class="badge badge-pill badge-secondary">' . $class[ 'term' ] . '</span>';
+						if ( $teacher ) {
+							echo '<span class="badge badge-pill badge-secondary">' . $teacher->display_name . '</span>';
+						}
+						if ( $periods_active && ! empty( $class[ 'period' ] ) ) {
+							echo '<span class="badge badge-pill badge-secondary">Period ' . $class[ 'period' ] . '</span>';
+						}
+						if ( $rooms_active && ! empty( $class[ 'room' ] ) ) {
+							echo '<span class="badge badge-pill badge-secondary">Room ' . $class[ 'room' ] . '</span>';
+						}
+						?></h1>
 					<?php
 					syn_sidebar( 'main', 'top' );
 					if ( have_posts() ) {

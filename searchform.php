@@ -14,7 +14,8 @@
 			<input id="s" name="s" type="text" class="form-control search-input" placeholder="Search" required="required"/>
 			<span class="input-group-btn">
 				<button id="searchsubmit" name="submit" type="submit" class="btn search-button" aria-label="Submit search">
-					<i class="fa fa-search"></i></button>
+					<i class="fa fa-search"></i>
+				</button>
 			</span>
 		</div>
 	</form>

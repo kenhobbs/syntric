@@ -10,7 +10,7 @@
 		})(jQuery);
 	</script>-->
 <?php elseif ( 'syn_event' == get_post_type() ) : ?>
-	<?php $dates = syn_get_event_dates( get_the_ID() ); //todo: simplify this to a single function call; ?>
+	<?php $dates = syn_get_event_dates( get_the_ID() ); ?>
 	<?php $location = get_field( 'syn_event_location', get_the_ID() ); ?>
 	<article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 		<header class="post-header">

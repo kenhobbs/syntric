@@ -7,7 +7,7 @@
  * @package syntric
  */
 ?><?php get_header(); ?>
-	<div id="teachers-wrapper" class="content-type-wrapper <?php echo get_post_type(); ?>-content-wrapper">
+	<div id="teachers-wrapper" class="content-wrapper <?php echo get_post_type(); ?>-wrapper">
 		<div class="<?php echo esc_html( get_theme_mod( 'syntric_container_type' ) ); ?>">
 			<div class="row">
 				<?php syn_sidebar( 'main', 'left' ); ?>

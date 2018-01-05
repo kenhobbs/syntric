@@ -65,14 +65,7 @@ function syn_enqueue_admin_scripts( $hook ) {
  * @return string Full URI to a theme stylesheet
  */
 function syn_get_theme_stylesheet_uri() {
-	//$is_dev          = syn_is_dev();
 	$http_host       = syn_get_http_host();
-	//$host_style      = ( ! $is_dev ) ? $http_host . '.min' : $http_host;
-	//$host_style      = $http_host . '.min';
-	//$default_style   = ( ! $is_dev ) ? 'syntric.min' : 'syntric';
-	//$host_file       = get_stylesheet_directory() . '/assets/css/' . $host_style . '.css';
-	//$theme_style     = ( file_exists( $host_file ) ) ? $host_style : $default_style;
-	//$theme_style_uri = get_stylesheet_directory_uri() . '/assets/css/' . $theme_style . '.css';
 	$theme_style_uri = get_stylesheet_directory_uri() . '/assets/css/' . $http_host . '.min.css';
 
 	return $theme_style_uri;
