@@ -5992,7 +5992,14 @@ a.text-dark:focus, a.text-dark:hover {
   -moz-border-radius: 0;
   border-radius: 0; }
 
-.border-radius-common, .jumbotron-wrapper .container, .content article .post-content img {
+.border-radius-common, .jumbotron-wrapper .container, .content article .post-content img, .footer-1.sidebar .widget > ul,
+.footer-1.sidebar .widget > div, .footer-2.sidebar .textwidget,
+.footer-2.sidebar .tagcloud,
+.footer-2.sidebar ul, .footer-3.sidebar .textwidget,
+.footer-3.sidebar .tagcloud,
+.footer-3.sidebar ul, .footer-4.sidebar .textwidget,
+.footer-4.sidebar .tagcloud,
+.footer-4.sidebar ul {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0; }
@@ -6451,15 +6458,6 @@ img {
   font-weight: 400;
   color: #333;
   margin-bottom: 2rem;
-  /*> div:not(.search-wrapper):not(.gallery) {
-		padding: 1rem;
-		background-color: #fff;
-		border: solid 1px #eee;
-		@extend .box-shadow-level-1;
-		p:last-of-type {
-			margin-bottom: 0;
-		}
-	}*/
   /*> ul,
 	> div {
 		@extend .box-shadow-level-1;
@@ -6540,83 +6538,57 @@ body > section.sidebar {
   body > section.sidebar .syn-google-map-widget > .map {
     min-height: 400px; }
 
-.content-wrapper aside.sidebar {
-  /*&.main-left-sidebar {
-		@include media-breakpoint-down(md) {
-			//padding-bottom: 2rem;
-		}
-	}*/ }
-  .content-wrapper aside.sidebar .widget {
-    /*&:not(:last-of-type) {
-			//margin-bottom: 2rem;
-		}*/
-    /*ul,
-		div {
-			color: $side-widget-body-text !important;
-			background-color: $side-widget-body-background !important;
-		}*/
-    /*&.syn-google-map-widget {
-			border: none !important;
-			> .map {
-				min-height: 250px;
-				height: 250px;
-				width: 100%;
-				border: none !important;
-			}
-		}*/
-    /*&.widget_search {
-			border: none !important;
-			.widget-title {
-				display: none;
-			}
-			> div {
-				border: none !important;
-			}
-		}*/ }
-    .content-wrapper aside.sidebar .widget a {
-      color: #ffffff !important; }
-    .content-wrapper aside.sidebar .widget > .widget-title {
-      padding: 0.75rem;
-      margin: 0;
-      color: #ffffff;
-      background-color: #3c0069;
-      border: solid 1px #3c0069;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0; }
-    .content-wrapper aside.sidebar .widget > ul,
-    .content-wrapper aside.sidebar .widget > div:not(.search-wrapper) {
-      color: #ffffff !important;
-      background-color: indigo;
-      border: solid 1px indigo !important;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0; }
-      .content-wrapper aside.sidebar .widget > ul > figure,
-      .content-wrapper aside.sidebar .widget > ul > li a,
-      .content-wrapper aside.sidebar .widget > div:not(.search-wrapper) > figure,
-      .content-wrapper aside.sidebar .widget > div:not(.search-wrapper) > li a {
-        color: #ffffff !important; }
-        .content-wrapper aside.sidebar .widget > ul > figure:hover, .content-wrapper aside.sidebar .widget > ul > figure.active, .content-wrapper aside.sidebar .widget > ul > figure.active:hover,
-        .content-wrapper aside.sidebar .widget > ul > li a:hover,
-        .content-wrapper aside.sidebar .widget > ul > li a.active,
-        .content-wrapper aside.sidebar .widget > ul > li a.active:hover,
-        .content-wrapper aside.sidebar .widget > div:not(.search-wrapper) > figure:hover,
-        .content-wrapper aside.sidebar .widget > div:not(.search-wrapper) > figure.active,
-        .content-wrapper aside.sidebar .widget > div:not(.search-wrapper) > figure.active:hover,
-        .content-wrapper aside.sidebar .widget > div:not(.search-wrapper) > li a:hover,
-        .content-wrapper aside.sidebar .widget > div:not(.search-wrapper) > li a.active,
-        .content-wrapper aside.sidebar .widget > div:not(.search-wrapper) > li a.active:hover {
-          color: #ffffff;
-          background-color: #5a009c;
-          background: #5a009c;
-          text-decoration: none; }
-    .content-wrapper aside.sidebar .widget.syn-google-map-widget > .map {
-      min-height: 200px; }
+.content-wrapper aside.sidebar .widget a {
+  color: #ffffff !important; }
 
-main.content > section.sidebar.syn-google-map-widget > .map {
+.content-wrapper aside.sidebar .widget > .widget-title {
+  padding: 0.75rem;
+  margin: 0;
+  color: #ffffff;
+  background-color: #3c0069;
+  border: solid 1px #3c0069;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0; }
+
+.content-wrapper aside.sidebar .widget > ul,
+.content-wrapper aside.sidebar .widget > div:not(.search-wrapper) {
+  color: #ffffff !important;
+  background-color: indigo;
+  border: solid 1px indigo !important;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0; }
+  .content-wrapper aside.sidebar .widget > ul > figure,
+  .content-wrapper aside.sidebar .widget > ul > li a,
+  .content-wrapper aside.sidebar .widget > div:not(.search-wrapper) > figure,
+  .content-wrapper aside.sidebar .widget > div:not(.search-wrapper) > li a {
+    color: #ffffff !important; }
+    .content-wrapper aside.sidebar .widget > ul > figure:hover, .content-wrapper aside.sidebar .widget > ul > figure.active, .content-wrapper aside.sidebar .widget > ul > figure.active:hover,
+    .content-wrapper aside.sidebar .widget > ul > li a:hover,
+    .content-wrapper aside.sidebar .widget > ul > li a.active,
+    .content-wrapper aside.sidebar .widget > ul > li a.active:hover,
+    .content-wrapper aside.sidebar .widget > div:not(.search-wrapper) > figure:hover,
+    .content-wrapper aside.sidebar .widget > div:not(.search-wrapper) > figure.active,
+    .content-wrapper aside.sidebar .widget > div:not(.search-wrapper) > figure.active:hover,
+    .content-wrapper aside.sidebar .widget > div:not(.search-wrapper) > li a:hover,
+    .content-wrapper aside.sidebar .widget > div:not(.search-wrapper) > li a.active,
+    .content-wrapper aside.sidebar .widget > div:not(.search-wrapper) > li a.active:hover {
+      color: #ffffff;
+      background-color: #5a009c;
+      background: #5a009c;
+      text-decoration: none; }
+
+.content-wrapper aside.sidebar .widget.syn-google-map-widget > .map {
+  min-height: 200px; }
+
+main.content > section.sidebar .widget > ul,
+main.content > section.sidebar .widget > div {
+  background-color: #eee; }
+
+main.content > section.sidebar .widget.syn-google-map-widget > .map {
   min-height: 300px; }
 
 /**********************************************************************************************************************
@@ -6702,128 +6674,83 @@ body > section.sidebar { // header and footer sidebars
 		width: 100%;
 	}
 }
-
+**********************************************************************************************************************/
 .footer-1.sidebar {
-	background-color: $first-footer-background;
-	.widget-title {
-		color: $first-footer-widget-title-text;
-	}
-	.textwidget,
-	.tagcloud,
-	ul {
-		background-color: $first-footer-widget-body-background;
-		border: 1px solid $first-footer-widget-body-border;
-		@extend .border-radius-common;
-		color: $first-footer-widget-body-text !important;
-	}
-	a {
-		color: $first-footer-widget-body-link-text;
-	}
-	li > a {
-		&:hover,
-		&.active,
-		&.active:hover {
-			background-color: $first-footer-widget-body-link-background-hover;
-			background: $first-footer-widget-body-link-background-hover;
-			color: $first-footer-widget-body-link-text-hover;
-		}
-	}
-	figcaption {
+  background-color: #6800b5;
+  /*figcaption {
 		color: $first-footer-widget-body-text;
-	}
-}
+	}*/ }
+  .footer-1.sidebar .widget .widget-title {
+    color: #ffffff; }
+  .footer-1.sidebar .widget > ul,
+  .footer-1.sidebar .widget > div {
+    color: #ffffff !important;
+    background-color: indigo !important;
+    border: 1px solid #6800b5 !important; }
+  .footer-1.sidebar .widget a {
+    color: #ffffff; }
+  .footer-1.sidebar .widget li > a:hover, .footer-1.sidebar .widget li > a.active, .footer-1.sidebar .widget li > a.active:hover {
+    background-color: #5a009c;
+    background: #5a009c;
+    color: #ffffff; }
 
 .footer-2.sidebar {
-	background-color: $second-footer-background;
-	.widget-title {
-		color: $second-footer-widget-title-text;
-	}
-	.textwidget,
-	.tagcloud,
-	ul {
-		background-color: $second-footer-widget-body-background;
-		border: 1px solid $second-footer-widget-body-border;
-		@extend .border-radius-common;
-		color: $second-footer-widget-body-text !important;
-	}
-	a {
-		color: $second-footer-widget-body-link-text;
-	}
-	li > a {
-		&:hover,
-		&.active,
-		&.active:hover {
-			background-color: $second-footer-widget-body-link-background-hover;
-			background: $second-footer-widget-body-link-background-hover;
-			color: $second-footer-widget-body-link-text-hover;
-		}
-	}
-	figcaption {
-		color: $second-footer-widget-body-text;
-	}
-}
+  background-color: #caae53; }
+  .footer-2.sidebar .widget-title {
+    color: #333333; }
+  .footer-2.sidebar .textwidget,
+  .footer-2.sidebar .tagcloud,
+  .footer-2.sidebar ul {
+    background-color: #caae53;
+    border: 1px solid #d6c07a;
+    color: #333333 !important; }
+  .footer-2.sidebar a {
+    color: #333333; }
+  .footer-2.sidebar li > a:hover, .footer-2.sidebar li > a.active, .footer-2.sidebar li > a.active:hover {
+    background-color: #d0b766;
+    background: #d0b766;
+    color: #333333; }
+  .footer-2.sidebar figcaption {
+    color: #333333; }
 
 .footer-3.sidebar {
-	background-color: $third-footer-background;
-	.widget-title {
-		color: $third-footer-widget-title-text;
-	}
-	.textwidget,
-	.tagcloud,
-	ul {
-		background-color: $third-footer-widget-body-background;
-		border: 1px solid $third-footer-widget-body-border;
-		@extend .border-radius-common;
-		color: $third-footer-widget-body-text !important;
-	}
-	a {
-		color: $third-footer-widget-body-link-text;
-	}
-	li > a {
-		&:hover,
-		&.active,
-		&.active:hover {
-			background-color: $third-footer-widget-body-link-background-hover;
-			background: $third-footer-widget-body-link-background-hover;
-			color: $third-footer-widget-body-link-text-hover;
-		}
-	}
-	figcaption {
-		color: $third-footer-widget-body-text;
-	}
-}
+  background-color: #333; }
+  .footer-3.sidebar .widget-title {
+    color: #ffffff; }
+  .footer-3.sidebar .textwidget,
+  .footer-3.sidebar .tagcloud,
+  .footer-3.sidebar ul {
+    background-color: indigo;
+    border: 1px solid #6800b5;
+    color: #ffffff !important; }
+  .footer-3.sidebar a {
+    color: #ffffff; }
+  .footer-3.sidebar li > a:hover, .footer-3.sidebar li > a.active, .footer-3.sidebar li > a.active:hover {
+    background-color: #5a009c;
+    background: #5a009c;
+    color: #ffffff; }
+  .footer-3.sidebar figcaption {
+    color: #ffffff; }
 
 .footer-4.sidebar {
-	background-color: $fourth-footer-background;
-	.widget-title {
-		color: $fourth-footer-widget-title-text;
-	}
-	.textwidget,
-	.tagcloud,
-	ul {
-		background-color: $fourth-footer-widget-body-background;
-		border: 1px solid $fourth-footer-widget-body-border;
-		@extend .border-radius-common;
-		color: $fourth-footer-widget-body-text !important;
-	}
-	a {
-		color: $fourth-footer-widget-body-link-text;
-	}
-	li > a {
-		&:hover,
-		&.active,
-		&.active:hover {
-			background-color: $fourth-footer-widget-body-link-background-hover;
-			background: $fourth-footer-widget-body-link-background-hover;
-			color: $fourth-footer-widget-body-link-text-hover;
-		}
-	}
-	figcaption {
-		color: $fourth-footer-widget-body-text;
-	}
-}
+  background-color: indigo; }
+  .footer-4.sidebar .widget-title {
+    color: #fff; }
+  .footer-4.sidebar .textwidget,
+  .footer-4.sidebar .tagcloud,
+  .footer-4.sidebar ul {
+    background-color: #6800b5;
+    border: 1px solid #8600e8;
+    color: #ffffff !important; }
+  .footer-4.sidebar a {
+    color: #ffffff; }
+  .footer-4.sidebar li > a:hover, .footer-4.sidebar li > a.active, .footer-4.sidebar li > a.active:hover {
+    background-color: #7700cf;
+    background: #7700cf;
+    color: #ffffff; }
+  .footer-4.sidebar figcaption {
+    color: #ffffff; }
 
-**********************************************************************************************************************/
 .final-footer {
   background-color: #000;
   border-top: 1px solid #000;

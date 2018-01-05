@@ -98,7 +98,7 @@
 					}
 					if( 'table' == $layout ) {
 						echo $tab . $tab . '<tr valign="top">' . $lb;
-						echo $tab . $tab . $tab . '<td nowrap="nowrap">' . $first_name . ' ' . $last_name . '</td>' . $lb;
+						echo $tab . $tab . $tab . '<td>' . $first_name . ' ' . $last_name . '</td>' . $lb;
 						if( in_array( 'titles', $include_fields ) ) {
 							echo $tab . $tab . $tab . '<td>' . $title . '</td>' . $lb;
 						}
