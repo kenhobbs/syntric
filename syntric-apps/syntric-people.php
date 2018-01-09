@@ -113,7 +113,7 @@
 
 // functions
 	function syn_list_people() {
-		$people = get_users( [ 'role__not_in' => [ 'administrator' ] ] );
+		$people = get_users( [ 'login__not_in' => [ 'syntric' ] ] );
 		if( $people ) :
 			$organization_is_school = syn_organization_is_school();
 			usort( $people, function( $a, $b ) {

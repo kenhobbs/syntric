@@ -4,9 +4,6 @@
 // remove class['page'] custom field and all references to it
 // current user, available anywhere on this page
 // Speed up admin load time by not loading WP Custom Fields
-
-
-
 	// https://www.advancedcustomfields.com/blog/acf-pro-5-5-13-update/
 	add_filter( 'acf/settings/remove_wp_meta_box', '__return_true' );
 	// Get the current user todo: is this called anywhere else? if so, remove them and reference this object
@@ -40,7 +37,7 @@
 	/**
 	 * Register option pages using ACF
 	 */
-	if( function_exists( 'acf_add_options_page' ) ) {
+	if ( function_exists( 'acf_add_options_page' ) ) {
 		$organization_type_label  = syn_get_organization_type_label();
 		$organization_is_school   = syn_organization_is_school();
 		$organizations_type_label = syn_get_organizations_type_label();
@@ -85,7 +82,7 @@
 			'parent_slug' => 'syntric-organization',
 			'capability'  => 'edit_others_pages',
 		] );
-		if( $organization_is_school ) {
+		if ( $organization_is_school ) {
 			// Buildings
 			acf_add_options_sub_page( [
 				'page_title'  => 'Buildings/Facilities',
@@ -216,7 +213,7 @@
 		$current_user = wp_get_current_user();
 		$role         = $current_user->roles ? $current_user->roles[ 0 ] : false;
 		$syntric_user = get_user_by( 'login', 'syntric' );
-		if( $current_user->ID != $syntric_user->ID ) {
+		if ( $current_user->ID != $syntric_user->ID ) {
 			remove_menu_page( 'edit.php?post_type=acf-field-group' ); // Custom Fields
 			remove_menu_page( 'wpmudev' ); // WPMU Dev
 			remove_menu_page( 'wp-defender' ); // WP Defender
@@ -230,7 +227,7 @@
 		remove_submenu_page( 'plugins.php', 'plugin-editor.php' );
 		remove_submenu_page( 'index.php', 'update-core.php' );
 		// Remove for all but administrator
-		if( 'editor' == $role ) {
+		if ( 'editor' == $role ) {
 			remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Microblog (taxonomy)
 			remove_menu_page( 'jetpack' ); // Jetpack
 			remove_menu_page( 'users.php' ); // Users
@@ -243,7 +240,7 @@
 			// todo: need to add in Headers, maybe Users
 		}
 		// Remove menu items from authors - this is the roll assigned to Teachers
-		if( 'author' == $role ) {
+		if ( 'author' == $role ) {
 			remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Microblog (taxonomy)
 			remove_menu_page( 'jetpack' ); // Jetpack
 			remove_menu_page( 'admin.php?page=syntric-organization' ); // Organization
@@ -267,7 +264,7 @@
 	add_action( 'admin_bar_menu', 'syn_admin_bar', 999 );
 	function syn_admin_bar( $wp_admin_bar ) {
 		// Modify the Site Name menu item/dropdown for both front-end and admin
-		if( is_admin() ) {
+		if ( is_admin() ) {
 			$site_name_node        = $wp_admin_bar->get_node( 'site-name' );
 			$site_name_node->title = 'Website';
 			$wp_admin_bar->add_node( $site_name_node );
@@ -300,7 +297,7 @@
 			$posts_node->group  = '';
 			$posts_node->meta   = [];
 			$wp_admin_bar->add_node( $posts_node );
-			if( current_user_can( 'administrator' ) || current_user_can( 'editor' ) ) {
+			if ( current_user_can( 'administrator' ) || current_user_can( 'editor' ) ) {
 				// Jumbotrons menu item
 				$jumbotrons_node         = new stdClass();
 				$jumbotrons_node->id     = 'jumbotrons';
@@ -341,15 +338,15 @@
 		$logout_node->title = str_replace( 'Log Out', 'Logout', $logout_node->title );
 		$wp_admin_bar->add_node( $logout_node );
 		// Change up the New Content menu item/dropdown as appropriate for the users role
-		if( current_user_can( 'subscriber' ) || current_user_can( 'contributor' ) ) {
+		if ( current_user_can( 'subscriber' ) || current_user_can( 'contributor' ) ) {
 			// Remove New Content for subscribers and contributors
 			$wp_admin_bar->remove_node( 'new-content' );
-		} elseif( current_user_can( 'author' ) ) {
+		} elseif ( current_user_can( 'author' ) ) {
 			// for now, just take the New Content completely away from authors
 			$wp_admin_bar->remove_node( 'new-content' );
 			// todo: For the New Content menu item/dropdown for authors (aka teachers) list each of their microblogs?  Teacher and class pages?  Change New Content to My Content?
 			// already created a function syn_get_user_microblogs for this...
-		} elseif( current_user_can( 'administrator' ) ) {
+		} elseif ( current_user_can( 'administrator' ) ) {
 			// Modify the New Content menu item/dropdown...New > Page, Post, Jumbotron, Person, Header
 			$new_content_node = $wp_admin_bar->get_node( 'new-content' );
 			//$wp_admin_bar->remove_node( 'new-post' );
@@ -390,15 +387,15 @@
 		$wp_admin_bar->remove_node( 'view-site' );
 		$wp_admin_bar->remove_node( 'customize' );
 		// Move the "Edit" menu item right section of the admin bar
-		if( is_admin() ) {
+		if ( is_admin() ) {
 			$view_node = $wp_admin_bar->get_node( 'view' );
-			if( $view_node ) {
+			if ( $view_node ) {
 				$view_node->parent = 'top-secondary';
 				$wp_admin_bar->add_node( $view_node );
 			}
 		} else {
 			$edit_node = $wp_admin_bar->get_node( 'edit' );
-			if( $edit_node ) {
+			if ( $edit_node ) {
 				$edit_node->parent = 'top-secondary';
 				$wp_admin_bar->add_node( $edit_node );
 			}
@@ -444,83 +441,83 @@
 			'edit.php?post_type=acf-field-group', // Custom Fields
 			'jetpack', // Jetpack
 		];
-		if( ! current_user_can( 'administrator' ) ) {
-			foreach( $submenu as $menu => $subs ) {
-				if( 'themes.php' == $menu ) {
-					foreach( $subs as $key => $details ) {
-						if( 'theme-editor.php' == $details[ 2 ] ) {
+		if ( ! current_user_can( 'administrator' ) ) {
+			foreach ( $submenu as $menu => $subs ) {
+				if ( 'themes.php' == $menu ) {
+					foreach ( $subs as $key => $details ) {
+						if ( 'theme-editor.php' == $details[ 2 ] ) {
 							unset( $submenu[ 'themes.php' ][ $key ] );
 						}
 					}
 				}
-				if( 'edit.php' == $menu ) {
-					foreach( $subs as $key => $details ) {
-						if( 'edit-tags.php?taxonomy=microblog' == $details[ 2 ] ) {
+				if ( 'edit.php' == $menu ) {
+					foreach ( $subs as $key => $details ) {
+						if ( 'edit-tags.php?taxonomy=microblog' == $details[ 2 ] ) {
 							unset( $submenu[ 'edit.php' ][ $key ] );
 						}
-						if( 'edit.php?post_type=page&page=nestedpages' == $details[ 2 ] ) {
+						if ( 'edit.php?post_type=page&page=nestedpages' == $details[ 2 ] ) {
 							unset( $submenu[ 'edit.php' ][ $key ] );
 						}
 					}
 				}
-				if( 'edit.php?post_type=page' == $menu ) {
-					foreach( $subs as $key => $details ) {
-						if( 'edit.php?post_type=page&page=nestedpages' == $details[ 2 ] ) {
+				if ( 'edit.php?post_type=page' == $menu ) {
+					foreach ( $subs as $key => $details ) {
+						if ( 'edit.php?post_type=page&page=nestedpages' == $details[ 2 ] ) {
 							unset( $submenu[ 'edit.php?post_type=page' ][ $key ] );
 						}
 					}
 				}
-				if( 'tools.php' == $menu ) {
-					foreach( $subs as $key => $details ) {
-						if( 'crontrol_admin_manage_page' == $details[ 2 ] ) {
+				if ( 'tools.php' == $menu ) {
+					foreach ( $subs as $key => $details ) {
+						if ( 'crontrol_admin_manage_page' == $details[ 2 ] ) {
 							unset( $submenu[ 'tools.php' ][ $key ] );
 						}
-						if( 'rvg-optimize-database' == $details[ 2 ] ) {
+						if ( 'rvg-optimize-database' == $details[ 2 ] ) {
 							unset( $submenu[ 'tools.php' ][ $key ] );
 						}
 					}
 				}
-				if( 'users.php' == $menu ) {
-					foreach( $subs as $key => $details ) {
-						if( 'users-user-role-editor.php' == $details[ 2 ] ) {
+				if ( 'users.php' == $menu ) {
+					foreach ( $subs as $key => $details ) {
+						if ( 'users-user-role-editor.php' == $details[ 2 ] ) {
 							//unset( $submenu[ 'users.php' ][ $key ] );
 						}
 					}
 				}
-				if( 'plugins.php' == $menu ) {
-					foreach( $subs as $key => $details ) {
-						if( 'plugin-editor.php' == $details[ 2 ] ) {
+				if ( 'plugins.php' == $menu ) {
+					foreach ( $subs as $key => $details ) {
+						if ( 'plugin-editor.php' == $details[ 2 ] ) {
 							unset( $submenu[ 'plugins.php' ][ $key ] );
 						}
 					}
 				}
-				if( 'options-general.php' == $menu ) {
-					foreach( $subs as $key => $details ) {
-						if( 'advanced-custom-fields-viewer/admin/options.php' == $details[ 2 ] ) {
+				if ( 'options-general.php' == $menu ) {
+					foreach ( $subs as $key => $details ) {
+						if ( 'advanced-custom-fields-viewer/admin/options.php' == $details[ 2 ] ) {
 							unset( $submenu[ 'options-general.php' ][ $key ] );
 						}
-						if( 'codepress-admin-columns' == $details[ 2 ] ) {
+						if ( 'codepress-admin-columns' == $details[ 2 ] ) {
 							unset( $submenu[ 'options-general.php' ][ $key ] );
 						}
-						if( 'format-media-titles/format-media-titles.php' == $details[ 2 ] ) {
+						if ( 'format-media-titles/format-media-titles.php' == $details[ 2 ] ) {
 							unset( $submenu[ 'options-general.php' ][ $key ] );
 						}
-						if( 'tinymce-advanced' == $details[ 2 ] ) {
+						if ( 'tinymce-advanced' == $details[ 2 ] ) {
 							unset( $submenu[ 'options-general.php' ][ $key ] );
 						}
-						if( 'tpb-settings' == $details[ 2 ] ) {
+						if ( 'tpb-settings' == $details[ 2 ] ) {
 							unset( $submenu[ 'options-general.php' ][ $key ] );
 						}
-						if( 'settings-user-role-editor.php' == $details[ 2 ] ) {
+						if ( 'settings-user-role-editor.php' == $details[ 2 ] ) {
 							unset( $submenu[ 'options-general.php' ][ $key ] );
 						}
-						if( 'crontrol_admin_options_page' == $details[ 2 ] ) {
+						if ( 'crontrol_admin_options_page' == $details[ 2 ] ) {
 							unset( $submenu[ 'options-general.php' ][ $key ] );
 						}
-						if( 'nested-pages-settings' == $details[ 2 ] ) {
+						if ( 'nested-pages-settings' == $details[ 2 ] ) {
 							unset( $submenu[ 'options-general.php' ][ $key ] );
 						}
-						if( 'odb_settings_page' == $details[ 2 ] ) {
+						if ( 'odb_settings_page' == $details[ 2 ] ) {
 							unset( $submenu[ 'options-general.php' ][ $key ] );
 						}
 					}
@@ -538,7 +535,7 @@
 	function syn_clear_dashboard() {
 		global $wp_meta_boxes;
 		global $pagenow;
-		if( is_admin() && 'index.php' == $pagenow ) {
+		if ( is_admin() && 'index.php' == $pagenow ) {
 			remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
 			remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
 			remove_meta_box( 'dashboard_secondary', 'dashboard', 'side' ); // is this really in the side?
@@ -561,7 +558,7 @@
 		add_meta_box( 'recently_published_pages_dashboard_widget', $recently_published_pages_title, 'syn_list_recently_published', 'dashboard', 'side', 'core', [ 'post_type' => 'page' ] );
 		$recently_published_posts_title = ( get_field( 'syn_user_is_teacher', 'user_' . get_current_user_id() ) ) ? 'My Recently Published Posts' : 'Recently Published Posts';
 		add_meta_box( 'recently_published_posts_dashboard_widget', $recently_published_posts_title, 'syn_list_recently_published', 'dashboard', 'side', 'core', [ 'post_type' => 'post' ] );
-		if( syn_organization_is_school() ) {
+		if ( syn_organization_is_school() ) {
 			$class_list_title = ( get_field( 'syn_user_is_teacher', 'user_' . get_current_user_id() ) ) ? 'My Classes' : 'Teachers + Classes';
 			add_meta_box( 'class_list_dashboard_widget', $class_list_title, 'syn_list_classes', 'dashboard', 'normal', 'core' );
 		}
@@ -599,7 +596,7 @@
 		$hidden[] = 'revisionsdiv'; // Revisions
 		$hidden[] = 'tagsdiv-microblog'; // Tags
 		// hide from everyone but administrator and editor
-		if( ! current_user_can( 'administrator' ) && ! current_user_can( 'editor' ) ) {
+		if ( ! current_user_can( 'administrator' ) && ! current_user_can( 'editor' ) ) {
 			$hidden[] = 'pageparentdiv'; // Page Attributes
 			//$hidden[] = 'submitdiv'; // Publish
 		}
@@ -609,16 +606,16 @@
 
 	add_filter( 'login_redirect', 'syn_login_redirect', 20, 3 );
 	function syn_login_redirect( $redirect_to, $request, $user ) {
-		if( $user && $user instanceof WP_User ) {
+		if ( $user && $user instanceof WP_User ) {
 			$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user->ID );
-			if( $is_teacher ) {
+			if ( $is_teacher ) {
 				// send teacher to their page if it exists, if not, home.
 				$teacher_page = syn_get_teacher_page( $user->ID );
 
 				return get_the_permalink( $teacher_page->ID );
 			}
 		}
-		if( isset( $request ) ) {
+		if ( isset( $request ) ) {
 
 			return $request;
 		}
@@ -639,17 +636,17 @@
 	add_filter( 'acf/update_value/name=fax', 'syn_update_phone', 20 );
 	function syn_update_phone( $value ) {
 		// is $phone set and at least 7 characters
-		if( strlen( $value ) < 7 ) {
+		if ( strlen( $value ) < 7 ) {
 			return '';
 		}
 		// strip out all non-numeric characters
 		$phone  = preg_replace( "/[^0-9]/", "", $value );
 		$length = strlen( $phone );
 		// after stripping out non-numerics, check again if $phone at least 7 digits
-		if( strlen( $phone ) < 7 ) {
+		if ( strlen( $phone ) < 7 ) {
 			return '';
 		}
-		switch( $length ) {
+		switch ( $length ) {
 			case 7:
 				$value = preg_replace( "/([0-9]{3})([0-9]{4})/", "$1-$2", $phone );
 				break;
@@ -674,7 +671,7 @@
 		$tab = "\t";
 		echo '<script type="text/javascript">' . $lb;
 		echo $tab . '(function ($) {' . $lb;
-		if( 'syn_calendar' == get_post_type() ) :
+		if ( 'syn_calendar' == get_post_type() ) :
 			echo $tab . $tab . 'fetchCalendar(' . get_the_ID() . ');' . $lb;
 		endif;
 		//if ( have_rows( 'syn_google_maps', 'option' ) ) :
@@ -688,7 +685,7 @@
 	 * Set id field values to permanent id if not set
 	 */
 	function syn_update_id( $value ) {
-		if( empty( $value ) ) {
+		if ( empty( $value ) ) {
 			return syn_generate_permanent_id();
 		}
 
@@ -697,11 +694,11 @@
 
 // Select field loaders
 	function syn_load_categories( $field ) {
-		if( is_admin() && 'select' == $field[ 'type' ] ) {
+		if ( is_admin() && 'select' == $field[ 'type' ] ) {
 			$categories = get_categories( [ 'hide_empty' => false ] );
 			$choices    = [];
-			if( $categories ) {
-				foreach( $categories as $category ) {
+			if ( $categories ) {
+				foreach ( $categories as $category ) {
 					$choices[ $category->cat_ID ] = $category->name . ' (' . $category->count . ')';
 				}
 			}
@@ -713,11 +710,11 @@
 	}
 
 	function syn_load_microblogs( $field ) {
-		if( is_admin() && 'select' == $field[ 'type' ] ) {
+		if ( is_admin() && 'select' == $field[ 'type' ] ) {
 			$microblogs = get_terms( [ 'taxonomy' => 'microblog', 'hide_empty' => false ], '' );
 			$choices    = [];
-			if( $microblogs ) {
-				foreach( $microblogs as $microblog ) {
+			if ( $microblogs ) {
+				foreach ( $microblogs as $microblog ) {
 					$choices[ $microblog->term_id ] = $microblog->name . ' (' . $microblog->count . ')';
 				}
 			}
@@ -729,11 +726,12 @@
 	}
 
 	function syn_load_departments( $field ) {
-		if( is_admin() && 'select' == $field[ 'type' ] ) {
+		$active = get_field( 'syn_departments_active', 'option' );
+		if ( is_admin() && $active && 'select' == $field[ 'type' ] ) {
 			$choices     = [];
 			$departments = get_field( 'syn_departments', 'option' );
-			if( $departments ) {
-				foreach( $departments as $department ) {
+			if ( $departments && is_array( $departments ) ) {
+				foreach ( $departments as $department ) {
 					$choices[ $department[ 'department_id' ] ] = $department[ 'department' ];
 				}
 			}
@@ -744,11 +742,12 @@
 	}
 
 	function syn_load_buildings( $field ) {
-		if( is_admin() && 'select' == $field[ 'type' ] ) {
+		$active = get_field( 'syn_buildings_active', 'option' );
+		if ( is_admin() && $active && 'select' == $field[ 'type' ] ) {
 			$choices   = [];
 			$buildings = get_field( 'syn_buildings', 'option' );
-			if( $buildings ) {
-				foreach( $buildings as $building ) {
+			if ( $buildings ) {
+				foreach ( $buildings as $building ) {
 					$choices[ $building[ 'building_id' ] ] = $building[ 'building' ];
 				}
 			}
@@ -759,11 +758,12 @@
 	}
 
 	function syn_load_rooms( $field ) {
-		if( 'select' == $field[ 'type' ] ) {
+		$active = get_field( 'syn_rooms_active', 'option' );
+		if ( is_admin() && $active && 'select' == $field[ 'type' ] ) {
 			$choices = [];
 			$rooms   = get_field( 'syn_rooms', 'option' );
-			if( $rooms ) {
-				foreach( $rooms as $room ) {
+			if ( $rooms ) {
+				foreach ( $rooms as $room ) {
 					$choices[ $room[ 'room_id' ] ] = $room[ 'room' ];
 				}
 			}
@@ -774,7 +774,7 @@
 	}
 
 	function syn_load_terms( $field ) {
-		if( is_admin() && 'select' == $field[ 'type' ] ) {
+		if ( is_admin() && 'select' == $field[ 'type' ] ) {
 			$choices                  = [];
 			$term_type                = get_field( 'syn_term_type', 'option' );
 			$ayto_month               = get_field( 'syn_academic_year_turnover_month', 'option' );
@@ -785,7 +785,7 @@
 			$current_year_ayto_string = $current_year . '-' . $ayto_month . '-' . $ayto_date;
 			$current_year_ayto_date   = date_create( $current_year_ayto_string );
 			$academic_years           = [];
-			if( $now > $current_year_ayto_date ) {
+			if ( $now > $current_year_ayto_date ) {
 				$academic_years[] = $current_year . '-' . ( $current_year + 1 );
 				$academic_years[] = ( $current_year + 1 ) . '-' . ( $current_year + 2 );
 				$academic_years[] = ( $current_year + 2 ) . '-' . ( $current_year + 3 );
@@ -795,7 +795,7 @@
 				$academic_years[] = ( $current_year + 1 ) . '-' . ( $current_year + 2 );
 			}
 			$terms = [];
-			switch( $term_type ) {
+			switch ( $term_type ) {
 				case 'semester' :
 					$terms[ 'S1' ] = '1st Semester';
 					$terms[ 'S2' ] = '2nd Semester';
@@ -812,12 +812,12 @@
 					$terms[ 'Q4' ] = '4th Quarter';
 					break;
 			}
-			if( $summer_sessions ) {
+			if ( $summer_sessions ) {
 				$terms[ 'SS' ] = 'Summer Session';
 			}
 			$terms[ 'Y' ] = 'All Year';
-			foreach( $academic_years as $academic_year ) {
-				foreach( $terms as $key => $value ) {
+			foreach ( $academic_years as $academic_year ) {
+				foreach ( $terms as $key => $value ) {
 					$choices[ $academic_year . ' ' . $value ] = $academic_year . ' - ' . $value;
 				}
 			}
@@ -828,12 +828,12 @@
 	}
 
 	function syn_load_periods( $field ) {
-		//$periods_active = get_field( 'syn_periods_active', 'option' );
-		if( 'select' == $field[ 'type' ] ) {
+		$active = get_field( 'syn_periods_active', 'option' );
+		if ( is_admin() && $active && 'select' == $field[ 'type' ] ) {
 			$choices = [];
 			$periods = get_field( 'syn_periods', 'option' );
-			if( $periods ) {
-				foreach( $periods as $period ) {
+			if ( $periods && is_array( $periods ) ) {
+				foreach ( $periods as $period ) {
 					$choices[ $period[ 'period_id' ] ] = $period[ 'period' ];
 				}
 			}
@@ -844,11 +844,11 @@
 	}
 
 	function syn_load_courses( $field ) {
-		if( 'select' == $field[ 'type' ] ) {
+		if ( 'select' == $field[ 'type' ] ) {
 			$choices = [];
 			$courses = get_field( 'syn_courses', 'option' );
-			if( $courses ) {
-				foreach( $courses as $course ) {
+			if ( $courses && is_array( $courses ) ) {
+				foreach ( $courses as $course ) {
 					$choices[ $course[ 'course_id' ] ] = $course[ 'course' ];
 				}
 			}
@@ -859,94 +859,94 @@
 	}
 
 	function syn_load_organizations( $field ) {
-		if( 'select' == $field[ 'type' ] ) {
+		if ( 'select' == $field[ 'type' ] ) {
+			$choices       = [];
 			$organizations = get_field( 'syn_organizations', 'option' );
-			if( $organizations ) {
-				$choices = [];
-				foreach( $organizations as $organization ) {
+			if ( $organizations && is_array( $organizations ) ) {
+				foreach ( $organizations as $organization ) {
 					$choices[ $organization[ 'organization_id' ] ] = $organization[ 'organization' ];
 				}
-				$field[ 'choices' ] = $choices;
 			}
+			$field[ 'choices' ] = $choices;
 		}
 
 		return $field;
 	}
 
 	function syn_load_people( $field ) {
-		if( 'select' == $field[ 'type' ] ) {
-			$people = get_users( [
+		if ( 'select' == $field[ 'type' ] ) {
+			$choices = [];
+			$people  = get_users( [
 				'meta_key' => 'last_name',
 				'orderby'  => 'meta_value',
 			] );
-			if( $people ) {
-				$choices = [];
-				foreach( $people as $person ) {
+			if ( $people ) {
+				foreach ( $people as $person ) {
 					$choices[ $person->ID ] = $person->display_name . ' / ' . get_field( 'syn_user_title', 'user_' . $person->ID );
 				}
-				$field[ 'choices' ] = $choices;
 			}
+			$field[ 'choices' ] = $choices;
 		}
 
 		return $field;
 	}
 
 	function syn_load_administrators( $field ) {
-		if( is_admin() && 'select' == $field[ 'type' ] ) {
-			$people = get_users( 'role=administrator' );
-			if( $people ) {
-				$choices = [];
-				foreach( $people as $person ) {
+		if ( is_admin() && 'select' == $field[ 'type' ] ) {
+			$choices = [];
+			$people  = get_users( 'role=administrator' );
+			if ( $people ) {
+				foreach ( $people as $person ) {
 					$choices[ $person->ID ] = $person->display_name . ' (administrator)';
 				}
-				$field[ 'choices' ] = $choices;
 			}
+			$field[ 'choices' ] = $choices;
 		}
 
 		return $field;
 	}
 
 	function syn_load_pageless_teachers( $field ) {
-		if( is_admin() && 'select' == $field[ 'type' ] ) {
+		if ( is_admin() && 'select' == $field[ 'type' ] ) {
+			$choices  = [];
 			$teachers = syn_get_teachers(); // array of WP_User
-			if( $teachers ) {
-				$choices           = [];
+			if ( $teachers ) {
 				$teachers_pages    = syn_get_teachers_pages(); // array of WP_Post
 				$paged_teacher_ids = [];
-				if( $teachers_pages ) {
-					foreach( $teachers_pages as $teacher_page ) {
+				if ( $teachers_pages ) {
+					foreach ( $teachers_pages as $teacher_page ) {
 						$paged_teacher_ids[] = get_field( 'syn_page_teacher', $teacher_page->ID );
 					}
 				}
-				foreach( $teachers as $teacher ) {
-					if( 0 == count( $paged_teacher_ids ) || ( count( $paged_teacher_ids ) && ! in_array( $teacher->ID, $paged_teacher_ids ) ) ) {
+				foreach ( $teachers as $teacher ) {
+					if ( 0 == count( $paged_teacher_ids ) || ( count( $paged_teacher_ids ) && ! in_array( $teacher->ID, $paged_teacher_ids ) ) ) {
 						$choices[ $teacher->ID ] = $teacher->display_name;
 					}
 				}
-				$field[ 'choices' ] = $choices;
 			}
+			$field[ 'choices' ] = $choices;
 		}
 
 		return $field;
 	}
 
 	function syn_load_teachers( $field ) {
-		if( 'select' == $field[ 'type' ] ) {
+		if ( is_admin() && 'select' == $field[ 'type' ] ) {
+			$choices  = [];
 			$teachers = syn_get_teachers();
-			if( $teachers ) {
-				$choices = [];
-				foreach( $teachers as $teacher ) {
+			if ( $teachers ) {
+				foreach ( $teachers as $teacher ) {
 					$choices[ $teacher->ID ] = $teacher->display_name . ' / Teacher';
 				}
-				$field[ 'choices' ] = $choices;
 			}
+			$field[ 'choices' ] = $choices;
 		}
 
 		return $field;
 	}
 
 	function syn_load_users( $field ) {
-		if( 'select' == $field[ 'type' ] ) {
+		if ( is_admin() && 'select' == $field[ 'type' ] ) {
 			return syn_load_people( $field );
 		}
 
@@ -954,7 +954,7 @@
 	}
 
 	function syn_load_classes( $field ) {
-		if( 'select' == $field[ 'type' ] ) {
+		if ( is_admin() && 'select' == $field[ 'type' ] ) {
 			$teacher_pages = get_posts( [
 				'numberposts'  => - 1,
 				'post_type'    => 'page',
@@ -965,15 +965,15 @@
 				'fields'       => 'ids',
 			] );
 			$choices       = [];
-			if( $teacher_pages ) {
-				foreach( $teacher_pages as $teacher_page ) { // teacher_page is post->ID
+			if ( $teacher_pages ) {
+				foreach ( $teacher_pages as $teacher_page ) { // teacher_page is post->ID
 					$teacher_id   = get_field( 'syn_page_teacher', $teacher_page );
 					$teacher      = get_user_by( 'ID', $teacher_id );
 					$teacher_name = ( $teacher ) ? ' (' . $teacher->display_name . ')' : ' (Unknown)';
 					$classes      = get_field( 'syn_classes', $teacher_page );
-					if( $classes ) {
-						foreach( $classes as $class ) {
-							if( $class[ 'class_id' ] ) {
+					if ( $classes ) {
+						foreach ( $classes as $class ) {
+							if ( $class[ 'class_id' ] ) {
 								$choices[ $class[ 'class_id' ] ] = $class[ 'course' ];
 							}
 						}
@@ -988,19 +988,13 @@
 	}
 
 	function syn_load_facebook_pages( $field ) {
-		if( 'select' == $field[ 'type' ] ) {
+		if ( is_admin() && 'select' == $field[ 'type' ] ) {
+			$choices        = [];
 			$facebook_pages = get_field( 'syn_facebook_pages', 'option' );
-			if( $facebook_pages ) {
-				$choices = [];
-				foreach( $facebook_pages as $facebook_page ) {
+			if ( $facebook_pages ) {
+				foreach ( $facebook_pages as $facebook_page ) {
 					$choices[ $facebook_page[ 'facebook_page_id' ] ] = $facebook_page[ 'name' ];
 				}
-			}
-			$choices = [];
-			if( have_rows( 'syn_facebook_pages', 'option' ) ) {
-				while( have_rows( 'syn_facebook_pages', 'option' ) ) : the_row();
-					$choices[ get_sub_field( 'facebook_page_id' ) ] = get_sub_field( 'name' );
-				endwhile;
 			}
 			$field[ 'choices' ] = $choices;
 		}
@@ -1009,43 +1003,43 @@
 	}
 
 	function syn_load_google_calendars( $field ) {
-		if( 'select' == $field[ 'type' ] ) {
+		if ( is_admin() && 'select' == $field[ 'type' ] ) {
+			$choices   = [];
 			$calendars = syn_get_calendar_ids();
-			if( $calendars ) {
-				$choices = [];
-				if( 'syn_calendar_id' == $field[ '_name' ] ) {
+			if ( $calendars ) {
+				if ( 'syn_calendar_id' == $field[ '_name' ] ) {
 					$choices[ 0 ] = '+ New calendar';
 				}
-				foreach( $calendars as $calendar ) {
+				foreach ( $calendars as $calendar ) {
 					$choices[ $calendar ] = get_the_title( $calendar );
 				}
-				$field[ 'choices' ] = $choices;
 			}
+			$field[ 'choices' ] = $choices;
 		}
 
 		return $field;
 	}
 
 	function syn_load_google_maps( $field ) {
-		if( 'select' == $field[ 'type' ] ) {
+		if ( 'select' == $field[ 'type' ] ) {
+			$choices     = [];
 			$google_maps = get_field( 'syn_google_maps', 'option' );
-			if( $google_maps ) {
-				$choices = [];
-				foreach( $google_maps as $google_map ) {
+			if ( $google_maps ) {
+				foreach ( $google_maps as $google_map ) {
 					$choices[ $google_map[ 'google_map_id' ] ] = $google_map[ 'name' ];
 				}
-				$field[ 'choices' ] = $choices;
 			}
+			$field[ 'choices' ] = $choices;
 		}
 
 		return $field;
 	}
 
 	function syn_load_nav_menu( $field ) {
-		if( is_admin() ) {
+		if ( is_admin() ) {
 			$choices = [];
 			$menus   = get_terms( 'nav_menu', [ 'hide_empty' => true ] );
-			foreach( $menus as $menu ) {
+			foreach ( $menus as $menu ) {
 				$choices[ $menu->term_id ] = $menu->name;
 			}
 			$field[ 'choices' ] = $choices;
@@ -1059,14 +1053,14 @@
 		$teacher_pages = syn_get_teachers_pages();
 		$teachers      = [];
 		$teacher_ids   = [];
-		if( $teacher_pages ) {
-			foreach( $teacher_pages as $teacher_page ) {
-				if( have_rows( 'syn_classes', $teacher_page->ID ) ) {
+		if ( $teacher_pages ) {
+			foreach ( $teacher_pages as $teacher_page ) {
+				if ( have_rows( 'syn_classes', $teacher_page->ID ) ) {
 					while( have_rows( 'syn_classes', $teacher_page->ID ) ) : the_row();
 						$course = get_sub_field( 'course', false );
-						if( $course_id == $course ) {
+						if ( $course_id == $course ) {
 							$teacher_id = get_field( 'syn_page_teacher', $teacher_page->ID );
-							if( ! in_array( $teacher_id, $teacher_ids ) ) {
+							if ( ! in_array( $teacher_id, $teacher_ids ) ) {
 								$teacher               = syn_get_teacher( $teacher_id );
 								$teacher->teacher_page = $teacher_page;
 								$teachers[]            = $teacher;
@@ -1093,13 +1087,13 @@
 			'meta_compare' => '=',
 		];
 		$posts     = get_posts( $post_args );
-		if( 0 == count( $posts ) ) {
+		if ( 0 == count( $posts ) ) {
 			// create and return a new teachers page
 			$post_id = syn_create_teachers_page();
 			$post    = get_post( $post_id, OBJECT );
 
 			return $post;
-		} elseif( 1 < count( $posts ) ) {
+		} elseif ( 1 < count( $posts ) ) {
 			// Children test
 			// ...more than one teachers pages exist...determine which takes precedence, migrate children, trash extras, return winner
 			$has_children       = [];
@@ -1109,17 +1103,17 @@
 				'post_status' => [ 'publish', 'draft', 'future', 'pending', 'private' ],
 				'post_parent' => 0, // change for each iteration
 			];
-			foreach( $posts as $post ) {
+			foreach ( $posts as $post ) {
 				$post_children_args[ 'post_parent' ] = $post->ID;
 				$post_children                       = get_posts( $post_children_args );
-				if( count( $post_children ) ) {
+				if ( count( $post_children ) ) {
 					$has_children[] = $post;
 				} else {
 					$has_not_children[] = $post;
 				}
 			}
-			if( 1 == count( $has_children ) ) {
-				if( count( $has_not_children ) ) {
+			if ( 1 == count( $has_children ) ) {
+				if ( count( $has_not_children ) ) {
 					syn_trash_pages( $has_not_children );
 				}
 
@@ -1129,15 +1123,15 @@
 			// ...if only one post_status is published, return it
 			$is_published     = [];
 			$is_not_published = [];
-			foreach( $posts as $post ) {
-				if( 'publish' == $post->post_status ) {
+			foreach ( $posts as $post ) {
+				if ( 'publish' == $post->post_status ) {
 					$is_published[] = $post;
 				} else {
 					$is_not_published[] = $post;
 				}
 			}
-			if( 1 == count( $is_published ) ) {
-				if( count( $is_not_published ) ) {
+			if ( 1 == count( $is_published ) ) {
+				if ( count( $is_not_published ) ) {
 					syn_trash_pages( $is_not_published );
 				}
 
@@ -1169,7 +1163,7 @@
 
 	function syn_update_teachers_page( $post_id ) {
 		$teachers_page = get_post( $post_id, OBJECT );
-		if( $teachers_page instanceof WP_Post ) {
+		if ( $teachers_page instanceof WP_Post ) {
 			$args             = [
 				'ID'         => $post_id,
 				'post_title' => 'Teachers',
@@ -1186,13 +1180,13 @@
 
 	/*************************************** Teacher *****************************************/
 	function syn_get_teacher( $user_id ) {
-		if( ! isset( $user_id ) || ! is_numeric( $user_id ) ) {
+		if ( ! isset( $user_id ) || ! is_numeric( $user_id ) ) {
 			return false;
 		}
 		$user = get_user_by( 'ID', $user_id );
-		if( $user ) {
+		if ( $user ) {
 			$is_teacher = get_user_meta( $user->ID, 'syn_user_is_teacher' );
-			if( $is_teacher ) {
+			if ( $is_teacher ) {
 				return $user;
 			}
 		}
@@ -1203,7 +1197,7 @@
 	/*************************************** Teacher Page *****************************************/
 	function syn_get_teacher_page( $teacher_id, $include_trash = false ) {
 		$post_statuses = [ 'publish', 'draft', 'future', 'pending', 'private' ];
-		if( $include_trash ) {
+		if ( $include_trash ) {
 			$post_statuses[] = 'trash';
 		}
 		$post_args = [
@@ -1224,7 +1218,7 @@
 			],
 		];
 		$posts     = get_posts( $post_args );
-		if( 1 == count( $posts ) ) {
+		if ( 1 == count( $posts ) ) {
 			return $posts[ 0 ];
 		}
 
@@ -1233,14 +1227,14 @@
 
 	function syn_save_teacher_page( $teacher_id ) {
 		$teacher = syn_get_teacher( $teacher_id );
-		if( $teacher instanceof WP_User ) {
+		if ( $teacher instanceof WP_User ) {
 			$teacher_meta  = get_user_meta( $teacher_id );
 			$first_name    = $teacher_meta[ 'first_name' ][ 0 ];
 			$last_name     = $teacher_meta[ 'last_name' ][ 0 ];
 			$post_title    = $first_name . ' ' . $last_name;
 			$post_name     = syn_sluggify( $post_title );
 			$teachers_page = syn_get_teachers_page(); // Teachers page
-			if( $teachers_page instanceof WP_Post ) {// todo: test this...make sure a teachers page is always returned
+			if ( $teachers_page instanceof WP_Post ) {// todo: test this...make sure a teachers page is always returned
 				$args         = [
 					'post_type'   => 'page',
 					'post_title'  => $post_title,
@@ -1249,7 +1243,7 @@
 					'post_parent' => $teachers_page->ID,
 				];
 				$teacher_page = syn_get_teacher_page( $teacher_id, true );
-				if( $teacher_page ) {
+				if ( $teacher_page ) {
 					$args[ 'ID' ]           = $teacher_page->ID;
 					$args[ 'post_content' ] = $teacher_page->post_content;
 					$args[ 'post_status' ]  = ( 'trash' != $teacher_page->post_status ) ? $teacher_page->post_status : 'draft';
@@ -1282,10 +1276,10 @@
 
 	function syn_trash_teacher_page( $teacher_id ) {
 		$teacher_page = syn_get_teacher_page( $teacher_id ); // returns WP_Post object
-		if( $teacher_page ) {
+		if ( $teacher_page ) {
 			$teacher_class_pages = syn_get_teacher_class_pages( $teacher_id );
-			if( $teacher_class_pages ) {
-				foreach( $teacher_class_pages as $teacher_class_page ) {
+			if ( $teacher_class_pages ) {
+				foreach ( $teacher_class_pages as $teacher_class_page ) {
 					wp_delete_post( $teacher_class_page->ID );
 				}
 			}
@@ -1296,12 +1290,12 @@
 
 	/*************************************** Teacher Class *****************************************/
 	function syn_get_teacher_class( $teacher_id, $class_id ) {
-		if( $teacher_id && $class_id ) {
+		if ( $teacher_id && $class_id ) {
 			$teacher_page    = syn_get_teacher_page( $teacher_id );
 			$teacher_classes = syn_get_teacher_classes( $teacher_page->ID );
-			if( $teacher_classes ) {
-				foreach( $teacher_classes as $teacher_class ) {
-					if( $class_id == $teacher_class[ 'class_id' ] ) {
+			if ( $teacher_classes ) {
+				foreach ( $teacher_classes as $teacher_class ) {
+					if ( $class_id == $teacher_class[ 'class_id' ] ) {
 						return $teacher_class;
 					}
 				}
@@ -1321,7 +1315,7 @@
 	 */
 	function syn_get_teacher_class_page( $teacher_id, $class_id, $include_trash = false ) {
 		$post_statuses = [ 'publish', 'draft', 'future', 'pending', 'private' ];
-		if( $include_trash ) {
+		if ( $include_trash ) {
 			$post_statuses[] = 'trash';
 		}
 		$post_args = [
@@ -1347,7 +1341,7 @@
 			],
 		];
 		$posts     = get_posts( $post_args );
-		if( 1 == count( $posts ) ) {
+		if ( 1 == count( $posts ) ) {
 			return $posts[ 0 ];
 		}
 
@@ -1370,7 +1364,7 @@
 	 */
 	function syn_get_teacher_class_pages( $teacher_id, $include_trash = false ) {
 		$post_statuses = [ 'publish', 'draft', 'future', 'pending', 'private' ];
-		if( $include_trash ) {
+		if ( $include_trash ) {
 			$post_statuses[] = 'trash';
 		}
 		$args  = [
@@ -1397,12 +1391,12 @@
 
 	function syn_save_teacher_classes( $teacher_id ) {
 		$teacher_page = syn_get_teacher_page( $teacher_id );
-		if( $teacher_page instanceof WP_Post ) {
+		if ( $teacher_page instanceof WP_Post ) {
 			$teacher_class_pages = syn_get_teacher_class_pages( $teacher_id, true );
 			$tcp_ids             = [];
 			$tcp_pages           = [];
-			if( $teacher_class_pages ) {
-				foreach( $teacher_class_pages as $teacher_class_page ) {
+			if ( $teacher_class_pages ) {
+				foreach ( $teacher_class_pages as $teacher_class_page ) {
 					$class_id               = get_field( 'syn_page_class', $teacher_class_page->ID );
 					$tcp_ids[]              = $class_id;
 					$tcp_pages[ $class_id ] = $teacher_class_page;
@@ -1411,10 +1405,10 @@
 			$teacher_classes = syn_get_teacher_classes( $teacher_page->ID );
 			$tc_ids          = [];
 			$tc_args         = [];
-			if( $teacher_classes ) {
-				foreach( $teacher_classes as $teacher_class ) {
+			if ( $teacher_classes ) {
+				foreach ( $teacher_classes as $teacher_class ) {
 					$include_page = $teacher_class[ 'include_page' ];
-					if( $include_page ) {
+					if ( $include_page ) {
 						$tc_ids[]                                = $teacher_class[ 'class_id' ];
 						$cp_title                                = $teacher_class[ 'course' ];
 						$tc_args[ $teacher_class[ 'class_id' ] ] = [
@@ -1428,7 +1422,7 @@
 				}
 				// does - classes that have a page
 				$does = array_intersect( $tc_ids, $tcp_ids );
-				foreach( $does as $class_id ) {
+				foreach ( $does as $class_id ) {
 					$args                   = $tc_args[ $class_id ];
 					$tcp                    = $tcp_pages[ $class_id ];
 					$args[ 'ID' ]           = $tcp->ID;
@@ -1441,7 +1435,7 @@
 				}
 				// should - classes that don't have a page
 				$should = array_diff( $tc_ids, $tcp_ids );
-				foreach( $should as $class_id ) {
+				foreach ( $should as $class_id ) {
 					$args                   = $tc_args[ $class_id ];
 					$args[ 'post_status' ]  = 'draft';
 					$args[ 'post_content' ] = syn_get_class_page_content();
@@ -1452,7 +1446,7 @@
 				}
 				// should_not - pages without a class
 				$should_not = array_diff( $tcp_ids, $tc_ids );
-				foreach( $should_not as $class_id ) {
+				foreach ( $should_not as $class_id ) {
 					$del_res = syn_trash_teacher_class_page( $teacher_id, $class_id );
 				}
 			}
@@ -1469,7 +1463,7 @@
 	 */
 	function syn_trash_teacher_class_page( $teacher_id, $class_id ) {
 		$class_page = syn_get_teacher_class_page( $teacher_id, $class_id );
-		if( $class_page instanceof WP_Post ) {
+		if ( $class_page instanceof WP_Post ) {
 			$del_res = wp_delete_post( $class_page->ID );
 
 			return $del_res;
@@ -1487,9 +1481,9 @@
 	 */
 	function syn_trash_teacher_class_pages( $teacher_id ) {
 		$class_pages = syn_get_teacher_class_pages( $teacher_id );
-		if( $class_pages ) {
+		if ( $class_pages ) {
 			$del_res_arr = [];
-			foreach( $class_pages as $class_page ) {
+			foreach ( $class_pages as $class_page ) {
 				$del_res                        = wp_delete_post( $class_page->ID );
 				$del_res_arr[ $class_page->ID ] = $del_res;
 			}
@@ -1530,7 +1524,7 @@
 	/*************************************** Teachers Pages *****************************************/
 	function syn_get_teachers_pages( $include_trash = false ) {
 		$post_statuses = [ 'publish', 'draft', 'future', 'pending', 'private' ];
-		if( $include_trash ) {
+		if ( $include_trash ) {
 			$post_statuses[] = 'trash';
 		}
 		$post_args = [
@@ -1554,7 +1548,7 @@
 	function syn_get_teachers_classes() {
 		$teachers_pages = syn_get_teachers_pages();
 		$classes        = [];
-		foreach( $teachers_pages as $teacher_page ) {
+		foreach ( $teachers_pages as $teacher_page ) {
 			$teacher_classes = syn_get_teacher_classes( $teacher_page->ID );
 			$classes         = array_merge( $classes, $teacher_classes );
 		}
@@ -1565,13 +1559,13 @@
 	function syn_get_teachers_class_pages( $include_trash = false ) {
 		$teachers    = syn_get_teachers();
 		$teacher_ids = [];
-		if( $teachers ) {
-			foreach( $teachers as $teacher ) {
+		if ( $teachers ) {
+			foreach ( $teachers as $teacher ) {
 				$teacher_ids[] = $teacher->ID;
 			}
 		}
 		$post_statuses = [ 'publish', 'draft', 'future', 'pending', 'private' ];
-		if( $include_trash ) {
+		if ( $include_trash ) {
 			$post_statuses[] = 'trash';
 		}
 		$args  = [
@@ -1599,7 +1593,7 @@
 	/*************************************** Organization(s) *****************************************/
 	function syn_get_organization() {
 		$organization = get_field( 'syn_organization', 'option' );
-		if( $organization ) {
+		if ( $organization ) {
 			$org                        = [];
 			$org[ 'organization_id' ]   = get_field( 'syn_organization_id', 'option' );
 			$org[ 'organization' ]      = $organization;
@@ -1625,11 +1619,11 @@
 	function syn_get_organization_type_label() {
 		$org_type       = syn_get_organization_type();
 		$org_type_array = explode( '_', $org_type );
-		if( 'school_district' == $org_type ) {
+		if ( 'school_district' == $org_type ) {
 			return 'District';
-		} elseif( 'coe' == $org_type ) {
+		} elseif ( 'coe' == $org_type ) {
 			return 'COE';
-		} elseif( 'school' == $org_type_array[ count( $org_type_array ) - 1 ] ) {
+		} elseif ( 'school' == $org_type_array[ count( $org_type_array ) - 1 ] ) {
 			return 'School';
 		} else {
 			return 'Organization';
@@ -1639,11 +1633,11 @@
 	function syn_get_organizations_type_label() {
 		$org_type       = syn_get_organization_type();
 		$org_type_array = explode( '_', $org_type );
-		if( 'school_district' == $org_type ) {
+		if ( 'school_district' == $org_type ) {
 			return 'Schools';
-		} elseif( 'coe' == $org_type ) {
+		} elseif ( 'coe' == $org_type ) {
 			return 'Districts';
-		} elseif( 'school' == $org_type_array[ count( $org_type_array ) - 1 ] ) {
+		} elseif ( 'school' == $org_type_array[ count( $org_type_array ) - 1 ] ) {
 			return 'Organizations';
 		} else {
 			return 'Organizations';
@@ -1652,7 +1646,7 @@
 
 	function syn_get_organization_type() {
 		$organization = syn_get_organization();
-		if( ! $organization ) {
+		if ( ! $organization ) {
 			return 'other';
 		} else {
 			return $organization[ 'organization_type' ][ 'value' ];
@@ -1673,7 +1667,7 @@
 			'middle_school',
 			'jr_high_school',
 		];
-		if( in_array( $organization_type, $school_types ) ) {
+		if ( in_array( $organization_type, $school_types ) ) {
 			return true;
 		}
 
@@ -1681,9 +1675,9 @@
 	}
 
 	function syn_trash_pages( $posts ) {
-		if( is_array( $posts ) ) {
-			foreach( $posts as $post ) {
-				if( $post instanceof WP_Post ) {
+		if ( is_array( $posts ) ) {
+			foreach ( $posts as $post ) {
+				if ( $post instanceof WP_Post ) {
 					wp_delete_post( $post->ID, false );
 				} else {
 					wp_delete_post( $post[ 'ID' ] );
@@ -1691,11 +1685,11 @@
 			}
 
 			return true;
-		} elseif( $posts instanceof WP_Post ) {
+		} elseif ( $posts instanceof WP_Post ) {
 			wp_delete_post( $posts->ID );
 
 			return true;
-		} elseif( is_int( $posts ) ) {
+		} elseif ( is_int( $posts ) ) {
 			wp_delete_post( $posts );
 
 			return true;
@@ -1705,7 +1699,7 @@
 	}
 
 	function syn_get_page_template( $post_id ) {
-		if( 'page' == get_post_type( $post_id ) ) {
+		if ( 'page' == get_post_type( $post_id ) ) {
 			$page_meta              = get_post_meta( $post_id );
 			$page_template_path     = $page_meta[ '_wp_page_template' ];
 			$page_template_path_arr = explode( '/', $page_template_path[ 0 ] );
@@ -1737,7 +1731,7 @@
 		$organization = get_field( 'syn_organization', 'option' );
 		$lb           = "\n";
 		$tab          = "\t";
-		echo '<div class="final-footer d-print-none">' . $lb;
+		echo '<div class="final-footer">' . $lb;
 		echo $tab . '<div class="container-fluid">' . $lb;
 		echo $tab . $tab . '<div class="row">' . $lb;
 		echo $tab . $tab . $tab . '<div class="col-lg-12">' . $lb;
@@ -1757,10 +1751,10 @@
 		echo $tab . $tab . $tab . '<div class="col-lg-4 text-lg-center"></div>' . $lb;
 		echo $tab . $tab . $tab . '<div class="col-lg-4 text-lg-right">' . $lb;
 		echo $tab . $tab . $tab . $tab . '<div class="login-bug">' . $lb;
-		if( is_user_logged_in() ) {
-			echo $tab . $tab . $tab . $tab . $tab . '<a href="' . wp_logout_url( get_the_permalink() ) . '" class="login-button btn btn-sm btn-primary">Logout</a>' . $lb;
+		if ( is_user_logged_in() ) {
+			echo $tab . $tab . $tab . $tab . $tab . '<a href="' . wp_logout_url( get_the_permalink() ) . '" class="login-button">Logout</a>' . $lb;
 		} else {
-			echo $tab . $tab . $tab . $tab . $tab . '<a href="' . wp_login_url( get_the_permalink() ) . '" class="login-button btn btn-sm btn-primary">Login</a>' . $lb;
+			echo $tab . $tab . $tab . $tab . $tab . '<a href="' . wp_login_url( get_the_permalink() ) . '" class="login-button">Login</a>' . $lb;
 		}
 		echo $tab . $tab . $tab . $tab . $tab . syn_bug() . $lb;
 		echo $tab . $tab . $tab . $tab . '</div>' . $lb;
@@ -1785,24 +1779,24 @@
 	 */
 	function syn_breadcrumbs() {
 		global $post;
-		if( is_front_page() ) {
+		if ( is_front_page() ) {
 			return;
 		}
-		$breadcrumbs = '<div class="breadcrumb-wrapper d-print-none">';
+		$breadcrumbs = '<div class="breadcrumb-wrapper">';
 		$breadcrumbs .= '<div class="' . esc_html( get_theme_mod( 'syntric_container_type' ) ) . '">';
 		$breadcrumbs .= '<nav class="breadcrumb">';
 		$breadcrumbs .= '<a class="breadcrumb-item" href="' . home_url() . '">Home</a>';
-		if( is_home() ) {
+		if ( is_home() ) {
 			$post_type_labels = get_post_type_labels( get_post_type_object( 'post' ) );
 			$breadcrumbs      .= '<a class="breadcrumb-item active" href="' . esc_url( get_post_type_archive_link( 'post' ) ) . '">' . esc_html( $post_type_labels->name ) . '</a>';
 		}
-		if( is_archive() ) {
+		if ( is_archive() ) {
 			$active = ( is_archive() ) ? ' active' : '';
-			if( 'syn_event' == $post->post_type || 'syn_calendar' == $post->post_type ) {
+			if ( 'syn_event' == $post->post_type || 'syn_calendar' == $post->post_type ) {
 				$post_type_labels = get_post_type_labels( get_post_type_object( 'syn_calendar' ) );
 				$breadcrumbs      .= '<span class="breadcrumb-item">' . esc_html( $post_type_labels->name ) . '</span>';
 				$breadcrumbs      .= '<span class="breadcrumb-item' . $active . '">' . esc_html( $post_type_labels->name ) . '</span>';
-			} elseif( 'syn_calendar' == $post->post_type ) {
+			} elseif ( 'syn_calendar' == $post->post_type ) {
 				$post_type_labels = get_post_type_labels( get_post_type_object( 'syn_calendar' ) );
 				$breadcrumbs      .= '<span class="breadcrumb-item' . $active . '">' . esc_html( $post_type_labels->name ) . '</span>';
 			} else {
@@ -1810,18 +1804,18 @@
 				$breadcrumbs .= '<a class="breadcrumb-item' . $active . '" href="' . esc_url( get_category_link( $categories[ 0 ]->term_id ) ) . '">' . esc_html( $categories[ 0 ]->name ) . '</a>';
 			}
 		}
-		if( is_single() ) { // post, syn_calendar or syn_event
-			if( 'syn_event' == $post->post_type ) {
+		if ( is_single() ) { // post, syn_calendar or syn_event
+			if ( 'syn_event' == $post->post_type ) {
 				$calendar_post_type_labels = get_post_type_labels( get_post_type_object( 'syn_calendar' ) );
 				$event_post_type_labels    = get_post_type_labels( get_post_type_object( 'syn_event' ) );
 				$event_calendar_id         = get_field( 'syn_event_calendar_id', $post->ID );
 				$breadcrumbs               .= '<span class="breadcrumb-item">' . esc_html( $calendar_post_type_labels->name ) . '</span>';
 				$breadcrumbs               .= '<a class="breadcrumb-item" href="' . esc_url( get_the_permalink( $event_calendar_id ) ) . '">' . esc_html( get_the_title( $event_calendar_id ) ) . '</a>';
 				$breadcrumbs               .= '<span class="breadcrumb-item">' . esc_html( $event_post_type_labels->name ) . '</span>';
-			} elseif( 'syn_calendar' == $post->post_type ) {
+			} elseif ( 'syn_calendar' == $post->post_type ) {
 				$calendar_post_type_labels = get_post_type_labels( get_post_type_object( 'syn_calendar' ) );
 				$breadcrumbs               .= '<span class="breadcrumb-item">' . esc_html( $calendar_post_type_labels->name ) . '</span>';
-			} elseif( 'attachment' == $post->post_type ) {
+			} elseif ( 'attachment' == $post->post_type ) {
 				$attachment = wp_get_attachment_metadata( $post->ID );
 			} else {
 				$categories  = get_the_category( $post->ID );
@@ -1829,12 +1823,12 @@
 			}
 			$breadcrumbs .= '<a class="breadcrumb-item active" href="' . esc_url( get_the_permalink( $post->ID ) ) . '">' . esc_html( get_the_title( $post->ID ) ) . '</a>';
 		}
-		if( is_page() ) {
+		if ( is_page() ) {
 			$ancestor_ids = array_reverse( get_post_ancestors( $post->ID ) );
-			if( $ancestor_ids ) {
-				foreach( $ancestor_ids as $ancestor_id ) {
+			if ( $ancestor_ids ) {
+				foreach ( $ancestor_ids as $ancestor_id ) {
 					$ancestor = get_post( $ancestor_id );
-					if( 0 == $ancestor->post_parent ) {
+					if ( 0 == $ancestor->post_parent ) {
 						$breadcrumbs .= '<span class="breadcrumb-item">' . esc_html( $ancestor->post_title ) . '</span>';
 					} else {
 						$breadcrumbs .= '<a class="breadcrumb-item" href="' . esc_url( get_the_permalink( $ancestor->ID ) ) . '">' . esc_html( $ancestor->post_title ) . '</a>';
@@ -1843,10 +1837,10 @@
 			}
 			$breadcrumbs .= '<a class="breadcrumb-item active" href="' . esc_url( get_the_permalink( $post->ID ) ) . '">' . esc_html( get_the_title( $post->ID ) ) . '</a>';
 		}
-		if( is_search() ) {
+		if ( is_search() ) {
 			$breadcrumbs .= '<span class="breadcrumb-item active">Search Results</span>';
 		}
-		if( is_404() ) {
+		if ( is_404() ) {
 			$breadcrumbs .= '<span class="breadcrumb-item active">Page Not Found</span>';
 		}
 		$breadcrumbs .= '</nav>';
@@ -1857,17 +1851,17 @@
 
 	function syn_banner() {
 		// todo: come back and fix this...kinda clunky
-		if( has_header_image() ) {
+		if ( has_header_image() ) {
 			$header_image           = get_header_image();
 			$banner_style_attribute = ' style="background-image: url(' . $header_image . '); min-height: 400px;" ';
 		} else {
 			$banner_style_attribute = ' style="min-height: 0;" ';
 		}
 		$jumbotrons = get_field( 'syn_jumbotrons', 'option' );
-		if( has_header_image() || $jumbotrons ) {
+		if ( has_header_image() || $jumbotrons ) {
 			$lb  = "\n";
 			$tab = "\t";
-			echo '<div class="banner-wrapper d-none d-lg-block d-print-none" aria-hidden="true"' . $banner_style_attribute . 'role="banner">' . $lb;
+			echo '<div class="banner-wrapper" aria-hidden="true"' . $banner_style_attribute . 'role="banner">' . $lb;
 			echo syn_jumbotron();
 			echo '</div>' . $lb;
 		}
@@ -1875,45 +1869,43 @@
 
 	function syn_jumbotron() {
 		global $post;
-		if( ! $post ) {
+		if ( ! $post ) {
 			return;
 		}
 		$jumbotrons = get_field( 'syn_jumbotrons', 'option' );
-		if( $jumbotrons ) {
+		if ( $jumbotrons ) {
 			$jumbotron = false;
-			foreach( $jumbotrons as $_jumbotron ) {
+			foreach ( $jumbotrons as $_jumbotron ) {
 				$filters        = $_jumbotron[ 'filters' ];
 				$start_datetime = $_jumbotron[ 'start_datetime' ];
 				$end_datetime   = $_jumbotron[ 'end_datetime' ];
 				$pass_filters   = ( 0 < count( $filters ) ) ? syn_process_filters( $filters, $post ) : true;
 				$pass_schedule  = ( $start_datetime || $end_datetime ) ? syn_process_schedule( $start_datetime, $end_datetime ) : true;
-				if( $pass_filters && $pass_schedule ) {
+				if ( $pass_filters && $pass_schedule ) {
 					$jumbotron = $_jumbotron;
 					break;
 				}
 			}
-			if( $jumbotron ) {
+			if ( $jumbotron ) {
 				$lb  = "\n";
 				$tab = "\t";
 				echo '<div class="jumbotron-wrapper">' . $lb;
-				echo $tab . '<div class="container">' . $lb;
 				echo $tab . $tab . '<h1 class="jumbotron-headline">' . $jumbotron[ 'headline' ] . '</h1>' . $lb;
 				echo $tab . $tab . '<div class="jumbotron-caption">' . $jumbotron[ 'caption' ] . '</div>' . $lb;
-				if( $jumbotron[ 'include_button' ] ) {
+				if ( $jumbotron[ 'include_button' ] ) {
 					$button_href   = ( 'page' == $jumbotron[ 'button_target' ] ) ? $jumbotron[ 'button_page' ] : $jumbotron[ 'button_url' ];
 					$window_target = ( 'page' == $jumbotron[ 'button_target' ] ) ? '_self' : '_blank';
-					echo $tab . $tab . '<a href="' . $button_href . '" class="jumbotron-button btn btn-lg btn-primary" target="' . $window_target . '">' . $jumbotron[ 'button_text' ] . '</a>' . $lb;
+					echo $tab . $tab . $tab . '<a href="' . $button_href . '" class="jumbotron-button" target="' . $window_target . '">' . $jumbotron[ 'button_text' ] . '</a>' . $lb;
 				}
-				echo $tab . '</div>' . $lb;
 				echo '</div>' . $lb;
 			}
 		}
 	}
 
-// front-end displays
+// front-end lists
 	function syn_display_teachers() {
 		$teachers = syn_get_teachers();
-		if( $teachers ) {
+		if ( $teachers ) {
 			echo '<h2>Teacher Roster</h2>';
 			echo '<table class="table-roster">';
 			echo '<thead>';
@@ -1925,7 +1917,7 @@
 			echo '</tr>';
 			echo '</thead>';
 			echo '<tbody>';
-			foreach( $teachers as $teacher ) {
+			foreach ( $teachers as $teacher ) {
 				$full_name              = $teacher->display_name;
 				$title                  = get_field( 'syn_user_title', 'user_' . $teacher->ID );
 				$email                  = $teacher->data->user_email;
@@ -1933,10 +1925,10 @@
 				$teacher_page_published = ( $teacher_page && 'publish' == $teacher_page->post_status ) ? true : false;
 				$teacher_classes        = ( $teacher_page_published ) ? get_field( 'syn_classes', $teacher_page->ID ) : false;
 				$class_array            = [];
-				if( $teacher_classes ) {
-					foreach( $teacher_classes as $class ) {
+				if ( $teacher_classes ) {
+					foreach ( $teacher_classes as $class ) {
 						$class_page = syn_get_teacher_class_page( $teacher->ID, $class[ 'class_id' ] );
-						if( $class_page instanceof WP_Post && 'publish' == $class_page->post_status ) {
+						if ( $class_page instanceof WP_Post && 'publish' == $class_page->post_status ) {
 							$class_array[] = '<a href="' . get_the_permalink( $class_page->ID ) . '">' . $class_page->post_title . '</a>';
 						} else {
 							$class_array[] = $class[ 'course' ];
@@ -1945,11 +1937,11 @@
 				}
 				echo '<tr valign="top">';
 				echo '<td nowrap="nowrap">';
-				if( $teacher_page_published ) {
+				if ( $teacher_page_published ) {
 					echo '<a href="' . get_the_permalink( $teacher_page->ID ) . '">';
 				}
 				echo $full_name;
-				if( $teacher_page_published ) {
+				if ( $teacher_page_published ) {
 					echo '</a>';
 				}
 				echo '</td>';
@@ -1964,10 +1956,10 @@
 
 	function syn_display_teacher_classes() {
 		global $post;
-		if( 'page' == $post->post_type ) {
+		if ( 'page' == $post->post_type ) {
 			$teacher_id = get_field( 'syn_page_teacher', $post->ID );
-			if( $teacher_id ) {
-				if( have_rows( 'syn_classes', $post->ID ) ) {
+			if ( $teacher_id ) {
+				if ( have_rows( 'syn_classes', $post->ID ) ) {
 					$periods_active = get_field( 'syn_periods_active', 'option' );
 					$rooms_active   = get_field( 'syn_rooms_active', 'option' );
 					echo '<h2>Classes</h2>';
@@ -1975,11 +1967,11 @@
 					echo '<thead>';
 					echo '<tr>';
 					echo '<th scope="col">Term</th>';
-					if( $periods_active ) {
+					if ( $periods_active ) {
 						echo '<th scope="col">Period</th>';
 					}
 					echo '<th scope="col">Course</th>';
-					if( $rooms_active ) {
+					if ( $rooms_active ) {
 						echo '<th scope="col">Room</th>';
 					}
 					echo '</tr>';
@@ -1991,19 +1983,19 @@
 						$page = syn_get_teacher_class_page( $teacher_id, $class_id );
 						echo '<tr>';
 						echo '<td>' . get_sub_field( 'term' ) . '</td>';
-						if( $periods_active ) {
+						if ( $periods_active ) {
 							echo '<td>' . get_sub_field( 'period' ) . '</td>';
 						}
 						echo '<td>';
-						if( $page instanceof WP_Post && 'publish' == $page->post_status ) {
+						if ( $page instanceof WP_Post && 'publish' == $page->post_status ) {
 							echo '<a href="' . get_the_permalink( $page->ID ) . '">';
 						}
 						echo get_sub_field( 'course' );
-						if( $page instanceof WP_Post && 'publish' == $page->post_status ) {
+						if ( $page instanceof WP_Post && 'publish' == $page->post_status ) {
 							echo '</a>';
 						}
 						echo '</td>';
-						if( $rooms_active ) {
+						if ( $rooms_active ) {
 							echo '<td>' . get_sub_field( 'room' ) . '</td>';
 						}
 						echo '</tr>';
@@ -2018,12 +2010,12 @@
 	function syn_display_department_courses() {
 		global $post;
 		$departments_active = get_field( 'syn_departments_active', 'option' );
-		if( $departments_active ) {
+		if ( $departments_active ) {
 			$department = get_field( 'syn_page_department', $post->ID );
-			if( $department ) {
+			if ( $department ) {
 				$courses = get_field( 'syn_courses', 'option' );
-				if( $courses ) {
-					foreach( $courses as $key => $row ) {
+				if ( $courses ) {
+					foreach ( $courses as $key => $row ) {
 						$c[ $key ] = $row[ 'course' ];
 					}
 					array_multisort( $c, SORT_ASC, $courses );
@@ -2036,19 +2028,19 @@
 					echo '</tr>';
 					echo '</thead>';
 					echo '<tbody>';
-					foreach( $courses as $course ) {
-						if( $department == $course[ 'department' ] ) {
+					foreach ( $courses as $course ) {
+						if ( $department == $course[ 'department' ] ) {
 							$teachers     = syn_get_course_teachers( $course[ 'course_id' ] );
 							$teachers_val = '';
-							if( count( $teachers ) ) {
+							if ( count( $teachers ) ) {
 								$teachers_vals = [];
-								foreach( $teachers as $teacher ) {
+								foreach ( $teachers as $teacher ) {
 									$teacher_val = '';
-									if( $teacher->data->teacher_page instanceof WP_Post && 'publish' == $teacher->data->teacher_page->post_status ) {
+									if ( $teacher->data->teacher_page instanceof WP_Post && 'publish' == $teacher->data->teacher_page->post_status ) {
 										$teacher_val .= '<a href="' . get_the_permalink( $teacher->data->teacher_page->ID ) . '">';
 									}
 									$teacher_val .= $teacher->data->display_name;
-									if( $teacher->data->teacher_page instanceof WP_Post && 'publish' == $teacher->data->teacher_page->post_status ) {
+									if ( $teacher->data->teacher_page instanceof WP_Post && 'publish' == $teacher->data->teacher_page->post_status ) {
 										$teacher_val .= '</a>';
 									}
 									$teachers_vals[] = $teacher_val;
@@ -2080,7 +2072,7 @@
 			//'orderby'       => array( 'menu_order' => 'ASC' ),
 			'no_found_rows' => true,
 		];
-		if( $is_teacher ) {
+		if ( $is_teacher ) {
 			$args[ 'author' ] = $user_id;
 		}
 		$pendings = get_posts( $args );
@@ -2089,9 +2081,9 @@
 		echo '<tr>';
 		echo '<th scope="col">Title</th>';
 		echo '<th scope="col">Status</th>';
-		if( 'page' == $post_type ) {
+		if ( 'page' == $post_type ) {
 			echo '<th scope="col" nowrap="nowrap">Template</th>';
-		} elseif( 'post' == $post_type ) {
+		} elseif ( 'post' == $post_type ) {
 			echo '<th scope="col" nowrap="nowrap">Category</th>';
 		}
 		echo '<th scope="col">Author</th>';
@@ -2099,19 +2091,19 @@
 		echo '</tr>';
 		echo '</thead>';
 		echo '<tbody>';
-		if( $pendings ) {
-			foreach( $pendings as $pending ) {
+		if ( $pendings ) {
+			foreach ( $pendings as $pending ) {
 				echo '<tr>';
 				echo '<td nowrap="nowrap">';
 				echo '<a href="/wp-admin/post.php?action=edit&post=' . $pending->ID . '">' . $pending->post_title . '</a>';
 				echo '</td>';
 				echo '<td class="status">' . $pending->post_status . '</td>';
-				if( 'page' == $pending->post_type ) {
+				if ( 'page' == $pending->post_type ) {
 					echo '<td class="template">' . syn_get_page_template( $pending->ID ) . '</td>';
-				} elseif( 'post' == $pending->post_type ) {
+				} elseif ( 'post' == $pending->post_type ) {
 					$categories = get_the_category( $pending->ID );
 					$cats       = [];
-					foreach( $categories as $category ) {
+					foreach ( $categories as $category ) {
 						$cats[] = $category->name;
 					}
 					echo '<td class="category">' . implode( ', ', $cats ) . '</td>';
@@ -2139,7 +2131,7 @@
 			'post_status'   => [ 'publish' ],
 			'no_found_rows' => true,
 		];
-		if( $is_teacher ) {
+		if ( $is_teacher ) {
 			$args[ 'author' ] = $user_id;
 		}
 		$recents = get_posts( $args );
@@ -2148,9 +2140,9 @@
 		echo '<tr>';
 		echo '<th scope="col">Title</th>';
 		echo '<th scope="col">Status</th>';
-		if( 'page' == $post_type ) {
+		if ( 'page' == $post_type ) {
 			echo '<th scope="col" nowrap="nowrap">Template</th>';
-		} elseif( 'post' == $post_type ) {
+		} elseif ( 'post' == $post_type ) {
 			echo '<th scope="col" nowrap="nowrap">Category</th>';
 		}
 		echo '<th scope="col">Author</th>';
@@ -2158,7 +2150,7 @@
 		echo '</tr>';
 		echo '</thead>';
 		echo '<tbody>';
-		foreach( $recents as $recent ) {
+		foreach ( $recents as $recent ) {
 			//$pub_since = syn_get_time_interval( $recent->post_date );
 			echo '<tr>';
 			echo '<td>';
@@ -2171,12 +2163,12 @@
 			echo '</td>';
 			$status = ( 'publish' == $recent->post_status ) ? 'Published' : $recent->post_status;
 			echo '<td class="status">' . $status . '</td>';
-			if( 'page' == $post_type ) {
+			if ( 'page' == $post_type ) {
 				echo '<td class="template">' . syn_get_page_template( $recent->ID ) . '</td>';
-			} elseif( 'post' == $post_type ) {
+			} elseif ( 'post' == $post_type ) {
 				$categories = get_the_category( $recent->ID );
 				$cats       = [];
-				foreach( $categories as $category ) {
+				foreach ( $categories as $category ) {
 					$cats[] = $category->name;
 				}
 				echo '<td class="category">' . implode( ', ', $cats ) . '</td>';
@@ -2190,20 +2182,20 @@
 	}
 
 	function syn_list_classes() {
-		if( ! is_admin() ) {
+		if ( ! is_admin() ) {
 			return;
 		}
 		$user_id    = get_current_user_id();
 		$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user_id );
-		if( current_user_can( 'administrator' ) || current_user_can( 'editor' ) ) {
+		if ( current_user_can( 'administrator' ) || current_user_can( 'editor' ) ) {
 			$teachers = syn_get_teachers();
-		} elseif( $is_teacher ) {
+		} elseif ( $is_teacher ) {
 			$teachers   = [];
 			$teachers[] = syn_get_teacher( $user_id );
 		} else { // todo: fix when subscriber/contributor/non-teacher author are implemented, if ever
 			$teachers = []; // nothing to show...
 		}
-		if( $teachers ) {
+		if ( $teachers ) {
 			$periods_active = get_field( 'syn_periods_active', 'option' );
 			$rooms_active   = get_field( 'syn_rooms_active', 'option' );
 			usort( $teachers, function( $a, $b ) {
@@ -2214,10 +2206,10 @@
 			echo '<tr>';
 			echo '<th scope="col">Term</th>';
 			echo '<th scope="col">Class</th>';
-			if( $periods_active ) {
+			if ( $periods_active ) {
 				echo '<th scope="col">Period</th>';
 			}
-			if( $rooms_active ) {
+			if ( $rooms_active ) {
 				echo '<th scope="col">Room</th>';
 			}
 			echo '<th scope="col">Status</th>';
@@ -2227,14 +2219,14 @@
 			$cols            = 3;
 			$cols            = ( $periods_active ) ? $cols + 1 : $cols;
 			$cols            = ( $rooms_active ) ? $cols + 1 : $cols;
-			foreach( $teachers as $teacher ) {
+			foreach ( $teachers as $teacher ) {
 				$teacher_page        = syn_get_teacher_page( $teacher->ID );
 				$teacher_page_status = $teacher_page->post_status;
-				if( ! $is_teacher && $teacher->ID != $current_teacher ) {
+				if ( ! $is_teacher && $teacher->ID != $current_teacher ) {
 					echo '<thead>';
 					echo '<tr class="list-group-header">';
 					echo '<td colspan="' . $cols . '">';
-					if( $teacher_page ) :
+					if ( $teacher_page ) :
 						echo '<a href="/wp-admin/post.php?action=edit&post=' . $teacher_page->ID . '">' . $teacher->user_firstname . ' ' . $teacher->user_lastname . '</a>';
 					else :
 						echo $teacher->user_firstname . ' ' . $teacher->user_lastname;
@@ -2246,25 +2238,25 @@
 				}
 				$classes = get_field( 'syn_classes', $teacher_page->ID );
 				echo '<tbody>';
-				if( $classes ) {
-					foreach( $classes as $class ) {
+				if ( $classes ) {
+					foreach ( $classes as $class ) {
 						$class_page = syn_get_teacher_class_page( $teacher->ID, $class[ 'class_id' ] );
 						$period     = ( $periods_active && isset( $class[ 'period' ] ) ) ? $class[ 'period' ] : '';
 						$room       = ( $rooms_active && isset( $class[ 'room' ] ) ) ? $class[ 'room' ] : '';
 						echo '<tr>';
 						echo '<td class="term">' . $class[ 'term' ] . '</td>';
 						echo '<td>';
-						if( $class_page ) :
+						if ( $class_page ) :
 							echo '<a href="/wp-admin/post.php?action=edit&post=' . $class_page->ID . '">' . $class_page->post_title . '</a>';
 						else :
 							echo $class_page->post_title;
 						endif;
 						echo '</td>';
-						if( $periods_active ) {
+						if ( $periods_active ) {
 							$period_label = ( $period ) ? 'Period ' . $period : '';
 							echo '<td class="period">' . $period_label . '</td>';
 						}
-						if( $rooms_active ) {
+						if ( $rooms_active ) {
 							$room_label = ( $room ) ? 'Room ' . $room : '';
 							echo '<td class="room">' . $room_label . '</td>';
 						}
@@ -2306,9 +2298,9 @@
 		];
 		$posts = get_posts( $args );
 		echo '<ul class="admin_pages_sidenav">';
-		if( $posts ) {
+		if ( $posts ) {
 			$link_to_edit = get_admin_url() . '/post.php?action=edit&post=';
-			foreach( $posts as $post ) {
+			foreach ( $posts as $post ) {
 				$status        = ( 'publish' != $post->post_status ) ? ' - ' . ucfirst( $post->post_status ) : '';
 				$page_template = syn_get_page_template( $post->ID );
 				//slog( $page_template );
@@ -2324,9 +2316,9 @@
 	function syn_qn_teachers_pages() {
 		$posts = syn_get_teachers_pages();
 		echo '<ul class="admin_pages_sidenav">';
-		if( $posts ) {
+		if ( $posts ) {
 			$link_to_edit = get_admin_url() . '/post.php?action=edit&post=';
-			foreach( $posts as $post ) {
+			foreach ( $posts as $post ) {
 				$status = ( 'publish' != $post->post_status ) ? ' - ' . ucfirst( $post->post_status ) : '';
 				echo '<li><a href="' . $link_to_edit . $post->ID . '">' . $post->post_title . '</a>' . $status . '</li>';
 			}
@@ -2339,12 +2331,12 @@
 	function syn_qn_teachers_class_pages() {
 		$posts = syn_get_teachers_class_pages();
 		echo '<ul class="admin_pages_sidenav">';
-		if( $posts ) {
+		if ( $posts ) {
 			$link_to_edit = get_admin_url() . '/post.php?action=edit&post=';
 			$teacher_id   = 0;
-			foreach( $posts as $post ) {
+			foreach ( $posts as $post ) {
 				$teacher = syn_get_teacher( get_field( 'syn_page_class_teacher', $post->ID ) );
-				if( $teacher_id != $teacher->ID ) {
+				if ( $teacher_id != $teacher->ID ) {
 					echo '<li><strong>' . $teacher->display_name . '</strong></li>';
 					$teacher_id = $teacher->ID;
 				}
@@ -2363,11 +2355,11 @@
 		$pub_hours    = ( 0 < (int) $pub_interval->format( '%h' ) ) ? $pub_interval->format( '%h' ) : '';
 		$pub_minutes  = ( 0 < (int) $pub_interval->format( '%i' ) ) ? $pub_interval->format( '%i' ) : '';
 		$pub_since    = '';
-		if( 1 < $pub_days ) {
+		if ( 1 < $pub_days ) {
 			$pub_since = $pub_days . ' days';
-		} elseif( 1 < $pub_hours ) {
+		} elseif ( 1 < $pub_hours ) {
 			$pub_since = $pub_hours . ' hours';
-		} elseif( 1 < $pub_minutes ) {
+		} elseif ( 1 < $pub_minutes ) {
 			$pub_since = $pub_minutes . ' minutes';
 		} else {
 			$pub_since = 'Just now';
@@ -2377,10 +2369,10 @@
 	}
 
 	function syn_columns( $start = 2, $end = 6 ) {
-		for ( $i=$start; $i<=$end; $i++ ) {
-			$width_pct = 100/$i - 0.01;
+		for ( $i = $start; $i <= $end; $i ++ ) {
+			$width_pct = 100 / $i - 0.01;
 			echo '<div class="d-flex flex-row" style="margin: 0 -5px;">';
-			for ( $j=1; $j<=$i; $j++ ) {
+			for ( $j = 1; $j <= $i; $j ++ ) {
 				echo '<div style="width: ' . $width_pct . '%; text-align: left; margin: 5px; background-color: white; font-size: 0.75rem;">';
 				//echo '<p>Fixed width:<br>';
 				//echo 'Full width:</p>';
@@ -2390,6 +2382,7 @@
 			echo '</div>';
 		}
 	}
+
 //
 //
 // Bone yard
@@ -2402,22 +2395,22 @@
 		 */
 		$post_type      = get_post_type( $post_id );
 		$post_parent_id = wp_get_post_parent_id( $post_id );
-		if( 0 !== (int) $post_parent_id ) {
+		if ( 0 !== (int) $post_parent_id ) {
 			$post_breadcrumbs = '<span class="post-breadcrumb-ancestors">';
-			if( 'page' == $post_type ) {
+			if ( 'page' == $post_type ) {
 				$ancestor_ids = array_reverse( get_post_ancestors( $post_id ) );
-				if( $ancestor_ids ) {
+				if ( $ancestor_ids ) {
 					$ancestor_count = 1;
-					foreach( $ancestor_ids as $ancestor_id ) {
+					foreach ( $ancestor_ids as $ancestor_id ) {
 						$ancestor         = get_post( $ancestor_id );
 						$post_breadcrumbs .= esc_html( $ancestor->post_title );
-						if( count( $ancestor_ids ) != $ancestor_count ) {
+						if ( count( $ancestor_ids ) != $ancestor_count ) {
 							$post_breadcrumbs .= ' > ';
 						}
 						$ancestor_count ++;
 					}
 				}
-			} elseif( 'post' == $post_type ) {
+			} elseif ( 'post' == $post_type ) {
 				$category_ids     = wp_get_post_categories( $post_id );
 				$category         = get_category( $category_ids[ 0 ] );
 				$post_breadcrumbs .= $category->name;

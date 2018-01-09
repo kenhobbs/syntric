@@ -12,11 +12,7 @@
 			<div class="row">
 				<?php syn_sidebar( 'main', 'left' ); ?>
 				<main id="content" class="col content-area content">
-					<header class="page-header">
-						<h1 class="page-title">
-							<?php the_title(); ?>
-						</h1>
-					</header>
+					<h1 class="page-title"><?php the_title(); ?></h1>
 					<?php
 					syn_sidebar( 'main', 'top' );
 					if ( have_posts() ) {

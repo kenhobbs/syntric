@@ -4,4 +4,5 @@
 			<?php the_content(); ?>
 		</div>
 	</article>
-<?php endif; ?><?php syn_display_teachers(); ?>
+<?php endif; ?>
+<?php syn_display_teachers(); ?>

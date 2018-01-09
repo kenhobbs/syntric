@@ -135,7 +135,7 @@ var watcherArgs = {
 // File watcher
 gulp.task('watch', function () {
 
-	// SASS watchers
+	// SASS watchers   , '!' + dirs.src_sass + '_*.scss'
 	gulp.watch([dirs.src_sass + '*.scss', '!' + dirs.src_sass + '*-admin.scss', '!' + dirs.src_sass + '_*.scss'], {ignoreInitial: true}, ['compileSASS']);
 	gulp.watch([dirs.src_admin_sass + '*-admin.scss'], {ignoreInitial: true}, ['compileAdminSASS']);
 

@@ -139,6 +139,9 @@
 			register_nav_menus(
 				[
 					'primary' => __( 'Primary Menu', 'syntric' ),
+					'notices' => __( 'Notices Menu', 'syntric' ),
+					'quick' => __( 'Quick Menu', 'syntric' ),
+					'sitemap' => __( 'Sitemap', 'syntric' ),
 				]
 			);
 			/**
@@ -187,6 +190,7 @@
 				],
 			] );
 			//~~~~~~~~~ Setup defaults for customizer settings
+			// todo: can these be eliminated?
 			/**
 			 * Default body container width
 			 */

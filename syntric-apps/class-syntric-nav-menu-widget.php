@@ -24,14 +24,14 @@
 		 */
 		public function widget( $args, $instance ) {
 			global $post;
-			if( 'page' != $post->post_type ) {
+			if ( 'page' != $post->post_type ) {
 				return;
 			}
-			if( ! isset( $args[ 'widget_id' ] ) ) {
+			if ( ! isset( $args[ 'widget_id' ] ) ) {
 				$args[ 'widget_id' ] = $this->id;
 			}
 			$nav_menu = get_field( 'syn_nav_menu_widget_menu', 'widget_' . $args[ 'widget_id' ] );
-			if( $nav_menu ) :
+			if ( $nav_menu ) :
 				$lb          = "\n";
 				$tab         = "\t";
 				$sidebar     = syn_widget_sidebar( $args[ 'widget_id' ] );
@@ -41,20 +41,15 @@
 				echo $lb;
 				echo $args[ 'before_widget' ] . $lb;
 				echo $args[ 'before_title' ] . $ancestor->post_title . $args[ 'after_title' ] . $lb;
-				$nav_menu_args          = [
-					'container'       => '',
-					'container_id'    => '',
-					'container_class' => '',
-					'menu'            => $nav_menu,
-					'menu_id'         => syn_generate_permanent_id(),
-					'menu_class'      => 'menu',
-					'depth'           => $depth,
-					'fallback_cb'     => '',
-					//'link_before'     => '',
-					//'link_after'      => '',
+				$nav_menu_args = [
+					'container' => 'nav',
+					'menu'       => $nav_menu,
+					'menu_id'    => syn_generate_permanent_id(),
+					'menu_class' => 'nav',
+					'depth'      => $depth,
 				];
-				$nav_menu_filtered_args = apply_filters( 'widget_nav_menu_args', $nav_menu_args, $nav_menu, $args, $instance );
-				wp_nav_menu( $nav_menu_filtered_args );
+				//$nav_menu_filtered_args = apply_filters( 'widget_nav_menu_args', $nav_menu_args, $nav_menu, $args, $instance );
+				syn_nav_menu( $nav_menu_args );
 				echo $args[ 'after_widget' ] . $lb;
 			endif;
 		}
@@ -69,7 +64,7 @@
 		 */
 		public function update( $new_instance, $old_instance ) {
 			$instance = [];
-			if( ! empty( $new_instance[ 'syn-nav-menu-widget' ] ) ) {
+			if ( ! empty( $new_instance[ 'syn-nav-menu-widget' ] ) ) {
 				$instance[ 'syn-nav-menu-widget' ] = (int) $new_instance[ 'syn-nav-menu-widget' ];
 			}
 

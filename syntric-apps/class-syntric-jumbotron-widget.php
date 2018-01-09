@@ -88,7 +88,7 @@
 					$button_href   = ( 'page' == $jumbotron[ 'button_target' ] ) ? $jumbotron[ 'button_page' ] : $jumbotron[ 'button_url' ];
 					$window_target = ( 'page' == $jumbotron[ 'button_target' ] ) ? '_self' : '_blank';
 					echo '<div class="jumbotron-button">';
-					echo '<a href="' . $button_href . '" class="jumbotron-link btn" target="' . $window_target . '">';
+					echo '<a href="' . $button_href . '" class="jumbotron-button" target="' . $window_target . '">';
 					echo $jumbotron[ 'button_text' ];
 					echo '</a>';
 					echo '</div>';

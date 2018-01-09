@@ -41,7 +41,7 @@ function syn_pagination() {
 	/**    Link to first page, plus ellipses if necessary */
 	if ( ! in_array( 1, $links ) ) {
 		$class = 1 == $paged ? ' class="page-item active"' : ' class="page-item"';
-		printf( '<li%s><a href="%s" class="btn btn-outline-primary">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( 1 ) ), '1' );
+		printf( '<li%s><a href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( 1 ) ), '1' );
 		if ( ! in_array( 2, $links ) ) {
 			echo '<li><span>…</span></li>';
 		}
@@ -50,7 +50,7 @@ function syn_pagination() {
 	sort( $links );
 	foreach ( (array) $links as $link ) {
 		$class = $paged == $link ? ' class="page-item active"' : ' class="page-item"';
-		printf( '<li%s><a href="%s" class="btn btn-outline-primary">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( $link ) ), $link );
+		printf( '<li%s><a href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( $link ) ), $link );
 	}
 	/**    Link to last page, plus ellipses if necessary */
 	if ( ! in_array( $max, $links ) ) {
@@ -58,7 +58,7 @@ function syn_pagination() {
 			echo '<li><span>…</span></li>' . "\n";
 		}
 		$class = $paged == $max ? ' class="page-item active"' : ' class="page-item"';
-		printf( '<li%s><a href="%s" class="btn btn-outline-primary">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( $max ) ), $max );
+		printf( '<li%s><a href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( $max ) ), $max );
 	}
 	/**    Next Post Link */
 	if ( get_next_posts_link() ) {
@@ -68,10 +68,10 @@ function syn_pagination() {
 	echo '</nav>' . "\n";
 }
 
-add_filter('next_posts_link_attributes', 'syn_previous_next_posts_link_attributes');
-add_filter('previous_posts_link_attributes', 'syn_previous_next_posts_link_attributes');
+//add_filter('next_posts_link_attributes', 'syn_previous_next_posts_link_attributes');
+//add_filter('previous_posts_link_attributes', 'syn_previous_next_posts_link_attributes');
 function syn_previous_next_posts_link_attributes() {
-	return 'class="btn btn-outline-primary"';
+	//return 'class="btn-outline-primary"';
 }
 
 

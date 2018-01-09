@@ -18,7 +18,9 @@ get_header(); ?>
 			<div class="row">
 				<?php syn_sidebar( 'main', 'left' ); ?>
 				<main id="content" class="col content-area content">
-					<h1 class="page-title" role="heading"><?php the_title(); ?><?php
+					<h1 class="page-title" role="heading">
+						<?php the_title(); ?>
+						<?php
 						echo '<span class="badge badge-pill badge-secondary">' . $class[ 'term' ] . '</span>';
 						if ( $teacher ) {
 							echo '<span class="badge badge-pill badge-secondary">' . $teacher->display_name . '</span>';
@@ -29,7 +31,8 @@ get_header(); ?>
 						if ( $rooms_active && ! empty( $class[ 'room' ] ) ) {
 							echo '<span class="badge badge-pill badge-secondary">Room ' . $class[ 'room' ] . '</span>';
 						}
-						?></h1>
+						?>
+					</h1>
 					<?php
 					syn_sidebar( 'main', 'top' );
 					if ( have_posts() ) {
