@@ -1,136 +1,131 @@
 {
-	"key": "group_59eda3ec00b40",
-	"title": "Periods",
-	"fields": [
-		{
-			"key": "field_59bb95dec1fa1",
-			"label": "Active",
-			"name": "syn_periods_active",
-			"type": "true_false",
-			"value": null,
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "-collapsed-target",
-				"id": ""
-			},
-			"message": "",
-			"default_value": 0,
-			"ui": 1,
-			"ui_on_text": "",
-			"ui_off_text": ""
-		},
-		{
-			"key": "field_59bb9590c1f9e",
-			"label": "Periods",
-			"name": "syn_periods",
-			"type": "repeater",
-			"value": null,
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": [
-				[
-					{
-						"field": "field_59bb95dec1fa1",
-						"operator": "==",
-						"value": "1"
-					}
-				]
-			],
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"collapsed": "field_59bb95b2c1f9f",
-			"min": 0,
-			"max": 0,
-			"layout": "table",
-			"button_label": "Add Period",
-			"collapse_all_repeater": 0,
-			"btn-icon-only": 1,
-			"sub_fields": [
-				{
-					"key": "field_59bb95b2c1f9f",
-					"label": "Period",
-					"name": "period",
-					"type": "text",
-					"value": null,
-					"instructions": "",
-					"required": 1,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "",
-						"class": "",
-						"id": ""
-					},
-					"default_value": "",
-					"placeholder": "",
-					"prepend": "",
-					"append": "",
-					"maxlength": ""
-				},
-				{
-					"key": "field_59eda58233d68",
-					"label": "Instructional Period",
-					"name": "instructional_period",
-					"type": "true_false",
-					"value": null,
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "10",
-						"class": "",
-						"id": ""
-					},
-					"message": "",
-					"default_value": 0,
-					"ui": 1,
-					"ui_on_text": "",
-					"ui_off_text": ""
-				},
-				{
-					"key": "field_59bd7e699681b",
-					"label": "Period ID",
-					"name": "period_id",
-					"type": "text",
-					"value": null,
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "1",
-						"class": "hidden",
-						"id": ""
-					},
-					"default_value": "",
-					"placeholder": "",
-					"prepend": "",
-					"append": "",
-					"maxlength": ""
-				}
-			]
-		}
-	],
-	"location": [
-		[
-			{
-				"param": "options_page",
-				"operator": "==",
-				"value": "syntric-periods"
-			}
-		]
-	],
-	"menu_order": 0,
-	"position": "normal",
-	"style": "default",
-	"label_placement": "top",
-	"instruction_placement": "label",
-	"hide_on_screen": "",
-	"active": 1,
-	"description": "",
-	"modified": 1509794539
+    "key": "group_59eda3ec00b40",
+    "title": "Periods",
+    "fields": [
+        {
+            "key": "field_59bb95dec1fa1",
+            "label": "Active",
+            "name": "syn_periods_active",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "-collapsed-target",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_59bb9590c1f9e",
+            "label": "Periods",
+            "name": "syn_periods",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_59bb95dec1fa1",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_59bb95b2c1f9f",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Add Period",
+            "collapse_all_repeater": 0,
+            "btn-icon-only": 1,
+            "sub_fields": [
+                {
+                    "key": "field_59bb95b2c1f9f",
+                    "label": "Period",
+                    "name": "period",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "75",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_59eda58233d68",
+                    "label": "Instructional Period",
+                    "name": "instructional_period",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
+                    "key": "field_59bd7e699681b",
+                    "label": "Period ID",
+                    "name": "period_id",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "1",
+                        "class": "hidden",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "syntric-periods"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1515605258
 }
