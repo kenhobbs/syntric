@@ -270,7 +270,10 @@
 			$wp_admin_bar->add_node( $site_name_node );
 			// Add some targeted links in the dropdown here...for Teachers - My Page (Or maybe that should go in My Account (upper right),
 			// for everyone links to Home Page, Calendars, News and more as appropriate and that make sense for the Org type
-		} else {
+		}
+		if ( ! is_admin() ) {
+			// Site Name node - Appearance + Themes + Widgets + Menus + Header
+			// Redux - Dashboard + Pages + Posts + Media + Organization + Calendars + Jumbotrons + Google Maps + Users + Comments + Customize + Widgets + Sidebars + Social Media
 			$site_name_node        = $wp_admin_bar->get_node( 'site-name' );
 			$site_name_node->title = 'Admin';
 			$wp_admin_bar->add_node( $site_name_node );
@@ -297,7 +300,34 @@
 			$posts_node->group  = '';
 			$posts_node->meta   = [];
 			$wp_admin_bar->add_node( $posts_node );
+			// Media menu item
+			$media_node         = new stdClass();
+			$media_node->id     = 'media';
+			$media_node->title  = 'Media';
+			$media_node->parent = 'site-name';
+			$media_node->href   = '/wp-admin/upload.php';
+			$media_node->group  = '';
+			$media_node->meta   = [];
+			$wp_admin_bar->add_node( $media_node );
 			if ( current_user_can( 'administrator' ) || current_user_can( 'editor' ) ) {
+				// Organization menu item
+				$organization_node         = new stdClass();
+				$organization_node->id     = 'organization';
+				$organization_node->title  = 'Organization';
+				$organization_node->parent = 'site-name';
+				$organization_node->href   = '/wp-admin/admin.php?page=syntric-organization';
+				$organization_node->group  = '';
+				$organization_node->meta   = [];
+				$wp_admin_bar->add_node( $organization_node );
+				// Calendars menu item
+				$calendars_node         = new stdClass();
+				$calendars_node->id     = 'calendars';
+				$calendars_node->title  = 'Calendars';
+				$calendars_node->parent = 'site-name';
+				$calendars_node->href   = '/wp-admin/edit.php?post_type=syn_calendar';
+				$calendars_node->group  = '';
+				$calendars_node->meta   = [];
+				$wp_admin_bar->add_node( $calendars_node );
 				// Jumbotrons menu item
 				$jumbotrons_node         = new stdClass();
 				$jumbotrons_node->id     = 'jumbotrons';
@@ -307,6 +337,15 @@
 				$jumbotrons_node->group  = '';
 				$jumbotrons_node->meta   = [];
 				$wp_admin_bar->add_node( $jumbotrons_node );
+				// Google Maps menu item
+				$google_maps_node         = new stdClass();
+				$google_maps_node->id     = 'google_maps';
+				$google_maps_node->title  = 'Google Maps';
+				$google_maps_node->parent = 'site-name';
+				$google_maps_node->href   = '/wp-admin/admin.php?page=syntric-google-maps';
+				$google_maps_node->group  = '';
+				$google_maps_node->meta   = [];
+				$wp_admin_bar->add_node( $google_maps_node );
 				// Users menu item
 				$users_node         = new stdClass();
 				$users_node->id     = 'users';
@@ -316,15 +355,51 @@
 				$users_node->group  = '';
 				$users_node->meta   = [];
 				$wp_admin_bar->add_node( $users_node );
-				// Headers menu item
-				$headers_node         = new stdClass();
-				$headers_node->id     = 'headers';
-				$headers_node->title  = 'Headers';
-				$headers_node->parent = 'site-name';
-				$headers_node->href   = '/wp-admin/customize.php?return=%2Fwp-admin%2F&autofocus%5Bcontrol%5D=header_image';
-				$headers_node->group  = '';
-				$headers_node->meta   = [];
-				$wp_admin_bar->add_node( $headers_node );
+				// Comments menu item
+				$comments_node         = new stdClass();
+				$comments_node->id     = 'comments';
+				$comments_node->title  = 'Comments';
+				$comments_node->parent = 'site-name';
+				$comments_node->href   = '/wp-admin/edit-comments.php';
+				$comments_node->group  = '';
+				$comments_node->meta   = [];
+				$wp_admin_bar->add_node( $comments_node );
+				// Customizer menu item
+				$customizer_node         = new stdClass();
+				$customizer_node->id     = 'customizer';
+				$customizer_node->title  = 'Customizer';
+				$customizer_node->parent = 'site-name';
+				$customizer_node->href   = '/wp-admin/customize.php';
+				$customizer_node->group  = '';
+				$customizer_node->meta   = [];
+				$wp_admin_bar->add_node( $customizer_node );
+				// Widgets menu item
+				$widgets_node         = new stdClass();
+				$widgets_node->id     = 'widgets';
+				$widgets_node->title  = 'Widgets';
+				$widgets_node->parent = 'site-name';
+				$widgets_node->href   = '/wp-admin/widgets.php';
+				$widgets_node->group  = '';
+				$widgets_node->meta   = [];
+				$wp_admin_bar->add_node( $widgets_node );
+				// Sidebars menu item
+				$sidebars_node         = new stdClass();
+				$sidebars_node->id     = 'sidebars';
+				$sidebars_node->title  = 'Sidebars';
+				$sidebars_node->parent = 'site-name';
+				$sidebars_node->href   = '/wp-admin/options-general.php?page=syntric-sidebars-widgets';
+				$sidebars_node->group  = '';
+				$sidebars_node->meta   = [];
+				$wp_admin_bar->add_node( $sidebars_node );
+				// Social Media menu item
+				$social_media_node         = new stdClass();
+				$social_media_node->id     = 'social_media';
+				$social_media_node->title  = 'Social Media';
+				$social_media_node->parent = 'site-name';
+				$social_media_node->href   = '/wp-admin/options-general.php?page=syntric-social-media';
+				$social_media_node->group  = '';
+				$social_media_node->meta   = [];
+				$wp_admin_bar->add_node( $social_media_node );
 			}
 		}
 		// Modify the Account menu item/dropdown - drop "Howdy" and have only 2 dropdowns: Profile and Logout
@@ -667,18 +742,20 @@
 	/*************************************** After footer (after all scripts are loaded) *****************************************/
 	add_action( 'wp_print_footer_scripts', 'syn_print_after_footer', 99 );
 	function syn_print_after_footer() {
-		$lb  = "\n";
-		$tab = "\t";
-		echo '<script type="text/javascript">' . $lb;
-		echo $tab . '(function ($) {' . $lb;
-		if ( 'syn_calendar' == get_post_type() ) :
-			echo $tab . $tab . 'fetchCalendar(' . get_the_ID() . ');' . $lb;
+		if ( 'syn_calendar' == get_post_type() || have_rows( 'syn_google_maps', 'options' ) ) :
+			$lb  = "\n";
+			$tab = "\t";
+			echo '<script type="text/javascript">' . $lb;
+			echo $tab . '(function ($) {' . $lb;
+			if ( 'syn_calendar' == get_post_type() ) :
+				echo $tab . $tab . 'fetchCalendar(' . get_the_ID() . ');' . $lb;
+			endif;
+			if ( have_rows( 'syn_google_maps', 'option' ) ) :
+				echo $tab . $tab . 'fetchMaps();' . $lb;
+			endif;
+			echo $tab . '})(jQuery);' . $lb;
+			echo '</script>' . $lb;
 		endif;
-		//if ( have_rows( 'syn_google_maps', 'option' ) ) :
-		echo $tab . $tab . 'fetchMaps();' . $lb;
-		//endif;
-		echo $tab . '})(jQuery);' . $lb;
-		echo '</script>' . $lb;
 	}
 
 	/**
@@ -1853,7 +1930,7 @@
 		// todo: come back and fix this...kinda clunky
 		if ( has_header_image() ) {
 			$header_image           = get_header_image();
-			$banner_style_attribute = ' style="background-image: url(' . $header_image . '); min-height: 400px;" ';
+			$banner_style_attribute = ' style="background-image: url(' . $header_image . ');" ';
 		} else {
 			$banner_style_attribute = ' style="min-height: 0;" ';
 		}
@@ -1889,7 +1966,11 @@
 			if ( $jumbotron ) {
 				$lb  = "\n";
 				$tab = "\t";
-				echo '<div class="jumbotron-wrapper">' . $lb;
+				//echo '<div class="' . esc_html( get_theme_mod( 'syntric_container_type' ) ) . '">' . $lb;
+				//echo '<div class="row">';
+				//echo '<div class="col-1"></div>';
+				//echo '<div class="col-10">';
+				echo '<div class="jumbotron-wrapper">';
 				echo $tab . $tab . '<h1 class="jumbotron-headline">' . $jumbotron[ 'headline' ] . '</h1>' . $lb;
 				echo $tab . $tab . '<div class="jumbotron-caption">' . $jumbotron[ 'caption' ] . '</div>' . $lb;
 				if ( $jumbotron[ 'include_button' ] ) {
@@ -1897,7 +1978,11 @@
 					$window_target = ( 'page' == $jumbotron[ 'button_target' ] ) ? '_self' : '_blank';
 					echo $tab . $tab . $tab . '<a href="' . $button_href . '" class="jumbotron-button" target="' . $window_target . '">' . $jumbotron[ 'button_text' ] . '</a>' . $lb;
 				}
-				echo '</div>' . $lb;
+				echo '</div>';
+				//echo '</div>';
+				//echo '<div class="col-1"></div>';
+				//echo '</div>';
+				//echo '</div>' . $lb;
 			}
 		}
 	}

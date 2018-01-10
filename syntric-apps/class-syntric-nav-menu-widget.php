@@ -42,7 +42,7 @@
 				echo $args[ 'before_widget' ] . $lb;
 				echo $args[ 'before_title' ] . $ancestor->post_title . $args[ 'after_title' ] . $lb;
 				$nav_menu_args = [
-					'container' => 'nav',
+					//'container' => 'nav',
 					'menu'       => $nav_menu,
 					'menu_id'    => syn_generate_permanent_id(),
 					'menu_class' => 'nav',

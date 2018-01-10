@@ -256,7 +256,7 @@
 		 * )*/
 		$menu_classes = ( property_exists( $args, 'menu_class' ) && ! empty( $args->menu_class ) ) ? explode( ' ', $args->menu_class ) : [];
 		if ( in_array( 'navbar-nav', $menu_classes ) ) {
-			for ( $i = 1; $i < count( $sorted_menu_items ); $i ++ ) {
+			for ( $i = 1; $i <= count( $sorted_menu_items ); $i ++ ) {
 				$smi_classes = $sorted_menu_items[$i]->classes;
 				$classes   = [];
 				$classes[] = 'nav-item';
@@ -277,24 +277,40 @@
 				$sorted_menu_items[ $i ]->classes = $classes;
 			}
 		} elseif ( in_array( 'nav', $menu_classes ) ) {
-			/*$top_ancestor_id = syn_get_top_ancestor_id( $post->ID );
+			$top_ancestor_id = syn_get_top_ancestor_id( $post->ID );
 			$in_ancestor     = 0;
-			foreach ( $sorted_menu_items as $sorted_menu_item ) {
+			$smi = [];
+			for ( $j = 1; $j <= count( $sorted_menu_items ); $j ++ ) {
+			//foreach ( $sorted_menu_items as $sorted_menu_item ) {
 				if ( $in_ancestor ) {
-					if ( 0 == wp_get_post_parent_id( $sorted_menu_item->object_id ) ) {
+					if ( 0 == wp_get_post_parent_id( $sorted_menu_items[$j]->object_id ) ) {
 						break;
 					}
-					$classes = $sorted_menu_item->classes;
-					//$classes[]     = 'menu-item';
-					if ( in_array( 'current-menu-item', $classes ) || in_array( 'current_page_item', $classes ) ) {
+					$smi_classes = $sorted_menu_items[$j]->classes;
+					$classes   = [];
+					$classes[] = 'nav-item';
+					if ( in_array( 'menu-item-has-children', $smi_classes ) ) {
+						$classes[] = 'has-children';
+						//$classes[] = 'dropdown';
+					}
+					if ( in_array( 'current-menu-ancestor', $smi_classes ) || in_array( 'current-page-ancestor', $smi_classes ) ) {
+						$classes[] = 'current-ancestor';
+					}
+					if ( in_array( 'current-menu-parent', $smi_classes ) || in_array( 'current-page-parent', $smi_classes ) ) {
+						$classes[] = 'current-parent';
+					}
+					if ( in_array( 'current-menu-item', $smi_classes ) || in_array( 'current_page_item', $smi_classes ) ) {
+						$classes[] = 'current-item';
 						$classes[] = 'active';
 					}
-					$sorted_menu_item->classes = $classes;
+					$sorted_menu_items[ $j ]->classes = $classes;
+					$smi[] = $sorted_menu_items[$j];
 				}
-				if ( ! $in_ancestor && $top_ancestor_id == $sorted_menu_item->object_id ) {
+				if ( ! $in_ancestor && $top_ancestor_id == $sorted_menu_items[$j]->object_id ) {
 					$in_ancestor = 1;
 				}
-			}*/
+			}
+			return $smi;
 		}
 
 		return $sorted_menu_items;
@@ -412,11 +428,7 @@
 				$atts[ 'class' ] = 'dropdown-item depth-' . $depth;
 			}
 		} elseif ( in_array( 'nav', $menu_classes ) ) {
-			if ( 0 == $depth ) {
-				$atts[ 'class' ] = 'nav-link depth-' . $depth;
-			} else {
-				$atts[ 'class' ] = 'dropdown-item depth-' . $depth;
-			}
+			$atts[ 'class' ] = 'nav-link depth-' . $depth;
 		}
 
 		return $atts;
@@ -483,7 +495,7 @@
 				'dropdown-menu-right'
 			];
 		} elseif ( in_array( 'nav', $menu_classes ) ) {
-
+			$classes = [];
 		}
 
 		return $classes;

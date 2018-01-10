@@ -228,7 +228,7 @@
 	/**
 	 * Print <style> section in footer for custom header height (by screen size)
 	 */
-	add_action( 'wp_print_footer_scripts', 'syn_print_banner_styles', 99 );
+	//add_action( 'wp_print_footer_scripts', 'syn_print_banner_styles', 99 );
 	function syn_print_banner_styles() {
 		$cookies = $_COOKIE;
 		if( isset( $cookies[ 'bannerHeight' ] ) ) {
