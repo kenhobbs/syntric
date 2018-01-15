@@ -6494,6 +6494,9 @@ body > .sidebar {
         padding: 0; }
         body > .sidebar.bleed .widget.syn-google-map-widget .widget-title, body > .sidebar.bleed .widget.syn-youtube-widget .widget-title, body > .sidebar.bleed .widget.widget_text .widget-title {
           display: none; }
+      body > .sidebar.bleed .widget.syn-google-map-widget .map {
+        min-height: 450px;
+        height: 450px; }
     @media (min-width: 992px) {
       body > .sidebar.bleed .widget {
         padding: 4rem 0; }
@@ -6504,7 +6507,10 @@ body > .sidebar {
         body > .sidebar.bleed .widget > ul .entry-more {
           margin-left: 4rem; }
         body > .sidebar.bleed .widget > div {
-          padding: 1rem 4rem; } }
+          padding: 1rem 4rem; }
+        body > .sidebar.bleed .widget.syn-google-map-widget .map {
+          min-height: 450px;
+          height: 450px; } }
 
 .header-1.sidebar,
 .footer-1.sidebar {
