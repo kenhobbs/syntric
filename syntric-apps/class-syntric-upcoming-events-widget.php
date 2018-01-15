@@ -52,7 +52,7 @@
 			if ( $events ) {
 				foreach ( $events as $event ) :
 					//$event    = get_post( $event_id );
-					//$dates    = syn_get_event_dates( $event->ID );
+					$dates    = syn_get_event_dates( $event->ID );
 					$start_date = get_field( 'syn_event_start_date', $event->ID );
 					$start_time = get_field( 'syn_event_start_time', $event->ID );
 					$end_date = get_field( 'syn_event_end_date', $event->ID );
@@ -64,21 +64,21 @@
 					else :
 						echo $tab . $tab . '<div class="nav-link">' . $lb;
 					endif;
-					echo $tab . $tab . $tab . '<div class="d-flex flex-row">' . $lb;
+					/*echo $tab . $tab . $tab . '<div class="d-flex flex-row">' . $lb;
 					echo $tab . $tab . $tab . $tab . '<div class="entry-feature">' . $lb;
 					echo $tab . $tab . $tab . $tab . $tab . '<div class="mo">' . 'SEP' . '</div><div class="da">' . '12' . '</div>' . $lb;
 					echo $tab . $tab . $tab . $tab . '</div>' . $lb;
-					echo $tab . $tab . $tab . $tab . '<div class="entry-content">' . $lb;
+					echo $tab . $tab . $tab . $tab . '<div class="entry-content">' . $lb;*/
 					echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-title">' . $event->post_title . '</span>' . $lb;
 					if ( $show_date ) :
-						//echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-date">' . $dates . '</span>' . $lb;
-						echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-date">' . $start_date . ' @ ' . $start_time . ' - ' . $end_date . ' @ ' . $end_time . '</span>' . $lb;
+						echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-date">' . $dates . '</span>' . $lb;
+						//echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-date">' . $start_date . ' @ ' . $start_time . ' - ' . $end_date . ' @ ' . $end_time . '</span>' . $lb;
 					endif;
 					if ( ! empty( $location ) ) :
 						echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-location">' . $location . '</span>' . $lb;
 					endif;
-					echo $tab . $tab . $tab . $tab . '</div>' . $lb;
-					echo $tab . $tab . $tab . '</div>' . $lb;
+					//echo $tab . $tab . $tab . $tab . '</div>' . $lb;
+					//echo $tab . $tab . $tab . '</div>' . $lb;
 					if ( ! empty( $event->post_content ) ) :
 						echo $tab . $tab . '</a>' . $lb;
 					else :

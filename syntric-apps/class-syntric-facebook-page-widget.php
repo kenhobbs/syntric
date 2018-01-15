@@ -51,7 +51,7 @@
 					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 				endif;
 				if ( $facebook_posts ) {
-					$posts_layout = 'cards';
+					$posts_layout = 'foo';
 					if ( 'cards' == $posts_layout ) {
 						if ( property_exists( $facebook_posts, 'data' ) ) {
 							$post_counter = 1;
