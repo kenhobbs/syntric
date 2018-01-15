@@ -6,22 +6,14 @@
 		$tab = "\t";
 		$lb  = "\n";
 		//$menu_id       = syn_generate_permanent_id();
-		$nav_menu_args = [
-			'theme_location'  => 'primary',
-			'container'       => 'div',
-			'container_id'    => 'primary-nav-collapse',
-			'container_class' => 'collapse navbar-collapse',
-			// 'menu' => '',
-			//'menu_id'         => $menu_id,
-			'menu_class'      => 'navbar-nav',
-			'depth'           => 2,
-			'item_spacing'    => 'discard',
-			//'link_before' => 'link_before',
-			//'link_after' => 'link_after',
-			//'before' => 'before',
-			//'after' => 'after',
+		$nav_menu_args = [ 'theme_location' => 'primary', 'container' => 'div', 'container_id' => 'primary-nav-collapse', 'container_class' => 'collapse navbar-collapse', // 'menu' => '',
+		                   //'menu_id'         => $menu_id,
+		                   'menu_class'     => 'navbar-nav', 'depth' => 2, 'item_spacing' => 'discard', //'link_before' => 'link_before',
+		                   //'link_after' => 'link_after',
+		                   //'before' => 'before',
+		                   //'after' => 'after',
 		];
-		echo '<nav id="primary-navbar" class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top d-print-none">' . $lb;
+		echo '<nav id="primary-navbar" class="navbar navbar-expand-lg navbar-light sticky-top d-print-none">' . $lb;
 		echo $tab . '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#' . $nav_menu_args[ 'container_id' ] . '" aria-controls="' . $nav_menu_args[ 'container_id' ] . '" aria-expanded="false" aria-label="Toggle navigation">' . $lb;
 		echo $tab . $tab . '<span class="fa fa-bars"></span>' . $lb;
 		echo $tab . '</button>' . $lb;
@@ -42,15 +34,8 @@
 
 	function syn_sitemap() {
 		$menu_id = syn_generate_permanent_id();
-		$args    = [
-			'container'       => 'nav',
-			'container_class' => 'navmenu',
-			'container_id'    => 'sitemap-nav',
-			'menu'            => 'primary',
-			'menu_class'      => 'nav',
-			'menu_id'         => $menu_id,
-			'depth'           => 4,
-		];
+		$args    = [ 'container' => 'nav', 'container_class' => 'navmenu', 'container_id' => 'sitemap-nav', 'menu' => 'primary', 'menu_class' => 'nav', 'menu_id' => $menu_id,
+		             'depth'     => 4, ];
 		syn_nav_menu( $args );
 	}
 
@@ -97,25 +82,19 @@
 	 * Generate the main nav menu
 	 */
 	function syn_nav_menu( $args = [] ) {
-		$nav_menu_args = [
-			'theme_location'  => ( key_exists( 'theme_location', $args ) ) ? $args[ 'theme_location' ] : '',
-			'menu'            => ( key_exists( 'menu', $args ) ) ? $args[ 'menu' ] : '',
-			'menu_class'      => ( key_exists( 'menu_class', $args ) ) ? $args[ 'menu_class' ] : 'nav-menu',
-			'menu_id'         => ( key_exists( 'menu_id', $args ) ) ? $args[ 'menu_id' ] : syn_generate_permanent_id(),
-			'container'       => ( key_exists( 'container', $args ) ) ? $args[ 'container' ] : '',
-			'container_class' => ( key_exists( 'container_class', $args ) ) ? $args[ 'container_class' ] : '',
-			'container_id'    => ( key_exists( 'container_id', $args ) ) ? $args[ 'container_id' ] : '',
-			'before'          => ( key_exists( 'before', $args ) ) ? $args[ 'before' ] : '',
-			'after'           => ( key_exists( 'after', $args ) ) ? $args[ 'after' ] : '',
-			'link_before'     => ( key_exists( 'link_before', $args ) ) ? $args[ 'link_before' ] : '',
-			'link_after'      => ( key_exists( 'link_after', $args ) ) ? $args[ 'link_after' ] : '',
-			'echo'            => true,
-			'depth'           => ( key_exists( 'depth', $args ) ) ? $args[ 'depth' ] : 2,
-			//'walker' => 'custom_walker_class',
-			// for items_wrap printf()...menu_class = %2$s, menu_id = %1$s
-			//'items_wrap' => printf(),
-			'item_spacing'    => ( key_exists( 'item_spacing', $args ) ) ? $args[ 'item_spacing' ] : 'discard',
-		];
+		$nav_menu_args = [ 'theme_location'  => ( key_exists( 'theme_location', $args ) ) ? $args[ 'theme_location' ] : '', 'menu' => ( key_exists( 'menu', $args ) ) ? $args[ 'menu' ] : '',
+		                   'menu_class'      => ( key_exists( 'menu_class', $args ) ) ? $args[ 'menu_class' ] : 'nav-menu',
+		                   'menu_id'         => ( key_exists( 'menu_id', $args ) ) ? $args[ 'menu_id' ] : syn_generate_permanent_id(),
+		                   'container'       => ( key_exists( 'container', $args ) ) ? $args[ 'container' ] : '',
+		                   'container_class' => ( key_exists( 'container_class', $args ) ) ? $args[ 'container_class' ] : '',
+		                   'container_id'    => ( key_exists( 'container_id', $args ) ) ? $args[ 'container_id' ] : '',
+		                   'before'          => ( key_exists( 'before', $args ) ) ? $args[ 'before' ] : '', 'after' => ( key_exists( 'after', $args ) ) ? $args[ 'after' ] : '',
+		                   'link_before'     => ( key_exists( 'link_before', $args ) ) ? $args[ 'link_before' ] : '',
+		                   'link_after'      => ( key_exists( 'link_after', $args ) ) ? $args[ 'link_after' ] : '', 'echo' => true,
+		                   'depth'           => ( key_exists( 'depth', $args ) ) ? $args[ 'depth' ] : 2, //'walker' => 'custom_walker_class',
+		                   // for items_wrap printf()...menu_class = %2$s, menu_id = %1$s
+		                   //'items_wrap' => printf(),
+		                   'item_spacing'    => ( key_exists( 'item_spacing', $args ) ) ? $args[ 'item_spacing' ] : 'discard', ];
 		wp_nav_menu( $nav_menu_args );
 	}
 
@@ -257,9 +236,9 @@
 		$menu_classes = ( property_exists( $args, 'menu_class' ) && ! empty( $args->menu_class ) ) ? explode( ' ', $args->menu_class ) : [];
 		if ( in_array( 'navbar-nav', $menu_classes ) ) {
 			for ( $i = 1; $i <= count( $sorted_menu_items ); $i ++ ) {
-				$smi_classes = $sorted_menu_items[$i]->classes;
-				$classes   = [];
-				$classes[] = 'nav-item';
+				$smi_classes = $sorted_menu_items[ $i ]->classes;
+				$classes     = [];
+				$classes[]   = 'nav-item';
 				if ( in_array( 'menu-item-has-children', $smi_classes ) ) {
 					$classes[] = 'has-children';
 					$classes[] = 'dropdown';
@@ -279,16 +258,16 @@
 		} elseif ( in_array( 'nav', $menu_classes ) ) {
 			$top_ancestor_id = syn_get_top_ancestor_id( $post->ID );
 			$in_ancestor     = 0;
-			$smi = [];
+			$smi             = [];
 			for ( $j = 1; $j <= count( $sorted_menu_items ); $j ++ ) {
-			//foreach ( $sorted_menu_items as $sorted_menu_item ) {
+				//foreach ( $sorted_menu_items as $sorted_menu_item ) {
 				if ( $in_ancestor ) {
-					if ( 0 == wp_get_post_parent_id( $sorted_menu_items[$j]->object_id ) ) {
+					if ( 0 == wp_get_post_parent_id( $sorted_menu_items[ $j ]->object_id ) ) {
 						break;
 					}
-					$smi_classes = $sorted_menu_items[$j]->classes;
-					$classes   = [];
-					$classes[] = 'nav-item';
+					$smi_classes = $sorted_menu_items[ $j ]->classes;
+					$classes     = [];
+					$classes[]   = 'nav-item';
 					if ( in_array( 'menu-item-has-children', $smi_classes ) ) {
 						$classes[] = 'has-children';
 						//$classes[] = 'dropdown';
@@ -304,12 +283,13 @@
 						$classes[] = 'active';
 					}
 					$sorted_menu_items[ $j ]->classes = $classes;
-					$smi[] = $sorted_menu_items[$j];
+					$smi[]                            = $sorted_menu_items[ $j ];
 				}
-				if ( ! $in_ancestor && $top_ancestor_id == $sorted_menu_items[$j]->object_id ) {
+				if ( ! $in_ancestor && $top_ancestor_id == $sorted_menu_items[ $j ]->object_id ) {
 					$in_ancestor = 1;
 				}
 			}
+
 			return $smi;
 		}
 
@@ -490,10 +470,7 @@
 		// primary-nav
 		$menu_classes = ( property_exists( $args, 'menu_class' ) && ! empty( $args->menu_class ) ) ? explode( ' ', $args->menu_class ) : [];
 		if ( in_array( 'navbar-nav', $menu_classes ) ) {
-			$classes = [
-				'dropdown-menu',
-				'dropdown-menu-right'
-			];
+			$classes = [ 'dropdown-menu' ];
 		} elseif ( in_array( 'nav', $menu_classes ) ) {
 			$classes = [];
 		}

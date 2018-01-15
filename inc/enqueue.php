@@ -11,7 +11,7 @@ function syn_enqueue_scripts() {
 	// Fontawesome
 	wp_enqueue_script( 'fontawesome', 'https://use.fontawesome.com/f45398b257.js', null, '5.0.1', false );
 	// Google Fonts @ CDN
-	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Open+Sans:400,600|Roboto:300,400,500|Roboto+Mono', null, null, null );
+	wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono|Patrick+Hand', null, null, null );
 	// Master theme stylesheet
 	wp_enqueue_style( 'syntric-css', syn_get_theme_stylesheet_uri(), array(), null );
 	// Child theme stylesheet

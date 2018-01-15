@@ -10,11 +10,7 @@
 		 * Set up a new widget instance
 		 */
 		public function __construct() {
-			$widget_ops = [
-				'classname'                   => 'syn-roster-widget',
-				'description'                 => __( 'Displays roster on pages where "Roster" is enabled.' ),
-				'customize_selective_refresh' => true,
-			];
+			$widget_ops = [ 'classname' => 'syn-roster-widget', 'description' => __( 'Displays roster on pages where "Roster" is enabled.' ), 'customize_selective_refresh' => true, ];
 			parent::__construct( 'syn-roster-widget', __( 'Roster' ), $widget_ops );
 			$this->alt_option_name = 'syn-roster-widget';
 		}
@@ -22,45 +18,42 @@
 		public function widget( $args, $instance ) {
 			global $post;
 			$active = get_field( 'syn_roster_active', $post->ID );
-			if( ! $active ) {
+			if ( ! $active ) {
 				return;
 			}
-			if( ! isset( $args[ 'widget_id' ] ) ) {
+			if ( ! isset( $args[ 'widget_id' ] ) ) {
 				$args[ 'widget_id' ] = $this->id;
 			}
 			$lb              = "\n";
 			$tab             = "\t";
 			$sidebar         = syn_widget_sidebar( $args[ 'widget_id' ] );
-			$layout          = ( 'main' == $sidebar[ 'section' ][ 'value' ] && in_array( $sidebar[ 'location' ][ 'value' ], [
-					'left',
-					'right',
-				] ) ) ? 'aside' : 'table';
+			$layout          = ( 'main' == $sidebar[ 'section' ][ 'value' ] && in_array( $sidebar[ 'location' ][ 'value' ], [ 'left', 'right', ] ) ) ? 'aside' : 'table';
 			$title           = get_field( 'syn_roster_title', $post->ID );
 			$_include_fields = get_field( 'syn_roster_include_fields', $post->ID );
 			$include_fields  = array_column( $_include_fields, 'value' );
 			$table_cols      = 0;
 			echo $args[ 'before_widget' ] . $lb;
-			if( ! empty( $title ) ) :
+			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			if( 'aside' == $layout ) {
+			if ( 'aside' == $layout ) {
 				echo '<div class="textwidget">' . $lb;
 			}
-			if( 'table' == $layout ) {
+			if ( 'table' == $layout ) {
 				echo '<table>' . $lb;
 				echo $tab . '<thead>' . $lb;
 				echo $tab . $tab . '<tr>' . $lb;
 				echo $tab . $tab . $tab . '<th scope="col">Name</th>' . $lb;
 				$table_cols ++;
-				if( in_array( 'titles', $include_fields ) ) {
+				if ( in_array( 'titles', $include_fields ) ) {
 					echo $tab . $tab . $tab . '<th scope="col">Title</th>' . $lb;
 					$table_cols ++;
 				}
-				if( in_array( 'email', $include_fields ) ) {
+				if ( in_array( 'email', $include_fields ) ) {
 					echo $tab . $tab . $tab . '<th scope="col">Email</th>' . $lb;
 					$table_cols ++;
 				}
-				if( in_array( 'phone', $include_fields ) ) {
+				if ( in_array( 'phone', $include_fields ) ) {
 					echo $tab . $tab . $tab . '<th scope="col">Phone</th>' . $lb;
 					$table_cols ++;
 				}
@@ -69,7 +62,7 @@
 				echo $tab . '<tbody>' . $lb;
 			}
 			//$people = syn_people_collection();
-			if( have_rows( 'syn_roster_people', $post->ID ) ) :
+			if ( have_rows( 'syn_roster_people', $post->ID ) ) :
 				while( have_rows( 'syn_roster_people', $post->ID ) ) : the_row();
 					$user_id    = get_sub_field( 'person' );
 					$user       = get_user_by( 'ID', $user_id );
@@ -82,51 +75,51 @@
 					$phone      = get_field( 'syn_user_phone', 'user_' . $user_id );
 					$ext        = get_field( 'syn_user_extension', 'user_' . $user_id );
 					$ext        = ( isset( $ext ) && ! empty( $ext ) ) ? ' x' . $ext : '';
-					if( 'aside' == $layout ) {
+					if ( 'aside' == $layout ) {
 						echo $tab . '<div class="contact-entry d-flex flex-column">' . $lb;
 						echo $tab . $tab . '<span class="entry-name">' . $first_name . ' ' . $last_name . '</span>' . $lb;
-						if( in_array( 'titles', $include_fields ) ) {
+						if ( in_array( 'titles', $include_fields ) ) {
 							echo $tab . $tab . '<span class="entry-title">' . $title . '</span>' . $lb;
 						}
-						if( in_array( 'email', $include_fields ) ) {
+						if ( in_array( 'email', $include_fields ) ) {
 							echo $tab . $tab . '<a href="mailto:' . antispambot( $email, true ) . '" class="entry-email" title="Email">' . antispambot( $email ) . '</a>';
 						}
-						if( in_array( 'phone', $include_fields ) ) {
+						if ( in_array( 'phone', $include_fields ) ) {
 							echo $tab . $tab . '<span class="entry-phone">' . $phone . $ext . '</span>' . $lb;
 						}
 						echo $tab . '</div>' . $lb;
 					}
-					if( 'table' == $layout ) {
+					if ( 'table' == $layout ) {
 						echo $tab . $tab . '<tr valign="top">' . $lb;
 						echo $tab . $tab . $tab . '<td>' . $first_name . ' ' . $last_name . '</td>' . $lb;
-						if( in_array( 'titles', $include_fields ) ) {
+						if ( in_array( 'titles', $include_fields ) ) {
 							echo $tab . $tab . $tab . '<td>' . $title . '</td>' . $lb;
 						}
-						if( in_array( 'email', $include_fields ) ) {
+						if ( in_array( 'email', $include_fields ) ) {
 							echo $tab . $tab . $tab . '<td><a href="mailto:' . antispambot( $email, true ) . '" class="roster-email" title="Email">' . antispambot( $email ) . '</a></td>' . $lb;
 						}
-						if( in_array( 'phone', $include_fields ) ) {
+						if ( in_array( 'phone', $include_fields ) ) {
 							echo $tab . $tab . $tab . '<td>' . $phone . $ext . '</td>' . $lb;
 						}
 						echo $tab . $tab . '</tr>' . $lb;
 					}
 				endwhile;
 			else :
-				if( 'aside' == $layout ) :
+				if ( 'aside' == $layout ) :
 					/*echo $tab . '<li>' . $lb;
 					echo $tab . $tab . '<span class="entry-title">No people</span>' . $lb;
 					echo $tab . '</li>' . $lb;*/
 				endif;
-				if( 'table' == $layout ) :
+				if ( 'table' == $layout ) :
 					echo $tab . $tab . '<tr>' . $lb;
 					echo $tab . $tab . $tab . '<td colspan="' . $table_cols . '">No people</td>' . $lb;
 					echo $tab . $tab . '</tr>' . $lb;
 				endif;
 			endif;
-			if( 'aside' == $layout ) {
+			if ( 'aside' == $layout ) {
 				echo '</div>' . $lb;
 			}
-			if( 'table' == $layout ) {
+			if ( 'table' == $layout ) {
 				echo $tab . '</tbody>' . $lb;
 				echo '</table>' . $lb;
 			}

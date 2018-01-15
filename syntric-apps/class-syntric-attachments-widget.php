@@ -8,11 +8,8 @@
 		 * Set up a new widget instance
 		 */
 		public function __construct() {
-			$widget_ops = [
-				'classname'                   => 'syn-attachments-widget',
-				'description'                 => __( 'Displays grouped documents and links to pages or other websites (dynamic)' ),
-				'customize_selective_refresh' => true,
-			];
+			$widget_ops = [ 'classname'                   => 'syn-attachments-widget', 'description' => __( 'Displays grouped documents and links to pages or other websites (dynamic)' ),
+			                'customize_selective_refresh' => true, ];
 			parent::__construct( 'syn-attachments-widget', __( 'Attachments' ), $widget_ops );
 			$this->alt_option_name = 'syn-attachments-widget';
 		}
@@ -26,10 +23,10 @@
 		public function widget( $args, $instance ) {
 			global $post;
 			$active = get_field( 'syn_attachments_active', $post->ID );
-			if( 1 != $active ) {
+			if ( 1 != $active ) {
 				return;
 			}
-			if( ! isset( $args[ 'widget_id' ] ) ) {
+			if ( ! isset( $args[ 'widget_id' ] ) ) {
 				$args[ 'widget_id' ] = $this->id;
 			}
 			$lb      = "\n";
@@ -37,43 +34,45 @@
 			$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
 			$title   = get_field( 'syn_attachments_title', $post->ID );
 			echo $args[ 'before_widget' ] . $lb;
-			if( ! empty( $title ) ) :
+			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			echo '<ul>' . $lb;
-			if( have_rows( 'syn_attachments', $post->ID ) ) :
+			echo '<ul class="nav">' . $lb;
+			if ( have_rows( 'syn_attachments', $post->ID ) ) :
 				while( have_rows( 'syn_attachments', $post->ID ) ) : the_row();
 					$header      = get_sub_field( 'header' );
 					$description = get_sub_field( 'description' );
-					if( $header || $description ) {
-						echo $tab . '<li class="attachment-group-header">' . $lb;
-						if( $header ) {
-							echo $tab . $tab . '<h3 class="entry-header">' . $header . '</h3>' . $lb;
+					if ( $header || $description ) {
+						echo $tab . '<li class="nav-item">' . $lb;
+						echo $tab . $tab . '<div class="d-flex flex-column nav-link">' . $lb;
+						if ( $header ) {
+							echo $tab . $tab . $tab . '<h3 class="entry-header">' . $header . '</h3>' . $lb;
 						}
-						if( $description ) {
-							echo $tab . $tab . '<span class="entry-description">' . $description . '</span>' . $lb;
+						if ( $description ) {
+							echo $tab . $tab . $tab . '<span class="entry-description">' . $description . '</span>' . $lb;
 						}
+						echo $tab . $tab . '</div>' . $lb;
 						echo $tab . '</li>' . $lb;
 					}
-					if( have_rows( 'attachments' ) ) {
+					if ( have_rows( 'attachments' ) ) {
 						while( have_rows( 'attachments' ) ) : the_row();
-							echo $tab . '<li>' . $lb;
+							echo $tab . '<li class="nav-item">' . $lb;
 							$attachment_type = get_sub_field( 'attachment_type' );
-							switch( $attachment_type[ 'value' ] ) :
+							switch ( $attachment_type[ 'value' ] ) :
 								case 'file' :
 									$file = get_sub_field( 'file' );
-									echo $tab . $tab . '<a href="' . $file[ 'url' ] . '" class="entry-link" target="_blank">' . $file[ 'title' ] . '</a>' . $lb;
+									echo $tab . $tab . '<a href="' . $file[ 'url' ] . '" class="nav-link" target="_blank">' . $file[ 'title' ] . '</a>' . $lb;
 									break;
 								case 'internal_link' :
 									$internal_link = get_sub_field( 'internal_link' );
-									echo $tab . $tab . '<a href="' . get_the_permalink( $internal_link->ID ) . '" class="entry-link">' . $internal_link->post_title . '</a>' . $lb;
+									echo $tab . $tab . '<a href="' . get_the_permalink( $internal_link->ID ) . '" class="nav-link">' . $internal_link->post_title . '</a>' . $lb;
 									break;
 								case 'external_link' :
 									$title           = get_sub_field( 'title' );
 									$url             = get_sub_field( 'url' );
 									$open_new_window = get_sub_field( 'new_window' );
 									$target          = ( $open_new_window ) ? '_blank' : '_self';
-									echo $tab . $tab . '<a href="' . $url . '" class="entry-link" target="' . $target . '">' . $title . '</a>' . $lb;
+									echo $tab . $tab . '<a href="' . $url . '" class="nav-link" target="' . $target . '">' . $title . '</a>' . $lb;
 									break;
 							endswitch;
 							echo $tab . '</li>' . $lb;
@@ -81,8 +80,8 @@
 					}
 				endwhile;
 			else :
-				echo $tab . '<li>' . $lb;
-				echo $tab . $tab . $tab . '<span class="entry-content">No attachments</span>' . $lb;
+				echo $tab . '<li class="nav-item">' . $lb;
+				echo $tab . $tab . $tab . '<div class="nav-link">No attachments</div>' . $lb;
 				echo $tab . '</li>' . $lb;
 			endif;
 			echo '</ul>' . $lb;

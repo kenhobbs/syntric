@@ -42,20 +42,21 @@
 			if( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			echo '<ul>' . $lb;
+			echo '<ul class="nav">' . $lb;
 			if( $calendars ) :
 				$ref_date = ( isset( $_GET[ 'ref_date' ] ) ) ? $_GET[ 'ref_date' ] : date( 'Ymd' );
 				foreach( $calendars as $calendar ) {
-					$active = ( $post->ID == $calendar->ID ) ? ' class="active"' : '';
-					echo $tab . '<li>' . $lb;
-					echo $tab . $tab . '<a href="' . get_the_permalink( $calendar->ID ) . '?ref_date=' . $ref_date . '" data-id="' . $calendar->ID . '"' . $active . '>' . $lb;
+					//$active = ( $post->ID == $calendar->ID ) ? ' class="active"' : '';  $active
+					echo $tab . '<li class="nav-item">' . $lb;
+					echo $tab . $tab . '<a href="' . get_the_permalink( $calendar->ID ) . '?ref_date=' . $ref_date . '" data-id="' . $calendar->ID . '" class="nav-link">';
 					echo $tab . $tab . $tab . '<span class="entry-title">' . $calendar->post_title . '</span>' . $lb;
-					echo $tab . $tab . '</a>' . $lb;
+					//echo $calendar->post_title;
+					echo '</a>' . $lb;
 					echo $tab . '</li>' . $lb;
 				};
 			else :
 				echo $tab . '<li>' . $lb;
-				echo $tab . $tab . '<span class="entry-title">No calendars</span>' . $lb;
+				echo $tab . $tab . '<div class="entry-title">No calendars</div>' . $lb;
 				echo $tab . '</li>' . $lb;
 			endif;
 			echo '</ul>' . $lb;

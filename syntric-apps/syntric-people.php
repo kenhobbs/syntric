@@ -1,11 +1,21 @@
 <?php
-// Add capabilities to Author role for Teachers
-	add_action( 'admin_init', 'syn_add_author_caps' );
-	function syn_add_author_caps() {
-		$role = get_role( 'author' );
-		$role->add_cap( 'edit_pages' );
-		$role->add_cap( 'edit_published_pages' );
-		//$role->add_cap( 'publish_pages' );
+// Add extra capabilities to any/each role
+	add_action( 'admin_init', 'syn_add_caps' );
+	function syn_add_caps() {
+		// Author
+		$author_role = get_role( 'author' );
+		$author_role->add_cap( 'edit_pages' );
+		$author_role->add_cap( 'edit_published_pages' );
+		//Editor
+		$editor_role = get_role( 'editor' );
+		$editor_role->add_cap( 'create_users' );
+		$editor_role->add_cap( 'edit_users' );
+		$editor_role->add_cap( 'list_users' );
+		$editor_role->remove_cap( 'delete_users' );
+		$editor_role->remove_cap( 'remove_users' );
+		$editor_role->remove_cap( 'promote_users' );
+		$editor_role->remove_cap( 'manage_categories' );
+
 	}
 
 // actions

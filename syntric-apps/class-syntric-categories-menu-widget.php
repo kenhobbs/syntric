@@ -42,12 +42,10 @@
 				if( ! empty( $title ) ) :
 					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 				endif;
-				echo '<ul>' . $lb;
+				echo '<ul class="nav">' . $lb;
 				foreach( $categories as $category ) {
-					echo $tab . '<li>' . $lb;
-					echo $tab . $tab . '<a href="' . get_category_link( $category ) . '">' . $lb;
-					echo $tab . $tab . $tab . $tab . '<span class="entry-title">' . $category->name . '</span>' . $lb;
-					echo $tab . $tab . '</a>' . $lb;
+					echo $tab . '<li class="nav-item">' . $lb;
+					echo $tab . $tab . '<a href="' . get_category_link( $category ) . '" class="nav-link">' . $category->name . '</a>' . $lb;
 					echo $tab . '</li>' . $lb;
 				};
 				echo '</ul>' . $lb;

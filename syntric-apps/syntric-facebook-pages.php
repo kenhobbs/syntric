@@ -46,13 +46,11 @@
 						$app_id = get_sub_field( 'app_id' );
 						$app_secret = get_sub_field( 'app_secret' );
 						$auth_token = $app_id . '|' . $app_secret;
-						//$auth_token = '338745886555516|8506b06ad521c8357a9e2f1cbcad77a6';
 					}
 					break;
 				}
 			endwhile;
 			if( $page && $auth_token ) {
-				//$url      = 'https://graph.facebook.com/' . $page . '/feed?fields=name,created_time,description,message,picture,status_type,type,link,permalink_url,actions,is_published,from,application&limit=' . $number . '&access_token=' . $app_token;
 				$url      = 'https://graph.facebook.com/' . $page . '/feed?fields=name,created_time,description,message,picture,status_type,type,link,permalink_url,actions,is_published,from,application&limit=' . $number . '&access_token=' . $auth_token;
 				$response = wp_remote_get( $url );
 				if( $response ) {

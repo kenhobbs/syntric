@@ -8,11 +8,7 @@
 		 * Set up a new widget instance
 		 */
 		public function __construct() {
-			$widget_ops = [
-				'classname'                   => 'syn-upcoming-events-widget',
-				'description'                 => __( 'Displays upcoming calendar events.' ),
-				'customize_selective_refresh' => true,
-			];
+			$widget_ops = [ 'classname' => 'syn-upcoming-events-widget', 'description' => __( 'Displays upcoming calendar events.' ), 'customize_selective_refresh' => true, ];
 			parent::__construct( 'syn-upcoming-events-widget', __( 'Upcoming Events' ), $widget_ops );
 			$this->alt_option_name = 'syn-upcoming-events-widget';
 		}
@@ -25,13 +21,13 @@
 		 */
 		public function widget( $args, $instance ) {
 			global $post;
-			if( ! isset( $args[ 'widget_id' ] ) ) {
+			if ( ! isset( $args[ 'widget_id' ] ) ) {
 				$args[ 'widget_id' ] = $this->id;
 			}
 			$dynamic = get_field( 'syn_upcoming_events_widget_dynamic', 'widget_' . $args[ 'widget_id' ] );
-			if( $dynamic ) {
+			if ( $dynamic ) {
 				$active = get_field( 'syn_calendar_active', $post->ID );
-				if( ! $active ) {
+				if ( ! $active ) {
 					return;
 				}
 				$title       = get_field( 'syn_calendar_title', $post->ID );
@@ -48,44 +44,54 @@
 			$lb  = "\n";
 			$tab = "\t";
 			echo $args[ 'before_widget' ] . $lb;
-			if( ! empty( $title ) ) :
+			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			echo '<ul>' . $lb;
+			echo '<ul class="nav">' . $lb;
 			$events = syn_get_calendar_events( $calendar_id, null, 'next', $number, 'ID,post_title,post_content' );
-			if( $events ) {
-				foreach( $events as $event ) :
+			if ( $events ) {
+				foreach ( $events as $event ) :
 					//$event    = get_post( $event_id );
-					$dates    = syn_get_event_dates( $event->ID );
+					//$dates    = syn_get_event_dates( $event->ID );
+					$start_date = get_field( 'syn_event_start_date', $event->ID );
+					$start_time = get_field( 'syn_event_start_time', $event->ID );
+					$end_date = get_field( 'syn_event_end_date', $event->ID );
+					$end_time = get_field( 'syn_event_end_time', $event->ID );
 					$location = get_field( 'syn_event_location', $event->ID );
-					echo $tab . '<li>' . $lb;
-					if( ! empty( $event->post_content ) ) :
-						echo $tab . $tab . '<a href="' . get_the_permalink( $event->ID ) . '">' . $lb;
-						echo $tab . $tab . $tab . '<span class="entry-title">' . $event->post_title . '</span>' . $lb;
-						if( $show_date ) :
-							echo $tab . $tab . $tab . '<span class="entry-date">' . $dates . '</span>' . $lb;
-						endif;
-						if( ! empty( $location ) ) :
-							echo $tab . $tab . $tab . '<span class="entry-location">' . $location . '</span>' . $lb;
-						endif;
+					echo $tab . '<li class="nav-item">' . $lb;
+					if ( ! empty( $event->post_content ) ) :
+						echo $tab . $tab . '<a href="' . get_the_permalink( $event->ID ) . '" class="nav-link">' . $lb;
+					else :
+						echo $tab . $tab . '<div class="nav-link">' . $lb;
+					endif;
+					echo $tab . $tab . $tab . '<div class="d-flex flex-row">' . $lb;
+					echo $tab . $tab . $tab . $tab . '<div class="entry-feature">' . $lb;
+					echo $tab . $tab . $tab . $tab . $tab . '<div class="mo">' . 'SEP' . '</div><div class="da">' . '12' . '</div>' . $lb;
+					echo $tab . $tab . $tab . $tab . '</div>' . $lb;
+					echo $tab . $tab . $tab . $tab . '<div class="entry-content">' . $lb;
+					echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-title">' . $event->post_title . '</span>' . $lb;
+					if ( $show_date ) :
+						//echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-date">' . $dates . '</span>' . $lb;
+						echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-date">' . $start_date . ' @ ' . $start_time . ' - ' . $end_date . ' @ ' . $end_time . '</span>' . $lb;
+					endif;
+					if ( ! empty( $location ) ) :
+						echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-location">' . $location . '</span>' . $lb;
+					endif;
+					echo $tab . $tab . $tab . $tab . '</div>' . $lb;
+					echo $tab . $tab . $tab . '</div>' . $lb;
+					if ( ! empty( $event->post_content ) ) :
 						echo $tab . $tab . '</a>' . $lb;
 					else :
-						echo $tab . $tab . '<span class="entry-title">' . $event->post_title . '</span>' . $lb;
-						if( $show_date ) :
-							echo $tab . $tab . '<span class="entry-date">' . $dates . '</span>' . $lb;
-						endif;
-						if( ! empty( $location ) ) :
-							echo $tab . $tab . '<span class="entry-location">' . $location . '</span>' . $lb;
-						endif;
+						echo $tab . $tab . '</div>' . $lb;
 					endif;
 					echo $tab . '</li>' . $lb;
 				endforeach;
-				echo $tab . '<li>' . $lb;
-				echo $tab . $tab . '<a href="' . get_the_permalink( $calendar_id ) . '" class="widget-more-link">more events</a>' . $lb;
+				echo $tab . '<li class="nav-item">' . $lb;
+				echo $tab . $tab . '<a href="' . get_the_permalink( $calendar_id ) . '" class="nav-link entry-more">more events</a>' . $lb;
 				echo $tab . '</li>' . $lb;
 			} else {
-				echo $tab . '<li>' . $lb;
-				echo $tab . $tab . '<span class="entry-title">No events</span>' . $lb;
+				echo $tab . '<li class="nav-item">' . $lb;
+				echo $tab . $tab . '<div class="nav-link entry-title">No events</div>' . $lb;
 				echo $tab . '</li>' . $lb;
 			}
 			echo '</ul>' . $lb;

@@ -64,11 +64,11 @@
 			if( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			echo '<ul>' . $lb;
+			echo '<ul class="nav">' . $lb;
 			if( $posts->have_posts() ) :
 				while( $posts->have_posts() ) : $posts->the_post();
-					echo $tab . '<li>' . $lb;
-					echo $tab . $tab . '<a href="' . get_the_permalink() . '">' . $lb;
+					echo $tab . '<li class="nav-item">' . $lb;
+					echo $tab . $tab . '<a href="' . get_the_permalink() . '" class="nav-link">' . $lb;
 					echo $tab . $tab . $tab . $tab . '<span class="entry-title">' . get_the_title() . '</span>';
 					if( $show_date ) :
 						echo $tab . $tab . $tab . $tab . '<span class="entry-date">' . get_the_date() . '</span>';
@@ -76,12 +76,12 @@
 					echo $tab . $tab . '</a>';
 					echo $tab . '</li>' . $lb;
 				endwhile;
-				echo $tab . '<li>' . $lb;
-				echo $tab . $tab . '<a href="' . get_term_link( $term->term_id ) . '" class="widget-more-link">more posts</a>' . $lb;
+				echo $tab . '<li class="nav-item">' . $lb;
+				echo $tab . $tab . '<a href="' . get_term_link( $term->term_id ) . '" class="nav-link entry-more">more posts</a>' . $lb;
 				echo $tab . '</li>' . $lb;
 			else :
-				echo $tab . '<li>' . $lb;
-				echo $tab . $tab . '<span class="entry-title">No posts</span>' . $lb;
+				echo $tab . '<li class="nav-item">' . $lb;
+				echo $tab . $tab . '<div class="nav-link entry-title">No posts</div>' . $lb;
 				echo $tab . '</li>' . $lb;
 			endif;
 			echo '</ul>' . $lb;

@@ -56,13 +56,13 @@
 				if( ! empty( $title ) ) :
 					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 				endif;
-				echo '<ul>' . $lb;
+				echo '<ul class="nav">' . $lb;
 				while( $posts->have_posts() ) : $posts->the_post();
-					echo $tab . '<li>' . $lb;
-					echo '<a href="' . get_the_permalink() . '">' . $lb;
-					echo '<span class="post-title">' . get_the_title() . '</span>' . $lb;
+					echo $tab . '<li class="nav-item">' . $lb;
+					echo '<a href="' . get_the_permalink() . '" class="nav-link">' . $lb;
+					echo '<span class="entry-title">' . get_the_title() . '</span>' . $lb;
 					if( $show_date ) :
-						echo '<span class="post-date">' . get_the_date() . '</span>' . $lb;
+						echo '<span class="entry-date">' . get_the_date() . '</span>' . $lb;
 					endif;
 					echo '</a>' . $lb;
 					echo '</li>' . $lb;

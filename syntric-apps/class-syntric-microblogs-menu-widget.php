@@ -44,21 +44,19 @@
 				if( ! empty( $title ) ) :
 					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 				endif;
-				echo '<ul>' . $lb;
+				echo '<ul class="nav">' . $lb;
 				$has_one = false;
 				foreach( $microblogs as $microblog ) {
 					//slog($microblog);
 					//if ( 0 < $microblog->parent ) {
-					echo $tab . '<li>' . $lb;
-					echo $tab . $tab . '<a href="' . get_term_link( (int) $microblog->term_id ) . '">' . $lb;
-					echo $tab . $tab . $tab . $microblog->name . $lb;
-					echo $tab . $tab . '</a>' . $lb;
+					echo $tab . '<li class="nav-item">' . $lb;
+					echo $tab . $tab . '<a href="' . get_term_link( (int) $microblog->term_id ) . '" class="nav-link">' . $microblog->name . '</a>' . $lb;
 					echo $tab . '</li>' . $lb;
 					$has_one = true;
 					//}
 				};
 				if( ! $has_one ) {
-					echo $tab . '<li>' . $lb;
+					echo $tab . '<li class="nav-item">' . $lb;
 					echo $tab . $tab . $tab . $tab . '<span class="entry-title">' . 'No microblogs' . '</span>' . $lb;
 					echo $tab . '</li>' . $lb;
 				}

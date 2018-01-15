@@ -6,8 +6,6 @@
 // Speed up admin load time by not loading WP Custom Fields
 	// https://www.advancedcustomfields.com/blog/acf-pro-5-5-13-update/
 	add_filter( 'acf/settings/remove_wp_meta_box', '__return_true' );
-	// Get the current user todo: is this called anywhere else? if so, remove them and reference this object
-	$current_user = wp_get_current_user();
 	/**
 	 * Include Syntric App files
 	 */
@@ -42,71 +40,30 @@
 		$organization_is_school   = syn_organization_is_school();
 		$organizations_type_label = syn_get_organizations_type_label();
 		// Organization
-		acf_add_options_page( [
-			'page_title' => $organization_type_label,
-			'menu_title' => $organization_type_label,
-			'menu_slug'  => 'syntric-organization',
-			'capability' => 'edit_others_pages',
-			'position'   => '59.1',
-			'redirect'   => false,
-		] );
+		acf_add_options_page( [ 'page_title' => $organization_type_label, 'menu_title' => $organization_type_label, 'menu_slug' => 'syntric-organization',
+		                        'capability' => 'edit_others_pages', 'position' => '59.1', 'redirect' => false, ] );
 		// Organizations
-		acf_add_options_sub_page( [
-			'page_title'  => $organizations_type_label,
-			'menu_title'  => $organizations_type_label,
-			'menu_slug'   => 'syntric-organizations',
-			'parent_slug' => 'syntric-organization',
-			'capability'  => 'edit_others_pages',
-		] );
+		acf_add_options_sub_page( [ 'page_title'  => $organizations_type_label, 'menu_title' => $organizations_type_label, 'menu_slug' => 'syntric-organizations',
+		                            'parent_slug' => 'syntric-organization', 'capability' => 'edit_others_pages', ] );
 		// People
-		acf_add_options_sub_page( [
-			'page_title'  => 'People',
-			'menu_title'  => 'People',
-			'menu_slug'   => 'syntric-people',
-			'parent_slug' => 'syntric-organization',
-			'capability'  => 'edit_others_pages',
-		] );
+		acf_add_options_sub_page( [ 'page_title' => 'People', 'menu_title' => 'People', 'menu_slug' => 'syntric-people', 'parent_slug' => 'syntric-organization',
+		                            'capability' => 'edit_others_pages', ] );
 		// Academic Calendar
-		acf_add_options_sub_page( [
-			'page_title'  => 'Acedemic Calendar',
-			'menu_title'  => 'Acedemic Calendar',
-			'menu_slug'   => 'syntric-academic-calendar',
-			'parent_slug' => 'syntric-organization',
-			'capability'  => 'edit_others_pages',
-		] );
+		acf_add_options_sub_page( [ 'page_title'  => 'Acedemic Calendar', 'menu_title' => 'Acedemic Calendar', 'menu_slug' => 'syntric-academic-calendar',
+		                            'parent_slug' => 'syntric-organization', 'capability' => 'edit_others_pages', ] );
 		// Departments
-		acf_add_options_sub_page( [
-			'page_title'  => 'Departments',
-			'menu_title'  => 'Departments',
-			'menu_slug'   => 'syntric-departments',
-			'parent_slug' => 'syntric-organization',
-			'capability'  => 'edit_others_pages',
-		] );
+		acf_add_options_sub_page( [ 'page_title' => 'Departments', 'menu_title' => 'Departments', 'menu_slug' => 'syntric-departments', 'parent_slug' => 'syntric-organization',
+		                            'capability' => 'edit_others_pages', ] );
 		if ( $organization_is_school ) {
 			// Buildings
-			acf_add_options_sub_page( [
-				'page_title'  => 'Buildings/Facilities',
-				'menu_title'  => 'Buildings',
-				'menu_slug'   => 'syntric-buildings',
-				'parent_slug' => 'syntric-organization',
-				'capability'  => 'edit_others_pages',
-			] );
+			acf_add_options_sub_page( [ 'page_title' => 'Buildings/Facilities', 'menu_title' => 'Buildings', 'menu_slug' => 'syntric-buildings', 'parent_slug' => 'syntric-organization',
+			                            'capability' => 'edit_others_pages', ] );
 			// Rooms
-			acf_add_options_sub_page( [
-				'page_title'  => 'Rooms/Classrooms',
-				'menu_title'  => 'Rooms',
-				'menu_slug'   => 'syntric-rooms',
-				'parent_slug' => 'syntric-organization',
-				'capability'  => 'edit_others_pages',
-			] );
+			acf_add_options_sub_page( [ 'page_title' => 'Rooms/Classrooms', 'menu_title' => 'Rooms', 'menu_slug' => 'syntric-rooms', 'parent_slug' => 'syntric-organization',
+			                            'capability' => 'edit_others_pages', ] );
 			// Periods
-			acf_add_options_sub_page( [
-				'page_title'  => 'Periods',
-				'menu_title'  => 'Periods',
-				'menu_slug'   => 'syntric-periods',
-				'parent_slug' => 'syntric-organization',
-				'capability'  => 'edit_others_pages',
-			] );
+			acf_add_options_sub_page( [ 'page_title' => 'Periods', 'menu_title' => 'Periods', 'menu_slug' => 'syntric-periods', 'parent_slug' => 'syntric-organization',
+			                            'capability' => 'edit_others_pages', ] );
 			/*// Courses/Classes
 			acf_add_options_page( array(
 				'page_title' => 'Courses/Classes',
@@ -116,38 +73,18 @@
 				'redirect'   => true,
 			) );*/
 			// Courses
-			acf_add_options_sub_page( [
-				'page_title'  => 'Courses',
-				'menu_title'  => 'Courses',
-				'menu_slug'   => 'syntric-courses',
-				'parent_slug' => 'syntric-organization',
-				'capability'  => 'edit_others_pages',
-			] );
+			acf_add_options_sub_page( [ 'page_title' => 'Courses', 'menu_title' => 'Courses', 'menu_slug' => 'syntric-courses', 'parent_slug' => 'syntric-organization',
+			                            'capability' => 'edit_others_pages', ] );
 			// Classes
-			acf_add_options_sub_page( [
-				'page_title'  => 'Classes',
-				'menu_title'  => 'Classes',
-				'menu_slug'   => 'syntric-classes',
-				'parent_slug' => 'syntric-organization',
-				'capability'  => 'edit_others_pages',
-			] );
+			acf_add_options_sub_page( [ 'page_title' => 'Classes', 'menu_title' => 'Classes', 'menu_slug' => 'syntric-classes', 'parent_slug' => 'syntric-organization',
+			                            'capability' => 'edit_others_pages', ] );
 		}
 		// Jumbotrons
-		acf_add_options_page( [
-			'page_title' => 'Jumbotrons',
-			'menu_title' => 'Jumbotrons',
-			'menu_slug'  => 'syntric-jumbotrons',
-			'capability' => 'edit_others_pages',
-			'redirect'   => false,
-		] );
+		acf_add_options_page( [ 'page_title' => 'Jumbotrons', 'menu_title' => 'Jumbotrons', 'menu_slug' => 'syntric-jumbotrons', 'capability' => 'edit_others_pages',
+		                        'redirect'   => false, ] );
 		// Google Maps
-		acf_add_options_page( [
-			'page_title' => 'Google Maps',
-			'menu_title' => 'Google Maps',
-			'menu_slug'  => 'syntric-google-maps',
-			'capability' => 'edit_others_pages',
-			'redirect'   => false,
-		] );
+		acf_add_options_page( [ 'page_title' => 'Google Maps', 'menu_title' => 'Google Maps', 'menu_slug' => 'syntric-google-maps', 'capability' => 'edit_others_pages',
+		                        'redirect'   => false, ] );
 		// Lists
 		/*acf_add_options_sub_page( array(
 			'page_title'  => 'Lists',
@@ -156,46 +93,20 @@
 			'capability'  => 'manage_options',
 		) );*/
 		// Appearance > Sidebars & Widgets
-		acf_add_options_sub_page( [
-			'page_title'  => 'Sidebars & Widgets',
-			'menu_title'  => 'Sidebars & Widgets',
-			'menu_slug'   => 'syntric-sidebars-widgets',
-			'parent_slug' => 'options-general.php',
-			'capability'  => 'manage_options',
-			'position'    => 1,
-		] );
+		acf_add_options_sub_page( [ 'page_title'  => 'Sidebars & Widgets', 'menu_title' => 'Sidebars & Widgets', 'menu_slug' => 'syntric-sidebars-widgets',
+		                            'parent_slug' => 'options-general.php', 'capability' => 'manage_options', 'position' => 1, ] );
 		// Tools > Data Functions
-		acf_add_options_sub_page( [
-			'page_title'  => 'Data Functions',
-			'menu_title'  => 'Data Functions',
-			'menu_slug'   => 'syntric-data-functions',
-			'parent_slug' => 'tools.php',
-			'capability'  => 'manage_options',
-		] );
+		acf_add_options_sub_page( [ 'page_title' => 'Data Functions', 'menu_title' => 'Data Functions', 'menu_slug' => 'syntric-data-functions', 'parent_slug' => 'tools.php',
+		                            'capability' => 'manage_options', ] );
 		// Tools > Clonables
-		acf_add_options_sub_page( [
-			'page_title'  => 'Clonables',
-			'menu_title'  => 'Clonables',
-			'menu_slug'   => 'syntric-clonables',
-			'parent_slug' => 'tools.php',
-			'capability'  => 'manage_options',
-		] );
+		acf_add_options_sub_page( [ 'page_title' => 'Clonables', 'menu_title' => 'Clonables', 'menu_slug' => 'syntric-clonables', 'parent_slug' => 'tools.php',
+		                            'capability' => 'manage_options', ] );
 		// Settings > Social Media
-		acf_add_options_sub_page( [
-			'page_title'  => 'Social Media',
-			'menu_title'  => 'Social Media',
-			'menu_slug'   => 'syntric-social-media',
-			'parent_slug' => 'options-general.php',
-			'capability'  => 'manage_options',
-		] );
+		acf_add_options_sub_page( [ 'page_title' => 'Social Media', 'menu_title' => 'Social Media', 'menu_slug' => 'syntric-social-media', 'parent_slug' => 'options-general.php',
+		                            'capability' => 'manage_options', ] );
 		// Settings > Google
-		acf_add_options_sub_page( [
-			'page_title'  => 'Google',
-			'menu_title'  => 'Google',
-			'menu_slug'   => 'syntric-google',
-			'parent_slug' => 'options-general.php',
-			'capability'  => 'manage_options',
-		] );
+		acf_add_options_sub_page( [ 'page_title' => 'Google', 'menu_title' => 'Google', 'menu_slug' => 'syntric-google', 'parent_slug' => 'options-general.php',
+		                            'capability' => 'manage_options', ] );
 		// Settings > ADA Compliance
 		/*acf_add_options_sub_page( array(
 			'page_title'  => 'ADA Compliance',
@@ -205,56 +116,81 @@
 			'capability'  => 'manage_options',
 		) );*/
 	}
+
+	function syn_current_user_can( $role ) {
+		$current_user = wp_get_current_user();
+		$syntric_user = syn_syntric_user();
+		if ( 'syntric' == $role && $current_user->ID == $syntric_user->ID ) {
+			return true;
+		}
+		$current_user_role = $current_user->roles ? $current_user->roles[ 0 ] : false;
+		if ( 'subscriber' == $role && in_array( $current_user_role, [ 'subscriber', 'contributor', 'author', 'editor', 'administrator', ] ) ) {
+			return true;
+		}
+		if ( 'contributor' == $role && in_array( $current_user_role, [ 'contributor', 'author', 'editor', 'administrator', ] ) ) {
+			return true;
+		}
+		if ( 'author' == $role && in_array( $current_user_role, [ 'author', 'editor', 'administrator', ] ) ) {
+			return true;
+		}
+		if ( 'editor' == $role && in_array( $current_user_role, [ 'editor', 'administrator', ] ) ) {
+			return true;
+		}
+		if ( 'administrator' == $role && $current_user_role == 'administrator' ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	function syn_syntric_user() {
+		$syntric_user = get_user_by( 'login', 'syntric' );
+		return $syntric_user;
+	}
+
 	/**
 	 * Remove admin menu and submenu links by role
 	 */
 	add_action( 'admin_menu', 'syn_admin_menu', 999 );
 	function syn_admin_menu() {
-		$current_user = wp_get_current_user();
-		$role         = $current_user->roles ? $current_user->roles[ 0 ] : false;
-		$syntric_user = get_user_by( 'login', 'syntric' );
-		if ( $current_user->ID != $syntric_user->ID ) {
-			remove_menu_page( 'edit.php?post_type=acf-field-group' ); // Custom Fields
-			remove_menu_page( 'wpmudev' ); // WPMU Dev
-			remove_menu_page( 'wp-defender' ); // WP Defender
-			remove_submenu_page( 'tools.php', 'syntric-data-functions' );
-			remove_submenu_page( 'tools.php', 'syntric-clonables' );
-			remove_submenu_page( 'options-general.php', 'codepress-admin-columns' );
-		}
 		// Remove for everyone
 		remove_menu_page( 'link-manager.php' ); // Links
 		remove_submenu_page( 'themes.php', 'theme-editor.php' );
 		remove_submenu_page( 'plugins.php', 'plugin-editor.php' );
 		remove_submenu_page( 'index.php', 'update-core.php' );
-		// Remove for all but administrator
-		if ( 'editor' == $role ) {
-			remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Microblog (taxonomy)
+		// Remove for all by Syntric user
+		if ( ! syn_current_user_can( 'syntric' ) ) {
 			remove_menu_page( 'jetpack' ); // Jetpack
-			remove_menu_page( 'users.php' ); // Users
+			remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Post microblog (taxonomy)
+			remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=category' ); // Post category (taxonomy)
 			remove_menu_page( 'edit-comments.php' ); // Comments
+			remove_menu_page( 'tools.php' ); // Tools
+			remove_submenu_page( 'options-general.php', 'codepress-admin-columns' );
+			remove_menu_page( 'edit.php?post_type=acf-field-group' ); // Custom Fields
+			remove_menu_page( 'wpmudev' ); // WPMU Dev
+			remove_menu_page( 'wp-defender' ); // WP Defender
+			remove_submenu_page( 'upload.php', 'wp-smush-bulk');
+		}
+		// Remove for all but administrator
+		if ( ! syn_current_user_can( 'administrator' ) ) {
+			//remove_menu_page( 'users.php' ); // Users
 			remove_menu_page( 'themes.php' ); // Appearance
 			remove_menu_page( 'plugins.php' ); // Plugins
-			remove_menu_page( 'tools.php' ); // Tools
 			remove_menu_page( 'settings.php' ); // Settings
-			remove_menu_page( 'edit.php?post_type=acf-field-group' ); // Custom Fields
-			// todo: need to add in Headers, maybe Users
+		}
+		// Remove for all but editor
+		if ( ! syn_current_user_can( 'editor' ) ) {
+			// nothing...
+			remove_menu_page( 'users.php' ); // Users
+			remove_submenu_page( 'edit.php?post_type=page', 'nestedpages' );
 		}
 		// Remove menu items from authors - this is the roll assigned to Teachers
-		if ( 'author' == $role ) {
-			remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Microblog (taxonomy)
-			remove_menu_page( 'jetpack' ); // Jetpack
+		if ( ! syn_current_user_can( 'author' ) ) {
 			remove_menu_page( 'admin.php?page=syntric-organization' ); // Organization
 			remove_menu_page( 'edit.php?post_type=syn_calendar' ); // Calendars
 			remove_menu_page( 'admin.php?page=syntric-jumbotrons' ); // Jumbotrons
 			remove_menu_page( 'admin.php?page=syntric-google-maps' ); // Google Maps
-			remove_menu_page( 'users.php' ); // Users
 			remove_menu_page( 'profile.php' ); // Profile
-			remove_menu_page( 'edit-comments.php' ); // Comments
-			remove_menu_page( 'themes.php' ); // Appearance
-			remove_menu_page( 'plugins.php' ); // Plugins
-			remove_menu_page( 'tools.php' ); // Tools
-			remove_menu_page( 'settings.php' ); // Settings
-			remove_menu_page( 'edit.php?post_type=acf-field-group' ); // Custom Fields
 		}
 	}
 
@@ -263,17 +199,23 @@
 	 */
 	add_action( 'admin_bar_menu', 'syn_admin_bar', 999 );
 	function syn_admin_bar( $wp_admin_bar ) {
-		// Modify the Site Name menu item/dropdown for both front-end and admin
+		/**
+		 * Site name menu - both frontend and admin
+		 *
+		 * In admin...
+		 *
+		 * On frontend..
+		 * Original - Appearance + Themes + Widgets + Menus + Header
+		 * Redux - Dashboard + Pages + Posts + Media + Organization + Calendars + Jumbotrons + Google Maps + Users + Comments + Customize + Widgets + Sidebars + Social Media
+		 */
 		if ( is_admin() ) {
 			$site_name_node        = $wp_admin_bar->get_node( 'site-name' );
-			$site_name_node->title = 'Website';
+			$site_name_node->title = esc_attr( get_bloginfo( 'name', 'display' ) );
 			$wp_admin_bar->add_node( $site_name_node );
 			// Add some targeted links in the dropdown here...for Teachers - My Page (Or maybe that should go in My Account (upper right),
 			// for everyone links to Home Page, Calendars, News and more as appropriate and that make sense for the Org type
 		}
 		if ( ! is_admin() ) {
-			// Site Name node - Appearance + Themes + Widgets + Menus + Header
-			// Redux - Dashboard + Pages + Posts + Media + Organization + Calendars + Jumbotrons + Google Maps + Users + Comments + Customize + Widgets + Sidebars + Social Media
 			$site_name_node        = $wp_admin_bar->get_node( 'site-name' );
 			$site_name_node->title = 'Admin';
 			$wp_admin_bar->add_node( $site_name_node );
@@ -282,34 +224,36 @@
 			$wp_admin_bar->remove_node( 'widgets' );
 			$wp_admin_bar->remove_node( 'menus' );
 			$wp_admin_bar->remove_node( 'header' );
-			// Pages menu item
-			$pages_node         = new stdClass();
-			$pages_node->id     = 'pages';
-			$pages_node->title  = 'Pages';
-			$pages_node->parent = 'site-name';
-			$pages_node->href   = '/wp-admin/edit.php?post_type=page';
-			$pages_node->group  = '';
-			$pages_node->meta   = [];
-			$wp_admin_bar->add_node( $pages_node );
-			// Posts menu item
-			$posts_node         = new stdClass();
-			$posts_node->id     = 'posts';
-			$posts_node->title  = 'Posts';
-			$posts_node->parent = 'site-name';
-			$posts_node->href   = '/wp-admin/edit.php';
-			$posts_node->group  = '';
-			$posts_node->meta   = [];
-			$wp_admin_bar->add_node( $posts_node );
-			// Media menu item
-			$media_node         = new stdClass();
-			$media_node->id     = 'media';
-			$media_node->title  = 'Media';
-			$media_node->parent = 'site-name';
-			$media_node->href   = '/wp-admin/upload.php';
-			$media_node->group  = '';
-			$media_node->meta   = [];
-			$wp_admin_bar->add_node( $media_node );
-			if ( current_user_can( 'administrator' ) || current_user_can( 'editor' ) ) {
+			if ( syn_current_user_can( 'author' ) ) {
+				// Pages menu item
+				$pages_node         = new stdClass();
+				$pages_node->id     = 'pages';
+				$pages_node->title  = 'Pages';
+				$pages_node->parent = 'site-name';
+				$pages_node->href   = '/wp-admin/edit.php?post_type=page';
+				$pages_node->group  = '';
+				$pages_node->meta   = [];
+				$wp_admin_bar->add_node( $pages_node );
+				// Posts menu item
+				$posts_node         = new stdClass();
+				$posts_node->id     = 'posts';
+				$posts_node->title  = 'Posts';
+				$posts_node->parent = 'site-name';
+				$posts_node->href   = '/wp-admin/edit.php';
+				$posts_node->group  = '';
+				$posts_node->meta   = [];
+				$wp_admin_bar->add_node( $posts_node );
+				// Media menu item
+				$media_node         = new stdClass();
+				$media_node->id     = 'media';
+				$media_node->title  = 'Media';
+				$media_node->parent = 'site-name';
+				$media_node->href   = '/wp-admin/upload.php';
+				$media_node->group  = '';
+				$media_node->meta   = [];
+				$wp_admin_bar->add_node( $media_node );
+			}
+			if ( syn_current_user_can( 'editor' ) ) {
 				// Organization menu item
 				$organization_node         = new stdClass();
 				$organization_node->id     = 'organization';
@@ -355,6 +299,17 @@
 				$users_node->group  = '';
 				$users_node->meta   = [];
 				$wp_admin_bar->add_node( $users_node );
+				// Social Media menu item
+				$social_media_node         = new stdClass();
+				$social_media_node->id     = 'social_media';
+				$social_media_node->title  = 'Social Media';
+				$social_media_node->parent = 'site-name';
+				$social_media_node->href   = '/wp-admin/options-general.php?page=syntric-social-media';
+				$social_media_node->group  = '';
+				$social_media_node->meta   = [];
+				$wp_admin_bar->add_node( $social_media_node );
+			}
+			if ( syn_current_user_can( 'administrator' ) ) {
 				// Comments menu item
 				$comments_node         = new stdClass();
 				$comments_node->id     = 'comments';
@@ -391,18 +346,11 @@
 				$sidebars_node->group  = '';
 				$sidebars_node->meta   = [];
 				$wp_admin_bar->add_node( $sidebars_node );
-				// Social Media menu item
-				$social_media_node         = new stdClass();
-				$social_media_node->id     = 'social_media';
-				$social_media_node->title  = 'Social Media';
-				$social_media_node->parent = 'site-name';
-				$social_media_node->href   = '/wp-admin/options-general.php?page=syntric-social-media';
-				$social_media_node->group  = '';
-				$social_media_node->meta   = [];
-				$wp_admin_bar->add_node( $social_media_node );
 			}
 		}
-		// Modify the Account menu item/dropdown - drop "Howdy" and have only 2 dropdowns: Profile and Logout
+		/**
+		 * Account menu
+		 */
 		$my_account_node        = $wp_admin_bar->get_node( 'my-account' );
 		$my_account_node->title = str_replace( 'Howdy, ', '', $my_account_node->title );
 		$wp_admin_bar->add_node( $my_account_node );
@@ -412,16 +360,21 @@
 		$logout_node        = $wp_admin_bar->get_node( 'logout' );
 		$logout_node->title = str_replace( 'Log Out', 'Logout', $logout_node->title );
 		$wp_admin_bar->add_node( $logout_node );
+		/**
+		 * New content menu
+		 */
+		// For now just removing the New Conent menu...
+		$wp_admin_bar->remove_node( 'new-content' );
+		/*
 		// Change up the New Content menu item/dropdown as appropriate for the users role
-		if ( current_user_can( 'subscriber' ) || current_user_can( 'contributor' ) ) {
-			// Remove New Content for subscribers and contributors
+		if ( ! syn_current_user_can( 'editor' ) ) {
 			$wp_admin_bar->remove_node( 'new-content' );
-		} elseif ( current_user_can( 'author' ) ) {
+		//} elseif ( current_user_can( 'author' ) ) {
 			// for now, just take the New Content completely away from authors
-			$wp_admin_bar->remove_node( 'new-content' );
+			//$wp_admin_bar->remove_node( 'new-content' );
 			// todo: For the New Content menu item/dropdown for authors (aka teachers) list each of their microblogs?  Teacher and class pages?  Change New Content to My Content?
 			// already created a function syn_get_user_microblogs for this...
-		} elseif ( current_user_can( 'administrator' ) ) {
+		} elseif ( ! syn_current_user_can( 'administrator' ) ) {
 			// Modify the New Content menu item/dropdown...New > Page, Post, Jumbotron, Person, Header
 			$new_content_node = $wp_admin_bar->get_node( 'new-content' );
 			//$wp_admin_bar->remove_node( 'new-post' );
@@ -454,14 +407,18 @@
 			$header_node->meta   = [];
 			$wp_admin_bar->add_node( $header_node );
 		}
-		// Remove the following menu items for everyone
-		$wp_admin_bar->remove_node( 'comments' );
+		*/
+		// Remove the following admin bar items for everyone
 		$wp_admin_bar->remove_node( 'search' );
 		$wp_admin_bar->remove_node( 'wp-logo' );
 		$wp_admin_bar->remove_node( 'user-info' );
 		$wp_admin_bar->remove_node( 'view-site' );
 		$wp_admin_bar->remove_node( 'customize' );
-		// Move the "Edit" menu item right section of the admin bar
+		// Remove comments link for everyone except Syntric
+		if ( ! syn_current_user_can( 'syntric' ) ) {
+			$wp_admin_bar->remove_node( 'comments' );
+		}
+		// Move edit link to right side of admin bar
 		if ( is_admin() ) {
 			$view_node = $wp_admin_bar->get_node( 'view' );
 			if ( $view_node ) {
@@ -493,30 +450,30 @@
 	add_filter( 'menu_order', 'syn_menu_order' );
 	function syn_menu_order( $menu_order ) {
 		global $submenu;
-		$_menu_order = [
-			'index.php', // Dashboard
-			'separator1', // Separator
-			'edit.php?post_type=page', // Pages
-			'admin.php?page=nestedpages', // Pages (Nested Pages)
-			'edit.php', // Posts
-			'upload.php', // Media
-			'link-manager.php', // Links
-			'separator2', // Separator
-			'syntric-organization', // School or District or COE or Organization
-			'edit.php?post_type=syn_calendar', // Calendars
-			'syntric-jumbotrons', // Jumbotrons
-			'syntric-google-maps', // Google Maps
-			'separator-last', // Separator
-			'users.php', // Users
-			'edit-comments.php', // Comments
-			'themes.php', // Appearance
-			'plugins.php', // Plugins
-			'tools.php', // Tools
-			'options-general.php', // Settings
-			'edit.php?post_type=acf-field-group', // Custom Fields
-			'jetpack', // Jetpack
+		$_menu_order = [ 'index.php', // Dashboard
+		                 //'separator1', // Separator
+		                 'edit.php?post_type=page', // Pages
+		                 'admin.php?page=nestedpages', // Pages (Nested Pages)
+		                 'edit.php', // Posts
+		                 //'separator2', // Separator
+		                 'syntric-organization', // School or District or COE or Organization
+		                 'edit.php?post_type=syn_calendar', // Calendars
+		                 'syntric-jumbotrons', // Jumbotrons
+		                 'syntric-google-maps', // Google Maps
+		                 'link-manager.php', // Links
+		                 'edit-comments.php', // Comments
+		                 'upload.php', // Media
+		                 'users.php', // Users
+		                 'profile.php', // Profile
+		                 //'separator-last', // Separator
+		                 'themes.php', // Appearance
+		                 'plugins.php', // Plugins
+		                 'tools.php', // Tools
+		                 'options-general.php', // Settings
+		                 'edit.php?post_type=acf-field-group', // Custom Fields
+		                 'jetpack', // Jetpack
 		];
-		if ( ! current_user_can( 'administrator' ) ) {
+		/*if ( ! syn_current_user_can( 'administrator' ) ) {
 			foreach ( $submenu as $menu => $subs ) {
 				if ( 'themes.php' == $menu ) {
 					foreach ( $subs as $key => $details ) {
@@ -598,7 +555,7 @@
 					}
 				}
 			}
-		}
+		}*/
 
 		return $_menu_order;
 	}
@@ -953,10 +910,7 @@
 	function syn_load_people( $field ) {
 		if ( 'select' == $field[ 'type' ] ) {
 			$choices = [];
-			$people  = get_users( [
-				'meta_key' => 'last_name',
-				'orderby'  => 'meta_value',
-			] );
+			$people  = get_users( [ 'meta_key' => 'last_name', 'orderby' => 'meta_value', ] );
 			if ( $people ) {
 				foreach ( $people as $person ) {
 					$choices[ $person->ID ] = $person->display_name . ' / ' . get_field( 'syn_user_title', 'user_' . $person->ID );
@@ -1032,15 +986,8 @@
 
 	function syn_load_classes( $field ) {
 		if ( is_admin() && 'select' == $field[ 'type' ] ) {
-			$teacher_pages = get_posts( [
-				'numberposts'  => - 1,
-				'post_type'    => 'page',
-				'post_status'  => [ 'publish', 'draft', 'future', 'pending', 'private', 'trash' ],
-				'meta_key'     => '_wp_page_template',
-				'meta_value'   => 'page-templates/teacher.php',
-				'meta_compare' => '=',
-				'fields'       => 'ids',
-			] );
+			$teacher_pages = get_posts( [ 'numberposts' => - 1, 'post_type' => 'page', 'post_status' => [ 'publish', 'draft', 'future', 'pending', 'private', 'trash' ],
+			                              'meta_key'    => '_wp_page_template', 'meta_value' => 'page-templates/teacher.php', 'meta_compare' => '=', 'fields' => 'ids', ] );
 			$choices       = [];
 			if ( $teacher_pages ) {
 				foreach ( $teacher_pages as $teacher_page ) { // teacher_page is post->ID
@@ -1155,14 +1102,8 @@
 	/*************************************** Teachers (page template) Page *****************************************/
 // todo: Look at this...was only getting published pages, quickly changed to all...is that correct?
 	function syn_get_teachers_page() {
-		$post_args = [
-			'numberposts'  => - 1,
-			'post_type'    => 'page',
-			'post_status'  => [ 'publish', 'draft', 'future', 'pending', 'private' ],
-			'meta_key'     => '_wp_page_template',
-			'meta_value'   => 'page-templates/teachers.php',
-			'meta_compare' => '=',
-		];
+		$post_args = [ 'numberposts' => - 1, 'post_type' => 'page', 'post_status' => [ 'publish', 'draft', 'future', 'pending', 'private' ], 'meta_key' => '_wp_page_template',
+		               'meta_value'  => 'page-templates/teachers.php', 'meta_compare' => '=', ];
 		$posts     = get_posts( $post_args );
 		if ( 0 == count( $posts ) ) {
 			// create and return a new teachers page
@@ -1175,10 +1116,7 @@
 			// ...more than one teachers pages exist...determine which takes precedence, migrate children, trash extras, return winner
 			$has_children       = [];
 			$has_not_children   = [];
-			$post_children_args = [
-				'numberposts' => - 1,
-				'post_status' => [ 'publish', 'draft', 'future', 'pending', 'private' ],
-				'post_parent' => 0, // change for each iteration
+			$post_children_args = [ 'numberposts' => - 1, 'post_status' => [ 'publish', 'draft', 'future', 'pending', 'private' ], 'post_parent' => 0, // change for each iteration
 			];
 			foreach ( $posts as $post ) {
 				$post_children_args[ 'post_parent' ] = $post->ID;
@@ -1224,14 +1162,7 @@
 	function syn_create_teachers_page() {
 		$site_owner       = get_field( 'syn_organization_person', 'option' );
 		$site_owner       = ( is_int( $site_owner ) ) ? $site_owner : 1;
-		$args             = [
-			'post_type'   => 'page',
-			'post_title'  => 'Teachers',
-			'post_name'   => 'teachers',
-			'post_author' => $site_owner,
-			'post_parent' => 0,
-			'post_status' => 'draft',
-		];
+		$args             = [ 'post_type' => 'page', 'post_title' => 'Teachers', 'post_name' => 'teachers', 'post_author' => $site_owner, 'post_parent' => 0, 'post_status' => 'draft', ];
 		$teachers_page_id = wp_insert_post( $args );
 		update_post_meta( $teachers_page_id, '_wp_page_template', 'page-templates/teachers.php' );
 
@@ -1241,11 +1172,7 @@
 	function syn_update_teachers_page( $post_id ) {
 		$teachers_page = get_post( $post_id, OBJECT );
 		if ( $teachers_page instanceof WP_Post ) {
-			$args             = [
-				'ID'         => $post_id,
-				'post_title' => 'Teachers',
-				'post_name'  => 'teachers',
-			];
+			$args             = [ 'ID' => $post_id, 'post_title' => 'Teachers', 'post_name' => 'teachers', ];
 			$teachers_page_id = wp_update_post( $args );
 			update_post_meta( $teachers_page_id, '_wp_page_template', 'page-templates/teachers.php' );
 
@@ -1277,23 +1204,9 @@
 		if ( $include_trash ) {
 			$post_statuses[] = 'trash';
 		}
-		$post_args = [
-			'numberposts' => - 1,
-			'post_type'   => 'page',
-			'post_status' => $post_statuses,
-			'meta_query'  => [
-				[
-					'key'     => 'syn_page_teacher',
-					'value'   => $teacher_id,
-					'compare' => '=',
-				],
-				[
-					'key'     => '_wp_page_template',
-					'value'   => 'page-templates/teacher.php',
-					'compare' => '=',
-				],
-			],
-		];
+		$post_args = [ 'numberposts' => - 1, 'post_type' => 'page', 'post_status' => $post_statuses,
+		               'meta_query'  => [ [ 'key' => 'syn_page_teacher', 'value' => $teacher_id, 'compare' => '=', ],
+		                                  [ 'key' => '_wp_page_template', 'value' => 'page-templates/teacher.php', 'compare' => '=', ], ], ];
 		$posts     = get_posts( $post_args );
 		if ( 1 == count( $posts ) ) {
 			return $posts[ 0 ];
@@ -1312,13 +1225,7 @@
 			$post_name     = syn_sluggify( $post_title );
 			$teachers_page = syn_get_teachers_page(); // Teachers page
 			if ( $teachers_page instanceof WP_Post ) {// todo: test this...make sure a teachers page is always returned
-				$args         = [
-					'post_type'   => 'page',
-					'post_title'  => $post_title,
-					'post_name'   => $post_name,
-					'post_author' => $teacher_id,
-					'post_parent' => $teachers_page->ID,
-				];
+				$args         = [ 'post_type' => 'page', 'post_title' => $post_title, 'post_name' => $post_name, 'post_author' => $teacher_id, 'post_parent' => $teachers_page->ID, ];
 				$teacher_page = syn_get_teacher_page( $teacher_id, true );
 				if ( $teacher_page ) {
 					$args[ 'ID' ]           = $teacher_page->ID;
@@ -1395,28 +1302,10 @@
 		if ( $include_trash ) {
 			$post_statuses[] = 'trash';
 		}
-		$post_args = [
-			'numberposts' => - 1,
-			'post_type'   => 'page',
-			'post_status' => $post_statuses,
-			'meta_query'  => [
-				[
-					'key'     => 'syn_page_class_teacher',
-					'value'   => $teacher_id,
-					'compare' => '=',
-				],
-				[
-					'key'     => 'syn_page_class',
-					'value'   => $class_id,
-					'compare' => '=',
-				],
-				[
-					'key'     => '_wp_page_template',
-					'value'   => 'page-templates/class.php',
-					'compare' => '=',
-				],
-			],
-		];
+		$post_args = [ 'numberposts' => - 1, 'post_type' => 'page', 'post_status' => $post_statuses,
+		               'meta_query'  => [ [ 'key' => 'syn_page_class_teacher', 'value' => $teacher_id, 'compare' => '=', ],
+		                                  [ 'key' => 'syn_page_class', 'value' => $class_id, 'compare' => '=', ],
+		                                  [ 'key' => '_wp_page_template', 'value' => 'page-templates/class.php', 'compare' => '=', ], ], ];
 		$posts     = get_posts( $post_args );
 		if ( 1 == count( $posts ) ) {
 			return $posts[ 0 ];
@@ -1444,23 +1333,9 @@
 		if ( $include_trash ) {
 			$post_statuses[] = 'trash';
 		}
-		$args  = [
-			'numberposts' => - 1,
-			'post_type'   => 'page',
-			'post_status' => $post_statuses,
-			'meta_query'  => [
-				[
-					'key'     => 'syn_page_class_teacher',
-					'value'   => $teacher_id,
-					'compare' => '=',
-				],
-				[
-					'key'     => '_wp_page_template',
-					'value'   => 'page-templates/class.php',
-					'compare' => '=',
-				],
-			],
-		];
+		$args  = [ 'numberposts' => - 1, 'post_type' => 'page', 'post_status' => $post_statuses,
+		           'meta_query'  => [ [ 'key' => 'syn_page_class_teacher', 'value' => $teacher_id, 'compare' => '=', ],
+		                              [ 'key' => '_wp_page_template', 'value' => 'page-templates/class.php', 'compare' => '=', ], ], ];
 		$posts = get_posts( $args );
 
 		return $posts;
@@ -1488,13 +1363,8 @@
 					if ( $include_page ) {
 						$tc_ids[]                                = $teacher_class[ 'class_id' ];
 						$cp_title                                = $teacher_class[ 'course' ];
-						$tc_args[ $teacher_class[ 'class_id' ] ] = [
-							'post_type'   => 'page',
-							'post_title'  => $cp_title,
-							'post_name'   => syn_sluggify( $cp_title ),
-							'post_author' => $teacher_id,
-							'post_parent' => $teacher_page->ID,
-						];
+						$tc_args[ $teacher_class[ 'class_id' ] ] = [ 'post_type'   => 'page', 'post_title' => $cp_title, 'post_name' => syn_sluggify( $cp_title ),
+						                                             'post_author' => $teacher_id, 'post_parent' => $teacher_page->ID, ];
 					}
 				}
 				// does - classes that have a page
@@ -1584,16 +1454,7 @@
 
 	/*************************************** Teachers *****************************************/
 	function syn_get_teachers() {
-		$teachers = get_users( [
-			'meta_key'   => 'last_name',
-			'meta_query' => [
-				[
-					'key'   => 'syn_user_is_teacher',
-					'value' => 1,
-				],
-			],
-			'orderby'    => 'meta_value',
-		] );
+		$teachers = get_users( [ 'meta_key' => 'last_name', 'meta_query' => [ [ 'key' => 'syn_user_is_teacher', 'value' => 1, ], ], 'orderby' => 'meta_value', ] );
 
 		return $teachers;
 	}
@@ -1604,18 +1465,8 @@
 		if ( $include_trash ) {
 			$post_statuses[] = 'trash';
 		}
-		$post_args = [
-			'numberposts' => - 1,
-			'post_type'   => 'page',
-			'post_status' => $post_statuses,
-			'meta_query'  => [
-				[
-					'key'     => '_wp_page_template',
-					'value'   => 'page-templates/teacher.php',
-					'compare' => '=',
-				],
-			],
-		];
+		$post_args = [ 'numberposts' => - 1, 'post_type' => 'page', 'post_status' => $post_statuses,
+		               'meta_query'  => [ [ 'key' => '_wp_page_template', 'value' => 'page-templates/teacher.php', 'compare' => '=', ], ], ];
 		$posts     = get_posts( $post_args );
 
 		return $posts;
@@ -1645,23 +1496,9 @@
 		if ( $include_trash ) {
 			$post_statuses[] = 'trash';
 		}
-		$args  = [
-			'numberposts' => - 1,
-			'post_type'   => 'page',
-			'post_status' => $post_statuses,
-			'meta_query'  => [
-				[
-					'key'     => 'syn_page_class_teacher',
-					'value'   => $teacher_ids,
-					'compare' => 'in',
-				],
-				[
-					'key'     => '_wp_page_template',
-					'value'   => 'page-templates/class.php',
-					'compare' => '=',
-				],
-			],
-		];
+		$args  = [ 'numberposts' => - 1, 'post_type' => 'page', 'post_status' => $post_statuses,
+		           'meta_query'  => [ [ 'key' => 'syn_page_class_teacher', 'value' => $teacher_ids, 'compare' => 'in', ],
+		                              [ 'key' => '_wp_page_template', 'value' => 'page-templates/class.php', 'compare' => '=', ], ], ];
 		$posts = get_posts( $args );
 
 		return $posts;
@@ -1732,18 +1569,8 @@
 
 	function syn_organization_is_school() {
 		$organization_type = syn_get_organization_type();
-		$school_types      = [
-			'elementary_school',
-			'primary_school',
-			'secondary_school',
-			'adult_ed_school',
-			'adult_education_school',
-			'alterative_school',
-			'school',
-			'high_school',
-			'middle_school',
-			'jr_high_school',
-		];
+		$school_types      = [ 'elementary_school', 'primary_school', 'secondary_school', 'adult_ed_school', 'adult_education_school', 'alterative_school', 'school', 'high_school',
+		                       'middle_school', 'jr_high_school', ];
 		if ( in_array( $organization_type, $school_types ) ) {
 			return true;
 		}
@@ -1808,37 +1635,41 @@
 		$organization = get_field( 'syn_organization', 'option' );
 		$lb           = "\n";
 		$tab          = "\t";
-		echo '<div class="final-footer">' . $lb;
-		echo $tab . '<div class="container-fluid">' . $lb;
-		echo $tab . $tab . '<div class="row">' . $lb;
-		echo $tab . $tab . $tab . '<div class="col-lg-12">' . $lb;
-		echo $tab . $tab . $tab . $tab . '<div class="non-discrimination">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment. For more information or to contact our Title IX coordinator please visit the Title IX page.</div>' . $lb;
-		echo $tab . $tab . $tab . '</div>' . $lb;
-		echo $tab . $tab . '</div>' . $lb;
-		echo $tab . $tab . '<div class="row">' . $lb;
-		echo $tab . $tab . $tab . '<div class="col-lg-6">' . $lb;
-		echo $tab . $tab . $tab . $tab . '<div id="google-translate"></div>' . $lb;
-		echo $tab . $tab . $tab . '</div>' . $lb;
-		echo $tab . $tab . $tab . '<div class="col-lg-6 text-lg-right"></div>' . $lb;
-		echo $tab . $tab . '</div>' . $lb;
-		echo $tab . $tab . '<div class="row">' . $lb;
-		echo $tab . $tab . $tab . '<div class="col-lg-4">' . $lb;
-		echo $tab . $tab . $tab . $tab . '<div class="copyright">&copy; ' . date( 'Y' ) . ' ' . $organization . '</div>' . $lb;
-		echo $tab . $tab . $tab . '</div>' . $lb;
-		echo $tab . $tab . $tab . '<div class="col-lg-4 text-lg-center"></div>' . $lb;
-		echo $tab . $tab . $tab . '<div class="col-lg-4 text-lg-right">' . $lb;
-		echo $tab . $tab . $tab . $tab . '<div class="login-bug">' . $lb;
+		echo '<footer class="final-footer d-print-none">' . $lb;
+		//echo '<div class="final-footer d-print-none">' . $lb;
+		//echo $tab . '<div class="container-fluid">' . $lb;
+		//echo $tab . $tab . '<div class="row">' . $lb;
+		//echo $tab . $tab . $tab . '<div class="col-lg-12">' . $lb;
+		echo $tab . '<div class="non-discrimination">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment. For more information or to contact our Title IX coordinator please visit the Title IX page.</div>' . $lb;
+		//echo $tab . $tab . $tab . '</div>' . $lb;
+		//echo $tab . $tab . '</div>' . $lb;
+		//echo $tab . $tab . '<div class="row">' . $lb;
+		//echo $tab . $tab . $tab . '<div class="col-lg-6">' . $lb;
+		echo $tab . '<div class="d-flex flex-row">' . $lb;
+		//echo $tab . $tab . '<div id="google-translate" class="google-translate"></div>' . $lb;
+		//echo $tab . $tab . $tab . '</div>' . $lb;
+		//echo $tab . $tab . $tab . '<div class="col-lg-6 text-lg-right"></div>' . $lb;
+		//echo $tab . $tab . '</div>' . $lb;
+		//echo $tab . $tab . '<div class="row">' . $lb;
+		//echo $tab . $tab . $tab . '<div class="col-lg-4">' . $lb;
+		echo $tab . $tab . '<div class="copyright">&copy; ' . date( 'Y' ) . ' ' . $organization . '</div>' . $lb;
+		//echo $tab . $tab . $tab . '</div>' . $lb;
+		//echo $tab . $tab . $tab . '<div class="col-lg-4 text-lg-center"></div>' . $lb;
+		//echo $tab . $tab . $tab . '<div class="col-lg-4 text-lg-right">' . $lb;
+		echo $tab . $tab . '<div class="login-bug">' . $lb;
 		if ( is_user_logged_in() ) {
-			echo $tab . $tab . $tab . $tab . $tab . '<a href="' . wp_logout_url( get_the_permalink() ) . '" class="login-button">Logout</a>' . $lb;
+			echo $tab . $tab . $tab . '<a href="' . wp_logout_url( get_the_permalink() ) . '" class="login-button">Logout</a>' . $lb;
 		} else {
-			echo $tab . $tab . $tab . $tab . $tab . '<a href="' . wp_login_url( get_the_permalink() ) . '" class="login-button">Login</a>' . $lb;
+			echo $tab . $tab . $tab . '<a href="' . wp_login_url( get_the_permalink() ) . '" class="login-button">Login</a>' . $lb;
 		}
-		echo $tab . $tab . $tab . $tab . $tab . syn_bug() . $lb;
-		echo $tab . $tab . $tab . $tab . '</div>' . $lb;
-		echo $tab . $tab . $tab . '</div>' . $lb;
+		echo $tab . $tab . $tab . syn_bug() . $lb;
 		echo $tab . $tab . '</div>' . $lb;
 		echo $tab . '</div>' . $lb;
-		echo '</div>' . $lb;
+		//echo $tab . $tab . $tab . '</div>' . $lb;
+		//echo $tab . $tab . '</div>' . $lb;
+		//echo $tab . '</div>' . $lb;
+		//echo '</div>' . $lb;
+		echo '</footer>' . $lb;
 	}
 
 	function syn_bug() {
@@ -1859,7 +1690,7 @@
 		if ( is_front_page() ) {
 			return;
 		}
-		$breadcrumbs = '<div class="breadcrumb-wrapper">';
+		$breadcrumbs = '<div class="breadcrumb-wrapper d-print-none">';
 		$breadcrumbs .= '<div class="' . esc_html( get_theme_mod( 'syntric_container_type' ) ) . '">';
 		$breadcrumbs .= '<nav class="breadcrumb">';
 		$breadcrumbs .= '<a class="breadcrumb-item" href="' . home_url() . '">Home</a>';
@@ -1938,7 +1769,7 @@
 		if ( has_header_image() || $jumbotrons ) {
 			$lb  = "\n";
 			$tab = "\t";
-			echo '<div class="banner-wrapper" aria-hidden="true"' . $banner_style_attribute . 'role="banner">' . $lb;
+			echo '<div class="banner-wrapper d-print-none" aria-hidden="true"' . $banner_style_attribute . 'role="banner">' . $lb;
 			echo syn_jumbotron();
 			echo '</div>' . $lb;
 		}
@@ -2150,13 +1981,8 @@
 		$user_id    = get_current_user_id();
 		$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user_id );
 		$post_type  = $mb_args[ 'args' ][ 'post_type' ];
-		$args       = [
-			'numberposts'   => - 1,
-			'post_type'     => $post_type,
-			'post_status'   => [ 'pending' ],
-			//'orderby'       => array( 'menu_order' => 'ASC' ),
-			'no_found_rows' => true,
-		];
+		$args       = [ 'numberposts'   => - 1, 'post_type' => $post_type, 'post_status' => [ 'pending' ], //'orderby'       => array( 'menu_order' => 'ASC' ),
+		                'no_found_rows' => true, ];
 		if ( $is_teacher ) {
 			$args[ 'author' ] = $user_id;
 		}
@@ -2210,12 +2036,7 @@
 		$user_id    = get_current_user_id();
 		$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user_id );
 		$post_type  = $mb_args[ 'args' ][ 'post_type' ];
-		$args       = [
-			'numberposts'   => 5,
-			'post_type'     => $post_type,
-			'post_status'   => [ 'publish' ],
-			'no_found_rows' => true,
-		];
+		$args       = [ 'numberposts' => 5, 'post_type' => $post_type, 'post_status' => [ 'publish' ], 'no_found_rows' => true, ];
 		if ( $is_teacher ) {
 			$args[ 'author' ] = $user_id;
 		}
@@ -2374,13 +2195,7 @@
 
 // quick nav
 	function syn_qn_all_pages() {
-		$args  = [
-			'numberposts' => - 1,
-			'orderby'     => 'post_title',
-			'order'       => 'ASC',
-			'post_type'   => 'page',
-			'post_status' => [ 'publish', 'draft', 'future', 'pending', 'private' ],
-		];
+		$args  = [ 'numberposts' => - 1, 'orderby' => 'post_title', 'order' => 'ASC', 'post_type' => 'page', 'post_status' => [ 'publish', 'draft', 'future', 'pending', 'private' ], ];
 		$posts = get_posts( $args );
 		echo '<ul class="admin_pages_sidenav">';
 		if ( $posts ) {

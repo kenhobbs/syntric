@@ -65,7 +65,7 @@ function syn_enqueue_admin_scripts( $hook ) {
  * @return string Full URI to a theme stylesheet
  */
 function syn_get_theme_stylesheet_uri() {
-	$http_host       = syn_get_http_host();
+	$http_host       = $_SERVER['HTTP_HOST'];
 	$theme_style_uri = get_stylesheet_directory_uri() . '/assets/css/' . $http_host . '.min.css';
 
 	return $theme_style_uri;

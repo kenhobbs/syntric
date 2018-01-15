@@ -130,10 +130,23 @@
 							echo '</section>' . $lb;
 						} elseif( in_array( $section, [ 'header', 'footer' ] ) ) {
 							$sidebar_layout    = $sidebar[ 'layout' ][ 'value' ];
-							$container_classes = ( 'container-bleed' == $sidebar_layout ) ? 'container-bleed' : $sidebar_layout;
+							// Yuck todo: do this better
+							$layout = 'fixed';
+							switch ( $sidebar_layout ) :
+								case 'container' :
+									$layout = 'fixed';
+									break;
+								case 'container-fluid' :
+									$layout = 'full';
+									break;
+								case 'container-bleed' :
+									$layout = 'bleed';
+									break;
+							endswitch;
+							//$container_classes = ( 'container-bleed' == $sidebar_layout ) ? 'container-bleed' : $sidebar_layout;
 							$row_classes       = ( 'container-bleed' == $sidebar_layout ) ? 'row no-gutters' : 'row';
-							echo '<section class="' . $wp_sidebar_class . ' sidebar ' . $sidebar_section . '-sidebar ' . $widgets_classes . ' d-print-none">' . $lb;
-							echo $tab . '<div class="' . $container_classes . '">' . $lb;
+							echo '<section class="' . $wp_sidebar_class . ' sidebar ' . $sidebar_section . '-sidebar ' . $layout . ' ' . $widgets_classes . ' d-print-none">' . $lb;
+							echo $tab . '<div class="' . $sidebar_layout . '">' . $lb;
 							echo $tab . $tab . '<div class="' . $row_classes . '">' . $lb;
 							dynamic_sidebar( $sidebar_id );
 							echo $tab . $tab . '</div>' . $lb;
