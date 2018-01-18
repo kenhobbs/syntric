@@ -57,7 +57,7 @@
 				};
 				if( ! $has_one ) {
 					echo $tab . '<li class="nav-item">' . $lb;
-					echo $tab . $tab . $tab . $tab . '<span class="entry-title">' . 'No microblogs' . '</span>' . $lb;
+					echo $tab . $tab . $tab . $tab . '<div class="entry-title">' . 'No microblogs' . '</div>' . $lb;
 					echo $tab . '</li>' . $lb;
 				}
 				echo '</ul>' . $lb;

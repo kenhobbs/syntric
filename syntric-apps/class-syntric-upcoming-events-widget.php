@@ -52,11 +52,12 @@
 			if ( $events ) {
 				foreach ( $events as $event ) :
 					//$event    = get_post( $event_id );
-					$dates    = syn_get_event_dates( $event->ID );
-					$start_date = get_field( 'syn_event_start_date', $event->ID );
-					$start_time = get_field( 'syn_event_start_time', $event->ID );
-					$end_date = get_field( 'syn_event_end_date', $event->ID );
-					$end_time = get_field( 'syn_event_end_time', $event->ID );
+					$dates       = syn_get_event_dates( $event->ID );
+					$start_date  = get_field( 'syn_event_start_date', $event->ID );
+					$_start_date = date_create( $start_date );
+					//$start_time  = get_field( 'syn_event_start_time', $event->ID );
+					//$end_date    = get_field( 'syn_event_end_date', $event->ID );
+					//$end_time    = get_field( 'syn_event_end_time', $event->ID );
 					$location = get_field( 'syn_event_location', $event->ID );
 					echo $tab . '<li class="nav-item">' . $lb;
 					if ( ! empty( $event->post_content ) ) :
@@ -64,21 +65,21 @@
 					else :
 						echo $tab . $tab . '<div class="nav-link">' . $lb;
 					endif;
-					/*echo $tab . $tab . $tab . '<div class="d-flex flex-row">' . $lb;
-					echo $tab . $tab . $tab . $tab . '<div class="entry-feature">' . $lb;
-					echo $tab . $tab . $tab . $tab . $tab . '<div class="mo">' . 'SEP' . '</div><div class="da">' . '12' . '</div>' . $lb;
+					//echo $tab . $tab . $tab . '<div class="d-flex">' . $lb;
+					echo $tab . $tab . $tab . $tab . '<div class="entry-feature entry-calicon">' . $lb;
+					echo $tab . $tab . $tab . $tab . $tab . '<div class="mo">' . strtoupper( date_format( $_start_date, 'M' ) ) . '</div><div class="da">' . date_format( $_start_date, 'd' ) . '</div>' . $lb;
 					echo $tab . $tab . $tab . $tab . '</div>' . $lb;
-					echo $tab . $tab . $tab . $tab . '<div class="entry-content">' . $lb;*/
-					echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-title">' . $event->post_title . '</span>' . $lb;
+					echo $tab . $tab . $tab . $tab . '<div class="entry-content">' . $lb;
+					echo $tab . $tab . $tab . $tab . $tab . '<div class="entry-title">' . $event->post_title . '</div>' . $lb;
 					if ( $show_date ) :
-						echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-date">' . $dates . '</span>' . $lb;
-						//echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-date">' . $start_date . ' @ ' . $start_time . ' - ' . $end_date . ' @ ' . $end_time . '</span>' . $lb;
+						echo $tab . $tab . $tab . $tab . $tab . '<div class="entry-date">' . $dates . '</div>' . $lb;
+//echo $tab . $tab . $tab . $tab . $tab . '<div class="entry-date">' . $start_date . ' @ ' . $start_time . ' - ' . $end_date . ' @ ' . $end_time . '</div>' . $lb;
 					endif;
 					if ( ! empty( $location ) ) :
-						echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-location">' . $location . '</span>' . $lb;
+						echo $tab . $tab . $tab . $tab . $tab . '<div class="entry-location">' . $location . '</div>' . $lb;
 					endif;
 					//echo $tab . $tab . $tab . $tab . '</div>' . $lb;
-					//echo $tab . $tab . $tab . '</div>' . $lb;
+					echo $tab . $tab . $tab . '</div>' . $lb;
 					if ( ! empty( $event->post_content ) ) :
 						echo $tab . $tab . '</a>' . $lb;
 					else :

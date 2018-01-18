@@ -52,9 +52,9 @@
 					echo $tab . '<li class="nav-item">' . $lb;
 					echo $tab . $tab . '<a href="' . get_the_permalink() . '" class="nav-link">' . $lb;
 					if( $show_date ) :
-						echo $tab . $tab . $tab . $tab . '<span class="entry-date">' . get_the_date() . '</span>' . $lb;
+						echo $tab . $tab . $tab . $tab . '<div class="entry-date">' . get_the_date() . '</div>' . $lb;
 					endif;
-					echo $tab . $tab . $tab . $tab . '<span class="entry-title">' . get_the_title() . '</span>' . $lb;
+					echo $tab . $tab . $tab . $tab . '<div class="entry-title">' . get_the_title() . '</div>' . $lb;
 					echo $tab . $tab . '</a>' . $lb;
 					echo $tab . '</li>' . $lb;
 				endwhile;

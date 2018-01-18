@@ -60,9 +60,9 @@
 				while( $posts->have_posts() ) : $posts->the_post();
 					echo $tab . '<li class="nav-item">' . $lb;
 					echo '<a href="' . get_the_permalink() . '" class="nav-link">' . $lb;
-					echo '<span class="entry-title">' . get_the_title() . '</span>' . $lb;
+					echo '<div class="entry-title">' . get_the_title() . '</div>' . $lb;
 					if( $show_date ) :
-						echo '<span class="entry-date">' . get_the_date() . '</span>' . $lb;
+						echo '<div class="entry-date">' . get_the_date() . '</div>' . $lb;
 					endif;
 					echo '</a>' . $lb;
 					echo '</li>' . $lb;

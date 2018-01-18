@@ -77,15 +77,15 @@
 					$ext        = ( isset( $ext ) && ! empty( $ext ) ) ? ' x' . $ext : '';
 					if ( 'aside' == $layout ) {
 						echo $tab . '<div class="contact-entry d-flex flex-column">' . $lb;
-						echo $tab . $tab . '<span class="entry-name">' . $first_name . ' ' . $last_name . '</span>' . $lb;
+						echo $tab . $tab . '<div class="entry-name">' . $first_name . ' ' . $last_name . '</div>' . $lb;
 						if ( in_array( 'titles', $include_fields ) ) {
-							echo $tab . $tab . '<span class="entry-title">' . $title . '</span>' . $lb;
+							echo $tab . $tab . '<div class="entry-title">' . $title . '</div>' . $lb;
 						}
 						if ( in_array( 'email', $include_fields ) ) {
 							echo $tab . $tab . '<a href="mailto:' . antispambot( $email, true ) . '" class="entry-email" title="Email">' . antispambot( $email ) . '</a>';
 						}
 						if ( in_array( 'phone', $include_fields ) ) {
-							echo $tab . $tab . '<span class="entry-phone">' . $phone . $ext . '</span>' . $lb;
+							echo $tab . $tab . '<div class="entry-phone">' . $phone . $ext . '</div>' . $lb;
 						}
 						echo $tab . '</div>' . $lb;
 					}
@@ -107,7 +107,7 @@
 			else :
 				if ( 'aside' == $layout ) :
 					/*echo $tab . '<li>' . $lb;
-					echo $tab . $tab . '<span class="entry-title">No people</span>' . $lb;
+					echo $tab . $tab . '<div class="entry-title">No people</span>' . $lb;
 					echo $tab . '</li>' . $lb;*/
 				endif;
 				if ( 'table' == $layout ) :

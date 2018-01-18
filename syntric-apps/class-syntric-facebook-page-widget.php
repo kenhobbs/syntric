@@ -65,7 +65,7 @@
 									echo $tab . $tab . '<img src = "' . $facebook_post->picture . '" class="card-img-top" alt = "Facebook post photo" aria-hidden = "true">' . $lb;
 									echo $tab . $tab . '<div class="card-body">';
 									//echo $tab . $tab . $tab . '<h5 class="card-title">Card title that wraps to a new line</h5>';
-									echo $tab . $tab . $tab . '<h5 class="card-title">' . $publish_date . '</h5 > ' . $lb;
+									echo $tab . $tab . $tab . '<h5 class="card-title">' . $publish_date . '</h5>' . $lb;
 									//echo $tab . $tab . $tab . '<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>';
 									echo $tab . $tab . $tab . '<p class="card-text">' . substr( $facebook_post->message, 0, 250 ) . '</p>';
 									echo $tab . $tab . '</div>';
@@ -83,21 +83,21 @@
 									echo $tab . '<li class="nav-item">' . $lb;
 									echo $tab . $tab . '<a href = "' . $facebook_post->permalink_url . '" class="nav-link" target = "_blank">' . $lb;
 									if ( $include_image ) :
-										echo $tab . $tab . $tab . '<div class="d-flex flex-row">' . $lb;
+										//echo $tab . $tab . $tab . '<div class="d-flex flex-row">' . $lb;
 										echo $tab . $tab . $tab . $tab . '<div class="entry-feature">' . $lb;
 										echo $tab . $tab . $tab . $tab . $tab . '<img src = "' . $facebook_post->picture . '" class="entry-image" alt = "Facebook post photo" aria - hidden = "true">' . $lb;
-										echo $tab . $tab . $tab . $tab . '</div > ' . $lb;
+										echo $tab . $tab . $tab . $tab . '</div>' . $lb;
 									endif;
 									$publish_date = date_create( $facebook_post->created_time );
 									$publish_date = date_format( $publish_date, 'F j, Y' );
 									echo $tab . $tab . $tab . $tab . '<div class="entry-content">' . $lb;
-									echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-date">' . $publish_date . '</span > ' . $lb;
-									$more = ( 250 < strlen( $facebook_post->message ) ) ? '<span class="entry-more">Read More </span > ' . $lb : '';
-									echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-excerpt">' . substr( $facebook_post->message, 0, 250 ) . $more . '</span > ' . $lb;
-									echo $tab . $tab . $tab . $tab . '</div > ' . $lb;
-									echo $tab . $tab . $tab . '</div > ' . $lb;
-									echo $tab . $tab . '</a > ' . $lb;
-									echo $tab . '</li > ' . $lb;
+									echo $tab . $tab . $tab . $tab . $tab . '<div class="entry-date">' . $publish_date . '</div> ' . $lb;
+									$more = ( 250 < strlen( $facebook_post->message ) ) ? '<div class="entry-more">Read More </div> ' . $lb : '';
+									echo $tab . $tab . $tab . $tab . $tab . '<div class="entry-excerpt">' . substr( $facebook_post->message, 0, 250 ) . $more . '</div> ' . $lb;
+									echo $tab . $tab . $tab . $tab . '</div>' . $lb;
+									//echo $tab . $tab . $tab . '</div>' . $lb;
+									echo $tab . $tab . '</a>' . $lb;
+									echo $tab . '</li>' . $lb;
 								}
 								if ( $post_counter == $number ) {
 									break;
@@ -107,13 +107,13 @@
 						} else {
 							echo $tab . '<li class="nav-item">' . $lb;
 							if ( property_exists( $facebook_posts, 'error' ) ) {
-								echo $tab . $tab . '<div class="nav-link entry-title">Posts unavailable </div > ' . $lb;
+								echo $tab . $tab . '<div class="nav-link entry-title">Posts unavailable </div>' . $lb;
 							} else {
 								echo $tab . $tab . '<div class="nav-link entry-title">No posts </div>';
 							}
-							echo $tab . '</li > ' . $lb;
+							echo $tab . '</li>' . $lb;
 						}
-						echo '</ul > ' . $lb;
+						echo '</ul>' . $lb;
 					}
 				}
 				echo $args[ 'after_widget' ] . $lb;
@@ -140,17 +140,17 @@
 							echo $tab . '<li>' . $lb;
 							echo $tab . $tab . '<a href = "' . $facebook_post->permalink_url . '" target = "_blank">' . $lb;
 							if( $include_image && isset( $facebook_post->picture ) ) :
-								echo $tab . $tab . $tab . '<span class="entry-image">' . $lb;
+								echo $tab . $tab . $tab . '<div class="entry-image">' . $lb;
 								echo $tab . $tab . $tab . $tab . '<img src = "' . $facebook_post->picture . '" class="entry-image" alt = "Related photo" aria - hidden = "true">' . $lb;
-								echo $tab . $tab . $tab . '</span > ' . $lb;
+								echo $tab . $tab . $tab . '</span>' . $lb;
 							endif;
 							$publish_date = date_create( $facebook_post->created_time );
 							$publish_date = date_format( $publish_date, 'F j, Y' );
-							echo $tab . $tab . $tab . $tab . '<span class="entry-date">' . $publish_date . '</span > ' . $lb;
-							$more = ( 250 < strlen( $facebook_post->message ) ) ? '<span class="entry-more">Read More </span > ' . $lb : '';
-							echo $tab . $tab . $tab . $tab . '<span class="entry-excerpt">' . substr( $facebook_post->message, 0, 250 ) . $more . '</span > ' . $lb;
-							echo $tab . $tab . '</a > ' . $lb;
-							echo $tab . '</li > ' . $lb;
+							echo $tab . $tab . $tab . $tab . '<div class="entry-date">' . $publish_date . '</span>' . $lb;
+							$more = ( 250 < strlen( $facebook_post->message ) ) ? '<div class="entry-more">Read More </span>' . $lb : '';
+							echo $tab . $tab . $tab . $tab . '<div class="entry-excerpt">' . substr( $facebook_post->message, 0, 250 ) . $more . '</span>' . $lb;
+							echo $tab . $tab . '</a>' . $lb;
+							echo $tab . '</li>' . $lb;
 							if( $post_counter == $number ) {
 								break;
 							}
@@ -158,15 +158,15 @@
 						}
 					endforeach;
 				} else {
-					echo $tab . '<li > ' . $lb;
+					echo $tab . '<li>' . $lb;
 					if ( property_exists( $facebook_posts, 'error' ) ) {
-						echo $tab . $tab . '<span class="entry-title">Posts unavailable </span > ' . $lb;
+						echo $tab . $tab . '<div class="entry-title">Posts unavailable </span>' . $lb;
 					} else {
-						echo $tab . $tab . '<span class="entry-title">No posts </span>';
+						echo $tab . $tab . '<div class="entry-title">No posts </span>';
 					}
-					echo $tab . '</li > ' . $lb;
+					echo $tab . '</li>' . $lb;
 				}
-				echo '</ul > ' . $lb;
+				echo '</ul>' . $lb;
 				echo $args[ 'after_widget' ] . $lb;
 			}*/
 		}

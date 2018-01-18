@@ -63,25 +63,25 @@
 				foreach ( $facebook_posts->data as $facebook_post ) :
 					echo $tab . '<li class="' . $item_classes . '">' . $lb;
 					echo $tab . $tab . '<a href="' . $facebook_post->permalink_url . '" class="' . $link_classes . '" target="_blank">' . $lb;
-					echo $tab . $tab . $tab . '<span class="entry-col">' . $lb;
+					echo $tab . $tab . $tab . '<div class="entry-col">' . $lb;
 					if ( $include_img && isset( $facebook_post->picture ) ) :
 						echo $tab . $tab . $tab . $tab . $tab .  '<img src="' . $facebook_post->picture . '" class="entry-image" alt="' . $facebook_post->name . '">' . $lb;
 					endif;
-					echo $tab . $tab . $tab . '</span>' . $lb;
-					echo $tab . $tab . $tab . '<span class="entry-col">' . $lb;
-					//echo $tab . $tab . $tab . $tab . '<span class="entry-header">' . $lb;
-					//echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-title">' . $facebook_post->name . '</span>' . $lb;
+					echo $tab . $tab . $tab . '</div>' . $lb;
+					echo $tab . $tab . $tab . '<div class="entry-col">' . $lb;
+					//echo $tab . $tab . $tab . $tab . '<div class="entry-header">' . $lb;
+					//echo $tab . $tab . $tab . $tab . $tab . '<div class="entry-title">' . $facebook_post->name . '</div>' . $lb;
 					if ( $include_date ) :
 						$publish_date = date_create( $facebook_post->created_time );
 						$publish_date = date_format( $publish_date, 'F j, Y' );
-						echo $tab . $tab . $tab . $tab . $tab . '<span class="entry-date">' . $publish_date . '</span>' . $lb;
+						echo $tab . $tab . $tab . $tab . $tab . '<div class="entry-date">' . $publish_date . '</div>' . $lb;
 					endif;
-					echo $tab . $tab . $tab . $tab . '</span>' . $lb;
+					echo $tab . $tab . $tab . $tab . '</div>' . $lb;
 					if ( $include_content ) :
 						$more = ( 250 < strlen( $facebook_post->message ) ) ? '...read more <i class="fa fa-angle-right" aria-hidden="true"></i>' : '';
-						echo $tab . $tab . $tab . $tab . '<span class="entry-excerpt">' . substr( $facebook_post->message, 0, 250 ) . $more . '</span>' . $lb;
+						echo $tab . $tab . $tab . $tab . '<div class="entry-excerpt">' . substr( $facebook_post->message, 0, 250 ) . $more . '</div>' . $lb;
 					endif;
-					//echo $tab . $tab . $tab . '</span>' . $lb; // entry-col
+					//echo $tab . $tab . $tab . '</div>' . $lb; // entry-col
 					if ( $include_img && isset( $facebook_post->picture ) ) :
 
 					endif;

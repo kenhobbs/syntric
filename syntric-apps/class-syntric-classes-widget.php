@@ -67,16 +67,16 @@
 				while( $posts->have_posts() ) : $posts->the_post();
 					echo $tab . '<li>' . $lb;
 					echo $tab . $tab . '<a href="' . get_the_permalink() . '">' . $lb;
-					echo $tab . $tab . $tab . $tab . '<span class="entry-title">' . get_the_title() . '</span>';
+					echo $tab . $tab . $tab . $tab . '<div class="entry-title">' . get_the_title() . '</span>';
 					if( $show_date ) :
-						echo $tab . $tab . $tab . $tab . '<span class="entry-date">' . get_the_date() . '</span>';
+						echo $tab . $tab . $tab . $tab . '<div class="entry-date">' . get_the_date() . '</span>';
 					endif;
 					echo $tab . $tab . '</a>';
 					echo $tab . '</li>' . $lb;
 				endwhile;
 			else :
 				echo $tab . '<li>' . $lb;
-				echo $tab . $tab . '<span class="entry-title">No posts</span>' . $lb;
+				echo $tab . $tab . '<div class="entry-title">No posts</span>' . $lb;
 				echo $tab . '</li>' . $lb;
 			endif;
 			echo '</ul>' . $lb;

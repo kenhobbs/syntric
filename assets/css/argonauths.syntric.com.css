@@ -6816,12 +6816,12 @@ body > .sidebar {
   margin-bottom: 0.25rem; }
 
 .syn-upcoming-events-widget .entry-feature {
-  width: 65px;
-  margin-right: 2rem;
-  border: solid 4px #030;
-  font-family: "Roboto Mono", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  text-align: center;
-  border-radius: 4px; }
+  width           : 65px;
+  margin-right    : 2rem;
+  border          : solid 4px #030;
+  font-family     : "Roboto Mono", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  text-align      : center;
+	border-radius : 6px; }
   .syn-upcoming-events-widget .entry-feature .mo {
     width: 100%;
     padding: 0.2rem 0;

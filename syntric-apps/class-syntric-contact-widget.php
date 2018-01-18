@@ -63,15 +63,15 @@
 						// build person output according to $include_fields
 						$include_fields = array_column( $include_fields, 'value' );
 						$contact        .= $tab . '<div class="d-flex flex-column">' . $lb;
-						$contact        .= $tab . $tab . '<span class="entry-name">' . $first_name . ' ' . $last_name . '</span>' . $lb;
+						$contact        .= $tab . $tab . '<div class="entry-name">' . $first_name . ' ' . $last_name . '</div>' . $lb;
 						if ( in_array( 'title', $include_fields ) && $title_ ) :
-							$contact .= $tab . $tab . '<span class="entry-title">' . $title_ . '</span>' . $lb;
+							$contact .= $tab . $tab . '<div class="entry-title">' . $title_ . '</div>' . $lb;
 						endif;
 						if ( in_array( 'email', $include_fields ) && $email ) :
 							$contact .= $tab . $tab . '<a href="mailto:' . antispambot( $email, true ) . '" class="entry-email" title="Email">' . antispambot( $email ) . '</a>' . $lb;
 						endif;
 						if ( in_array( 'phone', $include_fields ) && $phone ) :
-							$contact .= $tab . $tab . '<span class="entry-phone">' . $phone . $ext . '</span>' . $lb;
+							$contact .= $tab . $tab . '<div class="entry-phone">' . $phone . $ext . '</div>' . $lb;
 						endif;
 						$contact .= $tab . '</div>' . $lb;
 					}
@@ -145,25 +145,25 @@
 					}
 					$contact .= $tab . '<div class="d-flex flex-column">' . $lb;
 					// name
-					$contact .= $tab . $tab . '<span class="entry-name">' . $organization . '</span>' . $lb;
+					$contact .= $tab . $tab . '<div class="entry-name">' . $organization . '</div>' . $lb;
 					// address
 					if ( in_array( 'address', $include_fields ) ) :
 						if ( $address ) :
-							$contact .= $tab . $tab . '<span class="entry-address">' . $address . '</span>' . $lb;
+							$contact .= $tab . $tab . '<div class="entry-address">' . $address . '</div>' . $lb;
 							if ( ! empty( $address_2 ) ) :
-								$contact .= $tab . $tab . '<span class="entry-address-2">' . $address_2 . '</span>' . $lb;
+								$contact .= $tab . $tab . '<div class="entry-address-2">' . $address_2 . '</div>' . $lb;
 							endif;
 						endif;
 						if ( $city || $state || $zip_code ) :
 							$contact .= $tab . $tab . '<div class="d-flex flex-row">' . $lb;
 							if ( ! empty( $city ) ) :
-								$contact .= $tab . $tab . $tab . '<span class="entry-city">' . $city . '</span>' . $lb;
+								$contact .= $tab . $tab . $tab . '<div class="entry-city">' . $city . '</div>' . $lb;
 							endif;
 							if ( ! empty( $state ) ) :
-								$contact .= $tab . $tab . $tab . '<span class="entry-state">' . $state . '</span>' . $lb;
+								$contact .= $tab . $tab . $tab . '<div class="entry-state">' . $state . '</div>' . $lb;
 							endif;
 							if ( ! empty( $zip_code ) ) :
-								$contact .= $tab . $tab . $tab . '<span class="entry-zip-code">' . $zip_code . '</span>' . $lb;
+								$contact .= $tab . $tab . $tab . '<div class="entry-zip-code">' . $zip_code . '</div>' . $lb;
 							endif;
 							$contact .= $tab . $tab . '</div>' . $lb;
 						endif;
@@ -177,13 +177,13 @@
 					// phone
 					if ( in_array( 'phone', $include_fields ) ) :
 						if ( $phone ) :
-							$contact .= $tab . $tab . '<span class="entry-phone">' . $phone . $ext . '</span>' . $lb;
+							$contact .= $tab . $tab . '<div class="entry-phone">' . $phone . $ext . '</div>' . $lb;
 						endif;
 					endif;
 					// fax
 					if ( in_array( 'fax', $include_fields ) ) :
 						if ( $fax ) :
-							$contact .= $tab . $tab . '<span class="entry-phone">' . $fax . ' fax</span>' . $lb;
+							$contact .= $tab . $tab . '<div class="entry-phone">' . $fax . ' fax</span>' . $lb;
 						endif;
 					endif;
 					// url

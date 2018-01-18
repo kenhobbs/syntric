@@ -45,7 +45,7 @@
 					//echo $tab . $tab . '<a href="' . get_the_permalink( $calendar->ID ) . '?ref_date=' . $ref_date . '" class="' . $link_classes . '">' . $lb;
 					//echo $tab . $tab . '<div class="form-check form-check-inline"><label class="form-check-label" for="\' + google_calendar_id + \'"><input class="form-check-input" id="\' + google_calendar_id + \'" type="checkbox" name="googleCalendarId" checked value="\' + google_calendar_id + \'">\' + calendar_title + \'</label></div>';
 					/*
-					echo $tab . $tab . $tab . $tab . '<span class="entry-title">' . $calendar->post_title . '</span>' . $lb;
+					echo $tab . $tab . $tab . $tab . '<div class="entry-title">' . $calendar->post_title . '</div>' . $lb;
 					*/
 					//echo $tab . $tab . '</a>' . $lb;
 					echo $tab . '</li>' . $lb;

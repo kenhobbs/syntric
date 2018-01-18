@@ -8,14 +8,13 @@
 		$author_role->add_cap( 'edit_published_pages' );
 		//Editor
 		$editor_role = get_role( 'editor' );
-		$editor_role->add_cap( 'create_users' );
-		$editor_role->add_cap( 'edit_users' );
 		$editor_role->add_cap( 'list_users' );
+		$editor_role->add_cap( 'create_users' );
+		$editor_role->remove_cap( 'edit_users' );
 		$editor_role->remove_cap( 'delete_users' );
 		$editor_role->remove_cap( 'remove_users' );
 		$editor_role->remove_cap( 'promote_users' );
 		$editor_role->remove_cap( 'manage_categories' );
-
 	}
 
 // actions

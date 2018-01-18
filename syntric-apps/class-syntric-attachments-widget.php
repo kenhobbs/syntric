@@ -44,12 +44,12 @@
 					$description = get_sub_field( 'description' );
 					if ( $header || $description ) {
 						echo $tab . '<li class="nav-item">' . $lb;
-						echo $tab . $tab . '<div class="d-flex flex-column nav-link">' . $lb;
+						echo $tab . $tab . '<div class="nav-link">' . $lb;
 						if ( $header ) {
 							echo $tab . $tab . $tab . '<h3 class="entry-header">' . $header . '</h3>' . $lb;
 						}
 						if ( $description ) {
-							echo $tab . $tab . $tab . '<span class="entry-description">' . $description . '</span>' . $lb;
+							echo $tab . $tab . $tab . '<div class="entry-description">' . $description . '</div>' . $lb;
 						}
 						echo $tab . $tab . '</div>' . $lb;
 						echo $tab . '</li>' . $lb;
