@@ -1,381 +1,377 @@
 {
-	"key": "group_596da562637ad",
-	"title": "Widget: Contact",
-	"fields": [
-		{
-			"key": "field_59a5b5995b0d9",
-			"label": "Dynamic:",
-			"name": "syn_contact_widget_dynamic",
-			"type": "radio",
-			"value": null,
-			"instructions": "",
-			"required": 1,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"choices": [
-				"No",
-				"Yes"
-			],
-			"allow_null": 0,
-			"other_choice": 0,
-			"save_other_choice": 0,
-			"default_value": 0,
-			"layout": "horizontal",
-			"return_format": "value"
-		},
-		{
-			"key": "field_59ad09a065301",
-			"label": "Title:",
-			"name": "syn_contact_widget_title",
-			"type": "text",
-			"value": null,
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": [
-				[
-					{
-						"field": "field_59a5b5995b0d9",
-						"operator": "==",
-						"value": "0"
-					}
-				]
-			],
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"default_value": "",
-			"placeholder": "",
-			"prepend": "",
-			"append": "",
-			"maxlength": ""
-		},
-		{
-			"key": "field_59af4b2594446",
-			"label": "Contact Type:",
-			"name": "syn_contact_widget_contact_type",
-			"type": "select",
-			"value": null,
-			"instructions": "",
-			"required": 1,
-			"conditional_logic": [
-				[
-					{
-						"field": "field_59a5b5995b0d9",
-						"operator": "==",
-						"value": "0"
-					}
-				]
-			],
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"choices": {
-				"person": "Person",
-				"organization": "Organization"
-			},
-			"default_value": [
-				"person"
-			],
-			"allow_null": 0,
-			"multiple": 0,
-			"ui": 0,
-			"ajax": 0,
-			"return_format": "value",
-			"placeholder": ""
-		},
-		{
-			"key": "field_59ee83a63de7b",
-			"label": "Default Organization:",
-			"name": "syn_contact_widget_default",
-			"type": "true_false",
-			"value": null,
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": [
-				[
-					{
-						"field": "field_59a5b5995b0d9",
-						"operator": "==",
-						"value": "0"
-					},
-					{
-						"field": "field_59af4b2594446",
-						"operator": "==",
-						"value": "organization"
-					}
-				]
-			],
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"message": "This organization",
-			"default_value": 1,
-			"ui": 1,
-			"ui_on_text": "",
-			"ui_off_text": ""
-		},
-		{
-			"key": "field_59af4e239ed34",
-			"label": "Person:",
-			"name": "syn_contact_widget_person",
-			"type": "select",
-			"value": null,
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": [
-				[
-					{
-						"field": "field_59a5b5995b0d9",
-						"operator": "==",
-						"value": "0"
-					},
-					{
-						"field": "field_59af4b2594446",
-						"operator": "==",
-						"value": "person"
-					}
-				]
-			],
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"choices": {
-				"134": "Amanda Sanchez",
-				"135": "Amy Trimble",
-				"184": "Anthony Varni",
-				"136": "Ashley Weckerly",
-				"189": "Syntric Author",
-				"185": "Barbara Carmona",
-				"137": "Brenda Fisher",
-				"139": "Cathleen Chapman",
-				"140": "Cecilia Estrada",
-				"188": "Syntric Contributor",
-				"138": "Cris Astabie",
-				"141": "Darla Towner",
-				"190": "Syntric Editor",
-				"148": "Jacqueline Villines",
-				"145": "Janette Cortes",
-				"144": "Jeanann Carnes",
-				"146": "Jessica Martinez",
-				"147": "Jessica Ruiz",
-				"142": "John Azevedo",
-				"143": "Joshuasasasas Blanchardiio",
-				"150": "Kayla Lawrence",
-				"186": "Ken Hobbs",
-				"149": "Kenny Hobbs",
-				"152": "Kimberly Simmons",
-				"151": "Krystal Rodriguez",
-				"154": "Laurie Craig",
-				"153": "Leticia Contreras",
-				"155": "Lucy Ornelas",
-				"165": "Magnolia Ruiz",
-				"156": "Maira Rodriguez",
-				"163": "Margarita Kibler",
-				"160": "Maria Morales",
-				"157": "Martin Miller",
-				"164": "Matthew Loretelli",
-				"158": "Mayra Bravo",
-				"166": "Melanie Vander",
-				"161": "Melissa Bennett",
-				"162": "Monica Gwin",
-				"159": "Monique Cuadras",
-				"167": "Oralia Sage",
-				"170": "Paige Rodenburg",
-				"168": "Patricia Jefferson",
-				"169": "Priscilla Price",
-				"172": "Rosa Meza",
-				"173": "Rosa Rodriguez",
-				"171": "Ruth Gligorea",
-				"176": "Sarah Nelson",
-				"177": "Sarah Shank",
-				"175": "Stacie Keyser",
-				"187": "Syntric Subscriber",
-				"178": "Susan Thompson",
-				"174": "Suzette Campbell",
-				"1": "Syntric School",
-				"180": "Teresa Hoff",
-				"179": "Theresa Adrian",
-				"182": "Tricia Russell",
-				"181": "Trinette Marquis",
-				"109": "Trini Marquis",
-				"183": "Yarissa Cruz"
-			},
-			"default_value": [],
-			"allow_null": 1,
-			"multiple": 0,
-			"ui": 0,
-			"ajax": 0,
-			"return_format": "value",
-			"placeholder": ""
-		},
-		{
-			"key": "field_59af4e489ed36",
-			"label": "Organization:",
-			"name": "syn_contact_widget_organization",
-			"type": "select",
-			"value": null,
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": [
-				[
-					{
-						"field": "field_59a5b5995b0d9",
-						"operator": "==",
-						"value": "0"
-					},
-					{
-						"field": "field_59af4b2594446",
-						"operator": "==",
-						"value": "organization"
-					},
-					{
-						"field": "field_59ee83a63de7b",
-						"operator": "!=",
-						"value": "1"
-					}
-				]
-			],
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"choices": {
-				"id-1937146817-2040227973-1025020578": "Syntric USD",
-				"id-1093359345-1461687414-1877645451": "SchoolPRPro High School",
-				"id-596255435-714896445-2110829287": "WASC Elementary"
-			},
-			"default_value": [],
-			"allow_null": 1,
-			"multiple": 0,
-			"ui": 0,
-			"ajax": 0,
-			"return_format": "value",
-			"placeholder": ""
-		},
-		{
-			"key": "field_59af4c0694447",
-			"label": "Include Fields:",
-			"name": "syn_contact_widget_include_person_fields",
-			"type": "checkbox",
-			"value": null,
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": [
-				[
-					{
-						"field": "field_59a5b5995b0d9",
-						"operator": "==",
-						"value": "0"
-					},
-					{
-						"field": "field_59af4b2594446",
-						"operator": "==",
-						"value": "person"
-					}
-				]
-			],
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"choices": {
-				"titles": "Titles",
-				"email": "Email",
-				"phone": "Phone"
-			},
-			"allow_custom": 0,
-			"save_custom": 0,
-			"default_value": [
-				"titles",
-				"email",
-				"phone"
-			],
-			"layout": "vertical",
-			"toggle": 0,
-			"return_format": "array"
-		},
-		{
-			"key": "field_59af4c9694449",
-			"label": "Include Fields:",
-			"name": "syn_contact_widget_include_organization_fields",
-			"type": "checkbox",
-			"value": null,
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": [
-				[
-					{
-						"field": "field_59a5b5995b0d9",
-						"operator": "==",
-						"value": "0"
-					},
-					{
-						"field": "field_59af4b2594446",
-						"operator": "==",
-						"value": "organization"
-					}
-				]
-			],
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"choices": {
-				"address": "Address",
-				"city_state_zip_code": "City \/ State \/ Zip Code",
-				"email": "Email",
-				"phone": "Phone",
-				"fax": "Fax",
-				"url": "Web Address",
-				"logo": "Logo"
-			},
-			"allow_custom": 0,
-			"save_custom": 0,
-			"default_value": [
-				"address",
-				"city_state_zip_code",
-				"email",
-				"phone",
-				"fax",
-				"url",
-				"logo"
-			],
-			"layout": "vertical",
-			"toggle": 0,
-			"return_format": "array"
-		}
-	],
-	"location": [
-		[
-			{
-				"param": "widget",
-				"operator": "==",
-				"value": "syn-contact-widget"
-			}
-		]
-	],
-	"menu_order": 0,
-	"position": "normal",
-	"style": "default",
-	"label_placement": "top",
-	"instruction_placement": "label",
-	"hide_on_screen": "",
-	"active": 1,
-	"description": "",
-	"modified": 1509727897
+    "key": "group_596da562637ad",
+    "title": "Widget: Contact",
+    "fields": [
+        {
+            "key": "field_59a5b5995b0d9",
+            "label": "Dynamic:",
+            "name": "syn_contact_widget_dynamic",
+            "type": "radio",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": [
+                "No",
+                "Yes"
+            ],
+            "allow_null": 0,
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": 0,
+            "layout": "horizontal",
+            "return_format": "value"
+        },
+        {
+            "key": "field_59ad09a065301",
+            "label": "Title:",
+            "name": "syn_contact_widget_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_59a5b5995b0d9",
+                        "operator": "==",
+                        "value": "0"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_59af4b2594446",
+            "label": "Contact Type:",
+            "name": "syn_contact_widget_contact_type",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_59a5b5995b0d9",
+                        "operator": "==",
+                        "value": "0"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "person": "Person",
+                "organization": "Organization"
+            },
+            "default_value": [
+                "person"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_59ee83a63de7b",
+            "label": "Default Organization:",
+            "name": "syn_contact_widget_default",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_59a5b5995b0d9",
+                        "operator": "==",
+                        "value": "0"
+                    },
+                    {
+                        "field": "field_59af4b2594446",
+                        "operator": "==",
+                        "value": "organization"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "This organization",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_59af4e239ed34",
+            "label": "Person:",
+            "name": "syn_contact_widget_person",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_59a5b5995b0d9",
+                        "operator": "==",
+                        "value": "0"
+                    },
+                    {
+                        "field": "field_59af4b2594446",
+                        "operator": "==",
+                        "value": "person"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "179": "Theresa Adrian \/ Some Title",
+                "138": "Cris Astabie \/ Some Title",
+                "189": "Author Author \/ Author",
+                "142": "John Azevedo \/ Some Title",
+                "161": "Melissa Bennett \/ Some Title",
+                "143": "Joshuasasasas Blanchardiio \/ Some Title",
+                "158": "Mayra Bravo \/ Some Title",
+                "174": "Suzette Campbell \/ Some Title",
+                "185": "Barbara Carmona \/ Some Title",
+                "144": "Jeanann Carnes \/ Some Title",
+                "139": "Cathleen Chapman \/ Some Title",
+                "153": "Leticia Contreras \/ Some Title",
+                "188": "Syntric Contributor \/ Contributor",
+                "145": "Janette Cortes \/ Some Title",
+                "154": "Laurie Craig \/ Some Title",
+                "183": "Yarissa Cruz \/ Some Title",
+                "159": "Monique Cuadras \/ Some Title",
+                "190": "Editor Editor \/ Editor",
+                "140": "Cecilia Estrada \/ Some Title",
+                "137": "Brenda Fisher \/ Some Title",
+                "171": "Ruth Gligorea \/ Some Title",
+                "162": "Monica Gwin \/ Some Title",
+                "1": "Kenneth Hobbs \/ Partner",
+                "149": "Kenny Hobbs, Jr \/ Teacher",
+                "186": "Ken Hobbs \/ Teacher",
+                "180": "Teresa Hoff \/ Some Title",
+                "168": "Patricia Jefferson \/ Some Title",
+                "175": "Stacie Keyser \/ Some Title",
+                "163": "Margarita Kibler \/ Some Title",
+                "150": "Kayla Lawrence \/ Some Title",
+                "164": "Matthew Loretelli \/ Some Title",
+                "181": "Trinette Marquis \/ Some Title",
+                "109": "Trini Marquis \/ Some Title",
+                "146": "Jessica Martinez \/ Some Title",
+                "172": "Rosa Meza \/ Some Title",
+                "157": "Martin Miller \/ Some Title",
+                "160": "Maria Morales \/ Some Title",
+                "176": "Sarah Nelson \/ Some Title",
+                "155": "Lucy Ornelas \/ Some Title",
+                "169": "Priscilla Price \/ Some Title",
+                "170": "Paige Rodenburg \/ Some Title",
+                "151": "Krystal Rodriguez \/ Some Title",
+                "173": "Rosa Rodriguez \/ Some Title",
+                "156": "Maira Rodriguez \/ Some Title",
+                "165": "Magnolia Ruiz \/ Some Title",
+                "147": "Jessica Ruiz \/ Some Title",
+                "182": "Tricia Russell \/ Some Title",
+                "167": "Oralia Sage \/ Some Title",
+                "134": "Amanda Sanchez \/ Some Title",
+                "177": "Sarah Shank \/ Some Title",
+                "152": "Kimberly Simmons \/ Some Title",
+                "187": "Syntric Subscriber \/ Subscriber",
+                "178": "Susan Thompson \/ Some Title",
+                "141": "Darla Towner \/ Some Title",
+                "135": "Amy Trimble \/ Some Title",
+                "166": "Melanie Vander \/ Some Title",
+                "184": "Anthony Varni \/ Some Title",
+                "148": "Jacqueline Villines \/ Some Title",
+                "136": "Ashley Weckerly \/ Some Title"
+            },
+            "default_value": [],
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_59af4e489ed36",
+            "label": "Organization:",
+            "name": "syn_contact_widget_organization",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_59a5b5995b0d9",
+                        "operator": "==",
+                        "value": "0"
+                    },
+                    {
+                        "field": "field_59af4b2594446",
+                        "operator": "==",
+                        "value": "organization"
+                    },
+                    {
+                        "field": "field_59ee83a63de7b",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "id-1937146817-2040227973-1025020578": "Syntric",
+                "id-1093359345-1461687414-1877645451": "SchoolTechPro",
+                "id-596255435-714896445-2110829287": "WASC Elementary"
+            },
+            "default_value": [],
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_59af4c0694447",
+            "label": "Include Fields:",
+            "name": "syn_contact_widget_include_person_fields",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_59a5b5995b0d9",
+                        "operator": "==",
+                        "value": "0"
+                    },
+                    {
+                        "field": "field_59af4b2594446",
+                        "operator": "==",
+                        "value": "person"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "prefix": "Prefix",
+                "first_name": "First Name",
+                "title": "Title",
+                "email": "Email",
+                "phone": "Phone"
+            },
+            "allow_custom": 0,
+            "save_custom": 0,
+            "default_value": [
+                "prefix",
+                "first_name",
+                "title",
+                "email",
+                "phone"
+            ],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "array"
+        },
+        {
+            "key": "field_59af4c9694449",
+            "label": "Include Fields:",
+            "name": "syn_contact_widget_include_organization_fields",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_59a5b5995b0d9",
+                        "operator": "==",
+                        "value": "0"
+                    },
+                    {
+                        "field": "field_59af4b2594446",
+                        "operator": "==",
+                        "value": "organization"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "address": "Address",
+                "city_state_zip_code": "City \/ State \/ Zip Code",
+                "email": "Email",
+                "phone": "Phone",
+                "fax": "Fax",
+                "url": "Web Address",
+                "logo": "Logo"
+            },
+            "allow_custom": 0,
+            "save_custom": 0,
+            "default_value": [
+                "address",
+                "city_state_zip_code",
+                "email",
+                "phone",
+                "fax",
+                "url",
+                "logo"
+            ],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "array"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "widget",
+                "operator": "==",
+                "value": "syn-contact-widget"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1516984483
 }

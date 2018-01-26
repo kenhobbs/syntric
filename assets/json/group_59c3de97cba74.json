@@ -1,127 +1,166 @@
 {
-	"key": "group_59c3de97cba74",
-	"title": "Work Info",
-	"fields": [
-		{
-			"key": "field_59c3de9804864",
-			"label": "Title",
-			"name": "syn_user_title",
-			"type": "text",
-			"value": null,
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"default_value": "",
-			"placeholder": "",
-			"prepend": "",
-			"append": "",
-			"maxlength": ""
-		},
-		{
-			"key": "field_59c3de9804c7e",
-			"label": "Phone",
-			"name": "syn_user_phone",
-			"type": "text",
-			"value": null,
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"default_value": "",
-			"placeholder": "",
-			"prepend": "",
-			"append": "",
-			"maxlength": ""
-		},
-		{
-			"key": "field_59c3de9804e7c",
-			"label": "Ext",
-			"name": "syn_user_extension",
-			"type": "text",
-			"value": null,
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "6",
-				"class": "",
-				"id": ""
-			},
-			"default_value": "",
-			"placeholder": "",
-			"prepend": "",
-			"append": "",
-			"maxlength": ""
-		},
-		{
-			"key": "field_59c3de980525e",
-			"label": "Teacher?",
-			"name": "syn_user_is_teacher",
-			"type": "true_false",
-			"value": null,
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "6",
-				"class": "",
-				"id": ""
-			},
-			"message": "",
-			"default_value": 0,
-			"ui": 0,
-			"ui_on_text": "",
-			"ui_off_text": ""
-		},
-		{
-			"key": "field_59f7a2d72ed22",
-			"label": "Teacher Page",
-			"name": "syn_user_page",
-			"type": "post_object",
-			"value": null,
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"post_type": [
-				"page"
-			],
-			"taxonomy": [],
-			"allow_null": 0,
-			"multiple": 0,
-			"return_format": "object",
-			"ui": 1
-		}
-	],
-	"location": [
-		[
-			{
-				"param": "user_form",
-				"operator": "==",
-				"value": "edit"
-			}
-		]
-	],
-	"menu_order": 0,
-	"position": "normal",
-	"style": "default",
-	"label_placement": "top",
-	"instruction_placement": "label",
-	"hide_on_screen": "",
-	"active": 1,
-	"description": "",
-	"modified": 1509728151
+    "key": "group_59c3de97cba74",
+    "title": "User Info",
+    "fields": [
+        {
+            "key": "field_5a6570eff3d03",
+            "label": "Prefix",
+            "name": "syn_user_prefix",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Ms.": "Ms.",
+                "Mrs.": "Mrs.",
+                "Mr.": "Mr.",
+                "Mx.": "Mx."
+            },
+            "default_value": [],
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_59c3de9804864",
+            "label": "Title",
+            "name": "syn_user_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_59c3de9804c7e",
+            "label": "Phone",
+            "name": "syn_user_phone",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_59c3de9804e7c",
+            "label": "Ext",
+            "name": "syn_user_extension",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "6",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_59c3de980525e",
+            "label": "Teacher?",
+            "name": "syn_user_is_teacher",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "6",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_59f7a2d72ed22",
+            "label": "Teacher Page",
+            "name": "syn_user_page",
+            "type": "post_object",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "page"
+            ],
+            "taxonomy": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "return_format": "object",
+            "ui": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "user_form",
+                "operator": "==",
+                "value": "edit"
+            },
+            {
+                "param": "current_user_role",
+                "operator": "==",
+                "value": "administrator"
+            }
+        ],
+        [
+            {
+                "param": "user_form",
+                "operator": "==",
+                "value": "edit"
+            },
+            {
+                "param": "current_user_role",
+                "operator": "==",
+                "value": "editor"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1516979125
 }

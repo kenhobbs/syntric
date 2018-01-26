@@ -29,8 +29,13 @@
 			}
 			$calendars = get_field( 'syn_full_calendars_menu_widget_calendars', 'widget_' . $args[ 'widget_id' ] );
 			if( $calendars ) :
-				$lb       = "\n";
-				$tab      = "\t";
+				if ( syn_remove_whitespace() ) {
+					$lb  = '';
+					$tab = '';
+				} else {
+					$lb  = "\n";
+					$tab = "\t";
+				}
 				$sidebar  = syn_widget_sidebar( $args[ 'widget_id' ] );
 				$title    = get_field( 'syn_full_calendars_menu_widget_title', 'widget_' . $args[ 'widget_id' ] );
 				$ref_date = ( isset( $_GET[ 'ref_date' ] ) ) ? $_GET[ 'ref_date' ] : date( 'Ymd' );

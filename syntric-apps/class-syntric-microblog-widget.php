@@ -55,40 +55,41 @@
 					],
 				] )
 			);
-			$lb        = "\n";
-			$tab       = "\t";
+			if ( syn_remove_whitespace() ) {
+				$lb  = '';
+				$tab = '';
+			} else {
+				$lb  = "\n";
+				$tab = "\t";
+			}
 			$sidebar   = syn_widget_sidebar( $args[ 'widget_id' ] );
+			//slog( $sidebar );
 			$title     = get_field( 'syn_microblog_title', $post->ID );
 			$show_date = get_field( 'syn_microblog_include_date', $post->ID );
 			echo $args[ 'before_widget' ] . $lb;
 			if( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			echo '<ul class="nav">' . $lb;
 			if( $posts->have_posts() ) :
+				echo '<div class="list-group ' . $sidebar['section']['value'] . '">' . $lb;
 				while( $posts->have_posts() ) : $posts->the_post();
-					echo $tab . '<li class="nav-item">' . $lb;
-					echo $tab . $tab . '<a href="' . get_the_permalink() . '" class="nav-link">' . $lb;
-					echo $tab . $tab . $tab . $tab . '<div class="entry-title">' . get_the_title() . '</div>';
+					echo $tab . '<a href="' . get_the_permalink() . '" class="list-group-item">' . $lb;
+					echo $tab . $tab . '<div class="post-title">' . get_the_title() . '</div>';
 					if( $show_date ) :
-						echo $tab . $tab . $tab . $tab . '<div class="entry-date">' . get_the_date() . '</div>';
+						echo $tab . $tab . '<div class="post-date small">' . get_the_date() . '</div>';
 					endif;
-					echo $tab . $tab . '</a>';
-					echo $tab . '</li>' . $lb;
+					echo $tab . '</a>';
 				endwhile;
-				echo $tab . '<li class="nav-item">' . $lb;
-				echo $tab . $tab . '<a href="' . get_term_link( $term->term_id ) . '" class="nav-link entry-more">more posts</a>' . $lb;
-				echo $tab . '</li>' . $lb;
+				echo $tab . '<a href="' . get_term_link( $term->term_id ) . '" class="list-group-item more-link">Go to blog</a>' . $lb;
+				echo '</div>' . $lb;
 			else :
-				echo $tab . '<li class="nav-item">' . $lb;
-				echo $tab . $tab . '<div class="nav-link entry-title">No posts</div>' . $lb;
-				echo $tab . '</li>' . $lb;
+				echo $tab . '<p>No posts</p>' . $lb;
 			endif;
-			echo '</ul>' . $lb;
 			echo $args[ 'after_widget' ] . $lb;
 			wp_reset_postdata();
 			wp_reset_query();
 			if( is_user_logged_in() && ( current_user_can( 'administrator' ) || current_user_can( 'editor' ) || $post->post_author == get_current_user_id() ) ) {
+				// this is for a New Post button
 			}
 		}
 

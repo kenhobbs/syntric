@@ -20,7 +20,7 @@ var uglify = require('gulp-uglify');
 var compressImage = require('gulp-imagemin');
 var cached = require('gulp-cached');
 var gap = require('gulp-append-prepend');
-//var sourcemaps = require('gulp-sourcemaps');
+var sourcemaps = require('gulp-sourcemaps');
 //var merge2 = require('merge2');
 //var ignore = require('gulp-ignore');
 //var rimraf = require('gulp-rimraf');
@@ -31,6 +31,7 @@ var gap = require('gulp-append-prepend');
 
 var theme = 'syntric';
 var src_dir = './src/';
+var lib_dir = './libs/';
 var dist_dir = './assets/';
 
 /**
@@ -77,7 +78,7 @@ var dist_dir = './assets/';
  * be aliased
  */
 var dirs = {
-	src_dir: src_dir,
+	src_dir: './src/',
 
 	src_sass: './src/sass/',
 	src_js: './src/js/',
@@ -87,7 +88,9 @@ var dirs = {
 	src_admin_js: './src/js/',
 	src_admin_img: './src/img/',
 
-	dist_dir: dist_dir,
+	lib_dir: './libs/',
+
+	dist_dir: './assets/',
 
 	dist_css: './assets/css/',
 	dist_js: './assets/js/',
@@ -136,11 +139,11 @@ var watcherArgs = {
 gulp.task('watch', function () {
 
 	// SASS watchers   , '!' + dirs.src_sass + '_*.scss'
-	gulp.watch([dirs.src_sass + '*.scss', '!' + dirs.src_sass + '*-admin.scss', '!' + dirs.src_sass + '_*.scss'], {ignoreInitial: true}, ['compileSASS']);
+	gulp.watch([dirs.src_sass + '*.scss', '!' + dirs.src_sass + '*-admin.scss'], {ignoreInitial: true}, ['compileSASS']);
 	gulp.watch([dirs.src_admin_sass + '*-admin.scss'], {ignoreInitial: true}, ['compileAdminSASS']);
 
 	// Javascript watchers
-	gulp.watch([dirs.src_js + 'syntric*.js', '!' + dirs.src_js + '*-admin.js', '!' + dirs.src_js + '_*.js'], {ignoreInitial: true}, ['compileJS']);
+	gulp.watch([dirs.src_js + 'syntric.js'], {ignoreInitial: true}, ['compileJS']);
 	gulp.watch(dirs.src_admin_js + '*-admin.js', {ignoreInitial: true}, ['compileAdminJS']);
 	gulp.watch(dirs.src_admin_js + 'customizer.js', {ignoreInitial: true}, ['compileCustomizerJS']);
 
@@ -150,11 +153,12 @@ gulp.task('watch', function () {
 });
 
 gulp.task('compileSASS', function () {
-	return gulp.src([dirs.src_sass + '*.scss', '!' + dirs.src_sass + '*-admin.scss', '!' + dirs.src_sass + '_*.scss'])
+	return gulp.src([dirs.src_sass + '*.localhost.scss', '!' + dirs.src_sass + '*.syntric.com.scss'])
+	.pipe(sourcemaps.init({loadMaps: true}))
 	.pipe(plumber())
 
-	.pipe(cached('sassFiles'))
-	.pipe(plumber())
+	//.pipe(cached('sassFiles'))
+	//.pipe(plumber())
 
 	.pipe(compileSASS())
 	.pipe(gulp.dest(dirs.dist_css))
@@ -162,6 +166,7 @@ gulp.task('compileSASS', function () {
 
 	.pipe(rename({suffix: '.min'}))
 	.pipe(minifyCSS({discardComments: {removeAll: true}}))
+	.pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest(dirs.dist_css))
 	.pipe(plumber())
 
@@ -176,6 +181,17 @@ gulp.task('compileSASS', function () {
 	.pipe(rename({prefix: ''}))
 	.pipe(gulp.dest(dirs.dist_css));
 });
+/*
+gulp.task('minifyCSS', function () {
+ gulp.src(dirs.dist_css + theme + '*.css')
+ .pipe(sourcemaps.init({loadMaps: true}))
+ .pipe(plumber())
+ .pipe(rename({suffix: '.min'}))
+ .pipe(minifyCSS({discardComments: {removeAll: true}}))
+ .pipe(sourcemaps.write('./'))
+ .pipe(gulp.dest(dirs.dist_css));
+ });
+ */
 
 gulp.task('compileAdminSASS', function () {
 	return gulp.src([dirs.src_admin_sass + '*-admin.scss'])
@@ -186,13 +202,13 @@ gulp.task('compileAdminSASS', function () {
 	.pipe(minifyCSS({discardComments: {removeAll: true}}))
 	.pipe(gulp.dest(dirs.dist_admin_css));
 });
-
+//, dirs.lib_dir + 'jquery-3.2.1/jquery.js', dirs.lib_dir + 'bootstrap-4.0.0-beta.2/dist/js/bootstrap.bundle.js', dirs.lib_dir + 'fullcalendar-3.6.1/lib/moment.min.js', dirs.lib_dir + 'fullcalendar-3.6.1/fullcalendar.js'
 gulp.task('compileJS', function () {
-	return gulp.src([dirs.src_js + 'syntric*.js', '!' + dirs.src_js + '*-admin.js', '!' + dirs.src_js + '_*.js'])
-	.pipe(cached('jsFiles'))
-	.pipe(concat(theme + '.js'))
-	.pipe(gap.prependText('(function($) {'))
-	.pipe(gap.appendText('})(jQuery);'))
+	return gulp.src([dirs.src_js + 'syntric.js'])
+	//.pipe(cached('jsFiles'))
+	//.pipe(concat(theme + '.js'))
+	//.pipe(gap.prependText('(function($) {'))
+	//.pipe(gap.appendText('})(jQuery);'))
 	.pipe(rename({suffix: '.min'}))
 	.pipe(uglify())
 	.pipe(gulp.dest(dirs.dist_js));

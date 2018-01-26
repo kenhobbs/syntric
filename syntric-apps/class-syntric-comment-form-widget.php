@@ -47,8 +47,13 @@
 				],
 			] ) );
 			if( $posts->have_posts() ) :
-				$lb           = "\n";
-				$tab          = "\t";
+				if ( syn_remove_whitespace() ) {
+					$lb  = '';
+					$tab = '';
+				} else {
+					$lb  = "\n";
+					$tab = "\t";
+				}
 				$sidebar      = syn_widget_sidebar( $args[ 'widget_id' ] );
 				$title        = get_field( 'syn_comments_form_title', $post->ID );
 				$show_date    = get_field( 'syn_comments_form_show_date', $post->ID );

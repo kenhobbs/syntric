@@ -17,7 +17,7 @@
 	function syn_filter_theme_page_templates( $page_templates, $theme, $post ) {
 		$organization_is_school = syn_organization_is_school();
 		// filter page templates according to organization type
-		if( ! $organization_is_school ) {
+		if ( ! $organization_is_school ) {
 			unset( $page_templates[ 'page-templates/department.php' ] );
 			unset( $page_templates[ 'page-templates/teachers.php' ] );
 			unset( $page_templates[ 'page-templates/teacher.php' ] );
@@ -30,7 +30,7 @@
 //
 // Excerpt related functions **********************************************
 	add_filter( 'excerpt_more', 'syn_custom_excerpt_more', 99 );
-	if( ! function_exists( 'syn_custom_excerpt_more' ) ) {
+	if ( ! function_exists( 'syn_custom_excerpt_more' ) ) {
 		/**
 		 * Removes the ... from the excerpt read more link
 		 *
@@ -39,7 +39,8 @@
 		 * @return string
 		 */
 		function syn_custom_excerpt_more( $more ) {
-			return '<a href="' . esc_url( get_the_permalink( get_the_ID() ) ) . '" class="read-more">read more</a>';
+			//return '<a href="' . esc_url( get_the_permalink( get_the_ID() ) ) . '" class="more-link">read more</a>';
+			return '';
 		}
 	}
 	/**
@@ -50,7 +51,7 @@
 	 * @return int (Maybe) modified excerpt length.
 	 */
 	add_filter( 'excerpt_length', 'syn_excerpt_length', 99 );
-	if( ! function_exists( 'syn_excerpt_length' ) ) {
+	if ( ! function_exists( 'syn_excerpt_length' ) ) {
 		function syn_excerpt_length() {
 			return 18;
 		}
@@ -60,63 +61,44 @@
 	/**
 	 * Display post "posted on" and "author" info
 	 */
-	if( ! function_exists( 'syn_posted_on' ) ) :
+	if ( ! function_exists( 'syn_posted_on' ) ) :
 		function syn_posted_on() {
 			$time_string = '<time class="post-date published updated" datetime="%1$s">%2$s</time>';
-			if( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+			if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 				$time_string = '<time class="post-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
 			}
-			$time_string = sprintf(
-				$time_string,
-				esc_attr( get_the_date( 'c' ) ),
-				esc_html( get_the_date() ),
-				esc_attr( get_the_modified_date( 'c' ) ),
-				esc_html( get_the_modified_date() )
-			);
-			$posted_on   = sprintf(
-				esc_html_x( 'Posted on %s', 'post date', 'syntric' ),
-				'<a href="' . esc_url( get_the_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
-			);
-			$byline      = sprintf(
-				esc_html_x( 'by %s', 'post author', 'syntric' ),
-				'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
-			);
+			$time_string = sprintf( $time_string, esc_attr( get_the_date( 'c' ) ), esc_html( get_the_date() ), esc_attr( get_the_modified_date( 'c' ) ), esc_html( get_the_modified_date() ) );
+			$posted_on   = sprintf( esc_html_x( 'Posted on %s', 'post date', 'syntric' ), '<a href="' . esc_url( get_the_permalink() ) . '" rel="bookmark">' . $time_string . '</a>' );
+			$byline      = sprintf( esc_html_x( 'by %s', 'post author', 'syntric' ), '<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>' );
 			echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>'; // WPCS: XSS OK.
 		}
 	endif;
 	/**
 	 * Display post meta for categories, tags and comments.
 	 */
-	if( ! function_exists( 'syn_entry_footer' ) ) :
+	if ( ! function_exists( 'syn_entry_footer' ) ) :
 		function syn_entry_footer() {
 			// Hide category and tag text for pages.
-			if( 'post' === get_post_type() ) {
+			if ( 'post' === get_post_type() ) {
 				/* translators: used between list items, there is a space after the comma */
 				$categories_list = get_the_category_list( esc_html__( ', ', 'syntric' ) );
-				if( $categories_list && syn_blog_categorized() ) {
+				if ( $categories_list && syn_blog_categorized() ) {
 					printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'syntric' ) . '</span>', $categories_list ); // WPCS: XSS OK.
 				}
 				/* translators: used between list items, there is a space after the comma */
 				$tags_list = get_the_tag_list( '', esc_html__( ', ', 'syntric' ) );
-				if( $tags_list ) {
+				if ( $tags_list ) {
 					printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'syntric' ) . '</span>', $tags_list ); // WPCS: XSS OK.
 				}
 			}
-			if( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+			if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 				echo '<span class="comments-link">';
 				/* translators: %s: post title */
 				comments_popup_link( sprintf( wp_kses( __( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'syntric' ), [ 'span' => [ 'class' => [] ] ] ), get_the_title() ) );
 				echo '</span>';
 			}
-			edit_post_link(
-				sprintf(
-				/* translators: %s: Name of current post */
-					esc_html__( 'Edit %s', 'syntric' ),
-					the_title( '<span class="screen-reader-text">"', '"</span>', false )
-				),
-				'<span class="edit-link">',
-				'</span>'
-			);
+			edit_post_link( sprintf( /* translators: %s: Name of current post */
+				esc_html__( 'Edit %s', 'syntric' ), the_title( '<span class="screen-reader-text">"', '"</span>', false ) ), '<span class="edit-link">', '</span>' );
 		}
 	endif;
 //
@@ -127,21 +109,15 @@
 	 * @return bool
 	 */
 	function syn_blog_categorized() {
-		if( false === ( $syn_transient_categories = get_transient( 'syn_transient_categories' ) ) ) {
+		if ( false === ( $syn_transient_categories = get_transient( 'syn_transient_categories' ) ) ) {
 			// Create an array of all the categories that are attached to posts.
-			$syn_transient_categories = get_categories(
-				[
-					'fields'     => 'ids',
-					'hide_empty' => 1,
-					// We only need to know if there is more than one category.
-					'number'     => 2,
-				]
-			);
+			$syn_transient_categories = get_categories( [ 'fields' => 'ids', 'hide_empty' => 1, // We only need to know if there is more than one category.
+			                                              'number' => 2, ] );
 			// Count the number of categories that are attached to the posts.
 			$syn_transient_categories = count( $syn_transient_categories );
 			set_transient( 'syn_transient_categories', $syn_transient_categories );
 		}
-		if( $syn_transient_categories > 1 ) {
+		if ( $syn_transient_categories > 1 ) {
 			// This blog has more than 1 category so syn_blog_categorized should return true.
 			return true;
 		} else {
@@ -156,7 +132,7 @@
 	add_action( 'edit_category', 'syn_flush_transient_categories' );
 	add_action( 'save_post', 'syn_flush_transient_categories' );
 	function syn_flush_transient_categories() {
-		if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
 		// Like, beat it. Dig?
@@ -165,93 +141,79 @@
 
 	//add_filter( 'gallery_style', 'syn_gallery_style' );
 	function syn_gallery_style( $gallery_style ) {
-		//slog( $gallery_style );
+		slog( '//////////////////////////////////////////////////////// gallery_style filter' );
+		slog( $gallery_style );
+
 		return $gallery_style;
 	}
 
-// Alter what is returned by the gallery shortcode
-	//add_filter( 'post_gallery', 'syn_post_gallery', 10, 3 );
-	function syn_post_gallery( $output = '', $atts, $instance ) {
-		global $post;
-		$gallery_type = 'card';
-		$img_ids      = ( is_array( $atts[ 'ids' ] ) ) ? $atts[ 'ids' ] : explode( ',', $atts[ 'ids' ] );
-		$size         = ( key_exists( 'size', $atts ) ) ? $atts[ 'size' ] : 'thumbnail';
-		$columns      = ( key_exists( 'columns', $atts ) ) ? $atts[ 'columns' ] : 3;
-		//slog($img_ids);
-		//$col_width = floor( 100 / $atts['columns'] );
-		//slog($output);
-		//slog( 'Instance: ' . $instance);
-		//slog($atts);
-		$ret = '';
-		if( 'flex' == $gallery_type ) {
-			$ret .= '<div id="gallery-' . $instance . '" class="gallery bg-secondary d-flex justify-content-around flex-wrap gallery-columns-' . $columns . ' gallery-size-' . $size . '">';
-			foreach( $img_ids as $img_id ) {
-				$img = wp_get_attachment_image_src( $img_id, $size );
-				$ret .= '<div class="gallery-item mx-2">';
-				//$ret .= wp_get_attachment_image( $img_id, $atts['size'], false, array( 'class' => 'img-fluid attachment-' . $atts['size'] . ' size-' . $atts['size']) );
-				$ret .= '<img src="' . $img[ 0 ] . '" class="img-fluid img-thumbnail rounded attachment-' . $img_id . '">';
-				$ret .= '<div class="gallery-caption">' . wp_get_attachment_caption( $img_id ) . '</div>';
-				$ret .= '</div>';
-			}
-			$ret .= '</div>';
-		} elseif( 'card' == $gallery_type ) {
-			$ret                .= '<div id="gallery-' . $instance . '" class="card-deck mb-4 gallery-columns-' . $columns . ' gallery-size-' . $size . '">';
-			$card_count_gallery = 1;
-			$card_count_total   = 1;
-			$card_max_width     = 100 / $columns;
-			//$card_max_width_pct = 100 / $atts['columns'];
-			//$card_margin_width_px = $atts['columns'] * 30;
-			//$card_max_width = calc($card_max_width_pct . '%' - $card_margin_width_px . 'px');
-			foreach( $img_ids as $img_id ) {
-				if ( $instance == 2 ) {
-					slog( wp_get_attachment_metadata( $img_id ) );
-				}
-				$img = wp_get_attachment_image_src( $img_id, $size );
-				$ret .= '<div class="card text-white bg-primary" style="max-width: ' . $card_max_width . '%;">';
-				//$ret .= wp_get_attachment_image( $img_id, $atts['size'], false, array( 'class' => 'img-fluid attachment-' . $atts['size'] . ' size-' . $atts['size']) );
-				$ret .= '<img src="' . $img[ 0 ] . '" class="card-img-top attachment-' . $img_id . '">';
-				$ret .= '<div class="card-body">';
-				$ret .= '<h4 class="card-title">' . wp_get_attachment_caption( $img_id ) . '</h4>';
-				$ret .= '<p class="card-text">You must log in before being able to contribute a note or feedback.</p>';
-				$ret .= '<p class="card-text">You must log in before being able to contribute a note or feedback.</p>';
-				$ret .= '<p class="card-text">You must log in before being able to contribute a note or feedback.</p>';
-				$ret .= '<a href="#" class="btn btn-secondary">Go somewhere</a>';
-				$ret .= '</div>';
-				$ret .= '</div>';
-				if( $card_count_gallery == $columns ) {
-					$ret                .= '</div>';
-					$ret                .= '<div id="gallery-' . $instance . '" class="card-deck mb-4 gallery-columns-' . $columns . ' gallery-size-' . $size . '">';
-					$card_count_gallery = 1;
-				} else {
-					$card_count_gallery ++;
-				}
-				$card_count_total ++;
-			}
-			if( $card_count_total < count( $img_ids ) ) {
-				$remaining_cards = $atts[ 'columns' ] - $card_count_gallery;
-				for( $i = $card_count_total; $i <= count( $img_ids ); $i ++ ) {
-					$ret .= '<div class="card" style="max-width: ' . $card_max_width . '%; border: none;">';
-					$ret .= '<div class="card-body">';
-					$ret .= '</div>';
-					$ret .= '</div>';
-				}
-			}
-			$ret .= '</div>';
-		}
+	//add_filter( 'use_default_gallery_style', 'syn_use_default_gallery_style', 10 );
+	function syn_use_default_gallery_style( $print ) {
+		slog( '//////////////////////////////////////////////////////// use_default_gallery_style filter' );
+		slog( $print );
 
-		return $ret;
+		return $print;
 	}
-	/*function syn_post_gallery( $output = '', $atts, $instance ) {
-		global $post;
-		$img_ids = $atts['ids'];
-		$ret = '';
-		$ret .= '<div id="gallery-' . $instance . '" class="gallery d-flex justify-content-between flex-wrap gallery-columns-' . $atts['columns'] . ' gallery-size-' . $atts['size'] . '">';
+
+	// fires when get_post_gallery() is called
+	//add_filter( 'get_post_gallery', 'syn_get_post_gallery', 10, 3 );
+	function syn_get_post_gallery( $gallery, $post, $galleries ) {
+		slog( '//////////////////////////////////////////////////////// get_post_gallery filter' );
+		slog( $gallery );
+		slog( $post );
+		slog( $galleries );
+
+		return $gallery;
+	}
+
+// Alter what is returned by the gallery shortcode
+	add_filter( 'post_gallery', 'syn_post_gallery', 10, 3 );
+	function syn_post_gallery( $output, $atts, $instance ) {
+		slog($atts);
+		slog($instance);
+		$img_ids = ( ! is_array( $atts[ 'ids' ] ) ) ? explode( ',', $atts[ 'ids' ] ) : $atts[ 'ids' ];
+		//$size    = ( isset( $atts[ 'size' ] ) ) ? $atts[ 'size' ] : syn_guess_gallery_image_size( $atts );
+		$size    = syn_guess_gallery_image_size( $atts );
+		$output = '<div class="gallery columns-' . $atts[ 'columns' ] . '">';
 		foreach ( $img_ids as $img_id ) {
-			$ret .= '<figure class="gallery-item">';
-			$ret .= wp_get_attachment_image( $img_id, $atts['size'], false, array( 'class' => 'attachment-' . $atts['size'] . ' size-' . $atts['size'] . ' figure-img') );
-			$ret .= '<figcaption class="wp-caption-text gallery-caption figure-caption">' . wp_get_attachment_caption( $img_id ) . '</figcaption>';
-			$ret .= '</figure>';
+			$output .= '<a class="column gallery-item">';
+			$output .= wp_get_attachment_image( $img_id, $size, false, [ 'class' => 'gallery-image img-fluid' ] );
+			$output .= '<div class="gallery-caption">This is the caption for the image</div>';
+			$output .= '</a>';
 		}
-		$ret .= '</div>';
-		return $ret;
-	}*/
+		$output .= '</div>';
+
+		return $output;
+	}
+
+	function syn_guess_gallery_image_size( $atts ) {
+		switch ( $atts['columns']) {
+			case 1:
+				return 'large';
+				break;
+			case 2:
+				return 'medium_large';
+				break;
+			case 3:
+				return 'medium';
+				break;
+			case 4:
+				return 'medium';
+				break;
+			case 5:
+				return 'medium';
+				break;
+			case 6:
+				return 'thumbnail';
+				break;
+			case 7:
+				return 'thumbnail';
+				break;
+			case 8:
+				return 'icon';
+				break;
+			case 9:
+				return 'icon';
+				break;
+		}
+	}

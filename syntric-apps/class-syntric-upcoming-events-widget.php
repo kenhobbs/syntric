@@ -41,15 +41,21 @@
 				$show_date   = get_field( 'syn_upcoming_events_widget_include_date', 'widget_' . $args[ 'widget_id' ] );
 			}
 			//$sidebar      = syn_widget_sidebar( $args[ 'widget_id' ] );
-			$lb  = "\n";
-			$tab = "\t";
+			if ( syn_remove_whitespace() ) {
+				$lb  = '';
+				$tab = '';
+			} else {
+				$lb  = "\n";
+				$tab = "\t";
+			}
 			echo $args[ 'before_widget' ] . $lb;
 			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			echo '<ul class="nav">' . $lb;
+			//echo '<ul class="nav">' . $lb;
 			$events = syn_get_calendar_events( $calendar_id, null, 'next', $number, 'ID,post_title,post_content' );
 			if ( $events ) {
+				echo '<div class="list-group">' . $lb;
 				foreach ( $events as $event ) :
 					//$event    = get_post( $event_id );
 					$dates       = syn_get_event_dates( $event->ID );
@@ -59,43 +65,37 @@
 					//$end_date    = get_field( 'syn_event_end_date', $event->ID );
 					//$end_time    = get_field( 'syn_event_end_time', $event->ID );
 					$location = get_field( 'syn_event_location', $event->ID );
-					echo $tab . '<li class="nav-item">' . $lb;
 					if ( ! empty( $event->post_content ) ) :
-						echo $tab . $tab . '<a href="' . get_the_permalink( $event->ID ) . '" class="nav-link">' . $lb;
+						echo $tab . '<a href="' . get_the_permalink( $event->ID ) . '" class="list-group-item">' . $lb;
 					else :
-						echo $tab . $tab . '<div class="nav-link">' . $lb;
+						echo $tab . '<div class="list-group-item">' . $lb;
 					endif;
-					//echo $tab . $tab . $tab . '<div class="d-flex">' . $lb;
-					echo $tab . $tab . $tab . $tab . '<div class="entry-feature entry-calicon">' . $lb;
-					echo $tab . $tab . $tab . $tab . $tab . '<div class="mo">' . strtoupper( date_format( $_start_date, 'M' ) ) . '</div><div class="da">' . date_format( $_start_date, 'd' ) . '</div>' . $lb;
-					echo $tab . $tab . $tab . $tab . '</div>' . $lb;
-					echo $tab . $tab . $tab . $tab . '<div class="entry-content">' . $lb;
-					echo $tab . $tab . $tab . $tab . $tab . '<div class="entry-title">' . $event->post_title . '</div>' . $lb;
+					echo $tab . $tab . '<div class="list-group-item-feature">' . $lb;
+					echo $tab . $tab . $tab . '<div class="calendar-icon">' . $lb;
+					echo $tab . $tab . $tab . $tab . '<div class="month">' . strtoupper( date_format( $_start_date, 'M' ) ) . '</div>' . $lb;
+					echo $tab . $tab . $tab . $tab . '<div class="day">' . date_format( $_start_date, 'd' ) . '</div>' . $lb;
+					echo $tab . $tab . $tab . '</div>' . $lb;
+					echo $tab . $tab . '</div>' . $lb;
+					echo $tab . $tab . '<div class="list-group-item-content">' . $lb;
+					echo $tab . $tab . $tab . '<div class="event-title">' . $event->post_title . '</div>' . $lb;
 					if ( $show_date ) :
-						echo $tab . $tab . $tab . $tab . $tab . '<div class="entry-date">' . $dates . '</div>' . $lb;
-//echo $tab . $tab . $tab . $tab . $tab . '<div class="entry-date">' . $start_date . ' @ ' . $start_time . ' - ' . $end_date . ' @ ' . $end_time . '</div>' . $lb;
+						echo $tab . $tab . $tab . '<div class="event-date small">' . $dates . '</div>' . $lb;
 					endif;
 					if ( ! empty( $location ) ) :
-						echo $tab . $tab . $tab . $tab . $tab . '<div class="entry-location">' . $location . '</div>' . $lb;
+						echo $tab . $tab . $tab . '<div class="event-location small">' . $location . '</div>' . $lb;
 					endif;
-					//echo $tab . $tab . $tab . $tab . '</div>' . $lb;
-					echo $tab . $tab . $tab . '</div>' . $lb;
+					echo $tab . $tab . '</div>' . $lb;
 					if ( ! empty( $event->post_content ) ) :
-						echo $tab . $tab . '</a>' . $lb;
+						echo $tab . '</a>' . $lb;
 					else :
-						echo $tab . $tab . '</div>' . $lb;
+						echo $tab . '</div>' . $lb;
 					endif;
-					echo $tab . '</li>' . $lb;
 				endforeach;
-				echo $tab . '<li class="nav-item">' . $lb;
-				echo $tab . $tab . '<a href="' . get_the_permalink( $calendar_id ) . '" class="nav-link entry-more">more events</a>' . $lb;
-				echo $tab . '</li>' . $lb;
+				echo $tab . '<a href="' . get_the_permalink( $calendar_id ) . '" class="list-group-item more-link">Go to calendar</a>' . $lb;
+				echo '</div>' . $lb;
 			} else {
-				echo $tab . '<li class="nav-item">' . $lb;
-				echo $tab . $tab . '<div class="nav-link entry-title">No events</div>' . $lb;
-				echo $tab . '</li>' . $lb;
+				echo '<p>No events</p>' . $lb;
 			}
-			echo '</ul>' . $lb;
 			echo $args[ 'after_widget' ] . $lb;
 			wp_reset_postdata();
 		}

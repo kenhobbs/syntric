@@ -53,8 +53,13 @@
 					'cat'                 => $category[ 0 ]->term_id,
 				] )
 			);
-			$lb        = "\n";
-			$tab       = "\t";
+			if ( syn_remove_whitespace() ) {
+				$lb  = '';
+				$tab = '';
+			} else {
+				$lb  = "\n";
+				$tab = "\t";
+			}
 			$sidebar   = syn_widget_sidebar( $args[ 'widget_id' ] );
 			$title     = get_field( 'syn_classes_title', $post->ID );
 			$show_date = get_field( 'syn_classes_include_date', $post->ID );

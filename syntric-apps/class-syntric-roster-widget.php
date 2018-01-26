@@ -24,8 +24,13 @@
 			if ( ! isset( $args[ 'widget_id' ] ) ) {
 				$args[ 'widget_id' ] = $this->id;
 			}
-			$lb              = "\n";
-			$tab             = "\t";
+			if ( syn_remove_whitespace() ) {
+				$lb  = '';
+				$tab = '';
+			} else {
+				$lb  = "\n";
+				$tab = "\t";
+			}
 			$sidebar         = syn_widget_sidebar( $args[ 'widget_id' ] );
 			$layout          = ( 'main' == $sidebar[ 'section' ][ 'value' ] && in_array( $sidebar[ 'location' ][ 'value' ], [ 'left', 'right', ] ) ) ? 'aside' : 'table';
 			$title           = get_field( 'syn_roster_title', $post->ID );
@@ -37,7 +42,7 @@
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
 			if ( 'aside' == $layout ) {
-				echo '<div class="textwidget">' . $lb;
+				echo '<div class="list-group">' . $lb;
 			}
 			if ( 'table' == $layout ) {
 				echo '<table>' . $lb;
@@ -45,7 +50,7 @@
 				echo $tab . $tab . '<tr>' . $lb;
 				echo $tab . $tab . $tab . '<th scope="col">Name</th>' . $lb;
 				$table_cols ++;
-				if ( in_array( 'titles', $include_fields ) ) {
+				if ( in_array( 'title', $include_fields ) ) {
 					echo $tab . $tab . $tab . '<th scope="col">Title</th>' . $lb;
 					$table_cols ++;
 				}
@@ -69,36 +74,46 @@
 					$user_meta  = get_user_meta( $user_id );
 					$first_name = $user_meta[ 'first_name' ][ 0 ];
 					$last_name  = $user_meta[ 'last_name' ][ 0 ];
-					$title      = get_field( 'syn_user_title', 'user_' . $user_id );
-					$title      = str_replace( ',', '<br>', $title );
+					$prefix      = get_field( 'syn_user_prefix', 'user_' . $user_id );
+					$display_name = '';
+					$display_name .= ( in_array( 'prefix', $include_fields ) && $prefix ) ? $prefix . ' ' : '';
+					$display_name .= ( in_array( 'first_name', $include_fields ) && $first_name ) ? $first_name . ' ' : '';
+					$display_name .= ( $last_name ) ? $last_name : '';
+					$title_      = get_field( 'syn_user_title', 'user_' . $user_id );
+					$title_      = str_replace( ',', '<br>', $title_ );
 					$email      = $user->data->user_email;
 					$phone      = get_field( 'syn_user_phone', 'user_' . $user_id );
 					$ext        = get_field( 'syn_user_extension', 'user_' . $user_id );
 					$ext        = ( isset( $ext ) && ! empty( $ext ) ) ? ' x' . $ext : '';
 					if ( 'aside' == $layout ) {
-						echo $tab . '<div class="contact-entry d-flex flex-column">' . $lb;
-						echo $tab . $tab . '<div class="entry-name">' . $first_name . ' ' . $last_name . '</div>' . $lb;
-						if ( in_array( 'titles', $include_fields ) ) {
-							echo $tab . $tab . '<div class="entry-title">' . $title . '</div>' . $lb;
-						}
-						if ( in_array( 'email', $include_fields ) ) {
-							echo $tab . $tab . '<a href="mailto:' . antispambot( $email, true ) . '" class="entry-email" title="Email">' . antispambot( $email ) . '</a>';
-						}
-						if ( in_array( 'phone', $include_fields ) ) {
-							echo $tab . $tab . '<div class="entry-phone">' . $phone . $ext . '</div>' . $lb;
-						}
+						echo $tab . '<div class="list-group-item">' . $lb;
+						// todo: add ability to attach a photo to person
+						/*echo $tab . $tab . '<div class="list-group-item-feature">' . $lb;
+						echo $tab . $tab . '</div>' . $lb;*/
+						echo $tab . $tab . '<div class="list-group-item-content">' . $lb;
+						echo $tab . $tab . $tab . '<div class="person-name">' . $display_name . '</div>' . $lb;
+						if ( in_array( 'title', $include_fields ) && $title_ ) :
+							echo $tab . $tab . $tab . '<div class="person-title">' . $title_ . '</div>' . $lb;
+						endif;
+						if ( in_array( 'email', $include_fields ) && $email ) :
+							echo $tab . $tab . $tab . '<a href="mailto:' . antispambot( $email, true ) . '" class="person-email" title="Email">' . antispambot( $email ) . '</a>' . $lb;
+						endif;
+						if ( in_array( 'phone', $include_fields ) && $phone ) :
+							echo $tab . $tab . $tab . '<div class="person-phone">' . $phone . $ext . '</div>' . $lb;
+						endif;
+						echo $tab . $tab . '</div>' . $lb;
 						echo $tab . '</div>' . $lb;
 					}
 					if ( 'table' == $layout ) {
 						echo $tab . $tab . '<tr valign="top">' . $lb;
-						echo $tab . $tab . $tab . '<td>' . $first_name . ' ' . $last_name . '</td>' . $lb;
-						if ( in_array( 'titles', $include_fields ) ) {
-							echo $tab . $tab . $tab . '<td>' . $title . '</td>' . $lb;
+						echo $tab . $tab . $tab . '<td>' . $display_name . '</td>' . $lb;
+						if ( in_array( 'title', $include_fields ) && $title_ ) {
+							echo $tab . $tab . $tab . '<td>' . $title_ . '</td>' . $lb;
 						}
-						if ( in_array( 'email', $include_fields ) ) {
-							echo $tab . $tab . $tab . '<td><a href="mailto:' . antispambot( $email, true ) . '" class="roster-email" title="Email">' . antispambot( $email ) . '</a></td>' . $lb;
+						if ( in_array( 'email', $include_fields ) && $email ) {
+							echo $tab . $tab . $tab . '<td><a href="mailto:' . antispambot( $email, true ) . '" class="person-email" title="Email">' . antispambot( $email ) . '</a></td>' . $lb;
 						}
-						if ( in_array( 'phone', $include_fields ) ) {
+						if ( in_array( 'phone', $include_fields ) && $phone ) {
 							echo $tab . $tab . $tab . '<td>' . $phone . $ext . '</td>' . $lb;
 						}
 						echo $tab . $tab . '</tr>' . $lb;

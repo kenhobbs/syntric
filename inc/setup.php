@@ -78,8 +78,8 @@
 			/**
 			 * Add support for post thumbnails (Featured Image) in posts (only)
 			 */
-			//add_theme_support( 'post-thumbnails' );
-			//add_theme_support( 'post-thumbnails', array( 'post' ) );
+			add_theme_support( 'post-thumbnails' );
+			add_theme_support( 'post-thumbnails', array( 'post' ) );
 			/**
 			 * Set default Post Thumbnail size
 			 */

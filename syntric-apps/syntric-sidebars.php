@@ -51,7 +51,7 @@
 					'class'         => $sidebar_class, // this gets overwritten
 					'before_widget' => '<div' . ' id="%1$s" class="widget %2$s">',
 					'after_widget'  => '</div>',
-					'before_title'  => '<h2 class="widget-title">',
+					'before_title'  => '<h2>',
 					'after_title'   => '</h2>',
 				] );
 			endwhile;
@@ -67,8 +67,13 @@
 		if( ! $post ) {
 			return;
 		}
-		$lb       = "\n";
-		$tab      = "\t";
+		if ( syn_remove_whitespace() ) {
+			$lb  = '';
+			$tab = '';
+		} else {
+			$lb  = "\n";
+			$tab = "\t";
+		}
 		$sidebars = get_field( 'syn_sidebars', 'option' );
 		if( $sidebars ) {
 			foreach( $sidebars as $sidebar ) {
@@ -77,35 +82,31 @@
 				$sidebar_active  = $sidebar[ 'active' ];
 				$sidebar_section = $sidebar[ 'section' ][ 'value' ];
 				$sidebar_filters = $sidebar[ 'filters' ];
-				$active          = true;
-				if( 1 != $sidebar_active ) {
-					$active = false;
+				//$active          = true;
+				if( ! $sidebar_active ) {
 					continue;
 				}
 				// check if sidebar belongs in this section
-				if( $active && $section != $sidebar_section ) {
-					$active = false;
+				if( $section != $sidebar_section ) {
 					continue;
 				}
 				// if main section, check if sidebar belongs in this location
-				if( $active && 'main' == $section ) {
+				if( 'main' == $section ) {
 					$sidebar_location = $sidebar[ 'location' ][ 'value' ];
 					if( $location != $sidebar_location ) {
-						$active = false;
 						continue;
 					}
 				}
 				// check if sidebar has any assigned widgets
-				if( $active && ! is_active_sidebar( $sidebar_id ) ) {
-					$active = false;
+				if( ! is_active_sidebar( $sidebar_id ) ) {
 					continue;
 				}
 				// check sidebar filters
-				if( $active && $sidebar_filters ) {
+				/*if( $sidebar_filters ) {
 					$active = syn_process_filters( $sidebar_filters, $post );
-				}
+				}*/
 				// we are now filtered down to the only active and relevant sidebars for this call
-				if( $active ) {
+				if( ! $sidebar_filters || syn_process_filters( $sidebar_filters, $post ) ) {
 					$active_widgets = syn_sidebar_active_widgets( $sidebar_id, $post->ID );
 					if( count( $active_widgets ) ) {
 						$widgets_classes = [];
@@ -120,7 +121,7 @@
 						$wp_sidebar_class = $wp_sidebar[ 'class' ];
 						$widgets_classes  = implode( ' ', $widgets_classes );
 						if( 'main' == $section && in_array( $sidebar_location, [ 'left', 'right' ] ) ) {
-							echo '<aside class="' . $wp_sidebar_class . ' col-lg-3 sidebar ' . $sidebar_section . '-' . $sidebar_location . '-sidebar ' . $widgets_classes . ' d-print-none">' . $lb;
+							echo '<aside class="' . $wp_sidebar_class . ' col-xl-3 sidebar ' . $sidebar_section . '-' . $sidebar_location . '-sidebar ' . $widgets_classes . '">' . $lb;
 							dynamic_sidebar( $sidebar_id );
 							//syn_columns( 1, 3 );
 							echo '</aside>' . $lb;
@@ -130,24 +131,13 @@
 							echo '</section>' . $lb;
 						} elseif( in_array( $section, [ 'header', 'footer' ] ) ) {
 							$sidebar_layout    = $sidebar[ 'layout' ][ 'value' ];
-							// Yuck todo: do this better
-							$layout = 'fixed';
-							switch ( $sidebar_layout ) :
-								case 'container' :
-									$layout = 'fixed';
-									break;
-								case 'container-fluid' :
-									$layout = 'full';
-									break;
-								case 'container-bleed' :
-									$layout = 'bleed';
-									break;
-							endswitch;
-							//$container_classes = ( 'container-bleed' == $sidebar_layout ) ? 'container-bleed' : $sidebar_layout;
-							$row_classes       = ( 'container-bleed' == $sidebar_layout ) ? 'row no-gutters' : 'row';
-							echo '<section class="' . $wp_sidebar_class . ' sidebar ' . $sidebar_section . '-sidebar ' . $layout . ' ' . $widgets_classes . ' d-print-none">' . $lb;
+							$sl_array = explode( '-', $sidebar_layout);
+							$sidebar_class = ( 1 == count( $sl_array ) ) ? 'fixed' : $sl_array[count($sl_array)-1];
+							$sidebar_class .= ' widgets-' . count($active_widgets);
+							$row_class       = ( 'container-bleed' == $sidebar_layout ) ? 'row no-gutters' : 'row';
+							echo '<section class="' . $wp_sidebar_class . ' sidebar ' . $sidebar_section . '-sidebar ' . $sidebar_class . ' ' . $widgets_classes . '">' . $lb;
 							echo $tab . '<div class="' . $sidebar_layout . '">' . $lb;
-							echo $tab . $tab . '<div class="' . $row_classes . '">' . $lb;
+							echo $tab . $tab . '<div class="' . $row_class . '">' . $lb;
 							dynamic_sidebar( $sidebar_id );
 							echo $tab . $tab . '</div>' . $lb;
 							echo $tab . '</div>' . $lb;
@@ -213,12 +203,11 @@
 					$active_widgets = syn_sidebar_active_widgets( $params[ 0 ][ 'id' ], $post->ID );
 					$widget_count   = count( $active_widgets );
 					if( 0 < $widget_count && ( 'header' == $sidebar[ 'section' ][ 'value' ] || 'footer' == $sidebar[ 'section' ][ 'value' ] ) ) {
-						$params[ 0 ][ 'before_widget' ] = str_replace( 'class="', 'class="col-lg-' . floor( 12 / $widget_count ) . ' ', $params[ 0 ][ 'before_widget' ] );
+						$params[ 0 ][ 'before_widget' ] = str_replace( 'class="', 'class="col-xl ', $params[ 0 ][ 'before_widget' ] );
 					}
 				}
 			}
 		}
-
 		return $params;
 	}
 

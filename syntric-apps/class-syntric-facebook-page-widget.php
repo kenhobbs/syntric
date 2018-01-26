@@ -41,11 +41,19 @@
 				$number        = get_field( 'syn_facebook_page_widget_posts', 'widget_' . $args[ 'widget_id' ] );
 			}
 			if ( isset( $facebook_page ) && ! empty( $facebook_page ) ) {
-				$posts_to_fetch = $number + 5; // get extra because a post won't display if it doesn't have a 'message'
+				$posts_to_fetch = $number; // get extra because a post won't display if it doesn't have a 'message'
 				$facebook_posts = syn_get_facebook_page_posts( $facebook_page, $posts_to_fetch );
-				$sidebar        = syn_widget_sidebar( $args[ 'widget_id' ] );
-				$lb             = "\n";
-				$tab            = "\t";
+				//slog( '-------------------------------- facebook page: ' . $facebook_page . ' ---------------------------------------' );
+				//slog( $facebook_page );
+				//slog( $facebook_posts );
+				$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
+				if ( syn_remove_whitespace() ) {
+					$lb  = '';
+					$tab = '';
+				} else {
+					$lb  = "\n";
+					$tab = "\t";
+				}
 				echo $args[ 'before_widget' ] . $lb;
 				if ( ! empty( $title ) ) :
 					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
@@ -75,45 +83,46 @@
 							echo '</div>';
 						}
 					} else {
-						echo '<ul class="nav">' . $lb;
 						if ( property_exists( $facebook_posts, 'data' ) ) {
+							echo '<div class="list-group">' . $lb;
 							$post_counter = 1;
 							foreach ( $facebook_posts->data as $facebook_post ) :
 								if ( property_exists( $facebook_post, 'message' ) ) {
-									echo $tab . '<li class="nav-item">' . $lb;
-									echo $tab . $tab . '<a href = "' . $facebook_post->permalink_url . '" class="nav-link" target = "_blank">' . $lb;
+									//echo $tab . '<li class="nav-item">' . $lb;
+									echo $tab . $tab . '<a href = "' . $facebook_post->permalink_url . '" class="list-group-item" target = "_blank">' . $lb;
 									if ( $include_image ) :
 										//echo $tab . $tab . $tab . '<div class="d-flex flex-row">' . $lb;
-										echo $tab . $tab . $tab . $tab . '<div class="entry-feature">' . $lb;
-										echo $tab . $tab . $tab . $tab . $tab . '<img src = "' . $facebook_post->picture . '" class="entry-image" alt = "Facebook post photo" aria - hidden = "true">' . $lb;
+										echo $tab . $tab . $tab . $tab . '<div class="list-group-item-feature">' . $lb;
+										echo $tab . $tab . $tab . $tab . $tab . '<img src = "' . $facebook_post->picture . '" class="img-thumbnail fb-image" alt="Facebook post photo" aria-hidden="true">' . $lb;
 										echo $tab . $tab . $tab . $tab . '</div>' . $lb;
 									endif;
 									$publish_date = date_create( $facebook_post->created_time );
 									$publish_date = date_format( $publish_date, 'F j, Y' );
-									echo $tab . $tab . $tab . $tab . '<div class="entry-content">' . $lb;
-									echo $tab . $tab . $tab . $tab . $tab . '<div class="entry-date">' . $publish_date . '</div> ' . $lb;
-									$more = ( 250 < strlen( $facebook_post->message ) ) ? '<div class="entry-more">Read More </div> ' . $lb : '';
-									echo $tab . $tab . $tab . $tab . $tab . '<div class="entry-excerpt">' . substr( $facebook_post->message, 0, 250 ) . $more . '</div> ' . $lb;
+									echo $tab . $tab . $tab . $tab . '<div class="list-group-item-content">' . $lb;
+									echo $tab . $tab . $tab . $tab . $tab . '<div class="fb-date small">' . $publish_date . '</div> ' . $lb;
+									$more = ( 250 < strlen( $facebook_post->message ) ) ? '<div class="more-link">Read More </div> ' . $lb : '';
+									echo $tab . $tab . $tab . $tab . $tab . '<p class="fb-message small">' . substr( $facebook_post->message, 0, 150 ) . $more . '</p> ' . $lb;
 									echo $tab . $tab . $tab . $tab . '</div>' . $lb;
 									//echo $tab . $tab . $tab . '</div>' . $lb;
 									echo $tab . $tab . '</a>' . $lb;
-									echo $tab . '</li>' . $lb;
+									//echo $tab . '</li>' . $lb;
 								}
 								if ( $post_counter == $number ) {
 									break;
 								}
 								$post_counter ++;
 							endforeach;
+							echo $tab . '<a href="http://www.facebook.com/' . $facebook_page . '" class="list-group-item more-link">Go to Facebook</a>' . $lb;
+							echo '</div>' . $lb;
 						} else {
-							echo $tab . '<li class="nav-item">' . $lb;
+							//echo $tab . '<li class="nav-item">' . $lb;
 							if ( property_exists( $facebook_posts, 'error' ) ) {
-								echo $tab . $tab . '<div class="nav-link entry-title">Posts unavailable </div>' . $lb;
+								echo $tab . $tab . '<p>Posts unavailable </p>' . $lb;
 							} else {
-								echo $tab . $tab . '<div class="nav-link entry-title">No posts </div>';
+								echo $tab . $tab . '<p>No posts </p>';
 							}
-							echo $tab . '</li>' . $lb;
+							//echo $tab . '</li>' . $lb;
 						}
-						echo '</ul>' . $lb;
 					}
 				}
 				echo $args[ 'after_widget' ] . $lb;
@@ -147,7 +156,7 @@
 							$publish_date = date_create( $facebook_post->created_time );
 							$publish_date = date_format( $publish_date, 'F j, Y' );
 							echo $tab . $tab . $tab . $tab . '<div class="entry-date">' . $publish_date . '</span>' . $lb;
-							$more = ( 250 < strlen( $facebook_post->message ) ) ? '<div class="entry-more">Read More </span>' . $lb : '';
+							$more = ( 250 < strlen( $facebook_post->message ) ) ? '<div class="more-link">Read More </span>' . $lb : '';
 							echo $tab . $tab . $tab . $tab . '<div class="entry-excerpt">' . substr( $facebook_post->message, 0, 250 ) . $more . '</span>' . $lb;
 							echo $tab . $tab . '</a>' . $lb;
 							echo $tab . '</li>' . $lb;

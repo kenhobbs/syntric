@@ -34,21 +34,25 @@
 				$categories = get_field( 'syn_categories_menu_widget_categories', 'widget_' . $args[ 'widget_id' ] );
 			}
 			if( $categories ) :
-				$lb      = "\n";
-				$tab     = "\t";
+				if ( syn_remove_whitespace() ) {
+					$lb  = '';
+					$tab = '';
+				} else {
+					$lb  = "\n";
+					$tab = "\t";
+				}
 				$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
 				$title   = get_field( 'syn_categories_menu_widget_title', 'widget_' . $args[ 'widget_id' ] );
 				echo $args[ 'before_widget' ] . $lb;
 				if( ! empty( $title ) ) :
 					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 				endif;
-				echo '<ul class="nav">' . $lb;
+				//echo '<ul class="nav">' . $lb;
+				echo '<div class="list-group">' . $lb;
 				foreach( $categories as $category ) {
-					echo $tab . '<li class="nav-item">' . $lb;
-					echo $tab . $tab . '<a href="' . get_category_link( $category ) . '" class="nav-link">' . $category->name . '</a>' . $lb;
-					echo $tab . '</li>' . $lb;
+					echo $tab . $tab . '<a href="' . get_category_link( $category ) . '" class="list-group-item">' . $category->name . '</a>' . $lb;
 				};
-				echo '</ul>' . $lb;
+				echo '</div>' . $lb;
 				echo $args[ 'after_widget' ] . $lb;
 			endif;
 		}

@@ -43,8 +43,13 @@
 			if( isset( $google_map_id ) && ! empty( $google_map_id ) ) :
 				$unique_id = syn_generate_permanent_id();
 				$sidebar   = syn_widget_sidebar( $args[ 'widget_id' ] );
-				$lb        = "\n";
-				$tab       = "\t";
+				if ( syn_remove_whitespace() ) {
+					$lb  = '';
+					$tab = '';
+				} else {
+					$lb  = "\n";
+					$tab = "\t";
+				}
 				echo $args[ 'before_widget' ] . $lb;
 				if( ! empty( $title ) ) :
 					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;

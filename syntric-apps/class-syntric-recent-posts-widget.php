@@ -37,36 +37,47 @@
 				'ignore_sticky_posts' => true,
 				'category__in'        => $category_id,
 			] ) );
-			$lb          = "\n";
-			$tab         = "\t";
+			if ( syn_remove_whitespace() ) {
+				$lb  = '';
+				$tab = '';
+			} else {
+				$lb  = "\n";
+				$tab = "\t";
+			}
 			$sidebar     = syn_widget_sidebar( $args[ 'widget_id' ] );
 			$title       = get_field( 'syn_recent_posts_widget_title', 'widget_' . $args[ 'widget_id' ] );
 			echo $args[ 'before_widget' ] . $lb;
 			if( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			echo '<ul class="nav">' . $lb;
 			if( $posts->have_posts() ) :
+				echo '<div class="list-group">' . $lb;
+			// todo: get ride of include date checkbox...date should always be shown
 				$show_date = get_field( 'syn_recent_posts_widget_include_date', 'widget_' . $args[ 'widget_id' ] );
 				while( $posts->have_posts() ) : $posts->the_post();
-					echo $tab . '<li class="nav-item">' . $lb;
-					echo $tab . $tab . '<a href="' . get_the_permalink() . '" class="nav-link">' . $lb;
-					if( $show_date ) :
-						echo $tab . $tab . $tab . $tab . '<div class="entry-date">' . get_the_date() . '</div>' . $lb;
+					echo $tab . '<a href="' . get_the_permalink() . '" class="list-group-item">' . $lb;
+					/*if( $show_date ) :
+						echo $tab . $tab . '<div class="list-group-item-feature cal-icon">' . $lb;
+						echo $tab . $tab . $tab . '<div class="month">' . strtoupper( 'sep' ) . '</div><div class="day">' . '27' . '</div>' . $lb;
+						echo $tab . $tab . '</div>' . $lb;
+					endif;*/
+					if( has_post_thumbnail() ) :
+						echo $tab . $tab . '<div class="list-group-item-feature">' . $lb;
+						echo $tab . $tab . $tab . the_post_thumbnail( 'thumbnail', array( 'class' => 'post-thumbnail img-thumbnail') ) . $lb;
+						echo $tab . $tab . '</div>' . $lb;
 					endif;
-					echo $tab . $tab . $tab . $tab . '<div class="entry-title">' . get_the_title() . '</div>' . $lb;
-					echo $tab . $tab . '</a>' . $lb;
-					echo $tab . '</li>' . $lb;
+					echo $tab . $tab . '<div class="list-group-item-content">' . $lb;
+					echo $tab . $tab . $tab . '<div class="post-title">' . get_the_title() . '</div>' . $lb;
+					echo $tab . $tab . $tab . '<div class="post-date small">' . get_the_date() . '</div>' . $lb;
+					echo $tab . $tab . $tab . '<div class="post-excerpt small">' . get_the_excerpt() . '</div>' . $lb;
+					echo $tab . $tab . '</div>' . $lb;
+					echo $tab . '</a>' . $lb;
 				endwhile;
-				echo $tab . '<li class="nav-item">' . $lb;
-				echo $tab . $tab . '<a href="' . get_category_link( $category->term_id ) . '" class="nav-link entry-more">more ' . $category->name . '</a>' . $lb;
-				echo $tab . '</li>' . $lb;
+				echo $tab . '<a href="' . get_category_link( $category->term_id ) . '" class="list-group-item more-link">Go to ' . strtolower( $category->name ) . '</a>' . $lb;
+				echo '</div>' . $lb;
 			else :
-				echo $tab . '<li class="nav-item">' . $lb;
-				echo $tab . $tab . '<div class="nav-link entry-title">No posts</div>' . $lb;
-				echo $tab . '</li>' . $lb;
+				echo '<p>No posts</p>' . $lb;
 			endif;
-			echo '</ul>' . $lb;
 			echo $args[ 'after_widget' ] . $lb;
 			wp_reset_postdata();
 			wp_reset_query();

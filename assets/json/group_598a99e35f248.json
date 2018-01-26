@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_598a9db813a14",
-            "label": "Attachments Widget",
+            "label": "Attachments",
             "name": "",
             "type": "tab",
             "instructions": "",
@@ -15,12 +15,12 @@
                 "class": "",
                 "id": ""
             },
-            "placement": "top",
+            "placement": "left",
             "endpoint": 0
         },
         {
             "key": "field_59ab355321321",
-            "label": "Activate Attachments Widget",
+            "label": "Activate Attachments",
             "name": "syn_attachments_active",
             "type": "true_false",
             "instructions": "",
@@ -39,11 +39,11 @@
         },
         {
             "key": "field_59ab352a21320",
-            "label": "Attachments Widget Title",
+            "label": "Title",
             "name": "syn_attachments_title",
             "type": "text",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": [
                 [
                     {
@@ -321,7 +321,7 @@
         },
         {
             "key": "field_59b705bae7599",
-            "label": "Calendar Widget",
+            "label": "Calendar",
             "name": "",
             "type": "tab",
             "instructions": "",
@@ -332,12 +332,12 @@
                 "class": "",
                 "id": ""
             },
-            "placement": "top",
+            "placement": "left",
             "endpoint": 0
         },
         {
             "key": "field_59b720b6e759d",
-            "label": "Activate Calendar Widget",
+            "label": "Activate Calendar",
             "name": "syn_calendar_active",
             "type": "true_false",
             "instructions": "",
@@ -356,11 +356,11 @@
         },
         {
             "key": "field_59b75b89b8567",
-            "label": "Calendar Widget Title",
+            "label": "Title",
             "name": "syn_calendar_title",
             "type": "text",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": [
                 [
                     {
@@ -404,7 +404,8 @@
             },
             "choices": {
                 "0": "+ New calendar",
-                "7585": "Escalon USD"
+                "7585": "Escalon USD",
+                "8333": "Syntric CMS Training"
             },
             "default_value": [],
             "allow_null": 1,
@@ -416,7 +417,7 @@
         },
         {
             "key": "field_59b25f40a698e",
-            "label": "Events to display",
+            "label": "Display Count",
             "name": "syn_calendar_events",
             "type": "number",
             "instructions": "",
@@ -701,7 +702,7 @@
         },
         {
             "key": "field_59a5b62d88d98",
-            "label": "Contact Widget",
+            "label": "Contact",
             "name": "",
             "type": "tab",
             "instructions": "",
@@ -712,12 +713,12 @@
                 "class": "",
                 "id": ""
             },
-            "placement": "top",
+            "placement": "left",
             "endpoint": 0
         },
         {
             "key": "field_59ab362921325",
-            "label": "Activate Contact Widget",
+            "label": "Activate Contact",
             "name": "syn_contact_active",
             "type": "true_false",
             "instructions": "",
@@ -736,11 +737,11 @@
         },
         {
             "key": "field_59ab362121324",
-            "label": "Contact Widget Title",
+            "label": "Title",
             "name": "syn_contact_title",
             "type": "text",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": [
                 [
                     {
@@ -825,7 +826,7 @@
             "choices": {
                 "179": "Theresa Adrian \/ Some Title",
                 "138": "Cris Astabie \/ Some Title",
-                "189": "Syntric Author \/ Teacher",
+                "189": "Author Author \/ Author",
                 "142": "John Azevedo \/ Some Title",
                 "161": "Melissa Bennett \/ Some Title",
                 "143": "Joshuasasasas Blanchardiio \/ Some Title",
@@ -840,14 +841,14 @@
                 "154": "Laurie Craig \/ Some Title",
                 "183": "Yarissa Cruz \/ Some Title",
                 "159": "Monique Cuadras \/ Some Title",
-                "190": "Syntric Editor \/ Editor",
+                "190": "Editor Editor \/ Editor",
                 "140": "Cecilia Estrada \/ Some Title",
                 "137": "Brenda Fisher \/ Some Title",
                 "171": "Ruth Gligorea \/ Some Title",
                 "162": "Monica Gwin \/ Some Title",
                 "1": "Kenneth Hobbs \/ Partner",
-                "186": "Ken Hobbs \/ Some Title",
                 "149": "Kenny Hobbs, Jr \/ Teacher",
+                "186": "Ken Hobbs \/ Teacher",
                 "180": "Teresa Hoff \/ Some Title",
                 "168": "Patricia Jefferson \/ Some Title",
                 "175": "Stacie Keyser \/ Some Title",
@@ -874,7 +875,7 @@
                 "134": "Amanda Sanchez \/ Some Title",
                 "177": "Sarah Shank \/ Some Title",
                 "152": "Kimberly Simmons \/ Some Title",
-                "187": "Syntric Subscriber \/ Teacher",
+                "187": "Syntric Subscriber \/ Subscriber",
                 "178": "Susan Thompson \/ Some Title",
                 "141": "Darla Towner \/ Some Title",
                 "135": "Amy Trimble \/ Some Title",
@@ -994,6 +995,8 @@
                 "id": ""
             },
             "choices": {
+                "prefix": "Prefix",
+                "first_name": "First Name",
                 "title": "Title",
                 "email": "Email",
                 "phone": "Phone"
@@ -1001,6 +1004,8 @@
             "allow_custom": 0,
             "save_custom": 0,
             "default_value": [
+                "prefix",
+                "first_name",
                 "title",
                 "email",
                 "phone"
@@ -1060,7 +1065,7 @@
         },
         {
             "key": "field_598a9de513a16",
-            "label": "Microblog Widget",
+            "label": "Microblog",
             "name": "",
             "type": "tab",
             "instructions": "",
@@ -1071,12 +1076,12 @@
                 "class": "",
                 "id": ""
             },
-            "placement": "top",
+            "placement": "left",
             "endpoint": 0
         },
         {
             "key": "field_59ab366c21327",
-            "label": "Activate Microblog Widget",
+            "label": "Activate Microblog",
             "name": "syn_microblog_active",
             "type": "true_false",
             "instructions": "",
@@ -1095,11 +1100,11 @@
         },
         {
             "key": "field_59ab365321326",
-            "label": "Microblog Widget Title",
+            "label": "Title",
             "name": "syn_microblog_title",
             "type": "text",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": [
                 [
                     {
@@ -1363,7 +1368,7 @@
         },
         {
             "key": "field_598a9e4613a18",
-            "label": "Roster Widget",
+            "label": "Roster",
             "name": "",
             "type": "tab",
             "instructions": "",
@@ -1374,12 +1379,12 @@
                 "class": "",
                 "id": ""
             },
-            "placement": "top",
+            "placement": "left",
             "endpoint": 0
         },
         {
             "key": "field_59ab36d12132b",
-            "label": "Activate Roster Widget",
+            "label": "Activate Roster",
             "name": "syn_roster_active",
             "type": "true_false",
             "instructions": "",
@@ -1398,11 +1403,11 @@
         },
         {
             "key": "field_59ab36be2132a",
-            "label": "Roster Widget Title",
+            "label": "Title",
             "name": "syn_roster_title",
             "type": "text",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": [
                 [
                     {
@@ -1468,7 +1473,7 @@
                     "choices": {
                         "179": "Theresa Adrian \/ Some Title",
                         "138": "Cris Astabie \/ Some Title",
-                        "189": "Syntric Author \/ Teacher",
+                        "189": "Author Author \/ Author",
                         "142": "John Azevedo \/ Some Title",
                         "161": "Melissa Bennett \/ Some Title",
                         "143": "Joshuasasasas Blanchardiio \/ Some Title",
@@ -1483,14 +1488,14 @@
                         "154": "Laurie Craig \/ Some Title",
                         "183": "Yarissa Cruz \/ Some Title",
                         "159": "Monique Cuadras \/ Some Title",
-                        "190": "Syntric Editor \/ Editor",
+                        "190": "Editor Editor \/ Editor",
                         "140": "Cecilia Estrada \/ Some Title",
                         "137": "Brenda Fisher \/ Some Title",
                         "171": "Ruth Gligorea \/ Some Title",
                         "162": "Monica Gwin \/ Some Title",
                         "1": "Kenneth Hobbs \/ Partner",
-                        "186": "Ken Hobbs \/ Some Title",
                         "149": "Kenny Hobbs, Jr \/ Teacher",
+                        "186": "Ken Hobbs \/ Teacher",
                         "180": "Teresa Hoff \/ Some Title",
                         "168": "Patricia Jefferson \/ Some Title",
                         "175": "Stacie Keyser \/ Some Title",
@@ -1517,7 +1522,7 @@
                         "134": "Amanda Sanchez \/ Some Title",
                         "177": "Sarah Shank \/ Some Title",
                         "152": "Kimberly Simmons \/ Some Title",
-                        "187": "Syntric Subscriber \/ Teacher",
+                        "187": "Syntric Subscriber \/ Subscriber",
                         "178": "Susan Thompson \/ Some Title",
                         "141": "Darla Towner \/ Some Title",
                         "135": "Amy Trimble \/ Some Title",
@@ -1558,14 +1563,18 @@
                 "id": ""
             },
             "choices": {
-                "titles": "Titles",
+                "prefix": "Prefix",
+                "first_name": "First Name",
+                "title": "Title",
                 "email": "Email",
                 "phone": "Phone"
             },
             "allow_custom": 0,
             "save_custom": 0,
             "default_value": [
-                "titles",
+                "prefix",
+                "first_name",
+                "title",
                 "email",
                 "phone"
             ],
@@ -1586,12 +1595,12 @@
                 "class": "",
                 "id": ""
             },
-            "placement": "top",
+            "placement": "left",
             "endpoint": 0
         },
         {
             "key": "field_5a41c0a82a649",
-            "label": "Activate Google Map Widget",
+            "label": "Activate Google Map",
             "name": "syn_google_map_active",
             "type": "true_false",
             "instructions": "",
@@ -1610,11 +1619,11 @@
         },
         {
             "key": "field_5a41c0e12a64a",
-            "label": "Google Map Title",
+            "label": "Title",
             "name": "syn_google_map_title",
             "type": "text",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": [
                 [
                     {
@@ -1669,7 +1678,7 @@
         },
         {
             "key": "field_5a41c15b2a64c",
-            "label": "YouTube Video",
+            "label": "YouTube",
             "name": "",
             "type": "tab",
             "instructions": "",
@@ -1680,12 +1689,12 @@
                 "class": "",
                 "id": ""
             },
-            "placement": "top",
+            "placement": "left",
             "endpoint": 0
         },
         {
             "key": "field_5a41c16e2a64d",
-            "label": "Activate YouTube Widget",
+            "label": "Activate YouTube",
             "name": "syn_youtube_active",
             "type": "true_false",
             "instructions": "",
@@ -1704,11 +1713,11 @@
         },
         {
             "key": "field_5a41c24b2a64f",
-            "label": "YouTube Widget Title",
+            "label": "Title",
             "name": "syn_youtube_title",
             "type": "text",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": [
                 [
                     {
@@ -1734,7 +1743,7 @@
             "label": "Video ID",
             "name": "syn_youtube_video_id",
             "type": "text",
-            "instructions": "Include only the Video ID, nothing else.  Video ID is a string of letters between 10-15 characters long.  For example, the video at https:\/\/www.youtube.com\/watch?v=TxyzlLNopABC has a Video ID of TxyzlLNopABC ..",
+            "instructions": "Include only the Video ID, nothing else.  Video ID is a string of letters between 10-15 characters long.  For example, the video at https:\/\/www.youtube.com\/watch?v=TxyzlLNopABC has a Video ID of TxyzlLNopABC.",
             "required": 1,
             "conditional_logic": [
                 [
@@ -1769,18 +1778,6 @@
                 "operator": "==",
                 "value": "viewing_back"
             }
-        ],
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "page"
-            },
-            {
-                "param": "current_user",
-                "operator": "==",
-                "value": "viewing_front"
-            }
         ]
     ],
     "menu_order": 2,
@@ -1791,5 +1788,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1514380664
+    "modified": 1516984364
 }

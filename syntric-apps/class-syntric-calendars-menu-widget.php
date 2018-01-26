@@ -34,36 +34,30 @@
 			} else {
 				$calendars = get_field( 'syn_calendars_menu_widget_calendars', 'widget_' . $args[ 'widget_id' ] );
 			}
-			$lb      = "\n";
-			$tab     = "\t";
+			if ( syn_remove_whitespace() ) {
+				$lb  = '';
+				$tab = '';
+			} else {
+				$lb  = "\n";
+				$tab = "\t";
+			}
 			$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
 			$title   = get_field( 'syn_calendars_menu_widget_title', 'widget_' . $args[ 'widget_id' ] );
 			echo $args[ 'before_widget' ] . $lb;
 			if( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			//echo '<ul class="nav">' . $lb;
-			echo '<div class="list-group list-group-flush">' . $lb;
+			echo '<div class="list-group">' . $lb;
 			if( $calendars ) :
 				$ref_date = ( isset( $_GET[ 'ref_date' ] ) ) ? $_GET[ 'ref_date' ] : date( 'Ymd' );
 				foreach( $calendars as $calendar ) {
-					//$active = ( $post->ID == $calendar->ID ) ? ' class="active"' : '';  $active
-					//echo $tab . '<li class="nav-item">' . $lb;
-					//echo $tab . $tab . '<a href="' . get_the_permalink( $calendar->ID ) . '?ref_date=' . $ref_date . '" data-id="' . $calendar->ID . '" class="nav-link">';
 					echo $tab . $tab . '<a href="' . get_the_permalink( $calendar->ID ) . '?ref_date=' . $ref_date . '" data-id="' . $calendar->ID . '" class="list-group-item">';
-					//echo $tab . $tab . $tab . '<div class="entry-title">' . $calendar->post_title . '</div>' . $lb;
 					echo $tab . $tab . $tab . $calendar->post_title . $lb;
-					//echo $calendar->post_title;
 					echo '</a>' . $lb;
-					//echo $tab . '</li>' . $lb;
 				};
 			else :
-				//echo $tab . '<li>' . $lb;
-				//echo $tab . $tab . '<div class="entry-title">No calendars</div>' . $lb;
 				echo $tab . $tab . '<div class="list-group-item">No calendars</div>' . $lb;
-				//echo $tab . '</li>' . $lb;
 			endif;
-			//echo '</ul>' . $lb;
 			echo '</div>' . $lb;
 			echo $args[ 'after_widget' ] . $lb;
 		}

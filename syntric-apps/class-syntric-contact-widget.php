@@ -36,8 +36,13 @@
 			} else {
 				$title = get_field( 'syn_contact_widget_title', 'widget_' . $args[ 'widget_id' ] );
 			}
-			$lb           = "\n";
-			$tab          = "\t";
+			if ( syn_remove_whitespace() ) {
+				$lb  = '';
+				$tab = '';
+			} else {
+				$lb  = "\n";
+				$tab = "\t";
+			}
 			$contact      = '';
 			$contact_type = ( $dynamic ) ? get_field( 'syn_contact_contact_type', $post->ID ) : get_field( 'syn_contact_widget_contact_type', 'widget_' . $args[ 'widget_id' ] );
 			if ( 'person' == $contact_type ) {
@@ -54,24 +59,31 @@
 						$user_meta  = get_user_meta( $user_id );
 						$first_name = $user_meta[ 'first_name' ][ 0 ];
 						$last_name  = $user_meta[ 'last_name' ][ 0 ];
+						$include_fields = array_column( $include_fields, 'value' );
+						$prefix      = get_field( 'syn_user_prefix', 'user_' . $user_id );
+						$display_name = '';
+						$display_name .= ( in_array( 'prefix', $include_fields ) && ! empty( $prefix ) ) ? $prefix . ' ' : '';
+						$display_name .= ( in_array( 'first_name', $include_fields ) && ! empty( $first_name ) ) ? $first_name . ' ' : '';
+						$display_name .= $last_name;
 						$title_     = get_field( 'syn_user_title', 'user_' . $user_id );
 						$title_     = str_replace( ',', '<br>', $title_ );
 						$email      = $user->data->user_email;
 						$phone      = get_field( 'syn_user_phone', 'user_' . $user_id );
 						$ext        = get_field( 'syn_user_extension', 'user_' . $user_id );
 						$ext        = ( isset( $ext ) && ! empty( $ext ) ) ? ' x' . $ext : '';
-						// build person output according to $include_fields
-						$include_fields = array_column( $include_fields, 'value' );
-						$contact        .= $tab . '<div class="d-flex flex-column">' . $lb;
-						$contact        .= $tab . $tab . '<div class="entry-name">' . $first_name . ' ' . $last_name . '</div>' . $lb;
+						/**
+						 * todo: add ability to associate a photo with a person contact
+						 */
+						$contact        .= $tab . '<div class="list-group-item-content">' . $lb;
+						$contact        .= $tab . $tab . '<div class="contact-name">' . $display_name . '</div>' . $lb;
 						if ( in_array( 'title', $include_fields ) && $title_ ) :
-							$contact .= $tab . $tab . '<div class="entry-title">' . $title_ . '</div>' . $lb;
+							$contact .= $tab . $tab . '<div class="contact-title">' . $title_ . '</div>' . $lb;
 						endif;
 						if ( in_array( 'email', $include_fields ) && $email ) :
-							$contact .= $tab . $tab . '<a href="mailto:' . antispambot( $email, true ) . '" class="entry-email" title="Email">' . antispambot( $email ) . '</a>' . $lb;
+							$contact .= $tab . $tab . '<a href="mailto:' . antispambot( $email, true ) . '" class="contact-email" title="Email">' . antispambot( $email ) . '</a>' . $lb;
 						endif;
 						if ( in_array( 'phone', $include_fields ) && $phone ) :
-							$contact .= $tab . $tab . '<div class="entry-phone">' . $phone . $ext . '</div>' . $lb;
+							$contact .= $tab . $tab . '<div class="contact-phone">' . $phone . $ext . '</div>' . $lb;
 						endif;
 						$contact .= $tab . '</div>' . $lb;
 					}
@@ -131,73 +143,57 @@
 					$include_fields = array_column( $include_fields, 'value' );
 					if ( in_array( 'logo', $include_fields ) ) {
 						if ( $logo ) :
-							$contact .= '<div class="d-flex flex-row">' . $lb;
-							//$contact .= $tab . '<div class="d-flex flex-column">' . $lb;
-							if ( in_array( 'url', $include_fields ) ) :
-								$contact .= $tab . $tab . '<a href="' . $url . '" class="entry-feature" title="Go to ' . $organization . '">' . $lb;
+							$contact .= $tab . '<div class="list-group-item-feature">' . $lb;
+							if ( in_array( 'url', $include_fields ) && $url ) :
+								$contact .= $tab . $tab . '<a href="' . $url . '" title="Go to ' . $organization . '">' . $lb;
 							endif;
-							$contact .= $tab . $tab . $tab . '<img src="' . $logo[ 'url' ] . '" class="entry-image" alt="' . $organization . ' Logo">' . $lb;
-							if ( in_array( 'url', $include_fields ) ) :
+							$contact .= $tab . $tab . $tab . '<img src="' . $logo[ 'url' ] . '" class="contact-image" alt="' . $organization . ' Logo">' . $lb;
+							if ( in_array( 'url', $include_fields ) && $url ) :
 								$contact .= $tab . $tab . '</a>' . $lb;
 							endif;
-							//$contact .= $tab . '</div>' . $lb;
+							$contact .= $tab . '</div>' . $lb;
 						endif;
 					}
-					$contact .= $tab . '<div class="d-flex flex-column">' . $lb;
+					$contact .= $tab . '<div class="list-group-item-content">' . $lb;
 					// name
-					$contact .= $tab . $tab . '<div class="entry-name">' . $organization . '</div>' . $lb;
+					$contact .= $tab . $tab . '<div class="contact-name">' . $organization . '</div>' . $lb;
 					// address
-					if ( in_array( 'address', $include_fields ) ) :
-						if ( $address ) :
-							$contact .= $tab . $tab . '<div class="entry-address">' . $address . '</div>' . $lb;
+					if ( in_array( 'address', $include_fields ) && $address ) :
+							$contact .= $tab . $tab . '<div class="contact-address">' . $address . '</div>' . $lb;
 							if ( ! empty( $address_2 ) ) :
-								$contact .= $tab . $tab . '<div class="entry-address-2">' . $address_2 . '</div>' . $lb;
+								$contact .= $tab . $tab . '<div class="contact-address-2">' . $address_2 . '</div>' . $lb;
 							endif;
-						endif;
 						if ( $city || $state || $zip_code ) :
-							$contact .= $tab . $tab . '<div class="d-flex flex-row">' . $lb;
+							$contact .= $tab . $tab . '<div class="contact-city-state-zip-code d-flex flex-row">' . $lb;
 							if ( ! empty( $city ) ) :
-								$contact .= $tab . $tab . $tab . '<div class="entry-city">' . $city . '</div>' . $lb;
+								$contact .= $tab . $tab . $tab . '<div class="contact-city">' . $city . '</div>' . $lb;
 							endif;
 							if ( ! empty( $state ) ) :
-								$contact .= $tab . $tab . $tab . '<div class="entry-state">' . $state . '</div>' . $lb;
+								$contact .= $tab . $tab . $tab . '<div class="contact-state">' . $state . '</div>' . $lb;
 							endif;
 							if ( ! empty( $zip_code ) ) :
-								$contact .= $tab . $tab . $tab . '<div class="entry-zip-code">' . $zip_code . '</div>' . $lb;
+								$contact .= $tab . $tab . $tab . '<div class="contact-zip-code">' . $zip_code . '</div>' . $lb;
 							endif;
 							$contact .= $tab . $tab . '</div>' . $lb;
 						endif;
 					endif;
 					// email
-					if ( in_array( 'email', $include_fields ) ) :
-						if ( $email ) :
-							$contact .= $tab . $tab . '<a href="mailto:' . antispambot( $email, true ) . '" class="entry-email" title="Email">' . antispambot( $email ) . '</a>' . $lb;
-						endif;
+					if ( in_array( 'email', $include_fields ) && $email ) :
+							$contact .= $tab . $tab . '<a href="mailto:' . antispambot( $email, true ) . '" class="contact-email" title="Email">' . antispambot( $email ) . '</a>' . $lb;
 					endif;
 					// phone
-					if ( in_array( 'phone', $include_fields ) ) :
-						if ( $phone ) :
-							$contact .= $tab . $tab . '<div class="entry-phone">' . $phone . $ext . '</div>' . $lb;
-						endif;
+					if ( in_array( 'phone', $include_fields ) && $phone ) :
+							$contact .= $tab . $tab . '<div class="contact-phone">' . $phone . $ext . '</div>' . $lb;
 					endif;
 					// fax
-					if ( in_array( 'fax', $include_fields ) ) :
-						if ( $fax ) :
-							$contact .= $tab . $tab . '<div class="entry-phone">' . $fax . ' fax</span>' . $lb;
-						endif;
+					if ( in_array( 'fax', $include_fields ) && $fax ) :
+							$contact .= $tab . $tab . '<div class="contact-fax">' . $fax . ' fax</span>' . $lb;
 					endif;
 					// url
-					if ( in_array( 'url', $include_fields ) ) :
-						if ( $url ) :
-							$contact .= $tab . $tab . '<a href="' . $url . '" class="entry-url" title="Go to ' . get_sub_field( 'name' ) . '">' . $url_display . '</a>' . $lb;
-						endif;
+					if ( in_array( 'url', $include_fields ) && $url ) :
+							$contact .= $tab . $tab . '<a href="' . $url . '" class="contact-url" title="Go to ' . get_sub_field( 'name' ) . '">' . $url_display . '</a>' . $lb;
 					endif;
 					$contact .= $tab . '</div>' . $lb;
-					if ( in_array( 'logo', $include_fields ) ) {
-						if ( $logo ) :
-							$contact .= '</div>' . $lb;
-						endif;
-					}
 				}
 			} else {
 				return;
@@ -207,9 +203,11 @@
 			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			//echo '<div class="d-flex flex-row">' . $lb;
+			echo '<div class="list-group">' . $lb;
+			echo $tab . '<div class="list-group-item">' . $lb;
 			echo $contact;
-			//echo  '</div>' . $lb;
+			echo $tab . '</div>' . $lb;
+			echo '</div>' . $lb;
 			echo $args[ 'after_widget' ] . $lb;
 		}
 

@@ -30,8 +30,13 @@
 			$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
 			/*$facebook_posts = syn_facebook_page_widget( $args[ 'widget_id' ] );
 			if ( $facebook_posts && ! isset( $facebook_posts->error ) ) :
-				$lb             = "\n";
-				$tab            = "\t";
+				if ( syn_is_dev() ) {
+				$lb  = '';
+				$tab = '';
+			} else {
+				$lb  = "\n";
+				$tab = "\t";
+			}
 				$title          = get_field( 'syn_facebook_page_widget_title', 'widget_' . $args[ 'widget_id' ] );
 				$list_classes   = 'widget-body';
 				$item_classes   = 'widget-item';

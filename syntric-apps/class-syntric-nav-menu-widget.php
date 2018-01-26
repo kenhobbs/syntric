@@ -8,11 +8,7 @@
 		 * Set up a new widget instance
 		 */
 		public function __construct() {
-			$widget_ops = [
-				'classname'                   => 'syn-nav-menu-widget',
-				'description'                 => __( 'Displays menu of child navs under a top-level nav.' ),
-				'customize_selective_refresh' => true,
-			];
+			$widget_ops = [ 'classname' => 'syn-nav-menu-widget', 'description' => __( 'Displays menu of child navs under a top-level nav.' ), 'customize_selective_refresh' => true, ];
 			parent::__construct( 'syn-nav-menu-widget', __( 'Nav Menu' ), $widget_ops );
 		}
 
@@ -32,24 +28,33 @@
 			}
 			$nav_menu = get_field( 'syn_nav_menu_widget_menu', 'widget_' . $args[ 'widget_id' ] );
 			if ( $nav_menu ) :
-				$lb          = "\n";
-				$tab         = "\t";
+				if ( syn_remove_whitespace() ) {
+					$lb  = '';
+					$tab = '';
+				} else {
+					$lb  = "\n";
+					$tab = "\t";
+				}
 				$sidebar     = syn_widget_sidebar( $args[ 'widget_id' ] );
 				$depth       = get_field( 'syn_nav_menu_widget_depth', 'widget_' . $args[ 'widget_id' ] );
 				$ancestor_id = syn_get_top_ancestor_id( $post->ID );
 				$ancestor    = get_post( $ancestor_id );
 				echo $lb;
 				echo $args[ 'before_widget' ] . $lb;
-				echo $args[ 'before_title' ] . $ancestor->post_title . $args[ 'after_title' ] . $lb;
+				echo $args[ 'before_title' ] . $ancestor->post_title . '<span class="sr-only"> section navigiation</span>' . $args[ 'after_title' ] . $lb;
 				$nav_menu_args = [
-					//'container' => 'nav',
+					'container' => '',
 					'menu'       => $nav_menu,
-					'menu_id'    => syn_generate_permanent_id(),
-					'menu_class' => 'nav',
+					'menu_id' => syn_generate_permanent_id(), //'menu_class' => 'nav',
+					'menu_class' => 'list-group',
+					'items_wrap' => '<div id="%1$s" class="%2$s">%3$s</div>',
+					'before_link' => '',
+					'after_link' => '',
 					'depth'      => $depth,
+					'walker' => new Syntric_Nav_Menu_Walker()
 				];
 				//$nav_menu_filtered_args = apply_filters( 'widget_nav_menu_args', $nav_menu_args, $nav_menu, $args, $instance );
-				syn_nav_menu( $nav_menu_args );
+				wp_nav_menu( $nav_menu_args );
 				echo $args[ 'after_widget' ] . $lb;
 			endif;
 		}

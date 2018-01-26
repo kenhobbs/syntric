@@ -16,6 +16,13 @@
 		return false;
 	}
 
+	function syn_remove_whitespace() {
+		//if ( ! syn_is_staging() ) {
+			//return true;
+		//}
+		return true;
+	}
+
 	function syn_is_staging() {
 		$host_parts             = explode( '.', $_SERVER[ 'HTTP_HOST' ] );
 		$next_to_last_host_part = $host_parts[ count( $host_parts ) - 2 ];

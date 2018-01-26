@@ -28,6 +28,7 @@
 	require get_template_directory() . '/syntric-apps/syntric-sidebars.php';
 	require get_template_directory() . '/syntric-apps/syntric-widgets.php';
 	require get_template_directory() . '/syntric-apps/syntric-data-functions.php';
+	require get_template_directory() . '/syntric-apps/class-syntric-nav-menu-walker.php';
 //require get_template_directory() . '/syntric-apps/syntric-forms.php';
 //require get_template_directory() . '/syntric-apps/syntric-contact.php';
 //require get_template_directory() . '/syntric-apps/syntric-twitter-feeds.php';
@@ -116,7 +117,6 @@
 			'capability'  => 'manage_options',
 		) );*/
 	}
-
 	function syn_current_user_can( $role ) {
 		$current_user = wp_get_current_user();
 		$syntric_user = syn_syntric_user();
@@ -145,7 +145,28 @@
 
 	function syn_syntric_user() {
 		$syntric_user = get_user_by( 'login', 'syntric' );
+
 		return $syntric_user;
+	}
+
+	function syn_reset_user_meta_boxes( $user_id = 0 ) {
+		if ( ! $user_id ) {
+			$user_id = get_current_user_id();
+		}
+		$user_options = get_user_meta( $user_id );
+		foreach ( $user_options as $key => $value ) {
+			$cuo_array = explode( '-', $key );
+			if ( 'meta' == $cuo_array[ 0 ] && 'box' == $cuo_array[ 1 ] ) {
+				slog( $cuo_array );
+				if ( isset( $cuo_array[ 2 ] ) ) {
+					$cuo_array_2 = explode( '_', $cuo_array[ 2 ] );
+					if ( 'order' == $cuo_array_2[ 0 ] ) {
+						$res = delete_user_meta( $user_id, $key );
+						slog( $res );
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -158,7 +179,7 @@
 		remove_submenu_page( 'themes.php', 'theme-editor.php' );
 		remove_submenu_page( 'plugins.php', 'plugin-editor.php' );
 		remove_submenu_page( 'index.php', 'update-core.php' );
-		// Remove for all by Syntric user
+		// Remove for all but Syntric user
 		if ( ! syn_current_user_can( 'syntric' ) ) {
 			remove_menu_page( 'jetpack' ); // Jetpack
 			remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Post microblog (taxonomy)
@@ -169,7 +190,7 @@
 			remove_menu_page( 'edit.php?post_type=acf-field-group' ); // Custom Fields
 			remove_menu_page( 'wpmudev' ); // WPMU Dev
 			remove_menu_page( 'wp-defender' ); // WP Defender
-			remove_submenu_page( 'upload.php', 'wp-smush-bulk');
+			remove_submenu_page( 'upload.php', 'wp-smush-bulk' );
 		}
 		// Remove for all but administrator
 		if ( ! syn_current_user_can( 'administrator' ) ) {
@@ -184,13 +205,15 @@
 			remove_menu_page( 'users.php' ); // Users
 			remove_submenu_page( 'edit.php?post_type=page', 'nestedpages' );
 		}
-		// Remove menu items from authors - this is the roll assigned to Teachers
+		// Remove for all but author
 		if ( ! syn_current_user_can( 'author' ) ) {
+			remove_menu_page( 'index.php' ); // Dashboard
 			remove_menu_page( 'admin.php?page=syntric-organization' ); // Organization
 			remove_menu_page( 'edit.php?post_type=syn_calendar' ); // Calendars
 			remove_menu_page( 'admin.php?page=syntric-jumbotrons' ); // Jumbotrons
 			remove_menu_page( 'admin.php?page=syntric-google-maps' ); // Google Maps
-			remove_menu_page( 'profile.php' ); // Profile
+			remove_menu_page( 'edit.php' ); // Posts
+			// All that is left is Profile...
 		}
 	}
 
@@ -473,6 +496,7 @@
 		                 'edit.php?post_type=acf-field-group', // Custom Fields
 		                 'jetpack', // Jetpack
 		];
+
 		/*if ( ! syn_current_user_can( 'administrator' ) ) {
 			foreach ( $submenu as $menu => $subs ) {
 				if ( 'themes.php' == $menu ) {
@@ -596,6 +620,11 @@
 		}
 	}
 
+	add_action( 'wp_login', 'syn_login', 10, 2 );
+	function syn_login( $user_login, $user ) {
+		syn_reset_user_meta_boxes( $user->ID );
+	}
+
 	add_filter( 'screen_layout_columns', 'syn_screen_layout_columns' );
 	function syn_screen_layout_columns( $columns ) {
 		$columns[ 'dashboard' ] = 2;
@@ -621,7 +650,7 @@
 		$hidden[] = 'commentsdiv'; // Comments - Add comment
 		$hidden[] = 'slugdiv'; // Slug
 		$hidden[] = 'authordiv'; // Author
-		$hidden[] = 'postimagediv'; // Featured Image
+		//$hidden[] = 'postimagediv'; // Featured Image
 		$hidden[] = 'formatdiv'; // Post Format (for themes that use Post Format)
 		$hidden[] = 'categorydiv'; // Categories
 		$hidden[] = 'microblogdiv'; // Microblogs
@@ -1627,62 +1656,6 @@
 	}
 
 	/**
-	 * Final footer contains elements common to every site and is not intended to
-	 * be edited.  It does need to be modified to reflect current site.
-	 * todo: move non-discrimination copy into an option. perhaps make translation element toggelable.
-	 */
-	function syn_final_footer() {
-		$organization = get_field( 'syn_organization', 'option' );
-		$lb           = "\n";
-		$tab          = "\t";
-		echo '<footer class="final-footer d-print-none">' . $lb;
-		//echo '<div class="final-footer d-print-none">' . $lb;
-		//echo $tab . '<div class="container-fluid">' . $lb;
-		//echo $tab . $tab . '<div class="row">' . $lb;
-		//echo $tab . $tab . $tab . '<div class="col-lg-12">' . $lb;
-		echo $tab . '<div class="non-discrimination">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment. For more information or to contact our Title IX coordinator please visit the Title IX page.</div>' . $lb;
-		//echo $tab . $tab . $tab . '</div>' . $lb;
-		//echo $tab . $tab . '</div>' . $lb;
-		//echo $tab . $tab . '<div class="row">' . $lb;
-		//echo $tab . $tab . $tab . '<div class="col-lg-6">' . $lb;
-		echo $tab . '<div class="d-flex flex-row">' . $lb;
-		//echo $tab . $tab . '<div id="google-translate" class="google-translate"></div>' . $lb;
-		//echo $tab . $tab . $tab . '</div>' . $lb;
-		//echo $tab . $tab . $tab . '<div class="col-lg-6 text-lg-right"></div>' . $lb;
-		//echo $tab . $tab . '</div>' . $lb;
-		//echo $tab . $tab . '<div class="row">' . $lb;
-		//echo $tab . $tab . $tab . '<div class="col-lg-4">' . $lb;
-		echo $tab . $tab . '<div class="copyright">&copy; ' . date( 'Y' ) . ' ' . $organization . '</div>' . $lb;
-		//echo $tab . $tab . $tab . '</div>' . $lb;
-		//echo $tab . $tab . $tab . '<div class="col-lg-4 text-lg-center"></div>' . $lb;
-		//echo $tab . $tab . $tab . '<div class="col-lg-4 text-lg-right">' . $lb;
-		echo $tab . $tab . '<div class="login-bug">' . $lb;
-		if ( is_user_logged_in() ) {
-			echo $tab . $tab . $tab . '<a href="' . wp_logout_url( get_the_permalink() ) . '" class="login-button">Logout</a>' . $lb;
-		} else {
-			echo $tab . $tab . $tab . '<a href="' . wp_login_url( get_the_permalink() ) . '" class="login-button">Login</a>' . $lb;
-		}
-		echo $tab . $tab . $tab . syn_bug() . $lb;
-		echo $tab . $tab . '</div>' . $lb;
-		echo $tab . '</div>' . $lb;
-		//echo $tab . $tab . $tab . '</div>' . $lb;
-		//echo $tab . $tab . '</div>' . $lb;
-		//echo $tab . '</div>' . $lb;
-		//echo '</div>' . $lb;
-		echo '</footer>' . $lb;
-	}
-
-	function syn_bug() {
-		//echo 'Website by <a href="http://www.syntric.com" target="_blank" class="footer-bug">Syntric</a>' . $lb;
-		$bug = '';
-		$bug .= '<a href="http://www.syntric.com" target="_blank" class="bug">';
-		$bug .= '<img src="' . get_stylesheet_directory_uri() . '/assets/images/syntric-logo-bug.png" alt="Syntric logo">';
-		$bug .= '</a>';
-
-		return $bug;
-	}
-
-	/**
 	 * Outputs a breadcrumb nav based on where one is in the site
 	 */
 	function syn_breadcrumbs() {
@@ -1767,8 +1740,13 @@
 		}
 		$jumbotrons = get_field( 'syn_jumbotrons', 'option' );
 		if ( has_header_image() || $jumbotrons ) {
-			$lb  = "\n";
-			$tab = "\t";
+			if ( syn_remove_whitespace() ) {
+				$lb  = '';
+				$tab = '';
+			} else {
+				$lb  = "\n";
+				$tab = "\t";
+			}
 			echo '<div class="banner-wrapper d-print-none" aria-hidden="true"' . $banner_style_attribute . 'role="banner">' . $lb;
 			echo syn_jumbotron();
 			echo '</div>' . $lb;
@@ -1795,44 +1773,89 @@
 				}
 			}
 			if ( $jumbotron ) {
-				$lb  = "\n";
-				$tab = "\t";
-				//echo '<div class="' . esc_html( get_theme_mod( 'syntric_container_type' ) ) . '">' . $lb;
-				//echo '<div class="row">';
-				//echo '<div class="col-1"></div>';
-				//echo '<div class="col-10">';
-				echo '<div class="jumbotron-wrapper">';
-				echo $tab . $tab . '<h1 class="jumbotron-headline">' . $jumbotron[ 'headline' ] . '</h1>' . $lb;
-				echo $tab . $tab . '<div class="jumbotron-caption">' . $jumbotron[ 'caption' ] . '</div>' . $lb;
+				if ( syn_remove_whitespace() ) {
+					$lb  = '';
+					$tab = '';
+				} else {
+					$lb  = "\n";
+					$tab = "\t";
+				}
+				echo '<div class="jumbotron-wrapper">' . $lb;
+				echo $tab . '<h1 class="jumbotron-headline">' . $jumbotron[ 'headline' ] . '</h1>' . $lb;
+				echo $tab . '<div class="jumbotron-caption">' . $jumbotron[ 'caption' ] . '</div>' . $lb;
 				if ( $jumbotron[ 'include_button' ] ) {
 					$button_href   = ( 'page' == $jumbotron[ 'button_target' ] ) ? $jumbotron[ 'button_page' ] : $jumbotron[ 'button_url' ];
 					$window_target = ( 'page' == $jumbotron[ 'button_target' ] ) ? '_self' : '_blank';
-					echo $tab . $tab . $tab . '<a href="' . $button_href . '" class="jumbotron-button" target="' . $window_target . '">' . $jumbotron[ 'button_text' ] . '</a>' . $lb;
+					echo $tab . '<a href="' . $button_href . '" class="btn btn-lg btn-primary jumbotron-button" target="' . $window_target . '">' . $jumbotron[ 'button_text' ] . '</a>' . $lb;
 				}
-				echo '</div>';
-				//echo '</div>';
-				//echo '<div class="col-1"></div>';
-				//echo '</div>';
-				//echo '</div>' . $lb;
+				echo '</div>' . $lb;
 			}
 		}
+	}
+
+	/**
+	 * Final footer contains elements common to every site and is not intended to
+	 * be edited.  It does need to be modified to reflect current site.
+	 * todo: move non-discrimination copy into an option. perhaps make translation element toggelable.
+	 */
+	function syn_final_footer() {
+		$organization = get_field( 'syn_organization', 'option' );
+		if ( syn_remove_whitespace() ) {
+			$lb  = '';
+			$tab = '';
+		} else {
+			$lb  = "\n";
+			$tab = "\t";
+		}
+		echo '<footer class="final-footer d-print-none">' . $lb;
+		echo $tab . '<div class="non-discrimination">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment. For more information or to contact our Title IX coordinator please visit the Title IX page.</div>' . $lb;
+		echo $tab . '<div class=" d-flex justify-content-between align-items-center">' . $lb;
+		//echo $tab . $tab . '<div id="google-translate" class="google-translate"></div>' . $lb;
+		echo $tab . $tab . '<div class="copyright">&copy; ' . date( 'Y' ) . ' ' . $organization . '</div>' . $lb;
+		echo $tab . $tab . '<div class="login-bug">' . $lb;
+		if ( is_user_logged_in() ) {
+			echo $tab . $tab . $tab . '<a href="' . wp_logout_url( get_the_permalink() ) . '" class="btn btn-sm btn-danger login-button">Logout</a>' . $lb;
+		} else {
+			echo $tab . $tab . $tab . '<a href="' . wp_login_url( get_the_permalink() ) . '" class="btn btn-sm btn-danger login-button">Login</a>' . $lb;
+		}
+		echo $tab . $tab . $tab . syn_bug() . $lb;
+		echo $tab . $tab . '</div>' . $lb;
+		echo $tab . '</div>' . $lb;
+		echo '</footer>' . $lb;
+	}
+
+	function syn_bug() {
+		//echo 'Website by <a href="http://www.syntric.com" target="_blank" class="footer-bug">Syntric</a>' . $lb;
+		$bug = '';
+		$bug .= '<a href="http://www.syntric.com" target="_blank" class="bug">';
+		$bug .= '<img src="' . get_stylesheet_directory_uri() . '/assets/images/syntric-logo-bug.png" alt="Syntric logo">';
+		$bug .= '</a>';
+
+		return $bug;
 	}
 
 // front-end lists
 	function syn_display_teachers() {
 		$teachers = syn_get_teachers();
 		if ( $teachers ) {
-			echo '<h2>Teacher Roster</h2>';
-			echo '<table class="table-roster">';
-			echo '<thead>';
-			echo '<tr>';
-			echo '<th scope="col">Name</th>';
-			//echo '<th scope="col">Title</th>';
-			echo '<th scope="col">Email</th>';
-			echo '<th scope="col">Classes</th>';
-			echo '</tr>';
-			echo '</thead>';
-			echo '<tbody>';
+			if ( syn_remove_whitespace() ) {
+				$lb  = '';
+				$tab = '';
+			} else {
+				$lb  = "\n";
+				$tab = "\t";
+			}
+			echo '<h2>Teacher Roster</h2>' . $lb;
+			echo '<table>' . $lb;
+			echo $tab . '<thead>' . $lb;
+			echo $tab . $tab . '<tr>' . $lb;
+			echo $tab . $tab . $tab . '<th scope="col">Name</th>' . $lb;
+			//echo $tab . $tab . $tab . '<th scope="col">Title</th>' . $lb;
+			echo $tab . $tab . $tab . '<th scope="col">Email</th>' . $lb;
+			echo $tab . $tab . $tab . '<th scope="col">Classes</th>' . $lb;
+			echo $tab . $tab . '</tr>' . $lb;
+			echo $tab . '</thead>' . $lb;
+			echo $tab . '<tbody>' . $lb;
 			foreach ( $teachers as $teacher ) {
 				$full_name              = $teacher->display_name;
 				$title                  = get_field( 'syn_user_title', 'user_' . $teacher->ID );
@@ -1851,22 +1874,22 @@
 						}
 					}
 				}
-				echo '<tr valign="top">';
-				echo '<td nowrap="nowrap">';
+				echo $tab . $tab . '<tr valign="top">' . $lb;
+				echo $tab . $tab . $tab . '<td nowrap="nowrap">' . $lb;
 				if ( $teacher_page_published ) {
-					echo '<a href="' . get_the_permalink( $teacher_page->ID ) . '">';
+					echo $tab . $tab . $tab . $tab . '<a href="' . get_the_permalink( $teacher_page->ID ) . '">';
 				}
 				echo $full_name;
 				if ( $teacher_page_published ) {
-					echo '</a>';
+					echo '</a>' . $lb;
 				}
-				echo '</td>';
-				echo '<td nowrap="nowrap"><a href="mailto:' . antispambot( $email, true ) . '" class="teachers-list-email" title="Email">' . antispambot( $email ) . '</a></td>';
-				echo '<td>' . implode( ', ', $class_array ) . '</td>';
-				echo '</tr>';
+				echo $tab . $tab . $tab . '</td>' . $lb;
+				echo $tab . $tab . $tab . '<td nowrap="nowrap"><a href="mailto:' . antispambot( $email, true ) . '" class="teachers-list-email" title="Email">' . antispambot( $email ) . '</a></td>' . $lb;
+				echo $tab . $tab . $tab . '<td>' . implode( ', ', $class_array ) . '</td>' . $lb;
+				echo $tab . $tab . '</tr>' . $lb;
 			}
-			echo '</tbody>';
-			echo '</table>';
+			echo $tab . '</tbody>' . $lb;
+			echo '</table>' . $lb;
 		}
 	}
 
@@ -1878,46 +1901,53 @@
 				if ( have_rows( 'syn_classes', $post->ID ) ) {
 					$periods_active = get_field( 'syn_periods_active', 'option' );
 					$rooms_active   = get_field( 'syn_rooms_active', 'option' );
-					echo '<h2>Classes</h2>';
-					echo '<table class="teacher-classes">';
-					echo '<thead>';
-					echo '<tr>';
-					echo '<th scope="col">Term</th>';
+					if ( syn_remove_whitespace() ) {
+						$lb  = '';
+						$tab = '';
+					} else {
+						$lb  = "\n";
+						$tab = "\t";
+					}
+					echo '<h2>Classes</h2>' . $lb;
+					echo '<table>' . $lb;
+					echo $tab . '<thead>' . $lb;
+					echo $tab . $tab . '<tr>' . $lb;
+					echo $tab . $tab . $tab . '<th scope="col">Term</th>' . $lb;
 					if ( $periods_active ) {
-						echo '<th scope="col">Period</th>';
+						echo $tab . $tab . $tab . '<th scope="col">Period</th>' . $lb;
 					}
-					echo '<th scope="col">Course</th>';
+					echo $tab . $tab . $tab . '<th scope="col">Course</th>' . $lb;
 					if ( $rooms_active ) {
-						echo '<th scope="col">Room</th>';
+						echo $tab . $tab . $tab . '<th scope="col">Room</th>' . $lb;
 					}
-					echo '</tr>';
-					echo '</thead>';
-					echo '<tbody>';
+					echo $tab . $tab . '</tr>' . $lb;
+					echo $tab . '</thead>' . $lb;
+					echo $tab . '<tbody>' . $lb;
 					while( have_rows( 'syn_classes', $post->ID ) ) : $class = the_row();
 						$class_id                                           = get_sub_field( 'class_id' );
 						//$include_page = get_sub_field( 'include_page' );
 						$page = syn_get_teacher_class_page( $teacher_id, $class_id );
-						echo '<tr>';
-						echo '<td>' . get_sub_field( 'term' ) . '</td>';
+						echo $tab . $tab . '<tr>' . $lb;
+						echo $tab . $tab . $tab . '<td>' . get_sub_field( 'term' ) . '</td>' . $lb;
 						if ( $periods_active ) {
-							echo '<td>' . get_sub_field( 'period' ) . '</td>';
+							echo $tab . $tab . $tab . '<td>' . get_sub_field( 'period' ) . '</td>' . $lb;
 						}
-						echo '<td>';
+						echo $tab . $tab . $tab . '<td>' . $lb;
 						if ( $page instanceof WP_Post && 'publish' == $page->post_status ) {
-							echo '<a href="' . get_the_permalink( $page->ID ) . '">';
+							echo $tab . $tab . $tab . $tab . '<a href="' . get_the_permalink( $page->ID ) . '">';
 						}
 						echo get_sub_field( 'course' );
 						if ( $page instanceof WP_Post && 'publish' == $page->post_status ) {
-							echo '</a>';
+							echo '</a>' . $lb;
 						}
-						echo '</td>';
+						echo $tab . $tab . $tab . '</td>' . $lb;
 						if ( $rooms_active ) {
-							echo '<td>' . get_sub_field( 'room' ) . '</td>';
+							echo $tab . $tab . $tab . '<td>' . get_sub_field( 'room' ) . '</td>' . $lb;
 						}
-						echo '</tr>';
+						echo $tab . $tab . '</tr>' . $lb;
 					endwhile;
-					echo '</tbody>';
-					echo '</table>';
+					echo $tab . '</tbody>' . $lb;
+					echo '</table>' . $lb;
 				}
 			}
 		}
@@ -1931,19 +1961,26 @@
 			if ( $department ) {
 				$courses = get_field( 'syn_courses', 'option' );
 				if ( $courses ) {
+					if ( syn_remove_whitespace() ) {
+						$lb  = '';
+						$tab = '';
+					} else {
+						$lb  = "\n";
+						$tab = "\t";
+					}
 					foreach ( $courses as $key => $row ) {
 						$c[ $key ] = $row[ 'course' ];
 					}
 					array_multisort( $c, SORT_ASC, $courses );
-					echo '<h2>Courses</h2>';
-					echo '<table class="department-courses">';
-					echo '<thead>';
-					echo '<tr>';
-					echo '<th scope="col">Course</th>';
-					echo '<th scope="col">Teachers</th>';
-					echo '</tr>';
-					echo '</thead>';
-					echo '<tbody>';
+					echo '<h2>Courses</h2>' . $lb;
+					echo '<table>' . $lb;
+					echo $tab . '<thead>' . $lb;
+					echo $tab . $tab . '<tr>' . $lb;
+					echo $tab . $tab . $tab . '<th scope="col">Course</th>' . $lb;
+					echo $tab . $tab . $tab . '<th scope="col">Teachers</th>' . $lb;
+					echo $tab . $tab . '</tr>' . $lb;
+					echo $tab . '</thead>' . $lb;
+					echo $tab . '<tbody>' . $lb;
 					foreach ( $courses as $course ) {
 						if ( $department == $course[ 'department' ] ) {
 							$teachers     = syn_get_course_teachers( $course[ 'course_id' ] );
@@ -1963,20 +2000,20 @@
 								}
 								$teachers_val = implode( ', ', $teachers_vals );
 							}
-							echo '<tr>';
-							echo '<td>' . $course[ 'course' ] . '</td>';
-							echo '<td>' . $teachers_val . '</td>';
-							echo '</tr>';
+							echo $tab . $tab . '<tr>' . $lb;
+							echo $tab . $tab . $tab . '<td>' . $course[ 'course' ] . '</td>' . $lb;
+							echo $tab . $tab . $tab . '<td>' . $teachers_val . '</td>' . $lb;
+							echo $tab . $tab . '</tr>' . $lb;
 						}
 					}
-					echo '</tbody>';
-					echo '</table>';
+					echo $tab . '</tbody>' . $lb;
+					echo '</table>' . $lb;
 				}
 			}
 		}
 	}
 
-// admin lists
+// admin/dashboard lists
 	function syn_list_pendings( $deprecated, $mb_args ) {
 		$user_id    = get_current_user_id();
 		$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user_id );
@@ -2193,6 +2230,10 @@
 		}
 	}
 
+	function syn_list_recently_modified() {
+
+	}
+
 // quick nav
 	function syn_qn_all_pages() {
 		$args  = [ 'numberposts' => - 1, 'orderby' => 'post_title', 'order' => 'ASC', 'post_type' => 'page', 'post_status' => [ 'publish', 'draft', 'future', 'pending', 'private' ], ];
@@ -2204,7 +2245,7 @@
 				$status        = ( 'publish' != $post->post_status ) ? ' - ' . ucfirst( $post->post_status ) : '';
 				$page_template = syn_get_page_template( $post->ID );
 				//slog( $page_template );
-				$template = ( 'default' != $page_template ) ? ' (' . ucfirst( $page_template ) . ')' : '';
+				$template = ( 'default' != $page_template || empty( $page_template ) ) ? ' (' . ucfirst( $page_template ) . ')' : '';
 				echo '<li><a href="' . $link_to_edit . $post->ID . '">' . $post->post_title . '</a>' . $template . $status . '</li>';
 			}
 		} else {

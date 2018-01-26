@@ -3,17 +3,23 @@
 	 * Echo the primary nav which is a Bootstrap 4 navbar
 	 */
 	function syn_primary_nav() {
-		$tab = "\t";
-		$lb  = "\n";
+		if ( syn_remove_whitespace() ) {
+			$lb  = '';
+			$tab = '';
+		} else {
+			$lb  = "\n";
+			$tab = "\t";
+		}
 		//$menu_id       = syn_generate_permanent_id();
-		$nav_menu_args = [ 'theme_location' => 'primary', 'container' => 'div', 'container_id' => 'primary-nav-collapse', 'container_class' => 'collapse navbar-collapse', // 'menu' => '',
-		                   //'menu_id'         => $menu_id,
-		                   'menu_class'     => 'navbar-nav', 'depth' => 2, 'item_spacing' => 'discard', //'link_before' => 'link_before',
-		                   //'link_after' => 'link_after',
-		                   //'before' => 'before',
-		                   //'after' => 'after',
+		$nav_menu_args = [ 'theme_location' => 'primary',
+		                   'container' => 'div',
+		                   'container_id' => 'primary-nav-collapse',
+		                   'container_class' => 'collapse navbar-collapse',
+		                   'menu_class'     => 'navbar-nav',
+		                   'depth' => 2,
+		                   'item_spacing' => ( syn_remove_whitespace() ) ? 'discard' : 'preserve',
 		];
-		echo '<nav id="primary-navbar" class="navbar navbar-expand-lg navbar-light sticky-top d-print-none">' . $lb;
+		echo '<nav id="primary-navbar" class="navbar navbar-expand-xl navbar-light sticky-top d-print-none">' . $lb;
 		echo $tab . '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#' . $nav_menu_args[ 'container_id' ] . '" aria-controls="' . $nav_menu_args[ 'container_id' ] . '" aria-expanded="false" aria-label="Toggle navigation">' . $lb;
 		echo $tab . $tab . '<span class="fa fa-bars"></span>' . $lb;
 		echo $tab . '</button>' . $lb;
@@ -28,7 +34,7 @@
 			}
 			echo $tab . '</a>' . $lb;
 		}
-		syn_nav_menu( $nav_menu_args );
+		wp_nav_menu( $nav_menu_args );
 		echo '</nav>' . $lb;
 	}
 
@@ -93,7 +99,7 @@
 		                   'link_after'      => ( key_exists( 'link_after', $args ) ) ? $args[ 'link_after' ] : '', 'echo' => true,
 		                   'depth'           => ( key_exists( 'depth', $args ) ) ? $args[ 'depth' ] : 2, //'walker' => 'custom_walker_class',
 		                   // for items_wrap printf()...menu_class = %2$s, menu_id = %1$s
-		                   //'items_wrap' => printf(),
+		                   'items_wrap' => ( key_exists( 'items_wrap', $args ) ) ? $args[ 'items_wrap' ] : '',
 		                   'item_spacing'    => ( key_exists( 'item_spacing', $args ) ) ? $args[ 'item_spacing' ] : 'discard', ];
 		wp_nav_menu( $nav_menu_args );
 	}
@@ -255,35 +261,43 @@
 				}
 				$sorted_menu_items[ $i ]->classes = $classes;
 			}
-		} elseif ( in_array( 'nav', $menu_classes ) ) {
+		} elseif ( in_array( 'list-group', $menu_classes ) ) {
+		//} elseif ( in_array( 'nav', $menu_classes ) ) {
 			$top_ancestor_id = syn_get_top_ancestor_id( $post->ID );
 			$in_ancestor     = 0;
 			$smi             = [];
 			for ( $j = 1; $j <= count( $sorted_menu_items ); $j ++ ) {
 				//foreach ( $sorted_menu_items as $sorted_menu_item ) {
 				if ( $in_ancestor ) {
+					$add_item = 0;
 					if ( 0 == wp_get_post_parent_id( $sorted_menu_items[ $j ]->object_id ) ) {
 						break;
 					}
 					$smi_classes = $sorted_menu_items[ $j ]->classes;
 					$classes     = [];
-					$classes[]   = 'nav-item';
-					if ( in_array( 'menu-item-has-children', $smi_classes ) ) {
-						$classes[] = 'has-children';
-						//$classes[] = 'dropdown';
-					}
+					//$classes[]   = 'nav-item';
+					$classes[]   = 'list-group-item';
 					if ( in_array( 'current-menu-ancestor', $smi_classes ) || in_array( 'current-page-ancestor', $smi_classes ) ) {
 						$classes[] = 'current-ancestor';
+						$add_item = 1;
 					}
 					if ( in_array( 'current-menu-parent', $smi_classes ) || in_array( 'current-page-parent', $smi_classes ) ) {
 						$classes[] = 'current-parent';
+						$add_item = 1;
 					}
 					if ( in_array( 'current-menu-item', $smi_classes ) || in_array( 'current_page_item', $smi_classes ) ) {
 						$classes[] = 'current-item';
 						$classes[] = 'active';
+						$add_item = 1;
 					}
-					$sorted_menu_items[ $j ]->classes = $classes;
-					$smi[]                            = $sorted_menu_items[ $j ];
+					//if ( $add_item || 0 == $sorted_menu_items[$j]->post_parent ) {
+						if ( in_array( 'menu-item-has-children', $smi_classes ) ) {
+							$classes[] = 'has-children';
+							//$classes[] = 'dropdown';
+						}
+						$sorted_menu_items[ $j ]->classes = $classes;
+						$smi[]                            = $sorted_menu_items[ $j ];
+					//}
 				}
 				if ( ! $in_ancestor && $top_ancestor_id == $sorted_menu_items[ $j ]->object_id ) {
 					$in_ancestor = 1;
@@ -303,95 +317,8 @@
 	 */
 	add_filter( 'nav_menu_link_attributes', 'syn_nav_menu_link_attributes', 10, 4 );
 	function syn_nav_menu_link_attributes( $atts, $item, $args, $depth ) {
-		/**
-		 * slog($atts);
-		 * (
-		 * [title] =>
-		 * [target] =>
-		 * [href] => http://master.localhost/school/test-migration-vs-wix/
-		 * )
-		 */
-		/**
-		 * slog( $args );
-		 * (
-		 * [menu] => WP_Term Object
-		 * (
-		 * [term_id] => 14
-		 * [name] => Primary
-		 * [slug] => primary
-		 * [term_group] => 0
-		 * [term_taxonomy_id] => 14
-		 * [taxonomy] => nav_menu
-		 * [description] =>
-		 * [parent] => 0
-		 * [count] => 198
-		 * [filter] => raw
-		 * )
-		 *
-		 * [container] =>
-		 * [container_class] =>
-		 * [container_id] =>
-		 * [menu_class] => navbar-nav ml-auto
-		 * [menu_id] => primary-nav
-		 * [echo] => 1
-		 * [fallback_cb] => wp_page_menu
-		 * [before] =>
-		 * [after] =>
-		 * [link_before] =>
-		 * [link_after] =>
-		 * [items_wrap] => <ul id="%1$s" class="%2$s">%3$s</ul>
-		 * [item_spacing] => discard
-		 * [depth] => 2
-		 * [walker] =>
-		 * [theme_location] => primary
-		 * )
-		 */
-		/**
-		 * slog( $item->classes );
-		 * (
-		 * [0] =>
-		 * [1] => menu-item
-		 * [2] => menu-item-type-post_type
-		 * [3] => menu-item-object-page
-		 * [4] => menu-item-has-children
-		 * )
-		 */
-		/**
-		 * $depth - 0+
-		 */
-		/*slog($item);
-		slog($atts);
-		slog($depth);*/
-		/*$atts[ 'title' ] = '';
-		$atts[ 'class' ] = '';
-		//$link_classes    = ( isset( $args->link_classes ) ) ? $args->link_classes : '';
-		if ( isset( $args->widget ) && $args->widget ) {
-			//$atts[ 'class' ] = $link_classes . ' depth-' . $depth;
-			$atts[ 'class' ] .= ( $item->current ) ? 'active' : '';
-			$max_depth       = ( isset( $args->max_depth ) ) ? (int) $args->max_depth : 0;
-			if ( $max_depth != 0 && $depth + 1 > $max_depth ) {
-				$atts[ 'style' ] = 'display: none;';
-			}
-		}*/
-		/*if ( $args->menu_id && 'primary-nav' == $args->menu_id ) {
-			//$atts[ 'class' ] = $link_classes . ' depth-' . $depth;
-			$has_children = ( in_array( 'menu-item-has-children', $item->classes ) ) ? true : false;
-			if ( $has_children ) {
-				if ( $depth == 0 ) {
-					// todo: add the id back to use the aria-labelledby attribute on the dropdown
-					//$atts[ 'id' ] = 'true';
-					$atts[ 'aria-haspopup' ] = 'true';
-					$atts[ 'aria-expanded' ] = 'false';
-					$atts[ 'data-toggle' ]   = 'dropdown';
-					$atts[ 'class' ]         .= 'dropdown-toggle';
-				}
-			}
-			if ( in_array( 'current-menu-item', $item->classes ) != false ) {
-				$atts[ 'class' ] .= ' active';
-			}
-		}*/
-		// primary-nav
 		$menu_classes = ( property_exists( $args, 'menu_class' ) && ! empty( $args->menu_class ) ) ? explode( ' ', $args->menu_class ) : [];
+		// primary-nav
 		if ( in_array( 'navbar-nav', $menu_classes ) ) {
 			if ( 0 == $depth ) {
 				if ( in_array( 'has-children', $item->classes ) ) {
@@ -407,8 +334,6 @@
 			} else {
 				$atts[ 'class' ] = 'dropdown-item depth-' . $depth;
 			}
-		} elseif ( in_array( 'nav', $menu_classes ) ) {
-			$atts[ 'class' ] = 'nav-link depth-' . $depth;
 		}
 
 		return $atts;
@@ -419,60 +344,10 @@
 	 */
 	add_filter( 'nav_menu_submenu_css_class', 'syn_nav_menu_submenu_css_class', 10, 3 );
 	function syn_nav_menu_submenu_css_class( $classes, $args, $depth ) {
-		/**
-		 * slog( $classes );
-		 * (
-		 * [0] => sub-menu
-		 * )
-		 */
-		/**
-		 * slog( $args );
-		 * (
-		 * [menu] => WP_Term Object
-		 * (
-		 * [term_id] => 14
-		 * [name] => Primary
-		 * [slug] => primary
-		 * [term_group] => 0
-		 * [term_taxonomy_id] => 14
-		 * [taxonomy] => nav_menu
-		 * [description] =>
-		 * [parent] => 0
-		 * [count] => 198
-		 * [filter] => raw
-		 * )
-		 *
-		 * [container] =>
-		 * [container_class] =>
-		 * [container_id] =>
-		 * [menu_class] => navbar-nav ml-auto
-		 * [menu_id] => primary-nav
-		 * [echo] => 1
-		 * [fallback_cb] => wp_page_menu
-		 * [before] =>
-		 * [after] =>
-		 * [link_before] =>
-		 * [link_after] =>
-		 * [items_wrap] => <ul id="%1$s" class="%2$s">%3$s</ul>
-		 * [item_spacing] => discard
-		 * [depth] => 2
-		 * [walker] =>
-		 * [theme_location] => primary
-		 * )
-		 */
-		/**
-		 * slog( $depth ); always 0 for primary nav
-		 */
-		/*if ( isset( $args->submenu_classes ) ) {
-			$submenu_classes = explode( ' ', $args->submenu_classes );
-			$classes         = array_merge( $classes, $submenu_classes );
-		}*/
-		// primary-nav
 		$menu_classes = ( property_exists( $args, 'menu_class' ) && ! empty( $args->menu_class ) ) ? explode( ' ', $args->menu_class ) : [];
+		// primary-nav
 		if ( in_array( 'navbar-nav', $menu_classes ) ) {
 			$classes = [ 'dropdown-menu' ];
-		} elseif ( in_array( 'nav', $menu_classes ) ) {
-			$classes = [];
 		}
 
 		return $classes;
