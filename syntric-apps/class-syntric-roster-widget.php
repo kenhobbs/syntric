@@ -32,6 +32,7 @@
 				$tab = "\t";
 			}
 			$sidebar         = syn_widget_sidebar( $args[ 'widget_id' ] );
+			$sidebar_class   = syn_get_sidebar_class( $args[ 'widget_id' ] );
 			$layout          = ( 'main' == $sidebar[ 'section' ][ 'value' ] && in_array( $sidebar[ 'location' ][ 'value' ], [ 'left', 'right', ] ) ) ? 'aside' : 'table';
 			$title           = get_field( 'syn_roster_title', $post->ID );
 			$_include_fields = get_field( 'syn_roster_include_fields', $post->ID );
@@ -41,50 +42,49 @@
 			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			if ( 'aside' == $layout ) {
-				echo '<div class="list-group">' . $lb;
-			}
-			if ( 'table' == $layout ) {
-				echo '<table>' . $lb;
-				echo $tab . '<thead>' . $lb;
-				echo $tab . $tab . '<tr>' . $lb;
-				echo $tab . $tab . $tab . '<th scope="col">Name</th>' . $lb;
-				$table_cols ++;
-				if ( in_array( 'title', $include_fields ) ) {
-					echo $tab . $tab . $tab . '<th scope="col">Title</th>' . $lb;
-					$table_cols ++;
+			if ( have_rows( 'syn_roster_people', $post->ID ) ) {
+				if ( 'aside' == $layout ) {
+					echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
 				}
-				if ( in_array( 'email', $include_fields ) ) {
-					echo $tab . $tab . $tab . '<th scope="col">Email</th>' . $lb;
+				if ( 'table' == $layout ) {
+					echo '<table class="' . $sidebar_class . '">' . $lb;
+					echo $tab . '<thead>' . $lb;
+					echo $tab . $tab . '<tr>' . $lb;
+					echo $tab . $tab . $tab . '<th scope="col">Name</th>' . $lb;
 					$table_cols ++;
+					if ( in_array( 'title', $include_fields ) ) {
+						echo $tab . $tab . $tab . '<th scope="col">Title</th>' . $lb;
+						$table_cols ++;
+					}
+					if ( in_array( 'email', $include_fields ) ) {
+						echo $tab . $tab . $tab . '<th scope="col">Email</th>' . $lb;
+						$table_cols ++;
+					}
+					if ( in_array( 'phone', $include_fields ) ) {
+						echo $tab . $tab . $tab . '<th scope="col">Phone</th>' . $lb;
+						$table_cols ++;
+					}
+					echo $tab . $tab . '</tr>' . $lb;
+					echo $tab . '</thead>' . $lb;
+					echo $tab . '<tbody>' . $lb;
 				}
-				if ( in_array( 'phone', $include_fields ) ) {
-					echo $tab . $tab . $tab . '<th scope="col">Phone</th>' . $lb;
-					$table_cols ++;
-				}
-				echo $tab . $tab . '</tr>' . $lb;
-				echo $tab . '</thead>' . $lb;
-				echo $tab . '<tbody>' . $lb;
-			}
-			//$people = syn_people_collection();
-			if ( have_rows( 'syn_roster_people', $post->ID ) ) :
 				while( have_rows( 'syn_roster_people', $post->ID ) ) : the_row();
-					$user_id    = get_sub_field( 'person' );
-					$user       = get_user_by( 'ID', $user_id );
-					$user_meta  = get_user_meta( $user_id );
-					$first_name = $user_meta[ 'first_name' ][ 0 ];
-					$last_name  = $user_meta[ 'last_name' ][ 0 ];
-					$prefix      = get_field( 'syn_user_prefix', 'user_' . $user_id );
+					$user_id      = get_sub_field( 'person' );
+					$user         = get_user_by( 'ID', $user_id );
+					$user_meta    = get_user_meta( $user_id );
+					$first_name   = $user_meta[ 'first_name' ][ 0 ];
+					$last_name    = $user_meta[ 'last_name' ][ 0 ];
+					$prefix       = get_field( 'syn_user_prefix', 'user_' . $user_id );
 					$display_name = '';
 					$display_name .= ( in_array( 'prefix', $include_fields ) && $prefix ) ? $prefix . ' ' : '';
 					$display_name .= ( in_array( 'first_name', $include_fields ) && $first_name ) ? $first_name . ' ' : '';
 					$display_name .= ( $last_name ) ? $last_name : '';
-					$title_      = get_field( 'syn_user_title', 'user_' . $user_id );
-					$title_      = str_replace( ',', '<br>', $title_ );
-					$email      = $user->data->user_email;
-					$phone      = get_field( 'syn_user_phone', 'user_' . $user_id );
-					$ext        = get_field( 'syn_user_extension', 'user_' . $user_id );
-					$ext        = ( isset( $ext ) && ! empty( $ext ) ) ? ' x' . $ext : '';
+					$title_       = get_field( 'syn_user_title', 'user_' . $user_id );
+					$title_       = str_replace( ',', '<br>', $title_ );
+					$email        = $user->data->user_email;
+					$phone        = get_field( 'syn_user_phone', 'user_' . $user_id );
+					$ext          = get_field( 'syn_user_extension', 'user_' . $user_id );
+					$ext          = ( isset( $ext ) && ! empty( $ext ) ) ? ' x' . $ext : '';
 					if ( 'aside' == $layout ) {
 						echo $tab . '<div class="list-group-item">' . $lb;
 						// todo: add ability to attach a photo to person
@@ -119,24 +119,15 @@
 						echo $tab . $tab . '</tr>' . $lb;
 					}
 				endwhile;
-			else :
-				if ( 'aside' == $layout ) :
-					/*echo $tab . '<li>' . $lb;
-					echo $tab . $tab . '<div class="entry-title">No people</span>' . $lb;
-					echo $tab . '</li>' . $lb;*/
-				endif;
-				if ( 'table' == $layout ) :
-					echo $tab . $tab . '<tr>' . $lb;
-					echo $tab . $tab . $tab . '<td colspan="' . $table_cols . '">No people</td>' . $lb;
-					echo $tab . $tab . '</tr>' . $lb;
-				endif;
-			endif;
-			if ( 'aside' == $layout ) {
-				echo '</div>' . $lb;
-			}
-			if ( 'table' == $layout ) {
-				echo $tab . '</tbody>' . $lb;
-				echo '</table>' . $lb;
+				if ( 'aside' == $layout ) {
+					echo '</div>' . $lb;
+				}
+				if ( 'table' == $layout ) {
+					echo $tab . '</tbody>' . $lb;
+					echo '</table>' . $lb;
+				}
+			} else {
+				echo '<p>No people in roster</p>';
 			}
 			echo $args[ 'after_widget' ] . $lb;
 		}

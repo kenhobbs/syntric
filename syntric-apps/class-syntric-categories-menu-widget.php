@@ -41,14 +41,15 @@
 					$lb  = "\n";
 					$tab = "\t";
 				}
-				$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
+				//$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
+				$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
 				$title   = get_field( 'syn_categories_menu_widget_title', 'widget_' . $args[ 'widget_id' ] );
 				echo $args[ 'before_widget' ] . $lb;
 				if( ! empty( $title ) ) :
 					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 				endif;
 				//echo '<ul class="nav">' . $lb;
-				echo '<div class="list-group">' . $lb;
+				echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
 				foreach( $categories as $category ) {
 					echo $tab . $tab . '<a href="' . get_category_link( $category ) . '" class="list-group-item">' . $category->name . '</a>' . $lb;
 				};

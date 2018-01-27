@@ -164,7 +164,7 @@
 								$contact .= $tab . $tab . '<div class="contact-address-2">' . $address_2 . '</div>' . $lb;
 							endif;
 						if ( $city || $state || $zip_code ) :
-							$contact .= $tab . $tab . '<div class="contact-city-state-zip-code d-flex flex-row">' . $lb;
+							$contact .= $tab . $tab . '<div class="contact-city-state-zip-code">' . $lb;
 							if ( ! empty( $city ) ) :
 								$contact .= $tab . $tab . $tab . '<div class="contact-city">' . $city . '</div>' . $lb;
 							endif;
@@ -198,12 +198,13 @@
 			} else {
 				return;
 			}
+			$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
 			// widget title
 			echo $args[ 'before_widget' ] . $lb;
 			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			echo '<div class="list-group">' . $lb;
+			echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
 			echo $tab . '<div class="list-group-item">' . $lb;
 			echo $contact;
 			echo $tab . '</div>' . $lb;

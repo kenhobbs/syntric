@@ -19,7 +19,7 @@
 		                   'depth' => 2,
 		                   'item_spacing' => ( syn_remove_whitespace() ) ? 'discard' : 'preserve',
 		];
-		echo '<nav id="primary-navbar" class="navbar navbar-expand-xl navbar-light sticky-top d-print-none">' . $lb;
+		echo '<nav id="primary-navbar" class="navbar navbar-expand-xl navbar-light sticky-top">' . $lb;
 		echo $tab . '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#' . $nav_menu_args[ 'container_id' ] . '" aria-controls="' . $nav_menu_args[ 'container_id' ] . '" aria-expanded="false" aria-label="Toggle navigation">' . $lb;
 		echo $tab . $tab . '<span class="fa fa-bars"></span>' . $lb;
 		echo $tab . '</button>' . $lb;

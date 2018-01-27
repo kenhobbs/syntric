@@ -36,14 +36,15 @@
 				$lb  = "\n";
 				$tab = "\t";
 			}
-			$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
+			//$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
+			$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
 			$title   = get_field( 'syn_attachments_title', $post->ID );
 			echo $args[ 'before_widget' ] . $lb;
 			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
 			if ( have_rows( 'syn_attachments', $post->ID ) ) :
-				echo '<div class="list-group">' . $lb;
+				echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
 				while( have_rows( 'syn_attachments', $post->ID ) ) : the_row();
 					$header      = get_sub_field( 'header' );
 					$description = get_sub_field( 'description' );

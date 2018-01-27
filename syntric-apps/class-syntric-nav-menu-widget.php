@@ -35,7 +35,8 @@
 					$lb  = "\n";
 					$tab = "\t";
 				}
-				$sidebar     = syn_widget_sidebar( $args[ 'widget_id' ] );
+				//$sidebar     = syn_widget_sidebar( $args[ 'widget_id' ] );
+				$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
 				$depth       = get_field( 'syn_nav_menu_widget_depth', 'widget_' . $args[ 'widget_id' ] );
 				$ancestor_id = syn_get_top_ancestor_id( $post->ID );
 				$ancestor    = get_post( $ancestor_id );
@@ -46,7 +47,7 @@
 					'container' => '',
 					'menu'       => $nav_menu,
 					'menu_id' => syn_generate_permanent_id(), //'menu_class' => 'nav',
-					'menu_class' => 'list-group',
+					'menu_class' => 'list-group ' . $sidebar_class,
 					'items_wrap' => '<div id="%1$s" class="%2$s">%3$s</div>',
 					'before_link' => '',
 					'after_link' => '',

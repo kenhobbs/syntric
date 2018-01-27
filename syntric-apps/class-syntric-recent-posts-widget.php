@@ -44,23 +44,19 @@
 				$lb  = "\n";
 				$tab = "\t";
 			}
-			$sidebar     = syn_widget_sidebar( $args[ 'widget_id' ] );
+			//$sidebar     = syn_widget_sidebar( $args[ 'widget_id' ] );
+			$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
 			$title       = get_field( 'syn_recent_posts_widget_title', 'widget_' . $args[ 'widget_id' ] );
 			echo $args[ 'before_widget' ] . $lb;
 			if( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
 			if( $posts->have_posts() ) :
-				echo '<div class="list-group">' . $lb;
-			// todo: get ride of include date checkbox...date should always be shown
+				echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
+				// todo: get ride of include date checkbox...date should always be shown
 				$show_date = get_field( 'syn_recent_posts_widget_include_date', 'widget_' . $args[ 'widget_id' ] );
 				while( $posts->have_posts() ) : $posts->the_post();
 					echo $tab . '<a href="' . get_the_permalink() . '" class="list-group-item">' . $lb;
-					/*if( $show_date ) :
-						echo $tab . $tab . '<div class="list-group-item-feature cal-icon">' . $lb;
-						echo $tab . $tab . $tab . '<div class="month">' . strtoupper( 'sep' ) . '</div><div class="day">' . '27' . '</div>' . $lb;
-						echo $tab . $tab . '</div>' . $lb;
-					endif;*/
 					if( has_post_thumbnail() ) :
 						echo $tab . $tab . '<div class="list-group-item-feature">' . $lb;
 						echo $tab . $tab . $tab . the_post_thumbnail( 'thumbnail', array( 'class' => 'post-thumbnail img-thumbnail') ) . $lb;

@@ -41,6 +41,7 @@
 				$show_date   = get_field( 'syn_upcoming_events_widget_include_date', 'widget_' . $args[ 'widget_id' ] );
 			}
 			//$sidebar      = syn_widget_sidebar( $args[ 'widget_id' ] );
+			$sidebar_class   = syn_get_sidebar_class( $args[ 'widget_id' ] );
 			if ( syn_remove_whitespace() ) {
 				$lb  = '';
 				$tab = '';
@@ -52,18 +53,13 @@
 			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			//echo '<ul class="nav">' . $lb;
 			$events = syn_get_calendar_events( $calendar_id, null, 'next', $number, 'ID,post_title,post_content' );
 			if ( $events ) {
-				echo '<div class="list-group">' . $lb;
+				echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
 				foreach ( $events as $event ) :
-					//$event    = get_post( $event_id );
 					$dates       = syn_get_event_dates( $event->ID );
 					$start_date  = get_field( 'syn_event_start_date', $event->ID );
 					$_start_date = date_create( $start_date );
-					//$start_time  = get_field( 'syn_event_start_time', $event->ID );
-					//$end_date    = get_field( 'syn_event_end_date', $event->ID );
-					//$end_time    = get_field( 'syn_event_end_time', $event->ID );
 					$location = get_field( 'syn_event_location', $event->ID );
 					if ( ! empty( $event->post_content ) ) :
 						echo $tab . '<a href="' . get_the_permalink( $event->ID ) . '" class="list-group-item">' . $lb;

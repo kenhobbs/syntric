@@ -13,7 +13,7 @@
 <body <?php body_class(); ?>>
 	<div id="fb-root"></div>
 	<div class="print-header print-header-name d-print-block" aria-hidden="true"><?php echo get_bloginfo( 'name', 'display' ); ?></div>
-	<a class="sr-only sr-only-focusable d-print-none" href="#content"><?php esc_html_e( 'Skip to content', 'syntric' ); ?></a>
+	<a class="sr-only sr-only-focusable skip-to-content-link" href="#content"><?php esc_html_e( 'Skip to content', 'syntric' ); ?></a>
 	<?php syn_primary_nav(); ?>
 	<?php get_search_form(); ?>
 	<?php syn_banner(); ?>

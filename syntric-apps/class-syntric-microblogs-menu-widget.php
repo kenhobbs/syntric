@@ -34,7 +34,6 @@
 			} else {
 				$microblogs = get_field( 'syn_microblogs_menu_widget_microblogs', 'widget_' . $args[ 'widget_id' ] );
 			}
-			//$microblogs = get_field( 'syn_microblogs_menu_widget_microblogs', 'widget_' . $args[ 'widget_id' ] );
 			if( $microblogs && ! is_wp_error( $microblogs ) ) :
 				if ( syn_remove_whitespace() ) {
 					$lb  = '';
@@ -43,30 +42,22 @@
 					$lb  = "\n";
 					$tab = "\t";
 				}
-				$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
+				//$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
+				$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
 				$title   = get_field( 'syn_microblogs_menu_widget_title', 'widget_' . $args[ 'widget_id' ] );
 				echo $args[ 'before_widget' ] . $lb;
 				if( ! empty( $title ) ) :
 					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 				endif;
-				//echo '<ul class="nav">' . $lb;
-				echo '<div class="list-group">' . $lb;
+				echo '<div class="list-group ' . $sidebar_class. '">' . $lb;
 				$has_one = false;
 				foreach( $microblogs as $microblog ) {
-					//slog($microblog);
-					//if ( 0 < $microblog->parent ) {
-					//echo $tab . '<li class="nav-item">' . $lb;
-					//echo $tab . $tab . '<a href="' . get_term_link( (int) $microblog->term_id ) . '" class="nav-link">' . $microblog->name . '</a>' . $lb;
 					echo $tab . $tab . '<a href="' . get_term_link( (int) $microblog->term_id ) . '" class="list-group-item">' . $microblog->name . '</a>' . $lb;
-					//echo $tab . '</li>' . $lb;
 					$has_one = true;
 					//}
 				};
 				if( ! $has_one ) {
-					//echo $tab . '<li class="nav-item">' . $lb;
-					//echo $tab . $tab . $tab . $tab . '<div class="entry-title">' . 'No microblogs' . '</div>' . $lb;
 					echo $tab . $tab . $tab . $tab . '<div class="list-group-item">' . 'No microblogs' . '</div>' . $lb;
-					//echo $tab . '</li>' . $lb;
 				}
 				echo '</div>' . $lb;
 				echo $args[ 'after_widget' ] . $lb;

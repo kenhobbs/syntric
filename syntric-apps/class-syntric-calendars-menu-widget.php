@@ -41,13 +41,14 @@
 				$lb  = "\n";
 				$tab = "\t";
 			}
-			$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
+			//$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
+			$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
 			$title   = get_field( 'syn_calendars_menu_widget_title', 'widget_' . $args[ 'widget_id' ] );
 			echo $args[ 'before_widget' ] . $lb;
 			if( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			echo '<div class="list-group">' . $lb;
+			echo '<div class="list-group ' .  $sidebar_class. '">' . $lb;
 			if( $calendars ) :
 				$ref_date = ( isset( $_GET[ 'ref_date' ] ) ) ? $_GET[ 'ref_date' ] : date( 'Ymd' );
 				foreach( $calendars as $calendar ) {

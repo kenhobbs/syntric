@@ -100,3 +100,17 @@
 
 		return;
 	}
+
+	function syn_get_sidebar_class( $widget_id ) {
+		$sidebar = syn_widget_sidebar( $widget_id );
+		$section = $sidebar[ 'section' ][ 'value' ];
+		if ( 'main' == $section ) {
+			$location = $sidebar[ 'location' ][ 'value' ];
+			return $section . '-' . $location;
+		} else {
+			$layout = $sidebar[ 'layout' ][ 'value' ];
+			$layout_array = explode( '-', $layout );
+			$layout = ( 1 == count( $layout_array ) ) ? 'fixed' : $layout_array[1];
+			return $section . '-' . $layout;
+		}
+	}

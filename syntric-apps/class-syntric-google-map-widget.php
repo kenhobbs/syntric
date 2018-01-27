@@ -42,7 +42,8 @@
 			}
 			if( isset( $google_map_id ) && ! empty( $google_map_id ) ) :
 				$unique_id = syn_generate_permanent_id();
-				$sidebar   = syn_widget_sidebar( $args[ 'widget_id' ] );
+				//$sidebar   = syn_widget_sidebar( $args[ 'widget_id' ] );
+				$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
 				if ( syn_remove_whitespace() ) {
 					$lb  = '';
 					$tab = '';
@@ -54,7 +55,7 @@
 				if( ! empty( $title ) ) :
 					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 				endif;
-				echo $tab . '<div id="' . $unique_id . '" data-id="' . $google_map_id . '" class="map"></div>' . $lb;
+				echo $tab . '<div id="' . $unique_id . '" data-id="' . $google_map_id . '" class="map ' . $sidebar_class . '"></div>' . $lb;
 				echo $args[ 'after_widget' ] . $lb;
 			endif;
 		}

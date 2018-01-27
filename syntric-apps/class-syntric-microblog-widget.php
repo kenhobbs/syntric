@@ -8,11 +8,8 @@
 		 * Set up a new widget instance
 		 */
 		public function __construct() {
-			$widget_ops = [
-				'classname'                   => 'syn-microblog-widget',
-				'description'                 => __( 'Displays microblog posts on pages where "Microblog" is enabled.' ),
-				'customize_selective_refresh' => true,
-			];
+			$widget_ops = [ 'classname'                   => 'syn-microblog-widget', 'description' => __( 'Displays microblog posts on pages where "Microblog" is enabled.' ),
+			                'customize_selective_refresh' => true, ];
 			parent::__construct( 'syn-microblog-widget', __( 'Microblog' ), $widget_ops );
 			$this->alt_option_name = 'syn-microblog-widget';
 		}
@@ -26,35 +23,19 @@
 		public function widget( $args, $instance ) {
 			global $post;
 			$active = get_field( 'syn_microblog_active', $post->ID );
-			if( 1 != $active ) {
+			if ( 1 != $active ) {
 				return;
 			}
-			if( ! isset( $args[ 'widget_id' ] ) ) {
+			if ( ! isset( $args[ 'widget_id' ] ) ) {
 				$args[ 'widget_id' ] = $this->id;
 			}
-			$category  = get_field( 'syn_microblog_category', $post->ID );
-			$term      = get_field( 'syn_microblog_term', $post->ID );
-			$number    = get_field( 'syn_microblog_posts', $post->ID );
-			$posts     = new WP_Query( apply_filters( 'widget_posts_args', [
-					'posts_per_page'      => $number,
-					'no_found_rows'       => true,
-					'post_status'         => 'publish',
-					'ignore_sticky_posts' => true,
-					'tax_query'           => [
-						'relation' => 'AND',
-						[
-							'taxonomy' => 'category',
-							'field'    => 'ID',
-							'terms'    => [ $category->term_id ],
-						],
-						[
-							'taxonomy' => 'microblog',
-							'field'    => 'ID',
-							'terms'    => [ $term->term_id ],
-						],
-					],
-				] )
-			);
+			$category = get_field( 'syn_microblog_category', $post->ID );
+			$term     = get_field( 'syn_microblog_term', $post->ID );
+			$number   = get_field( 'syn_microblog_posts', $post->ID );
+			$posts    = new WP_Query( apply_filters( 'widget_posts_args', [ 'posts_per_page' => $number, 'no_found_rows' => true, 'post_status' => 'publish', 'ignore_sticky_posts' => true,
+			                                                                'tax_query'      => [ 'relation' => 'AND',
+			                                                                                      [ 'taxonomy' => 'category', 'field' => 'ID', 'terms' => [ $category->term_id ], ],
+			                                                                                      [ 'taxonomy' => 'microblog', 'field' => 'ID', 'terms' => [ $term->term_id ], ], ], ] ) );
 			if ( syn_remove_whitespace() ) {
 				$lb  = '';
 				$tab = '';
@@ -62,20 +43,21 @@
 				$lb  = "\n";
 				$tab = "\t";
 			}
-			$sidebar   = syn_widget_sidebar( $args[ 'widget_id' ] );
-			//slog( $sidebar );
+			//$sidebar       = syn_widget_sidebar( $args[ 'widget_id' ] );
+			//$sidebar[ 'section' ][ 'value' ]
+			$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
 			$title     = get_field( 'syn_microblog_title', $post->ID );
 			$show_date = get_field( 'syn_microblog_include_date', $post->ID );
 			echo $args[ 'before_widget' ] . $lb;
-			if( ! empty( $title ) ) :
+			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			if( $posts->have_posts() ) :
-				echo '<div class="list-group ' . $sidebar['section']['value'] . '">' . $lb;
+			if ( $posts->have_posts() ) :
+				echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
 				while( $posts->have_posts() ) : $posts->the_post();
 					echo $tab . '<a href="' . get_the_permalink() . '" class="list-group-item">' . $lb;
 					echo $tab . $tab . '<div class="post-title">' . get_the_title() . '</div>';
-					if( $show_date ) :
+					if ( $show_date ) :
 						echo $tab . $tab . '<div class="post-date small">' . get_the_date() . '</div>';
 					endif;
 					echo $tab . '</a>';
@@ -88,7 +70,7 @@
 			echo $args[ 'after_widget' ] . $lb;
 			wp_reset_postdata();
 			wp_reset_query();
-			if( is_user_logged_in() && ( current_user_can( 'administrator' ) || current_user_can( 'editor' ) || $post->post_author == get_current_user_id() ) ) {
+			if ( is_user_logged_in() && ( current_user_can( 'administrator' ) || current_user_can( 'editor' ) || $post->post_author == get_current_user_id() ) ) {
 				// this is for a New Post button
 			}
 		}

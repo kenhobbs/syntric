@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<div id="search-wrapper" class="content-wrapper <?php echo get_post_type(); ?>-wrapper d-print-none">
+<div id="search-wrapper" class="content-wrapper <?php echo get_post_type(); ?>-wrapper">
 	<div class="<?php echo esc_html( get_theme_mod( 'syntric_container_type' ) ); ?>">
 		<div class="row">
 			<main id="content" class="col content-area content">

@@ -42,6 +42,7 @@
 			}
 			if( isset( $video_id ) && ! empty( $video_id ) ) :
 				//$sidebar      = syn_widget_sidebar( $args[ 'widget_id' ] );
+				$sidebar_class   = syn_get_sidebar_class( $args[ 'widget_id' ] );
 				if ( syn_remove_whitespace() ) {
 					$lb  = '';
 					$tab = '';
@@ -54,7 +55,7 @@
 					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 				endif;
 				echo $lb;
-				echo '<div class="video embed-responsive embed-responsive-16by9">' . $lb;
+				echo '<div class="video ' . $sidebar_class . ' embed-responsive embed-responsive-16by9">' . $lb;
 				echo $tab . '<iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/' . $video_id . '?rel=0&amp;controls=1&amp;showinfo=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen>';
 				echo 'YouTube video';
 				echo '</iframe>' . $lb;

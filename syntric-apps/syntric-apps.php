@@ -1650,7 +1650,7 @@
 		if ( is_front_page() ) {
 			return;
 		}
-		$breadcrumbs = '<div class="breadcrumb-wrapper d-print-none">';
+		$breadcrumbs = '<div class="breadcrumb-wrapper">';
 		$breadcrumbs .= '<div class="' . esc_html( get_theme_mod( 'syntric_container_type' ) ) . '">';
 		$breadcrumbs .= '<nav class="breadcrumb">';
 		$breadcrumbs .= '<a class="breadcrumb-item" href="' . home_url() . '">Home</a>';
@@ -1734,7 +1734,7 @@
 				$lb  = "\n";
 				$tab = "\t";
 			}
-			echo '<div class="banner-wrapper d-print-none" aria-hidden="true"' . $banner_style_attribute . 'role="banner">' . $lb;
+			echo '<div class="banner-wrapper" aria-hidden="true"' . $banner_style_attribute . 'role="banner">' . $lb;
 			echo syn_jumbotron();
 			echo '</div>' . $lb;
 		}
@@ -1794,18 +1794,26 @@
 			$lb  = "\n";
 			$tab = "\t";
 		}
-		echo '<footer class="final-footer d-print-none">' . $lb;
-		echo $tab . '<div class="non-discrimination">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment. For more information or to contact our Title IX coordinator please visit the Title IX page.</div>' . $lb;
-		echo $tab . '<div class=" d-flex justify-content-between align-items-center">' . $lb;
+		echo '<footer class="final-footer">' . $lb;
+		echo $tab . '<div class="container-fluid">' . $lb;
+		echo $tab . $tab . '<div class="row">' . $lb;
+		echo $tab . $tab . $tab . '<div class="non-discrimination col">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment. For more information or to contact our Title IX coordinator please visit the Title IX page.</div>' . $lb;
+		echo $tab . $tab . '</div>' . $lb;
+		echo $tab . $tab . '<div class="row">' . $lb;
+		echo $tab . $tab . $tab . '<div class="col-md-6">' . $lb;
 		//echo $tab . $tab . '<div id="google-translate" class="google-translate"></div>' . $lb;
-		echo $tab . $tab . '<div class="copyright">&copy; ' . date( 'Y' ) . ' ' . $organization . '</div>' . $lb;
-		echo $tab . $tab . '<div class="login-bug">' . $lb;
+		echo $tab . $tab . $tab . $tab . '<div class="copyright">&copy; ' . date( 'Y' ) . ' ' . $organization . '</div>' . $lb;
+		echo $tab . $tab . $tab . '</div>' . $lb;
+		echo $tab . $tab . $tab . '<div class="col-md-6">' . $lb;
+		echo $tab . $tab . $tab . $tab . '<div class="login-bug">' . $lb;
 		if ( is_user_logged_in() ) {
-			echo $tab . $tab . $tab . '<a href="' . wp_logout_url( get_the_permalink() ) . '" class="btn btn-sm btn-danger login-button">Logout</a>' . $lb;
+			echo $tab . $tab . $tab . $tab . $tab . '<a href="' . wp_logout_url( get_the_permalink() ) . '" class="btn btn-sm btn-danger login-button">Logout</a>' . $lb;
 		} else {
-			echo $tab . $tab . $tab . '<a href="' . wp_login_url( get_the_permalink() ) . '" class="btn btn-sm btn-danger login-button">Login</a>' . $lb;
+			echo $tab . $tab . $tab . $tab . $tab . '<a href="' . wp_login_url( get_the_permalink() ) . '" class="btn btn-sm btn-danger login-button">Login</a>' . $lb;
 		}
-		echo $tab . $tab . $tab . syn_bug() . $lb;
+		echo $tab . $tab . $tab . $tab . $tab . syn_bug() . $lb;
+		echo $tab . $tab . $tab . $tab . '</div>' . $lb;
+		echo $tab . $tab . $tab . '</div>' . $lb;
 		echo $tab . $tab . '</div>' . $lb;
 		echo $tab . '</div>' . $lb;
 		echo '</footer>' . $lb;

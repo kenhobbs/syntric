@@ -15,7 +15,6 @@
 			$item_output = $args->before . "<a$attributes $class_names>" . $args->link_before . $title . '</a>' . $args->link_after . $args->after;
 			$output      .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 		}
-
 		public function start_lvl( &$output, $depth = 0, $args = [] ) {
 			if ( ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) || syn_remove_whitespace() ) {
 				$t = '';
