@@ -187,7 +187,7 @@
 					endif;
 					// fax
 					if ( in_array( 'fax', $include_fields ) && $fax ) :
-							$contact .= $tab . $tab . '<div class="contact-fax">' . $fax . ' fax</span>' . $lb;
+							$contact .= $tab . $tab . '<div class="contact-fax">' . $fax . ' fax</div>' . $lb;
 					endif;
 					// url
 					if ( in_array( 'url', $include_fields ) && $url ) :
