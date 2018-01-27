@@ -192,25 +192,25 @@
 				return 'large';
 				break;
 			case 2:
-				return 'medium_large';
+				return 'large';
 				break;
 			case 3:
-				return 'medium';
+				return 'medium_large';
 				break;
 			case 4:
-				return 'medium';
+				return 'medium_large';
 				break;
 			case 5:
 				return 'medium';
 				break;
 			case 6:
-				return 'thumbnail';
+				return 'medium';
 				break;
 			case 7:
 				return 'thumbnail';
 				break;
 			case 8:
-				return 'icon';
+				return 'thumbnail';
 				break;
 			case 9:
 				return 'icon';

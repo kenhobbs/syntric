@@ -242,11 +242,17 @@
 			$site_name_node        = $wp_admin_bar->get_node( 'site-name' );
 			$site_name_node->title = 'Admin';
 			$wp_admin_bar->add_node( $site_name_node );
+			// Remove the following admin bar items for everyone
 			$wp_admin_bar->remove_node( 'appearance' );
 			$wp_admin_bar->remove_node( 'themes' );
 			$wp_admin_bar->remove_node( 'widgets' );
 			$wp_admin_bar->remove_node( 'menus' );
 			$wp_admin_bar->remove_node( 'header' );
+			$wp_admin_bar->remove_node( 'search' );
+			$wp_admin_bar->remove_node( 'wp-logo' );
+			$wp_admin_bar->remove_node( 'user-info' );
+			$wp_admin_bar->remove_node( 'view-site' );
+			$wp_admin_bar->remove_node( 'customize' );
 			if ( syn_current_user_can( 'author' ) ) {
 				// Pages menu item
 				$pages_node         = new stdClass();
@@ -280,12 +286,30 @@
 				// Organization menu item
 				$organization_node         = new stdClass();
 				$organization_node->id     = 'organization';
-				$organization_node->title  = 'Organization';
+				$organization_node->title  = syn_get_organization_type_label();
 				$organization_node->parent = 'site-name';
 				$organization_node->href   = '/wp-admin/admin.php?page=syntric-organization';
 				$organization_node->group  = '';
 				$organization_node->meta   = [];
 				$wp_admin_bar->add_node( $organization_node );
+				// Courses menu item
+				$courses_node         = new stdClass();
+				$courses_node->id     = 'courses';
+				$courses_node->title  = 'Courses';
+				$courses_node->parent = 'site-name';
+				$courses_node->href   = '/wp-admin/admin.php?page=syntric-courses';
+				$courses_node->group  = '';
+				$courses_node->meta   = [];
+				$wp_admin_bar->add_node( $courses_node );
+				// Courses menu item
+				$classes_node         = new stdClass();
+				$classes_node->id     = 'classes';
+				$classes_node->title  = 'Classes';
+				$classes_node->parent = 'site-name';
+				$classes_node->href   = '/wp-admin/admin.php?page=syntric-classes';
+				$classes_node->group  = '';
+				$classes_node->meta   = [];
+				$wp_admin_bar->add_node( $classes_node );
 				// Calendars menu item
 				$calendars_node         = new stdClass();
 				$calendars_node->id     = 'calendars';
@@ -331,17 +355,27 @@
 				$social_media_node->group  = '';
 				$social_media_node->meta   = [];
 				$wp_admin_bar->add_node( $social_media_node );
+				// Headers
+				/*$headers_node         = new stdClass();
+				$headers_node->id     = 'headers';
+				$headers_node->title  = 'Headers';
+				$headers_node->parent = 'site-name';
+				$headers_node->href   = admin_url('customize.php?autofocus[section]=header_image');
+				//http://master.localhost/wp-admin/customize.php?return=%2Fwp-admin%2Fwidgets.php&autofocus%5Bcontrol%5D=header_image
+				$headers_node->group  = '';
+				$headers_node->meta   = [];
+				$wp_admin_bar->add_node( $headers_node );*/
 			}
 			if ( syn_current_user_can( 'administrator' ) ) {
 				// Comments menu item
-				$comments_node         = new stdClass();
+				/*$comments_node         = new stdClass();
 				$comments_node->id     = 'comments';
 				$comments_node->title  = 'Comments';
 				$comments_node->parent = 'site-name';
 				$comments_node->href   = '/wp-admin/edit-comments.php';
 				$comments_node->group  = '';
 				$comments_node->meta   = [];
-				$wp_admin_bar->add_node( $comments_node );
+				$wp_admin_bar->add_node( $comments_node );*/
 				// Customizer menu item
 				$customizer_node         = new stdClass();
 				$customizer_node->id     = 'customizer';
@@ -369,6 +403,8 @@
 				$sidebars_node->group  = '';
 				$sidebars_node->meta   = [];
 				$wp_admin_bar->add_node( $sidebars_node );
+			} else {
+				$wp_admin_bar->remove_node( 'comments' );
 			}
 		}
 		/**
@@ -388,59 +424,10 @@
 		 */
 		// For now just removing the New Conent menu...
 		$wp_admin_bar->remove_node( 'new-content' );
-		/*
-		// Change up the New Content menu item/dropdown as appropriate for the users role
-		if ( ! syn_current_user_can( 'editor' ) ) {
-			$wp_admin_bar->remove_node( 'new-content' );
-		//} elseif ( current_user_can( 'author' ) ) {
-			// for now, just take the New Content completely away from authors
-			//$wp_admin_bar->remove_node( 'new-content' );
-			// todo: For the New Content menu item/dropdown for authors (aka teachers) list each of their microblogs?  Teacher and class pages?  Change New Content to My Content?
-			// already created a function syn_get_user_microblogs for this...
-		} elseif ( ! syn_current_user_can( 'administrator' ) ) {
-			// Modify the New Content menu item/dropdown...New > Page, Post, Jumbotron, Person, Header
-			$new_content_node = $wp_admin_bar->get_node( 'new-content' );
-			//$wp_admin_bar->remove_node( 'new-post' );
-			$wp_admin_bar->remove_node( 'new-media' );
-			$wp_admin_bar->remove_node( 'new-link' );
-			// Post, User
-			$post_node = $wp_admin_bar->get_node( 'new-post' );
-			//$page_node = $wp_admin_bar->get_node('new-page');
-			$user_node = $wp_admin_bar->get_node( 'new-user' );
-			// Remove them, only Page is left..
-			$wp_admin_bar->remove_node( 'new-post' );
-			$wp_admin_bar->remove_node( 'new-user' );
-			$wp_admin_bar->add_node( $post_node );
-			$jumbotron_node         = new stdClass();
-			$jumbotron_node->id     = 'jumbotron';
-			$jumbotron_node->title  = 'Jumbotron';
-			$jumbotron_node->parent = 'new-content';
-			$jumbotron_node->href   = '/wp-admin/admin.php?page=syntric-jumbotrons';
-			$jumbotron_node->group  = '';
-			$jumbotron_node->meta   = [];
-			$wp_admin_bar->add_node( $jumbotron_node );
-			$wp_admin_bar->add_node( $user_node );
-			// Headers menu item
-			$header_node         = new stdClass();
-			$header_node->id     = 'header';
-			$header_node->title  = 'Header';
-			$header_node->parent = 'new-content';
-			$header_node->href   = '/wp-admin/customize.php?return=%2Fwp-admin%2F&autofocus%5Bcontrol%5D=header_image';
-			$header_node->group  = '';
-			$header_node->meta   = [];
-			$wp_admin_bar->add_node( $header_node );
-		}
-		*/
-		// Remove the following admin bar items for everyone
-		$wp_admin_bar->remove_node( 'search' );
-		$wp_admin_bar->remove_node( 'wp-logo' );
-		$wp_admin_bar->remove_node( 'user-info' );
-		$wp_admin_bar->remove_node( 'view-site' );
-		$wp_admin_bar->remove_node( 'customize' );
 		// Remove comments link for everyone except Syntric
-		if ( ! syn_current_user_can( 'syntric' ) ) {
+		/*if ( ! syn_current_user_can( 'syntric' ) ) {
 			$wp_admin_bar->remove_node( 'comments' );
-		}
+		}*/
 		// Move edit link to right side of admin bar
 		if ( is_admin() ) {
 			$view_node = $wp_admin_bar->get_node( 'view' );

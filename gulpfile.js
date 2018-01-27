@@ -133,19 +133,19 @@ var domainMappings = {
 };
 // Gulp watcher args
 var watcherArgs = {
-	ignoreInitial: true
+	ignoreInitial: false
 };
 // File watcher
 gulp.task('watch', function () {
 
 	// SASS watchers   , '!' + dirs.src_sass + '_*.scss'
-	gulp.watch([dirs.src_sass + '*.scss', '!' + dirs.src_sass + '*-admin.scss'], {ignoreInitial: true}, ['compileSASS']);
-	gulp.watch([dirs.src_admin_sass + '*-admin.scss'], {ignoreInitial: true}, ['compileAdminSASS']);
+	gulp.watch([dirs.src_sass + '*.scss', '!' + dirs.src_sass + '*-admin.scss'], watcherArgs, ['compileSASS']);
+	gulp.watch([dirs.src_admin_sass + '*-admin.scss'], watcherArgs, ['compileAdminSASS']);
 
 	// Javascript watchers
-	gulp.watch([dirs.src_js + 'syntric.js'], {ignoreInitial: true}, ['compileJS']);
-	gulp.watch(dirs.src_admin_js + '*-admin.js', {ignoreInitial: true}, ['compileAdminJS']);
-	gulp.watch(dirs.src_admin_js + 'customizer.js', {ignoreInitial: true}, ['compileCustomizerJS']);
+	gulp.watch([dirs.src_js + 'syntric.js'], watcherArgs, ['compileJS']);
+	gulp.watch(dirs.src_admin_js + '*-admin.js', watcherArgs, ['compileAdminJS']);
+	gulp.watch(dirs.src_admin_js + 'customizer.js', watcherArgs, ['compileCustomizerJS']);
 
 	// Image watchers
 	//gulp.watch(dirs.src_img + '*.*', watcherArgs, ['compressImages']);
@@ -153,12 +153,12 @@ gulp.task('watch', function () {
 });
 
 gulp.task('compileSASS', function () {
-	return gulp.src([dirs.src_sass + '*.localhost.scss', '!' + dirs.src_sass + '*.syntric.com.scss'])
-	.pipe(sourcemaps.init({loadMaps: true}))
-	.pipe(plumber())
-
-	//.pipe(cached('sassFiles'))
+	return gulp.src([dirs.src_sass + '*.localhost.scss', dirs.src_sass + '*.syntric.com.scss'])
+	//.pipe(sourcemaps.init({loadMaps: true}))
 	//.pipe(plumber())
+
+	.pipe(cached('sassFiles'))
+	.pipe(plumber())
 
 	.pipe(compileSASS())
 	.pipe(gulp.dest(dirs.dist_css))
