@@ -56,7 +56,7 @@
 				endif;
 				echo $lb;
 				echo '<div class="video ' . $sidebar_class . ' embed-responsive embed-responsive-16by9">' . $lb;
-				echo $tab . '<iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/' . $video_id . '?rel=0&amp;controls=1&amp;showinfo=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen>';
+				echo $tab . '<iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/' . $video_id . '?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen>';
 				echo 'YouTube video';
 				echo '</iframe>' . $lb;
 				echo '</div>' . $lb;

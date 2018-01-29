@@ -203,7 +203,7 @@
 					$active_widgets = syn_sidebar_active_widgets( $params[ 0 ][ 'id' ], $post->ID );
 					$widget_count   = count( $active_widgets );
 					if( 0 < $widget_count && ( 'header' == $sidebar[ 'section' ][ 'value' ] || 'footer' == $sidebar[ 'section' ][ 'value' ] ) ) {
-						$params[ 0 ][ 'before_widget' ] = str_replace( 'class="', 'class="col-xl ', $params[ 0 ][ 'before_widget' ] );
+						$params[ 0 ][ 'before_widget' ] = str_replace( 'class="', 'class="col-xl-' . 12/$widget_count . ' ', $params[ 0 ][ 'before_widget' ] );
 					}
 				}
 			}

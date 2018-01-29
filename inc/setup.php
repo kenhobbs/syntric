@@ -128,28 +128,16 @@
 			 */
 			register_default_headers( [ 'header-1' => [ 'url'           => get_template_directory_uri() . '/assets/images/default-header-1.png',
 			                                            'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-1.png',
-			                                            'description'   => __( 'Default header 1', 'syntric' ), ],
+			                                            'description'   => __( 'Default header 1', 'syntric' ) ],
 			                            'header-2' => [ 'url'           => get_template_directory_uri() . '/assets/images/default-header-2.png',
 			                                            'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-2.png',
-			                                            'description'   => __( 'Default header 2', 'syntric' ), ],
+			                                            'description'   => __( 'Default header 2', 'syntric' ) ],
 			                            'header-3' => [ 'url'           => get_template_directory_uri() . '/assets/images/default-header-3.png',
 			                                            'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-3.png',
-			                                            'description'   => __( 'Default header 3', 'syntric' ), ],
+			                                            'description'   => __( 'Default header 3', 'syntric' ) ],
 			                            'header-4' => [ 'url'           => get_template_directory_uri() . '/assets/images/default-header-4.png',
 			                                            'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-4.png',
-			                                            'description'   => __( 'Default header 4', 'syntric' ), ],
-			                            'header-5' => [ 'url'           => get_template_directory_uri() . '/assets/images/default-header-5.png',
-			                                            'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-5.png',
-			                                            'description'   => __( 'Default header 5', 'syntric' ), ],
-			                            'header-6' => [ 'url'           => get_template_directory_uri() . '/assets/images/default-header-6.png',
-			                                            'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-6.png',
-			                                            'description'   => __( 'Default header 6', 'syntric' ), ],
-			                            'header-7' => [ 'url'           => get_template_directory_uri() . '/assets/images/default-header-7.png',
-			                                            'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-7.png',
-			                                            'description'   => __( 'Default header 7', 'syntric' ), ],
-			                            'header-8' => [ 'url'           => get_template_directory_uri() . '/assets/images/default-header-8.png',
-			                                            'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-8.png',
-			                                            'description'   => __( 'Default header 8', 'syntric' ), ], ] );
+			                                            'description'   => __( 'Default header 4', 'syntric' ) ] ] );
 			//~~~~~~~~~ Setup defaults for customizer settings
 			// todo: can these be eliminated?
 			/**

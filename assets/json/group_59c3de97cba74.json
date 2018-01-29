@@ -6,7 +6,7 @@
             "key": "field_5a6570eff3d03",
             "label": "Prefix",
             "name": "syn_user_prefix",
-            "type": "select",
+            "type": "radio",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -19,15 +19,15 @@
                 "Ms.": "Ms.",
                 "Mrs.": "Mrs.",
                 "Mr.": "Mr.",
-                "Mx.": "Mx."
+                "Mx.": "Mx.",
+                "Dr.": "Dr."
             },
-            "default_value": [],
             "allow_null": 1,
-            "multiple": 0,
-            "ui": 0,
-            "ajax": 0,
-            "return_format": "value",
-            "placeholder": ""
+            "other_choice": 1,
+            "save_other_choice": 1,
+            "default_value": "",
+            "layout": "vertical",
+            "return_format": "value"
         },
         {
             "key": "field_59c3de9804864",
@@ -162,5 +162,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1516979125
+    "modified": 1517146230
 }

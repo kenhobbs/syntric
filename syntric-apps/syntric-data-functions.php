@@ -329,13 +329,13 @@
 						continue;
 					}
 					// First Name is required
-					if ( ! isset( $user_row[ 3 ] ) || empty( $user_row[ 3 ] ) ) {
+					if ( ! isset( $user_row[ 4 ] ) || empty( $user_row[ 4 ] ) ) {
 						$console_output[] = 'First Name is missing in row ' . $row_counter . ', skipping row';
 						$row_counter ++;
 						continue;
 					}
 					// Last Name is required
-					if ( ! isset( $user_row[ 4 ] ) || empty( $user_row[ 4 ] ) ) {
+					if ( ! isset( $user_row[ 5 ] ) || empty( $user_row[ 5 ] ) ) {
 						$console_output[] = 'Last Name is missing in row ' . $row_counter . ', skipping row';
 						$row_counter ++;
 						continue;
@@ -343,12 +343,14 @@
 					$user_id         = $user_row[ 0 ];
 					$user_email      = $user_row[ 1 ];
 					$user_role       = $user_row[ 2 ];
-					$user_firstname  = $user_row[ 3 ];
-					$user_lastname   = $user_row[ 4 ];
-					$user_title      = ( isset( $user_row[ 5 ] ) && ! empty( $user_row[ 5 ] ) ) ? $user_row[ 5 ] : false;
-					$user_phone      = ( isset( $user_row[ 6 ] ) && ! empty( $user_row[ 6 ] ) ) ? $user_row[ 6 ] : false;
-					$user_extension  = ( isset( $user_row[ 7 ] ) && ! empty( $user_row[ 7 ] ) ) ? $user_row[ 7 ] : false;
-					$user_is_teacher = ( isset( $user_row[ 8 ] ) && ! empty( $user_row[ 8 ] ) ) ? $user_row[ 8 ] : false;
+					$user_prefix     = $user_row[ 3 ];
+					//$user_prefix     = str_replace( '.', '', $user_prefix );
+					$user_firstname  = $user_row[ 4 ];
+					$user_lastname   = $user_row[ 5 ];
+					$user_title      = ( isset( $user_row[ 6 ] ) && ! empty( $user_row[ 6 ] ) ) ? $user_row[ 5 ] : false;
+					$user_phone      = ( isset( $user_row[ 7 ] ) && ! empty( $user_row[ 7 ] ) ) ? $user_row[ 6 ] : false;
+					$user_extension  = ( isset( $user_row[ 8 ] ) && ! empty( $user_row[ 8 ] ) ) ? $user_row[ 7 ] : false;
+					$user_is_teacher = ( isset( $user_row[ 9 ] ) && ! empty( $user_row[ 9 ] ) ) ? $user_row[ 8 ] : false;
 					$user_role       = ( $user_is_teacher && 'subscriber' == $user_role ) ? 'author' : $user_role;
 					$userdata        = [ 'user_nicename' => $user_firstname . ' ' . $user_lastname, 'user_email' => $user_email, 'display_name' => $user_firstname . ' ' . $user_lastname,
 					                     'nickname'      => $user_firstname, 'first_name' => $user_firstname, 'last_name' => $user_lastname, 'role' => $user_role, ];
@@ -361,6 +363,7 @@
 						$user_id                  = wp_insert_user( $userdata );
 					}
 					if ( is_int( $user_id ) ) {
+						update_field( 'syn_user_prefix', $user_prefix, 'user_' . $user_id );
 						update_field( 'syn_user_title', $user_title, 'user_' . $user_id );
 						update_field( 'syn_user_phone', $user_phone, 'user_' . $user_id );
 						update_field( 'syn_user_extension', $user_extension, 'user_' . $user_id );
@@ -398,7 +401,7 @@
 	function syn_update_users_password() {
 		//$users = get_users();
 		//$_users = get_field( 'syn_data_update_password_users', 'option' );
-		$users  = get_users( [ 'login__not_in' => [ 'syntric' ], 'fields' => [ 'ID', 'user_email' ], ] );
+		$users = get_users( [ 'login__not_in' => [ 'syntric' ], 'fields' => [ 'ID', 'user_email' ], ] );
 		foreach ( $users as $user ) {
 			$userdata = [ 'ID' => $user->ID, 'user_pass' => $user->user_email, ];
 			// email and password change emails controlled via send_email_change_email filter in setup.php

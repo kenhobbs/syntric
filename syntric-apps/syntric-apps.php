@@ -463,7 +463,7 @@
 		$_menu_order = [ 'index.php', // Dashboard
 		                 //'separator1', // Separator
 		                 'edit.php?post_type=page', // Pages
-		                 'admin.php?page=nestedpages', // Pages (Nested Pages)
+		                 //'admin.php?page=nestedpages', // Pages (Nested Pages)
 		                 'edit.php', // Posts
 		                 //'separator2', // Separator
 		                 'syntric-organization', // School or District or COE or Organization
@@ -715,7 +715,9 @@
 	/*************************************** After footer (after all scripts are loaded) *****************************************/
 	add_action( 'wp_print_footer_scripts', 'syn_print_after_footer', 99 );
 	function syn_print_after_footer() {
-		if ( 'syn_calendar' == get_post_type() || have_rows( 'syn_google_maps', 'options' ) ) :
+		// todo: rather than just looking for maps, look to see if there is an active map widget...or put call in widget itself.
+		$maps = get_field( 'syn_google_maps', 'option' );
+		if ( 'syn_calendar' == get_post_type() || $maps ) :
 			$lb  = "\n";
 			$tab = "\t";
 			echo '<script type="text/javascript">' . $lb;
@@ -723,7 +725,7 @@
 			if ( 'syn_calendar' == get_post_type() ) :
 				echo $tab . $tab . 'fetchCalendar(' . get_the_ID() . ');' . $lb;
 			endif;
-			if ( have_rows( 'syn_google_maps', 'option' ) ) :
+			if ( $maps ) :
 				echo $tab . $tab . 'fetchMaps();' . $lb;
 			endif;
 			echo $tab . '})(jQuery);' . $lb;

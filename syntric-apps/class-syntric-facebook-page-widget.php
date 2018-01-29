@@ -85,7 +85,7 @@
 									echo $tab . $tab . '<a href = "' . $facebook_post->permalink_url . '" class="list-group-item" target = "_blank">' . $lb;
 									if ( $include_image ) :
 										echo $tab . $tab . $tab . $tab . '<div class="list-group-item-feature">' . $lb;
-										echo $tab . $tab . $tab . $tab . $tab . '<img src = "' . $facebook_post->picture . '" class="img-thumbnail fb-image" alt="Facebook post photo" aria-hidden="true">' . $lb;
+										echo $tab . $tab . $tab . $tab . $tab . '<img src = "' . $facebook_post->picture . '" class="fb-image" alt="Facebook post photo" aria-hidden="true">' . $lb;
 										echo $tab . $tab . $tab . $tab . '</div>' . $lb;
 									endif;
 									$publish_date = date_create( $facebook_post->created_time );

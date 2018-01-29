@@ -59,7 +59,7 @@
 					echo $tab . '<a href="' . get_the_permalink() . '" class="list-group-item">' . $lb;
 					if( has_post_thumbnail() ) :
 						echo $tab . $tab . '<div class="list-group-item-feature">' . $lb;
-						echo $tab . $tab . $tab . the_post_thumbnail( 'thumbnail', array( 'class' => 'post-thumbnail img-thumbnail') ) . $lb;
+						echo $tab . $tab . $tab . the_post_thumbnail( 'thumbnail', array( 'class' => 'post-thumbnail') ) . $lb;
 						echo $tab . $tab . '</div>' . $lb;
 					endif;
 					echo $tab . $tab . '<div class="list-group-item-content">' . $lb;
