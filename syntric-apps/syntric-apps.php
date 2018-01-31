@@ -157,12 +157,12 @@
 		foreach ( $user_options as $key => $value ) {
 			$cuo_array = explode( '-', $key );
 			if ( 'meta' == $cuo_array[ 0 ] && 'box' == $cuo_array[ 1 ] ) {
-				slog( $cuo_array );
+				//slog( $cuo_array );
 				if ( isset( $cuo_array[ 2 ] ) ) {
 					$cuo_array_2 = explode( '_', $cuo_array[ 2 ] );
 					if ( 'order' == $cuo_array_2[ 0 ] ) {
 						$res = delete_user_meta( $user_id, $key );
-						slog( $res );
+						//slog( $res );
 					}
 				}
 			}
@@ -222,6 +222,9 @@
 	 */
 	add_action( 'admin_bar_menu', 'syn_admin_bar', 999 );
 	function syn_admin_bar( $wp_admin_bar ) {
+		// todo: Add targeted links to role specific resources. EG for Teachers - My Page, My Classes, etc..
+		// Remove for everyone, everywhere
+		$wp_admin_bar->remove_node( 'wp-logo' );
 		/**
 		 * Site name menu - both frontend and admin
 		 *
@@ -235,13 +238,8 @@
 			$site_name_node        = $wp_admin_bar->get_node( 'site-name' );
 			$site_name_node->title = esc_attr( get_bloginfo( 'name', 'display' ) );
 			$wp_admin_bar->add_node( $site_name_node );
-			// Add some targeted links in the dropdown here...for Teachers - My Page (Or maybe that should go in My Account (upper right),
-			// for everyone links to Home Page, Calendars, News and more as appropriate and that make sense for the Org type
 		}
 		if ( ! is_admin() ) {
-			$site_name_node        = $wp_admin_bar->get_node( 'site-name' );
-			$site_name_node->title = 'Admin';
-			$wp_admin_bar->add_node( $site_name_node );
 			// Remove the following admin bar items for everyone
 			$wp_admin_bar->remove_node( 'appearance' );
 			$wp_admin_bar->remove_node( 'themes' );
@@ -249,111 +247,194 @@
 			$wp_admin_bar->remove_node( 'menus' );
 			$wp_admin_bar->remove_node( 'header' );
 			$wp_admin_bar->remove_node( 'search' );
-			$wp_admin_bar->remove_node( 'wp-logo' );
 			$wp_admin_bar->remove_node( 'user-info' );
 			$wp_admin_bar->remove_node( 'view-site' );
 			$wp_admin_bar->remove_node( 'customize' );
-			if ( syn_current_user_can( 'author' ) ) {
-				// Pages menu item
-				$pages_node         = new stdClass();
-				$pages_node->id     = 'pages';
-				$pages_node->title  = 'Pages';
-				$pages_node->parent = 'site-name';
-				$pages_node->href   = '/wp-admin/edit.php?post_type=page';
-				$pages_node->group  = '';
-				$pages_node->meta   = [];
+			// Rename the site-name node to Admin
+			$site_name_node        = $wp_admin_bar->get_node( 'site-name' );
+			$site_name_node->title = 'Admin';
+			$site_name_node->href  = '#';
+			$wp_admin_bar->add_node( $site_name_node );
+			// Create all the possible nodes (assign them after)
+			///////////////////////////////////////////
+			// site-name nodes
+			///////////////////////////////////////////
+			$site_name_nodes = [];
+			// Pages
+			$pages_node         = new stdClass();
+			$pages_node->id     = 'pages';
+			$pages_node->title  = 'Pages';
+			$pages_node->parent = 'site-name';
+			$pages_node->href   = '/wp-admin/edit.php?post_type=page';
+			$pages_node->group  = '';
+			$pages_node->meta   = [];
+			$site_name_nodes[]  = $pages_node;
+			// Posts
+			$posts_node         = new stdClass();
+			$posts_node->id     = 'posts';
+			$posts_node->title  = 'Posts';
+			$posts_node->parent = 'site-name';
+			$posts_node->href   = '/wp-admin/edit.php';
+			$posts_node->group  = '';
+			$posts_node->meta   = [];
+			$site_name_nodes[]  = $posts_node;
+			// Media
+			$media_node         = new stdClass();
+			$media_node->id     = 'media';
+			$media_node->title  = 'Media';
+			$media_node->parent = 'site-name';
+			$media_node->href   = '/wp-admin/upload.php';
+			$media_node->group  = '';
+			$media_node->meta   = [];
+			$site_name_nodes[]  = $media_node;
+			// Organization
+			$organization_node         = new stdClass();
+			$organization_node->id     = 'organization';
+			$organization_node->title  = syn_get_organization_type_label();
+			$organization_node->parent = 'site-name';
+			$organization_node->href   = '/wp-admin/admin.php?page=syntric-organization';
+			$organization_node->group  = '';
+			$organization_node->meta   = [];
+			$site_name_nodes[]         = $organization_node;
+			// Courses
+			$courses_node         = new stdClass();
+			$courses_node->id     = 'courses';
+			$courses_node->title  = 'Courses';
+			$courses_node->parent = 'site-name';
+			$courses_node->href   = '/wp-admin/admin.php?page=syntric-courses';
+			$courses_node->group  = '';
+			$courses_node->meta   = [];
+			$site_name_nodes[]    = $courses_node;
+			// Classes
+			$classes_node         = new stdClass();
+			$classes_node->id     = 'classes';
+			$classes_node->title  = 'Classes';
+			$classes_node->parent = 'site-name';
+			$classes_node->href   = '/wp-admin/admin.php?page=syntric-classes';
+			$classes_node->group  = '';
+			$classes_node->meta   = [];
+			$site_name_nodes[]    = $classes_node;
+			// Calendars
+			$calendars_node         = new stdClass();
+			$calendars_node->id     = 'calendars';
+			$calendars_node->title  = 'Calendars';
+			$calendars_node->parent = 'site-name';
+			$calendars_node->href   = '/wp-admin/edit.php?post_type=syn_calendar';
+			$calendars_node->group  = '';
+			$calendars_node->meta   = [];
+			$site_name_nodes[]      = $calendars_node;
+			// Jumbotrons
+			$jumbotrons_node         = new stdClass();
+			$jumbotrons_node->id     = 'jumbotrons';
+			$jumbotrons_node->title  = 'Jumbotrons';
+			$jumbotrons_node->parent = 'site-name';
+			$jumbotrons_node->href   = '/wp-admin/admin.php?page=syntric-jumbotrons';
+			$jumbotrons_node->group  = '';
+			$jumbotrons_node->meta   = [];
+			$site_name_nodes[]       = $jumbotrons_node;
+			// Google Maps
+			$google_maps_node         = new stdClass();
+			$google_maps_node->id     = 'google_maps';
+			$google_maps_node->title  = 'Google Maps';
+			$google_maps_node->parent = 'site-name';
+			$google_maps_node->href   = '/wp-admin/admin.php?page=syntric-google-maps';
+			$google_maps_node->group  = '';
+			$google_maps_node->meta   = [];
+			$site_name_nodes[]        = $google_maps_node;
+			// Users
+			$users_node         = new stdClass();
+			$users_node->id     = 'users';
+			$users_node->title  = 'Users';
+			$users_node->parent = 'site-name';
+			$users_node->href   = '/wp-admin/users.php';
+			$users_node->group  = '';
+			$users_node->meta   = [];
+			$site_name_nodes[]  = $users_node;
+			// Social Media
+			$social_media_node         = new stdClass();
+			$social_media_node->id     = 'social_media';
+			$social_media_node->title  = 'Social Media';
+			$social_media_node->parent = 'site-name';
+			$social_media_node->href   = '/wp-admin/options-general.php?page=syntric-social-media';
+			$social_media_node->group  = '';
+			$social_media_node->meta   = [];
+			$site_name_nodes[]         = $social_media_node;
+			// Headers - this doesn't work
+			/*$headers_node         = new stdClass();
+			$headers_node->id     = 'headers';
+			$headers_node->title  = 'Headers';
+			$headers_node->parent = 'site-name';
+			$headers_node->href   = admin_url('customize.php?autofocus[section]=header_image');
+			//http://master.localhost/wp-admin/customize.php?return=%2Fwp-admin%2Fwidgets.php&autofocus%5Bcontrol%5D=header_image
+			$headers_node->group  = '';
+			$headers_node->meta   = [];
+			$site_name_nodes[] = $headers_node;*/
+			// Comments
+			$comments_node         = new stdClass();
+			$comments_node->id     = 'comments';
+			$comments_node->title  = 'Comments';
+			$comments_node->parent = 'site-name';
+			$comments_node->href   = '/wp-admin/edit-comments.php';
+			$comments_node->group  = '';
+			$comments_node->meta   = [];
+			$site_name_nodes[]     = $comments_node;
+			// Customizer
+			$customizer_node         = new stdClass();
+			$customizer_node->id     = 'customizer';
+			$customizer_node->title  = 'Customizer';
+			$customizer_node->parent = 'site-name';
+			$customizer_node->href   = '/wp-admin/customize.php';
+			$customizer_node->group  = '';
+			$customizer_node->meta   = [];
+			$site_name_nodes[]       = $customizer_node;
+			// Widgets
+			$widgets_node         = new stdClass();
+			$widgets_node->id     = 'widgets';
+			$widgets_node->title  = 'Widgets';
+			$widgets_node->parent = 'site-name';
+			$widgets_node->href   = '/wp-admin/widgets.php';
+			$widgets_node->group  = '';
+			$widgets_node->meta   = [];
+			$site_name_nodes[]    = $widgets_node;
+			// Sidebars
+			$sidebars_node         = new stdClass();
+			$sidebars_node->id     = 'sidebars';
+			$sidebars_node->title  = 'Sidebars';
+			$sidebars_node->parent = 'site-name';
+			$sidebars_node->href   = '/wp-admin/options-general.php?page=syntric-sidebars-widgets';
+			$sidebars_node->group  = '';
+			$sidebars_node->meta   = [];
+			$site_name_nodes[]     = $sidebars_node;
+			if ( current_user_can( 'author' ) ) {
+				// Pages
 				$wp_admin_bar->add_node( $pages_node );
-				// Posts menu item
-				$posts_node         = new stdClass();
-				$posts_node->id     = 'posts';
-				$posts_node->title  = 'Posts';
-				$posts_node->parent = 'site-name';
-				$posts_node->href   = '/wp-admin/edit.php';
-				$posts_node->group  = '';
-				$posts_node->meta   = [];
+				// Posts
 				$wp_admin_bar->add_node( $posts_node );
-				// Media menu item
-				$media_node         = new stdClass();
-				$media_node->id     = 'media';
-				$media_node->title  = 'Media';
-				$media_node->parent = 'site-name';
-				$media_node->href   = '/wp-admin/upload.php';
-				$media_node->group  = '';
-				$media_node->meta   = [];
+				// Media
 				$wp_admin_bar->add_node( $media_node );
 			}
-			if ( syn_current_user_can( 'editor' ) ) {
-				// Organization menu item
-				$organization_node         = new stdClass();
-				$organization_node->id     = 'organization';
-				$organization_node->title  = syn_get_organization_type_label();
-				$organization_node->parent = 'site-name';
-				$organization_node->href   = '/wp-admin/admin.php?page=syntric-organization';
-				$organization_node->group  = '';
-				$organization_node->meta   = [];
+			if ( current_user_can( 'editor' ) ) {
+				// Pages
+				$wp_admin_bar->add_node( $pages_node );
+				// Posts
+				$wp_admin_bar->add_node( $posts_node );
+				// Media
+				$wp_admin_bar->add_node( $media_node );
+				// Organization
 				$wp_admin_bar->add_node( $organization_node );
-				// Courses menu item
-				$courses_node         = new stdClass();
-				$courses_node->id     = 'courses';
-				$courses_node->title  = 'Courses';
-				$courses_node->parent = 'site-name';
-				$courses_node->href   = '/wp-admin/admin.php?page=syntric-courses';
-				$courses_node->group  = '';
-				$courses_node->meta   = [];
+				// Courses
 				$wp_admin_bar->add_node( $courses_node );
-				// Courses menu item
-				$classes_node         = new stdClass();
-				$classes_node->id     = 'classes';
-				$classes_node->title  = 'Classes';
-				$classes_node->parent = 'site-name';
-				$classes_node->href   = '/wp-admin/admin.php?page=syntric-classes';
-				$classes_node->group  = '';
-				$classes_node->meta   = [];
+				// Classes
 				$wp_admin_bar->add_node( $classes_node );
-				// Calendars menu item
-				$calendars_node         = new stdClass();
-				$calendars_node->id     = 'calendars';
-				$calendars_node->title  = 'Calendars';
-				$calendars_node->parent = 'site-name';
-				$calendars_node->href   = '/wp-admin/edit.php?post_type=syn_calendar';
-				$calendars_node->group  = '';
-				$calendars_node->meta   = [];
+				// Calendars
 				$wp_admin_bar->add_node( $calendars_node );
-				// Jumbotrons menu item
-				$jumbotrons_node         = new stdClass();
-				$jumbotrons_node->id     = 'jumbotrons';
-				$jumbotrons_node->title  = 'Jumbotrons';
-				$jumbotrons_node->parent = 'site-name';
-				$jumbotrons_node->href   = '/wp-admin/admin.php?page=syntric-jumbotrons';
-				$jumbotrons_node->group  = '';
-				$jumbotrons_node->meta   = [];
+				// Jumbotrons
 				$wp_admin_bar->add_node( $jumbotrons_node );
-				// Google Maps menu item
-				$google_maps_node         = new stdClass();
-				$google_maps_node->id     = 'google_maps';
-				$google_maps_node->title  = 'Google Maps';
-				$google_maps_node->parent = 'site-name';
-				$google_maps_node->href   = '/wp-admin/admin.php?page=syntric-google-maps';
-				$google_maps_node->group  = '';
-				$google_maps_node->meta   = [];
+				// Google Maps
 				$wp_admin_bar->add_node( $google_maps_node );
-				// Users menu item
-				$users_node         = new stdClass();
-				$users_node->id     = 'users';
-				$users_node->title  = 'Users';
-				$users_node->parent = 'site-name';
-				$users_node->href   = '/wp-admin/users.php';
-				$users_node->group  = '';
-				$users_node->meta   = [];
+				// Users
 				$wp_admin_bar->add_node( $users_node );
-				// Social Media menu item
-				$social_media_node         = new stdClass();
-				$social_media_node->id     = 'social_media';
-				$social_media_node->title  = 'Social Media';
-				$social_media_node->parent = 'site-name';
-				$social_media_node->href   = '/wp-admin/options-general.php?page=syntric-social-media';
-				$social_media_node->group  = '';
-				$social_media_node->meta   = [];
+				// Social Media
 				$wp_admin_bar->add_node( $social_media_node );
 				// Headers
 				/*$headers_node         = new stdClass();
@@ -366,47 +447,62 @@
 				$headers_node->meta   = [];
 				$wp_admin_bar->add_node( $headers_node );*/
 			}
-			if ( syn_current_user_can( 'administrator' ) ) {
-				// Comments menu item
-				/*$comments_node         = new stdClass();
-				$comments_node->id     = 'comments';
-				$comments_node->title  = 'Comments';
-				$comments_node->parent = 'site-name';
-				$comments_node->href   = '/wp-admin/edit-comments.php';
-				$comments_node->group  = '';
-				$comments_node->meta   = [];
-				$wp_admin_bar->add_node( $comments_node );*/
-				// Customizer menu item
-				$customizer_node         = new stdClass();
-				$customizer_node->id     = 'customizer';
-				$customizer_node->title  = 'Customizer';
-				$customizer_node->parent = 'site-name';
-				$customizer_node->href   = '/wp-admin/customize.php';
-				$customizer_node->group  = '';
-				$customizer_node->meta   = [];
-				$wp_admin_bar->add_node( $customizer_node );
-				// Widgets menu item
-				$widgets_node         = new stdClass();
-				$widgets_node->id     = 'widgets';
-				$widgets_node->title  = 'Widgets';
-				$widgets_node->parent = 'site-name';
-				$widgets_node->href   = '/wp-admin/widgets.php';
-				$widgets_node->group  = '';
-				$widgets_node->meta   = [];
-				$wp_admin_bar->add_node( $widgets_node );
-				// Sidebars menu item
-				$sidebars_node         = new stdClass();
-				$sidebars_node->id     = 'sidebars';
-				$sidebars_node->title  = 'Sidebars';
-				$sidebars_node->parent = 'site-name';
-				$sidebars_node->href   = '/wp-admin/options-general.php?page=syntric-sidebars-widgets';
-				$sidebars_node->group  = '';
-				$sidebars_node->meta   = [];
-				$wp_admin_bar->add_node( $sidebars_node );
-			} else {
-				$wp_admin_bar->remove_node( 'comments' );
+			if ( current_user_can( 'administrator' ) ) {
+				foreach ( $site_name_nodes as $site_name_node ) {
+					$wp_admin_bar->add_node( $site_name_node );
+				}
 			}
 		}
+		/**
+		 * New Contact menu
+		 */
+		///////////////////////////////////////////
+		// new-content nodes
+		///////////////////////////////////////////
+		// For now just removing the New Conent menu...
+		// reenable this!
+		$wp_admin_bar->remove_node( 'new-content' );
+		// new-content node already has nodes for Post, Media, Page and User - which are a bad order.  Remove them and add back with custom nodes
+		/*$new_content_nodes = [];
+		// Page
+		$new_page_node         = new stdClass();
+		$new_page_node->id     = 'new_page';
+		$new_page_node->title  = 'Page';
+		$new_page_node->parent = 'new-content';
+		$new_page_node->href   = '/wp-admin/post-new.php?post_type=page';
+		$new_page_node->group  = '';
+		$new_page_node->meta   = [];
+		$new_content_nodes[] = $new_page_node;
+		// Post
+		$new_post_node         = new stdClass();
+		$new_post_node->id     = 'new_post';
+		$new_post_node->title  = 'Post';
+		$new_post_node->parent = 'new-content';
+		$new_post_node->href   = '/wp-admin/post-new.php';
+		$new_post_node->group  = '';
+		$new_post_node->meta   = [];
+		$new_content_nodes[] = $new_post_node;
+		// Media
+		$new_media_node         = new stdClass();
+		$new_media_node->id     = 'new_media';
+		$new_media_node->title  = 'Media';
+		$new_media_node->parent = 'new-content';
+		$new_media_node->href   = '/wp-admin/media-new.php';
+		$new_media_node->group  = '';
+		$new_media_node->meta   = [];
+		$new_content_nodes[] = $new_media_node;
+		// User
+		$new_user_node         = new stdClass();
+		$new_user_node->id     = 'new_user';
+		$new_user_node->title  = 'User';
+		$new_user_node->parent = 'new-content';
+		$new_user_node->href   = '/wp-admin/user-new.php';
+		$new_user_node->group  = '';
+		$new_user_node->meta   = [];
+		$new_content_nodes[] = $new_user_node;
+		foreach ( $new_content_nodes as $new_content_node ) {
+			$wp_admin_bar->add_node( $new_content_nodes );
+		}*/
 		/**
 		 * Account menu
 		 */
@@ -419,16 +515,11 @@
 		$logout_node        = $wp_admin_bar->get_node( 'logout' );
 		$logout_node->title = str_replace( 'Log Out', 'Logout', $logout_node->title );
 		$wp_admin_bar->add_node( $logout_node );
-		/**
-		 * New content menu
-		 */
-		// For now just removing the New Conent menu...
-		$wp_admin_bar->remove_node( 'new-content' );
 		// Remove comments link for everyone except Syntric
 		/*if ( ! syn_current_user_can( 'syntric' ) ) {
 			$wp_admin_bar->remove_node( 'comments' );
 		}*/
-		// Move edit link to right side of admin bar
+		// Move edit/view link to right side of admin bar
 		if ( is_admin() ) {
 			$view_node = $wp_admin_bar->get_node( 'view' );
 			if ( $view_node ) {
@@ -593,16 +684,24 @@
 // add new dashboard widgets
 	add_action( 'wp_dashboard_setup', 'syn_dashboard_setup' );
 	function syn_dashboard_setup() {
+		// Pending posts and pages
 		$pending_pages_title = ( get_field( 'syn_user_is_teacher', 'user_' . get_current_user_id() ) ) ? 'My Pages Pending Approval' : 'Pages Pending Approval';
+		//$pending_pages_title = 'Pages Pending Approval';
 		add_meta_box( 'pending_pages_dashboard_widget', $pending_pages_title, 'syn_list_pendings', 'dashboard', 'normal', 'core', [ 'post_type' => 'page' ] );
 		$pending_posts_title = ( get_field( 'syn_user_is_teacher', 'user_' . get_current_user_id() ) ) ? 'My Posts Pending Approval' : 'Posts Pending Approval';
+		//$pending_posts_title = 'Posts Pending Approval';
 		add_meta_box( 'pending_posts_dashboard_widget', $pending_posts_title, 'syn_list_pendings', 'dashboard', 'normal', 'core', [ 'post_type' => 'post' ] );
+		// Recently published posts and pages
 		$recently_published_pages_title = ( get_field( 'syn_user_is_teacher', 'user_' . get_current_user_id() ) ) ? 'My Recently Published Pages' : 'Recently Published Pages';
-		add_meta_box( 'recently_published_pages_dashboard_widget', $recently_published_pages_title, 'syn_list_recently_published', 'dashboard', 'side', 'core', [ 'post_type' => 'page' ] );
+		//$recently_published_pages_title = 'Recently Published Pages';
+		add_meta_box( 'recently_published_pages_dashboard_widget', $recently_published_pages_title, 'syn_list_recently_published', 'dashboard', 'normal', 'core', [ 'post_type' => 'page' ] );
 		$recently_published_posts_title = ( get_field( 'syn_user_is_teacher', 'user_' . get_current_user_id() ) ) ? 'My Recently Published Posts' : 'Recently Published Posts';
-		add_meta_box( 'recently_published_posts_dashboard_widget', $recently_published_posts_title, 'syn_list_recently_published', 'dashboard', 'side', 'core', [ 'post_type' => 'post' ] );
+		//$recently_published_posts_title = 'Recently Published Posts';
+		add_meta_box( 'recently_published_posts_dashboard_widget', $recently_published_posts_title, 'syn_list_recently_published', 'dashboard', 'normal', 'core', [ 'post_type' => 'post' ] );
+		// Classes
 		if ( syn_organization_is_school() ) {
 			$class_list_title = ( get_field( 'syn_user_is_teacher', 'user_' . get_current_user_id() ) ) ? 'My Classes' : 'Teachers + Classes';
+			//$class_list_title = 'Teachers + Classes';
 			add_meta_box( 'class_list_dashboard_widget', $class_list_title, 'syn_list_classes', 'dashboard', 'normal', 'core' );
 		}
 	}
@@ -614,14 +713,14 @@
 
 	add_filter( 'screen_layout_columns', 'syn_screen_layout_columns' );
 	function syn_screen_layout_columns( $columns ) {
-		$columns[ 'dashboard' ] = 2;
+		$columns[ 'dashboard' ] = 1;
 
 		return $columns;
 	}
 
 	add_filter( 'get_user_option_screen_layout_dashboard', 'syn_layout_dashboard' );
 	function syn_layout_dashboard() {
-		return 2;
+		return 1;
 	}
 
 	/**
@@ -2025,14 +2124,14 @@
 		echo '<thead>';
 		echo '<tr>';
 		echo '<th scope="col">Title</th>';
-		echo '<th scope="col">Status</th>';
+		echo '<th class="status" scope="col">Status</th>';
 		if ( 'page' == $post_type ) {
-			echo '<th scope="col" nowrap="nowrap">Template</th>';
+			echo '<th class="template" scope="col" nowrap="nowrap">Template</th>';
 		} elseif ( 'post' == $post_type ) {
-			echo '<th scope="col" nowrap="nowrap">Category</th>';
+			echo '<th class="category" scope="col" nowrap="nowrap">Category</th>';
 		}
-		echo '<th scope="col">Author</th>';
-		echo '<th scope="col">Submitted</th>';
+		echo '<th class="owner" scope="col">Author</th>';
+		echo '<th class="submitted" scope="col">Submitted</th>';
 		echo '</tr>';
 		echo '</thead>';
 		echo '<tbody>';
@@ -2042,19 +2141,19 @@
 				echo '<td nowrap="nowrap">';
 				echo '<a href="/wp-admin/post.php?action=edit&post=' . $pending->ID . '">' . $pending->post_title . '</a>';
 				echo '</td>';
-				echo '<td class="status">' . $pending->post_status . '</td>';
+				echo '<td>' . $pending->post_status . '</td>';
 				if ( 'page' == $pending->post_type ) {
-					echo '<td class="template">' . syn_get_page_template( $pending->ID ) . '</td>';
+					echo '<td>' . syn_get_page_template( $pending->ID ) . '</td>';
 				} elseif ( 'post' == $pending->post_type ) {
 					$categories = get_the_category( $pending->ID );
 					$cats       = [];
 					foreach ( $categories as $category ) {
 						$cats[] = $category->name;
 					}
-					echo '<td class="category">' . implode( ', ', $cats ) . '</td>';
+					echo '<td>' . implode( ', ', $cats ) . '</td>';
 				}
-				echo '<td class="owner">' . get_the_author_meta( 'display_name', $pending->post_author ) . '</td>';
-				echo '<td class="submitted">' . syn_get_time_interval( $pending->post_date ) . '</td>';
+				echo '<td>' . get_the_author_meta( 'display_name', $pending->post_author ) . '</td>';
+				echo '<td>' . syn_get_time_interval( $pending->post_date ) . ' ago</td>';
 				echo '</tr>';
 			}
 		} else {
@@ -2079,42 +2178,36 @@
 		echo '<thead>';
 		echo '<tr>';
 		echo '<th scope="col">Title</th>';
-		echo '<th scope="col">Status</th>';
+		echo '<th class="status" scope="col">Status</th>';
 		if ( 'page' == $post_type ) {
-			echo '<th scope="col" nowrap="nowrap">Template</th>';
+			echo '<th class="template" scope="col" nowrap="nowrap">Template</th>';
 		} elseif ( 'post' == $post_type ) {
-			echo '<th scope="col" nowrap="nowrap">Category</th>';
+			echo '<th class="category" scope="col" nowrap="nowrap">Category</th>';
 		}
-		echo '<th scope="col">Author</th>';
-		echo '<th scope="col">Published</th>';
+		echo '<th class="owner" scope="col">Author</th>';
+		echo '<th class="published" scope="col">Published</th>';
 		echo '</tr>';
 		echo '</thead>';
 		echo '<tbody>';
 		foreach ( $recents as $recent ) {
-			//$pub_since = syn_get_time_interval( $recent->post_date );
 			echo '<tr>';
 			echo '<td>';
-			//echo syn_get_post_breadcrumbs( $recent->ID );
-			//echo $recent->post_title;
-			//echo '<div class="edit-view-links">';
 			echo '<a href="/wp-admin/post.php?action=edit&post=' . $recent->ID . '">' . $recent->post_title . '</a>';
-			//echo ' | <a href="' . get_permalink( $recent->ID ) . '">' . 'View' . '</a>';
-			//echo '</div>';
 			echo '</td>';
 			$status = ( 'publish' == $recent->post_status ) ? 'Published' : $recent->post_status;
-			echo '<td class="status">' . $status . '</td>';
+			echo '<td>' . $status . '</td>';
 			if ( 'page' == $post_type ) {
-				echo '<td class="template">' . syn_get_page_template( $recent->ID ) . '</td>';
+				echo '<td>' . syn_get_page_template( $recent->ID ) . '</td>';
 			} elseif ( 'post' == $post_type ) {
 				$categories = get_the_category( $recent->ID );
 				$cats       = [];
 				foreach ( $categories as $category ) {
 					$cats[] = $category->name;
 				}
-				echo '<td class="category">' . implode( ', ', $cats ) . '</td>';
+				echo '<td>' . implode( ', ', $cats ) . '</td>';
 			}
-			echo '<td class="owner">' . get_the_author_meta( 'display_name', $recent->post_author ) . '</td>';
-			echo '<td class="published">' . syn_get_time_interval( $recent->post_date ) . '</td>';
+			echo '<td>' . get_the_author_meta( 'display_name', $recent->post_author ) . '</td>';
+			echo '<td>' . syn_get_time_interval( $recent->post_date ) . ' ago</td>';
 			echo '</tr>';
 		}
 		echo '</tbody>';
@@ -2144,15 +2237,15 @@
 			echo '<table class="admin-list">';
 			echo '<thead>';
 			echo '<tr>';
-			echo '<th scope="col">Term</th>';
-			echo '<th scope="col">Class</th>';
+			echo '<th class="term" scope="col">Term</th>';
+			echo '<th class="class" scope="col">Class</th>';
 			if ( $periods_active ) {
-				echo '<th scope="col">Period</th>';
+				echo '<th class="period" scope="col">Period</th>';
 			}
 			if ( $rooms_active ) {
-				echo '<th scope="col">Room</th>';
+				echo '<th class="room" scope="col">Room</th>';
 			}
-			echo '<th scope="col">Status</th>';
+			echo '<th class="status" scope="col">Status</th>';
 			echo '</tr>';
 			echo '</thead>';
 			$current_teacher = 0;
@@ -2184,7 +2277,7 @@
 						$period     = ( $periods_active && isset( $class[ 'period' ] ) ) ? $class[ 'period' ] : '';
 						$room       = ( $rooms_active && isset( $class[ 'room' ] ) ) ? $class[ 'room' ] : '';
 						echo '<tr>';
-						echo '<td class="term">' . $class[ 'term' ] . '</td>';
+						echo '<td>' . $class[ 'term' ] . '</td>';
 						echo '<td>';
 						if ( $class_page ) :
 							echo '<a href="/wp-admin/post.php?action=edit&post=' . $class_page->ID . '">' . $class_page->post_title . '</a>';

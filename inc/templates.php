@@ -39,8 +39,9 @@
 		 * @return string
 		 */
 		function syn_custom_excerpt_more( $more ) {
-			//return '<a href="' . esc_url( get_the_permalink( get_the_ID() ) ) . '" class="more-link">read more</a>';
-			return '';
+			//return '<a href="' . esc_url( get_the_permalink( get_the_ID() ) ) . '" class="read-more-link">Read More</a>';
+			//return ' <span class="read-more-link">Read More</span>';
+			return '...';
 		}
 	}
 	/**
@@ -53,7 +54,7 @@
 	add_filter( 'excerpt_length', 'syn_excerpt_length', 99 );
 	if ( ! function_exists( 'syn_excerpt_length' ) ) {
 		function syn_excerpt_length() {
-			return 18;
+			return 30;
 		}
 	}
 //
@@ -94,11 +95,11 @@
 			if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 				echo '<span class="comments-link">';
 				/* translators: %s: post title */
-				comments_popup_link( sprintf( wp_kses( __( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'syntric' ), [ 'span' => [ 'class' => [] ] ] ), get_the_title() ) );
+				comments_popup_link( sprintf( wp_kses( __( 'Leave a Comment<span class="sr-only"> on %s</span>', 'syntric' ), [ 'span' => [ 'class' => [] ] ] ), get_the_title() ) );
 				echo '</span>';
 			}
 			edit_post_link( sprintf( /* translators: %s: Name of current post */
-				esc_html__( 'Edit %s', 'syntric' ), the_title( '<span class="screen-reader-text">"', '"</span>', false ) ), '<span class="edit-link">', '</span>' );
+				esc_html__( 'Edit %s', 'syntric' ), the_title( '<span class="sr-only">"', '"</span>', false ) ), '<span class="edit-link">', '</span>' );
 		}
 	endif;
 //
@@ -141,16 +142,16 @@
 
 	//add_filter( 'gallery_style', 'syn_gallery_style' );
 	function syn_gallery_style( $gallery_style ) {
-		slog( '//////////////////////////////////////////////////////// gallery_style filter' );
-		slog( $gallery_style );
+		//slog( '//////////////////////////////////////////////////////// gallery_style filter' );
+		//slog( $gallery_style );
 
 		return $gallery_style;
 	}
 
 	//add_filter( 'use_default_gallery_style', 'syn_use_default_gallery_style', 10 );
 	function syn_use_default_gallery_style( $print ) {
-		slog( '//////////////////////////////////////////////////////// use_default_gallery_style filter' );
-		slog( $print );
+		//slog( '//////////////////////////////////////////////////////// use_default_gallery_style filter' );
+		//slog( $print );
 
 		return $print;
 	}
@@ -158,10 +159,10 @@
 	// fires when get_post_gallery() is called
 	//add_filter( 'get_post_gallery', 'syn_get_post_gallery', 10, 3 );
 	function syn_get_post_gallery( $gallery, $post, $galleries ) {
-		slog( '//////////////////////////////////////////////////////// get_post_gallery filter' );
+		/*slog( '//////////////////////////////////////////////////////// get_post_gallery filter' );
 		slog( $gallery );
 		slog( $post );
-		slog( $galleries );
+		slog( $galleries );*/
 
 		return $gallery;
 	}
@@ -169,8 +170,8 @@
 // Alter what is returned by the gallery shortcode
 	add_filter( 'post_gallery', 'syn_post_gallery', 10, 3 );
 	function syn_post_gallery( $output, $atts, $instance ) {
-		slog($atts);
-		slog($instance);
+		//slog($atts);
+		//slog($instance);
 		$img_ids = ( ! is_array( $atts[ 'ids' ] ) ) ? explode( ',', $atts[ 'ids' ] ) : $atts[ 'ids' ];
 		//$size    = ( isset( $atts[ 'size' ] ) ) ? $atts[ 'size' ] : syn_guess_gallery_image_size( $atts );
 		$size    = syn_guess_gallery_image_size( $atts );

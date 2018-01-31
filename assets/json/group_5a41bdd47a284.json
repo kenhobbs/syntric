@@ -1,11 +1,11 @@
 {
     "key": "group_5a41bdd47a284",
-    "title": "Widget: YouTube",
+    "title": "Widget: Video",
     "fields": [
         {
             "key": "field_5a41bdd4b978e",
             "label": "Dynamic:",
-            "name": "syn_youtube_widget_dynamic",
+            "name": "syn_video_widget_dynamic",
             "type": "radio",
             "instructions": "",
             "required": 1,
@@ -29,7 +29,7 @@
         {
             "key": "field_5a41bdd4b9b70",
             "label": "Title:",
-            "name": "syn_youtube_widget_title",
+            "name": "syn_video_widget_title",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -54,11 +54,36 @@
             "maxlength": ""
         },
         {
+            "key": "field_5a6f8a0315963",
+            "label": "Video Host:",
+            "name": "syn_video_widget_host",
+            "type": "select",
+            "instructions": "This widget works with YouTube and Vimeo hosted videos.",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "YouTube": "YouTube",
+                "Vimeo": "Vimeo"
+            },
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
             "key": "field_5a641ff5d747b",
-            "label": "Video ID",
-            "name": "syn_youtube_widget_video_id",
+            "label": "YouTube Video ID:",
+            "name": "syn_video_widget_youtube_id",
             "type": "text",
-            "instructions": "Include only the Video ID, nothing else.  Video ID is a string of letters between 10-15 characters long.  For example, the video at https:\/\/www.youtube.com\/watch?v=TxyzlLNopABC has a Video ID of TxyzlLNopABC.",
+            "instructions": "Enter the YouTube Video ID which is a string of characters in the URL of the video hosted on YouTube.  For example, the Video ID of the video at https:\/\/youtube.com\/XwwXYyyYWxxW is XwwXYyyYWxxW.",
             "required": 1,
             "conditional_logic": [
                 [
@@ -66,6 +91,43 @@
                         "field": "field_5a41bdd4b978e",
                         "operator": "==",
                         "value": "0"
+                    },
+                    {
+                        "field": "field_5a6f8a0315963",
+                        "operator": "==",
+                        "value": "YouTube"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": 15
+        },
+        {
+            "key": "field_5a6f8c1d15965",
+            "label": "Vimeo Video ID:",
+            "name": "syn_video_widget_vimeo_id",
+            "type": "text",
+            "instructions": "Enter the Vimeo Video ID which is a string of characters in the URL of the video hosted on Vimeo.  For example, the Video ID of the video at https:\/\/vimeo.com\/555555555 is 555555555.",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5a41bdd4b978e",
+                        "operator": "==",
+                        "value": "0"
+                    },
+                    {
+                        "field": "field_5a6f8a0315963",
+                        "operator": "==",
+                        "value": "Vimeo"
                     }
                 ]
             ],
@@ -86,7 +148,7 @@
             {
                 "param": "widget",
                 "operator": "==",
-                "value": "syn-youtube-widget"
+                "value": "syn-video-widget"
             }
         ]
     ],
@@ -114,5 +176,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1516595204
+    "modified": 1517290641
 }

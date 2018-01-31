@@ -78,7 +78,7 @@
 			/**
 			 * Add support for post thumbnails (Featured Image) in posts (only)
 			 */
-			add_theme_support( 'post-thumbnails' );
+			//add_theme_support( 'post-thumbnails' );
 			add_theme_support( 'post-thumbnails', array( 'post' ) );
 			/**
 			 * Set default Post Thumbnail size
@@ -185,10 +185,10 @@
 	add_filter( 'send_password_change_email', 'syn_send_change_email' );
 	function syn_send_change_email() {
 		if ( ( ! syn_is_dev() && ! syn_is_staging() ) || syn_current_user_can( 'syntric' ) ) {
-			slog( 'email will be sent');
+			//slog( 'email will be sent');
 			return true;
 		}
-		slog( 'email will not be sent' );
+		//slog( 'email will not be sent' );
 		return false;
 	}
 
@@ -203,10 +203,10 @@
 	 */
 	add_filter( 'email_change_email', 'syn_email_change_email', 10, 3 );
 	function syn_email_change_email( $email, $user, $userdata ) {
-		slog( 'syn_email_change_email triggered' );
+		/*slog( 'syn_email_change_email triggered' );
 		slog( $email );
 		slog( $user );
-		slog( $userdata );
+		slog( $userdata );*/
 		if ( syn_is_dev() || syn_is_staging() ) {
 			$syntric_user = syn_syntric_user();
 			$to           = $syntric_user->user_email;
@@ -220,10 +220,10 @@
 
 	add_filter( 'password_change_email', 'syn_password_change_email', 10, 3 );
 	function syn_password_change_email( $email, $user, $userdata ) {
-		slog( 'syn_password_change_email triggered' );
+		/*slog( 'syn_password_change_email triggered' );
 		slog( $email );
 		slog( $user );
-		slog( $userdata );
+		slog( $userdata );*/
 		if ( syn_is_dev() || syn_is_staging() ) {
 			$syntric_user = syn_syntric_user();
 			$to           = $syntric_user->user_email;

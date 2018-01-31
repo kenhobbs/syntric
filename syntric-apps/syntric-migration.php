@@ -33,6 +33,9 @@
 			if( isset( $run_migration_task ) && $run_migration_task ) {
 				syn_migration_run_next( $post_id );
 			}
+			/**
+			 * Import (local) links in an HTML list into a page's Attachments
+			 */
 			$run_import_attachments_html = get_field( 'syn_migration_run_import_attachments_html', $post_id );
 			if( isset( $run_import_attachments_html ) && $run_import_attachments_html ) {
 				$attachments_html = get_field( 'syn_migration_attachments_html', $post_id );

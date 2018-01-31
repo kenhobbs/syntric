@@ -836,7 +836,7 @@
                 "144": "Jeanann Carnes \/ Some Title",
                 "139": "Cathleen Chapman \/ Some Title",
                 "153": "Leticia Contreras \/ Some Title",
-                "188": "Syntric Contributor \/ Contributor",
+                "188": "Contributor Contributor \/ Contributor",
                 "145": "Janette Cortes \/ Some Title",
                 "154": "Laurie Craig \/ Some Title",
                 "183": "Yarissa Cruz \/ Some Title",
@@ -847,7 +847,7 @@
                 "171": "Ruth Gligorea \/ Some Title",
                 "162": "Monica Gwin \/ Some Title",
                 "1": "Kenneth Hobbs \/ Partner",
-                "149": "Kenny Hobbs, Jr \/ Teacher",
+                "149": "Kenneth Hobbs \/ Teacher",
                 "186": "Ken Hobbs \/ Teacher",
                 "180": "Teresa Hoff \/ Some Title",
                 "168": "Patricia Jefferson \/ Some Title",
@@ -875,7 +875,7 @@
                 "134": "Amanda Sanchez \/ Some Title",
                 "177": "Sarah Shank \/ Some Title",
                 "152": "Kimberly Simmons \/ Some Title",
-                "187": "Syntric Subscriber \/ Subscriber",
+                "187": "Subscriber Subscriber \/ Subscriber",
                 "178": "Susan Thompson \/ Some Title",
                 "141": "Darla Towner \/ Some Title",
                 "135": "Amy Trimble \/ Some Title",
@@ -1186,8 +1186,8 @@
                 ]
             ],
             "wrapper": {
-                "width": "25",
-                "class": "",
+                "width": "",
+                "class": "hidden",
                 "id": ""
             },
             "message": "Generated automatically",
@@ -1211,7 +1211,7 @@
                 ]
             ],
             "wrapper": {
-                "width": "25",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -1483,7 +1483,7 @@
                         "144": "Jeanann Carnes \/ Some Title",
                         "139": "Cathleen Chapman \/ Some Title",
                         "153": "Leticia Contreras \/ Some Title",
-                        "188": "Syntric Contributor \/ Contributor",
+                        "188": "Contributor Contributor \/ Contributor",
                         "145": "Janette Cortes \/ Some Title",
                         "154": "Laurie Craig \/ Some Title",
                         "183": "Yarissa Cruz \/ Some Title",
@@ -1494,7 +1494,7 @@
                         "171": "Ruth Gligorea \/ Some Title",
                         "162": "Monica Gwin \/ Some Title",
                         "1": "Kenneth Hobbs \/ Partner",
-                        "149": "Kenny Hobbs, Jr \/ Teacher",
+                        "149": "Kenneth Hobbs \/ Teacher",
                         "186": "Ken Hobbs \/ Teacher",
                         "180": "Teresa Hoff \/ Some Title",
                         "168": "Patricia Jefferson \/ Some Title",
@@ -1522,7 +1522,7 @@
                         "134": "Amanda Sanchez \/ Some Title",
                         "177": "Sarah Shank \/ Some Title",
                         "152": "Kimberly Simmons \/ Some Title",
-                        "187": "Syntric Subscriber \/ Subscriber",
+                        "187": "Subscriber Subscriber \/ Subscriber",
                         "178": "Susan Thompson \/ Some Title",
                         "141": "Darla Towner \/ Some Title",
                         "135": "Amy Trimble \/ Some Title",
@@ -1678,7 +1678,7 @@
         },
         {
             "key": "field_5a41c15b2a64c",
-            "label": "YouTube",
+            "label": "Video",
             "name": "",
             "type": "tab",
             "instructions": "",
@@ -1694,8 +1694,8 @@
         },
         {
             "key": "field_5a41c16e2a64d",
-            "label": "Activate YouTube",
-            "name": "syn_youtube_active",
+            "label": "Activate Video",
+            "name": "syn_video_active",
             "type": "true_false",
             "instructions": "",
             "required": 0,
@@ -1714,7 +1714,7 @@
         {
             "key": "field_5a41c24b2a64f",
             "label": "Title",
-            "name": "syn_youtube_title",
+            "name": "syn_video_title",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -1739,11 +1739,11 @@
             "maxlength": ""
         },
         {
-            "key": "field_5a41da62e0094",
-            "label": "Video ID",
-            "name": "syn_youtube_video_id",
-            "type": "text",
-            "instructions": "Include only the Video ID, nothing else.  Video ID is a string of letters between 10-15 characters long.  For example, the video at https:\/\/www.youtube.com\/watch?v=TxyzlLNopABC has a Video ID of TxyzlLNopABC.",
+            "key": "field_5a6f8ec21ff93",
+            "label": "Video Host",
+            "name": "syn_video_host",
+            "type": "select",
+            "instructions": "This widget works with YouTube and Vimeo hosted videos.",
             "required": 1,
             "conditional_logic": [
                 [
@@ -1751,6 +1751,76 @@
                         "field": "field_5a41c16e2a64d",
                         "operator": "==",
                         "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "YouTube": "YouTube",
+                "Vimeo": "Vimeo"
+            },
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5a41da62e0094",
+            "label": "YouTube Video ID",
+            "name": "syn_video_youtube_id",
+            "type": "text",
+            "instructions": "Enter the YouTube Video ID which is a string of characters in the URL of the video hosted on YouTube.  For example, the Video ID of the video at https:\/\/youtube.com\/XwwXYyyYWxxW is XwwXYyyYWxxW.",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5a41c16e2a64d",
+                        "operator": "==",
+                        "value": "1"
+                    },
+                    {
+                        "field": "field_5a6f8ec21ff93",
+                        "operator": "==",
+                        "value": "YouTube"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": 15
+        },
+        {
+            "key": "field_5a6f8ea21ff92",
+            "label": "Vimeo Video ID",
+            "name": "syn_video_vimeo_id",
+            "type": "text",
+            "instructions": "Enter the Vimeo Video ID which is a string of characters in the URL of the video hosted on Vimeo.  For example, the Video ID of the video at https:\/\/vimeo.com\/555555555 is 555555555.",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5a41c16e2a64d",
+                        "operator": "==",
+                        "value": "1"
+                    },
+                    {
+                        "field": "field_5a6f8ec21ff93",
+                        "operator": "==",
+                        "value": "Vimeo"
                     }
                 ]
             ],
@@ -1788,5 +1858,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1516984364
+    "modified": 1517408927
 }

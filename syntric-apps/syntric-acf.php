@@ -176,25 +176,41 @@
 	}
 
 	/**
-	 * Move content rich text editor into tab
+	 * Move content rich text editor and teacher classes into tabs
 	 */
-//add_action( 'acf/input/admin_head', 'syn_move_content_editor' );
+	//add_action( 'acf/input/admin_head', 'syn_move_content_editor' );
 	function syn_move_content_editor() {
 		?>
 		<script type="text/javascript">
 			(function ($) {
-
 				$(document).ready(function () {
-					$('.acf-field-59c596b2b4647 .acf-input').append($('#postdivrich'));
+					$('.acf-field-5a713f5d2a070 .acf-input').append($('#postdivrich'));
+					$('.acf-field-5a7148a676140 .acf-input').append($('.acf-field-59c5b229f02a9'));
 
 				});
-
 			})(jQuery);
-		</script>    <!--<style type="text/css">
-		.acf-field #wp-content-editor-tools {
-			background: transparent;
-			padding-top: 0;
-		}
-	</style>-->
+		</script>
+		<style type="text/css">
+			#postdivrich {
+				min-height: 800px;
+			}
+			#postdivrich .wp-editor-wrap {
+				min-height : 750px;
+			}
+			.acf-field #wp-content-editor-tools {
+				background: transparent;
+				padding-top: 0;
+			}
+			.acf-field-59c5b229f02a9 {
+				margin: 0;
+			}
+			.acf-field-59c5b229f02a9 > .button.field-repeater-toggle,
+			.acf-field-59c5b229f02a9 > .acf-label {
+				display : none;
+			}
+			#acf-group_59c5b38407016 {
+				display : none;
+			}
+		</style>
 		<?php
 	}

@@ -25,7 +25,7 @@
 						<?php
 							//slog($post);
 							if ( get_queried_object() instanceof WP_User ) {
-								slog( get_queried_object() );
+								//slog( get_queried_object() );
 								$author = get_queried_object();
 							}
 							//$author_name = isset($_GET['author_name']) ? $_GET['author_name'] : '';
@@ -33,7 +33,7 @@
 							//$curauth = ( ! empty($author_name) ) ? get_user_by('slug', $author_name) : '';
 							//slog($curauth);
 							$author_comments = get_comments( [ 'author__in' => $author->ID, ] );
-							slog( $author_comments );
+							//slog( $author_comments );
 						?>
 					</pre>
 					<?php /*if ( have_posts() ) : */ ?><!--

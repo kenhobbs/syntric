@@ -83,7 +83,7 @@
 							foreach ( $facebook_posts->data as $facebook_post ) :
 								if ( property_exists( $facebook_post, 'message' ) ) {
 									echo $tab . $tab . '<a href = "' . $facebook_post->permalink_url . '" class="list-group-item" target = "_blank">' . $lb;
-									if ( $include_image ) :
+									if ( $include_image && property_exists( $facebook_post, 'picture' ) ) :
 										echo $tab . $tab . $tab . $tab . '<div class="list-group-item-feature">' . $lb;
 										echo $tab . $tab . $tab . $tab . $tab . '<img src = "' . $facebook_post->picture . '" class="fb-image" alt="Facebook post photo" aria-hidden="true">' . $lb;
 										echo $tab . $tab . $tab . $tab . '</div>' . $lb;
@@ -92,8 +92,9 @@
 									$publish_date = date_format( $publish_date, 'F j, Y' );
 									echo $tab . $tab . $tab . $tab . '<div class="list-group-item-content">' . $lb;
 									echo $tab . $tab . $tab . $tab . $tab . '<div class="fb-date small">' . $publish_date . '</div> ' . $lb;
-									$more = ( 250 < strlen( $facebook_post->message ) ) ? '<div class="more-link">Read More </div> ' . $lb : '';
-									echo $tab . $tab . $tab . $tab . $tab . '<p class="fb-message small">' . substr( $facebook_post->message, 0, 150 ) . $more . '</p> ' . $lb;
+									//$more = ( 250 < strlen( $facebook_post->message ) ) ? '<span class="read-more-link">More</span>' . $lb : '';
+									$more = ( 300 < strlen( $facebook_post->message ) ) ? '...<span class="read-more-link">More</span>' . $lb : '';
+									echo $tab . $tab . $tab . $tab . $tab . '<p class="fb-message small">' . substr( $facebook_post->message, 0, 300 ) . $more . '</p> ' . $lb;
 									echo $tab . $tab . $tab . $tab . '</div>' . $lb;
 									echo $tab . $tab . '</a>' . $lb;
 								}

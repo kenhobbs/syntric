@@ -221,7 +221,7 @@ gulp.task('compileAdminJS', function () {
 	.pipe(concat(theme + '-admin.js'))
 	.pipe(gulp.dest(dirs.dist_admin_js))
 	.pipe(plumber())
-	.pipe(rename(theme + '-admin.min'))
+	.pipe(rename(theme + '-admin.min.js'))
 	.pipe(uglify())
 	.pipe(gulp.dest(dirs.dist_admin_js));
 });

@@ -516,11 +516,13 @@
                 "id": ""
             },
             "choices": {
+                "WP_Widget_Pages": "Pages",
                 "WP_Widget_Media_Audio": "Audio",
                 "WP_Widget_Media_Image": "Image",
                 "WP_Widget_Media_Gallery": "Gallery",
                 "WP_Widget_Search": "Search",
                 "WP_Widget_Text": "Text",
+                "WP_Nav_Menu_Widget": "Navigation Menu",
                 "Syntric_Attachments_Widget": "Attachments",
                 "Syntric_Calendars_Menu_Widget": "Calendars Menu",
                 "Syntric_Categories_Menu_Widget": "Categories Menu",
@@ -568,7 +570,8 @@
                 "Syntric_Recent_Posts_Widget": "Recent Posts",
                 "Syntric_Roster_Widget": "Roster",
                 "Syntric_Upcoming_Events_Widget": "Upcoming Events",
-                "Syntric_YouTube_Widget": "YouTube"
+                "Syntric_Video_Widget": "Video",
+                "Syntric_YouTube_Widget": "YouTube (do not use, going away)"
             },
             "allow_custom": 0,
             "save_custom": 0,
@@ -584,7 +587,7 @@
                 "Syntric_Recent_Posts_Widget",
                 "Syntric_Roster_Widget",
                 "Syntric_Upcoming_Events_Widget",
-                "Syntric_YouTube_Widget"
+                "Syntric_Video_Widget"
             ],
             "layout": "vertical",
             "toggle": 0,
@@ -608,5 +611,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1516626255
+    "modified": 1517290298
 }
