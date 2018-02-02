@@ -293,95 +293,95 @@
 
 // import users from a CSV upload
 	function syn_import_users() {
-		$run_users_import = get_field( 'syn_data_run_users_import', 'option' );
-		if ( $run_users_import ) {
-			$console_output  = [ date( 'c' ) ];
-			$users_file      = get_field( 'syn_data_users_file', 'option' );
-			$upload_dir      = wp_get_upload_dir();
-			$users_file_path = str_replace( $upload_dir[ 'url' ], $upload_dir[ 'path' ], $users_file[ 'url' ] );
-			$file            = fopen( $users_file_path, 'r' );
-			if ( $file ) {
-				$header_row  = get_field( 'syn_data_users_file_has_header_row', 'option' );
-				$row_counter = 0;
-				while( ! feof( $file ) ) {
-					$user_row = fgetcsv( $file );
-					if ( 0 == $row_counter && $header_row ) {
-						$console_output[] = 'Skipped header row';
-						$row_counter ++;
-						continue;
-					}
-					// ID is required
-					if ( ! isset( $user_row[ 0 ] ) ) {
-						$console_output[] = 'ID is missing in row ' . $row_counter . ', skipping row';
-						$row_counter ++;
-						continue;
-					}
-					// Email is required
-					if ( ! isset( $user_row[ 1 ] ) || empty( $user_row[ 1 ] ) ) {
-						$console_output[] = 'Email is missing in row ' . $row_counter . ', skipping row';
-						$row_counter ++;
-						continue;
-					}
-					// Role is required
-					if ( ! isset( $user_row[ 2 ] ) || empty( $user_row[ 2 ] ) ) {
-						$console_output[] = 'Role is missing in row ' . $row_counter . ', skipping row';
-						$row_counter ++;
-						continue;
-					}
-					// First Name is required
-					if ( ! isset( $user_row[ 4 ] ) || empty( $user_row[ 4 ] ) ) {
-						$console_output[] = 'First Name is missing in row ' . $row_counter . ', skipping row';
-						$row_counter ++;
-						continue;
-					}
-					// Last Name is required
-					if ( ! isset( $user_row[ 5 ] ) || empty( $user_row[ 5 ] ) ) {
-						$console_output[] = 'Last Name is missing in row ' . $row_counter . ', skipping row';
-						$row_counter ++;
-						continue;
-					}
-					$user_id         = $user_row[ 0 ];
-					$user_email      = $user_row[ 1 ];
-					$user_role       = $user_row[ 2 ];
-					$user_prefix     = $user_row[ 3 ];
-					//$user_prefix     = str_replace( '.', '', $user_prefix );
-					$user_firstname  = $user_row[ 4 ];
-					$user_lastname   = $user_row[ 5 ];
-					$user_title      = ( isset( $user_row[ 6 ] ) && ! empty( $user_row[ 6 ] ) ) ? $user_row[ 5 ] : false;
-					$user_phone      = ( isset( $user_row[ 7 ] ) && ! empty( $user_row[ 7 ] ) ) ? $user_row[ 6 ] : false;
-					$user_extension  = ( isset( $user_row[ 8 ] ) && ! empty( $user_row[ 8 ] ) ) ? $user_row[ 7 ] : false;
-					$user_is_teacher = ( isset( $user_row[ 9 ] ) && ! empty( $user_row[ 9 ] ) ) ? $user_row[ 8 ] : false;
-					$user_role       = ( $user_is_teacher && 'subscriber' == $user_role ) ? 'author' : $user_role;
-					$userdata        = [ 'user_nicename' => $user_firstname . ' ' . $user_lastname, 'user_email' => $user_email, 'display_name' => $user_firstname . ' ' . $user_lastname,
-					                     'nickname'      => $user_firstname, 'first_name' => $user_firstname, 'last_name' => $user_lastname, 'role' => $user_role, ];
-					if ( 0 < $user_id ) {
-						$userdata[ 'ID' ] = $user_id;
-						$user_id          = wp_update_user( $userdata );
-					} else {
-						$userdata[ 'user_login' ] = $user_email;
-						$userdata[ 'user_pass' ]  = syn_generate_password();
-						$user_id                  = wp_insert_user( $userdata );
-					}
-					if ( is_int( $user_id ) ) {
-						update_field( 'syn_user_prefix', $user_prefix, 'user_' . $user_id );
-						update_field( 'syn_user_title', $user_title, 'user_' . $user_id );
-						update_field( 'syn_user_phone', $user_phone, 'user_' . $user_id );
-						update_field( 'syn_user_extension', $user_extension, 'user_' . $user_id );
-						update_field( 'syn_user_is_teacher', $user_is_teacher, 'user_' . $user_id );
-						if ( $user_is_teacher ) {
-							$teacher_page_id = syn_save_teacher_page( $user_id );
-							update_field( 'syn_user_page', $teacher_page_id, 'user_' . $user_id );
-						} else {
-							syn_trash_teacher_page( $user_id );
-							update_field( 'syn_user_page', null, 'user_' . $user_id );
-						}
-					}
+		//$run_users_import = get_field( 'syn_data_run_users_import', 'option' );
+		//if ( $run_users_import ) {
+		$console_output  = [ date( 'c' ) ];
+		$users_file      = get_field( 'syn_data_users_file', 'option' );
+		$upload_dir      = wp_get_upload_dir();
+		$users_file_path = str_replace( $upload_dir[ 'url' ], $upload_dir[ 'path' ], $users_file[ 'url' ] );
+		$file            = fopen( $users_file_path, 'r' );
+		if ( $file ) {
+			$header_row  = get_field( 'syn_data_users_file_has_header_row', 'option' );
+			$row_counter = 0;
+			while( ! feof( $file ) ) {
+				$user_row = fgetcsv( $file );
+				if ( 0 == $row_counter && $header_row ) {
+					$console_output[] = 'Skipped header row';
 					$row_counter ++;
+					continue;
 				}
+				// ID is required
+				if ( ! isset( $user_row[ 0 ] ) ) {
+					$console_output[] = 'ID is missing in row ' . $row_counter . ', skipping row';
+					$row_counter ++;
+					continue;
+				}
+				// Email is required
+				if ( ! isset( $user_row[ 1 ] ) || empty( $user_row[ 1 ] ) ) {
+					$console_output[] = 'Email is missing in row ' . $row_counter . ', skipping row';
+					$row_counter ++;
+					continue;
+				}
+				// Role is required
+				if ( ! isset( $user_row[ 2 ] ) || empty( $user_row[ 2 ] ) ) {
+					$console_output[] = 'Role is missing in row ' . $row_counter . ', skipping row';
+					$row_counter ++;
+					continue;
+				}
+				// First Name is required
+				if ( ! isset( $user_row[ 4 ] ) || empty( $user_row[ 4 ] ) ) {
+					$console_output[] = 'First Name is missing in row ' . $row_counter . ', skipping row';
+					$row_counter ++;
+					continue;
+				}
+				// Last Name is required
+				if ( ! isset( $user_row[ 5 ] ) || empty( $user_row[ 5 ] ) ) {
+					$console_output[] = 'Last Name is missing in row ' . $row_counter . ', skipping row';
+					$row_counter ++;
+					continue;
+				}
+				$user_id     = $user_row[ 0 ];
+				$user_email  = $user_row[ 1 ];
+				$user_role   = $user_row[ 2 ];
+				$user_prefix = $user_row[ 3 ];
+				//$user_prefix     = str_replace( '.', '', $user_prefix );
+				$user_firstname  = $user_row[ 4 ];
+				$user_lastname   = $user_row[ 5 ];
+				$user_title      = ( isset( $user_row[ 6 ] ) && ! empty( $user_row[ 6 ] ) ) ? $user_row[ 6 ] : false;
+				$user_phone      = ( isset( $user_row[ 7 ] ) && ! empty( $user_row[ 7 ] ) ) ? $user_row[ 7 ] : false;
+				$user_extension  = ( isset( $user_row[ 8 ] ) && ! empty( $user_row[ 8 ] ) ) ? $user_row[ 8 ] : false;
+				$user_is_teacher = ( isset( $user_row[ 9 ] ) && ! empty( $user_row[ 9 ] ) ) ? $user_row[ 9 ] : false;
+				$user_role       = ( $user_is_teacher && ( 'subscriber' == $user_role || 'contributor' == $user_role ) ) ? 'author' : $user_role;
+				$userdata        = [ 'user_nicename' => $user_firstname . ' ' . $user_lastname, 'user_email' => $user_email, 'display_name' => $user_firstname . ' ' . $user_lastname,
+				                     'nickname'      => $user_firstname, 'first_name' => $user_firstname, 'last_name' => $user_lastname, 'role' => $user_role, ];
+				if ( 0 < $user_id ) {
+					$userdata[ 'ID' ] = $user_id;
+					$user_id          = wp_update_user( $userdata );
+				} else {
+					$userdata[ 'user_login' ] = $user_email;
+					$userdata[ 'user_pass' ]  = syn_generate_password();
+					$user_id                  = wp_insert_user( $userdata );
+				}
+				if ( is_int( $user_id ) ) {
+					update_field( 'syn_user_prefix', $user_prefix, 'user_' . $user_id );
+					update_field( 'syn_user_title', str_replace( '|', ',', $user_title), 'user_' . $user_id );
+					update_field( 'syn_user_phone', $user_phone, 'user_' . $user_id );
+					update_field( 'syn_user_extension', $user_extension, 'user_' . $user_id );
+					update_field( 'syn_user_is_teacher', $user_is_teacher, 'user_' . $user_id );
+					if ( $user_is_teacher ) {
+						$teacher_page_id = syn_save_teacher_page( $user_id );
+						update_field( 'syn_user_page', $teacher_page_id, 'user_' . $user_id );
+					} else {
+						syn_trash_teacher_page( $user_id );
+						update_field( 'syn_user_page', null, 'user_' . $user_id );
+					}
+				}
+				$row_counter ++;
 			}
-			fclose( $file );
-			update_field( 'syn_data_users_import_console', implode( "\n", $console_output ), 'option' );
 		}
+		fclose( $file );
+		update_field( 'syn_data_users_import_console', implode( "\n", $console_output ), 'option' );
+		//}
 		update_field( 'syn_data_run_users_import', 0, 'option' );
 
 		return;
@@ -403,8 +403,11 @@
 		//$_users = get_field( 'syn_data_update_password_users', 'option' );
 		$users = get_users( [ 'login__not_in' => [ 'syntric' ], 'fields' => [ 'ID', 'user_email' ], ] );
 		foreach ( $users as $user ) {
+			$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user->ID );
+			if ( $is_teacher ) {
 			$userdata = [ 'ID' => $user->ID, 'user_pass' => $user->user_email, ];
 			// email and password change emails controlled via send_email_change_email filter in setup.php
-			wp_update_user( $userdata );
+				wp_update_user( $userdata );
+			}
 		}
 	}

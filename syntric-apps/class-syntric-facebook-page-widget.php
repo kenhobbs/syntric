@@ -77,8 +77,9 @@
 							echo '</div>';
 						}
 					} else {
+						echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
 						if ( property_exists( $facebook_posts, 'data' ) ) {
-							echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
+
 							$post_counter = 1;
 							foreach ( $facebook_posts->data as $facebook_post ) :
 								if ( property_exists( $facebook_post, 'message' ) ) {
@@ -104,14 +105,14 @@
 								$post_counter ++;
 							endforeach;
 							echo $tab . '<a href="http://www.facebook.com/' . $facebook_page . '" class="list-group-item more-link">Go to Facebook</a>' . $lb;
-							echo '</div>' . $lb;
 						} else {
 							if ( property_exists( $facebook_posts, 'error' ) ) {
-								echo $tab . $tab . '<p>Posts unavailable </p>' . $lb;
+								echo $tab . $tab . '<div class="list-group-item">Posts unavailable</div>' . $lb;
 							} else {
-								echo $tab . $tab . '<p>No posts </p>';
+								echo $tab . $tab . '<div class="list-group-item">No posts</div>';
 							}
 						}
+						echo '</div>' . $lb;
 					}
 				}
 				echo $args[ 'after_widget' ] . $lb;

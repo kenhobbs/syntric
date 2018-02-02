@@ -6,25 +6,24 @@
 	 */
 	add_action( 'wp_enqueue_scripts', 'syn_enqueue_scripts' );
 	function syn_enqueue_scripts() {
+		// $my_js_ver  = date("ymd-Gis", filemtime( plugin_dir_path( __FILE__ ) . 'js/custom.js' ));
+		// $my_css_ver = date("ymd-Gis", filemtime( plugin_dir_path( __FILE__ ) . 'style.css' ));
+		// Deregister WP copy of jQuery - is loaded from CDN below
 		wp_deregister_script( 'jquery' );
-		//wp_enqueue_style( 'cdn-css', 'https://cdn.jsdelivr.net/combine/npm/fullcalendar@3.7.0/dist/fullcalendar.min.css', null, '2017121701261', null );
 		// Fontawesome
 		wp_enqueue_script( 'fontawesome', 'https://use.fontawesome.com/f45398b257.js', null, '5.0.1', false );
-		// Google Fonts @ CDN
+		// Google Fonts
 		wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Roboto|Ubantu+Mono|Ubantu', null, null, null );
 		// Master theme stylesheet
-		wp_enqueue_style( 'syntric', syn_get_theme_stylesheet_uri(), [], null );
+		$syntric_css_version = date("ymdGis", filemtime( get_template_directory() . '/assets/css/' . $_SERVER['HTTP_HOST'] . '.min.css' ) );
+		wp_enqueue_style( 'syntric', syn_get_theme_stylesheet_uri(), [], $syntric_css_version );
 		// Child theme stylesheet
 		wp_enqueue_style( 'theme', get_stylesheet_uri(), [], null );
-		// https://cdn.jsdelivr.net/combine/npm/jquery@3.2.1,npm/bootstrap@4.0.0-beta.2/dist/js/bootstrap.bundle.min.js,npm/moment@2.19.4,npm/fullcalendar@3.7.0,npm/load-google-maps-api-2@1.0.2
-		wp_register_script( 'jsdelivr', 'https://cdn.jsdelivr.net/combine/npm/jquery@3.2.1,npm/bootstrap@4.0.0-beta.2/dist/js/bootstrap.bundle.min.js,npm/moment@2.19.4,npm/fullcalendar@3.7.0', null, '2017121701261', true );
-		//wp_enqueue_script( 'vendor-js', get_template_directory_uri() . '/assets/js/vendor.min.js', null, null, true );
-		//wp_register_script( 'jsdelivr', 'jsdelivr', [ 'jsdelivr' ], null );
+		// Vendor scripts delivered from jsdelivr CDN
+		wp_register_script( 'jsdelivr', 'https://cdn.jsdelivr.net/combine/npm/jquery@3.2.1,npm/bootstrap@4.0.0-beta.2/dist/js/bootstrap.bundle.min.js,npm/moment@2.19.4,npm/fullcalendar@3.7.0', null, null, true );
 		// Syntric theme script
-		wp_enqueue_script( 'syntric-js', get_template_directory_uri() . '/assets/js/syntric.min.js', [ 'jsdelivr' ], null, true );
-		// Syntric API script
-		//wp_enqueue_script( 'syntric-api', get_template_directory_uri() . '/assets/js/syntric-api.min.js', array( 'jquery' ), null, true );
-		//Scripts in footer
+		$syntric_js_version = date("ymdGis", filemtime( get_template_directory() . '/assets/js/syntric.min.js' ) );
+		wp_enqueue_script( 'syntric-js', get_template_directory_uri() . '/assets/js/syntric.min.js', [ 'jsdelivr' ], $syntric_js_version, true );
 		// Google translate
 		//wp_enqueue_script( 'google-translate', get_stylesheet_directory_uri() . '/assets/libs/google-translate/translate_a/element.js?cb=googleTranslateElementInit', null, null, true );
 		// Comment reply

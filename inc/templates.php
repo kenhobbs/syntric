@@ -144,7 +144,6 @@
 	function syn_gallery_style( $gallery_style ) {
 		//slog( '//////////////////////////////////////////////////////// gallery_style filter' );
 		//slog( $gallery_style );
-
 		return $gallery_style;
 	}
 
@@ -152,7 +151,6 @@
 	function syn_use_default_gallery_style( $print ) {
 		//slog( '//////////////////////////////////////////////////////// use_default_gallery_style filter' );
 		//slog( $print );
-
 		return $print;
 	}
 
@@ -163,7 +161,6 @@
 		slog( $gallery );
 		slog( $post );
 		slog( $galleries );*/
-
 		return $gallery;
 	}
 
@@ -174,12 +171,16 @@
 		//slog($instance);
 		$img_ids = ( ! is_array( $atts[ 'ids' ] ) ) ? explode( ',', $atts[ 'ids' ] ) : $atts[ 'ids' ];
 		//$size    = ( isset( $atts[ 'size' ] ) ) ? $atts[ 'size' ] : syn_guess_gallery_image_size( $atts );
-		$size    = syn_guess_gallery_image_size( $atts );
+		$size   = syn_guess_gallery_image_size( $atts );
+		$cols   = ( isset( $atts[ 'columns' ] ) ) ? $atts[ 'columns' ] : 4;
 		$output = '<div class="gallery columns-' . $atts[ 'columns' ] . '">';
 		foreach ( $img_ids as $img_id ) {
+			$caption = wp_get_attachment_caption( $img_id );
 			$output .= '<a class="column gallery-item">';
 			$output .= wp_get_attachment_image( $img_id, $size, false, [ 'class' => 'gallery-image img-fluid' ] );
-			$output .= '<div class="gallery-caption">This is the caption for the image</div>';
+			if ( ! empty( $caption ) ) {
+				$output .= '<div class="gallery-caption">' . $caption . '</div>';
+			}
 			$output .= '</a>';
 		}
 		$output .= '</div>';
@@ -188,7 +189,7 @@
 	}
 
 	function syn_guess_gallery_image_size( $atts ) {
-		switch ( $atts['columns']) {
+		switch ( $atts[ 'columns' ] ) {
 			case 1:
 				return 'large';
 				break;

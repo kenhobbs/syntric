@@ -1898,7 +1898,7 @@
 		echo '<footer class="final-footer">' . $lb;
 		echo $tab . '<div class="container-fluid">' . $lb;
 		echo $tab . $tab . '<div class="row">' . $lb;
-		echo $tab . $tab . $tab . '<div class="non-discrimination col">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment. For more information or to contact our Title IX coordinator please visit the Title IX page.</div>' . $lb;
+		echo $tab . $tab . $tab . '<div class="non-discrimination col">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment.</div>' . $lb;
 		echo $tab . $tab . '</div>' . $lb;
 		echo $tab . $tab . '<div class="row">' . $lb;
 		echo $tab . $tab . $tab . '<div class="col-md-6">' . $lb;

@@ -43,8 +43,8 @@
 			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
+			echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
 			if ( have_rows( 'syn_attachments', $post->ID ) ) :
-				echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
 				while( have_rows( 'syn_attachments', $post->ID ) ) : the_row();
 					$header      = get_sub_field( 'header' );
 					$description = get_sub_field( 'description' );
@@ -81,11 +81,10 @@
 						endwhile;
 					}
 				endwhile;
-				echo '</div>' . $lb;
 			else :
-				echo '<p>No attachments</p>' . $lb;
+				echo '<div class="list-group-item">No attachments</div>' . $lb;
 			endif;
-
+			echo '</div>' . $lb;
 			echo $args[ 'after_widget' ] . $lb;
 			wp_reset_postdata();
 		}

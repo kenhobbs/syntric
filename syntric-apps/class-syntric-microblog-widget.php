@@ -52,8 +52,8 @@
 			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
+			echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
 			if ( $posts->have_posts() ) :
-				echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
 				while( $posts->have_posts() ) : $posts->the_post();
 					echo $tab . '<a href="' . get_the_permalink() . '" class="list-group-item">' . $lb;
 					echo $tab . $tab . '<div class="post-title">' . get_the_title() . '</div>';
@@ -63,10 +63,10 @@
 					echo $tab . '</a>';
 				endwhile;
 				echo $tab . '<a href="' . get_term_link( $term->term_id ) . '" class="list-group-item more-link">Go to blog</a>' . $lb;
-				echo '</div>' . $lb;
 			else :
-				echo $tab . '<p>No posts</p>' . $lb;
+				echo $tab . '<div class="list-group-item">No posts</div>' . $lb;
 			endif;
+			echo '</div>' . $lb;
 			echo $args[ 'after_widget' ] . $lb;
 			wp_reset_postdata();
 			wp_reset_query();

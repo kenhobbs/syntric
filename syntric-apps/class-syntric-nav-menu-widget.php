@@ -54,8 +54,8 @@
 					'depth'      => $depth,
 					'walker' => new Syntric_Nav_Menu_Walker()
 				];
-				//$nav_menu_filtered_args = apply_filters( 'widget_nav_menu_args', $nav_menu_args, $nav_menu, $args, $instance );
-				wp_nav_menu( $nav_menu_args );
+				$nav_menu_filtered_args = apply_filters( 'widget_nav_menu_args', $nav_menu_args, $nav_menu, $args, $instance );
+				wp_nav_menu( $nav_menu_filtered_args );
 				echo $args[ 'after_widget' ] . $lb;
 			endif;
 		}

@@ -17,10 +17,10 @@
 	}
 
 	function syn_remove_whitespace() {
-		//if ( ! syn_is_staging() ) {
-			//return true;
-		//}
-		return true;
+		if ( ! syn_is_dev() && ! syn_is_staging() ) {
+			return true;
+		}
+		return false;
 	}
 
 	function syn_is_staging() {

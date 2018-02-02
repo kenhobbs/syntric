@@ -54,7 +54,7 @@
 				endif;
 				echo '<div class="video ' . $sidebar_class . ' ' . strtolower( $host ) . ' embed-responsive embed-responsive-16by9">' . $lb;
 				if ( 'YouTube' == $host ) {
-					echo $tab . '<iframe class="embed-responsive-item" src="https://www.video-nocookie.com/embed/' . $video_id . '?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
+					echo $tab . '<iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/' . $video_id . '?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>';
 				} elseif ( 'Vimeo' == $host ) {
 					echo $tab . '<iframe class="embed-responsive-item" src="https://player.vimeo.com/video/' . $video_id . '?title=0&amp;byline=0&amp;portrait=0" frameborder="0" allowfullscreen></iframe>';
 				}

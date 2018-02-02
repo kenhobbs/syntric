@@ -66,7 +66,7 @@
 						$display_name .= ( in_array( 'first_name', $include_fields ) && ! empty( $first_name ) ) ? $first_name . ' ' : '';
 						$display_name .= $last_name;
 						$title_     = get_field( 'syn_user_title', 'user_' . $user_id );
-						$title_     = str_replace( ',', '<br>', $title_ );
+						$title_     = str_replace( ',', ' / ', $title_ );
 						$email      = $user->data->user_email;
 						$phone      = get_field( 'syn_user_phone', 'user_' . $user_id );
 						$ext        = get_field( 'syn_user_extension', 'user_' . $user_id );

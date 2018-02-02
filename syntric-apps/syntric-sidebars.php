@@ -161,7 +161,7 @@
 		$sidebars_widgets = get_option( 'sidebars_widgets', [] );
 		$sidebar_widgets  = $sidebars_widgets[ $sidebar_id ];
 		$active_widgets   = [];
-		slog($sidebar_widgets);
+		//slog($sidebar_widgets);
 		foreach( $sidebar_widgets as $widget ) {
 			//slog($widget);
 			$widget_array = explode( '-', $widget );

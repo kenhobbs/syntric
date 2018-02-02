@@ -60,7 +60,15 @@
             "type": "select",
             "instructions": "This widget works with YouTube and Vimeo hosted videos.",
             "required": 1,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5a41bdd4b978e",
+                        "operator": "==",
+                        "value": "0"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -176,5 +184,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1517290641
+    "modified": 1517436029
 }

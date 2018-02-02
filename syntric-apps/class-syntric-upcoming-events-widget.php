@@ -54,8 +54,8 @@
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
 			$events = syn_get_calendar_events( $calendar_id, null, 'next', $number, 'ID,post_title,post_content' );
+			echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
 			if ( $events ) {
-				echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
 				foreach ( $events as $event ) :
 					$dates       = syn_get_event_dates( $event->ID );
 					$start_date  = get_field( 'syn_event_start_date', $event->ID );
@@ -87,11 +87,11 @@
 						echo $tab . '</div>' . $lb;
 					endif;
 				endforeach;
-				echo $tab . '<a href="' . get_the_permalink( $calendar_id ) . '" class="list-group-item more-link">Go to calendar</a>' . $lb;
-				echo '</div>' . $lb;
+				echo $tab . '<a href="' . get_the_permalink( $calendar_id ) . '" class="list-group-item more-link">Full calendar</a>' . $lb;
 			} else {
-				echo '<p>No events</p>' . $lb;
+				echo '<div class="list-group-item">No events</div>' . $lb;
 			}
+			echo '</div>' . $lb;
 			echo $args[ 'after_widget' ] . $lb;
 			wp_reset_postdata();
 		}

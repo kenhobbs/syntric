@@ -1,6 +1,13 @@
 <?php
 	class Syntric_Nav_Menu_Walker extends Walker_Nav_Menu {
 		function start_el( &$output, $item, $depth = 0, $args = [], $id = 0 ) {
+			if ( ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) || syn_remove_whitespace() ) {
+				$t = '';
+				$n = '';
+			} else {
+				$t = "\t";
+				$n = "\n";
+			}
 			$classes     = empty( $item->classes ) ? [] : (array) $item->classes;
 			$class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
 			$class_names .= ' depth-' . $depth;
