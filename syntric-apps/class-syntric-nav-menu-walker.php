@@ -1,4 +1,5 @@
 <?php
+
 	class Syntric_Nav_Menu_Walker extends Walker_Nav_Menu {
 		function start_el( &$output, $item, $depth = 0, $args = [], $id = 0 ) {
 			if ( ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) || syn_remove_whitespace() ) {
@@ -22,6 +23,7 @@
 			$item_output = $args->before . "<a$attributes $class_names>" . $args->link_before . $title . '</a>' . $args->link_after . $args->after;
 			$output      .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 		}
+
 		public function start_lvl( &$output, $depth = 0, $args = [] ) {
 			if ( ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) || syn_remove_whitespace() ) {
 				$t = '';
@@ -45,9 +47,10 @@
 			$class_names = join( ' ', apply_filters( 'nav_menu_submenu_css_class', $classes, $args, $depth ) );
 			$class_names .= $class_names . 'sub-list-group level-' . ( $depth + 1 );
 			$class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
-			$output .= "{$n}{$indent}<div$class_names>{$n}";
+			$output      .= "{$n}{$indent}<div$class_names>{$n}";
 		}
-		public function end_lvl( &$output, $depth = 0, $args = array() ) {
+
+		public function end_lvl( &$output, $depth = 0, $args = [] ) {
 			if ( ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) || syn_remove_whitespace() ) {
 				$t = '';
 				$n = '';
@@ -58,7 +61,8 @@
 			$indent = str_repeat( $t, $depth );
 			$output .= "$indent</div>{$n}";
 		}
-		public function end_el( &$output, $item, $depth = 0, $args = array() ) {
+
+		public function end_el( &$output, $item, $depth = 0, $args = [] ) {
 			if ( ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) || syn_remove_whitespace() ) {
 				$t = '';
 				$n = '';

@@ -8,8 +8,11 @@
 		 * Set up a new widget instance
 		 */
 		public function __construct() {
-			$widget_ops = [ 'classname'                   => 'syn-attachments-widget', 'description' => __( 'Displays grouped documents and links to pages or other websites (dynamic)' ),
-			                'customize_selective_refresh' => true, ];
+			$widget_ops = [
+				'classname'                   => 'syn-attachments-widget',
+				'description'                 => __( 'Displays grouped documents and links to pages or other websites (dynamic)' ),
+				'customize_selective_refresh' => true,
+			];
 			parent::__construct( 'syn-attachments-widget', __( 'Attachments' ), $widget_ops );
 			$this->alt_option_name = 'syn-attachments-widget';
 		}
@@ -38,7 +41,7 @@
 			}
 			//$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
 			$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
-			$title   = get_field( 'syn_attachments_title', $post->ID );
+			$title         = get_field( 'syn_attachments_title', $post->ID );
 			echo $args[ 'before_widget' ] . $lb;
 			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
@@ -64,18 +67,18 @@
 							switch ( $attachment_type[ 'value' ] ) :
 								case 'file' :
 									$file = get_sub_field( 'file' );
-									echo $tab . $tab . '<a href="' . $file[ 'url' ] . '" class="list-group-item" target="_blank">' . $file[ 'title' ] . '</a>' . $lb;
+									echo $tab . $tab . '<a href="' . $file[ 'url' ] . '" class="list-group-item list-group-item-action" target="_blank">' . $file[ 'title' ] . '</a>' . $lb;
 									break;
 								case 'internal_link' :
 									$internal_link = get_sub_field( 'internal_link' );
-									echo $tab . $tab . '<a href="' . get_the_permalink( $internal_link->ID ) . '" class="list-group-item">' . $internal_link->post_title . '</a>' . $lb;
+									echo $tab . $tab . '<a href="' . get_the_permalink( $internal_link->ID ) . '" class="list-group-item list-group-item-action">' . $internal_link->post_title . '</a>' . $lb;
 									break;
 								case 'external_link' :
 									$title           = get_sub_field( 'title' );
 									$url             = get_sub_field( 'url' );
 									$open_new_window = get_sub_field( 'new_window' );
 									$target          = ( $open_new_window ) ? '_blank' : '_self';
-									echo $tab . $tab . '<a href="' . $url . '" class="list-group-item" target="' . $target . '">' . $title . '</a>' . $lb;
+									echo $tab . $tab . '<a href="' . $url . '" class="list-group-item list-group-item-action" target="' . $target . '">' . $title . '</a>' . $lb;
 									break;
 							endswitch;
 						endwhile;

@@ -3,13 +3,13 @@
 	function syn_save_page( $post_id ) {
 		//global $pagenow;
 		// don't save for autosave
-		if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
 		$post = get_post( $post_id );
-		if( is_admin() && is_numeric( $post_id ) && 'page' == $post->post_type && isset( $_REQUEST[ 'acf' ] ) && ! wp_is_post_revision( $post_id ) ) {
+		if ( is_admin() && is_numeric( $post_id ) && 'page' == $post->post_type && isset( $_REQUEST[ 'acf' ] ) && ! wp_is_post_revision( $post_id ) ) {
 			$page_template = syn_get_page_template( $post_id );
-			switch( $page_template ) :
+			switch ( $page_template ) :
 				case 'page' :
 					break;
 				case 'department' :
@@ -33,6 +33,7 @@
 	add_filter( 'acf/load_field/name=syn_page_class_teacher', 'syn_load_teachers' );
 	add_filter( 'acf/load_field/name=syn_page_teacher', 'syn_load_teachers' );
 	add_filter( 'acf/load_field/name=syn_page_department', 'syn_load_departments' );
+	add_filter( 'acf/load_field/name=syn_page_course', 'syn_load_courses' );
 	add_filter( 'acf/load_field/name=syn_contact_person', 'syn_load_people' );
 	add_filter( 'acf/load_field/name=syn_contact_organization', 'syn_load_organizations' );
 	add_filter( 'acf/load_field/key=field_59af852be10d5', 'syn_load_people' ); // syn_roster['person']
@@ -50,55 +51,60 @@
 	function syn_prepare_page_fields( $field ) {
 		global $pagenow;
 		global $post;
-		if( 'post.php' == $pagenow && 'page' == $post->post_type ) {
-			if( 'syn_page_teacher' == $field[ '_name' ] ) {
-				if( $field[ 'value' ] ) {
+		if ( 'post.php' == $pagenow && 'page' == $post->post_type ) {
+			if ( 'syn_page_teacher' == $field[ '_name' ] ) {
+				if ( $field[ 'value' ] ) {
 					$field[ 'disabled' ] = true;
 				}
 			}
-			if( 'syn_page_class_teacher' == $field[ '_name' ] ) {
-				if( $field[ 'value' ] ) {
+			if ( 'syn_page_class_teacher' == $field[ '_name' ] ) {
+				if ( $field[ 'value' ] ) {
 					$field[ 'disabled' ] = true;
 				}
 			}
-			if( 'syn_page_class' == $field[ '_name' ] ) {
-				if( $field[ 'value' ] ) {
+			if ( 'syn_page_class' == $field[ '_name' ] ) {
+				if ( $field[ 'value' ] ) {
 					$field[ 'disabled' ] = true;
 				}
 			}
-			if( 'syn_page_department' == $field[ '_name' ] ) {
-				if( $field[ 'value' ] ) {
+			if ( 'syn_page_department' == $field[ '_name' ] ) {
+				if ( $field[ 'value' ] ) {
 					$field[ 'disabled' ] = true;
 				}
 			}
-			if( 'syn_new_microblog_post' == $field[ '_name' ] ) {
+			if ( 'syn_page_course' == $field[ '_name' ] ) {
+				if ( $field[ 'value' ] ) {
+					$field[ 'disabled' ] = true;
+				}
+			}
+			if ( 'syn_new_microblog_post' == $field[ '_name' ] ) {
 				$microblog_active = get_field( 'syn_microblog_active', $post->ID );
-				if( ! $microblog_active ) {
+				if ( ! $microblog_active ) {
 					$field[ 'wrapper' ][ 'hidden' ] = true;
 				} else {
 					$field[ 'wrapper' ][ 'hidden' ] = false;
 				}
 			}
-			if( 'syn_microblog_category' == $field[ '_name' ] ) {
+			if ( 'syn_microblog_category' == $field[ '_name' ] ) {
 				//$field[ 'disabled' ] = true;
 			}
-			if( 'syn_microblog_term' == $field[ '_name' ] ) {
+			if ( 'syn_microblog_term' == $field[ '_name' ] ) {
 				//$field[ 'disabled' ] = true;
 			}
-			if( 'field_59d4b242abf31' == $field[ 'key' ] ) {
+			if ( 'field_59d4b242abf31' == $field[ 'key' ] ) {
 				$microblog_active   = get_field( 'syn_microblog_active', $post->ID );
 				$microblog_category = get_field( 'syn_microblog_category', $post->ID );
-				if( $microblog_active ) {
-					if( $microblog_category ) {
+				if ( $microblog_active ) {
+					if ( $microblog_category ) {
 						$field[ 'message' ] = $microblog_category->name;
 					}
 				}
 			}
-			if( 'field_59d4b278abf32' == $field[ 'key' ] ) {
+			if ( 'field_59d4b278abf32' == $field[ 'key' ] ) {
 				$microblog_active = get_field( 'syn_microblog_active', $post->ID );
 				$microblog_term   = get_field( 'syn_microblog_term', $post->ID );
-				if( $microblog_active ) {
-					if( $microblog_term ) {
+				if ( $microblog_active ) {
+					if ( $microblog_term ) {
 						$field[ 'message' ] = $microblog_term->name;
 					}
 				}
@@ -119,10 +125,10 @@
 
 	function syn_save_calendar_page_widget( $page_id ) {
 		$calendar_active = get_field( 'syn_calendar_active', $page_id );
-		if( $calendar_active ) {
+		if ( $calendar_active ) {
 			$_calendar_id = get_field( 'syn_calendar_id', $page_id );
 			// if calendar_id is 0, insert a new calendar
-			if( 0 == $_calendar_id ) {
+			if ( 0 == $_calendar_id ) {
 				$page          = get_post( $page_id );
 				$calendar_args = [
 					'ID'          => $_calendar_id,
@@ -133,7 +139,7 @@
 					'post_status' => 'publish',
 				];
 				$calendar_id   = wp_insert_post( $calendar_args );
-				if( $calendar_id ) {
+				if ( $calendar_id ) {
 					// set the page's calendar widget to the newly created calendar
 					update_field( 'syn_calendar_id', $calendar_id, $page_id );
 					// get new calendar related values from this page to set values for new calendar meta
@@ -152,12 +158,14 @@
 					update_field( 'syn_calendar_delete_events', $delete_events, $calendar_id );
 					update_field( 'syn_calendar_delete_after', $delete_after, $calendar_id );
 					// if sync is set...schedule sync
-					if( $sync ) {
+					if ( $sync ) {
 						syn_schedule_calendar_sync( $calendar_id );
 					}
 					// if new calendar "sync now" is set...sync now
-					if( $sync_now ) {
-						syn_sync_calendar( [ 'post_id' => $calendar_id, 'post_type' => 'syn_calendar' ] );
+					if ( $sync_now ) {
+						syn_sync_calendar( [ 'post_id'   => $calendar_id,
+						                     'post_type' => 'syn_calendar',
+						] );
 					}
 					// clear out all the widget values
 					update_field( 'syn_new_calendar_id', '', $page_id );
@@ -174,9 +182,9 @@
 
 	function syn_save_microblog_page_widget_post( $post_id ) {
 		$microblog_active = get_field( 'syn_microblog_active', $post_id );
-		if( $microblog_active ) {
+		if ( $microblog_active ) {
 			$new_microblog_post = get_field( 'syn_new_microblog_post', $post_id );
-			if( $new_microblog_post ) {
+			if ( $new_microblog_post ) {
 				$post_title   = get_field( 'syn_new_microblog_post_title', $post_id );
 				$post_name    = syn_sluggify( $post_title );
 				$post_content = get_field( 'syn_new_microblog_post_content', $post_id );
@@ -185,15 +193,16 @@
 				// todo: post_author should be set to teacher if is a teacher or class page microblog post, not current user id
 				$author        = get_current_user_id();
 				$page_template = syn_get_page_template( $post_id );
-				if( 'teacher' == $page_template ) {
+				if ( 'teacher' == $page_template ) {
 					$author = get_field( 'syn_page_teacher', $post_id );
-				} elseif( 'class' == $page_template ) {
+				} elseif ( 'class' == $page_template ) {
 					$author = get_field( 'syn_page_class_teacher', $post_id );
 				}
 				$post_args         = [
 					'post_type'     => 'post',
 					'post_title'    => $post_title,
-					'post_name'     => $post_name, // slug
+					'post_name'     => $post_name,
+					// slug
 					'post_status'   => 'publish',
 					'post_author'   => $author,
 					'post_content'  => $post_content,
@@ -212,15 +221,15 @@
 
 	function syn_cleanup_page_widgets( $post_id ) {
 		$attachments_active = get_field( 'syn_attachments_active', $post_id );
-		if( ! $attachments_active ) {
+		if ( ! $attachments_active ) {
 			delete_field( 'syn_attachments_title', $post_id );
 			delete_field( 'syn_attachments', $post_id );
 		}
 		$calendar_active = get_field( 'syn_calendar_active', $post_id );
-		if( ! $calendar_active ) {
+		if ( ! $calendar_active ) {
 			// check if there was a calendar and trash
 			$calendar_id = get_field( 'syn_calendar_id', $post_id );
-			if( $calendar_id ) {
+			if ( $calendar_id ) {
 				wp_delete_post( $calendar_id );
 			}
 			delete_field( 'syn_calendar_title', $post_id );
@@ -236,7 +245,7 @@
 			delete_field( 'syn_new_calendar_delete_after', $post_id );
 		}
 		$contact_active = get_field( 'syn_contact_active', $post_id );
-		if( ! $contact_active ) {
+		if ( ! $contact_active ) {
 			delete_field( 'syn_contact_title', $post_id );
 			delete_field( 'syn_contact_contact_type', $post_id );
 			delete_field( 'syn_contact_include_person_fields', $post_id );
@@ -245,13 +254,13 @@
 			delete_field( 'syn_contact_organization', $post_id );
 		}
 		$microblog_active = get_field( 'syn_microblog_active', $post_id );
-		if( ! $microblog_active ) {
+		if ( ! $microblog_active ) {
 			$microblog_category = get_field( 'syn_microblog_category', $post_id );
 			$microblog_term     = get_field( 'syn_microblog_term', $post_id );
-			if( $microblog_category ) {
+			if ( $microblog_category ) {
 				wp_remove_object_terms( $post_id, $microblog_category->term_id, 'category' );
 			}
-			if( $microblog_term ) {
+			if ( $microblog_term ) {
 				wp_remove_object_terms( $post_id, $microblog_term->term_id, 'microblog' );
 			}
 			delete_field( 'syn_microblog_title', $post_id );
@@ -262,12 +271,12 @@
 			delete_field( 'syn_new_microblog_post', $post_id );
 			delete_field( 'syn_new_microblog_post_title', $post_id );
 			delete_field( 'syn_new_microblog_post_content', $post_id );
-			if( $microblog_term ) {
+			if ( $microblog_term ) {
 				wp_delete_term( $microblog_term->term_id, 'microblog' );
 			}
 		}
 		$roster_active = get_field( 'syn_roster_active', $post_id );
-		if( ! $roster_active ) {
+		if ( ! $roster_active ) {
 			delete_field( 'syn_roster_title', $post_id );
 			delete_field( 'syn_roster_include_fields', $post_id );
 			delete_field( 'syn_roster_people', $post_id );

@@ -8,7 +8,10 @@
 		 * Set up a new widget instance
 		 */
 		public function __construct() {
-			$widget_ops = [ 'classname' => 'syn-video-widget', 'description' => __( 'Displays a YouTube or Vimeo video.' ), 'customize_selective_refresh' => true, ];
+			$widget_ops = [ 'classname'                   => 'syn-video-widget',
+			                'description'                 => __( 'Displays a YouTube or Vimeo video.' ),
+			                'customize_selective_refresh' => true,
+			];
 			parent::__construct( 'syn-video-widget', __( 'Video' ), $widget_ops );
 			$this->alt_option_name = 'syn-video-widget';
 		}

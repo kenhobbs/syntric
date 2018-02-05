@@ -25,13 +25,13 @@
 		 */
 		public function widget( $args, $instance ) {
 			global $post;
-			if( ! isset( $args[ 'widget_id' ] ) ) {
+			if ( ! isset( $args[ 'widget_id' ] ) ) {
 				$args[ 'widget_id' ] = $this->id;
 			}
 			$dynamic = get_field( 'syn_google_map_widget_dynamic', 'widget_' . $args[ 'widget_id' ] );
-			if( $dynamic ) {
+			if ( $dynamic ) {
 				$active = get_field( 'syn_google_map_active', $post->ID );
-				if( ! $active ) {
+				if ( ! $active ) {
 					return;
 				}
 				$title         = get_field( 'syn_google_map_title', $post->ID );
@@ -40,7 +40,7 @@
 				$title         = get_field( 'syn_google_map_widget_title', 'widget_' . $args[ 'widget_id' ] );
 				$google_map_id = get_field( 'syn_google_map_widget_map_id', 'widget_' . $args[ 'widget_id' ] );
 			}
-			if( isset( $google_map_id ) && ! empty( $google_map_id ) ) :
+			if ( isset( $google_map_id ) && ! empty( $google_map_id ) ) :
 				$unique_id = syn_generate_permanent_id();
 				//$sidebar   = syn_widget_sidebar( $args[ 'widget_id' ] );
 				$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
@@ -52,7 +52,7 @@
 					$tab = "\t";
 				}
 				echo $args[ 'before_widget' ] . $lb;
-				if( ! empty( $title ) ) :
+				if ( ! empty( $title ) ) :
 					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 				endif;
 				echo $tab . '<div id="' . $unique_id . '" data-id="' . $google_map_id . '" class="map ' . $sidebar_class . '"></div>' . $lb;

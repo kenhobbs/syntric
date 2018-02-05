@@ -278,14 +278,15 @@
 	function syn_export_users() {
 		$users            = get_users();
 		$console_output   = [];
-		$console_output[] = 'ID,Email,Role,First Name,Last Name,Title,Phone,Extension,Is Teacher';
+		$console_output[] = 'ID,Email,Role,Prefix,First Name,Last Name,Title,Phone,Extension,Is Teacher';
 		foreach ( $users as $user ) {
 			$usermeta         = get_user_meta( $user->ID );
+			$user_prefix      = get_field( 'syn_user_prefix', 'user_' . $user->ID );
 			$user_title       = get_field( 'syn_user_title', 'user_' . $user->ID );
 			$user_phone       = get_field( 'syn_user_phone', 'user_' . $user->ID );
 			$user_ext         = get_field( 'syn_user_extension', 'user_' . $user->ID );
 			$user_is_teacher  = get_field( 'syn_user_is_teacher', 'user_' . $user->ID );
-			$console_output[] = $user->ID . ',' . $user->data->user_email . ',' . $user->roles[ 0 ] . ',' . $usermeta[ 'first_name' ][ 0 ] . ',' . $usermeta[ 'last_name' ][ 0 ] . ',' . $user_title . ',' . $user_phone . ',' . $user_ext . ',' . $user_is_teacher;
+			$console_output[] = $user->ID . ',' . $user->data->user_email . ',' . $user->roles[ 0 ] . ',' . $user_prefix . ',' . $usermeta[ 'first_name' ][ 0 ] . ',' . $usermeta[ 'last_name' ][ 0 ] . ',' . $user_title . ',' . $user_phone . ',' . $user_ext . ',' . $user_is_teacher;
 		}
 		update_field( 'syn_data_users_import_console', implode( "\n", $console_output ), 'option' );
 		update_field( 'syn_data_run_users_export', 0, 'option' );
@@ -352,8 +353,15 @@
 				$user_extension  = ( isset( $user_row[ 8 ] ) && ! empty( $user_row[ 8 ] ) ) ? $user_row[ 8 ] : false;
 				$user_is_teacher = ( isset( $user_row[ 9 ] ) && ! empty( $user_row[ 9 ] ) ) ? $user_row[ 9 ] : false;
 				$user_role       = ( $user_is_teacher && ( 'subscriber' == $user_role || 'contributor' == $user_role ) ) ? 'author' : $user_role;
-				$userdata        = [ 'user_nicename' => $user_firstname . ' ' . $user_lastname, 'user_email' => $user_email, 'display_name' => $user_firstname . ' ' . $user_lastname,
-				                     'nickname'      => $user_firstname, 'first_name' => $user_firstname, 'last_name' => $user_lastname, 'role' => $user_role, ];
+				$userdata        = [
+					'user_nicename' => $user_firstname . ' ' . $user_lastname,
+					'user_email'    => $user_email,
+					'display_name'  => $user_firstname . ' ' . $user_lastname,
+					'nickname'      => $user_firstname,
+					'first_name'    => $user_firstname,
+					'last_name'     => $user_lastname,
+					'role'          => $user_role,
+				];
 				if ( 0 < $user_id ) {
 					$userdata[ 'ID' ] = $user_id;
 					$user_id          = wp_update_user( $userdata );
@@ -364,7 +372,7 @@
 				}
 				if ( is_int( $user_id ) ) {
 					update_field( 'syn_user_prefix', $user_prefix, 'user_' . $user_id );
-					update_field( 'syn_user_title', str_replace( '|', ',', $user_title), 'user_' . $user_id );
+					update_field( 'syn_user_title', str_replace( '|', ',', $user_title ), 'user_' . $user_id );
 					update_field( 'syn_user_phone', $user_phone, 'user_' . $user_id );
 					update_field( 'syn_user_extension', $user_extension, 'user_' . $user_id );
 					update_field( 'syn_user_is_teacher', $user_is_teacher, 'user_' . $user_id );
@@ -389,7 +397,13 @@
 
 // update all users phone number in user meta
 	function syn_update_users_phone( $phone ) {
-		$users = get_users( [ 'login__not_in' => [ 'syntric', 'trinette' ], 'fields' => 'ID', ] );
+		$users = get_users( [
+			'login__not_in' => [
+				'syntric',
+				'trinette',
+			],
+			'fields'        => 'ID',
+		] );
 		if ( $users ) :
 			foreach ( $users as $key => $value ) {
 				update_field( 'syn_user_phone', $phone, 'user_' . $value );
@@ -401,12 +415,21 @@
 	function syn_update_users_password() {
 		//$users = get_users();
 		//$_users = get_field( 'syn_data_update_password_users', 'option' );
-		$users = get_users( [ 'login__not_in' => [ 'syntric' ], 'fields' => [ 'ID', 'user_email' ], ] );
+		$users = get_users( [
+			'login__not_in' => [ 'syntric' ],
+			'fields'        => [
+				'ID',
+				'user_email',
+			],
+		] );
 		foreach ( $users as $user ) {
 			$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user->ID );
 			if ( $is_teacher ) {
-			$userdata = [ 'ID' => $user->ID, 'user_pass' => $user->user_email, ];
-			// email and password change emails controlled via send_email_change_email filter in setup.php
+				$userdata = [
+					'ID'        => $user->ID,
+					'user_pass' => $user->user_email,
+				];
+				// email and password change emails controlled via send_email_change_email filter in setup.php
 				wp_update_user( $userdata );
 			}
 		}

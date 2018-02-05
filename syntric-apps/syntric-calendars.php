@@ -58,7 +58,9 @@
 			'show_in_admin_bar' => false,
 			'menu_icon'         => 'dashicons-calendar-alt',
 			'query_var'         => false,
-			'rewrite'           => [ 'slug' => 'calendars', 'with_front' => true ],
+			'rewrite'           => [ 'slug'       => 'calendars',
+			                         'with_front' => true,
+			],
 			'redirect'          => true,
 		];
 		register_post_type( 'syn_calendar', $args );
@@ -114,7 +116,9 @@
 			'show_in_nav_menus'  => false,
 			'show_in_admin_bar'  => false,
 			'query_var'          => false,
-			'rewrite'            => [ 'slug' => 'events', 'with_front' => true ],
+			'rewrite'            => [ 'slug'       => 'events',
+			                          'with_front' => true,
+			],
 			'redirect'           => true,
 		];
 		register_post_type( 'syn_event', $args );
@@ -127,15 +131,15 @@
 //add_action( 'restrict_manage_posts', 'syn_calendar_restrict_manage_posts', 10 );
 	function syn_calendar_restrict_manage_posts() {
 		global $post_type;
-		if( is_admin() && $post_type == 'syn_event' ) {
+		if ( is_admin() && $post_type == 'syn_event' ) {
 			$filter_dropdown        = '<select name="events_calendar_filter">' . "\n";
 			$events_calendar_filter = 0;
-			if( isset( $_GET[ 'events_calendar_filter' ] ) ) {
+			if ( isset( $_GET[ 'events_calendar_filter' ] ) ) {
 				$events_calendar_filter = (int) sanitize_text_field( $_GET[ 'events_calendar_filter' ] );
 			}
 			$filter_dropdown .= "\t" . '<option value="0">All calendars</option>' . "\n";
 			$calendar_ids    = syn_get_calendar_ids();
-			foreach( $calendar_ids as $calendar_id ) {
+			foreach ( $calendar_ids as $calendar_id ) {
 				$filter_dropdown .= "\t" . '<option value="' . $calendar_id . '"';
 				$filter_dropdown .= ( $events_calendar_filter == $calendar_id ) ? 'selected' : '';
 				$filter_dropdown .= '>' . get_the_title( $calendar_id ) . '</option>' . "\n";
@@ -152,29 +156,31 @@
 	function syn_save_calendar( $post_id ) {
 		global $pagenow;
 		// don't save for autosave
-		if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE || ! is_admin() ) {
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE || ! is_admin() ) {
 			return;
 		}
 		// widgets, options, users, etc..
-		if( ! is_int( $post_id ) ) {
+		if ( ! is_int( $post_id ) ) {
 			$post_id_array = explode( '_', $post_id );
 			$post_type     = $post_id_array[ 0 ];
-			if( $post_type == 'widget' ) {
+			if ( $post_type == 'widget' ) {
 				$all_calendars = get_field( 'syn_calendars_menu_widget_all_calendars', $post_id );
-				if( $all_calendars ) {
+				if ( $all_calendars ) {
 					update_field( 'syn_calendars_menu_widget_calendars', null, $post_id );
 				}
 			}
 		} else {
 			$post = get_post( $post_id );
-			if( 'syn_calendar' == $post->post_type && 'post.php' == $pagenow && ! wp_is_post_revision( $post_id ) ) {
+			if ( 'syn_calendar' == $post->post_type && 'post.php' == $pagenow && ! wp_is_post_revision( $post_id ) ) {
 				$sync     = get_field( 'syn_calendar_sync', $post_id );
 				$sync_now = get_field( 'syn_calendar_sync_now', $post_id );
-				if( $sync ) {
+				if ( $sync ) {
 					syn_schedule_calendar_sync( $post_id );
 				}
-				if( $sync_now ) {
-					syn_sync_calendar( [ 'post_id' => $post_id, 'post_type' => 'syn_calendar' ] );
+				if ( $sync_now ) {
+					syn_sync_calendar( [ 'post_id'   => $post_id,
+					                     'post_type' => 'syn_calendar',
+					] );
 					update_field( 'syn_calendar_sync_now', null, $post_id );
 				}
 			}
@@ -189,14 +195,14 @@
 		$calendar_id = $args[ 'post_id' ];
 		update_field( 'syn_calendar_last_sync_result', 'Sync started with values ' . "\n" . print_r( $args, true ), $calendar_id );
 		// bail if $sync_args doesn't contain both post_type and post_id or if post_type isn't calendar
-		if( ! $args[ 'post_type' ] || ! $args[ 'post_id' ] || $args[ 'post_type' ] != 'syn_calendar' ) {
+		if ( ! $args[ 'post_type' ] || ! $args[ 'post_id' ] || $args[ 'post_type' ] != 'syn_calendar' ) {
 			update_field( 'syn_calendar_last_sync_result', 'Invalid args. Exited sync at ' . date( 'n/j/Y g:i A' ) . '.', $calendar_id );
 
 			return;
 		}
 		$calendar_fields = get_fields( $calendar_id );
 		// bail if no calendar postmeta
-		if( ! $calendar_fields ) {
+		if ( ! $calendar_fields ) {
 			update_field( 'syn_calendar_last_sync_result', 'Calendar settings not found. Exited sync at ' . date( 'n/j/Y g:i A' ) . '.', $calendar_id );
 
 			return;
@@ -205,7 +211,7 @@
 		$api_key  = get_field( 'syn_google_api_key', 'option' );
 		$api_url  = get_field( 'syn_google_calendar_api_url', 'option' );
 		$calendar = $calendar_fields[ 'syn_calendar_id' ];
-		if( ! $api_key || ! $api_url || ! $calendar ) {
+		if ( ! $api_key || ! $api_url || ! $calendar ) {
 			update_field( 'syn_calendar_last_sync_result', 'One or more required values were absent. Exited sync at ' . date( 'n/j/Y g:i A' ) . '.', $calendar_id );
 
 			return;
@@ -213,7 +219,7 @@
 		$sync_range = ( isset( $calendar_fields[ 'syn_calendar_sync_range' ] ) ) ? (string) $calendar_fields[ 'syn_calendar_sync_range' ] : '1 year';
 		$last_sync  = ( isset( $calendar_fields[ 'syn_calendar_last_sync' ] ) ) ? $calendar_fields[ 'syn_calendar_last_sync' ] : '';
 		// todo: implement delete events
-		if( isset( $calendar_fields[ 'syn_calendar_delete_events' ] ) && isset( $calendar_fields[ 'syn_calendar_delete_after' ] ) ) {
+		if ( isset( $calendar_fields[ 'syn_calendar_delete_events' ] ) && isset( $calendar_fields[ 'syn_calendar_delete_after' ] ) ) {
 			//$delete_events = ( $calendar_fields[ 'syn_calendar_delete_events' ] ) ? $calendar_fields[ 'syn_calendar_delete_events' ] : false;
 			//$delete_after = ( $calendar_fields[ 'syn_calendar_delete_after' ] ) ? $calendar_fields[ 'syn_calendar_delete_after' ] : '';
 		}
@@ -228,18 +234,18 @@
 		$url      .= '&timeMin=' . $time_min . '&timeMax=' . $time_max;
 		update_field( 'syn_calendar_last_sync_result', 'Url contructed', $calendar_id );
 		$response = wp_remote_get( $url );
-		if( $response ) { // received response
+		if ( $response ) { // received response
 			update_field( 'syn_calendar_last_sync_result', 'Response received from remote host', $calendar_id );
 			$body = wp_remote_retrieve_body( $response );
 			$body = json_decode( $body );
-			if( property_exists( $body, 'error' ) ) {
+			if ( property_exists( $body, 'error' ) ) {
 				update_field( 'syn_calendar_last_sync_result', 'Response from remote host was an error', $calendar_id );
 				$error  = $body->error;
 				$errors = $error->errors;
-				foreach( $errors as $_error ) {
+				foreach ( $errors as $_error ) {
 					$reason = $_error->reason;
 				}
-				if( $reason ) {
+				if ( $reason ) {
 					update_field( 'syn_calendar_last_sync_result', 'Response from remote host errored with reason: ' . $reason, $calendar_id );
 				} else {
 					update_field( 'syn_calendar_last_sync_result', 'Response from remote host errored but no reason could be found' . $reason, $calendar_id );
@@ -252,7 +258,7 @@
 
 			return;
 		}
-		if( ! isset( $last_sync ) || empty( $last_sync ) ) {
+		if ( ! isset( $last_sync ) || empty( $last_sync ) ) {
 			$refresh = true;
 		} else {
 			$local_last_updated     = date_create( $last_sync );
@@ -262,7 +268,7 @@
 			$refresh                = date_format( $local_last_updated, 'YmdHi' ) < date_format( $remote_last_updated, 'YmdHi' );
 		}
 		// Google calendar hasn't been updated since the last sync
-		if( ! $refresh ) {
+		if ( ! $refresh ) {
 			update_field( 'syn_calendar_last_sync', date( 'r' ), $calendar_id );
 			update_field( 'syn_calendar_last_sync_result', 'Remote calendar has not been updated since last sync', $calendar_id );
 		} else {
@@ -293,11 +299,11 @@
 		];
 		$events         = get_posts( $events_args );
 		update_field( 'syn_calendar_last_sync_result', 'Got events to delete', $calendar_id );
-		if( count( $events ) ) {
+		if ( count( $events ) ) {
 			update_field( 'syn_calendar_last_sync_result', 'Events need to be deleted', $calendar_id );
-			foreach( $events as $event ) {
+			foreach ( $events as $event ) {
 				$del_result = wp_delete_post( $event->ID, true );
-				if( ! $del_result ) {
+				if ( ! $del_result ) {
 					update_field( 'syn_calendar_last_sync_result', 'Failed to delete event', $calendar_id );
 				} else {
 					update_field( 'syn_calendar_last_sync_result', 'Deleted event', $calendar_id );
@@ -311,14 +317,14 @@
 		$_event_field_groups = acf_get_field_groups();
 		$event_field_groups  = [];
 		// loop through field groups
-		foreach( $_event_field_groups as $_event_field_group ) {
+		foreach ( $_event_field_groups as $_event_field_group ) {
 			// loop over location groups
-			if( ! empty( $_event_field_group[ 'location' ] ) ) {
-				foreach( $_event_field_group[ 'location' ] as $location_group_id => $location_group ) {
+			if ( ! empty( $_event_field_group[ 'location' ] ) ) {
+				foreach ( $_event_field_group[ 'location' ] as $location_group_id => $location_group ) {
 					// loop over group rules
-					if( ! empty( $location_group ) ) {
-						foreach( $location_group as $rule_id => $rule ) {
-							if( $rule[ 'param' ] == 'post_type' && $rule[ 'operator' ] == '==' && $rule[ 'value' ] == 'syn_event' ) {
+					if ( ! empty( $location_group ) ) {
+						foreach ( $location_group as $rule_id => $rule ) {
+							if ( $rule[ 'param' ] == 'post_type' && $rule[ 'operator' ] == '==' && $rule[ 'value' ] == 'syn_event' ) {
 								$event_field_groups[] = $_event_field_group;
 							} else {
 								break;
@@ -329,13 +335,13 @@
 			}
 		}
 		$_event_fields = [];
-		foreach( $event_field_groups as $event_field_group ) {
+		foreach ( $event_field_groups as $event_field_group ) {
 			$event_field_group_fields = acf_get_fields( $event_field_group[ 'key' ] );
 			$_event_fields            = array_merge( $_event_fields, $event_field_group_fields );
 		}
 		$event_fields = [];
-		foreach( $_event_fields as $_event_field ) {
-			if( ! empty( $_event_field[ 'name' ] ) && $_event_field[ 'type' ] != 'row' && $_event_field[ 'type' ] != 'enhanced_message' ) {
+		foreach ( $_event_fields as $_event_field ) {
+			if ( ! empty( $_event_field[ 'name' ] ) && $_event_field[ 'type' ] != 'row' && $_event_field[ 'type' ] != 'enhanced_message' ) {
 				$event_fields[] = [
 					'key'   => $_event_field[ 'key' ],
 					'name'  => $_event_field[ 'name' ],
@@ -347,7 +353,7 @@
 		update_field( 'syn_calendar_last_sync_result', 'Collected event meta data to update', $calendar_id );
 		$events      = $body->items;
 		$event_count = 0;
-		foreach( $events as $event ) {
+		foreach ( $events as $event ) {
 			$args     = [
 				'post_content' => ( isset( $event->description ) ) ? $event->description : '',
 				'post_title'   => ( isset( $event->summary ) ) ? $event->summary : '',
@@ -355,11 +361,11 @@
 				'post_type'    => 'syn_event',
 			];
 			$event_id = wp_insert_post( $args );
-			if( $event_id ) {
+			if ( $event_id ) {
 				update_field( 'syn_calendar_last_sync_result', 'Event inserted', $calendar_id );
-				foreach( $event_fields as $event_field ) {
+				foreach ( $event_fields as $event_field ) {
 					$value = '';
-					switch( $event_field[ 'name' ] ) {
+					switch ( $event_field[ 'name' ] ) {
 						case 'syn_event_start_date':
 							$value = ( isset( $event->start->dateTime ) ) ? $event->start->dateTime : $event->start->date;
 							$value = syn_convert_date_string_to_meta( $value );
@@ -413,12 +419,14 @@
 	add_action( 'before_delete_post', 'syn_before_delete_calendar' );
 	function syn_before_delete_calendar( $post_id ) {
 		$post = get_post( $post_id );
-		if( 'syn_calendar' == $post->post_type ) {
+		if ( 'syn_calendar' == $post->post_type ) {
 			// Remove any sync schedules
-			wp_clear_scheduled_hook( 'syn_calendar_sync', [ 'post_id' => $post_id, 'post_type' => 'syn_calendar' ] );
+			wp_clear_scheduled_hook( 'syn_calendar_sync', [ 'post_id'   => $post_id,
+			                                                'post_type' => 'syn_calendar',
+			] );
 			$event_ids = syn_get_calendar_events( $post_id, null, 'all', - 1, 'ids' );
-			if( $event_ids ) {
-				foreach( $event_ids as $event_id ) {
+			if ( $event_ids ) {
+				foreach ( $event_ids as $event_id ) {
 					wp_delete_post( $event_id, true );
 				}
 			}
@@ -443,9 +451,9 @@
 			'meta_compare'     => '=',
 		];
 		$events = get_posts( $args );
-		if( $events ) {
+		if ( $events ) {
 			$event_details = [];
-			foreach( $events as $event ) {
+			foreach ( $events as $event ) {
 				$start_date          = get_field( 'syn_event_start_date', $event->ID );
 				$start_time          = get_field( 'syn_event_start_time', $event->ID );
 				$end_date            = get_field( 'syn_event_end_date', $event->ID );
@@ -486,11 +494,11 @@
 	function syn_prepare_calendar_fields( $field ) {
 		global $pagenow;
 		global $post;
-		if( is_admin() && 'post.php' == $pagenow && 'syn_calendar' == $post->post_type ) {
-			if( 'syn_calendar_last_sync' == $field[ '_name' ] ) {
+		if ( is_admin() && 'post.php' == $pagenow && 'syn_calendar' == $post->post_type ) {
+			if ( 'syn_calendar_last_sync' == $field[ '_name' ] ) {
 				$field[ 'disabled' ] = true;
 			}
-			if( 'syn_calendar_last_sync_result' == $field[ '_name' ] ) {
+			if ( 'syn_calendar_last_sync_result' == $field[ '_name' ] ) {
 				$field[ 'disabled' ] = true;
 			}
 		}
@@ -505,13 +513,13 @@
 	function syn_calendar_pre_get_posts( $query ) {
 		global $pagenow;
 		// only for admin "list" screens
-		if( is_admin() && $query->is_main_query() && $pagenow == 'edit.php' ) {
-			if( $query->get( 'post_type' ) == 'syn_event' || $query->get( 'post_type' ) == 'syn_calendar' ) {
+		if ( is_admin() && $query->is_main_query() && $pagenow == 'edit.php' ) {
+			if ( $query->get( 'post_type' ) == 'syn_event' || $query->get( 'post_type' ) == 'syn_calendar' ) {
 				$meta_query = $query->get( 'meta_query' );
-				if( isset( $_GET[ 'orderby' ] ) ) {
+				if ( isset( $_GET[ 'orderby' ] ) ) {
 					$orderby = sanitize_text_field( $_GET[ 'orderby' ] );
-					if( $query->get( 'post_type' ) == 'syn_event' ) {
-						switch( $orderby ) {
+					if ( $query->get( 'post_type' ) == 'syn_event' ) {
+						switch ( $orderby ) {
 							case 'syn_event_start_date':
 								$query->set( 'meta_key', 'syn_event_start_date' );
 								$query->set( 'orderby', 'meta_value_num' );
@@ -529,8 +537,8 @@
 					/*
 					 * Post type calendar use prefix "syn_calendar_"
 					 */
-					if( $query->get( 'post_type' ) == 'syn_calendar' ) {
-						switch( $orderby ) {
+					if ( $query->get( 'post_type' ) == 'syn_calendar' ) {
+						switch ( $orderby ) {
 							case 'syn_calendar_event_count':
 								$query->set( 'meta_key', 'syn_calendar_event_count' );
 								$query->set( 'orderby', 'meta_value_num' );
@@ -552,7 +560,7 @@
 					$order = sanitize_text_field( $_GET[ 'order' ] );
 					$query->set( 'order', $order );
 				} else {
-					if( $query->get( 'post_type' ) == 'syn_event' ) {
+					if ( $query->get( 'post_type' ) == 'syn_event' ) {
 						$query->set( 'meta_key', 'syn_event_start_date' );
 						$query->set( 'orderby', [
 							'meta_value_num' => 'DESC',
@@ -560,7 +568,7 @@
 						] );
 						$query->unset( 'order', 'ASC' );
 					}
-					if( $query->get( 'post_type' ) == 'syn_calendar' ) {
+					if ( $query->get( 'post_type' ) == 'syn_calendar' ) {
 						//$query->set( 'meta_key', 'syn_calendar_primary' );
 						$query->set( 'orderby', [
 							//'meta_value_num' => 'DESC',
@@ -569,7 +577,7 @@
 						$query->unset( 'order', 'ASC' );
 					}
 				}
-				if( isset( $_GET[ 'events_calendar_filter' ] ) && 0 != $_GET[ 'events_calendar_filter' ] ) {
+				if ( isset( $_GET[ 'events_calendar_filter' ] ) && 0 != $_GET[ 'events_calendar_filter' ] ) {
 					/*
 					 * Filter list by adding a meta query to $query
 					 */
@@ -589,7 +597,7 @@
 
 	add_filter( 'months_dropdown_results', 'syn_calendar_months_dropdown_results', 10, 2 );
 	function syn_calendar_months_dropdown_results( $months, $post_type ) {
-		if( $post_type == 'syn_calendar' || $post_type = 'syn_event' ) {
+		if ( $post_type == 'syn_calendar' || $post_type = 'syn_event' ) {
 			return [];
 		}
 
@@ -602,9 +610,11 @@
 //
 //
 	function syn_schedule_calendar_sync( $calendar_id ) {
-		$schedule_args = [ 'post_id' => $calendar_id, 'post_type' => 'syn_calendar' ];
+		$schedule_args = [ 'post_id'   => $calendar_id,
+		                   'post_type' => 'syn_calendar',
+		];
 		$sync          = get_field( 'syn_calendar_sync', $calendar_id );
-		if( $sync ) {
+		if ( $sync ) {
 			$frequency = get_field( 'syn_calendar_sync_frequency', $calendar_id );
 			wp_clear_scheduled_hook( 'syn_calendar_sync', [ $schedule_args ] );
 			wp_schedule_event( time(), $frequency, 'syn_calendar_sync', [ $schedule_args ] );
@@ -646,7 +656,7 @@
 	function syn_get_calendar_last_sync( $post_id ) {
 		$sync      = get_field( 'syn_calendar_sync', $post_id );
 		$last_sync = get_field( 'syn_calendar_last_sync', $post_id );
-		if( ! $sync || empty( $last_sync ) ) {
+		if ( ! $sync || empty( $last_sync ) ) {
 			return false;
 		} else {
 			$minutes_ago = syn_calculate_time_difference( date_create(), $last_sync, 'minutes' );
@@ -658,7 +668,7 @@
 	function syn_get_calendar_next_sync( $post_id ) {
 		$sync      = get_field( 'syn_calendar_sync', $post_id );
 		$next_sync = syn_get_calendar_next_scheduled( $post_id );
-		if( ! $sync || empty( $next_sync ) ) {
+		if ( ! $sync || empty( $next_sync ) ) {
 			return false;
 		} else {
 			$in_minutes = syn_calculate_time_difference( date_create(), date( 'c', $next_sync ), 'minutes' );
@@ -704,14 +714,14 @@
 	 */
 	function syn_get_calendar_events( $post_id, $ref_date = null, $range = 'month', $numberposts = - 1, $fields = '*' ) {
 		$calendar = get_post( $post_id );
-		if( ! isset( $calendar ) || ! property_exists( $calendar, 'post_type' ) || 'syn_calendar' != $calendar->post_type ) {
+		if ( ! isset( $calendar ) || ! property_exists( $calendar, 'post_type' ) || 'syn_calendar' != $calendar->post_type ) {
 			return;
 		}
 		$ref_date    = ( isset( $ref_date ) ) ? $ref_date : date( 'Ymd' );
 		$range       = ( isset( $range ) ) ? $range : 'month';
 		$numberposts = ( isset( $numberposts ) ) ? (int) $numberposts : - 1;
 		// Get all events, ignore $ref_date and $numberposts
-		if( 'all' == $range ) {
+		if ( 'all' == $range ) {
 			$args = [
 				'numberposts'      => - 1,
 				'post_type'        => 'syn_event',
@@ -729,7 +739,7 @@
 				'suppress_filters' => false,
 				'no_found_rows'    => true,
 			];
-			if( '*' != $fields ) {
+			if ( '*' != $fields ) {
 				$args[ 'fields' ] = $fields;
 			}
 		} else {
@@ -742,7 +752,7 @@
 					'compare' => '=',
 				],
 			];
-			switch( $range ) {
+			switch ( $range ) {
 				case 'next':
 					$start_date = date_format( $calendar_date, 'Ymd' );
 					break;
@@ -758,7 +768,7 @@
 					$start_date = date_format( $calendar_date, 'Ymd' );
 					$end_date   = date_format( $calendar_date, 'Ymd' );
 			}
-			if( isset( $end_date ) ) {
+			if ( isset( $end_date ) ) {
 				$meta_query[] = [
 					'key'     => 'syn_event_end_date',
 					'value'   => $end_date,
@@ -778,7 +788,7 @@
 				'suppress_filters' => false,
 				'no_found_rows'    => true,
 			];
-			if( '*' != $fields ) {
+			if ( '*' != $fields ) {
 				$args[ 'fields' ] = $fields;
 			}
 		}
@@ -790,17 +800,17 @@
 	}
 
 	function syn_calculate_time_difference( $date_time_1 = null, $date_time_2 = null, $time_unit = 'minutes' ) {
-		if( ! isset( $date_time_1 ) || ! isset( $date_time_2 ) ) {
+		if ( ! isset( $date_time_1 ) || ! isset( $date_time_2 ) ) {
 			return;
 		}
-		if( ! is_a( $date_time_1, 'DateTime' ) ) {
+		if ( ! is_a( $date_time_1, 'DateTime' ) ) {
 			$date_time_1 = date_create( $date_time_1 );
 		}
-		if( ! is_a( $date_time_2, 'DateTime' ) ) {
+		if ( ! is_a( $date_time_2, 'DateTime' ) ) {
 			$date_time_2 = date_create( $date_time_2 );
 		}
 		$interval = date_diff( $date_time_1, $date_time_2 );
-		switch( $time_unit ) {
+		switch ( $time_unit ) {
 			case 'seconds':
 				$interval_format = '%s';
 				break;
@@ -842,10 +852,10 @@
 		$start_date = date_create( $start_date );
 		$end_date   = date_create( $end_date );
 		$dates      = date_format( $start_date, 'F j, Y' );
-		if( $start_date != $end_date ) {
-			if( empty( $start_time ) || empty( $end_time ) ) {
+		if ( $start_date != $end_date ) {
+			if ( empty( $start_time ) || empty( $end_time ) ) {
 				$days_diff = syn_calculate_time_difference( $start_date, $end_date, 'days' );
-				if( $days_diff > 1 ) {
+				if ( $days_diff > 1 ) {
 					date_sub( $end_date, date_interval_create_from_date_string( '1 day' ) );
 					$dates .= ' - ' . date_format( $end_date, 'F j, Y' );
 				}
@@ -853,10 +863,10 @@
 				$dates .= ' - ' . date_format( $end_date, 'F j, Y' );
 			}
 		}
-		if( ! empty( $start_time ) ) {
+		if ( ! empty( $start_time ) ) {
 			$dates .= ' ' . $start_time;
 		}
-		if( ! empty( $end_time ) && $start_time != $end_time ) {
+		if ( ! empty( $end_time ) && $start_time != $end_time ) {
 			$dates .= '-' . $end_time;
 		}
 
@@ -864,31 +874,31 @@
 	}
 
 	function syn_event_date_time_display( $event_id, $date_type, $date_format = '' ) {
-		if( ! isset( $event_id ) || ! isset( $date_type ) ) {
+		if ( ! isset( $event_id ) || ! isset( $date_type ) ) {
 			return false;
 		}
 		$date_format = ( ! empty( $date_format ) ) ? $date_format : 'F j, Y';
 		$date_field  = '';
 		$time_field  = '';
 		$ret         = '';
-		if( 'start' == $date_type || 'start_date' == $date_type ) {
+		if ( 'start' == $date_type || 'start_date' == $date_type ) {
 			$date_field = 'syn_event_start_date';
 			$time_field = 'syn_event_start_time';
-		} elseif( 'end' == $date_type || 'end_date' == $date_type ) {
+		} elseif ( 'end' == $date_type || 'end_date' == $date_type ) {
 			$date_field = 'syn_event_end_date';
 			$time_field = 'syn_event_end_time';
 		}
-		if( empty( $date_field ) || empty( $time_field ) ) {
+		if ( empty( $date_field ) || empty( $time_field ) ) {
 			return false;
 		}
 		$event_date = get_field( $date_field, $event_id, false );
 		$event_date = date_create_from_format( 'Ymd', $event_date );
-		if( ! is_a( $event_date, 'DateTime' ) ) {
+		if ( ! is_a( $event_date, 'DateTime' ) ) {
 			return false;
 		}
 		$ret        = date_format( $event_date, $date_format );
 		$event_time = get_field( $time_field, $event_id, true );
-		if( $event_time && ! empty( $event_time ) ) {
+		if ( $event_time && ! empty( $event_time ) ) {
 			$ret .= ' @ ' . $event_time;
 		}
 
@@ -920,7 +930,7 @@
 //
 	function ________notinuse______syn_render_accessible_calendar( $post_id = null, $ref_date = null ) {
 		global $post;
-		if( ! isset( $post_id ) ) {
+		if ( ! isset( $post_id ) ) {
 			$post_id = $post->ID;
 		}
 		$ref_date          = ( isset( $ref_date ) ) ? (int) $ref_date : date( 'Ymd' );
@@ -947,14 +957,14 @@
 			</div>
 		</nav>
 		<?php
-		if( $event_ids ) {
-			foreach( $event_ids as $event_id ) {
+		if ( $event_ids ) {
+			foreach ( $event_ids as $event_id ) {
 				setup_postdata( $event_id );
 				get_template_part( 'loop-templates/content-excerpt' );
 			}
 			wp_reset_postdata();
 		} else {
-			if( 'year' == $range || 'month' == $range ) {
+			if ( 'year' == $range || 'month' == $range ) {
 				echo '<div class="no-content">No events available for this ' . $range;
 			} else {
 				echo '<div class="no-content">No events</div>';
@@ -966,11 +976,11 @@
 		global $post;
 		$calendar_id = ( isset( $post_id ) ) ? $post_id : $post->ID;
 		$calendar    = get_post( $calendar_id );
-		if( $calendar instanceof WP_Post ) {
+		if ( $calendar instanceof WP_Post ) {
 			$ref_date                   = ( isset( $_GET[ 'ref_date' ] ) ) ? (int) $_GET[ 'ref_date' ] : date( 'Ymd' );
 			$range                      = ( isset( $_GET[ 'range' ] ) ) ? $_GET[ 'range' ] : 'month';
 			$view                       = ( isset( $_GET[ 'view' ] ) ) ? $_GET[ 'view' ] : 'grid';
-			switch( $view ) :
+			switch ( $view ) :
 				case 'grid':
 					$selector_id = 'calendar-' . $calendar_id;
 					$google_calendar_id = get_field( 'syn_calendar_id', $calendar_id );
@@ -1006,7 +1016,7 @@
 	 */
 //add_action( 'manage_syn_calendar_posts_custom_column', 'syn_calendar_manage_posts_custom_column', 10, 2 );
 	function ________notinuse__________syn_calendar_manage_posts_custom_column( $column, $post_id ) {
-		switch( $column ) {
+		switch ( $column ) {
 			case 'syn_calendar_event_count':
 				$event_count = get_field( 'syn_calendar_event_count', $post_id );
 				$event_link  = '<a href="' . admin_url() . 'edit.php?s&post_type=syn_event&action=-1&events_calendar_filter=' . $post_id . '&filter_action=Filter&action2=-1' . '">';
@@ -1023,7 +1033,7 @@
 				break;
 			case 'last_sync':
 				$last_sync = syn_get_calendar_last_sync( $post_id );
-				if( is_numeric( $last_sync ) ) {
+				if ( is_numeric( $last_sync ) ) {
 					echo ( $last_sync === 1 ) ? '1 minute ago' : $last_sync . ' minutes ago';
 				} else {
 					echo 'Unsynced';
@@ -1031,7 +1041,7 @@
 				break;
 			case 'next_sync':
 				$next_sync = syn_get_calendar_next_sync( $post_id );
-				if( is_numeric( $next_sync ) ) {
+				if ( is_numeric( $next_sync ) ) {
 					echo ( $next_sync === 1 ) ? 'In 1 minute' : 'In ' . $next_sync . ' minutes';
 				} else {
 					echo 'Unscheduled';
@@ -1045,7 +1055,7 @@
 	 */
 //add_action( 'manage_syn_event_posts_custom_column', 'syn_event_manage_posts_custom_column', 10, 2 );
 	function ________notinuse__________syn_event_manage_posts_custom_column( $column, $post_id ) {
-		switch( $column ) {
+		switch ( $column ) {
 			case 'syn_event_start_date':
 				$start_date_time = syn_event_date_time_display( $post_id, 'start', 'F j, Y' );
 				echo $start_date_time;
@@ -1058,7 +1068,7 @@
 				//http://127.0.0.1:4001/wordpress/wp-admin/post.php?post=11389&action=edit
 				$event_calendar_id = get_field( 'syn_event_calendar_id', $post_id );
 				$calendar          = get_post( $event_calendar_id );
-				if( $calendar ) {
+				if ( $calendar ) {
 					$calendar_link = '<a href="' . admin_url() . 'post.php?s&post=' . $event_calendar_id . '&action=edit' . '">';
 					$calendar_link .= $calendar->post_title;
 					$calendar_link .= '</a>';
@@ -1072,12 +1082,12 @@
 
 //add_filter( 'manage_posts_columns', 'syn_calendar_manage_posts_columns', 10, 2 );
 	function ________notinuse__________syn_calendar_manage_posts_columns( $columns, $post_type ) {
-		switch( $post_type ) {
+		switch ( $post_type ) {
 			case 'syn_event':
 				$new_columns = [];
-				foreach( $columns as $key => $value ) {
+				foreach ( $columns as $key => $value ) {
 					$new_columns[ $key ] = $value;
-					if( $key == 'title' ) {
+					if ( $key == 'title' ) {
 						$new_columns[ 'syn_event_start_date' ]  = 'Start Date';
 						$new_columns[ 'syn_event_end_date' ]    = 'End Date';
 						$new_columns[ 'syn_event_calendar_id' ] = 'Calendar';
@@ -1087,9 +1097,9 @@
 				return $new_columns;
 			case 'syn_calendar':
 				$new_columns = [];
-				foreach( $columns as $key => $value ) {
+				foreach ( $columns as $key => $value ) {
 					$new_columns[ $key ] = $value;
-					if( $key == 'title' ) {
+					if ( $key == 'title' ) {
 						$new_columns[ 'primary_calendar' ]         = 'Primary';
 						$new_columns[ 'syn_calendar_event_count' ] = 'Events';
 						//$new_columns[ 'syn_calendar_source' ]      = 'Source';
@@ -1133,7 +1143,7 @@
 			'post_status' => 'publish',
 		];
 		$events      = get_posts( $events_args );
-		foreach( $events as $event ) {
+		foreach ( $events as $event ) {
 			wp_delete_post( $event->ID, true );
 		}
 	}
@@ -1150,7 +1160,7 @@
 		global $post;
 		$event_id  = ( isset( $post_id ) && is_numeric( $post_id ) ) ? $post_id : $post->ID;
 		$post_type = get_post_type( $event_id );
-		if( $post_type != 'syn_event' ) {
+		if ( $post_type != 'syn_event' ) {
 			return;
 		}
 		$calendar_id = get_field( 'syn_event_calendar_id', $event_id );
@@ -1175,12 +1185,12 @@
 		$calendar_id = ( isset( $post_id ) && is_numeric( $post_id ) ) ? $post_id : $post->ID;
 		$post_type   = get_post_type( $calendar_id );
 		// If post type not syn_calendar, bail
-		if( 'syn_calendar' != $post_type ) {
+		if ( 'syn_calendar' != $post_type ) {
 			return false;
 		}
 		$event_count = 0;
 		$event_ids   = syn_get_calendar_events( $calendar_id, null, 'all', - 1, 'ids' );
-		if( $event_ids ) {
+		if ( $event_ids ) {
 			$event_count = count( $event_ids );
 		}
 		// Since we have spent money on the lookup, update the value in calendar meta

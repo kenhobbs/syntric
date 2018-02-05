@@ -8,7 +8,10 @@
 		 * Set up a new widget instance
 		 */
 		public function __construct() {
-			$widget_ops = [ 'classname' => 'syn-upcoming-events-widget', 'description' => __( 'Displays upcoming calendar events.' ), 'customize_selective_refresh' => true, ];
+			$widget_ops = [ 'classname'                   => 'syn-upcoming-events-widget',
+			                'description'                 => __( 'Displays upcoming calendar events.' ),
+			                'customize_selective_refresh' => true,
+			];
 			parent::__construct( 'syn-upcoming-events-widget', __( 'Upcoming Events' ), $widget_ops );
 			$this->alt_option_name = 'syn-upcoming-events-widget';
 		}
@@ -41,7 +44,7 @@
 				$show_date   = get_field( 'syn_upcoming_events_widget_include_date', 'widget_' . $args[ 'widget_id' ] );
 			}
 			//$sidebar      = syn_widget_sidebar( $args[ 'widget_id' ] );
-			$sidebar_class   = syn_get_sidebar_class( $args[ 'widget_id' ] );
+			$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
 			if ( syn_remove_whitespace() ) {
 				$lb  = '';
 				$tab = '';
@@ -60,9 +63,9 @@
 					$dates       = syn_get_event_dates( $event->ID );
 					$start_date  = get_field( 'syn_event_start_date', $event->ID );
 					$_start_date = date_create( $start_date );
-					$location = get_field( 'syn_event_location', $event->ID );
+					$location    = get_field( 'syn_event_location', $event->ID );
 					if ( ! empty( $event->post_content ) ) :
-						echo $tab . '<a href="' . get_the_permalink( $event->ID ) . '" class="list-group-item">' . $lb;
+						echo $tab . '<a href="' . get_the_permalink( $event->ID ) . '" class="list-group-item list-group-item-action">' . $lb;
 					else :
 						echo $tab . '<div class="list-group-item">' . $lb;
 					endif;
@@ -87,7 +90,7 @@
 						echo $tab . '</div>' . $lb;
 					endif;
 				endforeach;
-				echo $tab . '<a href="' . get_the_permalink( $calendar_id ) . '" class="list-group-item more-link">Full calendar</a>' . $lb;
+				echo $tab . '<a href="' . get_the_permalink( $calendar_id ) . '" class="list-group-item list-group-item-action more-link">Full calendar</a>' . $lb;
 			} else {
 				echo '<div class="list-group-item">No events</div>' . $lb;
 			}

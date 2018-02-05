@@ -12,6 +12,8 @@
 		wp_deregister_script( 'jquery' );
 		// Fontawesome
 		wp_enqueue_script( 'fontawesome', 'https://use.fontawesome.com/f45398b257.js', null, '5.0.1', false );
+		// Fontawesome 5 SVG version
+		//wp_enqueue_script( 'fontawesome', 'https://use.fontawesome.com/releases/v5.0.6/js/all.js', null, '5.0.6', false );
 		// Google Fonts
 		wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Roboto|Ubantu+Mono|Ubantu', null, null, null );
 		// Master theme stylesheet

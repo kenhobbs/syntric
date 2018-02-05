@@ -53,6 +53,7 @@
                         "id": ""
                     },
                     "choices": {
+                        "top": "Top",
                         "header": "Header",
                         "main": "Main",
                         "footer": "Footer"
@@ -123,8 +124,7 @@
                     },
                     "choices": {
                         "container": "Fixed width",
-                        "container-fluid": "Full width",
-                        "container-bleed": "Full width, no margins"
+                        "container-fluid": "Full width"
                     },
                     "default_value": [],
                     "allow_null": 1,
@@ -535,7 +535,7 @@
                 "Syntric_Recent_Posts_Widget": "Recent Posts",
                 "Syntric_Roster_Widget": "Roster",
                 "Syntric_Upcoming_Events_Widget": "Upcoming Events",
-                "Syntric_YouTube_Widget": "YouTube"
+                "Syntric_Video_Widget": "Video"
             },
             "allow_custom": 0,
             "save_custom": 0,
@@ -611,5 +611,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1517290298
+    "modified": 1517649467
 }

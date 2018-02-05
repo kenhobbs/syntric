@@ -8,12 +8,12 @@
 	add_filter( 'pre_get_posts', 'syn_acf_pre_get_posts', 1, 1 );
 	function syn_acf_pre_get_posts( $query ) {
 		global $pagenow;
-		if( is_admin() && $query->is_main_query() && 'edit.php' == $pagenow && 'acf-field-group' == $query->get( 'post_type' ) ) {
-			if( ! isset( $_GET[ 'orderby' ] ) ) {
+		if ( is_admin() && $query->is_main_query() && 'edit.php' == $pagenow && 'acf-field-group' == $query->get( 'post_type' ) ) {
+			if ( ! isset( $_GET[ 'orderby' ] ) ) {
 				$query->set( 'orderby', 'post_title' );
 				$query->set( 'order', 'ASC' );
 			}
-			if( ! isset( $_GET[ 'post_status' ] ) ) {
+			if ( ! isset( $_GET[ 'post_status' ] ) ) {
 				$query->set( 'post_status', 'publish' );
 			}
 		}
@@ -28,7 +28,7 @@
 	 * @param $post_id - can be 'user_', 'widget_' or 'option' too
 	 */
 	function syn_get_field_key( $field_name, $post_id, $type = 'field' ) {
-		if( ! isset( $post_id ) || empty( $post_id ) ) {
+		if ( ! isset( $post_id ) || empty( $post_id ) ) {
 			return;
 		}
 		$field_obj = get_field_object( $field_name, $post_id );
@@ -64,7 +64,7 @@
 	 */
 //add_action( 'af/form/submission/id=contact-form', 'syn_af_process_contact_form', 20, 3 );
 	function syn_af_process_contact_form( $form, $fields, $args ) {
-		if( is_admin() ) {
+		if ( is_admin() ) {
 			return;
 		}
 		$recipient       = af_get_field( 'syn_cf_recipient' );
@@ -72,7 +72,7 @@
 		$recipient_type  = $recipient_array[ 0 ];
 		$recipient_id    = $recipient_array[ 1 ];
 		$emails          = [];
-		If( 'general' == $recipient_type ) {
+		If ( 'general' == $recipient_type ) {
 			$user_args = [
 				'meta_key'     => 'syn_user_general_email',
 				'meta_value'   => '1',
@@ -83,35 +83,35 @@
 				],
 			];
 			$users     = get_users( $user_args );
-			if( $users ) {
-				foreach( $users as $user ) {
-					if( $user ) {
+			if ( $users ) {
+				foreach ( $users as $user ) {
+					if ( $user ) {
 						$email    = $user->user_email;
 						$emails[] = $email;
 					}
 				}
 			}
-		} elseif( 'user' == $recipient_type ) {
+		} elseif ( 'user' == $recipient_type ) {
 			$user = get_user_by( 'id', (int) $recipient_id );
-			if( $user ) {
+			if ( $user ) {
 				$emails[] = $user->get( 'user_email' );
 			}
-		} elseif( 'department' == $recipient_type ) {
+		} elseif ( 'department' == $recipient_type ) {
 			$user_ids = get_objects_in_term( (int) $recipient_id, $recipient_type );
-			foreach( $user_ids as $user_id ) {
+			foreach ( $user_ids as $user_id ) {
 				$user = get_user_by( 'id', (int) $user_id );
-				if( $user ) {
+				if ( $user ) {
 					$email = $user->get( 'user_email' );
-					if( filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
+					if ( filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
 						$emails[] = $email;
 					}
 				}
 			}
 		}
 		// add emails to form so they will get sent along with the form configured emails
-		if( 'foo' == 'bar' ) {
-			if( sizeof( $emails ) > 0 ) {
-				foreach( $emails as $email ) {
+		if ( 'foo' == 'bar' ) {
+			if ( sizeof( $emails ) > 0 ) {
+				foreach ( $emails as $email ) {
 					$form[ 'emails' ][] = [
 						'name'             => 'Processed email',
 						'active'           => true,
@@ -131,44 +131,44 @@
 			}
 		}
 		// send emails from here
-		if( 'bar' == 'bar' ) {
+		if ( 'bar' == 'bar' ) {
 			$sender_name  = '';
 			$sender_email = '';
 			$sender_phone = '';
 			$message      = '';
-			foreach( $fields as $field ) {
-				if( $field[ 'name' ] == 'syn_cf_sender_name' ) {
+			foreach ( $fields as $field ) {
+				if ( $field[ 'name' ] == 'syn_cf_sender_name' ) {
 					$sender_name = $field[ 'value' ];
 				}
-				if( $field[ 'name' ] == 'syn_cf_sender_email' ) {
+				if ( $field[ 'name' ] == 'syn_cf_sender_email' ) {
 					$sender_email = $field[ 'value' ];
 				}
-				if( $field[ 'name' ] == 'syn_cf_sender_phone' ) {
+				if ( $field[ 'name' ] == 'syn_cf_sender_phone' ) {
 					$sender_phone = $field[ 'value' ];
 				}
-				if( ! empty( $sender_name ) || ! empty( $sender_email ) || ! empty( $sender_phone ) ) {
+				if ( ! empty( $sender_name ) || ! empty( $sender_email ) || ! empty( $sender_phone ) ) {
 					$message .= '<p>';
 				}
-				if( ! empty( $sender_name ) ) {
+				if ( ! empty( $sender_name ) ) {
 					$message .= $sender_name . '<br>';
 				}
-				if( ! empty( $sender_email ) ) {
+				if ( ! empty( $sender_email ) ) {
 					$message .= $sender_email . '<br>';
 				}
-				if( ! empty( $sender_phone ) ) {
+				if ( ! empty( $sender_phone ) ) {
 					$message .= $sender_phone;
 				}
-				if( ! empty( $sender_name ) || ! empty( $sender_email ) || ! empty( $sender_phone ) ) {
+				if ( ! empty( $sender_name ) || ! empty( $sender_email ) || ! empty( $sender_phone ) ) {
 					$message .= '</p>';
 				}
-				if( $field[ 'name' ] == 'syn_cf_message' ) {
+				if ( $field[ 'name' ] == 'syn_cf_message' ) {
 					$message .= '<p>' . $field[ 'value' ] . '</p>';
 				}
 			}
 			$headers = 'From: ' . $sender_name . '<' . $sender_email . '>' . "\r\n";
 			//$subject = 'Contact form message';
-			if( ! empty( $headers ) && ! empty( $message ) ) {
-				foreach( $emails as $email ) {
+			if ( ! empty( $headers ) && ! empty( $message ) ) {
+				foreach ( $emails as $email ) {
 					wp_mail( $email, 'Contact form message', $message, $headers );
 				}
 			}
@@ -192,22 +192,27 @@
 		</script>
 		<style type="text/css">
 			#postdivrich {
-				min-height: 800px;
+				min-height : 800px;
 			}
+
 			#postdivrich .wp-editor-wrap {
 				min-height : 750px;
 			}
+
 			.acf-field #wp-content-editor-tools {
-				background: transparent;
-				padding-top: 0;
+				background  : transparent;
+				padding-top : 0;
 			}
+
 			.acf-field-59c5b229f02a9 {
-				margin: 0;
+				margin : 0;
 			}
+
 			.acf-field-59c5b229f02a9 > .button.field-repeater-toggle,
 			.acf-field-59c5b229f02a9 > .acf-label {
 				display : none;
 			}
+
 			#acf-group_59c5b38407016 {
 				display : none;
 			}

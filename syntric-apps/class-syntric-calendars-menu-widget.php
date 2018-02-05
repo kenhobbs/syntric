@@ -25,11 +25,11 @@
 		 */
 		public function widget( $args, $instance ) {
 			global $post;
-			if( ! isset( $args[ 'widget_id' ] ) ) {
+			if ( ! isset( $args[ 'widget_id' ] ) ) {
 				$args[ 'widget_id' ] = $this->id;
 			}
 			$all_calendars = get_field( 'syn_calendars_menu_widget_all_calendars', 'widget_' . $args[ 'widget_id' ] );
-			if( $all_calendars ) {
+			if ( $all_calendars ) {
 				$calendars = syn_get_calendars();
 			} else {
 				$calendars = get_field( 'syn_calendars_menu_widget_calendars', 'widget_' . $args[ 'widget_id' ] );
@@ -43,16 +43,16 @@
 			}
 			//$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
 			$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
-			$title   = get_field( 'syn_calendars_menu_widget_title', 'widget_' . $args[ 'widget_id' ] );
+			$title         = get_field( 'syn_calendars_menu_widget_title', 'widget_' . $args[ 'widget_id' ] );
 			echo $args[ 'before_widget' ] . $lb;
-			if( ! empty( $title ) ) :
+			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			echo '<div class="list-group ' .  $sidebar_class. '">' . $lb;
-			if( $calendars ) :
+			echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
+			if ( $calendars ) :
 				$ref_date = ( isset( $_GET[ 'ref_date' ] ) ) ? $_GET[ 'ref_date' ] : date( 'Ymd' );
-				foreach( $calendars as $calendar ) {
-					echo $tab . $tab . '<a href="' . get_the_permalink( $calendar->ID ) . '?ref_date=' . $ref_date . '" data-id="' . $calendar->ID . '" class="list-group-item">';
+				foreach ( $calendars as $calendar ) {
+					echo $tab . $tab . '<a href="' . get_the_permalink( $calendar->ID ) . '?ref_date=' . $ref_date . '" data-id="' . $calendar->ID . '" class="list-group-item list-group-item-action">';
 					echo $tab . $tab . $tab . $calendar->post_title . $lb;
 					echo '</a>' . $lb;
 				};

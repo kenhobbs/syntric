@@ -11,11 +11,17 @@
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-	<div id="fb-root"></div>
-	<div class="print-header print-header-name d-print-block" aria-hidden="true"><?php echo get_bloginfo( 'name', 'display' ); ?></div>
-	<a class="sr-only sr-only-focusable skip-to-content-link" href="#content"><?php esc_html_e( 'Skip to content', 'syntric' ); ?></a>
-	<?php syn_primary_nav(); ?>
-	<?php get_search_form(); ?>
-	<?php syn_banner(); ?>
-	<?php syn_breadcrumbs(); ?>
-	<?php syn_sidebar( 'header' ); ?>
+<?php
+	if ( is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) ) :
+		if ( 'school_district' == syn_get_organization_type() ) {
+			syn_head();
+		}
+		syn_primary_nav();
+		get_search_form();
+		syn_banner();
+		syn_breadcrumbs();
+		syn_sidebar( 'header' );
+	else :
+		echo '<p>Wordpress is not configured to run Syntric Framework</p>';
+	endif;
+

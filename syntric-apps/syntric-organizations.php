@@ -16,11 +16,11 @@
 	add_filter( 'acf/prepare_field/name=organization_id', 'syn_prepare_organization_fields' );
 	add_filter( 'acf/prepare_field/name=syn_organization_id', 'syn_prepare_organization_fields' );
 	function syn_prepare_organization_fields( $field ) {
-		if( is_admin() ) {
-			if( 'organization_id' == $field[ '_name' ] ) {
+		if ( is_admin() ) {
+			if ( 'organization_id' == $field[ '_name' ] ) {
 				$field[ 'wrapper' ][ 'hidden' ] = 1;
 			}
-			if( 'syn_organization_id' == $field[ '_name' ] ) {
+			if ( 'syn_organization_id' == $field[ '_name' ] ) {
 				$field[ 'wrapper' ][ 'hidden' ] = 1;
 			}
 		}

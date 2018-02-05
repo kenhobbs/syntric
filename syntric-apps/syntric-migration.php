@@ -24,22 +24,22 @@
 	 */
 	add_action( 'acf/save_post', 'syn_migration_save_post', 20 );
 	function syn_migration_save_post( $post_id ) {
-		if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
 		$post = get_post( $post_id );
-		if( is_admin() && is_numeric( $post_id ) && 'page' == $post->post_type && isset( $_REQUEST[ 'acf' ] ) && ! wp_is_post_revision( $post_id ) ) {
+		if ( is_admin() && is_numeric( $post_id ) && 'page' == $post->post_type && isset( $_REQUEST[ 'acf' ] ) && ! wp_is_post_revision( $post_id ) ) {
 			$run_migration_task = get_field( 'syn_migration_run_next', $post_id );
-			if( isset( $run_migration_task ) && $run_migration_task ) {
+			if ( isset( $run_migration_task ) && $run_migration_task ) {
 				syn_migration_run_next( $post_id );
 			}
 			/**
 			 * Import (local) links in an HTML list into a page's Attachments
 			 */
 			$run_import_attachments_html = get_field( 'syn_migration_run_import_attachments_html', $post_id );
-			if( isset( $run_import_attachments_html ) && $run_import_attachments_html ) {
+			if ( isset( $run_import_attachments_html ) && $run_import_attachments_html ) {
 				$attachments_html = get_field( 'syn_migration_attachments_html', $post_id );
-				if( isset( $attachments_html ) && ! empty( $attachments_html ) ) {
+				if ( isset( $attachments_html ) && ! empty( $attachments_html ) ) {
 					syn_parse_attachments_html( $attachments_html, $post_id );
 				}
 			}
@@ -50,15 +50,15 @@
 	 * Process controller
 	 */
 	function syn_migration_run_next( $post_id ) {
-		if( get_field( 'syn_migration_files_indexed', $post_id ) != 1 ) {
+		if ( get_field( 'syn_migration_files_indexed', $post_id ) != 1 ) {
 			syn_migration_index_files( $post_id );
-		} elseif( get_field( 'syn_migration_files_synced', $post_id ) != 1 ) {
+		} elseif ( get_field( 'syn_migration_files_synced', $post_id ) != 1 ) {
 			syn_migration_sync_files( $post_id );
-		} elseif( get_field( 'syn_migration_links_converted', $post_id ) != 1 ) {
+		} elseif ( get_field( 'syn_migration_links_converted', $post_id ) != 1 ) {
 			syn_migration_convert_links( $post_id );
 			//} elseif ( get_field( 'syn_migration_files_attached', $post_id ) != 1 ) {
 			//syn_migration_attach_files( $post_id );
-		} elseif( get_field( 'syn_migration_content_cleaned', $post_id ) != 1 ) {
+		} elseif ( get_field( 'syn_migration_content_cleaned', $post_id ) != 1 ) {
 			syn_migration_clean_content( $post_id );
 		}
 	}
@@ -73,8 +73,8 @@
 		update_field( 'syn_migration_files', [], $post_id );
 		$page    = get_post( $post_id );
 		$anchors = syn_migration_tag_attributes( $page->post_content, 'a' );
-		if( $anchors ) {
-			foreach( $anchors as $anchor ) {
+		if ( $anchors ) {
+			foreach ( $anchors as $anchor ) {
 				$remote_filename = basename( $anchor[ 'href' ] );
 				//$ext             = pathinfo( $remote_filename, PATHINFO_EXTENSION );
 				//if ( in_array( $ext, array( 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', ) ) ) {
@@ -99,9 +99,9 @@
 		}
 		update_field( 'syn_migration_images', [], $post_id );
 		$images = syn_migration_tag_attributes( $page->post_content, 'img' );
-		if( isset( $images ) ) {
+		if ( isset( $images ) ) {
 			$image_count = 1;
-			foreach( $images as $image ) {
+			foreach ( $images as $image ) {
 				$remote_filename = basename( $image[ 'src' ] );
 				$remote_url      = $image[ 'src' ];
 				$local_title     = $page->post_title . ' image ' . $image_count;
@@ -138,23 +138,37 @@
 	 * @param $post_id
 	 */
 	function syn_migration_sync_files( $post_id ) {
-		if( have_rows( 'syn_migration_files', $post_id ) ) {
+		if ( have_rows( 'syn_migration_files', $post_id ) ) {
 			while( have_rows( 'syn_migration_files', $post_id ) ) : the_row();
 				$remote_file    = wp_remote_get( get_sub_field( 'remote_url' ) );
 				$local_title    = get_sub_field( 'local_title' );
 				$ext            = pathinfo( get_sub_field( 'remote_filename' ), PATHINFO_EXTENSION );
 				$local_filename = syn_migration_title_to_filename( $local_title ) . '.' . $ext;
-				if( $ext == 'pdf' ) {
+				if ( $ext == 'pdf' ) {
 					add_filter( 'upload_dir', 'syn_pdf_upload_dir' );
-				} elseif( in_array( $ext, [ 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx' ] ) ) {
+				} elseif ( in_array( $ext, [
+					'doc',
+					'docx',
+					'xls',
+					'xlsx',
+					'ppt',
+					'pptx',
+				] ) ) {
 					add_filter( 'upload_dir', 'syn_msoffice_upload_dir' );
 				} else {
 					add_filter( 'upload_dir', 'syn_other_upload_dir' );
 				}
 				$uploaded_file = wp_upload_bits( $local_filename, null, wp_remote_retrieve_body( $remote_file ) );
-				if( $ext == 'pdf' ) {
+				if ( $ext == 'pdf' ) {
 					remove_filter( 'upload_dir', 'syn_pdf_upload_dir' );
-				} elseif( in_array( $ext, [ 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx' ] ) ) {
+				} elseif ( in_array( $ext, [
+					'doc',
+					'docx',
+					'xls',
+					'xlsx',
+					'ppt',
+					'pptx',
+				] ) ) {
 					remove_filter( 'upload_dir', 'syn_msoffice_upload_dir' );
 				} else {
 					remove_filter( 'upload_dir', 'syn_other_upload_dir' );
@@ -171,7 +185,7 @@
 				update_sub_field( 'local_filename', basename( $uploaded_file[ 'file' ] ) );
 			endwhile;
 		}
-		if( have_rows( 'syn_migration_images', $post_id ) ) {
+		if ( have_rows( 'syn_migration_images', $post_id ) ) {
 			while( have_rows( 'syn_migration_images', $post_id ) ) : the_row();
 				$remote_file    = wp_remote_get( get_sub_field( 'remote_url' ) );
 				$local_title    = get_sub_field( 'local_title' );
@@ -228,7 +242,7 @@
 	function syn_migration_convert_links( $post_id ) {
 		$post    = get_post( $post_id );
 		$content = $post->post_content;
-		if( have_rows( 'syn_migration_files', $post_id ) ) {
+		if ( have_rows( 'syn_migration_files', $post_id ) ) {
 			while( have_rows( 'syn_migration_files', $post_id ) ) : the_row();
 				$remote_title = get_sub_field( 'remote_title' );
 				$local_title  = get_sub_field( 'local_title' );
@@ -237,20 +251,32 @@
 				$local_url    = wp_get_attachment_url( $local_file );
 				$local_url    = $local_url . '" data-attachment-id="' . $local_file;
 				//$data_content_attr = ' data-content="' . $remote_url . '"';
-				$searches     = [ $remote_url, $remote_title ];
-				$replacements = [ $local_url, $local_title ];
+				$searches     = [
+					$remote_url,
+					$remote_title,
+				];
+				$replacements = [
+					$local_url,
+					$local_title,
+				];
 				$content      = str_replace( $searches, $replacements, $content );
 			endwhile;
-			wp_update_post( [ 'ID' => $post_id, 'post_content' => $content ] );
+			wp_update_post( [
+				'ID'           => $post_id,
+				'post_content' => $content,
+			] );
 		}
-		if( have_rows( 'syn_migration_images', $post_id ) ) {
+		if ( have_rows( 'syn_migration_images', $post_id ) ) {
 			while( have_rows( 'syn_migration_images', $post_id ) ) : the_row();
 				$remote_url = get_sub_field( 'remote_url' );
 				$file       = get_sub_field( 'local_file' );
 				$url        = wp_get_attachment_url( $file );
 				$content    = str_replace( $remote_url, $url, $content );
 			endwhile;
-			wp_update_post( [ 'ID' => $post_id, 'post_content' => $content ] );
+			wp_update_post( [
+				'ID'           => $post_id,
+				'post_content' => $content,
+			] );
 		}
 		update_field( 'syn_migration_links_converted', 1, $post_id );
 		update_field( 'syn_migration_run_next', '', $post_id );
@@ -258,17 +284,17 @@
 
 	function syn_parse_attachments_html( $attachments_html, $post_id ) {
 		$attachments_index = syn_migration_parse_attachment_lists( $attachments_html );
-		if( $attachments_index ) {
+		if ( $attachments_index ) {
 			update_field( 'syn_attachments_active', 1, $post_id );
 			update_field( 'syn_attachments_title', 'Attachments (parsed from HTML)', $post_id );
 			update_field( 'syn_migration_attachments_html', '', $post_id );
-			foreach( $attachments_index as $attachment_index ) {
+			foreach ( $attachments_index as $attachment_index ) {
 				$attachment_group = [
 					'header'      => '',
 					'description' => '',
 					'attachments' => [],
 				];
-				foreach( $attachment_index as $attachment_id ) {
+				foreach ( $attachment_index as $attachment_id ) {
 					$attachment_group[ 'attachments' ][] = [
 						'attachment_type' => 'file',
 						'file'            => $attachment_id,
@@ -346,7 +372,10 @@
 		// replace multi-line breaks with single line break
 		/*$content = preg_replace( "/[\r]+/", "", $content );
 		$content = preg_replace( "/[\n]+/", "\n", $content );*/
-		wp_update_post( [ 'ID' => $post_id, 'post_content' => $content ] );
+		wp_update_post( [
+			'ID'           => $post_id,
+			'post_content' => $content,
+		] );
 		update_field( 'syn_migration_content_cleaned', 1, $post_id );
 		update_field( 'syn_migration_run_next', '', $post_id );
 		//update_field( 'syn_migration_run_all', '', $post_id );
@@ -364,27 +393,27 @@
 	 * otherwise an array of attributes for matching tag.  Returns false if params are missing or not correct.
 	 */
 	function syn_migration_tag_attributes( $content, $tag, $attribute = null, $attribute_value = null ) {
-		if( isset( $content ) && isset( $tag ) ) {
+		if ( isset( $content ) && isset( $tag ) ) {
 			$dom_doc = new DomDocument();
 			$dom_doc->loadHTML( $content );
 			$items = [];
-			foreach( $dom_doc->getElementsByTagName( $tag ) as $item ) {
+			foreach ( $dom_doc->getElementsByTagName( $tag ) as $item ) {
 				$attributes = [];
-				if( $item->attributes ) {
-					foreach( $item->attributes as $attr ) {
+				if ( $item->attributes ) {
+					foreach ( $item->attributes as $attr ) {
 						$attributes[ $attr->nodeName ] = $attr->nodeValue;
 					}
 					$title                       = $item->nodeValue;
 					$attributes[ 'tag-content' ] = $title;
 				}
-				if( isset( $attribute ) && isset( $attribute_value ) && $attribute == 'filename' ) {
+				if ( isset( $attribute ) && isset( $attribute_value ) && $attribute == 'filename' ) {
 					$file = $attributes[ 'href' ];
 					$file = basename( $file );
 					$file = reset( explode( '?', $file ) );
-					if( $file == $attribute_value ) {
+					if ( $file == $attribute_value ) {
 						return $attributes;
 					}
-				} elseif( isset( $attribute ) && isset( $attribute_value ) && $attributes[ $attribute ] == $attribute_value ) {
+				} elseif ( isset( $attribute ) && isset( $attribute_value ) && $attributes[ $attribute ] == $attribute_value ) {
 					return $attributes;
 				}
 				$items[] = $attributes;
@@ -405,15 +434,18 @@
 		$dom_doc = new DomDocument();
 		$dom_doc->loadHTML( $content );
 		$lists = [];
-		foreach( [ 'ul', 'ol' ] as $tag ) {
-			foreach( $dom_doc->getElementsByTagName( $tag ) as $item ) {
+		foreach ( [
+			'ul',
+			'ol',
+		] as $tag ) {
+			foreach ( $dom_doc->getElementsByTagName( $tag ) as $item ) {
 				$items = [];
-				foreach( $item->childNodes as $li ) {
-					if( 'li' == $li->nodeName ) {
-						foreach( $li->childNodes as $a ) {
-							if( $a->nodeName == 'a' ) {
-								foreach( $a->attributes as $attr ) {
-									if( $attr->nodeName == 'data-attachment-id' ) {
+				foreach ( $item->childNodes as $li ) {
+					if ( 'li' == $li->nodeName ) {
+						foreach ( $li->childNodes as $a ) {
+							if ( $a->nodeName == 'a' ) {
+								foreach ( $a->attributes as $attr ) {
+									if ( $attr->nodeName == 'data-attachment-id' ) {
 										$items[] = $attr->nodeValue;
 									}
 								}
@@ -443,7 +475,7 @@
 		$current_year = date_format( $now, 'y' );
 		$cy_m5        = (int) $current_year - 5;
 		$cy_p5        = (int) $current_year + 5;
-		for( $yr = $cy_m5; $yr < $cy_p5; $yr ++ ) {
+		for ( $yr = $cy_m5; $yr < $cy_p5; $yr ++ ) {
 			$yr_p1    = $yr + 1;
 			$sh_sh    = $yr . '-' . $yr_p1;
 			$lg_sh    = '20' . $yr . '-' . $yr_p1;
@@ -453,7 +485,7 @@
 			$lg_lg_sp = $lg_lg . ' ';
 			$sp_lg_lg = ' ' . $lg_lg;
 			$title    = str_replace( $sp_lg_lg, '', $title, $replacements );
-			if( $replacements ) {
+			if ( $replacements ) {
 				$title = $lg_lg_sp . $title;
 				break;
 			}
@@ -478,7 +510,7 @@
 	}
 
 	function syn_migration_image_details( $image_src ) {
-		if( ! $image_src ) {
+		if ( ! $image_src ) {
 			return false;
 		}
 		$ret                           = [];
@@ -493,17 +525,17 @@
 		$image_ext_starts_at[ 'tiff' ] = strpos( $image_src, '.tiff' );
 		$image_ext_starts_at[ 'tif' ]  = strpos( $image_src, '.tif' );
 		$image_ext_starts_at[ 'bmp' ]  = strpos( $image_src, '.bmp' );
-		foreach( $image_ext_starts_at as $key => $value ) {
-			if( $value ) {
+		foreach ( $image_ext_starts_at as $key => $value ) {
+			if ( $value ) {
 				$image_ext_src_len = $value + strlen( $key ) + 1; // extra 1 for the period (.)
-				if( $src_len != $image_ext_src_len ) {
+				if ( $src_len != $image_ext_src_len ) {
 					// this is a multi-part src, split it up
 					$image_src_array = explode( $key, $image_src );
 					$ret[ 'part_1' ] = $image_src_array[ 0 ] . $key;
 					$ret[ 'part_2' ] = $ret[ 'part_1' ] . $image_src_array[ 1 ];
 					$ret[ 'parts' ]  = 2;
-					if( count( $image_src_array ) > 2 ) {
-						for( $i = 2; $i < count( $image_src_array ); $i ++ ) {
+					if ( count( $image_src_array ) > 2 ) {
+						for ( $i = 2; $i < count( $image_src_array ); $i ++ ) {
 							$part           = 'part_' . ( $i + 1 );
 							$prev_part      = 'part_' . $i;
 							$ret[ $part ]   = $ret[ $prev_part ] . $image_src_array[ $i ];
@@ -544,11 +576,11 @@
 		/*$attachments_list_field     = get_field_object( 'syn_attachments_list', $post_id, false, false );
 		$attachments_list_field_key = $attachments_list_field[ 'key' ];*/
 		$fk = syn_get_field_key( 'syn_attachments', '' );
-		if( have_rows( 'syn_migration_files', $post_id ) ) {
+		if ( have_rows( 'syn_migration_files', $post_id ) ) {
 			$file_index = get_field( 'syn_migration_files' );
 			$rows       = [];
 			//'syn_file_migration_import' => 1,
-			foreach( $file_index as $index_file ) {
+			foreach ( $file_index as $index_file ) {
 				$row    = [
 					'syn_file'      => $index_file[ 'local_file' ],
 					'acf_fc_layout' => 'syn_file_layout',

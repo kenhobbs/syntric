@@ -37,8 +37,15 @@
 				$roles      = $user->roles;
 				$role       = $roles[ 0 ];
 				if ( $is_teacher ) {
-					if ( ! in_array( $role, [ 'author', 'editor', 'administrator' ] ) ) {
-						$user_id = wp_update_user( [ 'ID' => $user_id, 'role' => 'author', ] );
+					if ( ! in_array( $role, [
+						'author',
+						'editor',
+						'administrator',
+					] ) ) {
+						$user_id = wp_update_user( [
+							'ID'   => $user_id,
+							'role' => 'author',
+						] );
 					}
 					// make sure role is at least author
 					$teacher_page_id = syn_save_teacher_page( $user_id );
@@ -63,11 +70,19 @@
 						$is_teacher = ( isset( $post_fields[ 'user_' . $user_id . '-is_teacher' ] ) ) ? 1 : 0;
 						$role       = ( $is_teacher && 'subscriber' == $role ) ? 'author' : $role;
 						$username   = $post_fields[ 'user_' . $user_id . '-username' ]; // this is a hidden form field
-						$userdata   = [ 'ID'           => $user_id, 'user_login' => $username, 'user_nicename' => $first_name . ' ' . $last_name, 'user_email' => $email,
-						                'display_name' => $first_name . ' ' . $last_name, 'nickname' => $first_name, 'first_name' => $first_name, 'last_name' => $last_name,
-						                'role'         => $role, ];
+						$userdata   = [
+							'ID'            => $user_id,
+							'user_login'    => $username,
+							'user_nicename' => $first_name . ' ' . $last_name,
+							'user_email'    => $email,
+							'display_name'  => $first_name . ' ' . $last_name,
+							'nickname'      => $first_name,
+							'first_name'    => $first_name,
+							'last_name'     => $last_name,
+							'role'          => $role,
+						];
 						$user_id    = wp_insert_user( $userdata );
-						$prefix = $post_fields[ 'user_' . $user_id . '-prefix' ];
+						$prefix     = $post_fields[ 'user_' . $user_id . '-prefix' ];
 						$title      = $post_fields[ 'user_' . $user_id . '-title' ];
 						$phone      = $post_fields[ 'user_' . $user_id . '-phone' ];
 						$extension  = $post_fields[ 'user_' . $user_id . '-extension' ];

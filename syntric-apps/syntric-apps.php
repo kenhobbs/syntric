@@ -41,30 +41,71 @@
 		$organization_is_school   = syn_organization_is_school();
 		$organizations_type_label = syn_get_organizations_type_label();
 		// Organization
-		acf_add_options_page( [ 'page_title' => $organization_type_label, 'menu_title' => $organization_type_label, 'menu_slug' => 'syntric-organization',
-		                        'capability' => 'edit_others_pages', 'position' => '59.1', 'redirect' => false, ] );
+		acf_add_options_page( [
+			'page_title' => $organization_type_label,
+			'menu_title' => $organization_type_label,
+			'menu_slug'  => 'syntric-organization',
+			'capability' => 'edit_others_pages',
+			'position'   => '59.1',
+			'redirect'   => false,
+		] );
 		// Organizations
-		acf_add_options_sub_page( [ 'page_title'  => $organizations_type_label, 'menu_title' => $organizations_type_label, 'menu_slug' => 'syntric-organizations',
-		                            'parent_slug' => 'syntric-organization', 'capability' => 'edit_others_pages', ] );
+		acf_add_options_sub_page( [
+			'page_title'  => $organizations_type_label,
+			'menu_title'  => $organizations_type_label,
+			'menu_slug'   => 'syntric-organizations',
+			'parent_slug' => 'syntric-organization',
+			'capability'  => 'edit_others_pages',
+		] );
 		// People
-		acf_add_options_sub_page( [ 'page_title' => 'People', 'menu_title' => 'People', 'menu_slug' => 'syntric-people', 'parent_slug' => 'syntric-organization',
-		                            'capability' => 'edit_others_pages', ] );
+		acf_add_options_sub_page( [
+			'page_title'  => 'People',
+			'menu_title'  => 'People',
+			'menu_slug'   => 'syntric-people',
+			'parent_slug' => 'syntric-organization',
+			'capability'  => 'edit_others_pages',
+		] );
 		// Academic Calendar
-		acf_add_options_sub_page( [ 'page_title'  => 'Acedemic Calendar', 'menu_title' => 'Acedemic Calendar', 'menu_slug' => 'syntric-academic-calendar',
-		                            'parent_slug' => 'syntric-organization', 'capability' => 'edit_others_pages', ] );
+		acf_add_options_sub_page( [
+			'page_title'  => 'Acedemic Calendar',
+			'menu_title'  => 'Acedemic Calendar',
+			'menu_slug'   => 'syntric-academic-calendar',
+			'parent_slug' => 'syntric-organization',
+			'capability'  => 'edit_others_pages',
+		] );
 		// Departments
-		acf_add_options_sub_page( [ 'page_title' => 'Departments', 'menu_title' => 'Departments', 'menu_slug' => 'syntric-departments', 'parent_slug' => 'syntric-organization',
-		                            'capability' => 'edit_others_pages', ] );
+		acf_add_options_sub_page( [
+			'page_title'  => 'Departments',
+			'menu_title'  => 'Departments',
+			'menu_slug'   => 'syntric-departments',
+			'parent_slug' => 'syntric-organization',
+			'capability'  => 'edit_others_pages',
+		] );
 		if ( $organization_is_school ) {
 			// Buildings
-			acf_add_options_sub_page( [ 'page_title' => 'Buildings/Facilities', 'menu_title' => 'Buildings', 'menu_slug' => 'syntric-buildings', 'parent_slug' => 'syntric-organization',
-			                            'capability' => 'edit_others_pages', ] );
+			acf_add_options_sub_page( [
+				'page_title'  => 'Buildings/Facilities',
+				'menu_title'  => 'Buildings',
+				'menu_slug'   => 'syntric-buildings',
+				'parent_slug' => 'syntric-organization',
+				'capability'  => 'edit_others_pages',
+			] );
 			// Rooms
-			acf_add_options_sub_page( [ 'page_title' => 'Rooms/Classrooms', 'menu_title' => 'Rooms', 'menu_slug' => 'syntric-rooms', 'parent_slug' => 'syntric-organization',
-			                            'capability' => 'edit_others_pages', ] );
+			acf_add_options_sub_page( [
+				'page_title'  => 'Rooms/Classrooms',
+				'menu_title'  => 'Rooms',
+				'menu_slug'   => 'syntric-rooms',
+				'parent_slug' => 'syntric-organization',
+				'capability'  => 'edit_others_pages',
+			] );
 			// Periods
-			acf_add_options_sub_page( [ 'page_title' => 'Periods', 'menu_title' => 'Periods', 'menu_slug' => 'syntric-periods', 'parent_slug' => 'syntric-organization',
-			                            'capability' => 'edit_others_pages', ] );
+			acf_add_options_sub_page( [
+				'page_title'  => 'Periods',
+				'menu_title'  => 'Periods',
+				'menu_slug'   => 'syntric-periods',
+				'parent_slug' => 'syntric-organization',
+				'capability'  => 'edit_others_pages',
+			] );
 			/*// Courses/Classes
 			acf_add_options_page( array(
 				'page_title' => 'Courses/Classes',
@@ -74,18 +115,38 @@
 				'redirect'   => true,
 			) );*/
 			// Courses
-			acf_add_options_sub_page( [ 'page_title' => 'Courses', 'menu_title' => 'Courses', 'menu_slug' => 'syntric-courses', 'parent_slug' => 'syntric-organization',
-			                            'capability' => 'edit_others_pages', ] );
+			acf_add_options_sub_page( [
+				'page_title'  => 'Courses',
+				'menu_title'  => 'Courses',
+				'menu_slug'   => 'syntric-courses',
+				'parent_slug' => 'syntric-organization',
+				'capability'  => 'edit_others_pages',
+			] );
 			// Classes
-			acf_add_options_sub_page( [ 'page_title' => 'Classes', 'menu_title' => 'Classes', 'menu_slug' => 'syntric-classes', 'parent_slug' => 'syntric-organization',
-			                            'capability' => 'edit_others_pages', ] );
+			acf_add_options_sub_page( [
+				'page_title'  => 'Classes',
+				'menu_title'  => 'Classes',
+				'menu_slug'   => 'syntric-classes',
+				'parent_slug' => 'syntric-organization',
+				'capability'  => 'edit_others_pages',
+			] );
 		}
 		// Jumbotrons
-		acf_add_options_page( [ 'page_title' => 'Jumbotrons', 'menu_title' => 'Jumbotrons', 'menu_slug' => 'syntric-jumbotrons', 'capability' => 'edit_others_pages',
-		                        'redirect'   => false, ] );
+		acf_add_options_page( [
+			'page_title' => 'Jumbotrons',
+			'menu_title' => 'Jumbotrons',
+			'menu_slug'  => 'syntric-jumbotrons',
+			'capability' => 'edit_others_pages',
+			'redirect'   => false,
+		] );
 		// Google Maps
-		acf_add_options_page( [ 'page_title' => 'Google Maps', 'menu_title' => 'Google Maps', 'menu_slug' => 'syntric-google-maps', 'capability' => 'edit_others_pages',
-		                        'redirect'   => false, ] );
+		acf_add_options_page( [
+			'page_title' => 'Google Maps',
+			'menu_title' => 'Google Maps',
+			'menu_slug'  => 'syntric-google-maps',
+			'capability' => 'edit_others_pages',
+			'redirect'   => false,
+		] );
 		// Lists
 		/*acf_add_options_sub_page( array(
 			'page_title'  => 'Lists',
@@ -94,20 +155,46 @@
 			'capability'  => 'manage_options',
 		) );*/
 		// Appearance > Sidebars & Widgets
-		acf_add_options_sub_page( [ 'page_title'  => 'Sidebars & Widgets', 'menu_title' => 'Sidebars & Widgets', 'menu_slug' => 'syntric-sidebars-widgets',
-		                            'parent_slug' => 'options-general.php', 'capability' => 'manage_options', 'position' => 1, ] );
+		acf_add_options_sub_page( [
+			'page_title'  => 'Sidebars & Widgets',
+			'menu_title'  => 'Sidebars & Widgets',
+			'menu_slug'   => 'syntric-sidebars-widgets',
+			'parent_slug' => 'options-general.php',
+			'capability'  => 'manage_options',
+			'position'    => 1,
+		] );
 		// Tools > Data Functions
-		acf_add_options_sub_page( [ 'page_title' => 'Data Functions', 'menu_title' => 'Data Functions', 'menu_slug' => 'syntric-data-functions', 'parent_slug' => 'tools.php',
-		                            'capability' => 'manage_options', ] );
+		acf_add_options_sub_page( [
+			'page_title'  => 'Data Functions',
+			'menu_title'  => 'Data Functions',
+			'menu_slug'   => 'syntric-data-functions',
+			'parent_slug' => 'tools.php',
+			'capability'  => 'manage_options',
+		] );
 		// Tools > Clonables
-		acf_add_options_sub_page( [ 'page_title' => 'Clonables', 'menu_title' => 'Clonables', 'menu_slug' => 'syntric-clonables', 'parent_slug' => 'tools.php',
-		                            'capability' => 'manage_options', ] );
+		acf_add_options_sub_page( [
+			'page_title'  => 'Clonables',
+			'menu_title'  => 'Clonables',
+			'menu_slug'   => 'syntric-clonables',
+			'parent_slug' => 'tools.php',
+			'capability'  => 'manage_options',
+		] );
 		// Settings > Social Media
-		acf_add_options_sub_page( [ 'page_title' => 'Social Media', 'menu_title' => 'Social Media', 'menu_slug' => 'syntric-social-media', 'parent_slug' => 'options-general.php',
-		                            'capability' => 'manage_options', ] );
+		acf_add_options_sub_page( [
+			'page_title'  => 'Social Media',
+			'menu_title'  => 'Social Media',
+			'menu_slug'   => 'syntric-social-media',
+			'parent_slug' => 'options-general.php',
+			'capability'  => 'manage_options',
+		] );
 		// Settings > Google
-		acf_add_options_sub_page( [ 'page_title' => 'Google', 'menu_title' => 'Google', 'menu_slug' => 'syntric-google', 'parent_slug' => 'options-general.php',
-		                            'capability' => 'manage_options', ] );
+		acf_add_options_sub_page( [
+			'page_title'  => 'Google',
+			'menu_title'  => 'Google',
+			'menu_slug'   => 'syntric-google',
+			'parent_slug' => 'options-general.php',
+			'capability'  => 'manage_options',
+		] );
 		// Settings > ADA Compliance
 		/*acf_add_options_sub_page( array(
 			'page_title'  => 'ADA Compliance',
@@ -124,16 +211,34 @@
 			return true;
 		}
 		$current_user_role = $current_user->roles ? $current_user->roles[ 0 ] : false;
-		if ( 'subscriber' == $role && in_array( $current_user_role, [ 'subscriber', 'contributor', 'author', 'editor', 'administrator', ] ) ) {
+		if ( 'subscriber' == $role && in_array( $current_user_role, [
+				'subscriber',
+				'contributor',
+				'author',
+				'editor',
+				'administrator',
+			] ) ) {
 			return true;
 		}
-		if ( 'contributor' == $role && in_array( $current_user_role, [ 'contributor', 'author', 'editor', 'administrator', ] ) ) {
+		if ( 'contributor' == $role && in_array( $current_user_role, [
+				'contributor',
+				'author',
+				'editor',
+				'administrator',
+			] ) ) {
 			return true;
 		}
-		if ( 'author' == $role && in_array( $current_user_role, [ 'author', 'editor', 'administrator', ] ) ) {
+		if ( 'author' == $role && in_array( $current_user_role, [
+				'author',
+				'editor',
+				'administrator',
+			] ) ) {
 			return true;
 		}
-		if ( 'editor' == $role && in_array( $current_user_role, [ 'editor', 'administrator', ] ) ) {
+		if ( 'editor' == $role && in_array( $current_user_role, [
+				'editor',
+				'administrator',
+			] ) ) {
 			return true;
 		}
 		if ( 'administrator' == $role && $current_user_role == 'administrator' ) {
@@ -551,28 +656,47 @@
 	add_filter( 'menu_order', 'syn_menu_order' );
 	function syn_menu_order( $menu_order ) {
 		global $submenu;
-		$_menu_order = [ 'index.php', // Dashboard
-		                 //'separator1', // Separator
-		                 'edit.php?post_type=page', // Pages
-		                 //'admin.php?page=nestedpages', // Pages (Nested Pages)
-		                 'edit.php', // Posts
-		                 //'separator2', // Separator
-		                 'syntric-organization', // School or District or COE or Organization
-		                 'edit.php?post_type=syn_calendar', // Calendars
-		                 'syntric-jumbotrons', // Jumbotrons
-		                 'syntric-google-maps', // Google Maps
-		                 'link-manager.php', // Links
-		                 'edit-comments.php', // Comments
-		                 'upload.php', // Media
-		                 'users.php', // Users
-		                 'profile.php', // Profile
-		                 //'separator-last', // Separator
-		                 'themes.php', // Appearance
-		                 'plugins.php', // Plugins
-		                 'tools.php', // Tools
-		                 'options-general.php', // Settings
-		                 'edit.php?post_type=acf-field-group', // Custom Fields
-		                 'jetpack', // Jetpack
+		$_menu_order = [
+			'index.php',
+			// Dashboard
+			//'separator1', // Separator
+			'edit.php?post_type=page',
+			// Pages
+			//'admin.php?page=nestedpages', // Pages (Nested Pages)
+			'edit.php',
+			// Posts
+			//'separator2', // Separator
+			'syntric-organization',
+			// School or District or COE or Organization
+			'edit.php?post_type=syn_calendar',
+			// Calendars
+			'syntric-jumbotrons',
+			// Jumbotrons
+			'syntric-google-maps',
+			// Google Maps
+			'link-manager.php',
+			// Links
+			'edit-comments.php',
+			// Comments
+			'upload.php',
+			// Media
+			'users.php',
+			// Users
+			'profile.php',
+			// Profile
+			//'separator-last', // Separator
+			'themes.php',
+			// Appearance
+			'plugins.php',
+			// Plugins
+			'tools.php',
+			// Tools
+			'options-general.php',
+			// Settings
+			'edit.php?post_type=acf-field-group',
+			// Custom Fields
+			'jetpack',
+			// Jetpack
 		];
 
 		/*if ( ! syn_current_user_can( 'administrator' ) ) {
@@ -862,7 +986,10 @@
 
 	function syn_load_microblogs( $field ) {
 		if ( is_admin() && 'select' == $field[ 'type' ] ) {
-			$microblogs = get_terms( [ 'taxonomy' => 'microblog', 'hide_empty' => false ], '' );
+			$microblogs = get_terms( [
+				'taxonomy'   => 'microblog',
+				'hide_empty' => false,
+			], '' );
 			$choices    = [];
 			if ( $microblogs ) {
 				foreach ( $microblogs as $microblog ) {
@@ -1027,7 +1154,10 @@
 	function syn_load_people( $field ) {
 		if ( 'select' == $field[ 'type' ] ) {
 			$choices = [];
-			$people  = get_users( [ 'meta_key' => 'last_name', 'orderby' => 'meta_value', ] );
+			$people  = get_users( [
+				'meta_key' => 'last_name',
+				'orderby'  => 'meta_value',
+			] );
 			if ( $people ) {
 				foreach ( $people as $person ) {
 					$choices[ $person->ID ] = $person->display_name . ' / ' . get_field( 'syn_user_title', 'user_' . $person->ID );
@@ -1103,8 +1233,22 @@
 
 	function syn_load_classes( $field ) {
 		if ( is_admin() && 'select' == $field[ 'type' ] ) {
-			$teacher_pages = get_posts( [ 'numberposts' => - 1, 'post_type' => 'page', 'post_status' => [ 'publish', 'draft', 'future', 'pending', 'private', 'trash' ],
-			                              'meta_key'    => '_wp_page_template', 'meta_value' => 'page-templates/teacher.php', 'meta_compare' => '=', 'fields' => 'ids', ] );
+			$teacher_pages = get_posts( [
+				'numberposts'  => - 1,
+				'post_type'    => 'page',
+				'post_status'  => [
+					'publish',
+					'draft',
+					'future',
+					'pending',
+					'private',
+					'trash',
+				],
+				'meta_key'     => '_wp_page_template',
+				'meta_value'   => 'page-templates/teacher.php',
+				'meta_compare' => '=',
+				'fields'       => 'ids',
+			] );
 			$choices       = [];
 			if ( $teacher_pages ) {
 				foreach ( $teacher_pages as $teacher_page ) { // teacher_page is post->ID
@@ -1190,6 +1334,18 @@
 	}
 
 	/*************************************** Course *****************************************/
+	function syn_get_course( $course_id ) {
+		$courses = get_field( 'syn_courses', 'option' );
+		if ( $courses ) {
+			foreach ( $courses as $course ) {
+				if ( $course_id == $course['course_id']) {
+					return $course;
+				}
+			}
+		}
+		return false;
+	}
+
 	function syn_get_course_teachers( $course_id ) {
 		$teacher_pages = syn_get_teachers_pages();
 		$teachers      = [];
@@ -1219,8 +1375,20 @@
 	/*************************************** Teachers (page template) Page *****************************************/
 // todo: Look at this...was only getting published pages, quickly changed to all...is that correct?
 	function syn_get_teachers_page() {
-		$post_args = [ 'numberposts' => - 1, 'post_type' => 'page', 'post_status' => [ 'publish', 'draft', 'future', 'pending', 'private' ], 'meta_key' => '_wp_page_template',
-		               'meta_value'  => 'page-templates/teachers.php', 'meta_compare' => '=', ];
+		$post_args = [
+			'numberposts'  => - 1,
+			'post_type'    => 'page',
+			'post_status'  => [
+				'publish',
+				'draft',
+				'future',
+				'pending',
+				'private',
+			],
+			'meta_key'     => '_wp_page_template',
+			'meta_value'   => 'page-templates/teachers.php',
+			'meta_compare' => '=',
+		];
 		$posts     = get_posts( $post_args );
 		if ( 0 == count( $posts ) ) {
 			// create and return a new teachers page
@@ -1233,7 +1401,17 @@
 			// ...more than one teachers pages exist...determine which takes precedence, migrate children, trash extras, return winner
 			$has_children       = [];
 			$has_not_children   = [];
-			$post_children_args = [ 'numberposts' => - 1, 'post_status' => [ 'publish', 'draft', 'future', 'pending', 'private' ], 'post_parent' => 0, // change for each iteration
+			$post_children_args = [
+				'numberposts' => - 1,
+				'post_status' => [
+					'publish',
+					'draft',
+					'future',
+					'pending',
+					'private',
+				],
+				'post_parent' => 0,
+				// change for each iteration
 			];
 			foreach ( $posts as $post ) {
 				$post_children_args[ 'post_parent' ] = $post->ID;
@@ -1279,7 +1457,14 @@
 	function syn_create_teachers_page() {
 		$site_owner       = get_field( 'syn_organization_person', 'option' );
 		$site_owner       = ( is_int( $site_owner ) ) ? $site_owner : 1;
-		$args             = [ 'post_type' => 'page', 'post_title' => 'Teachers', 'post_name' => 'teachers', 'post_author' => $site_owner, 'post_parent' => 0, 'post_status' => 'draft', ];
+		$args             = [
+			'post_type'   => 'page',
+			'post_title'  => 'Teachers',
+			'post_name'   => 'teachers',
+			'post_author' => $site_owner,
+			'post_parent' => 0,
+			'post_status' => 'draft',
+		];
 		$teachers_page_id = wp_insert_post( $args );
 		update_post_meta( $teachers_page_id, '_wp_page_template', 'page-templates/teachers.php' );
 
@@ -1289,7 +1474,11 @@
 	function syn_update_teachers_page( $post_id ) {
 		$teachers_page = get_post( $post_id, OBJECT );
 		if ( $teachers_page instanceof WP_Post ) {
-			$args             = [ 'ID' => $post_id, 'post_title' => 'Teachers', 'post_name' => 'teachers', ];
+			$args             = [
+				'ID'         => $post_id,
+				'post_title' => 'Teachers',
+				'post_name'  => 'teachers',
+			];
 			$teachers_page_id = wp_update_post( $args );
 			update_post_meta( $teachers_page_id, '_wp_page_template', 'page-templates/teachers.php' );
 
@@ -1317,13 +1506,33 @@
 
 	/*************************************** Teacher Page *****************************************/
 	function syn_get_teacher_page( $teacher_id, $include_trash = false ) {
-		$post_statuses = [ 'publish', 'draft', 'future', 'pending', 'private' ];
+		$post_statuses = [
+			'publish',
+			'draft',
+			'future',
+			'pending',
+			'private',
+		];
 		if ( $include_trash ) {
 			$post_statuses[] = 'trash';
 		}
-		$post_args = [ 'numberposts' => - 1, 'post_type' => 'page', 'post_status' => $post_statuses,
-		               'meta_query'  => [ [ 'key' => 'syn_page_teacher', 'value' => $teacher_id, 'compare' => '=', ],
-		                                  [ 'key' => '_wp_page_template', 'value' => 'page-templates/teacher.php', 'compare' => '=', ], ], ];
+		$post_args = [
+			'numberposts' => - 1,
+			'post_type'   => 'page',
+			'post_status' => $post_statuses,
+			'meta_query'  => [
+				[
+					'key'     => 'syn_page_teacher',
+					'value'   => $teacher_id,
+					'compare' => '=',
+				],
+				[
+					'key'     => '_wp_page_template',
+					'value'   => 'page-templates/teacher.php',
+					'compare' => '=',
+				],
+			],
+		];
 		$posts     = get_posts( $post_args );
 		if ( 1 == count( $posts ) ) {
 			return $posts[ 0 ];
@@ -1342,7 +1551,13 @@
 			$post_name     = syn_sluggify( $post_title );
 			$teachers_page = syn_get_teachers_page(); // Teachers page
 			if ( $teachers_page instanceof WP_Post ) {// todo: test this...make sure a teachers page is always returned
-				$args         = [ 'post_type' => 'page', 'post_title' => $post_title, 'post_name' => $post_name, 'post_author' => $teacher_id, 'post_parent' => $teachers_page->ID, ];
+				$args         = [
+					'post_type'   => 'page',
+					'post_title'  => $post_title,
+					'post_name'   => $post_name,
+					'post_author' => $teacher_id,
+					'post_parent' => $teachers_page->ID,
+				];
 				$teacher_page = syn_get_teacher_page( $teacher_id, true );
 				if ( $teacher_page ) {
 					$args[ 'ID' ]           = $teacher_page->ID;
@@ -1415,14 +1630,38 @@
 	 * @return array - array of class pages for teacher with $teacher_id and class with $class_id (expect only 1)
 	 */
 	function syn_get_teacher_class_page( $teacher_id, $class_id, $include_trash = false ) {
-		$post_statuses = [ 'publish', 'draft', 'future', 'pending', 'private' ];
+		$post_statuses = [
+			'publish',
+			'draft',
+			'future',
+			'pending',
+			'private',
+		];
 		if ( $include_trash ) {
 			$post_statuses[] = 'trash';
 		}
-		$post_args = [ 'numberposts' => - 1, 'post_type' => 'page', 'post_status' => $post_statuses,
-		               'meta_query'  => [ [ 'key' => 'syn_page_class_teacher', 'value' => $teacher_id, 'compare' => '=', ],
-		                                  [ 'key' => 'syn_page_class', 'value' => $class_id, 'compare' => '=', ],
-		                                  [ 'key' => '_wp_page_template', 'value' => 'page-templates/class.php', 'compare' => '=', ], ], ];
+		$post_args = [
+			'numberposts' => - 1,
+			'post_type'   => 'page',
+			'post_status' => $post_statuses,
+			'meta_query'  => [
+				[
+					'key'     => 'syn_page_class_teacher',
+					'value'   => $teacher_id,
+					'compare' => '=',
+				],
+				[
+					'key'     => 'syn_page_class',
+					'value'   => $class_id,
+					'compare' => '=',
+				],
+				[
+					'key'     => '_wp_page_template',
+					'value'   => 'page-templates/class.php',
+					'compare' => '=',
+				],
+			],
+		];
 		$posts     = get_posts( $post_args );
 		if ( 1 == count( $posts ) ) {
 			return $posts[ 0 ];
@@ -1446,13 +1685,33 @@
 	 * @return array - returns an array of class page objects (WP_Post)
 	 */
 	function syn_get_teacher_class_pages( $teacher_id, $include_trash = false ) {
-		$post_statuses = [ 'publish', 'draft', 'future', 'pending', 'private' ];
+		$post_statuses = [
+			'publish',
+			'draft',
+			'future',
+			'pending',
+			'private',
+		];
 		if ( $include_trash ) {
 			$post_statuses[] = 'trash';
 		}
-		$args  = [ 'numberposts' => - 1, 'post_type' => 'page', 'post_status' => $post_statuses,
-		           'meta_query'  => [ [ 'key' => 'syn_page_class_teacher', 'value' => $teacher_id, 'compare' => '=', ],
-		                              [ 'key' => '_wp_page_template', 'value' => 'page-templates/class.php', 'compare' => '=', ], ], ];
+		$args  = [
+			'numberposts' => - 1,
+			'post_type'   => 'page',
+			'post_status' => $post_statuses,
+			'meta_query'  => [
+				[
+					'key'     => 'syn_page_class_teacher',
+					'value'   => $teacher_id,
+					'compare' => '=',
+				],
+				[
+					'key'     => '_wp_page_template',
+					'value'   => 'page-templates/class.php',
+					'compare' => '=',
+				],
+			],
+		];
 		$posts = get_posts( $args );
 
 		return $posts;
@@ -1480,8 +1739,13 @@
 					if ( $include_page ) {
 						$tc_ids[]                                = $teacher_class[ 'class_id' ];
 						$cp_title                                = $teacher_class[ 'course' ];
-						$tc_args[ $teacher_class[ 'class_id' ] ] = [ 'post_type'   => 'page', 'post_title' => $cp_title, 'post_name' => syn_sluggify( $cp_title ),
-						                                             'post_author' => $teacher_id, 'post_parent' => $teacher_page->ID, ];
+						$tc_args[ $teacher_class[ 'class_id' ] ] = [
+							'post_type'   => 'page',
+							'post_title'  => $cp_title,
+							'post_name'   => syn_sluggify( $cp_title ),
+							'post_author' => $teacher_id,
+							'post_parent' => $teacher_page->ID,
+						];
 					}
 				}
 				// does - classes that have a page
@@ -1571,19 +1835,44 @@
 
 	/*************************************** Teachers *****************************************/
 	function syn_get_teachers() {
-		$teachers = get_users( [ 'meta_key' => 'last_name', 'meta_query' => [ [ 'key' => 'syn_user_is_teacher', 'value' => 1, ], ], 'orderby' => 'meta_value', ] );
+		$teachers = get_users( [
+			'meta_key'   => 'last_name',
+			'meta_query' => [
+				[
+					'key'   => 'syn_user_is_teacher',
+					'value' => 1,
+				],
+			],
+			'orderby'    => 'meta_value',
+		] );
 
 		return $teachers;
 	}
 
 	/*************************************** Teachers Pages *****************************************/
 	function syn_get_teachers_pages( $include_trash = false ) {
-		$post_statuses = [ 'publish', 'draft', 'future', 'pending', 'private' ];
+		$post_statuses = [
+			'publish',
+			'draft',
+			'future',
+			'pending',
+			'private',
+		];
 		if ( $include_trash ) {
 			$post_statuses[] = 'trash';
 		}
-		$post_args = [ 'numberposts' => - 1, 'post_type' => 'page', 'post_status' => $post_statuses,
-		               'meta_query'  => [ [ 'key' => '_wp_page_template', 'value' => 'page-templates/teacher.php', 'compare' => '=', ], ], ];
+		$post_args = [
+			'numberposts' => - 1,
+			'post_type'   => 'page',
+			'post_status' => $post_statuses,
+			'meta_query'  => [
+				[
+					'key'     => '_wp_page_template',
+					'value'   => 'page-templates/teacher.php',
+					'compare' => '=',
+				],
+			],
+		];
 		$posts     = get_posts( $post_args );
 
 		return $posts;
@@ -1609,13 +1898,33 @@
 				$teacher_ids[] = $teacher->ID;
 			}
 		}
-		$post_statuses = [ 'publish', 'draft', 'future', 'pending', 'private' ];
+		$post_statuses = [
+			'publish',
+			'draft',
+			'future',
+			'pending',
+			'private',
+		];
 		if ( $include_trash ) {
 			$post_statuses[] = 'trash';
 		}
-		$args  = [ 'numberposts' => - 1, 'post_type' => 'page', 'post_status' => $post_statuses,
-		           'meta_query'  => [ [ 'key' => 'syn_page_class_teacher', 'value' => $teacher_ids, 'compare' => 'in', ],
-		                              [ 'key' => '_wp_page_template', 'value' => 'page-templates/class.php', 'compare' => '=', ], ], ];
+		$args  = [
+			'numberposts' => - 1,
+			'post_type'   => 'page',
+			'post_status' => $post_statuses,
+			'meta_query'  => [
+				[
+					'key'     => 'syn_page_class_teacher',
+					'value'   => $teacher_ids,
+					'compare' => 'in',
+				],
+				[
+					'key'     => '_wp_page_template',
+					'value'   => 'page-templates/class.php',
+					'compare' => '=',
+				],
+			],
+		];
 		$posts = get_posts( $args );
 
 		return $posts;
@@ -1686,8 +1995,18 @@
 
 	function syn_organization_is_school() {
 		$organization_type = syn_get_organization_type();
-		$school_types      = [ 'elementary_school', 'primary_school', 'secondary_school', 'adult_ed_school', 'adult_education_school', 'alterative_school', 'school', 'high_school',
-		                       'middle_school', 'jr_high_school', ];
+		$school_types      = [
+			'elementary_school',
+			'primary_school',
+			'secondary_school',
+			'adult_ed_school',
+			'adult_education_school',
+			'alterative_school',
+			'school',
+			'high_school',
+			'middle_school',
+			'jr_high_school',
+		];
 		if ( in_array( $organization_type, $school_types ) ) {
 			return true;
 		}
@@ -1728,7 +2047,7 @@
 			$page_template_file_arr = explode( '.', $page_template_file );
 			$page_template          = $page_template_file_arr[ 0 ];
 
-			return $page_template;
+			return ucwords( $page_template );
 		}
 
 		return false;
@@ -1741,6 +2060,94 @@
 		$slug = str_replace( '---', '-', $slug );
 
 		return $slug;
+	}
+
+	function syn_head() {
+		if ( syn_remove_whitespace() ) {
+			$lb  = '';
+			$tab = '';
+		} else {
+			$lb  = "\n";
+			$tab = "\t";
+		}
+		echo '<div id="fb-root"></div>';
+		echo '<div class="print-header print-header-name d-print-block" aria-hidden="true">' . get_bloginfo( 'name', 'display' ) . '</div>';
+		echo '<a class="sr-only sr-only-focusable skip-to-content-link" href="#content">' . esc_html( 'Skip to content', 'syntric' ) . '</a>';
+		echo '<header class="head">' . $lb;
+		echo $tab . '<div class="container-fluid">' . $lb;
+		echo $tab . $tab . '<div class="row no-gutters">' . $lb;
+		echo $tab . $tab . $tab . '<div class="col">' . $lb;
+		echo $tab . $tab . $tab . $tab . '<div class="portal-links" aria-label="Portal links">' . $lb;
+		echo $tab . $tab . $tab . $tab . $tab . '<a href="" class="teacher-portal" target="_blank">Teacher Portal <span class="fa fa-sign-in"></span></a>' . $lb;
+		echo $tab . $tab . $tab . $tab . $tab . '<a href="" class="parent-portal" target="_blank">Parent Portal <span class="fa fa-sign-in"></span></a>' . $lb;
+		echo $tab . $tab . $tab . $tab . '</div>' . $lb;
+		echo $tab . $tab . $tab . '</div>' . $lb;
+		echo $tab . $tab . '</div>' . $lb;
+		echo $tab . '</div>' . $lb;
+		echo '</header>' . $lb;
+	}
+
+	function syn_banner() {
+		// todo: come back and fix this...kinda clunky
+		if ( has_header_image() ) {
+			$header_image           = get_header_image();
+			$banner_style_attribute = ' style="background-image: url(' . $header_image . ');" ';
+		} else {
+			$banner_style_attribute = ' style="min-height: 0;" ';
+		}
+		$jumbotrons = get_field( 'syn_jumbotrons', 'option' );
+		if ( has_header_image() || $jumbotrons ) {
+			if ( syn_remove_whitespace() ) {
+				$lb  = '';
+				$tab = '';
+			} else {
+				$lb  = "\n";
+				$tab = "\t";
+			}
+			echo '<div class="banner-wrapper" aria-hidden="true"' . $banner_style_attribute . 'role="banner">' . $lb;
+			echo syn_jumbotron();
+			echo '</div>' . $lb;
+		}
+	}
+
+	function syn_jumbotron() {
+		global $post;
+		if ( ! $post ) {
+			return;
+		}
+		$jumbotrons = get_field( 'syn_jumbotrons', 'option' );
+		if ( $jumbotrons ) {
+			$jumbotron = false;
+			foreach ( $jumbotrons as $_jumbotron ) {
+				$filters        = $_jumbotron[ 'filters' ];
+				$start_datetime = $_jumbotron[ 'start_datetime' ];
+				$end_datetime   = $_jumbotron[ 'end_datetime' ];
+				$pass_filters   = ( 0 < count( $filters ) ) ? syn_process_filters( $filters, $post ) : true;
+				$pass_schedule  = ( $start_datetime || $end_datetime ) ? syn_process_schedule( $start_datetime, $end_datetime ) : true;
+				if ( $pass_filters && $pass_schedule ) {
+					$jumbotron = $_jumbotron;
+					break;
+				}
+			}
+			if ( $jumbotron ) {
+				if ( syn_remove_whitespace() ) {
+					$lb  = '';
+					$tab = '';
+				} else {
+					$lb  = "\n";
+					$tab = "\t";
+				}
+				echo '<div class="jumbotron-wrapper">' . $lb;
+				echo $tab . '<h1 class="jumbotron-headline">' . $jumbotron[ 'headline' ] . '</h1>' . $lb;
+				echo $tab . '<div class="jumbotron-caption">' . $jumbotron[ 'caption' ] . '</div>' . $lb;
+				if ( $jumbotron[ 'include_button' ] ) {
+					$button_href   = ( 'page' == $jumbotron[ 'button_target' ] ) ? $jumbotron[ 'button_page' ] : $jumbotron[ 'button_url' ];
+					$window_target = ( 'page' == $jumbotron[ 'button_target' ] ) ? '_self' : '_blank';
+					echo $tab . '<a href="' . $button_href . '" class="btn btn-lg btn-primary jumbotron-button" target="' . $window_target . '">' . $jumbotron[ 'button_text' ] . '</a>' . $lb;
+				}
+				echo '</div>' . $lb;
+			}
+		}
 	}
 
 	/**
@@ -1818,75 +2225,12 @@
 		echo $breadcrumbs;
 	}
 
-	function syn_banner() {
-		// todo: come back and fix this...kinda clunky
-		if ( has_header_image() ) {
-			$header_image           = get_header_image();
-			$banner_style_attribute = ' style="background-image: url(' . $header_image . ');" ';
-		} else {
-			$banner_style_attribute = ' style="min-height: 0;" ';
-		}
-		$jumbotrons = get_field( 'syn_jumbotrons', 'option' );
-		if ( has_header_image() || $jumbotrons ) {
-			if ( syn_remove_whitespace() ) {
-				$lb  = '';
-				$tab = '';
-			} else {
-				$lb  = "\n";
-				$tab = "\t";
-			}
-			echo '<div class="banner-wrapper" aria-hidden="true"' . $banner_style_attribute . 'role="banner">' . $lb;
-			echo syn_jumbotron();
-			echo '</div>' . $lb;
-		}
-	}
-
-	function syn_jumbotron() {
-		global $post;
-		if ( ! $post ) {
-			return;
-		}
-		$jumbotrons = get_field( 'syn_jumbotrons', 'option' );
-		if ( $jumbotrons ) {
-			$jumbotron = false;
-			foreach ( $jumbotrons as $_jumbotron ) {
-				$filters        = $_jumbotron[ 'filters' ];
-				$start_datetime = $_jumbotron[ 'start_datetime' ];
-				$end_datetime   = $_jumbotron[ 'end_datetime' ];
-				$pass_filters   = ( 0 < count( $filters ) ) ? syn_process_filters( $filters, $post ) : true;
-				$pass_schedule  = ( $start_datetime || $end_datetime ) ? syn_process_schedule( $start_datetime, $end_datetime ) : true;
-				if ( $pass_filters && $pass_schedule ) {
-					$jumbotron = $_jumbotron;
-					break;
-				}
-			}
-			if ( $jumbotron ) {
-				if ( syn_remove_whitespace() ) {
-					$lb  = '';
-					$tab = '';
-				} else {
-					$lb  = "\n";
-					$tab = "\t";
-				}
-				echo '<div class="jumbotron-wrapper">' . $lb;
-				echo $tab . '<h1 class="jumbotron-headline">' . $jumbotron[ 'headline' ] . '</h1>' . $lb;
-				echo $tab . '<div class="jumbotron-caption">' . $jumbotron[ 'caption' ] . '</div>' . $lb;
-				if ( $jumbotron[ 'include_button' ] ) {
-					$button_href   = ( 'page' == $jumbotron[ 'button_target' ] ) ? $jumbotron[ 'button_page' ] : $jumbotron[ 'button_url' ];
-					$window_target = ( 'page' == $jumbotron[ 'button_target' ] ) ? '_self' : '_blank';
-					echo $tab . '<a href="' . $button_href . '" class="btn btn-lg btn-primary jumbotron-button" target="' . $window_target . '">' . $jumbotron[ 'button_text' ] . '</a>' . $lb;
-				}
-				echo '</div>' . $lb;
-			}
-		}
-	}
-
 	/**
 	 * Final footer contains elements common to every site and is not intended to
 	 * be edited.  It does need to be modified to reflect current site.
 	 * todo: move non-discrimination copy into an option. perhaps make translation element toggelable.
 	 */
-	function syn_final_footer() {
+	function syn_foot() {
 		$organization = get_field( 'syn_organization', 'option' );
 		if ( syn_remove_whitespace() ) {
 			$lb  = '';
@@ -1895,12 +2239,12 @@
 			$lb  = "\n";
 			$tab = "\t";
 		}
-		echo '<footer class="final-footer">' . $lb;
+		echo '<footer class="foot">' . $lb;
 		echo $tab . '<div class="container-fluid">' . $lb;
-		echo $tab . $tab . '<div class="row">' . $lb;
+		echo $tab . $tab . '<div class="row no-gutters">' . $lb;
 		echo $tab . $tab . $tab . '<div class="non-discrimination col">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment.</div>' . $lb;
 		echo $tab . $tab . '</div>' . $lb;
-		echo $tab . $tab . '<div class="row">' . $lb;
+		echo $tab . $tab . '<div class="row no-gutters">' . $lb;
 		echo $tab . $tab . $tab . '<div class="col-md-6">' . $lb;
 		//echo $tab . $tab . '<div id="google-translate" class="google-translate"></div>' . $lb;
 		echo $tab . $tab . $tab . $tab . '<div class="copyright">&copy; ' . date( 'Y' ) . ' ' . $organization . '</div>' . $lb;
@@ -1918,6 +2262,7 @@
 		echo $tab . $tab . '</div>' . $lb;
 		echo $tab . '</div>' . $lb;
 		echo '</footer>' . $lb;
+		comments_template();
 	}
 
 	function syn_bug() {
@@ -1942,7 +2287,7 @@
 				$tab = "\t";
 			}
 			echo '<h2>Teacher Roster</h2>' . $lb;
-			echo '<table>' . $lb;
+			echo '<table class="teachers-table">' . $lb;
 			echo $tab . '<thead>' . $lb;
 			echo $tab . $tab . '<tr>' . $lb;
 			echo $tab . $tab . $tab . '<th scope="col">Name</th>' . $lb;
@@ -1953,13 +2298,16 @@
 			echo $tab . '</thead>' . $lb;
 			echo $tab . '<tbody>' . $lb;
 			foreach ( $teachers as $teacher ) {
-				$full_name              = $teacher->display_name;
-				$title                  = get_field( 'syn_user_title', 'user_' . $teacher->ID );
+				$display_name = $teacher->display_name;
+				$prefix       = get_field( 'syn_user_prefix', 'user_' . $teacher->ID );
+				$full_name    = ( ! empty( $prefix ) ) ? $prefix . ' ' . $display_name : $display_name;
+				//$title                  = get_field( 'syn_user_title', 'user_' . $teacher->ID );
 				$email                  = $teacher->data->user_email;
 				$teacher_page           = syn_get_teacher_page( $teacher->ID );
 				$teacher_page_published = ( $teacher_page && 'publish' == $teacher_page->post_status ) ? true : false;
 				$teacher_classes        = ( $teacher_page_published ) ? get_field( 'syn_classes', $teacher_page->ID ) : false;
-				$class_array            = [];
+				// build a csv list of classes
+				$class_array = [];
 				if ( $teacher_classes ) {
 					foreach ( $teacher_classes as $class ) {
 						$class_page = syn_get_teacher_class_page( $teacher->ID, $class[ 'class_id' ] );
@@ -1971,7 +2319,7 @@
 					}
 				}
 				echo $tab . $tab . '<tr valign="top">' . $lb;
-				echo $tab . $tab . $tab . '<td nowrap="nowrap">' . $lb;
+				echo $tab . $tab . $tab . '<td class="full-name">' . $lb;
 				if ( $teacher_page_published ) {
 					echo $tab . $tab . $tab . $tab . '<a href="' . get_the_permalink( $teacher_page->ID ) . '">';
 				}
@@ -1980,8 +2328,8 @@
 					echo '</a>' . $lb;
 				}
 				echo $tab . $tab . $tab . '</td>' . $lb;
-				echo $tab . $tab . $tab . '<td nowrap="nowrap"><a href="mailto:' . antispambot( $email, true ) . '" class="teachers-list-email" title="Email">' . antispambot( $email ) . '</a></td>' . $lb;
-				echo $tab . $tab . $tab . '<td>' . implode( ', ', $class_array ) . '</td>' . $lb;
+				echo $tab . $tab . $tab . '<td class="email"><a href="mailto:' . antispambot( $email, true ) . '" class="teachers-list-email" title="Email">' . antispambot( $email ) . '</a></td>' . $lb;
+				echo $tab . $tab . $tab . '<td class="classes">' . implode( ' / ', $class_array ) . '</td>' . $lb;
 				echo $tab . $tab . '</tr>' . $lb;
 			}
 			echo $tab . '</tbody>' . $lb;
@@ -2005,7 +2353,7 @@
 						$tab = "\t";
 					}
 					echo '<h2>Classes</h2>' . $lb;
-					echo '<table>' . $lb;
+					echo '<table class="teacher-classes-table">' . $lb;
 					echo $tab . '<thead>' . $lb;
 					echo $tab . $tab . '<tr>' . $lb;
 					echo $tab . $tab . $tab . '<th scope="col">Term</th>' . $lb;
@@ -2024,11 +2372,11 @@
 						//$include_page = get_sub_field( 'include_page' );
 						$page = syn_get_teacher_class_page( $teacher_id, $class_id );
 						echo $tab . $tab . '<tr>' . $lb;
-						echo $tab . $tab . $tab . '<td>' . get_sub_field( 'term' ) . '</td>' . $lb;
+						echo $tab . $tab . $tab . '<td class="term">' . get_sub_field( 'term' ) . '</td>' . $lb;
 						if ( $periods_active ) {
-							echo $tab . $tab . $tab . '<td>' . get_sub_field( 'period' ) . '</td>' . $lb;
+							echo $tab . $tab . $tab . '<td class="period">' . get_sub_field( 'period' ) . '</td>' . $lb;
 						}
-						echo $tab . $tab . $tab . '<td>' . $lb;
+						echo $tab . $tab . $tab . '<td class="course">' . $lb;
 						if ( $page instanceof WP_Post && 'publish' == $page->post_status ) {
 							echo $tab . $tab . $tab . $tab . '<a href="' . get_the_permalink( $page->ID ) . '">';
 						}
@@ -2038,7 +2386,7 @@
 						}
 						echo $tab . $tab . $tab . '</td>' . $lb;
 						if ( $rooms_active ) {
-							echo $tab . $tab . $tab . '<td>' . get_sub_field( 'room' ) . '</td>' . $lb;
+							echo $tab . $tab . $tab . '<td class="room">' . get_sub_field( 'room' ) . '</td>' . $lb;
 						}
 						echo $tab . $tab . '</tr>' . $lb;
 					endwhile;
@@ -2069,7 +2417,7 @@
 					}
 					array_multisort( $c, SORT_ASC, $courses );
 					echo '<h2>Courses</h2>' . $lb;
-					echo '<table>' . $lb;
+					echo '<table class="department-courses-table">' . $lb;
 					echo $tab . '<thead>' . $lb;
 					echo $tab . $tab . '<tr>' . $lb;
 					echo $tab . $tab . $tab . '<th scope="col">Course</th>' . $lb;
@@ -2079,26 +2427,28 @@
 					echo $tab . '<tbody>' . $lb;
 					foreach ( $courses as $course ) {
 						if ( $department == $course[ 'department' ] ) {
-							$teachers     = syn_get_course_teachers( $course[ 'course_id' ] );
-							$teachers_val = '';
-							if ( count( $teachers ) ) {
-								$teachers_vals = [];
-								foreach ( $teachers as $teacher ) {
-									$teacher_val = '';
-									if ( $teacher->data->teacher_page instanceof WP_Post && 'publish' == $teacher->data->teacher_page->post_status ) {
-										$teacher_val .= '<a href="' . get_the_permalink( $teacher->data->teacher_page->ID ) . '">';
+							$course_teachers = syn_get_course_teachers( $course[ 'course_id' ] );
+							$teachers        = [];
+							if ( count( $course_teachers ) ) {
+								foreach ( $course_teachers as $course_teacher ) {
+									$teacher      = '';
+									$display_name = $course_teacher->data->display_name;
+									$prefix       = get_field( 'syn_user_prefix', 'user_' . $course_teacher->ID );
+									$display_name = ( ! empty( $prefix ) ) ? $prefix . ' ' . $display_name : $display_name;
+									$has_page     = ( $course_teacher->data->teacher_page instanceof WP_Post && 'publish' == $course_teacher->data->teacher_page->post_status ) ? 1 : 0;
+									if ( $has_page ) {
+										$teacher .= '<a href="' . get_the_permalink( $course_teacher->data->teacher_page->ID ) . '">';
+										$teacher .= $display_name;
+										$teacher .= '</a>';
+									} else {
+										$teacher .= $display_name;
 									}
-									$teacher_val .= $teacher->data->display_name;
-									if ( $teacher->data->teacher_page instanceof WP_Post && 'publish' == $teacher->data->teacher_page->post_status ) {
-										$teacher_val .= '</a>';
-									}
-									$teachers_vals[] = $teacher_val;
+									$teachers[] = $teacher;
 								}
-								$teachers_val = implode( ', ', $teachers_vals );
 							}
 							echo $tab . $tab . '<tr>' . $lb;
 							echo $tab . $tab . $tab . '<td>' . $course[ 'course' ] . '</td>' . $lb;
-							echo $tab . $tab . $tab . '<td>' . $teachers_val . '</td>' . $lb;
+							echo $tab . $tab . $tab . '<td>' . implode( ' / ', $teachers ) . '</td>' . $lb;
 							echo $tab . $tab . '</tr>' . $lb;
 						}
 					}
@@ -2109,13 +2459,84 @@
 		}
 	}
 
+	function syn_display_course() {
+		global $post;
+		$course_id          = get_field( 'syn_page_course', $post->ID );
+		$course             = syn_get_course( $course_id );
+		if ( is_array( $course ) ) {
+			echo $course['description'];
+		}
+		//if ( $departments_active ) {
+			//$department = get_field( 'syn_page_department', $post->ID );
+			//if ( $department ) {
+				//$courses = get_field( 'syn_courses', 'option' );
+				/*if ( $course ) {
+					if ( syn_remove_whitespace() ) {
+						$lb  = '';
+						$tab = '';
+					} else {
+						$lb  = "\n";
+						$tab = "\t";
+					}
+					foreach ( $courses as $key => $row ) {
+						$c[ $key ] = $row[ 'course' ];
+					}
+					array_multisort( $c, SORT_ASC, $courses );
+					echo '<h2>Courses</h2>' . $lb;
+					echo '<table class="department-courses-table">' . $lb;
+					echo $tab . '<thead>' . $lb;
+					echo $tab . $tab . '<tr>' . $lb;
+					echo $tab . $tab . $tab . '<th scope="col">Course</th>' . $lb;
+					echo $tab . $tab . $tab . '<th scope="col">Teachers</th>' . $lb;
+					echo $tab . $tab . '</tr>' . $lb;
+					echo $tab . '</thead>' . $lb;
+					echo $tab . '<tbody>' . $lb;
+					foreach ( $courses as $course ) {
+						if ( $department == $course[ 'department' ] ) {
+							$course_teachers = syn_get_course_teachers( $course[ 'course_id' ] );
+							$teachers        = [];
+							if ( count( $course_teachers ) ) {
+								foreach ( $course_teachers as $course_teacher ) {
+									$teacher      = '';
+									$display_name = $course_teacher->data->display_name;
+									$prefix       = get_field( 'syn_user_prefix', 'user_' . $course_teacher->ID );
+									$display_name = ( ! empty( $prefix ) ) ? $prefix . ' ' . $display_name : $display_name;
+									$has_page     = ( $course_teacher->data->teacher_page instanceof WP_Post && 'publish' == $course_teacher->data->teacher_page->post_status ) ? 1 : 0;
+									if ( $has_page ) {
+										$teacher .= '<a href="' . get_the_permalink( $course_teacher->data->teacher_page->ID ) . '">';
+										$teacher .= $display_name;
+										$teacher .= '</a>';
+									} else {
+										$teacher .= $display_name;
+									}
+									$teachers[] = $teacher;
+								}
+							}
+							echo $tab . $tab . '<tr>' . $lb;
+							echo $tab . $tab . $tab . '<td>' . $course[ 'course' ] . '</td>' . $lb;
+							echo $tab . $tab . $tab . '<td>' . implode( ' / ', $teachers ) . '</td>' . $lb;
+							echo $tab . $tab . '</tr>' . $lb;
+						}
+					}
+					echo $tab . '</tbody>' . $lb;
+					echo '</table>' . $lb;
+				}*/
+			//}
+		//}
+	}
+
 // admin/dashboard lists
 	function syn_list_pendings( $deprecated, $mb_args ) {
 		$user_id    = get_current_user_id();
 		$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user_id );
 		$post_type  = $mb_args[ 'args' ][ 'post_type' ];
-		$args       = [ 'numberposts'   => - 1, 'post_type' => $post_type, 'post_status' => [ 'pending' ], //'orderby'       => array( 'menu_order' => 'ASC' ),
-		                'no_found_rows' => true, ];
+		$args       = [
+			'numberposts'   => - 1,
+			'post_type'     => $post_type,
+			'post_status'   => [ 'pending' ],
+			//'orderby'       => array( 'menu_order' => 'ASC' ),
+			'no_found_rows' => true,
+		];
 		if ( $is_teacher ) {
 			$args[ 'author' ] = $user_id;
 		}
@@ -2141,7 +2562,7 @@
 				echo '<td nowrap="nowrap">';
 				echo '<a href="/wp-admin/post.php?action=edit&post=' . $pending->ID . '">' . $pending->post_title . '</a>';
 				echo '</td>';
-				echo '<td>' . $pending->post_status . '</td>';
+				echo '<td>' . ucwords( $pending->post_status ) . '</td>';
 				if ( 'page' == $pending->post_type ) {
 					echo '<td>' . syn_get_page_template( $pending->ID ) . '</td>';
 				} elseif ( 'post' == $pending->post_type ) {
@@ -2169,7 +2590,12 @@
 		$user_id    = get_current_user_id();
 		$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user_id );
 		$post_type  = $mb_args[ 'args' ][ 'post_type' ];
-		$args       = [ 'numberposts' => 5, 'post_type' => $post_type, 'post_status' => [ 'publish' ], 'no_found_rows' => true, ];
+		$args       = [
+			'numberposts'   => 5,
+			'post_type'     => $post_type,
+			'post_status'   => [ 'publish' ],
+			'no_found_rows' => true,
+		];
 		if ( $is_teacher ) {
 			$args[ 'author' ] = $user_id;
 		}
@@ -2195,7 +2621,7 @@
 			echo '<a href="/wp-admin/post.php?action=edit&post=' . $recent->ID . '">' . $recent->post_title . '</a>';
 			echo '</td>';
 			$status = ( 'publish' == $recent->post_status ) ? 'Published' : $recent->post_status;
-			echo '<td>' . $status . '</td>';
+			echo '<td>' . ucwords( $status ) . '</td>';
 			if ( 'page' == $post_type ) {
 				echo '<td>' . syn_get_page_template( $recent->ID ) . '</td>';
 			} elseif ( 'post' == $post_type ) {
@@ -2274,28 +2700,30 @@
 				if ( $classes ) {
 					foreach ( $classes as $class ) {
 						$class_page = syn_get_teacher_class_page( $teacher->ID, $class[ 'class_id' ] );
-						$period     = ( $periods_active && isset( $class[ 'period' ] ) ) ? $class[ 'period' ] : '';
-						$room       = ( $rooms_active && isset( $class[ 'room' ] ) ) ? $class[ 'room' ] : '';
-						echo '<tr>';
-						echo '<td>' . $class[ 'term' ] . '</td>';
-						echo '<td>';
-						if ( $class_page ) :
-							echo '<a href="/wp-admin/post.php?action=edit&post=' . $class_page->ID . '">' . $class_page->post_title . '</a>';
-						else :
-							echo $class_page->post_title;
-						endif;
-						echo '</td>';
-						if ( $periods_active ) {
-							$period_label = ( $period ) ? 'Period ' . $period : '';
-							echo '<td class="period">' . $period_label . '</td>';
+						if ( $class_page instanceof WP_Post ) {
+							$period = ( $periods_active && isset( $class[ 'period' ] ) ) ? $class[ 'period' ] : '';
+							$room   = ( $rooms_active && isset( $class[ 'room' ] ) ) ? $class[ 'room' ] : '';
+							echo '<tr>';
+							echo '<td>' . $class[ 'term' ] . '</td>';
+							echo '<td>';
+							if ( $class_page ) :
+								echo '<a href="/wp-admin/post.php?action=edit&post=' . $class_page->ID . '">' . $class_page->post_title . '</a>';
+							else :
+								echo $class_page->post_title;
+							endif;
+							echo '</td>';
+							if ( $periods_active ) {
+								$period_label = ( $period ) ? 'Period ' . $period : '';
+								echo '<td class="period">' . $period_label . '</td>';
+							}
+							if ( $rooms_active ) {
+								$room_label = ( $room ) ? 'Room ' . $room : '';
+								echo '<td class="room">' . $room_label . '</td>';
+							}
+							$status = ( 'publish' == $class_page->post_status ) ? 'Published' : $class_page->post_status;
+							echo '<td class="status">' . $status . '</td>';
+							echo '</tr>';
 						}
-						if ( $rooms_active ) {
-							$room_label = ( $room ) ? 'Room ' . $room : '';
-							echo '<td class="room">' . $room_label . '</td>';
-						}
-						$status = ( 'publish' == $class_page->post_status ) ? 'Published' : $class_page->post_status;
-						echo '<td class="status">' . $status . '</td>';
-						echo '</tr>';
 					}
 				} else {
 					echo '<tr>';
@@ -2326,7 +2754,19 @@
 
 // quick nav
 	function syn_qn_all_pages() {
-		$args  = [ 'numberposts' => - 1, 'orderby' => 'post_title', 'order' => 'ASC', 'post_type' => 'page', 'post_status' => [ 'publish', 'draft', 'future', 'pending', 'private' ], ];
+		$args  = [
+			'numberposts' => - 1,
+			'orderby'     => 'post_title',
+			'order'       => 'ASC',
+			'post_type'   => 'page',
+			'post_status' => [
+				'publish',
+				'draft',
+				'future',
+				'pending',
+				'private',
+			],
+		];
 		$posts = get_posts( $args );
 		echo '<ul class="admin_pages_sidenav">';
 		if ( $posts ) {
@@ -2366,13 +2806,15 @@
 			$link_to_edit = get_admin_url() . '/post.php?action=edit&post=';
 			$teacher_id   = 0;
 			foreach ( $posts as $post ) {
-				$teacher = syn_get_teacher( get_field( 'syn_page_class_teacher', $post->ID ) );
-				if ( $teacher_id != $teacher->ID ) {
-					echo '<li><strong>' . $teacher->display_name . '</strong></li>';
-					$teacher_id = $teacher->ID;
+				if ( $post instanceof WP_Post ) {
+					$teacher = syn_get_teacher( get_field( 'syn_page_class_teacher', $post->ID ) );
+					if ( $teacher_id != $teacher->ID ) {
+						echo '<li><strong>' . $teacher->display_name . '</strong></li>';
+						$teacher_id = $teacher->ID;
+					}
+					$status = ( 'publish' != $post->post_status ) ? ' - ' . ucfirst( $post->post_status ) : '';
+					echo '<li><a href="' . $link_to_edit . $post->ID . '">' . $post->post_title . '</a>' . $status . '</li>';
 				}
-				$status = ( 'publish' != $post->post_status ) ? ' - ' . ucfirst( $post->post_status ) : '';
-				echo '<li><a href="' . $link_to_edit . $post->ID . '">' . $post->post_title . '</a>' . $status . '</li>';
 			}
 		} else {
 			echo '<li>No class pages</li>';

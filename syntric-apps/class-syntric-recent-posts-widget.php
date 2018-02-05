@@ -8,7 +8,10 @@
 		 * Set up a new widget instance
 		 */
 		public function __construct() {
-			$widget_ops = [ 'classname' => 'syn-recent-posts-widget', 'description' => __( 'Displays posts from one or more categories.' ), 'customize_selective_refresh' => true, ];
+			$widget_ops = [ 'classname'                   => 'syn-recent-posts-widget',
+			                'description'                 => __( 'Displays posts from one or more categories.' ),
+			                'customize_selective_refresh' => true,
+			];
 			parent::__construct( 'syn-recent-posts-widget', __( 'Recent Posts' ), $widget_ops );
 			$this->alt_option_name = 'syn-recent-posts-widget';
 		}
@@ -26,8 +29,13 @@
 			$category_id = get_field( 'syn_recent_posts_widget_categories', 'widget_' . $args[ 'widget_id' ] );
 			$category    = get_category( $category_id );
 			$number      = get_field( 'syn_recent_posts_widget_posts', 'widget_' . $args[ 'widget_id' ] );
-			$posts       = new WP_Query( apply_filters( 'widget_posts_args', [ 'posts_per_page'      => $number, 'no_found_rows' => true, 'post_status' => 'publish',
-			                                                                   'ignore_sticky_posts' => true, 'category__in' => $category_id, ] ) );
+			$posts       = new WP_Query( apply_filters( 'widget_posts_args', [
+				'posts_per_page'      => $number,
+				'no_found_rows'       => true,
+				'post_status'         => 'publish',
+				'ignore_sticky_posts' => true,
+				'category__in'        => $category_id,
+			] ) );
 			if ( syn_remove_whitespace() ) {
 				$lb  = '';
 				$tab = '';// Go to ' . strtolower( $category->name ) . '
@@ -47,7 +55,7 @@
 				// todo: get ride of include date checkbox...date should always be shown
 				$show_date = get_field( 'syn_recent_posts_widget_include_date', 'widget_' . $args[ 'widget_id' ] );
 				while( $posts->have_posts() ) : $posts->the_post();
-					echo $tab . '<a href="' . get_the_permalink() . '" class="list-group-item">' . $lb;
+					echo $tab . '<a href="' . get_the_permalink() . '" class="list-group-item list-group-item-action">' . $lb;
 					if ( has_post_thumbnail() ) :
 						echo $tab . $tab . '<div class="list-group-item-feature">' . $lb;
 						echo $tab . $tab . $tab . the_post_thumbnail( 'thumbnail', [ 'class' => 'post-thumbnail' ] ) . $lb;
@@ -58,11 +66,11 @@
 					if ( $show_date ) {
 						echo $tab . $tab . $tab . '<div class="post-date small">' . get_the_date() . '</div>' . $lb;
 					}
-					echo $tab . $tab . $tab . '<div class="post-excerpt small">' . get_the_excerpt() . '</div>' . $lb;
+					echo $tab . $tab . $tab . '<div class="post-excerpt">' . get_the_excerpt() . '</div>' . $lb;
 					echo $tab . $tab . '</div>' . $lb;
 					echo $tab . '</a>' . $lb;
 				endwhile;
-				echo $tab . '<a href="' . get_category_link( $category->term_id ) . '" class="list-group-item more-link">More</a>' . $lb;
+				echo $tab . '<a href="' . get_category_link( $category->term_id ) . '" class="list-group-item list-group-item-action more-link">More</a>' . $lb;
 			else :
 				echo '<div class="list-group-item">No posts</div>' . $lb;
 			endif;

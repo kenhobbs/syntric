@@ -32,38 +32,38 @@
 			'query_var'          => false,
 		];
 		register_taxonomy( 'media_category', 'attachment', $tax_args );
-		if( ! term_exists( 'Images', 'media_category' ) ) {
+		if ( ! term_exists( 'Images', 'media_category' ) ) {
 			$media_categories = [
 				'Images',
 				'Publications',
 				'Documents',
 				'Forms',
 			];
-			foreach( $media_categories as $media_category ) {
+			foreach ( $media_categories as $media_category ) {
 				$res            = wp_insert_term( $media_category, 'media_category' );
 				$sub_categories = [];
-				if( is_array( $res ) && ! is_wp_error( $res ) ) {
+				if ( is_array( $res ) && ! is_wp_error( $res ) ) {
 					$term_id = $res[ 'term_id' ];
-					if( 'Images' == $media_category ) {
+					if ( 'Images' == $media_category ) {
 						$sub_categories[] = 'Banner';
 						$sub_categories[] = 'Headshot';
 					}
-					if( 'Publications' == $media_category ) {
+					if ( 'Publications' == $media_category ) {
 						$sub_categories[] = 'Handbook';
 						$sub_categories[] = 'Newsletter';
 						$sub_categories[] = 'Calendar';
 					}
-					if( 'Documents' == $media_category ) {
+					if ( 'Documents' == $media_category ) {
 						$sub_categories[] = 'Report';
 						$sub_categories[] = 'Legal';
 						$sub_categories[] = 'Communication';
 					}
-					if( 'Forms' == $media_category ) {
+					if ( 'Forms' == $media_category ) {
 						$sub_categories[] = 'Enrollment';
 						$sub_categories[] = 'Athletics';
 						$sub_categories[] = 'Activities';
 					}
-					foreach( $sub_categories as $sub_category ) {
+					foreach ( $sub_categories as $sub_category ) {
 						wp_insert_term( $sub_category, 'media_category', [ 'parent' => $term_id ] );
 					}
 				}
@@ -82,7 +82,7 @@
 	add_filter( 'wp_dropdown_cats', 'syn_dropdown_cats', 10 );
 	function syn_dropdown_cats( $dropdown ) {
 		global $pagenow;
-		if( is_admin() && ( 'upload.php' == $pagenow ) ) {
+		if ( is_admin() && ( 'upload.php' == $pagenow ) ) {
 			$dropdown = preg_replace( "/— /", '', $dropdown );
 			$dropdown = preg_replace( "/All/", 'In', $dropdown );
 			$dropdown = preg_replace( "/Not in a/", 'No', $dropdown );
@@ -108,22 +108,29 @@
 	add_filter( 'wp_handle_upload_prefilter', 'syn_handle_upload_filter' );
 	function syn_handle_upload_filter( $file ) {
 		global $pagenow;
-		if( $pagenow == 'upload.php' || $pagenow == 'async-upload.php' ) {
+		if ( $pagenow == 'upload.php' || $pagenow == 'async-upload.php' ) {
 			$file_type     = $file[ 'type' ];
 			$file_type_arr = explode( '/', $file_type );
-			if( $file_type_arr[ 0 ] == 'image' ) {
+			if ( $file_type_arr[ 0 ] == 'image' ) {
 				add_filter( 'upload_dir', 'syn_image_upload_dir' );
 
 				return $file;
 			}
-			if( $file_type_arr[ 1 ] == 'pdf' ) {
+			if ( $file_type_arr[ 1 ] == 'pdf' ) {
 				add_filter( 'upload_dir', 'syn_pdf_upload_dir' );
 
 				return $file;
 			}
 			$file_ext_arr     = explode( '.', $file[ 'name' ] );
 			$file_ext_arr_pos = count( $file_ext_arr ) - 1;
-			if( in_array( $file_ext_arr[ $file_ext_arr_pos ], [ 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx' ] ) ) {
+			if ( in_array( $file_ext_arr[ $file_ext_arr_pos ], [
+				'doc',
+				'docx',
+				'xls',
+				'xlsx',
+				'ppt',
+				'pptx',
+			] ) ) {
 				add_filter( 'upload_dir', 'syn_msoffice_upload_dir' );
 
 				return $file;
@@ -184,7 +191,7 @@
 	add_action( 'template_redirect', 'syn_redirect_attachments' );
 	function syn_redirect_attachments() {
 		global $post;
-		if( is_attachment() && isset( $post->post_parent ) && is_numeric( $post->post_parent ) && ( $post->post_parent != 0 ) ) {
+		if ( is_attachment() && isset( $post->post_parent ) && is_numeric( $post->post_parent ) && ( $post->post_parent != 0 ) ) {
 			wp_redirect( get_permalink( $post->post_parent ), 301 );
 			exit;
 			wp_reset_postdata();

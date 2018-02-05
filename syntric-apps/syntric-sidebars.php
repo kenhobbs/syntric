@@ -12,31 +12,35 @@
 	 */
 	add_action( 'widgets_init', 'syn_sidebars_init' );
 	function syn_sidebars_init() {
+		$top_count         = 0;
 		$header_count      = 0;
 		$main_left_count   = 0;
 		$main_top_count    = 0;
 		$main_bottom_count = 0;
 		$main_right_count  = 0;
 		$footer_count      = 0;
-		if( have_rows( 'syn_sidebars', 'option' ) ) {
+		if ( have_rows( 'syn_sidebars', 'option' ) ) {
 			while( have_rows( 'syn_sidebars', 'option' ) ) : the_row();
 				$section       = get_sub_field( 'section' );
 				$sidebar_class = $section[ 'value' ];
-				if( 'header' == $section[ 'value' ] ) {
+				if ( 'top' == $sidebar_class ) {
+					$top_count ++;
+					$sidebar_class .= '-' . $top_count;
+				} elseif ( 'header' == $sidebar_class ) {
 					$header_count ++;
 					$sidebar_class .= '-' . $header_count;
-				} elseif( 'footer' == $section[ 'value' ] ) {
+				} elseif ( 'footer' == $sidebar_class ) {
 					$footer_count ++;
 					$sidebar_class .= '-' . $footer_count;
 				} else {
 					$location = get_sub_field( 'location' );
-					if( 'left' == $location[ 'value' ] ) {
+					if ( 'left' == $location[ 'value' ] ) {
 						$main_left_count ++;
 						$sidebar_class .= '-' . $location[ 'value' ] . '-' . $main_left_count;
-					} elseif( 'top' == $location[ 'value' ] ) {
+					} elseif ( 'top' == $location[ 'value' ] ) {
 						$main_top_count ++;
 						$sidebar_class .= '-' . $location[ 'value' ] . '-' . $main_top_count;
-					} elseif( 'bottom' == $location[ 'value' ] ) {
+					} elseif ( 'bottom' == $location[ 'value' ] ) {
 						$main_bottom_count ++;
 						$sidebar_class .= '-' . $location[ 'value' ] . '-' . $main_bottom_count;
 					} else {
@@ -48,7 +52,8 @@
 					'name'          => get_sub_field( 'name' ),
 					'id'            => get_sub_field( 'sidebar_id' ),
 					'description'   => get_sub_field( 'description' ),
-					'class'         => $sidebar_class, // this gets overwritten
+					'class'         => $sidebar_class,
+					// this gets overwritten
 					'before_widget' => '<div' . ' id="%1$s" class="widget %2$s">',
 					'after_widget'  => '</div>',
 					'before_title'  => '<h2>',
@@ -64,7 +69,7 @@
 	function syn_sidebar( $section, $location = null ) {
 		global $post;
 		global $wp_registered_sidebars;
-		if( ! $post ) {
+		if ( ! $post ) {
 			return;
 		}
 		if ( syn_remove_whitespace() ) {
@@ -75,30 +80,30 @@
 			$tab = "\t";
 		}
 		$sidebars = get_field( 'syn_sidebars', 'option' );
-		if( $sidebars ) {
-			foreach( $sidebars as $sidebar ) {
+		if ( $sidebars ) {
+			foreach ( $sidebars as $sidebar ) {
 				// check if sidebar is active
 				$sidebar_id      = $sidebar[ 'sidebar_id' ];
 				$sidebar_active  = $sidebar[ 'active' ];
 				$sidebar_section = $sidebar[ 'section' ][ 'value' ];
 				$sidebar_filters = $sidebar[ 'filters' ];
 				//$active          = true;
-				if( ! $sidebar_active ) {
+				if ( ! $sidebar_active ) {
 					continue;
 				}
 				// check if sidebar belongs in this section
-				if( $section != $sidebar_section ) {
+				if ( $section != $sidebar_section ) {
 					continue;
 				}
 				// if main section, check if sidebar belongs in this location
-				if( 'main' == $section ) {
+				if ( 'main' == $section ) {
 					$sidebar_location = $sidebar[ 'location' ][ 'value' ];
-					if( $location != $sidebar_location ) {
+					if ( $location != $sidebar_location ) {
 						continue;
 					}
 				}
 				// check if sidebar has any assigned widgets
-				if( ! is_active_sidebar( $sidebar_id ) ) {
+				if ( ! is_active_sidebar( $sidebar_id ) ) {
 					continue;
 				}
 				// check sidebar filters
@@ -106,11 +111,11 @@
 					$active = syn_process_filters( $sidebar_filters, $post );
 				}*/
 				// we are now filtered down to the only active and relevant sidebars for this call
-				if( ! $sidebar_filters || syn_process_filters( $sidebar_filters, $post ) ) {
+				if ( ! $sidebar_filters || syn_process_filters( $sidebar_filters, $post ) ) {
 					$active_widgets = syn_sidebar_active_widgets( $sidebar_id, $post->ID );
-					if( count( $active_widgets ) ) {
+					if ( count( $active_widgets ) ) {
 						$widgets_classes = [];
-						foreach( $active_widgets as $widget ) {
+						foreach ( $active_widgets as $widget ) {
 							$widget_class_array = explode( '-', $widget );
 							array_pop( $widget_class_array );
 							array_pop( $widget_class_array );
@@ -120,21 +125,31 @@
 						$wp_sidebar       = $wp_registered_sidebars[ $sidebar_id ];
 						$wp_sidebar_class = $wp_sidebar[ 'class' ];
 						$widgets_classes  = implode( ' ', $widgets_classes );
-						if( 'main' == $section && in_array( $sidebar_location, [ 'left', 'right' ] ) ) {
+						if ( 'main' == $section && in_array( $sidebar_location, [
+								'left',
+								'right',
+							] ) ) {
 							echo '<aside class="' . $wp_sidebar_class . ' col-xl-3 sidebar ' . $sidebar_section . '-' . $sidebar_location . '-sidebar ' . $widgets_classes . '">' . $lb;
 							dynamic_sidebar( $sidebar_id );
 							//syn_columns( 1, 3 );
 							echo '</aside>' . $lb;
-						} elseif( 'main' == $section && in_array( $sidebar_location, [ 'top', 'bottom' ] ) ) {
+						} elseif ( 'main' == $section && in_array( $sidebar_location, [
+								'top',
+								'bottom',
+							] ) ) {
 							echo '<section class="' . $wp_sidebar_class . ' sidebar ' . $sidebar_section . '-' . $sidebar_location . '-sidebar ' . $widgets_classes . '">' . $lb;
 							dynamic_sidebar( $sidebar_id );
 							echo '</section>' . $lb;
-						} elseif( in_array( $section, [ 'header', 'footer' ] ) ) {
-							$sidebar_layout    = $sidebar[ 'layout' ][ 'value' ];
-							$sl_array = explode( '-', $sidebar_layout);
-							$sidebar_class = ( 1 == count( $sl_array ) ) ? 'fixed' : $sl_array[count($sl_array)-1];
-							$sidebar_class .= ' widgets-' . count($active_widgets);
-							$row_class       = ( 'container-bleed' == $sidebar_layout ) ? 'row no-gutters' : 'row';
+						} elseif ( in_array( $section, [
+							'top',
+							'header',
+							'footer',
+						] ) ) {
+							$sidebar_layout = $sidebar[ 'layout' ][ 'value' ];
+							$sl_array       = explode( '-', $sidebar_layout );
+							$sidebar_class  = ( 1 == count( $sl_array ) ) ? 'fixed' : $sl_array[ count( $sl_array ) - 1 ];
+							$sidebar_class  .= ' widgets-' . count( $active_widgets );
+							$row_class      = ( 'container-bleed' == $sidebar_layout ) ? 'row no-gutters' : 'row';
 							echo '<section class="' . $wp_sidebar_class . ' sidebar ' . $sidebar_section . '-sidebar ' . $sidebar_class . ' ' . $widgets_classes . '">' . $lb;
 							echo $tab . '<div class="' . $sidebar_layout . '">' . $lb;
 							echo $tab . $tab . '<div class="' . $row_class . '">' . $lb;
@@ -162,18 +177,18 @@
 		$sidebar_widgets  = $sidebars_widgets[ $sidebar_id ];
 		$active_widgets   = [];
 		//slog($sidebar_widgets);
-		foreach( $sidebar_widgets as $widget ) {
+		foreach ( $sidebar_widgets as $widget ) {
 			//slog($widget);
 			$widget_array = explode( '-', $widget );
-			if( $widget_array[ 0 ] == 'syn' || 'nav_menu' == $widget ) {
+			if ( $widget_array[ 0 ] == 'syn' || 'nav_menu' == $widget ) {
 				array_pop( $widget_array );
 				$widget_name = implode( '_', $widget_array );
 				$dynamic     = get_field( $widget_name . '_dynamic', 'widget_' . $widget );
-				if( $dynamic ) {
+				if ( $dynamic ) {
 					array_pop( $widget_array );
 					$widget_fieldname = implode( '_', $widget_array );
 					$widget_active    = get_field( $widget_fieldname . '_active', $post_id );
-					if( $widget_active ) {
+					if ( $widget_active ) {
 						$active_widgets[] = $widget;
 						continue;
 					}
@@ -197,18 +212,19 @@
 	add_filter( 'dynamic_sidebar_params', 'syn_dynamic_sidebar_params' );
 	function syn_dynamic_sidebar_params( $params ) {
 		global $post;
-		if( ! is_admin() ) {
+		if ( ! is_admin() ) {
 			$sidebars = get_field( 'syn_sidebars', 'option' );
-			foreach( $sidebars as $sidebar ) {
-				if( $params[ 0 ][ 'id' ] == $sidebar[ 'sidebar_id' ] ) {
+			foreach ( $sidebars as $sidebar ) {
+				if ( $params[ 0 ][ 'id' ] == $sidebar[ 'sidebar_id' ] ) {
 					$active_widgets = syn_sidebar_active_widgets( $params[ 0 ][ 'id' ], $post->ID );
 					$widget_count   = count( $active_widgets );
-					if( 0 < $widget_count && ( 'header' == $sidebar[ 'section' ][ 'value' ] || 'footer' == $sidebar[ 'section' ][ 'value' ] ) ) {
-						$params[ 0 ][ 'before_widget' ] = str_replace( 'class="', 'class="col-xl-' . 12/$widget_count . ' ', $params[ 0 ][ 'before_widget' ] );
+					if ( 0 < $widget_count && ( 'top' == $sidebar[ 'section' ][ 'value' ] || 'header' == $sidebar[ 'section' ][ 'value' ] || 'footer' == $sidebar[ 'section' ][ 'value' ] ) ) {
+						$params[ 0 ][ 'before_widget' ] = str_replace( 'class="', 'class="col-xl-' . 12 / $widget_count . ' ', $params[ 0 ][ 'before_widget' ] );
 					}
 				}
 			}
 		}
+
 		return $params;
 	}
 
@@ -218,12 +234,12 @@
 	add_action( 'acf/save_post', 'syn_save_sidebars', 20 );
 	function syn_save_sidebars( $post_id ) {
 		// don't save for autosave
-		if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
-		if( is_admin() && isset( $_REQUEST[ 'page' ] ) && 'syntric-sidebars-widgets' == $_REQUEST[ 'page' ] ) {
+		if ( is_admin() && isset( $_REQUEST[ 'page' ] ) && 'syntric-sidebars-widgets' == $_REQUEST[ 'page' ] ) {
 			$lb = "\n";
-			if( have_rows( 'syn_sidebars', 'option' ) ) {
+			if ( have_rows( 'syn_sidebars', 'option' ) ) {
 				while( have_rows( 'syn_sidebars', 'option' ) ) : the_row();
 					// set id
 					/*$sidebar_id = get_sub_field( 'sidebar_id' );
@@ -239,13 +255,13 @@
 					// description
 					$description_array = [];
 					// run through filters
-					if( have_rows( 'filters' ) ) {
+					if ( have_rows( 'filters' ) ) {
 						while( have_rows( 'filters' ) ) : the_row();
 							$filter_parameter     = get_sub_field( 'parameter' );
 							$filter_operator      = get_sub_field( 'operator' );
 							$filter_value         = get_sub_field( 'value' );
 							$filter_operator_sign = ( 'is' == $filter_operator[ 'value' ] ) ? '+' : '-';
-							switch( $filter_parameter[ 'value' ] ) :
+							switch ( $filter_parameter[ 'value' ] ) :
 								case 'post_type' :
 									$post_type_value     = $filter_value[ 'post_type_value' ];
 									$name_array[]        = $filter_operator_sign . $post_type_value[ 'label' ];
@@ -275,15 +291,15 @@
 							endswitch;
 						endwhile;
 					}
-					if( count( $name_array ) ) {
+					if ( count( $name_array ) ) {
 						$name .= ' (' . implode( ', ', $name_array ) . ')';
 					}
 					update_sub_field( 'name', $name );
 					$sidebar_layout = get_sub_field( 'layout' );
-					if( 'main' != $sidebar_section[ 'value' ] ) {
+					if ( 'main' != $sidebar_section[ 'value' ] ) {
 						$description_array[] = $sidebar_layout[ 'label' ] . ' layout';
 					}
-					if( count( $description_array ) ) {
+					if ( count( $description_array ) ) {
 						update_sub_field( 'description', implode( ' / ', $description_array ) );
 					}
 				endwhile;

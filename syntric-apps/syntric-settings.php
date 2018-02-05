@@ -25,22 +25,22 @@
 	add_filter( 'acf/prepare_field/key=field_59bb90c45ec6d', 'syn_prepare_settings_fields' ); // syn_rooms > building
 //add_filter( 'acf/prepare_field/key=field_59bdc5d740d90', 'syn_prepare_settings_fields' );
 	function syn_prepare_settings_fields( $field ) {
-		if( is_admin() && isset( $_REQUEST[ 'page' ] ) ) {
-			if( 'field_59bb8bf493b01' == $field[ 'key' ] ) { // syn_courses > department
+		if ( is_admin() && isset( $_REQUEST[ 'page' ] ) ) {
+			if ( 'field_59bb8bf493b01' == $field[ 'key' ] ) { // syn_courses > department
 				$departments_active = get_field( 'syn_departments_active', 'option' );
-				if( ! $departments_active ) {
+				if ( ! $departments_active ) {
 					return false;
 				}
-			} elseif( 'field_59bb90c45ec6d' == $field[ 'key' ] ) { // syn_rooms > building
+			} elseif ( 'field_59bb90c45ec6d' == $field[ 'key' ] ) { // syn_rooms > building
 				$buildings_active = get_field( 'syn_buildings_active', 'option' );
-				if( ! $buildings_active ) {
+				if ( ! $buildings_active ) {
 					return false;
 				}
 			} else { // **_id field
 				$field_name       = $field[ '_name' ];
 				$field_name_array = explode( '_', $field_name );
 				$is_id_field      = ( 'id' == $field_name_array[ count( $field_name_array ) - 1 ] ) ? true : false;
-				if( $is_id_field ) {
+				if ( $is_id_field ) {
 					$field[ 'wrapper' ][ 'hidden' ] = true;
 				}
 			}
@@ -60,13 +60,15 @@
 	add_action( 'acf/save_post', 'syn_save_author_post', 20 );
 	function syn_save_author_post( $post_id ) {
 		$post = get_post( $post_id );
-		if( $post instanceof WP_Post && 'page' == $post->post_type && current_user_can( 'author' ) ) {
+		if ( $post instanceof WP_Post && 'page' == $post->post_type && current_user_can( 'author' ) ) {
 			$user       = get_user_by( 'ID', get_current_user_id() );
 			$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user->ID );
-			if( $is_teacher ) {
+			if ( $is_teacher ) {
 				$teacher_page = syn_get_teacher_page( $user->ID );
-				if( $teacher_page instanceof WP_Post ) {
-					wp_update_post( [ 'ID' => $post_id, 'post_parent' => $teacher_page->ID ] );
+				if ( $teacher_page instanceof WP_Post ) {
+					wp_update_post( [ 'ID'          => $post_id,
+					                  'post_parent' => $teacher_page->ID,
+					] );
 				}
 			}
 		}

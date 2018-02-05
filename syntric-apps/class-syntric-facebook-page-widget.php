@@ -8,7 +8,10 @@
 		 * Set up a new widget instance
 		 */
 		public function __construct() {
-			$widget_ops = [ 'classname' => 'syn-facebook-page-widget', 'description' => __( 'Displays posts from a Facebook page.' ), 'customize_selective_refresh' => true, ];
+			$widget_ops = [ 'classname'                   => 'syn-facebook-page-widget',
+			                'description'                 => __( 'Displays posts from a Facebook page.' ),
+			                'customize_selective_refresh' => true,
+			];
 			parent::__construct( 'syn-facebook-page-widget', __( 'Facebook Page' ), $widget_ops );
 			$this->alt_option_name = 'syn-facebook-page-widget';
 		}
@@ -83,7 +86,7 @@
 							$post_counter = 1;
 							foreach ( $facebook_posts->data as $facebook_post ) :
 								if ( property_exists( $facebook_post, 'message' ) ) {
-									echo $tab . $tab . '<a href = "' . $facebook_post->permalink_url . '" class="list-group-item" target = "_blank">' . $lb;
+									echo $tab . $tab . '<a href = "' . $facebook_post->permalink_url . '" class="list-group-item list-group-item-action" target = "_blank">' . $lb;
 									if ( $include_image && property_exists( $facebook_post, 'picture' ) ) :
 										echo $tab . $tab . $tab . $tab . '<div class="list-group-item-feature">' . $lb;
 										echo $tab . $tab . $tab . $tab . $tab . '<img src = "' . $facebook_post->picture . '" class="fb-image" alt="Facebook post photo" aria-hidden="true">' . $lb;
@@ -95,7 +98,7 @@
 									echo $tab . $tab . $tab . $tab . $tab . '<div class="fb-date small">' . $publish_date . '</div> ' . $lb;
 									//$more = ( 250 < strlen( $facebook_post->message ) ) ? '<span class="read-more-link">More</span>' . $lb : '';
 									$more = ( 300 < strlen( $facebook_post->message ) ) ? '...<span class="read-more-link">More</span>' . $lb : '';
-									echo $tab . $tab . $tab . $tab . $tab . '<p class="fb-message small">' . substr( $facebook_post->message, 0, 300 ) . $more . '</p> ' . $lb;
+									echo $tab . $tab . $tab . $tab . $tab . '<p class="fb-message">' . substr( $facebook_post->message, 0, 300 ) . $more . '</p> ' . $lb;
 									echo $tab . $tab . $tab . $tab . '</div>' . $lb;
 									echo $tab . $tab . '</a>' . $lb;
 								}
@@ -104,7 +107,7 @@
 								}
 								$post_counter ++;
 							endforeach;
-							echo $tab . '<a href="http://www.facebook.com/' . $facebook_page . '" class="list-group-item more-link">Go to Facebook</a>' . $lb;
+							echo $tab . '<a href="http://www.facebook.com/' . $facebook_page . '" class="list-group-item list-group-item-action more-link">Go to Facebook</a>' . $lb;
 						} else {
 							if ( property_exists( $facebook_posts, 'error' ) ) {
 								echo $tab . $tab . '<div class="list-group-item">Posts unavailable</div>' . $lb;

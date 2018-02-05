@@ -8,8 +8,11 @@
 		 * Set up a new widget instance
 		 */
 		public function __construct() {
-			$widget_ops = [ 'classname'                   => 'syn-microblog-widget', 'description' => __( 'Displays microblog posts on pages where "Microblog" is enabled.' ),
-			                'customize_selective_refresh' => true, ];
+			$widget_ops = [
+				'classname'                   => 'syn-microblog-widget',
+				'description'                 => __( 'Displays microblog posts on pages where "Microblog" is enabled.' ),
+				'customize_selective_refresh' => true,
+			];
 			parent::__construct( 'syn-microblog-widget', __( 'Microblog' ), $widget_ops );
 			$this->alt_option_name = 'syn-microblog-widget';
 		}
@@ -32,10 +35,25 @@
 			$category = get_field( 'syn_microblog_category', $post->ID );
 			$term     = get_field( 'syn_microblog_term', $post->ID );
 			$number   = get_field( 'syn_microblog_posts', $post->ID );
-			$posts    = new WP_Query( apply_filters( 'widget_posts_args', [ 'posts_per_page' => $number, 'no_found_rows' => true, 'post_status' => 'publish', 'ignore_sticky_posts' => true,
-			                                                                'tax_query'      => [ 'relation' => 'AND',
-			                                                                                      [ 'taxonomy' => 'category', 'field' => 'ID', 'terms' => [ $category->term_id ], ],
-			                                                                                      [ 'taxonomy' => 'microblog', 'field' => 'ID', 'terms' => [ $term->term_id ], ], ], ] ) );
+			$posts    = new WP_Query( apply_filters( 'widget_posts_args', [
+				'posts_per_page'      => $number,
+				'no_found_rows'       => true,
+				'post_status'         => 'publish',
+				'ignore_sticky_posts' => true,
+				'tax_query'           => [
+					'relation' => 'AND',
+					[
+						'taxonomy' => 'category',
+						'field'    => 'ID',
+						'terms'    => [ $category->term_id ],
+					],
+					[
+						'taxonomy' => 'microblog',
+						'field'    => 'ID',
+						'terms'    => [ $term->term_id ],
+					],
+				],
+			] ) );
 			if ( syn_remove_whitespace() ) {
 				$lb  = '';
 				$tab = '';
@@ -46,8 +64,8 @@
 			//$sidebar       = syn_widget_sidebar( $args[ 'widget_id' ] );
 			//$sidebar[ 'section' ][ 'value' ]
 			$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
-			$title     = get_field( 'syn_microblog_title', $post->ID );
-			$show_date = get_field( 'syn_microblog_include_date', $post->ID );
+			$title         = get_field( 'syn_microblog_title', $post->ID );
+			$show_date     = get_field( 'syn_microblog_include_date', $post->ID );
 			echo $args[ 'before_widget' ] . $lb;
 			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
@@ -62,7 +80,7 @@
 					endif;
 					echo $tab . '</a>';
 				endwhile;
-				echo $tab . '<a href="' . get_term_link( $term->term_id ) . '" class="list-group-item more-link">Go to blog</a>' . $lb;
+				echo $tab . '<a href="' . get_term_link( $term->term_id ) . '" class="list-group-item list-group-item-action more-link">Go to blog</a>' . $lb;
 			else :
 				echo $tab . '<div class="list-group-item">No posts</div>' . $lb;
 			endif;

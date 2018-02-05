@@ -10,7 +10,10 @@
 		 * Set up a new widget instance
 		 */
 		public function __construct() {
-			$widget_ops = [ 'classname' => 'syn-contact-widget', 'description' => __( 'Displays contact info for an individual or organization' ), 'customize_selective_refresh' => true, ];
+			$widget_ops = [ 'classname'                   => 'syn-contact-widget',
+			                'description'                 => __( 'Displays contact info for an individual or organization' ),
+			                'customize_selective_refresh' => true,
+			];
 			parent::__construct( 'syn-contact-widget', __( 'Contact' ), $widget_ops );
 			$this->alt_option_name = 'syn-contact-widget';
 		}
@@ -56,26 +59,27 @@
 				if ( $user_id ) {
 					$user = get_user_by( 'ID', $user_id );
 					if ( $user && $user instanceof WP_User ) {
-						$user_meta  = get_user_meta( $user_id );
-						$first_name = $user_meta[ 'first_name' ][ 0 ];
-						$last_name  = $user_meta[ 'last_name' ][ 0 ];
+						$user_meta      = get_user_meta( $user_id );
+						$first_name     = $user_meta[ 'first_name' ][ 0 ];
+						$last_name      = $user_meta[ 'last_name' ][ 0 ];
 						$include_fields = array_column( $include_fields, 'value' );
-						$prefix      = get_field( 'syn_user_prefix', 'user_' . $user_id );
-						$display_name = '';
-						$display_name .= ( in_array( 'prefix', $include_fields ) && ! empty( $prefix ) ) ? $prefix . ' ' : '';
-						$display_name .= ( in_array( 'first_name', $include_fields ) && ! empty( $first_name ) ) ? $first_name . ' ' : '';
-						$display_name .= $last_name;
-						$title_     = get_field( 'syn_user_title', 'user_' . $user_id );
-						$title_     = str_replace( ',', ' / ', $title_ );
-						$email      = $user->data->user_email;
-						$phone      = get_field( 'syn_user_phone', 'user_' . $user_id );
-						$ext        = get_field( 'syn_user_extension', 'user_' . $user_id );
-						$ext        = ( isset( $ext ) && ! empty( $ext ) ) ? ' x' . $ext : '';
+						$prefix         = get_field( 'syn_user_prefix', 'user_' . $user_id );
+						$display_name   = '';
+						$display_name   .= ( in_array( 'prefix', $include_fields ) && ! empty( $prefix ) ) ? $prefix . ' ' : '';
+						$display_name   .= ( in_array( 'first_name', $include_fields ) && ! empty( $first_name ) ) ? $first_name . ' ' : '';
+						$display_name   .= $last_name;
+						$title_         = get_field( 'syn_user_title', 'user_' . $user_id );
+						$title_         = str_replace( ',', ' / ', $title_ );
+						$title_         = str_replace( '|', ' / ', $title_ );
+						$email          = $user->data->user_email;
+						$phone          = get_field( 'syn_user_phone', 'user_' . $user_id );
+						$ext            = get_field( 'syn_user_extension', 'user_' . $user_id );
+						$ext            = ( isset( $ext ) && ! empty( $ext ) ) ? ' x' . $ext : '';
 						/**
 						 * todo: add ability to associate a photo with a person contact
 						 */
-						$contact        .= $tab . '<div class="list-group-item-content">' . $lb;
-						$contact        .= $tab . $tab . '<div class="contact-name">' . $display_name . '</div>' . $lb;
+						$contact .= $tab . '<div class="list-group-item-content">' . $lb;
+						$contact .= $tab . $tab . '<div class="contact-name">' . $display_name . '</div>' . $lb;
 						if ( in_array( 'title', $include_fields ) && $title_ ) :
 							$contact .= $tab . $tab . '<div class="contact-title">' . $title_ . '</div>' . $lb;
 						endif;
@@ -159,10 +163,10 @@
 					$contact .= $tab . $tab . '<div class="contact-name">' . $organization . '</div>' . $lb;
 					// address
 					if ( in_array( 'address', $include_fields ) && $address ) :
-							$contact .= $tab . $tab . '<div class="contact-address">' . $address . '</div>' . $lb;
-							if ( ! empty( $address_2 ) ) :
-								$contact .= $tab . $tab . '<div class="contact-address-2">' . $address_2 . '</div>' . $lb;
-							endif;
+						$contact .= $tab . $tab . '<div class="contact-address">' . $address . '</div>' . $lb;
+						if ( ! empty( $address_2 ) ) :
+							$contact .= $tab . $tab . '<div class="contact-address-2">' . $address_2 . '</div>' . $lb;
+						endif;
 						if ( $city || $state || $zip_code ) :
 							$contact .= $tab . $tab . '<div class="contact-city-state-zip-code">' . $lb;
 							if ( ! empty( $city ) ) :
@@ -179,19 +183,19 @@
 					endif;
 					// email
 					if ( in_array( 'email', $include_fields ) && $email ) :
-							$contact .= $tab . $tab . '<a href="mailto:' . antispambot( $email, true ) . '" class="contact-email" title="Email">' . antispambot( $email ) . '</a>' . $lb;
+						$contact .= $tab . $tab . '<a href="mailto:' . antispambot( $email, true ) . '" class="contact-email" title="Email">' . antispambot( $email ) . '</a>' . $lb;
 					endif;
 					// phone
 					if ( in_array( 'phone', $include_fields ) && $phone ) :
-							$contact .= $tab . $tab . '<div class="contact-phone">' . $phone . $ext . '</div>' . $lb;
+						$contact .= $tab . $tab . '<div class="contact-phone">' . $phone . $ext . '</div>' . $lb;
 					endif;
 					// fax
 					if ( in_array( 'fax', $include_fields ) && $fax ) :
-							$contact .= $tab . $tab . '<div class="contact-fax">' . $fax . ' fax</div>' . $lb;
+						$contact .= $tab . $tab . '<div class="contact-fax">' . $fax . ' fax</div>' . $lb;
 					endif;
 					// url
 					if ( in_array( 'url', $include_fields ) && $url ) :
-							$contact .= $tab . $tab . '<a href="' . $url . '" class="contact-url" title="Go to ' . get_sub_field( 'name' ) . '">' . $url_display . '</a>' . $lb;
+						$contact .= $tab . $tab . '<a href="' . $url . '" class="contact-url" title="Go to ' . get_sub_field( 'name' ) . '">' . $url_display . '</a>' . $lb;
 					endif;
 					$contact .= $tab . '</div>' . $lb;
 				}

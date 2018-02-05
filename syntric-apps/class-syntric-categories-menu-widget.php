@@ -24,16 +24,16 @@
 		 * @param array $instance Settings for the current widget instance.
 		 */
 		public function widget( $args, $instance ) {
-			if( ! isset( $args[ 'widget_id' ] ) ) {
+			if ( ! isset( $args[ 'widget_id' ] ) ) {
 				$args[ 'widget_id' ] = $this->id;
 			}
 			$all_categories = get_field( 'syn_categories_menu_widget_all_categories', 'widget_' . $args[ 'widget_id' ] );
-			if( $all_categories ) {
+			if ( $all_categories ) {
 				$categories = get_categories( [ 'taxonomy' => 'category' ] );
 			} else {
 				$categories = get_field( 'syn_categories_menu_widget_categories', 'widget_' . $args[ 'widget_id' ] );
 			}
-			if( $categories ) :
+			if ( $categories ) :
 				if ( syn_remove_whitespace() ) {
 					$lb  = '';
 					$tab = '';
@@ -43,15 +43,15 @@
 				}
 				//$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
 				$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
-				$title   = get_field( 'syn_categories_menu_widget_title', 'widget_' . $args[ 'widget_id' ] );
+				$title         = get_field( 'syn_categories_menu_widget_title', 'widget_' . $args[ 'widget_id' ] );
 				echo $args[ 'before_widget' ] . $lb;
-				if( ! empty( $title ) ) :
+				if ( ! empty( $title ) ) :
 					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 				endif;
 				//echo '<ul class="nav">' . $lb;
 				echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
-				foreach( $categories as $category ) {
-					echo $tab . $tab . '<a href="' . get_category_link( $category ) . '" class="list-group-item">' . $category->name . '</a>' . $lb;
+				foreach ( $categories as $category ) {
+					echo $tab . $tab . '<a href="' . get_category_link( $category ) . '" class="list-group-item list-group-item-action">' . $category->name . '</a>' . $lb;
 				};
 				echo '</div>' . $lb;
 				echo $args[ 'after_widget' ] . $lb;

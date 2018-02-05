@@ -45,7 +45,10 @@
 			'rest_base'          => 'microblogs',
 			'show_in_quick_edit' => true,
 			'show_admin_column'  => true,
-			'rewrite'            => [ 'slug' => 'microblog', 'with_front' => true ],
+			'rewrite'            => [
+				'slug'       => 'microblog',
+				'with_front' => true,
+			],
 			'query_var'          => false,
 		];
 		register_taxonomy( 'microblog', 'post', $tax_args );
@@ -58,25 +61,28 @@
 	 */
 	add_action( 'registered_taxonomy', 'syn_setup_terms', 10, 3 );
 	function syn_setup_terms( $taxonomy, $object_type, $args ) {
-		if( 'microblog' == $taxonomy ) {
+		if ( 'microblog' == $taxonomy ) {
 			$uncat_term_tax_ids = term_exists( 'uncategorized', 'category' );
 			$uncat_exists       = ( $uncat_term_tax_ids ) ? true : false;
 			$uncat_is_default   = ( $uncat_exists && 1 == $uncat_term_tax_ids[ 'term_id' ] ) ? true : false;
 			$news_term_tax_ids  = term_exists( 'news', 'category' );
 			$news_exists        = ( $news_term_tax_ids ) ? true : false;
 			$new_is_default     = ( $news_exists && 1 == $news_term_tax_ids[ 'term_id' ] ) ? true : false;
-			if( ! $uncat_is_default && ! $new_is_default ) {
+			if ( ! $uncat_is_default && ! $new_is_default ) {
 				$default_term     = get_term_by( 'id', 1, 'category', OBJECT );
 				$other_is_default = ( $default_term instanceof WP_Term ) ? true : false;
 			} else {
 				$other_is_default = false;
 			}
-			if( $uncat_is_default ) {
-				if( $news_exists ) {
+			if ( $uncat_is_default ) {
+				if ( $news_exists ) {
 					// move news posts to default
-					$news_posts = get_posts( [ 'numberposts' => - 1, 'category' => $news_term_tax_ids[ 'term_id' ] ] );
-					if( $news_posts ) {
-						foreach( $news_posts as $nwsp ) {
+					$news_posts = get_posts( [
+						'numberposts' => - 1,
+						'category'    => $news_term_tax_ids[ 'term_id' ],
+					] );
+					if ( $news_posts ) {
+						foreach ( $news_posts as $nwsp ) {
 							$set_ret = wp_set_post_categories( $nwsp->ID, [ 1 ], false );
 							update_field( 'syn_post_category', 1, $nwsp->ID );
 						}
@@ -90,27 +96,33 @@
 					'slug'   => 'news',
 					'parent' => 0,
 				] );
-			} elseif( $other_is_default ) {
+			} elseif ( $other_is_default ) {
 				$other_term  = get_term_by( 'id', 1, 'category', ARRAY_A ); // array keys are term_id, name, slug, term_group, term_taxonomy_id, taxonomy, description, parent
 				$other_term_ = wp_insert_term( $other_term[ 'name' ], 'category', [
 					'slug'        => $other_term[ 'slug' ],
 					'parent'      => $other_term[ 'parent' ],
 					'description' => $other_term[ 'description' ],
 				] ); // Returns array with term_id and term_taxonomy_id
-				$other_posts = get_posts( [ 'numberposts' => - 1, 'category' => 1 ] );
-				if( $other_posts ) {
+				$other_posts = get_posts( [
+					'numberposts' => - 1,
+					'category'    => 1,
+				] );
+				if ( $other_posts ) {
 					$cat_arr   = [];
 					$cat_arr[] = $other_term_[ 'term_id' ];
-					foreach( $other_posts as $othp ) {
+					foreach ( $other_posts as $othp ) {
 						$set_ret = wp_set_post_categories( $othp->ID, $cat_arr, false );
 						update_field( 'syn_post_category', $other_term_[ 'term_id' ], $othp->ID );
 					}
 				}
-				if( $news_exists ) {
+				if ( $news_exists ) {
 					// move news posts to default
-					$news_posts = get_posts( [ 'numberposts' => - 1, 'category' => $news_term_tax_ids[ 'term_id' ] ] );
-					if( $news_posts ) {
-						foreach( $news_posts as $nwsp ) {
+					$news_posts = get_posts( [
+						'numberposts' => - 1,
+						'category'    => $news_term_tax_ids[ 'term_id' ],
+					] );
+					if ( $news_posts ) {
+						foreach ( $news_posts as $nwsp ) {
 							$set_ret = wp_set_post_categories( $nwsp->ID, [ 1 ], false );
 							update_field( 'syn_post_category', 1, $nwsp->ID );
 						}
@@ -135,15 +147,15 @@
 	function syn_save_microblog( $post_id ) {
 		global $pagenow;
 		// don't save for autosave
-		if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
 		$post = get_post( $post_id );
-		if( is_admin() && is_numeric( $post_id ) && 'page' == $post->post_type && isset( $_REQUEST[ 'acf' ] ) && ! wp_is_post_revision( $post->ID ) ) {
+		if ( is_admin() && is_numeric( $post_id ) && 'page' == $post->post_type && isset( $_REQUEST[ 'acf' ] ) && ! wp_is_post_revision( $post->ID ) ) {
 			// set term in taxonomy "microblog"
 			$microblog_active = get_field( 'syn_microblog_active', $post->ID );
-			if( $microblog_active ) {
-				if( category_exists( 'Microblogs' ) ) {
+			if ( $microblog_active ) {
+				if ( category_exists( 'Microblogs' ) ) {
 					$cat    = get_category_by_slug( 'microblogs' );
 					$cat_id = $cat->cat_ID;
 				} else {
@@ -152,13 +164,13 @@
 				$ancestor_ids = array_reverse( get_post_ancestors( $post->ID ) );
 				$titles       = '';
 				$slugs        = '';
-				foreach( $ancestor_ids as $ancestor_id ) {
+				foreach ( $ancestor_ids as $ancestor_id ) {
 					$titles .= get_the_title( $ancestor_id ) . ' > ';
 					$slugs  .= get_post_field( 'post_name', $ancestor_id ) . '-';
 				}
 				$titles .= $post->post_title;
 				$slugs  .= $post->post_name;
-				if( term_exists( $slugs, 'microblog' ) ) {
+				if ( term_exists( $slugs, 'microblog' ) ) {
 					$term    = get_term_by( 'slug', $slugs, 'microblog' );
 					$term_id = $term->term_id;
 				} else {
@@ -168,7 +180,7 @@
 					] );
 					$term_id      = $tax_term_ids[ 'term_id' ];
 				}
-				if( is_int( $cat_id ) && is_int( $term_id ) ) {
+				if ( is_int( $cat_id ) && is_int( $term_id ) ) {
 					wp_set_post_categories( $post->ID, [ (int) $cat_id ], false );
 					wp_set_post_terms( $post->ID, [ (int) $term_id ], 'microblog', false );
 					//update_field( 'syn_microblog_page', $post->ID, 'microblog_' . $term_id );
@@ -182,7 +194,12 @@
 			'numberposts'  => - 1,
 			'post_type'    => 'page',
 			'author'       => $user_id,
-			'post_status'  => [ 'publish', 'pending', 'draft', 'future' ],
+			'post_status'  => [
+				'publish',
+				'pending',
+				'draft',
+				'future',
+			],
 			'meta_key'     => 'syn_microblog_active',
 			'meta_value'   => 1,
 			'meta_compare' => '=',

@@ -165,7 +165,7 @@
 	}
 
 // Alter what is returned by the gallery shortcode
-	add_filter( 'post_gallery', 'syn_post_gallery', 10, 3 );
+	//add_filter( 'post_gallery', 'syn_post_gallery', 10, 3 );
 	function syn_post_gallery( $output, $atts, $instance ) {
 		//slog($atts);
 		//slog($instance);

@@ -25,13 +25,13 @@
 		 */
 		public function widget( $args, $instance ) {
 			global $post;
-			if( ! isset( $args[ 'widget_id' ] ) ) {
+			if ( ! isset( $args[ 'widget_id' ] ) ) {
 				$args[ 'widget_id' ] = $this->id;
 			}
 			$dynamic = get_field( 'syn_youtube_widget_dynamic', 'widget_' . $args[ 'widget_id' ] );
-			if( $dynamic ) {
+			if ( $dynamic ) {
 				$active = get_field( 'syn_youtube_active', $post->ID );
-				if( ! $active ) {
+				if ( ! $active ) {
 					return;
 				}
 				$title    = get_field( 'syn_youtube_title', $post->ID );
@@ -40,9 +40,9 @@
 				$title    = get_field( 'syn_youtube_widget_title', 'widget_' . $args[ 'widget_id' ] );
 				$video_id = get_field( 'syn_youtube_widget_video_id', 'widget_' . $args[ 'widget_id' ] );
 			}
-			if( isset( $video_id ) && ! empty( $video_id ) ) :
+			if ( isset( $video_id ) && ! empty( $video_id ) ) :
 				//$sidebar      = syn_widget_sidebar( $args[ 'widget_id' ] );
-				$sidebar_class   = syn_get_sidebar_class( $args[ 'widget_id' ] );
+				$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
 				if ( syn_remove_whitespace() ) {
 					$lb  = '';
 					$tab = '';
@@ -51,7 +51,7 @@
 					$tab = "\t";
 				}
 				echo $args[ 'before_widget' ] . $lb;
-				if( ! empty( $title ) ) :
+				if ( ! empty( $title ) ) :
 					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 				endif;
 				echo '<div class="video ' . $sidebar_class . ' embed-responsive embed-responsive-16by9">' . $lb;

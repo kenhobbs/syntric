@@ -10,6 +10,7 @@
 	echo $tab . '<div class="container-fluid">';
 	echo $tab . $tab . '<div class="row">';
 	echo $tab . $tab . $tab . '<div class="col text-center">END OF PAGE</div>';
+	echo $tab . $tab . $tab . '</div>';
 	echo $tab . $tab . '<div class="row">';
 	echo $tab . $tab . $tab . '<div class="col">';
 	echo $tab . $tab . $tab . $tab . '<h1>Site Review</h1>';
@@ -26,17 +27,17 @@
 		comment_form();
 		echo $tab . $tab . $tab . '</div>';
 		echo $tab . $tab . $tab . '<div class="col-lg-8">';
-			echo $tab . $tab . $tab . $tab . '<h2 > Feedback & amp; Replies </h2>';
+			echo $tab . $tab . $tab . $tab . '<h2>Feedback & Replies</h2>';
 			if ( have_comments() ) :
 				echo $tab . $tab . $tab . $tab . '<ul class="comments-list">';
 				wp_list_comments();
 				echo $tab . $tab . $tab . $tab . '</ul>';
 			else :
-				echo $tab . $tab . $tab . $tab . '<p > No feedback has been submitted for this page .</p>';
+				echo $tab . $tab . $tab . $tab . '<p>No feedback has been submitted for this page.</p>';
 			endif;
 			echo $tab . $tab . $tab . '</div>';
 		echo $tab . $tab . '</div>';
 	endif;
-	echo $tab . '</div >';
-echo '</div >';
+	echo $tab . '</div>';
+echo '</div>';
 endif; ?>
