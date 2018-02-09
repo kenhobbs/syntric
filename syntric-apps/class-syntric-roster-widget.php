@@ -104,8 +104,8 @@
 						echo $tab . $tab . '</div>' . $lb;*/
 						echo $tab . $tab . '<div class="list-group-item-content">' . $lb;
 						echo $tab . $tab . $tab . '<div class="person-name">' . $display_name . '</div>' . $lb;
-						if ( in_array( 'title', $include_fields ) && $title_ ) :
-							echo $tab . $tab . $tab . '<div class="person-title">' . $title_ . '</div>' . $lb;
+						if ( in_array( 'title', $include_fields ) && $titles ) :
+							echo $tab . $tab . $tab . '<div class="person-title">' . $titles . '</div>' . $lb;
 						endif;
 						if ( in_array( 'email', $include_fields ) && $email ) :
 							echo $tab . $tab . $tab . '<a href="mailto:' . antispambot( $email, true ) . '" class="person-email" title="Email">' . antispambot( $email ) . '</a>' . $lb;

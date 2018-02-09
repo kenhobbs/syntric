@@ -71,7 +71,7 @@
 	function syn_trash_post( $post_id ) {
 		$post = get_post( $post_id );
 		if ( is_admin() && 'page' == $post->post_type && ! wp_is_post_revision( $post ) ) {
-			$page_template = syn_get_page_template( $post_id );
+			$page_template = strtolower( syn_get_page_template( $post_id ) );
 			if ( 'teacher' == $page_template ) {
 				$teacher_id          = get_field( 'syn_page_teacher', $post_id );
 				$teacher_class_pages = syn_get_teacher_class_pages( $teacher_id );

@@ -309,12 +309,13 @@
 			// nothing...
 			remove_menu_page( 'users.php' ); // Users
 			remove_submenu_page( 'edit.php?post_type=page', 'nestedpages' );
+			remove_menu_page( 'edit.php?post_type=syn_calendar' ); // Calendars
 		}
 		// Remove for all but author
 		if ( ! syn_current_user_can( 'author' ) ) {
 			remove_menu_page( 'index.php' ); // Dashboard
 			remove_menu_page( 'admin.php?page=syntric-organization' ); // Organization
-			remove_menu_page( 'edit.php?post_type=syn_calendar' ); // Calendars
+
 			remove_menu_page( 'admin.php?page=syntric-jumbotrons' ); // Jumbotrons
 			remove_menu_page( 'admin.php?page=syntric-google-maps' ); // Google Maps
 			remove_menu_page( 'edit.php' ); // Posts
@@ -969,7 +970,7 @@
 
 // Select field loaders
 	function syn_load_categories( $field ) {
-		if ( is_admin() && 'select' == $field[ 'type' ] ) {
+		if ( 'select' == $field[ 'type' ] ) {
 			$categories = get_categories( [ 'hide_empty' => false ] );
 			$choices    = [];
 			if ( $categories ) {
@@ -985,7 +986,7 @@
 	}
 
 	function syn_load_microblogs( $field ) {
-		if ( is_admin() && 'select' == $field[ 'type' ] ) {
+		if ( 'select' == $field[ 'type' ] ) {
 			$microblogs = get_terms( [
 				'taxonomy'   => 'microblog',
 				'hide_empty' => false,
@@ -1005,7 +1006,7 @@
 
 	function syn_load_departments( $field ) {
 		$active = get_field( 'syn_departments_active', 'option' );
-		if ( is_admin() && $active && 'select' == $field[ 'type' ] ) {
+		if ( $active && 'select' == $field[ 'type' ] ) {
 			$choices     = [];
 			$departments = get_field( 'syn_departments', 'option' );
 			if ( $departments && is_array( $departments ) ) {
@@ -1021,7 +1022,7 @@
 
 	function syn_load_buildings( $field ) {
 		$active = get_field( 'syn_buildings_active', 'option' );
-		if ( is_admin() && $active && 'select' == $field[ 'type' ] ) {
+		if ( $active && 'select' == $field[ 'type' ] ) {
 			$choices   = [];
 			$buildings = get_field( 'syn_buildings', 'option' );
 			if ( $buildings ) {
@@ -1037,7 +1038,7 @@
 
 	function syn_load_rooms( $field ) {
 		$active = get_field( 'syn_rooms_active', 'option' );
-		if ( is_admin() && $active && 'select' == $field[ 'type' ] ) {
+		if ( $active && 'select' == $field[ 'type' ] ) {
 			$choices = [];
 			$rooms   = get_field( 'syn_rooms', 'option' );
 			if ( $rooms ) {
@@ -1051,13 +1052,31 @@
 		return $field;
 	}
 
+	function syn_get_academic_years( $count = 1 ) {
+		$ayto_month               = get_field( 'syn_academic_year_turnover_month', 'option' );
+		$ayto_date                = get_field( 'syn_academic_year_turnover_date', 'option' );
+		$now                      = date_create();
+		$current_year             = date_format( $now, 'Y' );
+		$current_year_ayto_string = $current_year . '-' . $ayto_month . '-' . $ayto_date;
+		$current_year_ayto_date   = date_create( $current_year_ayto_string );
+		$start_year               = ( $now > $current_year_ayto_date ) ? $current_year : $current_year - 1;
+		//$end_year = $start_year + $count;
+		$academic_years = [];
+		for ( $i = 1; $i < $count; $i ++ ) {
+			$academic_years[] = ( $start_year + $i - 1 ) . '-' . ( $start_year + $i );
+		}
+
+		return $academic_years;
+	}
+
 	function syn_load_terms( $field ) {
-		if ( is_admin() && 'select' == $field[ 'type' ] ) {
-			$choices                  = [];
-			$term_type                = get_field( 'syn_term_type', 'option' );
-			$ayto_month               = get_field( 'syn_academic_year_turnover_month', 'option' );
+		if ( 'select' == $field[ 'type' ] ) {
+			$choices         = [];
+			$term_type       = get_field( 'syn_term_type', 'option' );
+			$summer_sessions = get_field( 'syn_summer_sessions', 'option' );
+			/*$ayto_month               = get_field( 'syn_academic_year_turnover_month', 'option' );
 			$ayto_date                = get_field( 'syn_academic_year_turnover_date', 'option' );
-			$summer_sessions          = get_field( 'syn_summer_sessions', 'option' );
+
 			$now                      = date_create();
 			$current_year             = date_format( $now, 'Y' );
 			$current_year_ayto_string = $current_year . '-' . $ayto_month . '-' . $ayto_date;
@@ -1071,8 +1090,12 @@
 				$academic_years[] = ( $current_year - 1 ) . '-' . $current_year;
 				$academic_years[] = $current_year . '-' . ( $current_year + 1 );
 				$academic_years[] = ( $current_year + 1 ) . '-' . ( $current_year + 2 );
-			}
-			$terms = [];
+			}*/
+			$academic_years = syn_get_academic_years( 2 );
+			slog( $term_type );
+			slog( $academic_years );
+			$terms        = [];
+			$terms[ 'Y' ] = 'All Year';
 			switch ( $term_type ) {
 				case 'semester' :
 					$terms[ 'S1' ] = '1st Semester';
@@ -1093,7 +1116,6 @@
 			if ( $summer_sessions ) {
 				$terms[ 'SS' ] = 'Summer Session';
 			}
-			$terms[ 'Y' ] = 'All Year';
 			foreach ( $academic_years as $academic_year ) {
 				foreach ( $terms as $key => $value ) {
 					$choices[ $academic_year . ' ' . $value ] = $academic_year . ' - ' . $value;
@@ -1105,9 +1127,10 @@
 		return $field;
 	}
 
+// Attention!  todo: adding an is_admin() condition for loading these fields causes the id to display on the front end.
 	function syn_load_periods( $field ) {
 		$active = get_field( 'syn_periods_active', 'option' );
-		if ( is_admin() && $active && 'select' == $field[ 'type' ] ) {
+		if ( $active && 'select' == $field[ 'type' ] ) {
 			$choices = [];
 			$periods = get_field( 'syn_periods', 'option' );
 			if ( $periods && is_array( $periods ) ) {
@@ -1123,13 +1146,32 @@
 
 	function syn_load_courses( $field ) {
 		if ( 'select' == $field[ 'type' ] ) {
-			$choices = [];
-			$courses = get_field( 'syn_courses', 'option' );
-			if ( $courses && is_array( $courses ) ) {
+			//$choices = [];
+			//$courses = get_field( 'syn_courses', 'option' );
+			$courses = syn_get_courses();
+			slog( 'returned courses used as choices+++++++++++++++++++++++++++++++++++++++++++' );
+			slog( $courses );
+			/*if ( $courses && is_array( $courses ) ) {
 				foreach ( $courses as $course ) {
 					$choices[ $course[ 'course_id' ] ] = $course[ 'course' ];
 				}
-			}
+			}*/
+			//asort( $choices );
+			$field[ 'choices' ] = $courses;
+		}
+
+		return $field;
+	}
+
+	function syn_load_course_lengths( $field ) {
+		if ( 'select' == $field[ 'type' ] ) {
+			$choices   = [];
+			$term_type = get_field( 'syn_term_type', 'option' );
+			/*if ( $term_type ) {
+				foreach ( $courses as $course ) {
+					$choices[ $course[ 'course_id' ] ] = $course[ 'course' ];
+				}
+			}*/
 			$field[ 'choices' ] = $choices;
 		}
 
@@ -1170,7 +1212,7 @@
 	}
 
 	function syn_load_administrators( $field ) {
-		if ( is_admin() && 'select' == $field[ 'type' ] ) {
+		if ( 'select' == $field[ 'type' ] ) {
 			$choices = [];
 			$people  = get_users( 'role=administrator' );
 			if ( $people ) {
@@ -1185,7 +1227,7 @@
 	}
 
 	function syn_load_pageless_teachers( $field ) {
-		if ( is_admin() && 'select' == $field[ 'type' ] ) {
+		if ( 'select' == $field[ 'type' ] ) {
 			$choices  = [];
 			$teachers = syn_get_teachers(); // array of WP_User
 			if ( $teachers ) {
@@ -1209,12 +1251,12 @@
 	}
 
 	function syn_load_teachers( $field ) {
-		if ( is_admin() && 'select' == $field[ 'type' ] ) {
+		if ( 'select' == $field[ 'type' ] ) {
 			$choices  = [];
 			$teachers = syn_get_teachers();
 			if ( $teachers ) {
 				foreach ( $teachers as $teacher ) {
-					$choices[ $teacher->ID ] = $teacher->display_name . ' / Teacher';
+					$choices[ $teacher->ID ] = $teacher->display_name;
 				}
 			}
 			$field[ 'choices' ] = $choices;
@@ -1224,7 +1266,7 @@
 	}
 
 	function syn_load_users( $field ) {
-		if ( is_admin() && 'select' == $field[ 'type' ] ) {
+		if ( 'select' == $field[ 'type' ] ) {
 			return syn_load_people( $field );
 		}
 
@@ -1232,7 +1274,7 @@
 	}
 
 	function syn_load_classes( $field ) {
-		if ( is_admin() && 'select' == $field[ 'type' ] ) {
+		if ( 'select' == $field[ 'type' ] ) {
 			$teacher_pages = get_posts( [
 				'numberposts'  => - 1,
 				'post_type'    => 'page',
@@ -1273,7 +1315,7 @@
 	}
 
 	function syn_load_facebook_pages( $field ) {
-		if ( is_admin() && 'select' == $field[ 'type' ] ) {
+		if ( 'select' == $field[ 'type' ] ) {
 			$choices        = [];
 			$facebook_pages = get_field( 'syn_facebook_pages', 'option' );
 			if ( $facebook_pages ) {
@@ -1288,7 +1330,7 @@
 	}
 
 	function syn_load_google_calendars( $field ) {
-		if ( is_admin() && 'select' == $field[ 'type' ] ) {
+		if ( 'select' == $field[ 'type' ] ) {
 			$choices   = [];
 			$calendars = syn_get_calendar_ids();
 			if ( $calendars ) {
@@ -1321,7 +1363,7 @@
 	}
 
 	function syn_load_nav_menu( $field ) {
-		if ( is_admin() ) {
+		if ( 'select' == $field[ 'type' ] ) {
 			$choices = [];
 			$menus   = get_terms( 'nav_menu', [ 'hide_empty' => true ] );
 			foreach ( $menus as $menu ) {
@@ -1338,12 +1380,41 @@
 		$courses = get_field( 'syn_courses', 'option' );
 		if ( $courses ) {
 			foreach ( $courses as $course ) {
-				if ( $course_id == $course['course_id']) {
+				if ( $course_id == $course[ 'course_id' ] ) {
 					return $course;
 				}
 			}
 		}
+
 		return false;
+	}
+
+	function syn_get_courses() {
+		$ret                = [];
+		$courses            = get_field( 'syn_courses', 'option' );
+		$departments_active = get_field( 'syn_departments_active', 'option' );
+		if ( $departments_active ) {
+			$departments = get_field( 'syn_departments', 'option' );
+			$departments = array_column( $departments, 'department', 'department_id' );
+		}
+		if ( $courses ) {
+			foreach ( $courses as $course ) {
+				if ( $departments_active ) {
+					$course_department = $departments[ $course[ 'department' ] ];
+					if ( ! isset( $ret[ $course_department ] ) ) {
+						$ret[ $course_department ] = [];
+					}
+					$ret[ $course_department ][ $course[ 'course_id' ] ] = $course[ 'course' ];
+				} else {
+					$ret[ $course[ 'course_id' ] ] = $course[ 'course' ];
+				}
+			}
+		}
+		if ( ! $departments_active ) {
+			asort( $ret );
+		}
+
+		return $ret;
 	}
 
 	function syn_get_course_teachers( $course_id ) {
@@ -2047,7 +2118,7 @@
 			$page_template_file_arr = explode( '.', $page_template_file );
 			$page_template          = $page_template_file_arr[ 0 ];
 
-			return ucwords( $page_template );
+			return $page_template;
 		}
 
 		return false;
@@ -2371,6 +2442,9 @@
 						$class_id                                           = get_sub_field( 'class_id' );
 						//$include_page = get_sub_field( 'include_page' );
 						$page = syn_get_teacher_class_page( $teacher_id, $class_id );
+						slog( get_sub_field( 'term', false ) );
+						slog( get_sub_field( 'period', false ) );
+						slog( get_sub_field( 'course', false ) );
 						echo $tab . $tab . '<tr>' . $lb;
 						echo $tab . $tab . $tab . '<td class="term">' . get_sub_field( 'term' ) . '</td>' . $lb;
 						if ( $periods_active ) {
@@ -2461,67 +2535,67 @@
 
 	function syn_display_course() {
 		global $post;
-		$course_id          = get_field( 'syn_page_course', $post->ID );
-		$course             = syn_get_course( $course_id );
+		$course_id = get_field( 'syn_page_course', $post->ID );
+		$course    = syn_get_course( $course_id );
 		if ( is_array( $course ) ) {
-			echo $course['description'];
+			echo $course[ 'description' ];
 		}
 		//if ( $departments_active ) {
-			//$department = get_field( 'syn_page_department', $post->ID );
-			//if ( $department ) {
-				//$courses = get_field( 'syn_courses', 'option' );
-				/*if ( $course ) {
-					if ( syn_remove_whitespace() ) {
-						$lb  = '';
-						$tab = '';
-					} else {
-						$lb  = "\n";
-						$tab = "\t";
-					}
-					foreach ( $courses as $key => $row ) {
-						$c[ $key ] = $row[ 'course' ];
-					}
-					array_multisort( $c, SORT_ASC, $courses );
-					echo '<h2>Courses</h2>' . $lb;
-					echo '<table class="department-courses-table">' . $lb;
-					echo $tab . '<thead>' . $lb;
-					echo $tab . $tab . '<tr>' . $lb;
-					echo $tab . $tab . $tab . '<th scope="col">Course</th>' . $lb;
-					echo $tab . $tab . $tab . '<th scope="col">Teachers</th>' . $lb;
-					echo $tab . $tab . '</tr>' . $lb;
-					echo $tab . '</thead>' . $lb;
-					echo $tab . '<tbody>' . $lb;
-					foreach ( $courses as $course ) {
-						if ( $department == $course[ 'department' ] ) {
-							$course_teachers = syn_get_course_teachers( $course[ 'course_id' ] );
-							$teachers        = [];
-							if ( count( $course_teachers ) ) {
-								foreach ( $course_teachers as $course_teacher ) {
-									$teacher      = '';
-									$display_name = $course_teacher->data->display_name;
-									$prefix       = get_field( 'syn_user_prefix', 'user_' . $course_teacher->ID );
-									$display_name = ( ! empty( $prefix ) ) ? $prefix . ' ' . $display_name : $display_name;
-									$has_page     = ( $course_teacher->data->teacher_page instanceof WP_Post && 'publish' == $course_teacher->data->teacher_page->post_status ) ? 1 : 0;
-									if ( $has_page ) {
-										$teacher .= '<a href="' . get_the_permalink( $course_teacher->data->teacher_page->ID ) . '">';
-										$teacher .= $display_name;
-										$teacher .= '</a>';
-									} else {
-										$teacher .= $display_name;
-									}
-									$teachers[] = $teacher;
-								}
+		//$department = get_field( 'syn_page_department', $post->ID );
+		//if ( $department ) {
+		//$courses = get_field( 'syn_courses', 'option' );
+		/*if ( $course ) {
+			if ( syn_remove_whitespace() ) {
+				$lb  = '';
+				$tab = '';
+			} else {
+				$lb  = "\n";
+				$tab = "\t";
+			}
+			foreach ( $courses as $key => $row ) {
+				$c[ $key ] = $row[ 'course' ];
+			}
+			array_multisort( $c, SORT_ASC, $courses );
+			echo '<h2>Courses</h2>' . $lb;
+			echo '<table class="department-courses-table">' . $lb;
+			echo $tab . '<thead>' . $lb;
+			echo $tab . $tab . '<tr>' . $lb;
+			echo $tab . $tab . $tab . '<th scope="col">Course</th>' . $lb;
+			echo $tab . $tab . $tab . '<th scope="col">Teachers</th>' . $lb;
+			echo $tab . $tab . '</tr>' . $lb;
+			echo $tab . '</thead>' . $lb;
+			echo $tab . '<tbody>' . $lb;
+			foreach ( $courses as $course ) {
+				if ( $department == $course[ 'department' ] ) {
+					$course_teachers = syn_get_course_teachers( $course[ 'course_id' ] );
+					$teachers        = [];
+					if ( count( $course_teachers ) ) {
+						foreach ( $course_teachers as $course_teacher ) {
+							$teacher      = '';
+							$display_name = $course_teacher->data->display_name;
+							$prefix       = get_field( 'syn_user_prefix', 'user_' . $course_teacher->ID );
+							$display_name = ( ! empty( $prefix ) ) ? $prefix . ' ' . $display_name : $display_name;
+							$has_page     = ( $course_teacher->data->teacher_page instanceof WP_Post && 'publish' == $course_teacher->data->teacher_page->post_status ) ? 1 : 0;
+							if ( $has_page ) {
+								$teacher .= '<a href="' . get_the_permalink( $course_teacher->data->teacher_page->ID ) . '">';
+								$teacher .= $display_name;
+								$teacher .= '</a>';
+							} else {
+								$teacher .= $display_name;
 							}
-							echo $tab . $tab . '<tr>' . $lb;
-							echo $tab . $tab . $tab . '<td>' . $course[ 'course' ] . '</td>' . $lb;
-							echo $tab . $tab . $tab . '<td>' . implode( ' / ', $teachers ) . '</td>' . $lb;
-							echo $tab . $tab . '</tr>' . $lb;
+							$teachers[] = $teacher;
 						}
 					}
-					echo $tab . '</tbody>' . $lb;
-					echo '</table>' . $lb;
-				}*/
-			//}
+					echo $tab . $tab . '<tr>' . $lb;
+					echo $tab . $tab . $tab . '<td>' . $course[ 'course' ] . '</td>' . $lb;
+					echo $tab . $tab . $tab . '<td>' . implode( ' / ', $teachers ) . '</td>' . $lb;
+					echo $tab . $tab . '</tr>' . $lb;
+				}
+			}
+			echo $tab . '</tbody>' . $lb;
+			echo '</table>' . $lb;
+		}*/
+		//}
 		//}
 	}
 
@@ -2564,7 +2638,7 @@
 				echo '</td>';
 				echo '<td>' . ucwords( $pending->post_status ) . '</td>';
 				if ( 'page' == $pending->post_type ) {
-					echo '<td>' . syn_get_page_template( $pending->ID ) . '</td>';
+					echo '<td>' . ucwords( syn_get_page_template( $pending->ID ) ) . '</td>';
 				} elseif ( 'post' == $pending->post_type ) {
 					$categories = get_the_category( $pending->ID );
 					$cats       = [];
@@ -2623,7 +2697,7 @@
 			$status = ( 'publish' == $recent->post_status ) ? 'Published' : $recent->post_status;
 			echo '<td>' . ucwords( $status ) . '</td>';
 			if ( 'page' == $post_type ) {
-				echo '<td>' . syn_get_page_template( $recent->ID ) . '</td>';
+				echo '<td>' . ucwords( syn_get_page_template( $recent->ID ) ) . '</td>';
 			} elseif ( 'post' == $post_type ) {
 				$categories = get_the_category( $recent->ID );
 				$cats       = [];
@@ -2774,8 +2848,7 @@
 			foreach ( $posts as $post ) {
 				$status        = ( 'publish' != $post->post_status ) ? ' - ' . ucfirst( $post->post_status ) : '';
 				$page_template = syn_get_page_template( $post->ID );
-				//slog( $page_template );
-				$template = ( 'default' != $page_template || empty( $page_template ) ) ? ' (' . ucfirst( $page_template ) . ')' : '';
+				$template = ( 'default' != $page_template || empty( $page_template ) ) ? ' (' . ucwords( $page_template ) . ')' : '';
 				echo '<li><a href="' . $link_to_edit . $post->ID . '">' . $post->post_title . '</a>' . $template . $status . '</li>';
 			}
 		} else {

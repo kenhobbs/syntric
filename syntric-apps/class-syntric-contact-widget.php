@@ -68,9 +68,9 @@
 						$display_name   .= ( in_array( 'prefix', $include_fields ) && ! empty( $prefix ) ) ? $prefix . ' ' : '';
 						$display_name   .= ( in_array( 'first_name', $include_fields ) && ! empty( $first_name ) ) ? $first_name . ' ' : '';
 						$display_name   .= $last_name;
-						$title_         = get_field( 'syn_user_title', 'user_' . $user_id );
-						$title_         = str_replace( ',', ' / ', $title_ );
-						$title_         = str_replace( '|', ' / ', $title_ );
+						$titles         = get_field( 'syn_user_title', 'user_' . $user_id );
+						$titles         = str_replace( ',', ' / ', $titles );
+						$titles         = str_replace( '|', ' / ', $titles );
 						$email          = $user->data->user_email;
 						$phone          = get_field( 'syn_user_phone', 'user_' . $user_id );
 						$ext            = get_field( 'syn_user_extension', 'user_' . $user_id );
@@ -80,8 +80,8 @@
 						 */
 						$contact .= $tab . '<div class="list-group-item-content">' . $lb;
 						$contact .= $tab . $tab . '<div class="contact-name">' . $display_name . '</div>' . $lb;
-						if ( in_array( 'title', $include_fields ) && $title_ ) :
-							$contact .= $tab . $tab . '<div class="contact-title">' . $title_ . '</div>' . $lb;
+						if ( in_array( 'title', $include_fields ) && $titles ) :
+							$contact .= $tab . $tab . '<div class="contact-title">' . $titles . '</div>' . $lb;
 						endif;
 						if ( in_array( 'email', $include_fields ) && $email ) :
 							$contact .= $tab . $tab . '<a href="mailto:' . antispambot( $email, true ) . '" class="contact-email" title="Email">' . antispambot( $email ) . '</a>' . $lb;

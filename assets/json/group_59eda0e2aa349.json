@@ -1,23 +1,6 @@
 {
     "key": "group_59eda0e2aa349",
     "title": "Courses",
-    "location": [
-        [
-            {
-                "param": "options_page",
-                "operator": "==",
-                "value": "syntric-courses"
-            }
-        ]
-    ],
-    "menu_order": 0,
-    "position": "normal",
-    "style": "default",
-    "label_placement": "top",
-    "instruction_placement": "label",
-    "hide_on_screen": "",
-    "active": 1,
-    "description": "",
     "fields": [
         {
             "key": "field_59b8bd0c20477",
@@ -32,34 +15,54 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "field_59b8bd1b20478",
+            "collapsed": "",
             "min": 0,
             "max": 0,
-			"layout": "block",
+            "layout": "block",
             "button_label": "Add Course",
-			"collapse_all_repeater": 1,
-            "btn-icon-only": 1,
+            "hide_collapse": 0,
+            "collapse_all_repeater": 0,
+            "btn-icon-only": 0,
             "sub_fields": [
                 {
-					"key": "field_59b8bd1b20478",
-					"label": "Course",
-					"name": "course",
-					"type": "text",
-					"instructions": "",
-					"required": 1,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "40",
-						"class": "-collapsed-target",
-						"id": ""
-					},
-					"default_value": "",
-					"placeholder": "",
-					"prepend": "",
-					"append": "",
-					"maxlength": ""
-				},
-				{
+                    "key": "field_59b8bd1b20478",
+                    "label": "Course",
+                    "name": "course",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "80",
+                        "class": "-collapsed-target",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5a28a3a90f302",
+                    "label": "Active",
+                    "name": "active",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "-collapsed-target",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
+                },
+                {
                     "key": "field_59bb8bf493b01",
                     "label": "Department",
                     "name": "department",
@@ -68,8 +71,8 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-						"width": "40",
-						"class": "-collapsed-target",
+                        "width": "30",
+                        "class": "",
                         "id": ""
                     },
                     "choices": {
@@ -92,163 +95,112 @@
                     "placeholder": ""
                 },
                 {
-					"key": "field_5a28a3a90f302",
-					"label": "Active",
-					"name": "active",
-					"type": "true_false",
+                    "key": "field_5a289d85ecd27",
+                    "label": "Units",
+                    "name": "units",
+                    "type": "select",
                     "instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "20",
-						"class": "-collapsed-target",
-						"id": ""
-					},
-					"message": "",
-					"default_value": 0,
-					"ui": 1,
-					"ui_on_text": "",
-					"ui_off_text": ""
-				},
-				{
-					"key": "field_5a289d85ecd27",
-					"label": "Units",
-					"name": "units",
-					"type": "select",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "20",
-						"class": "",
-						"id": ""
-					},
-					"choices": {
-						"5": "5",
-						"10": "10",
-						"15": "15",
-						"20": "20"
-					},
-					"default_value": [],
-					"allow_null": 1,
-					"multiple": 0,
-					"ui": 0,
-					"ajax": 0,
-					"return_format": "value",
-					"placeholder": ""
-				},
-				{
-					"key": "field_5a289c4decd23",
-					"label": "Length Quantiy",
-					"name": "length_quantity",
-					"type": "select",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "20",
-						"class": "",
-						"id": ""
-					},
-					"choices": {
-						"1": "1",
-						"2": "2",
-						"3": "3",
-						"4": "4"
-					},
-					"default_value": [],
-					"allow_null": 1,
-					"multiple": 0,
-					"ui": 0,
-					"ajax": 0,
-					"return_format": "value",
-					"placeholder": ""
-				},
-				{
-					"key": "field_5a289b42ecd22",
-					"label": "Length Unit",
-					"name": "length_unit",
-					"type": "select",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "20",
-						"class": "",
-						"id": ""
-					},
-					"choices": {
-						"quarter": "Quarter",
-						"trimester": "Trimester",
-						"semester": "Semester",
-						"year": "Year"
-					},
-					"default_value": [],
-					"allow_null": 1,
-					"multiple": 0,
-					"ui": 0,
-					"ajax": 0,
-					"return_format": "value",
-					"placeholder": ""
-				},
-				{
-					"key": "field_5a289af6ecd21",
-					"label": "Grades",
-					"name": "grades",
-					"type": "checkbox",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "20",
-						"class": "",
-						"id": ""
-					},
-					"choices": {
-						"9": "9th",
-						"10": "10th",
-						"11": "11th",
-						"12": "12th"
-					},
-					"allow_custom": 0,
-					"save_custom": 0,
-					"default_value": [],
-					"layout": "vertical",
-					"toggle": 0,
-					"return_format": "value"
-				},
-				{
-					"key": "field_5a289e7428ae7",
-					"label": "Attributes",
-					"name": "attributes",
-					"type": "checkbox",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "20",
-						"class": "",
-						"id": ""
-					},
-					"choices": {
-						"graduation_requirement": "Graduation Requirement",
-						"college_requirement": "College Requirement",
-						"advanced_placement": "Advanced Placement (AP)"
-					},
-					"allow_custom": 0,
-					"save_custom": 0,
-					"default_value": [],
-					"layout": "vertical",
-					"toggle": 0,
-					"return_format": "value"
-				},
-				{
-					"key": "field_5a289addecd20",
-					"label": "Description",
-					"name": "description",
-					"type": "textarea",
-					"instructions": "",
-					"required": 0,
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "10",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "5": "5",
+                        "10": "10",
+                        "15": "15",
+                        "20": "20"
+                    },
+                    "default_value": [],
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_5a7d2da3353a1",
+                    "label": "Length",
+                    "name": "length",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": [],
+                    "default_value": [],
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_5a289af6ecd21",
+                    "label": "Grades",
+                    "name": "grades",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "9": "9th",
+                        "10": "10th",
+                        "11": "11th",
+                        "12": "12th"
+                    },
+                    "allow_custom": 0,
+                    "save_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5a289e7428ae7",
+                    "label": "Attributes",
+                    "name": "attributes",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "graduation_requirement": "Graduation Requirement",
+                        "college_requirement": "College Requirement",
+                        "advanced_placement": "Advanced Placement (AP)"
+                    },
+                    "allow_custom": 0,
+                    "save_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_5a289addecd20",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "wysiwyg",
+                    "instructions": "",
+                    "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
@@ -256,10 +208,64 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "placeholder": "",
-					"maxlength": "",
-					"rows": "",
-					"new_lines": "br"
+                    "tabs": "all",
+                    "toolbar": "full",
+                    "media_upload": 0,
+                    "delay": 1
+                },
+                {
+                    "key": "field_5a289c4decd23",
+                    "label": "Length Quantity",
+                    "name": "length_quantity",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "1",
+                        "2": "2",
+                        "3": "3",
+                        "4": "4"
+                    },
+                    "default_value": [],
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_5a289b42ecd22",
+                    "label": "Length Unit",
+                    "name": "length_unit",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "quarter": "Quarter",
+                        "trimester": "Trimester",
+                        "semester": "Semester",
+                        "year": "Year"
+                    },
+                    "default_value": [],
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "placeholder": ""
                 },
                 {
                     "key": "field_59bb6fbf70f0d",
@@ -283,5 +289,22 @@
             ]
         }
     ],
-	"modified": 1513707386
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "syntric-courses"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1518200425
 }

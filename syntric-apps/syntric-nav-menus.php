@@ -39,7 +39,7 @@
 		echo '</nav>' . $lb;
 	}
 
-	function _______syn_sitemap() {
+	function ____syn_sitemap() {
 		$menu_id = syn_generate_permanent_id();
 		$args    = [
 			'container'       => 'nav',
@@ -92,34 +92,10 @@
 	 ******************************************************** widget_nav_menu_args then calls wp_nav_menu
 	 *
 	 */
-	/**
-	 * Generate the main nav menu
-	 */
-	function ____________syn_nav_menu( $args = [] ) {
-		$nav_menu_args = [
-			'theme_location'  => ( key_exists( 'theme_location', $args ) ) ? $args[ 'theme_location' ] : '',
-			'menu'            => ( key_exists( 'menu', $args ) ) ? $args[ 'menu' ] : '',
-			'menu_class'      => ( key_exists( 'menu_class', $args ) ) ? $args[ 'menu_class' ] : 'nav-menu',
-			'menu_id'         => ( key_exists( 'menu_id', $args ) ) ? $args[ 'menu_id' ] : syn_generate_permanent_id(),
-			'container'       => ( key_exists( 'container', $args ) ) ? $args[ 'container' ] : '',
-			'container_class' => ( key_exists( 'container_class', $args ) ) ? $args[ 'container_class' ] : '',
-			'container_id'    => ( key_exists( 'container_id', $args ) ) ? $args[ 'container_id' ] : '',
-			'before'          => ( key_exists( 'before', $args ) ) ? $args[ 'before' ] : '',
-			'after'           => ( key_exists( 'after', $args ) ) ? $args[ 'after' ] : '',
-			'link_before'     => ( key_exists( 'link_before', $args ) ) ? $args[ 'link_before' ] : '',
-			'link_after'      => ( key_exists( 'link_after', $args ) ) ? $args[ 'link_after' ] : '',
-			'echo'            => true,
-			'depth'           => ( key_exists( 'depth', $args ) ) ? $args[ 'depth' ] : 2,
-			//'walker' => 'custom_walker_class',
-			// for items_wrap printf()...menu_class = %2$s, menu_id = %1$s
-			'items_wrap'      => ( key_exists( 'items_wrap', $args ) ) ? $args[ 'items_wrap' ] : '',
-			'item_spacing'    => ( key_exists( 'item_spacing', $args ) ) ? $args[ 'item_spacing' ] : 'discard',
-		];
-		wp_nav_menu( $nav_menu_args );
-	}
+
 
 	/**
-	 * Populate organization selects
+	 * Populate Nav Menu widget select
 	 *
 	 * @param $field
 	 *
@@ -132,7 +108,7 @@
 	add_filter( 'wp_nav_menu_args', 'syn_nav_menu_args', 10 );
 	function syn_nav_menu_args( $nav_menu_args ) {
 		/**
-		 * slog( $nav_menu_args );
+		 * $nav_menu_args
 		 * (
 		 * [menu] =>
 		 * [container] =>
@@ -151,8 +127,13 @@
 		 * [depth] => 2
 		 * [walker] =>
 		 * [theme_location] => primary
-		 * )*/
-		$nav_menu_args['container'] = '';
+		 * )
+		 */
+		$menu_classes = explode( ' ', $nav_menu_args['menu_class'] );
+		if ( ! in_array( 'navbar-nav', $menu_classes ) ) {
+			$nav_menu_args[ 'container' ] = '';
+		}
+
 		return $nav_menu_args;
 	}
 
@@ -162,12 +143,15 @@
 	 * If apply styles, apply list item (li) styles here
 	 *
 	 * https://developer.wordpress.org/reference/hooks/wp_nav_menu_objects/
+	 *
+	 * $sorted_menu_items is an array of WP_Post objects
+	 * $args is a WP_Term object
 	 */
 	add_filter( 'wp_nav_menu_objects', 'syn_nav_menu_objects', 10, 2 );
 	function syn_nav_menu_objects( $sorted_menu_items, $args ) {
 		global $post;
 		/**
-		 * slog( $sorted_menu_items );
+		 * $sorted_menu_items
 		 * (
 		 * [1] => WP_Post Object
 		 * (
@@ -221,7 +205,7 @@
 		 * )
 		 * )*/
 		/**
-		 * slog( $args );
+		 * $args
 		 * (
 		 * [menu] => WP_Term Object
 		 * (
@@ -283,19 +267,8 @@
 			$smi                   = [];
 			for ( $j = 1; $j <= count( $sorted_menu_items ); $j ++ ) {
 				if ( $in_ancestor ) {
-					// && $sorted_menu_items[ $j - 1 ]->menu_item_parent != $sorted_menu_items[ $j ]->menu_item_parent
 					$is_custom_link = ( 'custom' == $sorted_menu_items[ $j ]->type );
-					/*if ( $is_custom_link ) {
-						slog( 'custom===================================================');
-						slog($sorted_menu_items[$j]);
-					}*/
 					if ( ! $is_custom_link && 0 == wp_get_post_parent_id( $sorted_menu_items[ $j ]->object_id ) ) {
-						/*slog('prior menu item ------------');
-						slog($sorted_menu_items[$j-1]);
-						slog('current menu item ------------');
-						slog($sorted_menu_items[$j]);
-						slog('prior !=? current ------------');
-						slog( $sorted_menu_items[ $j-1 ]->menu_item_parent . '!=?' . $sorted_menu_items[ $j ]->menu_item_parent );*/
 						break;
 					}
 					$smi_classes = $sorted_menu_items[ $j ]->classes;
@@ -319,8 +292,6 @@
 				}
 				if ( ! $in_ancestor && $top_ancestor_id == $sorted_menu_items[ $j ]->object_id ) {
 					$in_ancestor = 1;
-					//slog( 'ancestor===================================================');
-					//slog($sorted_menu_items[$j]);
 				}
 			}
 
@@ -378,6 +349,31 @@
 // Bone yard
 //
 //
+	/**
+	 * Generate the main nav menu
+	 */
+	function ____________syn_nav_menu( $args = [] ) {
+		$nav_menu_args = [
+			'theme_location'  => ( key_exists( 'theme_location', $args ) ) ? $args[ 'theme_location' ] : '',
+			'menu'            => ( key_exists( 'menu', $args ) ) ? $args[ 'menu' ] : '',
+			'menu_class'      => ( key_exists( 'menu_class', $args ) ) ? $args[ 'menu_class' ] : 'nav-menu',
+			'menu_id'         => ( key_exists( 'menu_id', $args ) ) ? $args[ 'menu_id' ] : syn_generate_permanent_id(),
+			'container'       => ( key_exists( 'container', $args ) ) ? $args[ 'container' ] : '',
+			'container_class' => ( key_exists( 'container_class', $args ) ) ? $args[ 'container_class' ] : '',
+			'container_id'    => ( key_exists( 'container_id', $args ) ) ? $args[ 'container_id' ] : '',
+			'before'          => ( key_exists( 'before', $args ) ) ? $args[ 'before' ] : '',
+			'after'           => ( key_exists( 'after', $args ) ) ? $args[ 'after' ] : '',
+			'link_before'     => ( key_exists( 'link_before', $args ) ) ? $args[ 'link_before' ] : '',
+			'link_after'      => ( key_exists( 'link_after', $args ) ) ? $args[ 'link_after' ] : '',
+			'echo'            => true,
+			'depth'           => ( key_exists( 'depth', $args ) ) ? $args[ 'depth' ] : 2,
+			//'walker' => 'custom_walker_class',
+			// for items_wrap printf()...menu_class = %2$s, menu_id = %1$s
+			'items_wrap'      => ( key_exists( 'items_wrap', $args ) ) ? $args[ 'items_wrap' ] : '',
+			'item_spacing'    => ( key_exists( 'item_spacing', $args ) ) ? $args[ 'item_spacing' ] : 'discard',
+		];
+		wp_nav_menu( $nav_menu_args );
+	}
 	//add_filter( 'widget_nav_menu_args', 'syn_widget_nav_menu_args', 10, 4 );
 	function ___________notinuse__________syn_widget_nav_menu_args( $nav_menu_args, $nav_menu = null, $args = null, $instance = null ) {
 		/*$args[ 'max_depth' ]           = ( isset( $nav_menu_args[ 'depth' ] ) ) ? $nav_menu_args[ 'depth' ] : 0;
