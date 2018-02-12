@@ -14,7 +14,7 @@
 		$tab = "\t";
 	}
 	echo '<div class="search-wrapper d-print-none">' . $lb;
-	echo $tab . '<form method="get" id="searchform" class="form-inline search-form" action="' . esc_url( home_url( ' / ' ) ) . '" role="search">' . $lb;
+	echo $tab . '<form method="get" id="searchform" class="form-inline search-form" action="' . esc_url( home_url( '/' ) ) . '" role="search">' . $lb;
 	echo $tab . $tab . '<label class="assistive-text sr-only sr-only-focusable" for="s">Search</label>' . $lb;
 	echo $tab . $tab . '<div class="input-group">' . $lb;
 	echo $tab . $tab . $tab . '<input id="s" name="s" type="text" class="form-control search-input" placeholder="Search" required="required"/>' . $lb;

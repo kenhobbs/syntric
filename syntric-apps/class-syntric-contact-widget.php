@@ -209,6 +209,7 @@
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
 			echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
+			//echo '<div class="textwidget">' . $lb;
 			echo $tab . '<div class="list-group-item">' . $lb;
 			echo $contact;
 			echo $tab . '</div>' . $lb;

@@ -10,7 +10,6 @@
 			$lb  = "\n";
 			$tab = "\t";
 		}
-		//$menu_id       = syn_generate_permanent_id();
 		$nav_menu_args = [
 			'theme_location'  => 'primary',
 			'container'       => 'div',
@@ -102,6 +101,7 @@
 	 * @return mixed
 	 */
 	add_filter( 'acf/load_field/name=syn_nav_menu_widget_menu', 'syn_load_nav_menu' );
+
 	/**
 	 * Add syn_nav_menu_widget to $nav_menu_args so widget can be caught with hooks
 	 */
@@ -296,6 +296,27 @@
 			}
 
 			return $smi;
+		} elseif ( in_array( 'admin-nav-menu', $menu_classes ) ) {
+			for ( $i = 1; $i <= count( $sorted_menu_items ); $i ++ ) {
+				$smi_classes = $sorted_menu_items[ $i ]->classes;
+				$classes     = [];
+				//$classes[]   = 'nav-item';
+				if ( in_array( 'menu-item-has-children', $smi_classes ) ) {
+					$classes[] = 'has-children';
+					$classes[] = 'dropdown';
+				}
+				if ( in_array( 'current-menu-ancestor', $smi_classes ) || in_array( 'current-page-ancestor', $smi_classes ) ) {
+					$classes[] = 'current-ancestor';
+				}
+				if ( in_array( 'current-menu-parent', $smi_classes ) || in_array( 'current-page-parent', $smi_classes ) ) {
+					$classes[] = 'current-parent';
+				}
+				if ( in_array( 'current-menu-item', $smi_classes ) || in_array( 'current_page_item', $smi_classes ) ) {
+					$classes[] = 'current-item';
+					$classes[] = 'active';
+				}
+				$sorted_menu_items[ $i ]->classes = $classes;
+			}
 		}
 
 		return $sorted_menu_items;
@@ -326,7 +347,23 @@
 				$atts[ 'class' ] = 'dropdown-item depth-' . $depth;
 			}
 		}
-
+		// admin-nav-menu
+		if ( in_array( 'admin-nav-menu', $menu_classes ) ) {
+			$atts[ 'href' ] = 'post.php?post=' . $item->object_id . '&action=edit';
+			//if ( 0 == $depth ) {
+			if ( in_array( 'has-children', $item->classes ) ) {
+				$atts[ 'class' ] = 'dropdown-toggle depth-' . $depth;
+				//$atts[ 'role' ]          = 'button';
+				//$atts[ 'data-toggle' ]   = 'dropdown';
+				$atts[ 'aria-haspopup' ] = 'true';
+				$atts[ 'aria-expanded' ] = 'false';
+			} else {
+				$atts[ 'class' ] = 'depth-' . $depth;
+			}
+			/*} else {
+				$atts[ 'class' ] = 'depth-' . $depth;
+			}*/
+		}
 		return $atts;
 	}
 

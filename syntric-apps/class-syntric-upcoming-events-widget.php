@@ -24,10 +24,13 @@
 		 */
 		public function widget( $args, $instance ) {
 			global $post;
+			/*slog($args);
+			slog($instance);*/
 			if ( ! isset( $args[ 'widget_id' ] ) ) {
 				$args[ 'widget_id' ] = $this->id;
 			}
 			$dynamic = get_field( 'syn_upcoming_events_widget_dynamic', 'widget_' . $args[ 'widget_id' ] );
+			//slog($dynamic);
 			if ( $dynamic ) {
 				$active = get_field( 'syn_calendar_active', $post->ID );
 				if ( ! $active ) {

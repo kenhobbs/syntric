@@ -3,23 +3,14 @@
 		return trim( str_replace( '&nbsp;', '', strip_tags( $str ) ) ) != '';
 	}
 
+	// todo: improve the next 3 (syn_is_dev, syn_is_staging, syn_remove_whitespace), they get run every request
 	function syn_is_dev() {
 		$host_parts     = explode( '.', $_SERVER[ 'HTTP_HOST' ] );
 		$last_host_part = $host_parts[ count( $host_parts ) - 1 ];
-		if ( 'localhost' == $last_host_part ) {
-			return true;
-		}
-		if ( $_SERVER[ 'SERVER_ADDR' ] == '127.0.0.1' || '::1' == $_SERVER[ 'SERVER_ADDR' ] ) {
+		if ( 'localhost' == $last_host_part || $_SERVER[ 'SERVER_ADDR' ] == '127.0.0.1' || '::1' == $_SERVER[ 'SERVER_ADDR' ] ) {
 			return true;
 		}
 
-		return false;
-	}
-
-	function syn_remove_whitespace() {
-		if ( ! syn_is_dev() && ! syn_is_staging() ) {
-			return true;
-		}
 		return false;
 	}
 
@@ -34,6 +25,14 @@
 			return false;
 		}
 		if ( 3 == count( $host_parts ) && 'syntric' == $next_to_last_host_part && 'com' == $last_host_part ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	function syn_remove_whitespace() {
+		if ( ! syn_is_dev() && ! syn_is_staging() ) {
 			return true;
 		}
 

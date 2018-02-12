@@ -34,10 +34,12 @@
 					return;
 				}
 				$title    = get_field( 'syn_video_title', $post->ID );
+				$caption  = get_field( 'syn_video_caption', $post->ID );
 				$host     = get_field( 'syn_video_host', $post->ID );
 				$video_id = ( 'YouTube' == $host ) ? get_field( 'syn_video_youtube_id', $post->ID ) : get_field( 'syn_video_vimeo_id', $post->ID );
 			} else {
 				$title    = get_field( 'syn_video_widget_title', 'widget_' . $args[ 'widget_id' ] );
+				$caption  = get_field( 'syn_video_caption', 'widget_' . $args[ 'widget_id' ] );
 				$host     = get_field( 'syn_video_widget_host', 'widget_' . $args[ 'widget_id' ] );
 				$video_id = ( 'YouTube' == $host ) ? get_field( 'syn_video_widget_youtube_id', 'widget_' . $args[ 'widget_id' ] ) : get_field( 'syn_video_widget_vimeo_id', 'widget_' . $args[ 'widget_id' ] );
 			}
@@ -61,6 +63,9 @@
 				} elseif ( 'Vimeo' == $host ) {
 					echo $tab . '<iframe class="embed-responsive-item" src="https://player.vimeo.com/video/' . $video_id . '?title=0&amp;byline=0&amp;portrait=0" frameborder="0" allowfullscreen></iframe>';
 				}
+				echo '</div>' . $lb;
+				echo '<div class="small mt-2">' . $lb;
+				echo $caption;
 				echo '</div>' . $lb;
 				echo $args[ 'after_widget' ] . $lb;
 			else:

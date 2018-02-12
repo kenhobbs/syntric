@@ -4,7 +4,7 @@
 	"fields": [
 		{
 			"key": "field_59305a09c99c4",
-			"label": "Page Not Editable",
+			"label": "",
 			"name": "",
 			"type": "message",
 			"instructions": "",
@@ -15,7 +15,7 @@
 				"class": "",
 				"id": ""
 			},
-			"message": "The content of this page is rendered dynamically and can not be changed.\r\n\r\n<strong>Please do not change the title of this page.<\/strong>\r\n\r\nTo edit the content of this page, contact the theme developer listed below.\r\n\r\n<p>\r\n<strong>Syntric<\/strong><br>\r\n<a href=\"mailto:info@syntric.com\">info@syntric.com<\/a><br>\r\n(916) 220-0887\r\n<\/p>",
+			"message": "The content of this page is rendered dynamically and can not be changed.\r\n\r\n<strong>Please do not change the title of this page.<\/strong>",
 			"new_lines": "wpautop",
 			"esc_html": 0
 		}
@@ -26,6 +26,13 @@
 				"param": "page_type",
 				"operator": "==",
 				"value": "front_page"
+			}
+		],
+		[
+			{
+				"param": "page_type",
+				"operator": "==",
+				"value": "posts_page"
 			}
 		]
 	],
@@ -51,5 +58,5 @@
 	],
 	"active": 1,
 	"description": "",
-	"modified": 1509727599
+	"modified": 1518374267
 }

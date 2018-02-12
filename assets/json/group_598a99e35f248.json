@@ -405,10 +405,7 @@
             },
             "choices": {
                 "0": "+ New calendar",
-                "9828": "Academics > Teachers > Ken Hobbs > AP Biology",
-                "9830": "Activities > Clubs > California Scholarship Federation (CSF)",
                 "7585": "Escalon USD",
-                "9544": "Ken Hobbs",
                 "8333": "Syntric CMS Training"
             },
             "default_value": [],
@@ -1931,6 +1928,33 @@
             "prepend": "",
             "append": "",
             "maxlength": 15
+		},
+		{
+			"key": "field_5a81ce5c0b0da",
+			"label": "Caption",
+			"name": "syn_video_caption",
+			"type": "textarea",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a41c16e2a64d",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"maxlength": "",
+			"rows": "",
+			"new_lines": ""
         }
     ],
     "location": [
@@ -1941,9 +1965,14 @@
                 "value": "page"
             },
             {
-                "param": "current_user",
-                "operator": "==",
-                "value": "viewing_back"
+				"param": "page_type",
+				"operator": "!=",
+				"value": "front_page"
+			},
+			{
+				"param": "page_type",
+				"operator": "!=",
+				"value": "posts_page"
             }
         ]
     ],
@@ -1955,5 +1984,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1518208058
+	"modified": 1518485715
 }

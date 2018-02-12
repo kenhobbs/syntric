@@ -21,44 +21,44 @@
 		$footer_count      = 0;
 		if ( have_rows( 'syn_sidebars', 'option' ) ) {
 			while( have_rows( 'syn_sidebars', 'option' ) ) : the_row();
-				$section       = get_sub_field( 'section' );
-				$sidebar_class = $section[ 'value' ];
-				if ( 'top' == $sidebar_class ) {
-					$top_count ++;
-					$sidebar_class .= '-' . $top_count;
-				} elseif ( 'header' == $sidebar_class ) {
-					$header_count ++;
-					$sidebar_class .= '-' . $header_count;
-				} elseif ( 'footer' == $sidebar_class ) {
-					$footer_count ++;
-					$sidebar_class .= '-' . $footer_count;
-				} else {
-					$location = get_sub_field( 'location' );
-					if ( 'left' == $location[ 'value' ] ) {
-						$main_left_count ++;
-						$sidebar_class .= '-' . $location[ 'value' ] . '-' . $main_left_count;
-					} elseif ( 'top' == $location[ 'value' ] ) {
-						$main_top_count ++;
-						$sidebar_class .= '-' . $location[ 'value' ] . '-' . $main_top_count;
-					} elseif ( 'bottom' == $location[ 'value' ] ) {
-						$main_bottom_count ++;
-						$sidebar_class .= '-' . $location[ 'value' ] . '-' . $main_bottom_count;
+				$is_active = get_sub_field( 'active' );
+				if ( $is_active ) {
+					$section       = get_sub_field( 'section' );
+					$sidebar_class = $section[ 'value' ];
+					if ( 'header' == $sidebar_class ) {
+						$header_count ++;
+						$sidebar_class .= '-' . $header_count;
+					} elseif ( 'footer' == $sidebar_class ) {
+						$footer_count ++;
+						$sidebar_class .= '-' . $footer_count;
 					} else {
-						$main_right_count ++;
-						$sidebar_class .= '-' . $location[ 'value' ] . '-' . $main_right_count;
+						$location = get_sub_field( 'location' );
+						if ( 'left' == $location[ 'value' ] ) {
+							$main_left_count ++;
+							$sidebar_class .= '-' . $location[ 'value' ] . '-' . $main_left_count;
+						} elseif ( 'top' == $location[ 'value' ] ) {
+							$main_top_count ++;
+							$sidebar_class .= '-' . $location[ 'value' ] . '-' . $main_top_count;
+						} elseif ( 'bottom' == $location[ 'value' ] ) {
+							$main_bottom_count ++;
+							$sidebar_class .= '-' . $location[ 'value' ] . '-' . $main_bottom_count;
+						} else {
+							$main_right_count ++;
+							$sidebar_class .= '-' . $location[ 'value' ] . '-' . $main_right_count;
+						}
 					}
+					register_sidebar( [
+						'name'          => get_sub_field( 'name' ),
+						'id'            => get_sub_field( 'sidebar_id' ),
+						'description'   => get_sub_field( 'description' ),
+						'class'         => $sidebar_class,
+						// this gets overwritten
+						'before_widget' => '<div' . ' id="%1$s" class="widget %2$s">',
+						'after_widget'  => '</div>',
+						'before_title'  => '<h2>',
+						'after_title'   => '</h2>',
+					] );
 				}
-				register_sidebar( [
-					'name'          => get_sub_field( 'name' ),
-					'id'            => get_sub_field( 'sidebar_id' ),
-					'description'   => get_sub_field( 'description' ),
-					'class'         => $sidebar_class,
-					// this gets overwritten
-					'before_widget' => '<div' . ' id="%1$s" class="widget %2$s">',
-					'after_widget'  => '</div>',
-					'before_title'  => '<h2>',
-					'after_title'   => '</h2>',
-				] );
 			endwhile;
 		}
 	}
@@ -113,6 +113,7 @@
 				// we are now filtered down to the only active and relevant sidebars for this call
 				if ( ! $sidebar_filters || syn_process_filters( $sidebar_filters, $post ) ) {
 					$active_widgets = syn_sidebar_active_widgets( $sidebar_id, $post->ID );
+					//slog($active_widgets);
 					if ( count( $active_widgets ) ) {
 						$widgets_classes = [];
 						foreach ( $active_widgets as $widget ) {
@@ -141,7 +142,6 @@
 							dynamic_sidebar( $sidebar_id );
 							echo '</section>' . $lb;
 						} elseif ( in_array( $section, [
-							'top',
 							'header',
 							'footer',
 						] ) ) {
@@ -149,10 +149,9 @@
 							$sl_array       = explode( '-', $sidebar_layout );
 							$sidebar_class  = ( 1 == count( $sl_array ) ) ? 'fixed' : $sl_array[ count( $sl_array ) - 1 ];
 							$sidebar_class  .= ' widgets-' . count( $active_widgets );
-							$row_class      = ( 'container-bleed' == $sidebar_layout ) ? 'row no-gutters' : 'row';
 							echo '<section class="' . $wp_sidebar_class . ' sidebar ' . $sidebar_section . '-sidebar ' . $sidebar_class . ' ' . $widgets_classes . '">' . $lb;
 							echo $tab . '<div class="' . $sidebar_layout . '">' . $lb;
-							echo $tab . $tab . '<div class="' . $row_class . '">' . $lb;
+							echo $tab . $tab . '<div class="row">' . $lb;
 							dynamic_sidebar( $sidebar_id );
 							echo $tab . $tab . '</div>' . $lb;
 							echo $tab . '</div>' . $lb;
@@ -176,7 +175,7 @@
 		$sidebars_widgets = get_option( 'sidebars_widgets', [] );
 		$sidebar_widgets  = $sidebars_widgets[ $sidebar_id ];
 		$active_widgets   = [];
-		//slog($sidebar_widgets);
+		slog( $sidebar_widgets );
 		foreach ( $sidebar_widgets as $widget ) {
 			//slog($widget);
 			$widget_array = explode( '-', $widget );
@@ -187,7 +186,13 @@
 				if ( $dynamic ) {
 					array_pop( $widget_array );
 					$widget_fieldname = implode( '_', $widget_array );
-					$widget_active    = get_field( $widget_fieldname . '_active', $post_id );
+					// todo: this is stupid...change syn_calendar in page widgets to syn_upcoming_events
+					if ( 'syn_upcoming_events' == $widget_fieldname ) {
+						$widget_active = get_field( 'syn_calendar_active', $post_id );
+					} else {
+						$widget_active = get_field( $widget_fieldname . '_active', $post_id );
+					}
+
 					if ( $widget_active ) {
 						$active_widgets[] = $widget;
 						continue;
@@ -214,12 +219,53 @@
 		global $post;
 		if ( ! is_admin() ) {
 			$sidebars = get_field( 'syn_sidebars', 'option' );
-			foreach ( $sidebars as $sidebar ) {
-				if ( $params[ 0 ][ 'id' ] == $sidebar[ 'sidebar_id' ] ) {
-					$active_widgets = syn_sidebar_active_widgets( $params[ 0 ][ 'id' ], $post->ID );
-					$widget_count   = count( $active_widgets );
-					if ( 0 < $widget_count && ( 'top' == $sidebar[ 'section' ][ 'value' ] || 'header' == $sidebar[ 'section' ][ 'value' ] || 'footer' == $sidebar[ 'section' ][ 'value' ] ) ) {
-						$params[ 0 ][ 'before_widget' ] = str_replace( 'class="', 'class="col-xl-' . 12 / $widget_count . ' ', $params[ 0 ][ 'before_widget' ] );
+			if ( $sidebars ) {
+				foreach ( $sidebars as $sidebar ) {
+					$section = $sidebar[ 'section' ][ 'value' ];
+					if ( $params[ 0 ][ 'id' ] == $sidebar[ 'sidebar_id' ] && ( 'header' == $section || 'footer' == $section ) ) {
+						$active_widgets = syn_sidebar_active_widgets( $params[ 0 ][ 'id' ], $post->ID );
+						$widget_count   = count( $active_widgets );
+						if ( $widget_count ) {
+							if ( 1 == $widget_count ) {
+								$col_classes = 'col-12';
+							} elseif ( 2 == $widget_count ) {
+								$col_classes = 'col-md-6';
+							} elseif ( 3 == $widget_count ) {
+								$col_classes = 'col-lg-4';
+							} elseif ( 4 == $widget_count ) {
+								$col_classes = 'col-lg-3 col-md-6';
+							} elseif ( 5 == $widget_count ) {
+								$first_widget = $active_widgets[ 0 ];
+								if ( $params[ 0 ][ 'widget_id' ] == $first_widget ) {
+									$col_classes = 'col-12';
+								} else {
+									$col_classes = 'col-lg-3 col-md-6';
+								}
+							} elseif ( 7 == $widget_count ) {
+								$first_widget = $active_widgets[ 0 ];
+								if ( $params[ 0 ][ 'widget_id' ] == $first_widget ) {
+									$col_classes = 'col-12';
+								} else {
+									$col_classes = 'col-lg-2 col-md-4';
+								}
+							} elseif ( 8 == $widget_count ) {
+								$col_classes = 'col-lg-3 col-md-6';
+							} elseif ( 9 == $widget_count ) {
+								$col_classes = 'col-md-4';
+							} elseif ( 10 == $widget_count ) {
+								$first_widget = $active_widgets[ 0 ];
+								if ( $params[ 0 ][ 'widget_id' ] == $first_widget ) {
+									$col_classes = 'col-12';
+								} else {
+									$col_classes = 'col-md-4';
+								}
+							} else {
+								$lg_col_units = 12 / $widget_count;
+								$md_col_units = 12 / ( $widget_count / 2 );
+								$col_classes  = 'col-lg-' . $lg_col_units . ' col-md-' . $md_col_units;
+							}
+							$params[ 0 ][ 'before_widget' ] = str_replace( 'class="', 'class="' . $col_classes . ' ', $params[ 0 ][ 'before_widget' ] );
+						}
 					}
 				}
 			}

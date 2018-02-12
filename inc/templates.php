@@ -21,6 +21,7 @@
 			unset( $page_templates[ 'page-templates/department.php' ] );
 			unset( $page_templates[ 'page-templates/teachers.php' ] );
 			unset( $page_templates[ 'page-templates/teacher.php' ] );
+			unset( $page_templates[ 'page-templates/course.php' ] );
 			unset( $page_templates[ 'page-templates/class.php' ] );
 		}
 

@@ -29,6 +29,7 @@
 	require get_template_directory() . '/syntric-apps/syntric-widgets.php';
 	require get_template_directory() . '/syntric-apps/syntric-data-functions.php';
 	require get_template_directory() . '/syntric-apps/class-syntric-nav-menu-walker.php';
+	// If production, remove all whitespace
 //require get_template_directory() . '/syntric-apps/syntric-forms.php';
 //require get_template_directory() . '/syntric-apps/syntric-contact.php';
 //require get_template_directory() . '/syntric-apps/syntric-twitter-feeds.php';
@@ -315,7 +316,6 @@
 		if ( ! syn_current_user_can( 'author' ) ) {
 			remove_menu_page( 'index.php' ); // Dashboard
 			remove_menu_page( 'admin.php?page=syntric-organization' ); // Organization
-
 			remove_menu_page( 'admin.php?page=syntric-jumbotrons' ); // Jumbotrons
 			remove_menu_page( 'admin.php?page=syntric-google-maps' ); // Google Maps
 			remove_menu_page( 'edit.php' ); // Posts
@@ -2146,7 +2146,7 @@
 		echo '<a class="sr-only sr-only-focusable skip-to-content-link" href="#content">' . esc_html( 'Skip to content', 'syntric' ) . '</a>';
 		echo '<header class="head">' . $lb;
 		echo $tab . '<div class="container-fluid">' . $lb;
-		echo $tab . $tab . '<div class="row no-gutters">' . $lb;
+		echo $tab . $tab . '<div class="row">' . $lb;
 		echo $tab . $tab . $tab . '<div class="col">' . $lb;
 		echo $tab . $tab . $tab . $tab . '<div class="portal-links" aria-label="Portal links">' . $lb;
 		echo $tab . $tab . $tab . $tab . $tab . '<a href="" class="teacher-portal" target="_blank">Teacher Portal <span class="fa fa-sign-in"></span></a>' . $lb;
@@ -2159,8 +2159,16 @@
 	}
 
 	function syn_banner() {
+		global $post;
 		// todo: come back and fix this...kinda clunky
-		if ( has_header_image() ) {
+		if ( has_post_thumbnail() ) {
+			$post_thumbnail_id       = get_post_thumbnail_id();
+			$post_thumbnail_metadata = wp_get_attachment_metadata( $post_thumbnail_id );
+			slog( $post_thumbnail_metadata );
+			//$thumbnail_image = get_the_post_thumbnail( $post, 'banner' );
+			//$thumbnail_image_sizes = wp_get_attachment_metadata();
+			//$banner_style_attribute = ' style="background-image: url(' . $thumbnail_image . ');" ';
+		} elseif ( has_header_image() ) {
 			$header_image           = get_header_image();
 			$banner_style_attribute = ' style="background-image: url(' . $header_image . ');" ';
 		} else {
@@ -2312,16 +2320,16 @@
 		}
 		echo '<footer class="foot">' . $lb;
 		echo $tab . '<div class="container-fluid">' . $lb;
-		echo $tab . $tab . '<div class="row no-gutters">' . $lb;
-		echo $tab . $tab . $tab . '<div class="non-discrimination col">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment.</div>' . $lb;
+		echo $tab . $tab . '<div class="row">' . $lb;
+		echo $tab . $tab . $tab . '<div class="non-discrimination col mb-3">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment.</div>' . $lb;
 		echo $tab . $tab . '</div>' . $lb;
-		echo $tab . $tab . '<div class="row no-gutters">' . $lb;
+		echo $tab . $tab . '<div class="row">' . $lb;
 		echo $tab . $tab . $tab . '<div class="col-md-6">' . $lb;
 		//echo $tab . $tab . '<div id="google-translate" class="google-translate"></div>' . $lb;
-		echo $tab . $tab . $tab . $tab . '<div class="copyright">&copy; ' . date( 'Y' ) . ' ' . $organization . '</div>' . $lb;
+		echo $tab . $tab . $tab . $tab . '<div class="copyright mb-3">&copy; ' . date( 'Y' ) . ' ' . $organization . '</div>' . $lb;
 		echo $tab . $tab . $tab . '</div>' . $lb;
 		echo $tab . $tab . $tab . '<div class="col-md-6">' . $lb;
-		echo $tab . $tab . $tab . $tab . '<div class="login-bug">' . $lb;
+		echo $tab . $tab . $tab . $tab . '<div class="login-bug mb-3">' . $lb;
 		if ( is_user_logged_in() ) {
 			echo $tab . $tab . $tab . $tab . $tab . '<a href="' . wp_logout_url( get_the_permalink() ) . '" class="btn btn-sm btn-danger login-button">Logout</a>' . $lb;
 		} else {
@@ -2828,7 +2836,39 @@
 
 // quick nav
 	function syn_qn_all_pages() {
-		$args  = [
+		/*$array_menu = wp_get_nav_menu_items( 14 );
+		$menu = array();
+		foreach ($array_menu as $m) {
+			if (empty($m->menu_item_parent)) {
+				$menu[$m->ID] = array();
+				$menu[$m->ID]['ID']      =   $m->ID;
+				$menu[$m->ID]['title']       =   $m->title;
+				$menu[$m->ID]['url']         =   $m->url;
+				$menu[$m->ID]['children']    =   array();
+			}
+		}
+		$submenu = array();
+		foreach ($array_menu as $m) {
+			if ($m->menu_item_parent) {
+				$submenu[$m->ID] = array();
+				$submenu[$m->ID]['ID']       =   $m->ID;
+				$submenu[$m->ID]['title']    =   $m->title;
+				$submenu[$m->ID]['url']  =   $m->url;
+				$menu[$m->menu_item_parent]['children'][$m->ID] = $submenu[$m->ID];
+			}
+		}
+		slog($menu);*/
+		$qn_args = [
+			'container'       => '',
+			'container_id'    => '',
+			'container_class' => '',
+			'menu'            => 'primary menu',
+			'menu_id'         => 'qn-all-pages',
+			'menu_class'      => 'admin-nav-menu',
+			'depth'           => 0,
+		];
+		wp_nav_menu( $qn_args );
+		/*$args  = [
 			'numberposts' => - 1,
 			'orderby'     => 'post_title',
 			'order'       => 'ASC',
@@ -2854,7 +2894,7 @@
 		} else {
 			echo '<li>No pages</li>';
 		}
-		echo '</ul>';
+		echo '</ul>';*/
 	}
 
 	function syn_qn_teachers_pages() {

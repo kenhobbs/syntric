@@ -74,12 +74,15 @@
 			add_image_size( 'large', 800, 800, true );
 			//add_image_size( 'large', 800, 800, true );
 			//add_image_size( 'x-large', 800, 800, true );
-			//add_image_size( 'banner', 1920, 500 );
+			add_image_size( 'banner', 1920, 500, true );
 			/**
 			 * Add support for post thumbnails (Featured Image) in posts (only)
 			 */
 			//add_theme_support( 'post-thumbnails' );
-			add_theme_support( 'post-thumbnails', [ 'post' ] );
+			add_theme_support( 'post-thumbnails', [
+				'post',
+				'page',
+			] );
 			/**
 			 * Set default Post Thumbnail size
 			 */
