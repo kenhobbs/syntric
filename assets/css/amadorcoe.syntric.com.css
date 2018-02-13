@@ -9103,17 +9103,17 @@ body > .head {
   background-color: #333;
   color: #fff; }
   body > .head a {
-    padding            : 0.25rem 0.5rem;
-    font-size          : 0.75rem;
-    text-transform     : uppercase;
-    color              : #fff;
+	  padding          : 0.25rem 0.5rem;
+	  font-size        : 0.75rem;
+	  text-transform   : uppercase;
+	  color            : #fff;
 	  border           : solid 1px transparent;
 	  background-color : transparent;
     /*&:first-child {
 			margin-left:auto!important;
 		}*/ }
     body > .head a:hover {
-      text-decoration    : none;
+		text-decoration  : none;
 		background-color : transparent; }
     body > .head a .fa {
       font-size: 1rem;
@@ -9126,11 +9126,11 @@ body > .head {
       margin-right: 0.25rem; }
 
 body > .foot {
-	padding-top    : 1rem;
-  padding-bottom   : 1rem;
-  background-color : #333;
-  color            : #fff;
-	font-size      : 0.8125rem;
+	padding-top      : 1rem;
+	padding-bottom   : 1rem;
+	background-color : #333;
+	color            : #fff;
+	font-size        : 0.8125rem;
 	/*a {
 		  color            : $foot-link-text;
 		  border           : solid 1px $foot-link-border;
@@ -9142,13 +9142,14 @@ body > .foot {
 	  }*/ }
   body > .foot .login-bug {
 	  display : flex;
-    float     : left; }
+	  float   : left; }
 
 body > .foot .login-bug .login-button {
 	margin-right : 1rem; }
 
 body > .foot .login-bug .bug {
-	color : #fff; }
+	color            : #fff;
+	background-color : transparent; }
 
 @media (min-width : 768px) {
     body > .foot .login-bug {
@@ -9339,8 +9340,8 @@ aside.sidebar.main-right-sidebar .widget:last-of-type {
 
 .main-top-sidebar .widget,
 .main-bottom-sidebar .widget {
-  background-color : transparent;
-	border         : solid 1px transparent; }
+	background-color : transparent;
+	border           : solid 1px transparent; }
   .main-top-sidebar .widget h2,
   .main-bottom-sidebar .widget h2 {
     color: #343a40;
@@ -9442,8 +9443,8 @@ body > .sidebar:nth-of-type(even) .widget a {
 body > .sidebar:nth-of-type(even) .widget.widget_media_image h2, body > .sidebar:nth-of-type(even) .widget.widget_media_gallery h2, body > .sidebar:nth-of-type(even) .widget.syn-video-widget h2, body > .sidebar:nth-of-type(even) .widget.syn-google-map-widget h2 {
 	background-color : #005005; }
   body > .sidebar .widget {
-    padding  : 2rem;
-	  margin : 0; }
+	  padding : 2rem;
+	  margin  : 0; }
     body > .sidebar .widget h2 {
       text-transform: uppercase;
       font-size: 1.25rem; }

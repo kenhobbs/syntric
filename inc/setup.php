@@ -62,23 +62,15 @@
 			/**
 			 * Additional image sizes that are auto-generated upon upload of an image into the Media Library
 			 */
-			//add_image_size( 'icon', 50, 50 );
-			//remove_image_size( 'thumbnail' );
-			//remove_image_size( 'medium' );
-			//remove_image_size( 'medium_large' );
-			//remove_image_size( 'large' );
 			add_image_size( 'icon', 50, 50, true );
 			add_image_size( 'thumbnail', 100, 100, true );
 			add_image_size( 'medium', 200, 200, true );
 			add_image_size( 'medium_large', 400, 400, true );
 			add_image_size( 'large', 800, 800, true );
-			//add_image_size( 'large', 800, 800, true );
-			//add_image_size( 'x-large', 800, 800, true );
 			add_image_size( 'banner', 1920, 500, true );
 			/**
 			 * Add support for post thumbnails (Featured Image) in posts (only)
 			 */
-			//add_theme_support( 'post-thumbnails' );
 			add_theme_support( 'post-thumbnails', [
 				'post',
 				'page',
