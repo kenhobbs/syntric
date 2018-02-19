@@ -58,7 +58,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+			"default_value": "Resources",
             "placeholder": "",
             "prepend": "",
             "append": "",
@@ -376,7 +376,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+			"default_value": "Calendar",
             "placeholder": "",
             "prepend": "",
             "append": "",
@@ -757,7 +757,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+			"default_value": "Contact",
             "placeholder": "",
             "prepend": "",
             "append": "",
@@ -1166,7 +1166,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+			"default_value": "Blog",
             "placeholder": "",
             "prepend": "",
             "append": "",
@@ -1469,7 +1469,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+			"default_value": "Roster",
             "placeholder": "",
             "prepend": "",
             "append": "",
@@ -1732,7 +1732,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+			"default_value": "Map",
             "placeholder": "",
             "prepend": "",
             "append": "",
@@ -1984,5 +1984,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-	"modified": 1518485715
+	"modified": 1518633972
 }

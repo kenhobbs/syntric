@@ -192,18 +192,25 @@
 	 */
 	add_action( 'syn_calendar_sync', 'syn_sync_calendar' );
 	function syn_sync_calendar( $args ) {
+		slog( $args );
 		$calendar_id = $args[ 'post_id' ];
-		update_field( 'syn_calendar_last_sync_result', 'Sync started with values ' . "\n" . print_r( $args, true ), $calendar_id );
-		// bail if $sync_args doesn't contain both post_type and post_id or if post_type isn't calendar
+		$log         = '';
+		$lb          = "\n";
+		$log         .= 'Sync started with values ' . $lb . print_r( $args, true );
+		update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
+		// bail if $sync_args doesn't contain both post_type and post_id or if post_type isn't syn_calendar
 		if ( ! $args[ 'post_type' ] || ! $args[ 'post_id' ] || $args[ 'post_type' ] != 'syn_calendar' ) {
-			update_field( 'syn_calendar_last_sync_result', 'Invalid args. Exited sync at ' . date( 'n/j/Y g:i A' ) . '.', $calendar_id );
+			$log .= $lb . 'Invalid args. Exited sync at ' . date( 'n/j/Y g:i A' ) . '.';
+			update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 
 			return;
 		}
 		$calendar_fields = get_fields( $calendar_id );
+		slog( $calendar_fields );
 		// bail if no calendar postmeta
 		if ( ! $calendar_fields ) {
-			update_field( 'syn_calendar_last_sync_result', 'Calendar settings not found. Exited sync at ' . date( 'n/j/Y g:i A' ) . '.', $calendar_id );
+			$log .= $lb . 'Calendar settings not found. Exited sync at ' . date( 'n/j/Y g:i A' ) . '.';
+			update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 
 			return;
 		}
@@ -212,7 +219,8 @@
 		$api_url  = get_field( 'syn_google_calendar_api_url', 'option' );
 		$calendar = $calendar_fields[ 'syn_calendar_id' ];
 		if ( ! $api_key || ! $api_url || ! $calendar ) {
-			update_field( 'syn_calendar_last_sync_result', 'One or more required values were absent. Exited sync at ' . date( 'n/j/Y g:i A' ) . '.', $calendar_id );
+			$log .= $lb . 'One or more required values were absent. Exited sync at ' . date( 'n/j/Y g:i A' ) . '.';
+			update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 
 			return;
 		}
@@ -232,29 +240,35 @@
 		$url      = trailingslashit( $api_url ) . $calendar . '/events?key=' . $api_key;
 		$url      .= '&singleEvents=true&orderBy=startTime&maxResults=200';
 		$url      .= '&timeMin=' . $time_min . '&timeMax=' . $time_max;
-		update_field( 'syn_calendar_last_sync_result', 'Url contructed', $calendar_id );
+		$log      .= $lb . 'Url contructed as: ' . $url;
+		update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 		$response = wp_remote_get( $url );
 		if ( $response ) { // received response
-			update_field( 'syn_calendar_last_sync_result', 'Response received from remote host', $calendar_id );
+			$log .= $lb . 'Response received from remote host';
+			update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 			$body = wp_remote_retrieve_body( $response );
 			$body = json_decode( $body );
 			if ( property_exists( $body, 'error' ) ) {
-				update_field( 'syn_calendar_last_sync_result', 'Response from remote host was an error', $calendar_id );
+				$log .= $lb . 'Response from remote host was an error';
+				update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 				$error  = $body->error;
 				$errors = $error->errors;
 				foreach ( $errors as $_error ) {
 					$reason = $_error->reason;
 				}
 				if ( $reason ) {
-					update_field( 'syn_calendar_last_sync_result', 'Response from remote host errored with reason: ' . $reason, $calendar_id );
+					$log .= $lb . 'Response from remote host errored with reason: ' . $reason;
+					update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 				} else {
-					update_field( 'syn_calendar_last_sync_result', 'Response from remote host errored but no reason could be found' . $reason, $calendar_id );
+					$log .= $lb . 'Response from remote host errored but no reason could be found';
+					update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 				}
 
 				return;
 			}
 		} else { // did not receive response
-			update_field( 'syn_calendar_last_sync_result', 'No response received from remote server. Exited sync at ' . date( 'njY g:i A' ) . '.', $calendar_id );
+			$log .= $lb . 'No response received from remote server. Exited sync at ' . date( 'njY g:i A' ) . '.';
+			update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 
 			return;
 		}
@@ -265,14 +279,21 @@
 			$remote_last_updated    = date_create( $body->updated );
 			$remote_timezone_offset = timezone_offset_get( timezone_open( date_default_timezone_get() ), $remote_last_updated );
 			$remote_last_updated    = date_add( $remote_last_updated, date_interval_create_from_date_string( $remote_timezone_offset . ' seconds' ) );
+			//slog( $local_last_updated);
+			//slog( $remote_last_updated);
 			$refresh                = date_format( $local_last_updated, 'YmdHi' ) < date_format( $remote_last_updated, 'YmdHi' );
 		}
 		// Google calendar hasn't been updated since the last sync
 		if ( ! $refresh ) {
+			$log .= $lb . 'Local calendar last updated: ' . $local_last_updated->date . $lb . 'Remote calendar last updated: ' . $remote_last_updated->date . $lb . 'Remote calendar has not been updated since last sync. Exiting sync.';
 			update_field( 'syn_calendar_last_sync', date( 'r' ), $calendar_id );
-			update_field( 'syn_calendar_last_sync_result', 'Remote calendar has not been updated since last sync', $calendar_id );
+			update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
+
+			return;
+			//
 		} else {
-			update_field( 'syn_calendar_last_sync_result', 'Remote calendar has been updated since last sync', $calendar_id );
+			$log .= $lb . 'Remote calendar has been updated since last sync, syncing';
+			update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 		}
 		// purge events that start on or before $time_min
 		$time_min_array = explode( 'T', $time_min );
@@ -298,20 +319,26 @@
 			],
 		];
 		$events         = get_posts( $events_args );
-		update_field( 'syn_calendar_last_sync_result', 'Got events to delete', $calendar_id );
+		$log            .= $lb . 'Check for events to delete';
+		update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 		if ( count( $events ) ) {
-			update_field( 'syn_calendar_last_sync_result', 'Events need to be deleted', $calendar_id );
+			$log .= $lb . 'Events need to be deleted';
+			update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 			foreach ( $events as $event ) {
 				$del_result = wp_delete_post( $event->ID, true );
 				if ( ! $del_result ) {
-					update_field( 'syn_calendar_last_sync_result', 'Failed to delete event', $calendar_id );
+					$log .= $lb . 'Failed to delete event: ' . $event->ID;
+					update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 				} else {
-					update_field( 'syn_calendar_last_sync_result', 'Deleted event', $calendar_id );
+					$log .= $lb . 'Deleted event: ' . $event->ID;
+					update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 				}
 			}
-			update_field( 'syn_calendar_last_sync_result', 'Events deleted', $calendar_id );
+			$log .= $lb . 'Finished deleting events';
+			update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 		} else {
-			update_field( 'syn_calendar_last_sync_result', 'No events to be deleted', $calendar_id );
+			$log .= $lb . 'No events need to be deleted';
+			update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 		}
 		wp_reset_postdata(); // for good measure
 		$_event_field_groups = acf_get_field_groups();
@@ -350,7 +377,8 @@
 				];
 			}
 		}
-		update_field( 'syn_calendar_last_sync_result', 'Collected event meta data to update', $calendar_id );
+		$log .= $lb . 'Collected event meta data to update';
+		update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 		$events      = $body->items;
 		$event_count = 0;
 		foreach ( $events as $event ) {
@@ -362,7 +390,8 @@
 			];
 			$event_id = wp_insert_post( $args );
 			if ( $event_id ) {
-				update_field( 'syn_calendar_last_sync_result', 'Event inserted', $calendar_id );
+				$log .= $lb . 'Event inserted: ' . $event_id;
+				update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 				foreach ( $event_fields as $event_field ) {
 					$value = '';
 					switch ( $event_field[ 'name' ] ) {
@@ -397,15 +426,18 @@
 							break;
 					}
 					update_field( $event_field[ 'key' ], $value, $event_id );
-					update_field( 'syn_calendar_last_sync_result', 'Event meta data updated', $calendar_id );
 				}
+				$log .= $lb . 'Event ' . $event_id . ' meta data updated';
+				update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 			} else {
-				update_field( 'syn_calendar_last_sync_result', 'Event meta data failed to upate', $calendar_id );
+				$log .= $lb . 'Event ' . $event_id . ' meta data failed to update';
+				update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 			}
 			$event_count = $event_count + 1;
 		}
 		update_field( 'syn_calendar_last_sync', date( 'F j, Y g:i A' ), $calendar_id );
-		update_field( 'syn_calendar_last_sync_result', 'Sync completed. ' . $event_count . ' events were saved.', $calendar_id );
+		$log .= $lb . 'Sync completed. ' . $event_count . ' events were synced.';
+		update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 		update_field( 'syn_calendar_event_count', $event_count, $calendar_id );
 
 		//syn_write_calendar_json_file( $calendar_id );
@@ -418,6 +450,7 @@
 	 */
 	add_action( 'before_delete_post', 'syn_before_delete_calendar' );
 	function syn_before_delete_calendar( $post_id ) {
+		slog( 'syn_befor_delete_calendar triggered...................................................................' );
 		$post = get_post( $post_id );
 		if ( 'syn_calendar' == $post->post_type ) {
 			// Remove any sync schedules

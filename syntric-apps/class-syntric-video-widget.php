@@ -64,9 +64,11 @@
 					echo $tab . '<iframe class="embed-responsive-item" src="https://player.vimeo.com/video/' . $video_id . '?title=0&amp;byline=0&amp;portrait=0" frameborder="0" allowfullscreen></iframe>';
 				}
 				echo '</div>' . $lb;
-				echo '<div class="small mt-2">' . $lb;
-				echo $caption;
-				echo '</div>' . $lb;
+				/*if ( $caption && ! empty( $caption ) ) {
+					echo '<div class="video-caption small mt-2">' . $lb;
+					echo $caption;
+					echo '</div>' . $lb;
+				}*/
 				echo $args[ 'after_widget' ] . $lb;
 			else:
 				echo '<p>Video unavailable</p>';

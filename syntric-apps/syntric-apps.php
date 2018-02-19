@@ -1146,18 +1146,18 @@
 
 	function syn_load_courses( $field ) {
 		if ( 'select' == $field[ 'type' ] ) {
-			//$choices = [];
-			//$courses = get_field( 'syn_courses', 'option' );
-			$courses = syn_get_courses();
-			slog( 'returned courses used as choices+++++++++++++++++++++++++++++++++++++++++++' );
-			slog( $courses );
-			/*if ( $courses && is_array( $courses ) ) {
+			/*$choices = [];
+			$courses = get_field( 'syn_courses', 'option' );
+			if ( $courses && is_array( $courses ) ) {
 				foreach ( $courses as $course ) {
 					$choices[ $course[ 'course_id' ] ] = $course[ 'course' ];
 				}
-			}*/
-			//asort( $choices );
+			}
+			asort( $choices );
+			$field[ 'choices' ] = $choices;*/
+			$courses            = syn_get_courses();
 			$field[ 'choices' ] = $courses;
+
 		}
 
 		return $field;
@@ -1293,15 +1293,17 @@
 			] );
 			$choices       = [];
 			if ( $teacher_pages ) {
+				$courses = get_field( 'syn_courses', 'option' );
+				$courses = array_column( $courses, 'course', 'course_id' );
 				foreach ( $teacher_pages as $teacher_page ) { // teacher_page is post->ID
 					$teacher_id   = get_field( 'syn_page_teacher', $teacher_page );
 					$teacher      = get_user_by( 'ID', $teacher_id );
-					$teacher_name = ( $teacher ) ? ' (' . $teacher->display_name . ')' : ' (Unknown)';
+					//$teacher_name = ( $teacher ) ? ' (' . $teacher->display_name . ')' : ' (Unknown)';
 					$classes      = get_field( 'syn_classes', $teacher_page );
 					if ( $classes ) {
 						foreach ( $classes as $class ) {
 							if ( $class[ 'class_id' ] ) {
-								$choices[ $class[ 'class_id' ] ] = $class[ 'course' ];
+								$choices[ $class[ 'class_id' ] ] = $courses[ $class[ 'course' ] ];
 							}
 						}
 					}
@@ -1332,13 +1334,13 @@
 	function syn_load_google_calendars( $field ) {
 		if ( 'select' == $field[ 'type' ] ) {
 			$choices   = [];
-			$calendars = syn_get_calendar_ids();
+			$calendars = syn_get_calendars();
 			if ( $calendars ) {
 				if ( 'syn_calendar_id' == $field[ '_name' ] ) {
 					$choices[ 0 ] = '+ New calendar';
 				}
 				foreach ( $calendars as $calendar ) {
-					$choices[ $calendar ] = get_the_title( $calendar );
+					$choices[ $calendar->ID ] = get_the_author_meta( 'first_name', $calendar->post_author ) . ' ' . get_the_author_meta( 'last_name', $calendar->post_author ) . ' > ' . get_the_title( $calendar->ID );
 				}
 			}
 			$field[ 'choices' ] = $choices;
@@ -1805,11 +1807,13 @@
 			$tc_ids          = [];
 			$tc_args         = [];
 			if ( $teacher_classes ) {
+				$courses = get_field( 'syn_courses', 'option' );
+				$courses = array_column( $courses, 'course', 'course_id' );
 				foreach ( $teacher_classes as $teacher_class ) {
 					$include_page = $teacher_class[ 'include_page' ];
 					if ( $include_page ) {
 						$tc_ids[]                                = $teacher_class[ 'class_id' ];
-						$cp_title                                = $teacher_class[ 'course' ];
+						$cp_title                                = $courses[ $teacher_class[ 'course' ] ];
 						$tc_args[ $teacher_class[ 'class_id' ] ] = [
 							'post_type'   => 'page',
 							'post_title'  => $cp_title,
@@ -1943,6 +1947,8 @@
 					'compare' => '=',
 				],
 			],
+			'orderby'     => 'title',
+			'order'       => 'ASC',
 		];
 		$posts     = get_posts( $post_args );
 
@@ -2149,8 +2155,8 @@
 		echo $tab . $tab . '<div class="row">' . $lb;
 		echo $tab . $tab . $tab . '<div class="col">' . $lb;
 		echo $tab . $tab . $tab . $tab . '<div class="portal-links" aria-label="Portal links">' . $lb;
-		echo $tab . $tab . $tab . $tab . $tab . '<a href="" class="teacher-portal" target="_blank">Teacher Portal <span class="fa fa-sign-in"></span></a>' . $lb;
-		echo $tab . $tab . $tab . $tab . $tab . '<a href="" class="parent-portal" target="_blank">Parent Portal <span class="fa fa-sign-in"></span></a>' . $lb;
+		echo $tab . $tab . $tab . $tab . $tab . '<a href="https://amadorcusd.asp.aeries.net/teacher/Login.aspx?page=default.aspx" class="teacher-portal" target="_blank">Teacher Portal <span class="fa fa-sign-in"></span></a>' . $lb;
+		echo $tab . $tab . $tab . $tab . $tab . '<a href="https://amadorcusd.asp.aeries.net/student/LoginParent.aspx?page=default.aspx" class="parent-portal" target="_blank">Parent Portal <span class="fa fa-sign-in"></span></a>' . $lb;
 		echo $tab . $tab . $tab . $tab . '</div>' . $lb;
 		echo $tab . $tab . $tab . '</div>' . $lb;
 		echo $tab . $tab . '</div>' . $lb;
@@ -2385,6 +2391,8 @@
 				$teacher_page           = syn_get_teacher_page( $teacher->ID );
 				$teacher_page_published = ( $teacher_page && 'publish' == $teacher_page->post_status ) ? true : false;
 				$teacher_classes        = ( $teacher_page_published ) ? get_field( 'syn_classes', $teacher_page->ID ) : false;
+				$courses                = get_field( 'syn_courses', 'option' );
+				$courses                = array_column( $courses, 'course', 'course_id' );
 				// build a csv list of classes
 				$class_array = [];
 				if ( $teacher_classes ) {
@@ -2393,7 +2401,7 @@
 						if ( $class_page instanceof WP_Post && 'publish' == $class_page->post_status ) {
 							$class_array[] = '<a href="' . get_the_permalink( $class_page->ID ) . '">' . $class_page->post_title . '</a>';
 						} else {
-							$class_array[] = $class[ 'course' ];
+							$class_array[] = $courses[ $class[ 'course' ] ];
 						}
 					}
 				}
@@ -2422,6 +2430,8 @@
 			$teacher_id = get_field( 'syn_page_teacher', $post->ID );
 			if ( $teacher_id ) {
 				if ( have_rows( 'syn_classes', $post->ID ) ) {
+					$courses        = get_field( 'syn_courses', 'option' );
+					$courses        = array_column( $courses, 'course', 'course_id' );
 					$periods_active = get_field( 'syn_periods_active', 'option' );
 					$rooms_active   = get_field( 'syn_rooms_active', 'option' );
 					if ( syn_remove_whitespace() ) {
@@ -2446,13 +2456,10 @@
 					echo $tab . $tab . '</tr>' . $lb;
 					echo $tab . '</thead>' . $lb;
 					echo $tab . '<tbody>' . $lb;
-					while( have_rows( 'syn_classes', $post->ID ) ) : $class = the_row();
+					while( have_rows( 'syn_classes', $post->ID ) ) : the_row();
 						$class_id                                           = get_sub_field( 'class_id' );
 						//$include_page = get_sub_field( 'include_page' );
 						$page = syn_get_teacher_class_page( $teacher_id, $class_id );
-						slog( get_sub_field( 'term', false ) );
-						slog( get_sub_field( 'period', false ) );
-						slog( get_sub_field( 'course', false ) );
 						echo $tab . $tab . '<tr>' . $lb;
 						echo $tab . $tab . $tab . '<td class="term">' . get_sub_field( 'term' ) . '</td>' . $lb;
 						if ( $periods_active ) {
@@ -2463,6 +2470,7 @@
 							echo $tab . $tab . $tab . $tab . '<a href="' . get_the_permalink( $page->ID ) . '">';
 						}
 						echo get_sub_field( 'course' );
+						//echo $courses[get_sub_field( 'course' )];
 						if ( $page instanceof WP_Post && 'publish' == $page->post_status ) {
 							echo '</a>' . $lb;
 						}
@@ -2836,28 +2844,6 @@
 
 // quick nav
 	function syn_qn_all_pages() {
-		/*$array_menu = wp_get_nav_menu_items( 14 );
-		$menu = array();
-		foreach ($array_menu as $m) {
-			if (empty($m->menu_item_parent)) {
-				$menu[$m->ID] = array();
-				$menu[$m->ID]['ID']      =   $m->ID;
-				$menu[$m->ID]['title']       =   $m->title;
-				$menu[$m->ID]['url']         =   $m->url;
-				$menu[$m->ID]['children']    =   array();
-			}
-		}
-		$submenu = array();
-		foreach ($array_menu as $m) {
-			if ($m->menu_item_parent) {
-				$submenu[$m->ID] = array();
-				$submenu[$m->ID]['ID']       =   $m->ID;
-				$submenu[$m->ID]['title']    =   $m->title;
-				$submenu[$m->ID]['url']  =   $m->url;
-				$menu[$m->menu_item_parent]['children'][$m->ID] = $submenu[$m->ID];
-			}
-		}
-		slog($menu);*/
 		$qn_args = [
 			'container'       => '',
 			'container_id'    => '',
@@ -2868,33 +2854,6 @@
 			'depth'           => 0,
 		];
 		wp_nav_menu( $qn_args );
-		/*$args  = [
-			'numberposts' => - 1,
-			'orderby'     => 'post_title',
-			'order'       => 'ASC',
-			'post_type'   => 'page',
-			'post_status' => [
-				'publish',
-				'draft',
-				'future',
-				'pending',
-				'private',
-			],
-		];
-		$posts = get_posts( $args );
-		echo '<ul class="admin_pages_sidenav">';
-		if ( $posts ) {
-			$link_to_edit = get_admin_url() . '/post.php?action=edit&post=';
-			foreach ( $posts as $post ) {
-				$status        = ( 'publish' != $post->post_status ) ? ' - ' . ucfirst( $post->post_status ) : '';
-				$page_template = syn_get_page_template( $post->ID );
-				$template = ( 'default' != $page_template || empty( $page_template ) ) ? ' (' . ucwords( $page_template ) . ')' : '';
-				echo '<li><a href="' . $link_to_edit . $post->ID . '">' . $post->post_title . '</a>' . $template . $status . '</li>';
-			}
-		} else {
-			echo '<li>No pages</li>';
-		}
-		echo '</ul>';*/
 	}
 
 	function syn_qn_teachers_pages() {

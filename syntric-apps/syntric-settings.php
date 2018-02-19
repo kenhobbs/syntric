@@ -66,8 +66,9 @@
 			if ( $is_teacher ) {
 				$teacher_page = syn_get_teacher_page( $user->ID );
 				if ( $teacher_page instanceof WP_Post ) {
-					wp_update_post( [ 'ID'          => $post_id,
-					                  'post_parent' => $teacher_page->ID,
+					wp_update_post( [
+						'ID'          => $post_id,
+						'post_parent' => $teacher_page->ID,
 					] );
 				}
 			}

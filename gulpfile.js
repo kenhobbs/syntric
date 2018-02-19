@@ -106,6 +106,7 @@ var dirs = {
  */
 var domainMappings = {
 	'amadorcoe.syntric.com.min': 'www.amadorcoe.org.min',
+	'amadoradulted.syntric.com.min': 'www.amadoradulted.org.min',
 	'amadorhs.syntric.com.min': 'www.amadorcoe.org.amadorhs.min',
 	'argonauths.syntric.com.min': 'www.amadorcoe.org.argonauths.min',
 	'ionejr.syntric.com.min': 'www.amadorcoe.org.ionejr.min',

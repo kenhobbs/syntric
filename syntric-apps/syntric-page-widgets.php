@@ -43,6 +43,9 @@
 	add_filter( 'acf/prepare_field/name=syn_page_class_teacher', 'syn_prepare_page_fields' );
 	add_filter( 'acf/prepare_field/name=syn_page_class', 'syn_prepare_page_fields' );
 	add_filter( 'acf/prepare_field/name=syn_page_department', 'syn_prepare_page_fields' );
+	add_filter( 'acf/prepare_field/name=syn_contact_title', 'syn_prepare_page_fields' );
+	add_filter( 'acf/prepare_field/name=syn_calendar_title', 'syn_prepare_page_fields' );
+
 	add_filter( 'acf/prepare_field/name=syn_new_microblog_post', 'syn_prepare_page_fields' );
 	add_filter( 'acf/prepare_field/name=syn_microblog_category', 'syn_prepare_page_fields' );
 	add_filter( 'acf/prepare_field/name=syn_microblog_term', 'syn_prepare_page_fields' );
@@ -52,27 +55,27 @@
 		global $pagenow;
 		global $post;
 		if ( 'post.php' == $pagenow && 'page' == $post->post_type ) {
-			if ( 'syn_page_teacher' == $field[ '_name' ] ) {
+			if ( 'syn_page_teacher' == $field[ '_name' ] && ! syn_current_user_can( 'administrator' ) ) {
 				if ( $field[ 'value' ] ) {
 					$field[ 'disabled' ] = true;
 				}
 			}
-			if ( 'syn_page_class_teacher' == $field[ '_name' ] ) {
+			if ( 'syn_page_class_teacher' == $field[ '_name' ] && ! syn_current_user_can( 'administrator' ) ) {
 				if ( $field[ 'value' ] ) {
 					$field[ 'disabled' ] = true;
 				}
 			}
-			if ( 'syn_page_class' == $field[ '_name' ] ) {
+			if ( 'syn_page_class' == $field[ '_name' ] && ! syn_current_user_can( 'administrator' ) ) {
 				if ( $field[ 'value' ] ) {
 					$field[ 'disabled' ] = true;
 				}
 			}
-			if ( 'syn_page_department' == $field[ '_name' ] ) {
+			if ( 'syn_page_department' == $field[ '_name' ] && ! syn_current_user_can( 'administrator' ) ) {
 				if ( $field[ 'value' ] ) {
 					$field[ 'disabled' ] = true;
 				}
 			}
-			if ( 'syn_page_course' == $field[ '_name' ] ) {
+			if ( 'syn_page_course' == $field[ '_name' ] && ! syn_current_user_can( 'administrator' ) ) {
 				if ( $field[ 'value' ] ) {
 					$field[ 'disabled' ] = true;
 				}
@@ -111,6 +114,14 @@
 			}
 		}
 
+		/*if ( 'post-new.php' == $pagenow && 'page' == $post->post_type ) {
+			if ( 'syn_contact_title' == $field[ '_name' ] ) {
+				$field[ 'value' ] = 'Contactable';
+			}
+			if ( 'syn_calendar_title' == $field[ '_name' ] ) {
+				$field[ 'value' ] = 'Calendarable';
+			}
+		}*/
 		return $field;
 	}
 
@@ -286,5 +297,18 @@
 			delete_field( 'syn_roster_title', $post_id );
 			delete_field( 'syn_roster_include_fields', $post_id );
 			delete_field( 'syn_roster_people', $post_id );
+		}
+		$google_map_active = get_field( 'syn_google_map_active', $post_id );
+		if ( ! $google_map_active ) {
+			delete_field( 'syn_google_map_title', $post_id );
+			delete_field( 'syn_google_map_id', $post_id );
+		}
+		$video_active = get_field( 'syn_video_active', $post_id );
+		if ( ! $video_active ) {
+			delete_field( 'syn_video_title', $post_id );
+			delete_field( 'syn_video_host', $post_id );
+			delete_field( 'syn_video_youtube_id', $post_id );
+			delete_field( 'syn_video_vimeo_id', $post_id );
+			delete_field( 'syn_video_caption', $post_id );
 		}
 	}

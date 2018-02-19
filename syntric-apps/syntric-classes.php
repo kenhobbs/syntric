@@ -24,7 +24,7 @@
 				$periods_active = get_field( 'syn_periods_active', 'option' );
 				if ( ! $periods_active ) {
 					return false;
-				} elseif ( $field[ 'value' ] ) {
+				} elseif ( $field[ 'value' ] && ! syn_current_user_can( 'administrator' ) ) {
 					$field[ 'disabled' ] = true;
 				}
 			}
@@ -32,16 +32,16 @@
 				$rooms_active = get_field( 'syn_rooms_active', 'option' );
 				if ( ! $rooms_active ) {
 					return false;
-				} elseif ( $field[ 'value' ] ) {
+				} elseif ( $field[ 'value' ] && ! syn_current_user_can( 'administrator' ) ) {
 					$field[ 'disabled' ] = true;
 				}
 			}
-			if ( 'term' == $field[ '_name' ] ) {
+			if ( 'term' == $field[ '_name' ] && ! syn_current_user_can( 'administrator' ) ) {
 				if ( $field[ 'value' ] ) {
 					$field[ 'disabled' ] = true;
 				}
 			}
-			if ( 'course' == $field[ '_name' ] ) {
+			if ( 'course' == $field[ '_name' ] && ! syn_current_user_can( 'administrator' ) ) {
 				if ( $field[ 'value' ] ) {
 					$field[ 'disabled' ] = true;
 				}
@@ -57,7 +57,8 @@
 					$teacher_id = get_field( 'syn_page_teacher', $post->ID );
 					$class_page = syn_get_teacher_class_page( $teacher_id, $class_id );
 					if ( $class_page instanceof WP_Post ) {
-						$field[ 'message' ] = $class_page->post_title . ' (' . $class_page->post_status . ')' . '<span style="float: right;"><a href="' . get_the_permalink( $class_page->ID ) . '">View</a> / <a href="/wp-admin/post.php?action=edit&post=' . $class_page->ID . '">Edit</a></span>';
+						$status             = ( 'publish' != $class_page->post_status ) ? ' - ' . ucwords( $class_page->post_status ) : '';
+						$field[ 'message' ] = $class_page->post_title . $status . '<span style="float: right;"><a href="' . get_the_permalink( $class_page->ID ) . '">View</a> / <a href="/wp-admin/post.php?action=edit&post=' . $class_page->ID . '">Edit</a></span>';
 					}
 				}
 			}

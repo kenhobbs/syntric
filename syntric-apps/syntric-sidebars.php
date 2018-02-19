@@ -175,7 +175,7 @@
 		$sidebars_widgets = get_option( 'sidebars_widgets', [] );
 		$sidebar_widgets  = $sidebars_widgets[ $sidebar_id ];
 		$active_widgets   = [];
-		slog( $sidebar_widgets );
+		//slog( $sidebar_widgets );
 		foreach ( $sidebar_widgets as $widget ) {
 			//slog($widget);
 			$widget_array = explode( '-', $widget );
@@ -229,27 +229,33 @@
 							if ( 1 == $widget_count ) {
 								$col_classes = 'col-12';
 							} elseif ( 2 == $widget_count ) {
-								$col_classes = 'col-md-6';
+								$col_classes = 'col-sm-6';
 							} elseif ( 3 == $widget_count ) {
-								$col_classes = 'col-lg-4';
+								$col_classes = 'col-lg-4 col-sm-12';
 							} elseif ( 4 == $widget_count ) {
 								$col_classes = 'col-lg-3 col-md-6';
 							} elseif ( 5 == $widget_count ) {
-								$first_widget = $active_widgets[ 0 ];
-								if ( $params[ 0 ][ 'widget_id' ] == $first_widget ) {
-									$col_classes = 'col-12';
+								$first_widget  = $active_widgets[ 0 ];
+								$second_widget = $active_widgets[ 1 ];
+								if ( $params[ 0 ][ 'widget_id' ] == $first_widget || $params[ 0 ][ 'widget_id' ] == $second_widget ) {
+									$col_classes = 'col-sm-6';
 								} else {
-									$col_classes = 'col-lg-3 col-md-6';
+									$col_classes = 'col-lg-4 col-md-6';
 								}
+							} elseif ( 6 == $widget_count ) {
+								$col_classes = 'col-xl-2 col-lg-4 col-md-6';
 							} elseif ( 7 == $widget_count ) {
-								$first_widget = $active_widgets[ 0 ];
-								if ( $params[ 0 ][ 'widget_id' ] == $first_widget ) {
-									$col_classes = 'col-12';
+								$col_classes = 'col';
+								/*$first_widget = $active_widgets[ 0 ];
+								$second_widget = $active_widgets[ 1 ];
+								$third_widget = $active_widgets[ 2 ];
+								if ( $params[ 0 ][ 'widget_id' ] == $first_widget || $params[ 0 ][ 'widget_id' ] == $second_widget || $params[ 0 ][ 'widget_id' ] == $third_widget ) {
+									$col_classes = 'col-sm-6';
 								} else {
 									$col_classes = 'col-lg-2 col-md-4';
-								}
+								}*/
 							} elseif ( 8 == $widget_count ) {
-								$col_classes = 'col-lg-3 col-md-6';
+								$col_classes = 'col-lg-3 col-md-4 col-sm-6';
 							} elseif ( 9 == $widget_count ) {
 								$col_classes = 'col-md-4';
 							} elseif ( 10 == $widget_count ) {
