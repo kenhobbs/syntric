@@ -1,0 +1,57 @@
+{
+	"key": "group_5a835fca4968e",
+	"title": "Quick Nav",
+	"fields": [
+		{
+			"key": "field_5a835fca5fb1a",
+			"label": "",
+			"name": "",
+			"type": "enhanced_message",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"enhanced_message": "<?php syn_qn_all_pages(); ?>",
+			"hide_label": "yes"
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "page"
+			},
+			{
+				"param": "current_user_role",
+				"operator": "==",
+				"value": "administrator"
+			}
+		],
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "page"
+			},
+			{
+				"param": "current_user_role",
+				"operator": "==",
+				"value": "editor"
+			}
+		]
+	],
+	"menu_order": 9999,
+	"position": "side",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1518588058
+}
