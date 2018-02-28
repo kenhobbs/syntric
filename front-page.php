@@ -13,7 +13,7 @@
 	syn_sidebar( 'main', 'left' );
 	echo '<main id="content" class="col content-area content">' . $lb;
 	syn_sidebar( 'main', 'top' );
-	if ( have_posts() ) :
+	/*if ( have_posts() ) :
 		while( have_posts() ) : the_post();
 			if ( syn_has_content( the_content() ) ) :
 				echo '<article ' . post_class() . ' id="post-' . the_ID() . '">' . $lb;
@@ -21,7 +21,7 @@
 				echo '</article>' . $lb;
 			endif;
 		endwhile;
-	endif;
+	endif;*/
 	syn_sidebar( 'main', 'bottom' );
 	echo '</main>' . $lb;
 	syn_sidebar( 'main', 'right' );
