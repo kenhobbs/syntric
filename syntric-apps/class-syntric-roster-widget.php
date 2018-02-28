@@ -92,11 +92,11 @@
 					$email        = $user->data->user_email;
 					$phone        = get_field( 'syn_user_phone', 'user_' . $user_id );
 					$ext          = get_field( 'syn_user_extension', 'user_' . $user_id );
-					$ext          = ( isset( $ext ) && ! empty( $ext ) ) ? ' x' . $ext : '';
-					$display_name = ( ! empty( $display_name ) ) ? $display_name : '&nbsp;';
-					$titles = ( ! empty( $titles ) ) ? $titles : '&nbsp;';
-					$email = ( ! empty( $email ) ) ? $email : '&nbsp;';
-					$phone = ( ! empty( $phone ) ) ? $phone . $ext : '&nbsp;';
+					$ext = ( isset( $ext ) && ! empty( $ext ) && ! empty( $phone ) ) ? ' x' . $ext : '';
+					$display_name = ( ! empty( $display_name ) ) ? $display_name : '';
+					$titles = ( ! empty( $titles ) ) ? $titles : '';
+					$email = ( ! empty( $email ) ) ? $email : '';
+					$phone = ( ! empty( $phone ) ) ? $phone . $ext : '';
 					if ( 'aside' == $layout ) {
 						echo $tab . '<div class="list-group-item">' . $lb;
 						// todo: add ability to attach a photo to person
@@ -104,13 +104,13 @@
 						echo $tab . $tab . '</div>' . $lb;*/
 						echo $tab . $tab . '<div class="list-group-item-content">' . $lb;
 						echo $tab . $tab . $tab . '<div class="person-name">' . $display_name . '</div>' . $lb;
-						if ( in_array( 'title', $include_fields ) && $titles ) :
+						if ( in_array( 'title', $include_fields ) && ! empty( $titles ) ) :
 							echo $tab . $tab . $tab . '<div class="person-title">' . $titles . '</div>' . $lb;
 						endif;
-						if ( in_array( 'email', $include_fields ) && $email ) :
+						if ( in_array( 'email', $include_fields ) && ! empty( $email ) ) :
 							echo $tab . $tab . $tab . '<a href="mailto:' . antispambot( $email, true ) . '" class="person-email" title="Email">' . antispambot( $email ) . '</a>' . $lb;
 						endif;
-						if ( in_array( 'phone', $include_fields ) && $phone ) :
+						if ( in_array( 'phone', $include_fields ) && ! empty( $phone ) ) :
 							echo $tab . $tab . $tab . '<div class="person-phone">' . $phone . $ext . '</div>' . $lb;
 						endif;
 						echo $tab . $tab . '</div>' . $lb;

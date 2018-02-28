@@ -1,6 +1,6 @@
 <?php
 	add_action( 'acf/save_post', 'syn_save_data_functions', 20 );
-	function syn_save_data_functions( $post_id ) {
+	function syn_save_data_functions() {
 		if ( is_admin() && isset( $_REQUEST[ 'page' ] ) && 'syntric-data-functions' == $_REQUEST[ 'page' ] ) {
 			// do stuff
 			$run_orphan_scan           = get_field( 'syn_data_run_orphan_scan', 'option' );

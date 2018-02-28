@@ -150,8 +150,10 @@
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
-		$post = get_post( $post_id );
-		if ( is_admin() && is_numeric( $post_id ) && 'page' == $post->post_type && isset( $_REQUEST[ 'acf' ] ) && ! wp_is_post_revision( $post->ID ) ) {
+		$post_id = syn_resolve_post_id( $post_id );
+		$post    = get_post( $post_id );
+		// todo: reduce all the "security and validity" conditional wrappers, like the next line, into a function call eg. syn_continue_if('admin','page','teacher_template')...
+		if ( is_admin() && $post instanceof WP_Post && 'page' == $post->post_type && isset( $_REQUEST[ 'acf' ] ) && ! wp_is_post_revision( $post->ID ) ) {
 			// set term in taxonomy "microblog"
 			$microblog_active = get_field( 'syn_microblog_active', $post->ID );
 			if ( $microblog_active ) {

@@ -132,10 +132,11 @@
 		return '%s';
 	}
 
-//add_filter( 'get_the_archive_title', 'syn_get_archive_title' );
+	add_filter( 'get_the_archive_title', 'syn_get_archive_title' );
 	function syn_get_archive_title( $title ) {
 		if ( is_archive() ) {
-			$title = post_type_archive_title();
+			//$title = post_type_archive_title();
+			$title = single_cat_title( '', false );
 		} elseif ( is_category() ) {
 			$title = single_cat_title( '', false );
 		} elseif ( is_tag() ) {

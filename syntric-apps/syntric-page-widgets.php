@@ -6,7 +6,8 @@
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
-		$post = get_post( $post_id );
+		$post_id = syn_resolve_post_id( $post_id );
+		$post    = get_post( $post_id );
 		if ( is_admin() && is_numeric( $post_id ) && 'page' == $post->post_type && isset( $_REQUEST[ 'acf' ] ) && ! wp_is_post_revision( $post_id ) ) {
 			$page_template = strtolower( syn_get_page_template( $post_id ) );
 			switch ( $page_template ) :
@@ -45,55 +46,69 @@
 	add_filter( 'acf/prepare_field/name=syn_page_department', 'syn_prepare_page_fields' );
 	add_filter( 'acf/prepare_field/name=syn_contact_title', 'syn_prepare_page_fields' );
 	add_filter( 'acf/prepare_field/name=syn_calendar_title', 'syn_prepare_page_fields' );
-
 	add_filter( 'acf/prepare_field/name=syn_new_microblog_post', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_microblog_category', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_microblog_term', 'syn_prepare_page_fields' );
+	//add_filter( 'acf/prepare_field/name=syn_microblog_category', 'syn_prepare_page_fields' );
+	//add_filter( 'acf/prepare_field/name=syn_microblog_term', 'syn_prepare_page_fields' );
 	add_filter( 'acf/prepare_field/key=field_59d4b242abf31', 'syn_prepare_page_fields' ); // microblog Category message field
 	add_filter( 'acf/prepare_field/key=field_59d4b278abf32', 'syn_prepare_page_fields' ); // microblog Term message field
+	add_filter( 'acf/prepare_field/key=field_598a9db813a14', 'syn_prepare_page_fields' ); // Attachments tab
+	add_filter( 'acf/prepare_field/name=syn_attachments_active', 'syn_prepare_page_fields' );
+	add_filter( 'acf/prepare_field/name=syn_attachments_title', 'syn_prepare_page_fields' );
+	add_filter( 'acf/prepare_field/name=syn_attachments', 'syn_prepare_page_fields' );
+	add_filter( 'acf/prepare_field/key=field_5a41c15b2a64c', 'syn_prepare_page_fields' ); // Video tab
+	add_filter( 'acf/prepare_field/name=syn_video_active', 'syn_prepare_page_fields' );
+	add_filter( 'acf/prepare_field/name=syn_video_title', 'syn_prepare_page_fields' );
+	add_filter( 'acf/prepare_field/name=syn_video_host', 'syn_prepare_page_fields' );
+	add_filter( 'acf/prepare_field/name=syn_video_youtube_id', 'syn_prepare_page_fields' );
+	add_filter( 'acf/prepare_field/name=syn_video_vimeo_id', 'syn_prepare_page_fields' );
+	add_filter( 'acf/prepare_field/name=syn_video_caption', 'syn_prepare_page_fields' );
+	add_filter( 'acf/prepare_field/key=field_5a41bf632a648', 'syn_prepare_page_fields' ); // Google Map tab
+	add_filter( 'acf/prepare_field/name=syn_google_map_active', 'syn_prepare_page_fields' );
+	add_filter( 'acf/prepare_field/name=syn_google_map_title', 'syn_prepare_page_fields' );
+	add_filter( 'acf/prepare_field/name=syn_google_map_id', 'syn_prepare_page_fields' );
+
 	function syn_prepare_page_fields( $field ) {
 		global $pagenow;
 		global $post;
 		if ( 'post.php' == $pagenow && 'page' == $post->post_type ) {
-			if ( 'syn_page_teacher' == $field[ '_name' ] && ! syn_current_user_can( 'administrator' ) ) {
-				if ( $field[ 'value' ] ) {
-					$field[ 'disabled' ] = true;
+			$page_template = syn_get_page_template( $post->ID );
+			if ( ! syn_current_user_can( 'administrator' ) ) {
+				switch ( $field[ '_name' ] ) {
+					case 'syn_page_teacher' :
+					case 'syn_page_class_teacher' :
+					case 'syn_page_class' :
+					case 'syn_page_department' :
+					case 'syn_page_course' :
+						if ( $field[ 'value' ] ) {
+							$field[ 'disabled' ] = true;
+						}
+						break;
+					case 'syn_new_microblog_post' :
+						$microblog_active = get_field( 'syn_microblog_active', $post->ID );
+						if ( ! $microblog_active ) {
+							$field[ 'wrapper' ][ 'hidden' ] = true;
+						} else {
+							$field[ 'wrapper' ][ 'hidden' ] = false;
+						}
+						break;
+					case 'syn_attachments_active':
+					case 'syn_video_active':
+					case 'syn_google_map_active':
+						return false;
+						break;
+				}
+				switch ( $field[ 'key' ] ) {
+					// Attachments tab
+					case 'field_598a9db813a14' :
+						// Google Map tab
+					case 'field_5a41bf632a648' :
+						// Video tab
+					case 'field_5a41c15b2a64c' :
+						return false;
+						break;
 				}
 			}
-			if ( 'syn_page_class_teacher' == $field[ '_name' ] && ! syn_current_user_can( 'administrator' ) ) {
-				if ( $field[ 'value' ] ) {
-					$field[ 'disabled' ] = true;
-				}
-			}
-			if ( 'syn_page_class' == $field[ '_name' ] && ! syn_current_user_can( 'administrator' ) ) {
-				if ( $field[ 'value' ] ) {
-					$field[ 'disabled' ] = true;
-				}
-			}
-			if ( 'syn_page_department' == $field[ '_name' ] && ! syn_current_user_can( 'administrator' ) ) {
-				if ( $field[ 'value' ] ) {
-					$field[ 'disabled' ] = true;
-				}
-			}
-			if ( 'syn_page_course' == $field[ '_name' ] && ! syn_current_user_can( 'administrator' ) ) {
-				if ( $field[ 'value' ] ) {
-					$field[ 'disabled' ] = true;
-				}
-			}
-			if ( 'syn_new_microblog_post' == $field[ '_name' ] ) {
-				$microblog_active = get_field( 'syn_microblog_active', $post->ID );
-				if ( ! $microblog_active ) {
-					$field[ 'wrapper' ][ 'hidden' ] = true;
-				} else {
-					$field[ 'wrapper' ][ 'hidden' ] = false;
-				}
-			}
-			if ( 'syn_microblog_category' == $field[ '_name' ] ) {
-				//$field[ 'disabled' ] = true;
-			}
-			if ( 'syn_microblog_term' == $field[ '_name' ] ) {
-				//$field[ 'disabled' ] = true;
-			}
+			// microblog Category Message field
 			if ( 'field_59d4b242abf31' == $field[ 'key' ] ) {
 				$microblog_active   = get_field( 'syn_microblog_active', $post->ID );
 				$microblog_category = get_field( 'syn_microblog_category', $post->ID );
@@ -103,6 +118,7 @@
 					}
 				}
 			}
+			// microblog Term Message field
 			if ( 'field_59d4b278abf32' == $field[ 'key' ] ) {
 				$microblog_active = get_field( 'syn_microblog_active', $post->ID );
 				$microblog_term   = get_field( 'syn_microblog_term', $post->ID );
@@ -114,18 +130,11 @@
 			}
 		}
 
-		/*if ( 'post-new.php' == $pagenow && 'page' == $post->post_type ) {
-			if ( 'syn_contact_title' == $field[ '_name' ] ) {
-				$field[ 'value' ] = 'Contactable';
-			}
-			if ( 'syn_calendar_title' == $field[ '_name' ] ) {
-				$field[ 'value' ] = 'Calendarable';
-			}
-		}*/
 		return $field;
 	}
 
 	function syn_save_page_widgets( $post_id ) {
+		$post_id = syn_resolve_post_id( $post_id );
 		// save new microblog post if present
 		syn_save_microblog_page_widget_post( $post_id );
 		// save new calendar if present
@@ -135,18 +144,19 @@
 	}
 
 	function syn_save_calendar_page_widget( $post_id ) {
+		$post_id         = syn_resolve_post_id( $post_id );
 		$calendar_active = get_field( 'syn_calendar_active', $post_id );
 		if ( $calendar_active ) {
 			$_calendar_id = get_field( 'syn_calendar_id', $post_id );
 			// if calendar_id is 0, insert a new calendar
 			if ( 0 == $_calendar_id ) {
-				$post          = get_post( $post_id );
+				$post         = get_post( $post_id );
 				$ancestor_ids = array_reverse( get_post_ancestors( $post_id ) );
-				$post_title       = '';
+				$post_title   = '';
 				foreach ( $ancestor_ids as $ancestor_id ) {
 					$post_title .= get_the_title( $ancestor_id ) . ' > ';
 				}
-				$post_title .= $post->post_title;
+				$post_title    .= $post->post_title;
 				$calendar_args = [
 					'ID'          => $_calendar_id,
 					'post_type'   => 'syn_calendar',
@@ -180,8 +190,9 @@
 					}
 					// if new calendar "sync now" is set...sync now
 					if ( $sync_now ) {
-						syn_sync_calendar( [ 'post_id'   => $calendar_id,
-						                     'post_type' => 'syn_calendar',
+						syn_sync_calendar( [
+							'post_id'   => $calendar_id,
+							'post_type' => 'syn_calendar',
 						] );
 					}
 					// clear out all the widget values
@@ -198,6 +209,7 @@
 	}
 
 	function syn_save_microblog_page_widget_post( $post_id ) {
+		$post_id          = syn_resolve_post_id( $post_id );
 		$microblog_active = get_field( 'syn_microblog_active', $post_id );
 		if ( $microblog_active ) {
 			$new_microblog_post = get_field( 'syn_new_microblog_post', $post_id );
@@ -237,6 +249,7 @@
 	}
 
 	function syn_cleanup_page_widgets( $post_id ) {
+		$post_id            = syn_resolve_post_id( $post_id );
 		$attachments_active = get_field( 'syn_attachments_active', $post_id );
 		if ( ! $attachments_active ) {
 			delete_field( 'syn_attachments_title', $post_id );

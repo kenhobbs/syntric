@@ -10,34 +10,34 @@ $final-footer-widget-text : #fff;*/
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 :root {
-  --blue                   : #007bff;
-  --indigo                 : #6610f2;
-  --purple                 : #6f42c1;
-  --pink                   : #e83e8c;
-  --red                    : #dc3545;
-  --orange                 : #fd7e14;
-  --yellow                 : #ffc107;
-  --green                  : #28a745;
-  --teal                   : #20c997;
-  --cyan                   : #17a2b8;
-  --white                  : #fff;
-  --gray                   : #868e96;
-  --gray-dark              : #343a40;
-  --primary                : #004c8c;
-	--secondary            : #666;
-  --success                : #255d00;
-  --info                   : #007c91;
-  --warning                : #ffc107;
-  --danger                 : #9a0007;
-  --light                  : #f8f9fa;
-  --dark                   : #343a40;
-  --breakpoint-xs          : 0;
-  --breakpoint-sm          : 576px;
-  --breakpoint-md          : 768px;
-  --breakpoint-lg          : 992px;
-  --breakpoint-xl          : 1200px;
-  --font-family-sans-serif : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --font-family-monospace  : "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+	--blue                   : #007bff;
+	--indigo                 : #6610f2;
+	--purple                 : #6f42c1;
+	--pink                   : #e83e8c;
+	--red                    : #dc3545;
+	--orange                 : #fd7e14;
+	--yellow                 : #ffc107;
+	--green                  : #28a745;
+	--teal                   : #20c997;
+	--cyan                   : #17a2b8;
+	--white                  : #fff;
+	--gray                   : #868e96;
+	--gray-dark              : #343a40;
+	--primary                : #004c8c;
+	--secondary              : #666;
+	--success                : #255d00;
+	--info                   : #007c91;
+	--warning                : #ffc107;
+	--danger                 : #9a0007;
+	--light                  : #f8f9fa;
+	--dark                   : #343a40;
+	--breakpoint-xs          : 0;
+	--breakpoint-sm          : 576px;
+	--breakpoint-md          : 768px;
+	--breakpoint-lg          : 992px;
+	--breakpoint-xl          : 1200px;
+	--font-family-sans-serif : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+	--font-family-monospace  : "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
 
 @media print {
   *,
@@ -1675,7 +1675,7 @@ fieldset[disabled] a.btn {
 
 .btn-secondary:not([disabled]):not(.disabled):active, .btn-secondary:not([disabled]):not(.disabled).active,
 .show > .btn-secondary.dropdown-toggle {
-    color            : #fff;
+	color            : #fff;
 	background-color : #4d4d4d;
 	border-color     : #464646;
 	box-shadow       : 0 0 0 0.2rem rgba(102, 102, 102, 0.5); }
@@ -1822,22 +1822,22 @@ fieldset[disabled] a.btn {
     box-shadow: 0 0 0 0.2rem rgba(0, 76, 140, 0.5); }
 
 .btn-outline-secondary {
-	color          : #666;
-  background-color : transparent;
-  background-image : none;
-	border-color   : #666; }
+	color            : #666;
+	background-color : transparent;
+	background-image : none;
+	border-color     : #666; }
   .btn-outline-secondary:hover {
-    color              : #fff;
+	  color            : #fff;
 	  background-color : #666;
 	  border-color     : #666; }
   .btn-outline-secondary:focus, .btn-outline-secondary.focus {
 	  box-shadow : 0 0 0 0.2rem rgba(102, 102, 102, 0.5); }
   .btn-outline-secondary.disabled, .btn-outline-secondary:disabled {
-	  color          : #666;
-    background-color : transparent; }
+	  color            : #666;
+	  background-color : transparent; }
   .btn-outline-secondary:not([disabled]):not(.disabled):active, .btn-outline-secondary:not([disabled]):not(.disabled).active,
   .show > .btn-outline-secondary.dropdown-toggle {
-    color              : #fff;
+	  color            : #fff;
 	  background-color : #666;
 	  border-color     : #666;
 	  box-shadow       : 0 0 0 0.2rem rgba(102, 102, 102, 0.5); }
@@ -3159,7 +3159,7 @@ tbody.collapse.show {
 	background-color : #666; }
   .badge-secondary[href]:focus, .badge-secondary[href]:hover {
 	  color            : #fff;
-    text-decoration    : none;
+	  text-decoration  : none;
 	  background-color : #4d4d4d; }
 
 .badge-success {
@@ -3437,7 +3437,7 @@ button.list-group-item-secondary {
 	  background-color : #c7c7c7; }
   a.list-group-item-secondary.active,
   button.list-group-item-secondary.active {
-    color              : #fff;
+	  color            : #fff;
 	  background-color : #353535;
 	  border-color     : #353535; }
 
@@ -8723,10 +8723,10 @@ html {
   font-size: 16px; }
 
 body {
-  font-family: Ubantu, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  font-weight: normal;
-  color: #343a40;
-  background-color: #fff; }
+  font-family        : Ubantu, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight        : normal;
+  color              : #343a40;
+	background-color : #eee; }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0 0 0.5rem;
@@ -9029,9 +9029,9 @@ blockquote p:last-child {
 
 .jumbotron-wrapper {
 	background-color : #666;
-  border-radius      : 0;
-  box-shadow         : 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  padding            : 2rem; }
+	border-radius    : 0;
+	box-shadow       : 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	padding          : 2rem; }
   @media (min-width: 992px) {
     .jumbotron-wrapper {
       padding: 4rem; } }
@@ -9040,11 +9040,11 @@ blockquote p:last-child {
       padding: 3rem; } }
 
 .jumbotron-headline {
-  font-family : Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  font-weight : 300;
-	color     : #fff;
-  margin      : 0;
-  font-size   : 2rem; }
+	font-family : Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+	font-weight : 300;
+	color       : #fff;
+	margin      : 0;
+	font-size   : 2rem; }
   @media (min-width: 992px) {
     .jumbotron-headline {
       font-size: 5rem; } }
@@ -9053,10 +9053,10 @@ blockquote p:last-child {
       font-size: 3.5rem; } }
 
 .jumbotron-caption {
-  font-weight    : normal;
-	color        : #fff;
-  padding-bottom : 1rem;
-  font-size      : 1rem; }
+	font-weight    : normal;
+	color          : #fff;
+	padding-bottom : 1rem;
+	font-size      : 1rem; }
   .jumbotron-caption p:last-of-type {
     margin: 0;
     padding: 0; }
@@ -9069,26 +9069,26 @@ blockquote p:last-child {
 
 .breadcrumb-wrapper {
 	background-color : #666;
-  box-shadow         : 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  border-radius      : 0; }
+	box-shadow       : 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	border-radius    : 0; }
   @media print {
     .breadcrumb-wrapper {
       display: none !important; } }
 
 .breadcrumb {
-  font-family        : Ubantu, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  font-weight        : normal;
+	font-family      : Ubantu, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+	font-weight      : normal;
 	background-color : #666;
-  margin             : 0;
-  padding            : 0.5rem 0; }
+	margin           : 0;
+	padding          : 0.5rem 0; }
   @media (min-width: 1200px) {
     .breadcrumb {
       padding: 0.75rem 0; } }
   .breadcrumb .breadcrumb-item:before,
   .breadcrumb .breadcrumb-item.active,
   .breadcrumb a, .breadcrumb span {
-	  color   : #fff;
-    font-size : 1rem; }
+	  color     : #fff;
+	  font-size : 1rem; }
 
 main.content {
   min-height: 400px;
@@ -9098,11 +9098,11 @@ main.content {
 	  background-color : #666;
 	  color            : #fff;
 	  border           : solid 1px #666;
-    border-radius      : 10rem;
-    margin-right       : 0.5rem;
-    font-size          : 1rem;
-    font-weight        : normal;
-    vertical-align     : middle; }
+	  border-radius    : 10rem;
+	  margin-right     : 0.5rem;
+	  font-size        : 1rem;
+	  font-weight      : normal;
+	  vertical-align   : middle; }
     main.content > h1 > .badge:first-child {
       margin-left: 1rem; }
     @media (max-width: 1199px) {
@@ -9113,10 +9113,14 @@ main.content {
   main.content > h4,
   main.content > h5 {
     margin-top: 2rem; }
-  main.content article .post-header .post-date,
-  main.content article .post-header .post-location,
-  main.content article .post-header .post-category,
-  main.content article .post-header .post-subtitle {
+
+main.content article .post-title {
+	margin-bottom : 0; }
+
+main.content article .post-date,
+main.content article .post-location,
+main.content article .post-category,
+main.content article .post-subtitle {
     font-size: 0.875rem;
     display: block; }
   main.content article .post-content img {
@@ -9265,11 +9269,11 @@ body > .foot .login-bug .bug {
     font-size: 1rem;
     text-transform: uppercase; }
   .widget .calendar-icon {
-    width: 100px;
-    padding: 0.5rem;
-    font-family: "Ubuntu Mono", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    background-color: rgba(0, 0, 0, 0.3);
-    font-weight: 500; }
+    width              : 100px;
+    padding            : 0.5rem;
+    font-family        : "Ubuntu Mono", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+	  background-color : rgba(0, 0, 0, 0.15);
+    font-weight        : 500; }
     .widget .calendar-icon .month {
       font-size: 1rem;
       line-height: 1rem; }
@@ -9288,38 +9292,41 @@ body > .foot .login-bug .bug {
     font-weight: 400;
     text-transform: uppercase; }
 
+aside.sidebar .widget {
+	box-shadow : 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
+
 aside.sidebar .widget h2 {
-  padding: 0.5rem 1rem;
-  margin: 0;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  text-transform: uppercase;
-  font-size: 1.25rem; }
+	padding                    : 0.5rem 1rem;
+	margin                     : 0;
+	border-top-left-radius     : 0;
+	border-top-right-radius    : 0;
+	border-bottom-left-radius  : 0;
+	border-bottom-right-radius : 0;
+	text-transform             : uppercase;
+	font-size                  : 1.25rem; }
 
 aside.sidebar .widget .list-group,
 aside.sidebar .widget .menu,
 aside.sidebar .widget .textwidget {
-  padding: 0.5rem 0;
-  margin: 0;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0; }
+	padding                    : 0.5rem 0;
+	margin                     : 0;
+	border-top-left-radius     : 0;
+	border-top-right-radius    : 0;
+	border-bottom-left-radius  : 0;
+	border-bottom-right-radius : 0; }
 
 aside.sidebar .widget .list-group-item,
 aside.sidebar .widget li > a {
-  padding: 0.5rem 1rem;
-  margin: 0; }
+	padding : 0.5rem 1rem;
+	margin  : 0; }
 
 aside.sidebar .widget.widget_media_image h2, aside.sidebar .widget.widget_media_gallery h2, aside.sidebar .widget.syn-video-widget h2, aside.sidebar .widget.syn-google-map-widget h2 {
-  top: 0;
-  left: 0; }
+	top  : 0;
+	left : 0; }
 
 aside.sidebar.main-left-sidebar .widget {
-  background-color: transparent;
-  border: solid 1px transparent; }
+  background-color : transparent;
+	border         : none; }
   aside.sidebar.main-left-sidebar .widget h2 {
     color: #fff;
     background-color: #003e73;
@@ -9342,8 +9349,8 @@ aside.sidebar.main-left-sidebar .widget:last-of-type {
   margin-bottom: 2rem; }
 
 aside.sidebar.main-right-sidebar .widget {
-  background-color: transparent;
-  border: solid 1px transparent; }
+  background-color : transparent;
+	border         : none; }
   aside.sidebar.main-right-sidebar .widget h2 {
 	  color            : #fff;
 	  background-color : #595959;
@@ -9486,7 +9493,8 @@ body > .sidebar:nth-of-type(even) .widget.widget_media_image h2, body > .sidebar
       border-top-right-radius: 0;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0; }
-    body > .sidebar .widget a:hover {
+
+body > .sidebar .widget a:hover:not(.btn) {
       background-color: rgba(0, 0, 0, 0.1);
       text-decoration: none; }
     body > .sidebar .widget > table {
@@ -9500,8 +9508,8 @@ body > .sidebar:nth-of-type(even) .widget.widget_media_image h2, body > .sidebar
 				height : 100%
 			}*/ }
       body > .sidebar .widget.widget_media_image h2, body > .sidebar .widget.widget_media_gallery h2, body > .sidebar .widget.syn-video-widget h2, body > .sidebar .widget.syn-google-map-widget h2 {
-        top: 2rem;
-        left: 1rem; }
+		  top : 1.5rem;
+        left  : 1rem; }
 
 body > .sidebar .widget:nth-child(even) {
 	background-color : rgba(0, 0, 0, 0.1); }
@@ -9522,7 +9530,7 @@ body > .sidebar .widget:nth-child(even) {
 		  min-height : 400px; }
 
 	  body > .sidebar .widget.syn-video-widget h2, body > .sidebar .widget.syn-google-map-widget h2, body > .sidebar .widget.widget_media_gallery h2, body > .sidebar .widget.widget_media_image h2 {
-		  top  : 4rem;
+		  top  : 3.5rem;
 		  left : 2rem; }
 
 	  body > .sidebar .widget figcaption {
@@ -9775,6 +9783,7 @@ body > .sidebar .widget:nth-child(even) {
 
 .counter .count {
 	font-size   : 5.5rem;
+	font-family : 'Itim', Roboto;
 	font-weight : 300;
 	line-height : 1.2; }
 
@@ -9782,10 +9791,11 @@ body > .sidebar .widget:nth-child(even) {
 	content : "%"; }
 
 .counter .count-label {
-	text-transform : uppercase; }
+	text-transform : uppercase;
+	font-size      : 1.25rem; }
 
 .counter .count-sub-label {
-	font-size : 80%; }
+	font-size : 0.875rem; }
 
 .widget .chart-title {
 	text-align : center;
@@ -9923,12 +9933,12 @@ body > .sidebar .widget:nth-child(even) {
       padding: 0;
       border: none; }
     #fullcalendar .fc-day-top.fc-today .fc-day-number {
-		background-color    : #666;
-		color               : #fff;
-      border                : none;
-      -webkit-border-radius : 50%;
-      -moz-border-radius    : 50%;
-      border-radius         : 50%; }
+		background-color      : #666;
+		color                 : #fff;
+		border                : none;
+		-webkit-border-radius : 50%;
+		-moz-border-radius    : 50%;
+		border-radius         : 50%; }
   #fullcalendar .fc-view.fc-month-view table {
     margin: 0; }
     #fullcalendar .fc-view.fc-month-view table tr, #fullcalendar .fc-view.fc-month-view table td {

@@ -70,7 +70,8 @@
 // todo: on delete Teacher page via post delete, also trash Teacher Classes
 	add_action( 'wp_trash_post', 'syn_trash_post' );
 	function syn_trash_post( $post_id ) {
-		$post = get_post( $post_id );
+		$post_id = syn_resolve_post_id( $post_id );
+		$post    = get_post( $post_id );
 		if ( is_admin() && 'page' == $post->post_type && ! wp_is_post_revision( $post ) ) {
 			$page_template = strtolower( syn_get_page_template( $post_id ) );
 			if ( 'teacher' == $page_template ) {

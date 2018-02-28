@@ -2,6 +2,7 @@
 	add_action( 'acf/save_post', 'syn_save_post', 20 );
 	function syn_save_post( $post_id ) {
 		global $pagenow;
+		$post_id = syn_resolve_post_id( $post_id );
 		// don't save for autosave
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
@@ -91,4 +92,44 @@
 		}
 
 		return $field;
+	}
+
+	function syn_post_badges( $post_id = null ) {
+		$post_id = syn_resolve_post_id( $post_id );
+		$post    = get_post( $post_id );
+		switch ( $post->post_type ) {
+			//case 'syn_calendar' :
+			//echo '<span class="badge badge-pill badge-secondary">Calendar</span>';
+			//break;
+			case 'syn_event' :
+				$calendar = get_the_title( get_field( 'syn_event_calendar_id', get_the_ID() ) );
+				echo '<span class="badge badge-pill badge-secondary">' . $calendar . '</span>';
+				break;
+			case 'post' :
+				echo '<span class="badge badge-pill badge-secondary">' . syn_get_taxonomies_terms() . '</span>';
+				break;
+		}
+		/*if( 'syn_calendar' == get_post_type() ) {
+			echo '<span class="badge badge-pill badge-secondary">Calendar</span>';
+		}
+		if( 'syn_event' == get_post_type() ) {
+			$calendar = get_the_title( get_field( 'syn_event_calendar_id', get_the_ID() ) );
+			echo '<span class="badge badge-pill badge-secondary">' . $calendar . '</span>';
+		}
+		if( 'post' == get_post_type() ) {
+			echo '<span class="badge badge-pill badge-secondary">' . syn_get_taxonomies_terms() . '</span>';
+		};*/
+	}
+
+	function syn_resolve_post_id( $post_id ) {
+		global $post;
+		if ( null == $post_id ) {
+			return $post->ID;
+		} elseif ( $post_id instanceof WP_Post ) {
+			return $post_id->ID;
+		} elseif ( is_numeric( $post_id ) ) {
+			return (int) $post_id;
+		}
+
+		return false;
 	}

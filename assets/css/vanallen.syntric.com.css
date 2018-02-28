@@ -8723,10 +8723,10 @@ html {
   font-size: 16px; }
 
 body {
-  font-family: Ubantu, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  font-weight: normal;
-  color: #343a40;
-  background-color: #fff; }
+  font-family        : Ubantu, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight        : normal;
+  color              : #343a40;
+	background-color : #eee; }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0 0 0.5rem;
@@ -9113,10 +9113,14 @@ main.content {
   main.content > h4,
   main.content > h5 {
     margin-top: 2rem; }
-  main.content article .post-header .post-date,
-  main.content article .post-header .post-location,
-  main.content article .post-header .post-category,
-  main.content article .post-header .post-subtitle {
+
+main.content article .post-title {
+	margin-bottom : 0; }
+
+main.content article .post-date,
+main.content article .post-location,
+main.content article .post-category,
+main.content article .post-subtitle {
     font-size: 0.875rem;
     display: block; }
   main.content article .post-content img {
@@ -9265,11 +9269,11 @@ body > .foot .login-bug .bug {
     font-size: 1rem;
     text-transform: uppercase; }
   .widget .calendar-icon {
-    width: 100px;
-    padding: 0.5rem;
-    font-family: "Ubuntu Mono", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    background-color: rgba(0, 0, 0, 0.3);
-    font-weight: 500; }
+    width              : 100px;
+    padding            : 0.5rem;
+    font-family        : "Ubuntu Mono", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+	  background-color : rgba(0, 0, 0, 0.15);
+    font-weight        : 500; }
     .widget .calendar-icon .month {
       font-size: 1rem;
       line-height: 1rem; }
@@ -9288,38 +9292,41 @@ body > .foot .login-bug .bug {
     font-weight: 400;
     text-transform: uppercase; }
 
+aside.sidebar .widget {
+	box-shadow : 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); }
+
 aside.sidebar .widget h2 {
-  padding: 0.5rem 1rem;
-  margin: 0;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  text-transform: uppercase;
-  font-size: 1.25rem; }
+	padding                    : 0.5rem 1rem;
+	margin                     : 0;
+	border-top-left-radius     : 0;
+	border-top-right-radius    : 0;
+	border-bottom-left-radius  : 0;
+	border-bottom-right-radius : 0;
+	text-transform             : uppercase;
+	font-size                  : 1.25rem; }
 
 aside.sidebar .widget .list-group,
 aside.sidebar .widget .menu,
 aside.sidebar .widget .textwidget {
-  padding: 0.5rem 0;
-  margin: 0;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0; }
+	padding                    : 0.5rem 0;
+	margin                     : 0;
+	border-top-left-radius     : 0;
+	border-top-right-radius    : 0;
+	border-bottom-left-radius  : 0;
+	border-bottom-right-radius : 0; }
 
 aside.sidebar .widget .list-group-item,
 aside.sidebar .widget li > a {
-  padding: 0.5rem 1rem;
-  margin: 0; }
+	padding : 0.5rem 1rem;
+	margin  : 0; }
 
 aside.sidebar .widget.widget_media_image h2, aside.sidebar .widget.widget_media_gallery h2, aside.sidebar .widget.syn-video-widget h2, aside.sidebar .widget.syn-google-map-widget h2 {
-  top: 0;
-  left: 0; }
+	top  : 0;
+	left : 0; }
 
 aside.sidebar.main-left-sidebar .widget {
-  background-color: transparent;
-  border: solid 1px transparent; }
+  background-color : transparent;
+	border         : none; }
   aside.sidebar.main-left-sidebar .widget h2 {
     color: #fff;
     background-color: #004d00;
@@ -9342,8 +9349,8 @@ aside.sidebar.main-left-sidebar .widget:last-of-type {
   margin-bottom: 2rem; }
 
 aside.sidebar.main-right-sidebar .widget {
-  background-color: transparent;
-  border: solid 1px transparent; }
+  background-color : transparent;
+	border         : none; }
   aside.sidebar.main-right-sidebar .widget h2 {
     color: #030;
     background-color: #c4a540;
@@ -9501,8 +9508,8 @@ body > .sidebar .widget a:hover:not(.btn) {
 				height : 100%
 			}*/ }
       body > .sidebar .widget.widget_media_image h2, body > .sidebar .widget.widget_media_gallery h2, body > .sidebar .widget.syn-video-widget h2, body > .sidebar .widget.syn-google-map-widget h2 {
-        top: 2rem;
-        left: 1rem; }
+		  top : 1.5rem;
+        left  : 1rem; }
 
 body > .sidebar .widget:nth-child(even) {
 	background-color : rgba(0, 0, 0, 0.1); }
@@ -9523,7 +9530,7 @@ body > .sidebar .widget:nth-child(even) {
 		  min-height : 400px; }
 
 	  body > .sidebar .widget.syn-video-widget h2, body > .sidebar .widget.syn-google-map-widget h2, body > .sidebar .widget.widget_media_gallery h2, body > .sidebar .widget.widget_media_image h2 {
-		  top  : 4rem;
+		  top  : 3.5rem;
 		  left : 2rem; }
 
 	  body > .sidebar .widget figcaption {

@@ -1,0 +1,1989 @@
+{
+	"key": "group_5a96db71a0d31",
+	"title": "Page Widgets - backup do not delete - has Attachments, Google Maps & Video",
+	"fields": [
+		{
+			"key": "field_5a96db732caed",
+			"label": "Contact",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "left",
+			"endpoint": 0
+		},
+		{
+			"key": "field_5a96db732ceb7",
+			"label": "Activate Contact",
+			"name": "syn_contact_active",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5a96db732d0a6",
+			"label": "Title",
+			"name": "syn_contact_title",
+			"type": "text",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db732ceb7",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "Contact",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5a96db732d293",
+			"label": "Contact Type",
+			"name": "syn_contact_contact_type",
+			"type": "select",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db732ceb7",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"person": "Person",
+				"organization": "Organization"
+			},
+			"default_value": [
+				"person"
+			],
+			"allow_null": 0,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_5a96db732d497",
+			"label": "Person",
+			"name": "syn_contact_person",
+			"type": "select",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db732ceb7",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5a96db732d293",
+						"operator": "==",
+						"value": "person"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"134": "Becky Adelman \/ School Secretary",
+				"210": "David Anderson \/ Anderson",
+				"135": "Paul Anserlian \/ Teacher|Assistant Track Coach",
+				"136": "Gustavo Arzac \/ Teacher",
+				"236": "Sample Author \/ Author",
+				"137": "Elizabeth Baldwin \/ Teacher|Interact Advisor",
+				"219": "Kenneth Baptista \/ Baptista",
+				"138": "Macaria Barrera \/ Custodian",
+				"139": "Irma Bavaro \/ Cafeteria Assistant",
+				"209": "Alexandra Bavaro \/ Teacher",
+				"140": "Andrew Beam \/ Teacher|Varsity Head Football Coach",
+				"141": "Roger Beeman \/ Teacher",
+				"226": "Michael Beeman \/ Beeman",
+				"225": "Matt Blakeley \/ Blakeley",
+				"142": "Michael Bower \/ Teacher|Track & Field Coach|Assistant Cross Country Coach",
+				"220": "Art Brooks \/ Brooks",
+				"143": "Michelle Canfield \/ Teacher|ASB Advisor",
+				"144": "Kristie Cathcart \/ Teacher|Head Girl's Golf Coach|Head of Facilities",
+				"145": "Denise Cherry \/ Central Kitchen Cook I",
+				"211": "Kacey Cherry \/ Cherry",
+				"146": "Joshua Cohen \/ Teacher|Academic Decathlon Advisor",
+				"233": "Ron Costa \/ Costa",
+				"147": "Ashley Crow \/ Teacher|Lead Instructor Band & Band Boosters",
+				"212": "Joe Dalpogetti \/ Dalpogetti",
+				"221": "Staci Diaz \/ Diaz",
+				"190": "Editor Editor \/ Editor",
+				"148": "Michael Elliott \/ Bus Driver",
+				"222": "Rusty Fachner \/ Fachner",
+				"149": "Whitney Fanjul \/ Teacher",
+				"150": "Robert Fernandez \/ Teacher",
+				"151": "Margarita Flores \/ Instructional Asst - Bilingual",
+				"152": "Brian Franks \/ Campus Supervisor",
+				"229": "Atom Garcia \/ Garcia",
+				"153": "Sheila Garside \/ Instructional Asst - Special Ed|Athletics Secretary",
+				"154": "Susan Gentry \/ Teacher|PIT Advisor",
+				"155": "Brenda Greer \/ Snack Bar Manager",
+				"157": "Silvia Guevara \/ Instructional Asst - Bilingual",
+				"158": "Gale Harrington \/ Teacher",
+				"159": "Nicholas Haskin \/ Instructional Asst - Special Ed",
+				"160": "Erin Headley \/ Teacher|Yearbook Advisor",
+				"161": "Richard Heflin \/ Teacher|Head Cross Country Coach",
+				"1": "Ken Hobbs \/ Hobbs",
+				"230": "Ken Hobbs \/ Teacher|Consultant",
+				"162": "Patricia Hudson \/ Instructional Asst - Special Ed",
+				"215": "Jamie Humrichouse \/ Humrichouse",
+				"204": "Alina James \/ James",
+				"207": "Morgan Jensen \/ Jensen",
+				"163": "Gustavo Jimenez-Fregoso \/ Counselor",
+				"234": "Joel Johannsen \/ ",
+				"164": "Patrick Jones \/ Custodian",
+				"165": "Raquel Kellett \/ Head Custodian",
+				"166": "Jewell Kelley \/ Teacher|Photography Club Advisor|Art Club Advisor",
+				"167": "Kaileigh Komas \/ Teacher",
+				"168": "Theresa Langum \/ Clerk Secretary",
+				"218": "Greg Largent \/ Largent",
+				"169": "Jennifer Lennon \/ Instructional Asst - Special Ed",
+				"170": "Isabella Leventini \/ Teacher|FFA Advisor",
+				"171": "Mark Loureiro \/ Special Education Teacher|Athletic Director",
+				"172": "Martin Louro \/ Teacher|Head Boy's Basketball Coach|Sacred Heart Club Advisor",
+				"156": "Alexa MacGregor \/ Teacher|GSA Advisor",
+				"173": "Daniel Madrid \/ Bus Driver",
+				"174": "David Mangnuson \/ Special Education Teacher",
+				"175": "Joann Marie \/ Bus Driver",
+				"109": "Trini Marquis \/ Some Title",
+				"202": "George Megenney \/ Megenney",
+				"176": "Jennifer Mello \/ Cafeteria Assistant",
+				"177": "Angela Miranda \/ Attendance Secretary",
+				"208": "Jeannie Moeller \/ Moeller",
+				"178": "Jennifer Moore \/ Teacher|Drama Club Advisor",
+				"223": "Carrie Nash \/ Nash",
+				"179": "Donna Northcut \/ Instructional Asst - Special Ed",
+				"231": "Elizabeth Nunes \/ Nunes",
+				"232": "Karen Nunes \/ Nunes",
+				"180": "Daniel O'Brien \/ Bus Driver",
+				"181": "Christopher Oliveira \/ Teacher|Assistant Soccer Coach",
+				"182": "Stephanie Parker \/ Assistant Principal EHS",
+				"183": "Audra Pires \/ Clerk Secretary|Counseling Center Secretary",
+				"184": "Angelica Ramirez \/ Instructional Asst - Bilingual",
+				"185": "Kelli Rissetto \/ Special Education Teacher|VAPA Advisor",
+				"228": "Jason Robbins \/ Robbins",
+				"206": "Krystal Rodriguez \/ Rodriguez",
+				"214": "Apolonio Rodriguez \/ Rodriguez",
+				"186": "Brant Rose \/ Teacher|Assistant Varsity Football Coach|FCA Advisor",
+				"187": "Dan Rovig \/ Teacher",
+				"216": "Jennifer Schmidt \/ Schmidt",
+				"188": "Derek Scott \/ Special Education Teacher|Assistant Wrestling Coach",
+				"227": "Ray Scott \/ Scott",
+				"235": "Diana Scott \/ Scott",
+				"213": "Paul Silva \/ Silva",
+				"189": "Eric Simoni \/ Principal",
+				"191": "Korene Stark \/ Stark",
+				"192": "Maria Stavrianoudakis \/ Stavrianoudakis",
+				"203": "Katherine Steffanic \/ Steffanic",
+				"193": "Alina Swann \/ Swann",
+				"194": "Linda Taberna \/ Taberna",
+				"195": "Justin Thomason \/ Thomason",
+				"196": "Daniel Thompson \/ Thompson",
+				"197": "Dixie Tirre \/ Tirre",
+				"198": "Sara Villines \/ Villines",
+				"199": "Lindsay Vrieling \/ Vrieling",
+				"217": "Melinda Walker \/ Walker",
+				"200": "Cody Walker \/ Walker",
+				"205": "Teresa Williamson \/ Williamson",
+				"224": "Mike Wright \/ Wright",
+				"201": "Ryan Young \/ Young"
+			},
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_5a96db732d879",
+			"label": "Organization",
+			"name": "syn_contact_organization",
+			"type": "select",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db732ceb7",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5a96db732d293",
+						"operator": "==",
+						"value": "organization"
+					},
+					{
+						"field": "field_5a96db732dc64",
+						"operator": "!=",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"id-1937146817-2040227973-1025020578": "Syntric",
+				"id-1093359345-1461687414-1877645451": "SchoolTechPro",
+				"id-596255435-714896445-2110829287": "WASC Elementary"
+			},
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_5a96db732dc64",
+			"label": "Default Organization",
+			"name": "syn_contact_default",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db732ceb7",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5a96db732d293",
+						"operator": "==",
+						"value": "organization"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"message": "This organization",
+			"default_value": 1,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5a96db732e050",
+			"label": "Include Fields",
+			"name": "syn_contact_include_person_fields",
+			"type": "checkbox",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db732ceb7",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5a96db732d293",
+						"operator": "==",
+						"value": "person"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"prefix": "Prefix",
+				"first_name": "First Name",
+				"title": "Title",
+				"email": "Email",
+				"phone": "Phone"
+			},
+			"allow_custom": 0,
+			"save_custom": 0,
+			"default_value": [
+				"prefix",
+				"first_name",
+				"title",
+				"email",
+				"phone"
+			],
+			"layout": "vertical",
+			"toggle": 0,
+			"return_format": "array"
+		},
+		{
+			"key": "field_5a96db732e43e",
+			"label": "Include Fields",
+			"name": "syn_contact_include_organization_fields",
+			"type": "checkbox",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db732ceb7",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5a96db732d293",
+						"operator": "==",
+						"value": "organization"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"address": "Address",
+				"email": "Email",
+				"phone": "Phone",
+				"fax": "Fax",
+				"url": "Website",
+				"logo": "Logo"
+			},
+			"allow_custom": 0,
+			"save_custom": 0,
+			"default_value": [
+				"address",
+				"city_state_zip_code",
+				"email",
+				"phone",
+				"fax",
+				"url",
+				"logo"
+			],
+			"layout": "vertical",
+			"toggle": 0,
+			"return_format": "array"
+		},
+		{
+			"key": "field_5a96db732e61b",
+			"label": "Calendar",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "left",
+			"endpoint": 0
+		},
+		{
+			"key": "field_5a96db732e848",
+			"label": "Activate Calendar",
+			"name": "syn_calendar_active",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5a96db732ec17",
+			"label": "Title",
+			"name": "syn_calendar_title",
+			"type": "text",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db732e848",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "Calendar",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5a96db732edf1",
+			"label": "Calendar",
+			"name": "syn_calendar_id",
+			"type": "select",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db732e848",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "60",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"0": "+ New calendar",
+				"10456": "Ken Hobbs > Amador County USD Calendar",
+				"10491": "Ken Hobbs > Argonaut Athletics Calendar",
+				"10466": "Ken Hobbs > Escalon USD Calendar"
+			},
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_5a96db732f1df",
+			"label": "Display Count",
+			"name": "syn_calendar_events",
+			"type": "number",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db732e848",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "15",
+				"class": "",
+				"id": ""
+			},
+			"default_value": 5,
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"min": 1,
+			"max": "",
+			"step": 1
+		},
+		{
+			"key": "field_5a96db732f3da",
+			"label": "Include Event Date",
+			"name": "syn_calendar_include_date",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db732e848",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 1,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5a96db732f7ce",
+			"label": "Google Calendar ID",
+			"name": "syn_new_calendar_id",
+			"type": "text",
+			"instructions": "Value can be found in the calendar settings at <a href=\"https:\/\/calendar.google.com\/calendar\/\" target=\"_blank\">Google Calendars<\/a>.",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db732e848",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5a96db732edf1",
+						"operator": "==",
+						"value": "0"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5a96db732fbc3",
+			"label": "Sync Now",
+			"name": "syn_new_calendar_sync_now",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db732e848",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5a96db732edf1",
+						"operator": "==",
+						"value": "0"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5a96db732fdb0",
+			"label": "Schedule Sync",
+			"name": "syn_new_calendar_sync",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db732e848",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5a96db732edf1",
+						"operator": "==",
+						"value": "0"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5a96db732ff9d",
+			"label": "Sync Frequency",
+			"name": "syn_new_calendar_sync_frequency",
+			"type": "select",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db732e848",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5a96db732edf1",
+						"operator": "==",
+						"value": "0"
+					},
+					{
+						"field": "field_5a96db732fdb0",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"hourly": "Hourly",
+				"daily": "Daily"
+			},
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_5a96db73301a0",
+			"label": "Sync Range",
+			"name": "syn_new_calendar_sync_range",
+			"type": "select",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db732e848",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5a96db732edf1",
+						"operator": "==",
+						"value": "0"
+					},
+					{
+						"field": "field_5a96db732fdb0",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"1 year": "Sync up to 1 year forward",
+				"2 years": "Sync up to 2 years forward"
+			},
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_5a96db733038e",
+			"label": "Delete Events (hidden)",
+			"name": "syn_new_calendar_delete_events",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "50",
+				"class": "hidden",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5a96db733058d",
+			"label": "Delete After (hidden)",
+			"name": "syn_new_calendar_delete_after",
+			"type": "select",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "50",
+				"class": "hidden",
+				"id": ""
+			},
+			"choices": {
+				"1 month": "Delete after 1 month",
+				"3 months": "Delete after 3 months",
+				"6 months": "Delete after 6 months",
+				"1 year": "Delete after 1 year",
+				"2 years": "Delete after 2 years"
+			},
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_5a96db7330772",
+			"label": "Microblog",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "left",
+			"endpoint": 0
+		},
+		{
+			"key": "field_5a96db7330b65",
+			"label": "Activate Microblog",
+			"name": "syn_microblog_active",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5a96db7330d51",
+			"label": "Title",
+			"name": "syn_microblog_title",
+			"type": "text",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db7330b65",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "Blog",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5a96db733113e",
+			"label": "Microblog Category",
+			"name": "syn_microblog_category",
+			"type": "taxonomy",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "hidden",
+				"id": ""
+			},
+			"taxonomy": "category",
+			"field_type": "select",
+			"allow_null": 1,
+			"add_term": 0,
+			"save_terms": 1,
+			"load_terms": 1,
+			"return_format": "object",
+			"multiple": 0
+		},
+		{
+			"key": "field_5a96db7331328",
+			"label": "Microblog Term",
+			"name": "syn_microblog_term",
+			"type": "taxonomy",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "hidden",
+				"id": ""
+			},
+			"taxonomy": "microblog",
+			"field_type": "select",
+			"allow_null": 1,
+			"add_term": 0,
+			"save_terms": 1,
+			"load_terms": 1,
+			"return_format": "object",
+			"multiple": 0
+		},
+		{
+			"key": "field_5a96db733170c",
+			"label": "Category",
+			"name": "",
+			"type": "message",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db7330b65",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "hidden",
+				"id": ""
+			},
+			"message": "Generated automatically",
+			"new_lines": "",
+			"esc_html": 0
+		},
+		{
+			"key": "field_5a96db7331900",
+			"label": "Microblog",
+			"name": "",
+			"type": "message",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db7330b65",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "50",
+				"class": "",
+				"id": ""
+			},
+			"message": "Generated automatically",
+			"new_lines": "",
+			"esc_html": 0
+		},
+		{
+			"key": "field_5a96db7331af1",
+			"label": "Posts to display:",
+			"name": "syn_microblog_posts",
+			"type": "number",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db7330b65",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "20",
+				"class": "",
+				"id": ""
+			},
+			"default_value": 5,
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"min": 1,
+			"max": "",
+			"step": 1
+		},
+		{
+			"key": "field_5a96db7331ee8",
+			"label": "Include Post Date",
+			"name": "syn_microblog_include_date",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db7330b65",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "30",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 1,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5a96db73320e7",
+			"label": "Add New Post",
+			"name": "syn_new_microblog_post",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db7330b65",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5a96db73324d7",
+			"label": "Microblog Post Title",
+			"name": "syn_new_microblog_post_title",
+			"type": "text",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db7330b65",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5a96db73320e7",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5a96db73326b8",
+			"label": "Microblog Post Content",
+			"name": "syn_new_microblog_post_content",
+			"type": "wysiwyg",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db7330b65",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5a96db73320e7",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"tabs": "all",
+			"toolbar": "full",
+			"media_upload": 1,
+			"delay": 1
+		},
+		{
+			"key": "field_5a96db7332aac",
+			"label": "Roster",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "left",
+			"endpoint": 0
+		},
+		{
+			"key": "field_5a96db7332c75",
+			"label": "Activate Roster",
+			"name": "syn_roster_active",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5a96db733307a",
+			"label": "Title",
+			"name": "syn_roster_title",
+			"type": "text",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db7332c75",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "Roster",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5a96db7333269",
+			"label": "People",
+			"name": "syn_roster_people",
+			"type": "repeater",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db7332c75",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "75",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "field_59af852be10d5",
+			"min": 0,
+			"max": 0,
+			"layout": "table",
+			"button_label": "Add Person",
+			"hide_collapse": 0,
+			"collapse_all_repeater": 0,
+			"btn-icon-only": 1,
+			"sub_fields": [
+				{
+					"key": "field_5a96db7526739",
+					"label": "Person",
+					"name": "person",
+					"type": "select",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"134": "Becky Adelman \/ School Secretary",
+						"210": "David Anderson \/ Anderson",
+						"135": "Paul Anserlian \/ Teacher|Assistant Track Coach",
+						"136": "Gustavo Arzac \/ Teacher",
+						"236": "Sample Author \/ Author",
+						"137": "Elizabeth Baldwin \/ Teacher|Interact Advisor",
+						"219": "Kenneth Baptista \/ Baptista",
+						"138": "Macaria Barrera \/ Custodian",
+						"139": "Irma Bavaro \/ Cafeteria Assistant",
+						"209": "Alexandra Bavaro \/ Teacher",
+						"140": "Andrew Beam \/ Teacher|Varsity Head Football Coach",
+						"141": "Roger Beeman \/ Teacher",
+						"226": "Michael Beeman \/ Beeman",
+						"225": "Matt Blakeley \/ Blakeley",
+						"142": "Michael Bower \/ Teacher|Track & Field Coach|Assistant Cross Country Coach",
+						"220": "Art Brooks \/ Brooks",
+						"143": "Michelle Canfield \/ Teacher|ASB Advisor",
+						"144": "Kristie Cathcart \/ Teacher|Head Girl's Golf Coach|Head of Facilities",
+						"145": "Denise Cherry \/ Central Kitchen Cook I",
+						"211": "Kacey Cherry \/ Cherry",
+						"146": "Joshua Cohen \/ Teacher|Academic Decathlon Advisor",
+						"233": "Ron Costa \/ Costa",
+						"147": "Ashley Crow \/ Teacher|Lead Instructor Band & Band Boosters",
+						"212": "Joe Dalpogetti \/ Dalpogetti",
+						"221": "Staci Diaz \/ Diaz",
+						"190": "Editor Editor \/ Editor",
+						"148": "Michael Elliott \/ Bus Driver",
+						"222": "Rusty Fachner \/ Fachner",
+						"149": "Whitney Fanjul \/ Teacher",
+						"150": "Robert Fernandez \/ Teacher",
+						"151": "Margarita Flores \/ Instructional Asst - Bilingual",
+						"152": "Brian Franks \/ Campus Supervisor",
+						"229": "Atom Garcia \/ Garcia",
+						"153": "Sheila Garside \/ Instructional Asst - Special Ed|Athletics Secretary",
+						"154": "Susan Gentry \/ Teacher|PIT Advisor",
+						"155": "Brenda Greer \/ Snack Bar Manager",
+						"157": "Silvia Guevara \/ Instructional Asst - Bilingual",
+						"158": "Gale Harrington \/ Teacher",
+						"159": "Nicholas Haskin \/ Instructional Asst - Special Ed",
+						"160": "Erin Headley \/ Teacher|Yearbook Advisor",
+						"161": "Richard Heflin \/ Teacher|Head Cross Country Coach",
+						"1": "Ken Hobbs \/ Hobbs",
+						"230": "Ken Hobbs \/ Teacher|Consultant",
+						"162": "Patricia Hudson \/ Instructional Asst - Special Ed",
+						"215": "Jamie Humrichouse \/ Humrichouse",
+						"204": "Alina James \/ James",
+						"207": "Morgan Jensen \/ Jensen",
+						"163": "Gustavo Jimenez-Fregoso \/ Counselor",
+						"234": "Joel Johannsen \/ ",
+						"164": "Patrick Jones \/ Custodian",
+						"165": "Raquel Kellett \/ Head Custodian",
+						"166": "Jewell Kelley \/ Teacher|Photography Club Advisor|Art Club Advisor",
+						"167": "Kaileigh Komas \/ Teacher",
+						"168": "Theresa Langum \/ Clerk Secretary",
+						"218": "Greg Largent \/ Largent",
+						"169": "Jennifer Lennon \/ Instructional Asst - Special Ed",
+						"170": "Isabella Leventini \/ Teacher|FFA Advisor",
+						"171": "Mark Loureiro \/ Special Education Teacher|Athletic Director",
+						"172": "Martin Louro \/ Teacher|Head Boy's Basketball Coach|Sacred Heart Club Advisor",
+						"156": "Alexa MacGregor \/ Teacher|GSA Advisor",
+						"173": "Daniel Madrid \/ Bus Driver",
+						"174": "David Mangnuson \/ Special Education Teacher",
+						"175": "Joann Marie \/ Bus Driver",
+						"109": "Trini Marquis \/ Some Title",
+						"202": "George Megenney \/ Megenney",
+						"176": "Jennifer Mello \/ Cafeteria Assistant",
+						"177": "Angela Miranda \/ Attendance Secretary",
+						"208": "Jeannie Moeller \/ Moeller",
+						"178": "Jennifer Moore \/ Teacher|Drama Club Advisor",
+						"223": "Carrie Nash \/ Nash",
+						"179": "Donna Northcut \/ Instructional Asst - Special Ed",
+						"231": "Elizabeth Nunes \/ Nunes",
+						"232": "Karen Nunes \/ Nunes",
+						"180": "Daniel O'Brien \/ Bus Driver",
+						"181": "Christopher Oliveira \/ Teacher|Assistant Soccer Coach",
+						"182": "Stephanie Parker \/ Assistant Principal EHS",
+						"183": "Audra Pires \/ Clerk Secretary|Counseling Center Secretary",
+						"184": "Angelica Ramirez \/ Instructional Asst - Bilingual",
+						"185": "Kelli Rissetto \/ Special Education Teacher|VAPA Advisor",
+						"228": "Jason Robbins \/ Robbins",
+						"206": "Krystal Rodriguez \/ Rodriguez",
+						"214": "Apolonio Rodriguez \/ Rodriguez",
+						"186": "Brant Rose \/ Teacher|Assistant Varsity Football Coach|FCA Advisor",
+						"187": "Dan Rovig \/ Teacher",
+						"216": "Jennifer Schmidt \/ Schmidt",
+						"188": "Derek Scott \/ Special Education Teacher|Assistant Wrestling Coach",
+						"227": "Ray Scott \/ Scott",
+						"235": "Diana Scott \/ Scott",
+						"213": "Paul Silva \/ Silva",
+						"189": "Eric Simoni \/ Principal",
+						"191": "Korene Stark \/ Stark",
+						"192": "Maria Stavrianoudakis \/ Stavrianoudakis",
+						"203": "Katherine Steffanic \/ Steffanic",
+						"193": "Alina Swann \/ Swann",
+						"194": "Linda Taberna \/ Taberna",
+						"195": "Justin Thomason \/ Thomason",
+						"196": "Daniel Thompson \/ Thompson",
+						"197": "Dixie Tirre \/ Tirre",
+						"198": "Sara Villines \/ Villines",
+						"199": "Lindsay Vrieling \/ Vrieling",
+						"217": "Melinda Walker \/ Walker",
+						"200": "Cody Walker \/ Walker",
+						"205": "Teresa Williamson \/ Williamson",
+						"224": "Mike Wright \/ Wright",
+						"201": "Ryan Young \/ Young"
+					},
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"ajax": 0,
+					"return_format": "value",
+					"placeholder": ""
+				}
+			]
+		},
+		{
+			"key": "field_5a96db733365c",
+			"label": "Include Fields",
+			"name": "syn_roster_include_fields",
+			"type": "checkbox",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db7332c75",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"prefix": "Prefix",
+				"first_name": "First Name",
+				"title": "Title",
+				"email": "Email",
+				"phone": "Phone"
+			},
+			"allow_custom": 0,
+			"save_custom": 0,
+			"default_value": [
+				"prefix",
+				"first_name",
+				"title",
+				"email",
+				"phone"
+			],
+			"layout": "vertical",
+			"toggle": 0,
+			"return_format": "array"
+		},
+		{
+			"key": "field_5a96db733386b",
+			"label": "Google Map",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "left",
+			"endpoint": 0
+		},
+		{
+			"key": "field_5a96db7333c4e",
+			"label": "Activate Google Map",
+			"name": "syn_google_map_active",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5a96db7333e32",
+			"label": "Title",
+			"name": "syn_google_map_title",
+			"type": "text",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db7333c4e",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "Map",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5a96db733400f",
+			"label": "Google  Map",
+			"name": "syn_google_map_id",
+			"type": "select",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db7333c4e",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"id-66808195-1164469976-1610569086": "Syntric Map"
+			},
+			"default_value": [],
+			"allow_null": 0,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_5a96db733421d",
+			"label": "Video",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "left",
+			"endpoint": 0
+		},
+		{
+			"key": "field_5a96db73345ff",
+			"label": "Activate Video",
+			"name": "syn_video_active",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5a96db73349e6",
+			"label": "Title",
+			"name": "syn_video_title",
+			"type": "text",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db73345ff",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5a96db7334bd8",
+			"label": "Video Host",
+			"name": "syn_video_host",
+			"type": "select",
+			"instructions": "This widget works with YouTube and Vimeo hosted videos.",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db73345ff",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"YouTube": "YouTube",
+				"Vimeo": "Vimeo"
+			},
+			"default_value": [],
+			"allow_null": 0,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_5a96db7334fbf",
+			"label": "YouTube Video ID",
+			"name": "syn_video_youtube_id",
+			"type": "text",
+			"instructions": "Enter the YouTube Video ID which is a string of characters in the URL of the video hosted on YouTube.  For example, the Video ID of the video at https:\/\/youtube.com\/XwwXYyyYWxxW is XwwXYyyYWxxW.",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db73345ff",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5a96db7334bd8",
+						"operator": "==",
+						"value": "YouTube"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": 15
+		},
+		{
+			"key": "field_5a96db73351ca",
+			"label": "Vimeo Video ID",
+			"name": "syn_video_vimeo_id",
+			"type": "text",
+			"instructions": "Enter the Vimeo Video ID which is a string of characters in the URL of the video hosted on Vimeo.  For example, the Video ID of the video at https:\/\/vimeo.com\/555555555 is 555555555.",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db73345ff",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5a96db7334bd8",
+						"operator": "==",
+						"value": "Vimeo"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": 15
+		},
+		{
+			"key": "field_5a96db73353b8",
+			"label": "Caption",
+			"name": "syn_video_caption",
+			"type": "textarea",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db73345ff",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"maxlength": "",
+			"rows": "",
+			"new_lines": ""
+		},
+		{
+			"key": "field_5a96db73355bb",
+			"label": "Attachments",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "left",
+			"endpoint": 0
+		},
+		{
+			"key": "field_5a96db7335999",
+			"label": "Activate Attachments",
+			"name": "syn_attachments_active",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5a96db7335b79",
+			"label": "Title",
+			"name": "syn_attachments_title",
+			"type": "text",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db7335999",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "Resources",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5a96db7335d80",
+			"label": "Attachment Groups",
+			"name": "syn_attachments",
+			"type": "repeater",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a96db7335999",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "field_59ab34f82131e",
+			"min": 0,
+			"max": 0,
+			"layout": "block",
+			"button_label": "Add Attachment Group",
+			"hide_collapse": 0,
+			"collapse_all_repeater": 1,
+			"btn-icon-only": 1,
+			"sub_fields": [
+				{
+					"key": "field_5a96db760e8f7",
+					"label": "Header",
+					"name": "header",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5a96db760eadd",
+					"label": "Description",
+					"name": "description",
+					"type": "textarea",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"maxlength": "",
+					"rows": 3,
+					"new_lines": ""
+				},
+				{
+					"key": "field_5a96db760eee6",
+					"label": "Attachments",
+					"name": "attachments",
+					"type": "repeater",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"collapsed": "field_59aa3d1ffdab4",
+					"min": 0,
+					"max": 0,
+					"layout": "block",
+					"button_label": "Add Attachment",
+					"collapse_all_repeater": 1,
+					"btn-icon-only": 1,
+					"sub_fields": [
+						{
+							"key": "field_5a96db7634163",
+							"label": "Attachment Type",
+							"name": "attachment_type",
+							"type": "select",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "20",
+								"class": "",
+								"id": ""
+							},
+							"choices": {
+								"file": "File",
+								"internal_link": "Internal link",
+								"external_link": "External link"
+							},
+							"default_value": [],
+							"allow_null": 0,
+							"multiple": 0,
+							"ui": 0,
+							"ajax": 0,
+							"return_format": "array",
+							"placeholder": ""
+						},
+						{
+							"key": "field_5a96db763435e",
+							"label": "File",
+							"name": "file",
+							"type": "file",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_5a96db7634163",
+										"operator": "==",
+										"value": "file"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "80",
+								"class": "",
+								"id": ""
+							},
+							"return_format": "array",
+							"library": "all",
+							"min_size": "",
+							"max_size": "",
+							"mime_types": "pdf,doc,docx,xls,xlsx,ppt,pptx"
+						},
+						{
+							"key": "field_5a96db763472d",
+							"label": "Internal Link",
+							"name": "internal_link",
+							"type": "post_object",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_5a96db7634163",
+										"operator": "==",
+										"value": "internal_link"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "80",
+								"class": "",
+								"id": ""
+							},
+							"post_type": [
+								"post",
+								"page",
+								"syn_calendar"
+							],
+							"taxonomy": [],
+							"allow_null": 0,
+							"multiple": 0,
+							"return_format": "object",
+							"ui": 1
+						},
+						{
+							"key": "field_5a96db763490b",
+							"label": "Link Title",
+							"name": "title",
+							"type": "text",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_5a96db7634163",
+										"operator": "==",
+										"value": "external_link"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "30",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": "",
+							"maxlength": ""
+						},
+						{
+							"key": "field_5a96db7634af6",
+							"label": "Web Address",
+							"name": "url",
+							"type": "url",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_5a96db7634163",
+										"operator": "==",
+										"value": "external_link"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "30",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": ""
+						},
+						{
+							"key": "field_5a96db7634cfc",
+							"label": "New Window",
+							"name": "new_window",
+							"type": "true_false",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_5a96db7634163",
+										"operator": "==",
+										"value": "external_link"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "20",
+								"class": "",
+								"id": ""
+							},
+							"message": "",
+							"default_value": 0,
+							"ui": 1,
+							"ui_on_text": "",
+							"ui_off_text": ""
+						}
+					]
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "page"
+			},
+			{
+				"param": "page_type",
+				"operator": "!=",
+				"value": "front_page"
+			},
+			{
+				"param": "page_type",
+				"operator": "!=",
+				"value": "posts_page"
+			}
+		]
+	],
+	"menu_order": 2,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 0,
+	"description": "",
+	"modified": 1519864881
+}

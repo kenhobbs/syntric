@@ -66,7 +66,7 @@
 					if ( $show_date ) {
 						echo $tab . $tab . $tab . '<div class="post-date small">' . get_the_date() . '</div>' . $lb;
 					}
-					echo $tab . $tab . $tab . '<div class="post-excerpt">' . get_the_excerpt() . '</div>' . $lb;
+					echo $tab . $tab . $tab . '<div class="post-content">' . get_the_excerpt() . '</div>' . $lb;
 					echo $tab . $tab . '</div>' . $lb;
 					echo $tab . '</a>' . $lb;
 				endwhile;

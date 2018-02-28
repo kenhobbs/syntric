@@ -24,7 +24,7 @@ function syn_set_admin_color( $user_login, $user ) {
 }
 
 // Hide Screen options tab at the top right for all but administrators
-add_filter( 'screen_options_show_screen', 'syn_screen_options_show_screen' );
+//add_filter( 'screen_options_show_screen', 'syn_screen_options_show_screen' );
 function syn_screen_options_show_screen() {
 	return current_user_can( 'administrator' );
 }
@@ -41,6 +41,8 @@ add_action( 'admin_init', 'syn_add_editor_stylesheet' );
 function syn_add_editor_stylesheet() {
 	$editor_stylesheet = syn_get_theme_stylesheet_uri();
 	add_editor_style( $editor_stylesheet );
+	// looks for editor-style.css in theme root directory
+	//add_editor_style();
 }
 
 /**

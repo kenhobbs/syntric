@@ -30,4 +30,3 @@
 	echo '</div>' . $lb;
 	echo '</div>' . $lb;
 	get_footer();
-?>

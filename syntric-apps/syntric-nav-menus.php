@@ -360,8 +360,8 @@
 			} else {
 				$atts[ 'class' ] = 'depth-' . $depth;
 			}
-			slog( $atts );
-			slog( $item );
+			//slog( $atts );
+			//slog( $item );
 			/*} else {
 				$atts[ 'class' ] = 'depth-' . $depth;
 			}*/

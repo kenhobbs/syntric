@@ -27,7 +27,8 @@
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
-		$post = get_post( $post_id );
+		$post_id = syn_resolve_post_id( $post_id );
+		$post    = get_post( $post_id );
 		if ( is_admin() && is_numeric( $post_id ) && 'page' == $post->post_type && isset( $_REQUEST[ 'acf' ] ) && ! wp_is_post_revision( $post_id ) ) {
 			$run_migration_task = get_field( 'syn_migration_run_next', $post_id );
 			if ( isset( $run_migration_task ) && $run_migration_task ) {
@@ -50,6 +51,7 @@
 	 * Process controller
 	 */
 	function syn_migration_run_next( $post_id ) {
+		$post_id = syn_resolve_post_id( $post_id );
 		if ( get_field( 'syn_migration_files_indexed', $post_id ) != 1 ) {
 			syn_migration_index_files( $post_id );
 		} elseif ( get_field( 'syn_migration_files_synced', $post_id ) != 1 ) {
@@ -69,6 +71,7 @@
 	 * @param $post_id
 	 */
 	function syn_migration_index_files( $post_id ) {
+		$post_id = syn_resolve_post_id( $post_id );
 		// clear out prior indexed files
 		update_field( 'syn_migration_files', [], $post_id );
 		$page    = get_post( $post_id );
@@ -138,6 +141,7 @@
 	 * @param $post_id
 	 */
 	function syn_migration_sync_files( $post_id ) {
+		$post_id = syn_resolve_post_id( $post_id );
 		if ( have_rows( 'syn_migration_files', $post_id ) ) {
 			while( have_rows( 'syn_migration_files', $post_id ) ) : the_row();
 				$remote_file    = wp_remote_get( get_sub_field( 'remote_url' ) );
@@ -240,6 +244,7 @@
 	 * @param $post_id
 	 */
 	function syn_migration_convert_links( $post_id ) {
+		$post_id = syn_resolve_post_id( $post_id );
 		$post    = get_post( $post_id );
 		$content = $post->post_content;
 		if ( have_rows( 'syn_migration_files', $post_id ) ) {
@@ -313,6 +318,7 @@
 	 * @param $post_id
 	 */
 	function syn_migration_clean_content( $post_id ) {
+		$post_id = syn_resolve_post_id( $post_id );
 		$post    = get_post( $post_id );
 		$content = $post->post_content;
 		// remove all class attributes
@@ -573,6 +579,7 @@
 	 * @param $post_id
 	 */
 	function ___________needs_updating_________syn_migration_attach_files( $post_id ) {
+		$post_id = syn_resolve_post_id( $post_id );
 		/*$attachments_list_field     = get_field_object( 'syn_attachments_list', $post_id, false, false );
 		$attachments_list_field_key = $attachments_list_field[ 'key' ];*/
 		$fk = syn_get_field_key( 'syn_attachments', '' );

@@ -28,7 +28,7 @@
 		$page = ( isset( $_REQUEST[ 'page' ] ) ) ? $_REQUEST[ 'page' ] : null;
 		// should be People, New User, Edit User or Profile page
 		if ( is_admin() && ( ( 'syntric-people' == $page ) || ( 'user-edit.php' == $pagenow ) || ( 'user-new.php' == $pagenow ) || ( 'profile.php' == $pagenow ) ) ) {
-			// coming from user-edit, user-new or profile
+			// coming from user-edit, user-new or profile so $post_id is user_###
 			$post_id_arr = explode( '_', $post_id );
 			if ( 'user' == $post_id_arr[ 0 ] ) {
 				$user_id    = $post_id_arr[ 1 ];

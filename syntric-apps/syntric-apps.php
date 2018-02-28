@@ -309,13 +309,15 @@
 		if ( ! syn_current_user_can( 'editor' ) ) {
 			// nothing...
 			remove_menu_page( 'users.php' ); // Users
-			remove_submenu_page( 'edit.php?post_type=page', 'nestedpages' );
+			// http://master.localhost/wp-admin/edit.php?post_type=tinymcetemplates
 			remove_menu_page( 'edit.php?post_type=syn_calendar' ); // Calendars
+			remove_menu_page( 'edit.php?post_type=tinymcetemplates' ); // Templates
 		}
 		// Remove for all but author
 		if ( ! syn_current_user_can( 'author' ) ) {
 			remove_menu_page( 'index.php' ); // Dashboard
 			remove_menu_page( 'admin.php?page=syntric-organization' ); // Organization
+			remove_submenu_page( 'edit.php?post_type=page', 'nestedpages' );
 			remove_menu_page( 'admin.php?page=syntric-jumbotrons' ); // Jumbotrons
 			remove_menu_page( 'admin.php?page=syntric-google-maps' ); // Google Maps
 			remove_menu_page( 'edit.php' ); // Posts
@@ -1092,8 +1094,8 @@
 				$academic_years[] = ( $current_year + 1 ) . '-' . ( $current_year + 2 );
 			}*/
 			$academic_years = syn_get_academic_years( 2 );
-			slog( $term_type );
-			slog( $academic_years );
+			//slog( $term_type );
+			//slog( $academic_years );
 			$terms        = [];
 			$terms[ 'Y' ] = 'All Year';
 			switch ( $term_type ) {
@@ -1545,6 +1547,7 @@
 	}
 
 	function syn_update_teachers_page( $post_id ) {
+		$post_id       = syn_resolve_post_id( $post_id );
 		$teachers_page = get_post( $post_id, OBJECT );
 		if ( $teachers_page instanceof WP_Post ) {
 			$args             = [
@@ -1745,6 +1748,7 @@
 
 	/*************************************** Teacher Classes *****************************************/
 	function syn_get_teacher_classes( $post_id ) {
+		$post_id = syn_resolve_post_id( $post_id );
 		$classes = get_field( 'syn_classes', $post_id );
 
 		return $classes;
@@ -2116,6 +2120,7 @@
 	}
 
 	function syn_get_page_template( $post_id ) {
+		$post_id = syn_resolve_post_id( $post_id );
 		if ( 'page' == get_post_type( $post_id ) ) {
 			$page_meta              = get_post_meta( $post_id );
 			$page_template_path     = $page_meta[ '_wp_page_template' ];
@@ -2167,14 +2172,14 @@
 	function syn_banner() {
 		global $post;
 		// todo: come back and fix this...kinda clunky
-		if ( has_post_thumbnail() ) {
-			$post_thumbnail_id       = get_post_thumbnail_id();
-			$post_thumbnail_metadata = wp_get_attachment_metadata( $post_thumbnail_id );
-			slog( $post_thumbnail_metadata );
+		//if ( ! is_archive() && ! is_home() && has_post_thumbnail() ) {
+		//$post_thumbnail_id       = get_post_thumbnail_id();
+		//$post_thumbnail_metadata = wp_get_attachment_metadata( $post_thumbnail_id );
+		//slog( $post_thumbnail_metadata );
 			//$thumbnail_image = get_the_post_thumbnail( $post, 'banner' );
 			//$thumbnail_image_sizes = wp_get_attachment_metadata();
 			//$banner_style_attribute = ' style="background-image: url(' . $thumbnail_image . ');" ';
-		} elseif ( has_header_image() ) {
+		if ( has_header_image() ) {
 			$header_image           = get_header_image();
 			$banner_style_attribute = ' style="background-image: url(' . $header_image . ');" ';
 		} else {
@@ -2377,7 +2382,7 @@
 			echo $tab . $tab . '<tr>' . $lb;
 			echo $tab . $tab . $tab . '<th scope="col">Name</th>' . $lb;
 			//echo $tab . $tab . $tab . '<th scope="col">Title</th>' . $lb;
-			echo $tab . $tab . $tab . '<th scope="col">Email</th>' . $lb;
+			//echo $tab . $tab . $tab . '<th scope="col">Email</th>' . $lb;
 			echo $tab . $tab . $tab . '<th scope="col">Classes</th>' . $lb;
 			echo $tab . $tab . '</tr>' . $lb;
 			echo $tab . '</thead>' . $lb;
@@ -2387,7 +2392,7 @@
 				$prefix       = get_field( 'syn_user_prefix', 'user_' . $teacher->ID );
 				$full_name    = ( ! empty( $prefix ) ) ? $prefix . ' ' . $display_name : $display_name;
 				//$title                  = get_field( 'syn_user_title', 'user_' . $teacher->ID );
-				$email                  = $teacher->data->user_email;
+				//$email                  = $teacher->data->user_email;
 				$teacher_page           = syn_get_teacher_page( $teacher->ID );
 				$teacher_page_published = ( $teacher_page && 'publish' == $teacher_page->post_status ) ? true : false;
 				$teacher_classes        = ( $teacher_page_published ) ? get_field( 'syn_classes', $teacher_page->ID ) : false;
@@ -2415,7 +2420,7 @@
 					echo '</a>' . $lb;
 				}
 				echo $tab . $tab . $tab . '</td>' . $lb;
-				echo $tab . $tab . $tab . '<td class="email"><a href="mailto:' . antispambot( $email, true ) . '" class="teachers-list-email" title="Email">' . antispambot( $email ) . '</a></td>' . $lb;
+				//echo $tab . $tab . $tab . '<td class="email"><a href="mailto:' . antispambot( $email, true ) . '" class="teachers-list-email" title="Email">' . antispambot( $email ) . '</a></td>' . $lb;
 				echo $tab . $tab . $tab . '<td class="classes">' . implode( ' / ', $class_array ) . '</td>' . $lb;
 				echo $tab . $tab . '</tr>' . $lb;
 			}
@@ -2469,7 +2474,7 @@
 						if ( $page instanceof WP_Post && 'publish' == $page->post_status ) {
 							echo $tab . $tab . $tab . $tab . '<a href="' . get_the_permalink( $page->ID ) . '">';
 						}
-						echo get_sub_field( 'course' );
+						echo $courses[ get_sub_field( 'course' ) ];
 						//echo $courses[get_sub_field( 'course' )];
 						if ( $page instanceof WP_Post && 'publish' == $page->post_status ) {
 							echo '</a>' . $lb;
@@ -2934,6 +2939,7 @@
 //
 //
 	function ___________________syn_get_post_breadcrumbs( $post_id ) {
+		$post_id = syn_resolve_post_id( $post_id );
 		return get_the_title( $post_id );
 		/*
 		 * This is bypassed ATM, not sure if I want a breadcrumb...

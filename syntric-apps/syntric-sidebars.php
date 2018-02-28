@@ -192,7 +192,6 @@
 					} else {
 						$widget_active = get_field( $widget_fieldname . '_active', $post_id );
 					}
-
 					if ( $widget_active ) {
 						$active_widgets[] = $widget;
 						continue;
@@ -284,27 +283,19 @@
 	 * Set id and format phone
 	 */
 	add_action( 'acf/save_post', 'syn_save_sidebars', 20 );
-	function syn_save_sidebars( $post_id ) {
+	function syn_save_sidebars() {
 		// don't save for autosave
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
 		if ( is_admin() && isset( $_REQUEST[ 'page' ] ) && 'syntric-sidebars-widgets' == $_REQUEST[ 'page' ] ) {
-			$lb = "\n";
 			if ( have_rows( 'syn_sidebars', 'option' ) ) {
 				while( have_rows( 'syn_sidebars', 'option' ) ) : the_row();
-					// set id
-					/*$sidebar_id = get_sub_field( 'sidebar_id' );
-					if ( ! isset( $sidebar_id ) || empty( $sidebar_id ) ) {
-						update_sub_field( 'sidebar_id', syn_generate_permanent_id() );
-					}*/
-					// set name
-					$sidebar_section  = get_sub_field( 'section' );
-					$sidebar_location = get_sub_field( 'location' );
-					$name             = $sidebar_section[ 'label' ];
-					$name             .= ( 'main' == $sidebar_section[ 'value' ] ) ? ' > ' . $sidebar_location[ 'label' ] : '';
-					$name_array       = [];
-					// description
+					$sidebar_section   = get_sub_field( 'section' );
+					$sidebar_location  = get_sub_field( 'location' );
+					$name              = $sidebar_section[ 'label' ];
+					$name              .= ( 'main' == $sidebar_section[ 'value' ] ) ? ' ' . $sidebar_location[ 'label' ] : '';
+					$name_array        = [];
 					$description_array = [];
 					// run through filters
 					if ( have_rows( 'filters' ) ) {
@@ -344,9 +335,12 @@
 						endwhile;
 					}
 					if ( count( $name_array ) ) {
-						$name .= ' (' . implode( ', ', $name_array ) . ')';
+						$name .= ' (' . implode( ' ', $name_array ) . ')';
 					}
-					update_sub_field( 'name', $name );
+					$_name = get_sub_field( 'name' );
+					if ( ! empty( $_name ) ) {
+						update_sub_field( 'name', $name );
+					}
 					$sidebar_layout = get_sub_field( 'layout' );
 					if ( 'main' != $sidebar_section[ 'value' ] ) {
 						$description_array[] = $sidebar_layout[ 'label' ] . ' layout';

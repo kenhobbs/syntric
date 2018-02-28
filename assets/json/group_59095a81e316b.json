@@ -23,12 +23,11 @@
 			"label": "Google Calendar ID",
 			"name": "syn_calendar_id",
 			"type": "text",
-			"value": null,
 			"instructions": "Value can be found in the calendar settings at <a href=\"https:\/\/calendar.google.com\/calendar\/\" target=\"_blank\">Google Calendars<\/a>.",
 			"required": 0,
 			"conditional_logic": 0,
 			"wrapper": {
-				"width": "",
+				"width": "60",
 				"class": "",
 				"id": ""
 			},
@@ -43,7 +42,6 @@
 			"label": "Sync Now",
 			"name": "syn_calendar_sync_now",
 			"type": "true_false",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": 0,
@@ -63,7 +61,6 @@
 			"label": "Schedule Sync",
 			"name": "syn_calendar_sync",
 			"type": "true_false",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": 0,
@@ -83,7 +80,6 @@
 			"label": "Sync Frequency",
 			"name": "syn_calendar_sync_frequency",
 			"type": "select",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": [
@@ -96,15 +92,17 @@
 				]
 			],
 			"wrapper": {
-				"width": "30",
-				"class": "",
+				"width": "",
+				"class": "hidden",
 				"id": ""
 			},
 			"choices": {
 				"hourly": "Hourly",
 				"daily": "Daily"
 			},
-			"default_value": [],
+			"default_value": [
+				"daily"
+			],
 			"allow_null": 0,
 			"multiple": 0,
 			"ui": 0,
@@ -117,7 +115,6 @@
 			"label": "Sync Range",
 			"name": "syn_calendar_sync_range",
 			"type": "select",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": [
@@ -130,15 +127,17 @@
 				]
 			],
 			"wrapper": {
-				"width": "30",
-				"class": "",
+				"width": "",
+				"class": "hidden",
 				"id": ""
 			},
 			"choices": {
 				"1 year": "Sync up to 1 year forward",
 				"2 years": "Sync up to 2 years forward"
 			},
-			"default_value": [],
+			"default_value": [
+				"1 year"
+			],
 			"allow_null": 0,
 			"multiple": 0,
 			"ui": 0,
@@ -151,17 +150,16 @@
 			"label": "Delete Events",
 			"name": "syn_calendar_delete_events",
 			"type": "true_false",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": 0,
 			"wrapper": {
-				"width": "20",
+				"width": "",
 				"class": "hidden",
 				"id": ""
 			},
 			"message": "",
-			"default_value": 0,
+			"default_value": 1,
 			"ui": 0,
 			"ui_on_text": "",
 			"ui_off_text": ""
@@ -171,12 +169,11 @@
 			"label": "Delete After",
 			"name": "syn_calendar_delete_after",
 			"type": "select",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": 0,
 			"wrapper": {
-				"width": "80",
+				"width": "",
 				"class": "hidden",
 				"id": ""
 			},
@@ -187,7 +184,9 @@
 				"1 year": "Delete after 1 year",
 				"2 years": "Delete after 2 years"
 			},
-			"default_value": [],
+			"default_value": [
+				"1 year"
+			],
 			"allow_null": 0,
 			"multiple": 0,
 			"ui": 0,
@@ -216,7 +215,6 @@
 			"label": "Events",
 			"name": "",
 			"type": "enhanced_message",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": 0,
@@ -249,7 +247,6 @@
 			"label": "Last Sync",
 			"name": "syn_calendar_last_sync",
 			"type": "text",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": 0,
@@ -269,7 +266,6 @@
 			"label": "Last Sync Result",
 			"name": "syn_calendar_last_sync_result",
 			"type": "textarea",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": 0,
@@ -298,7 +294,7 @@
 	"position": "acf_after_title",
 	"style": "default",
 	"label_placement": "top",
-	"instruction_placement": "label",
+	"instruction_placement": "field",
 	"hide_on_screen": [
 		"the_content",
 		"excerpt",
@@ -317,5 +313,5 @@
 	],
 	"active": 1,
 	"description": "",
-	"modified": 1509726816
+	"modified": 1519236330
 }

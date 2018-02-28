@@ -59,7 +59,8 @@
 // With pages, a teacher can only create pages underneath their own teaacher page (like class pages)
 	add_action( 'acf/save_post', 'syn_save_author_post', 20 );
 	function syn_save_author_post( $post_id ) {
-		$post = get_post( $post_id );
+		$post_id = syn_resolve_post_id( $post_id );
+		$post    = get_post( $post_id );
 		if ( $post instanceof WP_Post && 'page' == $post->post_type && current_user_can( 'author' ) ) {
 			$user       = get_user_by( 'ID', get_current_user_id() );
 			$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user->ID );
