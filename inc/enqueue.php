@@ -12,7 +12,7 @@
 		wp_enqueue_script( 'jquery' );
 		// Fontawesome
 		wp_enqueue_script( 'fontawesome', '//use.fontawesome.com/f45398b257.js', null, '4.7.0', true );
-		// Fontawesome 5 SVG version
+		// Fontawesome 5 SVG version todo: migrate to FA 5
 		//wp_enqueue_script( 'fontawesome', 'https://use.fontawesome.com/releases/v5.0.6/js/all.js', null, '5.0.6', false );
 		// Google Fonts
 		wp_enqueue_style( 'google-fonts', '//fonts.googleapis.com/css?family=Roboto|Ubantu+Mono|Ubantu|Itim', null, null, null );
