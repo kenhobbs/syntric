@@ -3,14 +3,9 @@
 	 * Echo the primary nav which is a Bootstrap 4 navbar
 	 */
 	function syn_primary_nav() {
-		if ( syn_remove_whitespace() ) {
-			$lb  = '';
-			$tab = '';
-		} else {
-			$lb  = "\n";
-			$tab = "\t";
-		}
-		$nav_menu_args = [
+		$lb            = syn_get_linebreak();
+		$tab           = syn_get_tab();
+		$args = [
 			'theme_location'  => 'primary',
 			'container'       => 'div',
 			'container_id'    => 'primary-nav-collapse',
@@ -19,22 +14,33 @@
 			'depth'           => 2,
 			'item_spacing'    => ( syn_remove_whitespace() ) ? 'discard' : 'preserve',
 		];
-		echo '<nav id="primary-navbar" class="navbar navbar-expand-xl navbar-light sticky-top">' . $lb;
-		echo $tab . '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#' . $nav_menu_args[ 'container_id' ] . '" aria-controls="' . $nav_menu_args[ 'container_id' ] . '" aria-expanded="false" aria-label="Toggle navigation">' . $lb;
-		echo $tab . $tab . '<span class="fa fa-bars"></span>' . $lb;
-		echo $tab . '</button>' . $lb;
+		//echo '<nav id="primary-navbar" class="navbar navbar-expand-xl navbar-light sticky-top">' . $lb;
+		echo '<nav id="primary-navbar" class="navbar">' . $lb;
+		echo $tab . '<div class="navbar-brand-toggler">' . $lb;
+		echo $tab . $tab . '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#' . $args[ 'container_id' ] . '" aria-controls="' . $args[ 'container_id' ] . '" aria-expanded="false" aria-label="Toggle navigation">' . $lb;
+		echo $tab . $tab . $tab . '<span class="fa fa-bars"></span>' . $lb;
+		echo $tab . $tab . '</button>' . $lb;
 		if ( has_custom_logo() || display_header_text() ) {
-			$organization = esc_attr( get_bloginfo( 'name', 'display' ) );
-			echo $tab . '<a class="navbar-brand" href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . $lb;
+			$name = esc_attr( get_bloginfo( 'name', 'display' ) );
+			$tagline  = esc_attr( get_bloginfo( 'description', 'display' ) );
+			echo $tab . $tab . '<a class="navbar-brand" href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . $lb;
 			if ( has_custom_logo() ) {
-				echo wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'full', false, [ 'alt' => $organization . ' Logo' ] );
+				echo wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'thumbnail', false, [ 'class' => 'brand-logo', 'alt' => $name . ' Logo' ] );
 			}
 			if ( display_header_text() ) {
-				echo $organization;
+				echo $tab . $tab . $tab . '<div>' . $lb;
+				if ( ! empty( $name ) ) {
+					echo $tab . $tab . $tab . $tab . '<div>' . $name . '</div>' . $lb;
+				}
+				if ( ! empty( $tagline ) ) {
+					echo $tab . $tab . $tab . $tab . '<div>' . $tagline . '</div>' . $lb;
+				}
+				echo $tab . $tab . $tab . '</div>' . $lb;
 			}
-			echo $tab . '</a>' . $lb;
+			echo $tab . $tab . '</a>' . $lb;
 		}
-		wp_nav_menu( $nav_menu_args );
+		echo $tab . '</div>' . $lb;
+		wp_nav_menu( $args );
 		echo '</nav>' . $lb;
 	}
 
@@ -91,8 +97,6 @@
 	 ******************************************************** widget_nav_menu_args then calls wp_nav_menu
 	 *
 	 */
-
-
 	/**
 	 * Populate Nav Menu widget select
 	 *
@@ -101,7 +105,6 @@
 	 * @return mixed
 	 */
 	add_filter( 'acf/load_field/name=syn_nav_menu_widget_menu', 'syn_load_nav_menu' );
-
 	/**
 	 * Add syn_nav_menu_widget to $nav_menu_args so widget can be caught with hooks
 	 */
@@ -129,9 +132,12 @@
 		 * [theme_location] => primary
 		 * )
 		 */
-		$menu_classes = explode( ' ', $nav_menu_args['menu_class'] );
+		$menu_classes = explode( ' ', $nav_menu_args[ 'menu_class' ] );
 		if ( ! in_array( 'navbar-nav', $menu_classes ) ) {
 			$nav_menu_args[ 'container' ] = '';
+		}
+		if ( syn_remove_whitespace() ) {
+			$nav_menu_args[ 'item_spacing' ] = 'discard';
 		}
 
 		return $nav_menu_args;
@@ -366,6 +372,7 @@
 				$atts[ 'class' ] = 'depth-' . $depth;
 			}*/
 		}
+
 		return $atts;
 	}
 
@@ -413,6 +420,7 @@
 		];
 		wp_nav_menu( $nav_menu_args );
 	}
+
 	//add_filter( 'widget_nav_menu_args', 'syn_widget_nav_menu_args', 10, 4 );
 	function ___________notinuse__________syn_widget_nav_menu_args( $nav_menu_args, $nav_menu = null, $args = null, $instance = null ) {
 		/*$args[ 'max_depth' ]           = ( isset( $nav_menu_args[ 'depth' ] ) ) ? $nav_menu_args[ 'depth' ] : 0;

@@ -107,20 +107,20 @@ var dirs = {
 var domainMappings = {
 	'amadorcoe.syntric.com.min': 'www.amadorcoe.org.min',
 	'amadoradulted.syntric.com.min': 'www.amadoradulted.org.min',
-	'amadorhs.syntric.com.min': 'www.amadorcoe.org.amadorhs.min',
-	'argonauths.syntric.com.min': 'www.amadorcoe.org.argonauths.min',
-	'ionejr.syntric.com.min': 'www.amadorcoe.org.ionejr.min',
-	'jacksonjr.syntric.com.min': 'www.amadorcoe.org.jacksonjr.min',
-	'shenandoah.syntric.com.min': 'www.amadorcoe.org.shenandoah.min',
-	'ione.syntric.com.min': 'www.amadorcoe.org.ione.min',
-	'jackson.syntric.com.min': 'www.amadorcoe.org.jackson.min',
-	'pinegrove.syntric.com.min': 'www.amadorcoe.org.pinegrove.min',
-	'pioneer.syntric.com.min': 'www.amadorcoe.org.pioneer.min',
-	'plymouth.syntric.com.min': 'www.amadorcoe.org.plymouth.min',
-	'suttercreek.syntric.com.min': 'www.amadorcoe.org.suttercreek.min',
-	'scprimary.syntric.com.min': 'www.amadorcoe.org.scprimary.min',
-	'northstar.syntric.com.min': 'www.amadorcoe.org.northstar.min',
-	'independent.syntric.com.min': 'www.amadorcoe.org.independent.min',
+	'amadorhs.syntric.com.min': 'amadorhs.amadorcoe.org.min',
+	'argonauths.syntric.com.min': 'argonauths.amadorcoe.org.min',
+	'ionejr.syntric.com.min': 'ionejr.amadorcoe.org.min',
+	'jacksonjr.syntric.com.min': 'jacksonjr.amadorcoe.org.min',
+	'shenandoah.syntric.com.min': 'shenandoah.amadorcoe.org.min',
+	'ione.syntric.com.min': 'ioneel.amadorcoe.org.min',
+	'jackson.syntric.com.min': 'jacksonel.amadorcoe.org.min',
+	'pinegrove.syntric.com.min': 'pinegroveel.amadorcoe.org.min',
+	'pioneer.syntric.com.min': 'pioneerel.amadorcoe.org.min',
+	'plymouth.syntric.com.min': 'plymouthel.amadorcoe.org.min',
+	'suttercreek.syntric.com.min': 'suttercreekel.amadorcoe.org.min',
+	'northstar.syntric.com.min': 'northstar.amadorcoe.org.min',
+	'independent.syntric.com.min': 'independent.amadorcoe.org.min',
+	'community.syntric.com.min': 'community.amadorcoe.org.min',
 	'escalonusd.syntric.com.min': 'www.escalonusd.org.min',
 	'escalonhs.syntric.com.min': 'www.escalonhigh.org.min',
 	'elportal.syntric.com.min': 'www.elportalmiddle.org.min',
@@ -155,14 +155,15 @@ gulp.task('watch', function () {
 
 gulp.task('compileSASS', function () {
 	return gulp.src([dirs.src_sass + '*.localhost.scss', dirs.src_sass + '*.syntric.com.scss'])
-	//.pipe(sourcemaps.init({loadMaps: true}))
-	//.pipe(plumber())
-
+	// cache files so they are only compiled if they have changed
 	.pipe(cached('sassFiles'))
 	.pipe(plumber())
 
 	.pipe(compileSASS())
 	.pipe(gulp.dest(dirs.dist_css))
+	.pipe(plumber())
+
+	.pipe(sourcemaps.init({loadMaps: true}))
 	.pipe(plumber())
 
 	.pipe(rename({suffix: '.min'}))

@@ -1,81 +1,92 @@
 {
-	"key": "group_59c5d19611678",
-	"title": "Class Page Settings",
-	"fields": [
-		{
-			"key": "field_59cc512c79563",
-			"label": "Teacher",
-			"name": "syn_page_class_teacher",
-			"type": "select",
-			"value": null,
-			"instructions": "",
-			"required": 1,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"choices": {
-				"186": "Ken Hobbs"
-			},
-			"default_value": [],
-			"allow_null": 1,
-			"multiple": 0,
-			"ui": 0,
-			"ajax": 0,
-			"return_format": "value",
-			"placeholder": ""
-		},
-		{
-			"key": "field_59c59338e0341",
-			"label": "Class",
-			"name": "syn_page_class",
-			"type": "select",
-			"value": null,
-			"instructions": "",
-			"required": 1,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"choices": {
-				"id-1971266891-846593506-116755506": "English Language Development I",
-				"id-313761939-1623955033-124173901": "__Test Course",
-				"id-1593386917-451417940-1292257436": "__Test Course"
-			},
-			"default_value": [],
-			"allow_null": 1,
-			"multiple": 0,
-			"ui": 0,
-			"ajax": 0,
-			"return_format": "value",
-			"placeholder": ""
-		}
-	],
-	"location": [
-		[
-			{
-				"param": "post_type",
-				"operator": "==",
-				"value": "page"
-			},
-			{
-				"param": "page_template",
-				"operator": "==",
-				"value": "page-templates\/class.php"
-			}
-		]
-	],
-	"menu_order": 10,
-	"position": "side",
-	"style": "default",
-	"label_placement": "top",
-	"instruction_placement": "label",
-	"hide_on_screen": "",
-	"active": 1,
-	"description": "",
-	"modified": 1509727048
+    "key": "group_59c5d19611678",
+    "title": "Class Page Settings",
+    "fields": [
+        {
+            "key": "field_59cc512c79563",
+            "label": "Teacher",
+            "name": "syn_page_class_teacher",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "236": "Author Author",
+                "190": "Editor Editor",
+                "158": "Gale Harrington",
+                "160": "Erin Headley",
+                "161": "Richard Heflin",
+                "109": "Trini Marquis"
+            },
+            "default_value": [],
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_59c59338e0341",
+            "label": "Class",
+            "name": "syn_page_class",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "id-824475494-1883130728-275678139": "AP English Language",
+                "id-795637172-1231576659-217261804": "AP English Literature",
+                "id-414694607-495621271-1928298790": "Art History",
+                "id-885916686-1100055712-1814522045": "Art History",
+                "id-1612593068-2070503038-734786383": "Band",
+                "id-56064024-1256977560-613106054": "Drama",
+                "id-995749034-108001789-615085633": "English Language Development I",
+                "id-602868035-507110086-1283310600": "English Language Development I",
+                "id-380852158-810432915-1943596332": "English Language Development II",
+                "id-2095953474-1385720114-1725637983": "Fine Art",
+                "id-503818373-509056834-1496477137": "Fine Art"
+            },
+            "default_value": [],
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            },
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates\/class.php"
+            }
+        ]
+    ],
+    "menu_order": 10,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1520541037
 }

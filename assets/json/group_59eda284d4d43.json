@@ -47,6 +47,7 @@
             "max": 0,
             "layout": "table",
             "button_label": "Add Room",
+            "hide_collapse": 1,
             "collapse_all_repeater": 0,
             "btn-icon-only": 1,
             "sub_fields": [
@@ -134,5 +135,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1518181593
+    "modified": 1520195716
 }

@@ -55,7 +55,7 @@ function syn_enqueue_admin_scripts( $hook ) {
 	wp_enqueue_style( 'google-fonts-stylesheet', '//fonts.googleapis.com/css?family=Roboto:300,400:500:700' );
 	wp_enqueue_script( 'fontawesome', 'https://use.fontawesome.com/f45398b257.js', null, '5.0.1', false );
 	wp_enqueue_style( 'syntric-admin-stylesheet', get_template_directory_uri() . '/assets/css/syntric-admin.min.css' );
-	wp_enqueue_script( 'syntric-admin', get_template_directory_uri() . '/assets/js/syntric-admin.min.js' );
+	wp_enqueue_script( 'syntric-admin', get_template_directory_uri() . '/assets/js/syntric-admin.min.js', 'jquery', null, true );
 }
 
 /**

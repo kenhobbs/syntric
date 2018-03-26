@@ -1,12 +1,7 @@
 <?php
 	get_header();
-	if ( syn_remove_whitespace() ) {
-		$lb  = '';
-		$tab = '';
-	} else {
-		$lb  = "\n";
-		$tab = "\t";
-	}
+	$lb = syn_get_linebreak();
+	$tab = syn_get_tab();
 	echo '<div id="home-wrapper" class="content-wrapper ' . get_post_type() . '-wrapper">';
 	echo '<div class="' . esc_html( get_theme_mod( 'syntric_container_type' ) ) . '">';
 	echo '<div class="row">';
@@ -16,20 +11,21 @@
 	syn_sidebar( 'main', 'top' );
 	if ( have_posts() ) {
 		while( have_posts() ) : the_post();
-			if ( syn_has_content( $post->post_content ) ) :
-				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post->ID . '">';
-				echo '<h2 class="post-title">';
-				echo '<a href="' . get_the_permalink() . '" rel="bookmark">';
-				the_title();
-				echo '</a>';
-				echo '</h2>';
-				echo '<span class="post-category">' . syn_get_taxonomies_terms() . '</span>';
-				echo '<span class="post-date">' . get_the_date() . '</span>';
+			//echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post->ID . '">' . $lb;
+			echo '<article id="post-' . $post->ID . '">' . $lb;
+			echo '<h2 class="post-title">';
+			echo '<a href="' . get_the_permalink() . '" rel="bookmark">';
+			the_title();
+			echo '</a>';
+			syn_excerpt_badges( $post->ID );
+			echo '</h2>';
+			echo '<span class="post-date">' . get_the_date() . '</span>';
+			if ( syn_has_content( $post->post_content ) ) {
 				echo '<div class="post-content">';
 				the_excerpt();
 				echo '</div>';
-				echo '</article>';
-			endif;
+			}
+			echo '</article>';
 		endwhile;
 	} else {
 		get_template_part( 'loop-templates/content', 'none' );
@@ -42,4 +38,3 @@
 	echo '</div>';
 	echo '</div>';
 	get_footer();
-?>

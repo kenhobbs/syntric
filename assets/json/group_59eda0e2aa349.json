@@ -21,7 +21,7 @@
             "layout": "block",
             "button_label": "Add Course",
             "hide_collapse": 0,
-            "collapse_all_repeater": 0,
+            "collapse_all_repeater": 1,
             "btn-icon-only": 0,
             "sub_fields": [
                 {
@@ -71,7 +71,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "30",
+                        "width": "25",
                         "class": "",
                         "id": ""
                     },
@@ -95,6 +95,77 @@
                     "placeholder": ""
                 },
                 {
+                    "key": "field_5ab6a009d84cf",
+                    "label": "Course Length",
+                    "name": "course_length",
+                    "type": "group",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5a289c4decd23",
+                            "label": "",
+                            "name": "length_quantity",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "1": "1",
+                                "2": "2",
+                                "3": "3",
+                                "4": "4"
+                            },
+                            "default_value": [],
+                            "allow_null": 1,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "return_format": "value",
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_5a289b42ecd22",
+                            "label": "",
+                            "name": "length_unit",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "50",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "quarter": "Quarter",
+                                "trimester": "Trimester",
+                                "semester": "Semester",
+                                "year": "Year"
+                            },
+                            "default_value": [],
+                            "allow_null": 1,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "return_format": "value",
+                            "placeholder": ""
+                        }
+                    ]
+                },
+                {
                     "key": "field_5a289d85ecd27",
                     "label": "Units",
                     "name": "units",
@@ -103,7 +174,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "10",
+                        "width": "25",
                         "class": "",
                         "id": ""
                     },
@@ -122,28 +193,6 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_5a7d2da3353a1",
-                    "label": "Length",
-                    "name": "length",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "20",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": [],
-                    "default_value": [],
-                    "allow_null": 1,
-                    "multiple": 0,
-                    "ui": 0,
-                    "ajax": 0,
-                    "return_format": "value",
-                    "placeholder": ""
-                },
-                {
                     "key": "field_5a289af6ecd21",
                     "label": "Grades",
                     "name": "grades",
@@ -153,7 +202,7 @@
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "20",
-                        "class": "",
+                        "class": "hidden",
                         "id": ""
                     },
                     "choices": {
@@ -179,7 +228,7 @@
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "20",
-                        "class": "",
+                        "class": "hidden",
                         "id": ""
                     },
                     "choices": {
@@ -212,60 +261,6 @@
                     "toolbar": "full",
                     "media_upload": 0,
                     "delay": 1
-                },
-                {
-                    "key": "field_5a289c4decd23",
-                    "label": "Length Quantity",
-                    "name": "length_quantity",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "20",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "1": "1",
-                        "2": "2",
-                        "3": "3",
-                        "4": "4"
-                    },
-                    "default_value": [],
-                    "allow_null": 1,
-                    "multiple": 0,
-                    "ui": 0,
-                    "ajax": 0,
-                    "return_format": "value",
-                    "placeholder": ""
-                },
-                {
-                    "key": "field_5a289b42ecd22",
-                    "label": "Length Unit",
-                    "name": "length_unit",
-                    "type": "select",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "20",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "quarter": "Quarter",
-                        "trimester": "Trimester",
-                        "semester": "Semester",
-                        "year": "Year"
-                    },
-                    "default_value": [],
-                    "allow_null": 1,
-                    "multiple": 0,
-                    "ui": 0,
-                    "ajax": 0,
-                    "return_format": "value",
-                    "placeholder": ""
                 },
                 {
                     "key": "field_59bb6fbf70f0d",
@@ -306,5 +301,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1518200425
+    "modified": 1521943533
 }

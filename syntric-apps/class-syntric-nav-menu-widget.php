@@ -32,13 +32,8 @@
 			}
 			$nav_menu = get_field( 'syn_nav_menu_widget_menu', 'widget_' . $args[ 'widget_id' ] );
 			if ( $nav_menu ) :
-				if ( syn_remove_whitespace() ) {
-					$lb  = '';
-					$tab = '';
-				} else {
-					$lb  = "\n";
-					$tab = "\t";
-				}
+				$lb = syn_get_linebreak();
+				$tab = syn_get_tab();
 				//$sidebar     = syn_widget_sidebar( $args[ 'widget_id' ] );
 				$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
 				$depth         = get_field( 'syn_nav_menu_widget_depth', 'widget_' . $args[ 'widget_id' ] );

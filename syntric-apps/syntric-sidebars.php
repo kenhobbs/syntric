@@ -72,13 +72,8 @@
 		if ( ! $post ) {
 			return;
 		}
-		if ( syn_remove_whitespace() ) {
-			$lb  = '';
-			$tab = '';
-		} else {
-			$lb  = "\n";
-			$tab = "\t";
-		}
+		$lb = syn_get_linebreak();
+		$tab = syn_get_tab();
 		$sidebars = get_field( 'syn_sidebars', 'option' );
 		if ( $sidebars ) {
 			foreach ( $sidebars as $sidebar ) {

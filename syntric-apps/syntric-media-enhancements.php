@@ -188,7 +188,7 @@
 	/**
 	 * Redirect attachment pages to parent
 	 */
-	add_action( 'template_redirect', 'syn_redirect_attachments' );
+	//add_action( 'template_redirect', 'syn_redirect_attachments' );
 	function syn_redirect_attachments() {
 		global $post;
 		if ( is_attachment() && isset( $post->post_parent ) && is_numeric( $post->post_parent ) && ( $post->post_parent != 0 ) ) {
@@ -197,3 +197,25 @@
 			wp_reset_postdata();
 		}
 	}
+
+	// Limit media library grid access to own files for sub-editors
+	add_filter( 'ajax_query_attachments_args', 'syn_limit_media_library_grid' );
+	function syn_limit_media_library_grid( $query ) {
+		$user_id = get_current_user_id();
+		if ( $user_id && ! syn_current_user_can('editor') ) {
+			$query['author'] = $user_id;
+		}
+		return $query;
+	}
+
+	add_filter('pre_get_posts', 'syn_limit_media_library_list');
+	function syn_limit_media_library_list($query) {
+		global $pagenow;
+		global $user_ID;
+
+		if( is_admin() && 'upload.php' == $pagenow && ! syn_current_user_can('editor') )
+			$query->set('author', $user_ID);
+
+		return $query;
+	}
+

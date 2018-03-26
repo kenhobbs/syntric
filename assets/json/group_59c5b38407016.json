@@ -1,532 +1,220 @@
 {
-	"key": "group_59c5b38407016",
-	"title": "Teacher Classes",
-	"fields": [
-		{
-			"key": "field_59c5b229f02a9",
-			"label": "Classes",
-			"name": "syn_classes",
-			"type": "repeater",
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"collapsed": "field_59c5b1d230ea1",
-			"min": 0,
-			"max": 0,
-			"layout": "table",
-			"button_label": "Add Class",
-			"collapse_all_repeater": 0,
-			"btn-icon-only": 1,
-			"sub_fields": [
-				{
-					"key": "field_59c5b18a30e9f",
-					"label": "Term",
-					"name": "term",
-					"type": "select",
-					"instructions": "",
-					"required": 1,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "",
-						"class": "",
-						"id": ""
-					},
-					"choices": {
-						"2017-2018 All Year": "2017-2018 - All Year",
-						"2017-2018 1st Trimester": "2017-2018 - 1st Trimester",
-						"2017-2018 2nd Trimester": "2017-2018 - 2nd Trimester",
-						"2017-2018 3rd Trimester": "2017-2018 - 3rd Trimester",
-						"2017-2018 Summer Session": "2017-2018 - Summer Session"
-					},
-					"default_value": [],
-					"allow_null": 1,
-					"multiple": 0,
-					"ui": 0,
-					"ajax": 0,
-					"return_format": "label",
-					"placeholder": ""
-				},
-				{
-					"key": "field_59c5b1be30ea0",
-					"label": "Period",
-					"name": "period",
-					"type": "select",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "10",
-						"class": "",
-						"id": ""
-					},
-					"choices": {
-						"id-570481587-497897148-1363095736": "1",
-						"id-1938920829-1096852728-1646703252": "2",
-						"id-1197843014-461746676-454524566": "3",
-						"id-866042511-850868880-712703552": "4",
-						"id-1080177670-291327787-1379995756": "5",
-						"id-1146584968-1054185863-1726310314": "6"
-					},
-					"default_value": [],
-					"allow_null": 1,
-					"multiple": 0,
-					"ui": 0,
-					"ajax": 0,
-					"return_format": "label",
-					"placeholder": ""
-				},
-				{
-					"key": "field_59c5b1d230ea1",
-					"label": "Course",
-					"name": "course",
-					"type": "select",
-					"instructions": "",
-					"required": 1,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "",
-						"class": "-collapsed-target",
-						"id": ""
-					},
-					"choices": [
-						{
-							"course": "Beginning Art",
-							"active": true,
-							"department": "id-2040897388-752304541-1411741476",
-							"units": "10",
-							"length": "",
-							"grades": [
-								"9",
-								"10",
-								"11",
-								"12"
-							],
-							"attributes": [
-								"graduation_requirement"
-							],
-							"description": "<h2>Summary<\/h2>\n<p>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.<\/p>\n",
-							"length_quantity": "1",
-							"length_unit": "year",
-							"course_id": "id-474247380-1146110031-1166995209"
-						},
-						{
-							"course": "Advanced Art",
-							"active": true,
-							"department": "id-2040897388-752304541-1411741476",
-							"units": "10",
-							"length": "",
-							"grades": [
-								"11",
-								"12"
-							],
-							"attributes": "",
-							"description": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.<\/p>\n",
-							"length_quantity": "1",
-							"length_unit": "year",
-							"course_id": "id-716137491-608007958-872226822"
-						},
-						{
-							"course": "Drama",
-							"active": true,
-							"department": "id-2040897388-752304541-1411741476",
-							"units": "5",
-							"length": "",
-							"grades": [
-								"9",
-								"10",
-								"11",
-								"12"
-							],
-							"attributes": "",
-							"description": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.<\/p>\n",
-							"length_quantity": "1",
-							"length_unit": "semester",
-							"course_id": "id-862693620-1192259750-1961767268"
-						},
-						{
-							"course": "Band",
-							"active": true,
-							"department": "id-2040897388-752304541-1411741476",
-							"units": "5",
-							"length": "",
-							"grades": [
-								"9",
-								"10",
-								"11",
-								"12"
-							],
-							"attributes": "",
-							"description": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.<\/p>\n",
-							"length_quantity": "1",
-							"length_unit": "semester",
-							"course_id": "id-170314793-645094908-1479602615"
-						},
-						{
-							"course": "English Language Development I",
-							"active": true,
-							"department": "id-1279125767-1351269013-828438742",
-							"units": "10",
-							"length": "",
-							"grades": [
-								"9",
-								"10"
-							],
-							"attributes": "",
-							"description": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.<\/p>\n",
-							"length_quantity": "1",
-							"length_unit": "year",
-							"course_id": "id-1996645346-1675383025-1137641455"
-						},
-						{
-							"course": "English Language Development II",
-							"active": true,
-							"department": "id-1279125767-1351269013-828438742",
-							"units": "10",
-							"length": "",
-							"grades": [
-								"9",
-								"10",
-								"11"
-							],
-							"attributes": "",
-							"description": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.<\/p>\n",
-							"length_quantity": "1",
-							"length_unit": "year",
-							"course_id": "id-1381196080-2120684271-254571098"
-						},
-						{
-							"course": "AP English Language",
-							"active": true,
-							"department": "id-1279125767-1351269013-828438742",
-							"units": "10",
-							"length": "",
-							"grades": [
-								"11",
-								"12"
-							],
-							"attributes": [
-								"advanced_placement"
-							],
-							"description": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.<\/p>\n",
-							"length_quantity": "1",
-							"length_unit": "year",
-							"course_id": "id-1879308519-1606145948-1906290767"
-						},
-						{
-							"course": "AP English Literature",
-							"active": true,
-							"department": "id-1279125767-1351269013-828438742",
-							"units": "10",
-							"length": "",
-							"grades": [
-								"11",
-								"12"
-							],
-							"attributes": [
-								"advanced_placement"
-							],
-							"description": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.<\/p>\n",
-							"length_quantity": "1",
-							"length_unit": "year",
-							"course_id": "id-1038541985-1196883118-1284284766"
-						},
-						{
-							"course": "Integrated Math 1",
-							"active": true,
-							"department": "id-1298811312-712594165-1610792525",
-							"units": "10",
-							"length": "",
-							"grades": [
-								"9",
-								"10",
-								"11"
-							],
-							"attributes": [
-								"graduation_requirement"
-							],
-							"description": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.<\/p>\n",
-							"length_quantity": "1",
-							"length_unit": "year",
-							"course_id": "id-2051068513-1078378986-1921099652"
-						},
-						{
-							"course": "Integrated Math 2",
-							"active": true,
-							"department": "id-1298811312-712594165-1610792525",
-							"units": "10",
-							"length": "",
-							"grades": [
-								"9",
-								"10",
-								"11",
-								"12"
-							],
-							"attributes": [
-								"graduation_requirement"
-							],
-							"description": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.<\/p>\n",
-							"length_quantity": "1",
-							"length_unit": "year",
-							"course_id": "id-1725894009-706977769-915284413"
-						},
-						{
-							"course": "AP Statistics",
-							"active": true,
-							"department": "id-1298811312-712594165-1610792525",
-							"units": "5",
-							"length": "",
-							"grades": [
-								"11",
-								"12"
-							],
-							"attributes": [
-								"advanced_placement"
-							],
-							"description": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.<\/p>\n",
-							"length_quantity": "1",
-							"length_unit": "semester",
-							"course_id": "id-1721919617-1497843089-1630537778"
-						},
-						{
-							"course": "AP Calculus",
-							"active": true,
-							"department": "id-1298811312-712594165-1610792525",
-							"units": "10",
-							"length": "",
-							"grades": [
-								"11",
-								"12"
-							],
-							"attributes": [
-								"advanced_placement"
-							],
-							"description": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.<\/p>\n",
-							"length_quantity": "1",
-							"length_unit": "year",
-							"course_id": "id-197038244-1916880228-191640268"
-						},
-						{
-							"course": "Biology",
-							"active": true,
-							"department": "id-1709568394-1782388424-1579918998",
-							"units": "10",
-							"length": "",
-							"grades": [
-								"10",
-								"11"
-							],
-							"attributes": [
-								"graduation_requirement",
-								"college_requirement"
-							],
-							"description": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.<\/p>\n",
-							"length_quantity": "1",
-							"length_unit": "year",
-							"course_id": "id-611100146-482668724-1413508244"
-						},
-						{
-							"course": "Chemistry",
-							"active": true,
-							"department": "id-1709568394-1782388424-1579918998",
-							"units": "10",
-							"length": "",
-							"grades": [
-								"9",
-								"10",
-								"11"
-							],
-							"attributes": [
-								"graduation_requirement",
-								"college_requirement"
-							],
-							"description": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.<\/p>\n",
-							"length_quantity": "1",
-							"length_unit": "year",
-							"course_id": "id-587923268-1599492364-152208373"
-						},
-						{
-							"course": "AP Biology",
-							"active": true,
-							"department": "id-1709568394-1782388424-1579918998",
-							"units": "10",
-							"length": "",
-							"grades": [
-								"11",
-								"12"
-							],
-							"attributes": [
-								"advanced_placement"
-							],
-							"description": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.<\/p>\n",
-							"length_quantity": "1",
-							"length_unit": "year",
-							"course_id": "id-356268922-1139939384-1685358298"
-						},
-						{
-							"course": "AP Chemistry",
-							"active": true,
-							"department": "id-1709568394-1782388424-1579918998",
-							"units": "10",
-							"length": "",
-							"grades": [
-								"11",
-								"12"
-							],
-							"attributes": [
-								"advanced_placement"
-							],
-							"description": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.<\/p>\n",
-							"length_quantity": "1",
-							"length_unit": "year",
-							"course_id": "id-670285395-515173987-47276157"
-						},
-						{
-							"course": "Spanish 1",
-							"active": true,
-							"department": "id-809586432-1048324422-1074753439",
-							"units": "5",
-							"length": "",
-							"grades": [
-								"9",
-								"10",
-								"11",
-								"12"
-							],
-							"attributes": [
-								"graduation_requirement"
-							],
-							"description": "<p>At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.<\/p>\n",
-							"length_quantity": "1",
-							"length_unit": "semester",
-							"course_id": "id-1478802812-206589450-1546230541"
-						}
-					],
-					"default_value": [],
-					"allow_null": 1,
-					"multiple": 0,
-					"ui": 0,
-					"ajax": 0,
-					"return_format": "label",
-					"placeholder": ""
-				},
-				{
-					"key": "field_59c5b1e130ea2",
-					"label": "Room",
-					"name": "room",
-					"type": "select",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "10",
-						"class": "",
-						"id": ""
-					},
-					"choices": {
-						"id-1683227391-1823300312-2136064425": "201",
-						"id-842760795-1035696307-1039385083": "303",
-						"id-873228441-141650154-2072016757": "409",
-						"id-1611277948-388381361-1918953190": "555",
-						"id-1452624383-284915639-1192441263": "605",
-						"id-1219780927-1473331518-724850094": "773",
-						"id-1475065740-1707155159-697885247": "999"
-					},
-					"default_value": [],
-					"allow_null": 1,
-					"multiple": 0,
-					"ui": 0,
-					"ajax": 0,
-					"return_format": "label",
-					"placeholder": ""
-				},
-				{
-					"key": "field_59d16c8161f7d",
-					"label": "Include Page?",
-					"name": "include_page",
-					"type": "checkbox",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "10",
-						"class": "",
-						"id": ""
-					},
-					"choices": {
-						"1": "&nbsp;"
-					},
-					"allow_custom": 0,
-					"save_custom": 0,
-					"default_value": [],
-					"layout": "vertical",
-					"toggle": 0,
-					"return_format": "value"
-				},
-				{
-					"key": "field_59d127e512d9a",
-					"label": "Class Page",
-					"name": "",
-					"type": "message",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "",
-						"class": "",
-						"id": ""
-					},
-					"message": "Generated automatically",
-					"new_lines": "",
-					"esc_html": 0
-				},
-				{
-					"key": "field_59c5b1f230ea3",
-					"label": "Class ID",
-					"name": "class_id",
-					"type": "text",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "1",
-						"class": "hidden",
-						"id": ""
-					},
-					"default_value": "",
-					"placeholder": "",
-					"prepend": "",
-					"append": "",
-					"maxlength": ""
-				}
-			]
-		}
-	],
-	"location": [
-		[
-			{
-				"param": "post_type",
-				"operator": "==",
-				"value": "page"
-			},
-			{
-				"param": "page_template",
-				"operator": "==",
-				"value": "page-templates\/teacher.php"
-			}
-		]
-	],
-	"menu_order": 1,
-	"position": "normal",
-	"style": "default",
-	"label_placement": "top",
-	"instruction_placement": "label",
-	"hide_on_screen": "",
-	"active": 1,
-	"description": "",
-	"modified": 1518584054
+    "key": "group_59c5b38407016",
+    "title": "Teacher Classes",
+    "fields": [
+        {
+            "key": "field_59c5b229f02a9",
+            "label": "Classes",
+            "name": "syn_classes",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_59c5b1d230ea1",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "Add Class",
+            "collapse_all_repeater": 0,
+            "btn-icon-only": 1,
+            "sub_fields": [
+                {
+                    "key": "field_59c5b18a30e9f",
+                    "label": "Term",
+                    "name": "term",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "2017-2018 All Year": "2017-2018 - All Year",
+                        "2017-2018 1st Trimester": "2017-2018 - 1st Trimester",
+                        "2017-2018 2nd Trimester": "2017-2018 - 2nd Trimester",
+                        "2017-2018 3rd Trimester": "2017-2018 - 3rd Trimester",
+                        "2017-2018 Summer Session": "2017-2018 - Summer Session"
+                    },
+                    "default_value": [],
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "return_format": "label",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_59c5b1be30ea0",
+                    "label": "Period",
+                    "name": "period",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "10",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "id-570481587-497897148-1363095736": "1",
+                        "id-1938920829-1096852728-1646703252": "2",
+                        "id-1197843014-461746676-454524566": "3",
+                        "id-866042511-850868880-712703552": "4",
+                        "id-1080177670-291327787-1379995756": "5",
+                        "id-1146584968-1054185863-1726310314": "6"
+                    },
+                    "default_value": [],
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "return_format": "label",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_59c5b1d230ea1",
+                    "label": "Course",
+                    "name": "course",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "-collapsed-target",
+                        "id": ""
+                    },
+                    "choices": [],
+                    "default_value": [],
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "return_format": "label",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_59c5b1e130ea2",
+                    "label": "Room",
+                    "name": "room",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "10",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "id-1683227391-1823300312-2136064425": "201",
+                        "id-842760795-1035696307-1039385083": "303",
+                        "id-873228441-141650154-2072016757": "409",
+                        "id-1611277948-388381361-1918953190": "555",
+                        "id-1452624383-284915639-1192441263": "605",
+                        "id-1219780927-1473331518-724850094": "773",
+                        "id-1475065740-1707155159-697885247": "999"
+                    },
+                    "default_value": [],
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "return_format": "label",
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_59d16c8161f7d",
+                    "label": "Include Page?",
+                    "name": "include_page",
+                    "type": "checkbox",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "10",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1": "&nbsp;"
+                    },
+                    "allow_custom": 0,
+                    "save_custom": 0,
+                    "default_value": [],
+                    "layout": "vertical",
+                    "toggle": 0,
+                    "return_format": "value"
+                },
+                {
+                    "key": "field_59d127e512d9a",
+                    "label": "Class Page",
+                    "name": "",
+                    "type": "message",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "Generated automatically",
+                    "new_lines": "",
+                    "esc_html": 0
+                },
+                {
+                    "key": "field_59c5b1f230ea3",
+                    "label": "Class ID",
+                    "name": "class_id",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "1",
+                        "class": "hidden",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            },
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates\/teacher.php"
+            }
+        ]
+    ],
+    "menu_order": 1,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1521943081
 }

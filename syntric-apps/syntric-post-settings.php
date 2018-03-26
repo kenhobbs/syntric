@@ -81,6 +81,7 @@
 			}
 			if ( 'field_59e7f370049e3' == $field[ 'key' ] ) {
 				$microblog_id = get_field( 'syn_post_microblog', $post->ID );
+
 				if ( $microblog_id ) {
 					$microblog = get_term( $microblog_id );
 					if ( $microblog ) {
@@ -98,9 +99,6 @@
 		$post_id = syn_resolve_post_id( $post_id );
 		$post    = get_post( $post_id );
 		switch ( $post->post_type ) {
-			//case 'syn_calendar' :
-			//echo '<span class="badge badge-pill badge-secondary">Calendar</span>';
-			//break;
 			case 'syn_event' :
 				$calendar = get_the_title( get_field( 'syn_event_calendar_id', get_the_ID() ) );
 				echo '<span class="badge badge-pill badge-secondary">' . $calendar . '</span>';
@@ -109,16 +107,20 @@
 				echo '<span class="badge badge-pill badge-secondary">' . syn_get_taxonomies_terms() . '</span>';
 				break;
 		}
-		/*if( 'syn_calendar' == get_post_type() ) {
-			echo '<span class="badge badge-pill badge-secondary">Calendar</span>';
+	}
+
+	function syn_excerpt_badges( $post_id = null ) {
+		$post_id = syn_resolve_post_id( $post_id );
+		$post    = get_post( $post_id );
+		switch ( $post->post_type ) {
+			case 'syn_event' :
+				$calendar = get_the_title( get_field( 'syn_event_calendar_id', get_the_ID() ) );
+				echo '<span class="badge badge-pill badge-dark">' . $calendar . '</span>';
+				break;
+			case 'post' :
+				echo '<span class="badge badge-pill badge-dark">' . syn_get_taxonomies_terms() . '</span>';
+				break;
 		}
-		if( 'syn_event' == get_post_type() ) {
-			$calendar = get_the_title( get_field( 'syn_event_calendar_id', get_the_ID() ) );
-			echo '<span class="badge badge-pill badge-secondary">' . $calendar . '</span>';
-		}
-		if( 'post' == get_post_type() ) {
-			echo '<span class="badge badge-pill badge-secondary">' . syn_get_taxonomies_terms() . '</span>';
-		};*/
 	}
 
 	function syn_resolve_post_id( $post_id ) {

@@ -76,7 +76,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "6",
+                "width": "",
                 "class": "",
                 "id": ""
             },
@@ -95,11 +95,11 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "6",
+                "width": "",
                 "class": "",
                 "id": ""
             },
-            "message": "",
+            "message": "Check to create a teacher page for this user",
             "default_value": 0,
             "ui": 0,
             "ui_on_text": "",
@@ -110,9 +110,17 @@
             "label": "Teacher Page",
             "name": "syn_user_page",
             "type": "post_object",
-            "instructions": "",
+            "instructions": "Do not set this value. It will populate and clear itself when using the checkbox above.",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_59c3de980525e",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -141,9 +149,9 @@
     "position": "normal",
     "style": "default",
     "label_placement": "top",
-    "instruction_placement": "label",
+    "instruction_placement": "field",
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1517414331
+    "modified": 1520446352
 }

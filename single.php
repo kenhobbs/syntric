@@ -1,5 +1,7 @@
 <?php
 	get_header();
+	$lb = syn_get_linebreak();
+	$tab = syn_get_tab();
 	echo '<div id="single-wrapper" class="content-wrapper ' . get_post_type() . '-wrapper">';
 	echo '<div class="' . esc_html( get_theme_mod( 'syntric_container_type' ) ) . '">';
 	echo '<div class="row">';
@@ -19,7 +21,7 @@
 			elseif ( 'syn_event' == get_post_type() ) :
 				$dates    = syn_get_event_dates( get_the_ID() );
 				$location = get_field( 'syn_event_location', get_the_ID() );
-				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post->ID . '">';
+				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post->ID . '">' . $lb;
 				//echo '<header class="post-header">';
 				echo '<span class="post-date">' . $dates . '</span>';
 				if ( ! empty( $location ) ) :
@@ -31,7 +33,7 @@
 				echo '</div>';
 				echo '</article>';
 			else :
-				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post->ID . '">';
+				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post->ID . '">' . $lb;
 				//echo '<header class="post-header">';
 				echo '<span class="post-date">' . get_the_date() . '</span>';
 				//echo '</header>';

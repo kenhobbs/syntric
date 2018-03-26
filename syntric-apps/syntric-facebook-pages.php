@@ -52,7 +52,7 @@
 			endwhile;
 			//slog( $page . ' & ' . $auth_type . ' & ' . $auth_token );
 			if ( $page && $auth_token ) {
-				$url      = 'https://graph.facebook.com/' . $page . '/feed?fields=name,created_time,description,message,picture,status_type,type,link,permalink_url,actions,is_published,from,application&limit=' . $number . '&access_token=' . $auth_token;
+				$url      = 'https://graph.facebook.com/' . $page . '/feed?fields=name,created_time,description,message,picture,status_type,type,link,permalink_url,actions,is_published,from,full_picture,attachments{media,type,url,title,target,description,subattachments}&limit=' . $number . '&access_token=' . $auth_token;
 				$response = wp_remote_get( $url );
 				//slog( $url );
 				if ( $response ) {

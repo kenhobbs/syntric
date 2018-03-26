@@ -1,12 +1,7 @@
 <?php
 	get_header();
-	if ( syn_remove_whitespace() ) {
-		$lb  = '';
-		$tab = '';
-	} else {
-		$lb  = "\n";
-		$tab = "\t";
-	}
+	$lb = syn_get_linebreak();
+	$tab = syn_get_tab();
 	echo '<div id="page-wrapper" class="content-wrapper ' . get_post_type() . '-wrapper">' . $lb;
 	echo '<div class="' . esc_html( get_theme_mod( 'syntric_container_type' ) ) . '">' . $lb;
 	echo '<div class="row">' . $lb;
@@ -16,8 +11,8 @@
 	syn_sidebar( 'main', 'top' );
 	if ( have_posts() ) :
 		while( have_posts() ) : the_post();
-			if ( syn_has_content( the_content() ) ) :
-				echo '<article ' . post_class() . ' id="post-' . the_ID() . '">' . $lb;
+			if ( syn_has_content( $post->post_content ) ) :
+				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post->ID . '">' . $lb;
 				the_content();
 				echo '</article>' . $lb;
 			endif;

@@ -39,13 +39,8 @@
 			} else {
 				$title = get_field( 'syn_contact_widget_title', 'widget_' . $args[ 'widget_id' ] );
 			}
-			if ( syn_remove_whitespace() ) {
-				$lb  = '';
-				$tab = '';
-			} else {
-				$lb  = "\n";
-				$tab = "\t";
-			}
+			$lb = syn_get_linebreak();
+			$tab = syn_get_tab();
 			$contact      = '';
 			$contact_type = ( $dynamic ) ? get_field( 'syn_contact_contact_type', $post->ID ) : get_field( 'syn_contact_widget_contact_type', 'widget_' . $args[ 'widget_id' ] );
 			if ( 'person' == $contact_type ) {

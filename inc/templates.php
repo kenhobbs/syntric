@@ -42,7 +42,7 @@
 		function syn_custom_excerpt_more( $more ) {
 			//return '<a href="' . esc_url( get_the_permalink( get_the_ID() ) ) . '" class="read-more-link">Read More</a>';
 			//return ' <span class="read-more-link">Read More</span>';
-			return '...';
+			return ' ...';
 		}
 	}
 	/**
@@ -55,7 +55,7 @@
 	add_filter( 'excerpt_length', 'syn_excerpt_length', 99 );
 	if ( ! function_exists( 'syn_excerpt_length' ) ) {
 		function syn_excerpt_length() {
-			return 30;
+			return 20;
 		}
 	}
 //

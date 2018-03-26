@@ -13,14 +13,7 @@
 <body <?php body_class(); ?>>
 <?php
 	if ( is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) ) :
-		if ( 'school_district' == syn_get_organization_type() ) {
-			syn_head();
-		}
-		syn_primary_nav();
-		get_search_form();
-		syn_banner();
-		syn_breadcrumbs();
-		syn_sidebar( 'header' );
+		syn_header();
 	else :
 		echo '<p>Wordpress is not configured to run Syntric Framework</p>';
 	endif;

@@ -2,19 +2,56 @@
 // Add extra capabilities to any/each role
 	add_action( 'admin_init', 'syn_add_caps' );
 	function syn_add_caps() {
+		///////////////////////////////
 		// Author
+		///////////////////////////////
 		$author_role = get_role( 'author' );
+		// pages
 		$author_role->add_cap( 'edit_pages' );
+		$author_role->add_cap( 'publish_pages' );
+		$author_role->add_cap( 'delete_pages' );
+		// published
 		$author_role->add_cap( 'edit_published_pages' );
-		//Editor
+		$author_role->add_cap( 'delete_published_pages' );
+		// private
+		$author_role->add_cap( 'edit_private_pages' );
+		$author_role->add_cap( 'delete_private_pages' );
+		// posts
+		//$author_role->add_cap( 'edit_posts' );
+		//$author_role->add_cap( 'publish_posts' );
+		//$author_role->add_cap( 'delete_posts' );
+		// published
+		//$author_role->add_cap( 'edit_published_posts' );
+		//$author_role->add_cap( 'delete_published_posts' );
+		// private
+		$author_role->add_cap( 'edit_private_posts' );
+		$author_role->add_cap( 'delete_private_posts' );
+		///////////////////////////////
+		// Editor
+		///////////////////////////////
 		$editor_role = get_role( 'editor' );
+		// users
 		$editor_role->add_cap( 'list_users' );
 		$editor_role->add_cap( 'create_users' );
 		$editor_role->add_cap( 'edit_users' );
 		$editor_role->add_cap( 'delete_users' );
+		// plugins
+		$editor_role->add_cap( 'update_plugins' );
+		$editor_role->add_cap( 'edit_plugins' );
 		$editor_role->remove_cap( 'remove_users' );
-		$editor_role->remove_cap( 'promote_users' );
+		//$editor_role->remove_cap( 'promote_users' );
 		$editor_role->remove_cap( 'manage_categories' );
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/// Also limit items an author can see in Media Library to their own uploads
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		/// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	}
 
 // actions
@@ -104,16 +141,47 @@
 		}
 	}
 
+	/**
+	 * Protect ID #1 and administrator accounts from other users
+	 */
+	add_action( 'pre_user_query', 'syn_hide_administrators' );
+	function syn_hide_administrators( $query ) {
+		if ( is_admin() && is_user_logged_in() ) {
+			global $wpdb;
+			$current_user = wp_get_current_user();
+			// hide user ID #1 from everyone else
+			if ( $current_user->roles[ 0 ] == 'administrator' && $current_user->ID != 1 ) {
+				$query->query_where = str_replace( 'WHERE 1=1', "WHERE 1=1 AND {$wpdb->users}.ID<>1", $query->query_where );
+				// hide administrators from non-administrators
+			} elseif ( $current_user->roles[ 0 ] != 'administrator' ) {
+				$query->query_where = str_replace( 'WHERE 1=1', "WHERE 1=1 AND {$wpdb->users}.ID IN (SELECT {$wpdb->usermeta}.user_id FROM $wpdb->usermeta	WHERE {$wpdb->usermeta}.meta_key = '{$wpdb->prefix}capabilities' AND {$wpdb->usermeta}.meta_value NOT LIKE '%administrator%')", $query->query_where );
+			}
+		}
+	}
+
 // filters
 	add_filter( 'acf/update_value/name=syn_user_phone', 'syn_update_phone', 20 );
 // prepare_field
 	add_filter( 'acf/prepare_field/name=syn_user_page', 'syn_prepare_user_fields' );
+	add_filter( 'acf/prepare_field/name=syn_user_is_teacher', 'syn_prepare_user_fields' );
 	function syn_prepare_user_fields( $field ) {
-		if ( 'syn_user_page' == $field[ '_name' ] ) {
+		if ( ( 'syn_user_page' == $field[ '_name' ] && ! syn_current_user_can( 'administrator' ) ) ||
+		     ( 'syn_user_is_teacher' == $field[ '_name' ] && ! syn_current_user_can( 'editor' ) ) ) {
 			$field[ 'wrapper' ][ 'hidden' ] = true;
 		}
 
 		return $field;
+	}
+
+	add_filter( 'editable_roles', 'syn_editable_roles', 20 );
+	function syn_editable_roles( $roles ) {
+		$current_user = wp_get_current_user();
+		if ( $current_user->roles[ 0 ] != 'administrator' ) {
+			unset( $roles[ 'administrator' ] );
+		}
+		//slog( $roles );
+
+		return $roles;
 	}
 
 // functions
@@ -170,7 +238,7 @@
 					if ( $teacher_page ) {
 						$status = ( 'publish' != $teacher_page->post_status ) ? ' - ' . $teacher_page->post_status : '';
 						echo '<span style="margin-left: 6px;">';
-						echo $teacher_page->post_title . ucfirst( $status );
+						echo $teacher_page->post_title . ucwords( $status );
 						echo '</span>';
 						if ( 'trash' != $teacher_page->post_status ) {
 							echo '<span style="float: right;">';

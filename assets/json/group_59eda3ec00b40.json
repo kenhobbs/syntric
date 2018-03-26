@@ -47,8 +47,9 @@
             "max": 0,
             "layout": "table",
             "button_label": "Add Period",
-            "collapse_all_repeater": 0,
-            "btn-icon-only": 1,
+            "hide_collapse": 1,
+            "collapse_all_repeater": 1,
+            "btn-icon-only": 0,
             "sub_fields": [
                 {
                     "key": "field_59bb95b2c1f9f",
@@ -108,5 +109,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1518181419
+    "modified": 1520195606
 }

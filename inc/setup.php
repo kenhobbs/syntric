@@ -58,16 +58,13 @@
 			/**
 			 * Add support for HTML5 forms
 			 */
-			add_theme_support( 'html5', [ 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption', ] );
-			/**
-			 * Additional image sizes that are auto-generated upon upload of an image into the Media Library
-			 */
-			add_image_size( 'icon', 50, 50, true );
-			add_image_size( 'thumbnail', 100, 100, true );
-			add_image_size( 'medium', 200, 200, true );
-			add_image_size( 'medium_large', 400, 400, true );
-			add_image_size( 'large', 800, 800, true );
-			add_image_size( 'banner', 1920, 500, true );
+			add_theme_support( 'html5', [
+				'search-form',
+				'comment-form',
+				'comment-list',
+				'gallery',
+				'caption',
+			] );
 			/**
 			 * Add support for post thumbnails (Featured Image) in posts (only)
 			 */
@@ -80,7 +77,7 @@
 			 */
 			//set_post_thumbnail_size( 'large' ); // 1920 x 500, cropped from center preferred size for banner (custom header)
 			/**
-			 * Add support for widget edit icons in customizer
+			 * Add support for widget refreshing in the customizer
 			 */
 			add_theme_support( 'customize-selective-refresh-widgets' );
 			/**
@@ -98,8 +95,15 @@
 			/**
 			 * Add support for custom header images
 			 */
-			add_theme_support( 'custom-header', [ 'default-image' => get_template_directory_uri() . '/assets/images/default-header-1.png', 'random-default' => true, 'width' => 1920,
-			                                      'height'        => 500, 'flex-height' => true, 'flex-width' => true, 'uploads' => true, ] );
+			add_theme_support( 'custom-header', [
+				'default-image'  => get_template_directory_uri() . '/assets/images/default-header-1.png',
+				'random-default' => true,
+				'width'          => 1920,
+				'height'         => 500,
+				'flex-height'    => true,
+				'flex-width'     => true,
+				'uploads'        => true,
+			] );
 			/**
 			 * Add support for editor stylesheet
 			 *
@@ -107,6 +111,27 @@
 			 */
 			//add_theme_support( 'editor-style' );
 			//~~~~~~~~~ Misc theme features
+			/**
+			 * Additional image sizes that are auto-generated upon upload of an image into the Media Library
+			 */
+			add_image_size( 'icon', 50, 50, 1 );
+			//add_image_size( 'thumbnail', 100, 100, true );
+			update_option( 'thumbnail_size_w', 100 );
+			update_option( 'thumbnail_size_h', 100 );
+			update_option( 'thumbnail_crop', 0 );
+			//add_image_size( 'medium', 200, 200, true );
+			update_option( 'medium_size_w', 200 );
+			update_option( 'medium_size_h', 200 );
+			update_option( 'medium_crop', 0 );
+			//add_image_size( 'medium_large', 400, 400, 1 );
+			update_option( 'medium_large_size_w', 400 );
+			update_option( 'medium_large_size_h', 400 );
+			update_option( 'medium_large_crop', 0 );
+			//add_image_size( 'large', 800, 800, true );
+			update_option( 'large_size_w', 800 );
+			update_option( 'large_size_h', 800 );
+			update_option( 'large_crop', 0 );
+			add_image_size( 'banner', 1920, 500, 1 );
 			/**
 			 * Add ability to integrate translations using textdomain
 			 * Translations can be filed in the /assets/languages/ directory.
@@ -116,23 +141,37 @@
 			/**
 			 * Register nav menu locations
 			 */
-			register_nav_menus( [ 'primary' => __( 'Primary Menu', 'syntric' ), 'notices' => __( 'Notices Menu', 'syntric' ), 'quick' => __( 'Quick Menu', 'syntric' ),
-			                      'sitemap' => __( 'Sitemap', 'syntric' ), ] );
+			register_nav_menus( [
+				'primary' => __( 'Primary Menu', 'syntric' ),
+				//'notices' => __( 'Notices Menu', 'syntric' ),
+				//'quick'   => __( 'Quick Menu', 'syntric' ),
+				//'sitemap' => __( 'Sitemap', 'syntric' ),
+			] );
 			/**
 			 * Register multiple default headers when randomizing headers by default
 			 */
-			register_default_headers( [ 'header-1' => [ 'url'           => get_template_directory_uri() . '/assets/images/default-header-1.png',
-			                                            'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-1.png',
-			                                            'description'   => __( 'Default header 1', 'syntric' ) ],
-			                            'header-2' => [ 'url'           => get_template_directory_uri() . '/assets/images/default-header-2.png',
-			                                            'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-2.png',
-			                                            'description'   => __( 'Default header 2', 'syntric' ) ],
-			                            'header-3' => [ 'url'           => get_template_directory_uri() . '/assets/images/default-header-3.png',
-			                                            'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-3.png',
-			                                            'description'   => __( 'Default header 3', 'syntric' ) ],
-			                            'header-4' => [ 'url'           => get_template_directory_uri() . '/assets/images/default-header-4.png',
-			                                            'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-4.png',
-			                                            'description'   => __( 'Default header 4', 'syntric' ) ] ] );
+			register_default_headers( [
+				'header-1' => [
+					'url'           => get_template_directory_uri() . '/assets/images/default-header-1.png',
+					'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-1.png',
+					'description'   => __( 'Default header 1', 'syntric' ),
+				],
+				'header-2' => [
+					'url'           => get_template_directory_uri() . '/assets/images/default-header-2.png',
+					'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-2.png',
+					'description'   => __( 'Default header 2', 'syntric' ),
+				],
+				'header-3' => [
+					'url'           => get_template_directory_uri() . '/assets/images/default-header-3.png',
+					'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-3.png',
+					'description'   => __( 'Default header 3', 'syntric' ),
+				],
+				'header-4' => [
+					'url'           => get_template_directory_uri() . '/assets/images/default-header-4.png',
+					'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-4.png',
+					'description'   => __( 'Default header 4', 'syntric' ),
+				],
+			] );
 			//~~~~~~~~~ Setup defaults for customizer settings
 			// todo: can these be eliminated?
 			/**
@@ -154,10 +193,16 @@
 	/**
 	 * Rename image sizes
 	 */
-	add_filter( 'image_size_names_choose', 'syn_image_size_names' );
+	//add_filter( 'image_size_names_choose', 'syn_image_size_names' );
 	function syn_image_size_names( $sizes ) {
-		return array_merge( $sizes, [ 'icon'         => __( 'Icon (50x50)' ), 'thumbnail' => __( 'Thumbnail (100x100)' ), 'medium' => __( 'Medium (200x200)' ),
-		                              'medium_large' => __( 'Medium-Large (400x400)' ), 'large' => __( 'Large (800x800)' ), ] );
+		return array_merge( $sizes, [
+			'icon'         => __( '50x50 (icon)' ),
+			'thumbnail'    => __( '100x100 (thumbnail)' ),
+			'medium'       => __( '200x200 (medium)' ),
+			'medium_large' => __( '400x400 (medium_large)' ),
+			'large'        => __( '800x800 (large)' ),
+			'banner'       => __( '1920x500 (banner)' ),
+		] );
 	}
 
 	/**
@@ -209,7 +254,12 @@
 		} else {
 			$to = $userdata[ 'user_email' ];
 		}
-		$email = [ 'to' => $to, 'subject' => 'Website email address changed', 'message' => $email[ 'message' ], 'headers' => $email[ 'headers' ] ];
+		$email = [
+			'to'      => $to,
+			'subject' => 'Website email address changed',
+			'message' => $email[ 'message' ],
+			'headers' => $email[ 'headers' ],
+		];
 
 		return $email;
 	}
@@ -226,7 +276,12 @@
 		} else {
 			$to = $userdata[ 'user_email' ];
 		}
-		$email = [ 'to' => $to, 'subject' => 'Website password changed', 'message' => $email[ 'message' ], 'headers' => $email[ 'headers' ] ];
+		$email = [
+			'to'      => $to,
+			'subject' => 'Website password changed',
+			'message' => $email[ 'message' ],
+			'headers' => $email[ 'headers' ],
+		];
 
 		return $email;
 	}

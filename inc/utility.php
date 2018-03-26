@@ -1,6 +1,22 @@
 <?php
 	function syn_has_content( $str ) {
-		return trim( str_replace( '&nbsp;', '', strip_tags( $str ) ) ) != '';
+		return strlen( trim( str_replace( '&nbsp;', '', strip_tags( $str ) ) ) );
+	}
+
+	function syn_get_linebreak() {
+		if ( syn_remove_whitespace() ) {
+			return '';
+		}
+
+		return "\n";
+	}
+
+	function syn_get_tab() {
+		if ( syn_remove_whitespace() ) {
+			return '';
+		}
+
+		return "\t";
 	}
 
 	// todo: improve the next 3 (syn_is_dev, syn_is_staging, syn_remove_whitespace), they get run every request
@@ -32,7 +48,7 @@
 	}
 
 	function syn_remove_whitespace() {
-		if ( ! syn_is_dev() && ! syn_is_staging() ) {
+		if ( ! syn_is_dev() ) {
 			return true;
 		}
 

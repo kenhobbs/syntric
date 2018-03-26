@@ -59,30 +59,30 @@
 			'capability'  => 'edit_others_pages',
 		] );
 		// People
-		acf_add_options_sub_page( [
+		/*acf_add_options_sub_page( [
 			'page_title'  => 'People',
 			'menu_title'  => 'People',
 			'menu_slug'   => 'syntric-people',
 			'parent_slug' => 'syntric-organization',
 			'capability'  => 'edit_others_pages',
-		] );
-		// Academic Calendar
-		acf_add_options_sub_page( [
-			'page_title'  => 'Acedemic Calendar',
-			'menu_title'  => 'Acedemic Calendar',
-			'menu_slug'   => 'syntric-academic-calendar',
-			'parent_slug' => 'syntric-organization',
-			'capability'  => 'edit_others_pages',
-		] );
-		// Departments
-		acf_add_options_sub_page( [
-			'page_title'  => 'Departments',
-			'menu_title'  => 'Departments',
-			'menu_slug'   => 'syntric-departments',
-			'parent_slug' => 'syntric-organization',
-			'capability'  => 'edit_others_pages',
-		] );
+		] );*/
 		if ( $organization_is_school ) {
+			// Academic Calendar
+			acf_add_options_sub_page( [
+				'page_title'  => 'Acedemic Calendar',
+				'menu_title'  => 'Acedemic Calendar',
+				'menu_slug'   => 'syntric-academic-calendar',
+				'parent_slug' => 'syntric-organization',
+				'capability'  => 'edit_others_pages',
+			] );
+			// Departments
+			acf_add_options_sub_page( [
+				'page_title'  => 'Departments',
+				'menu_title'  => 'Departments',
+				'menu_slug'   => 'syntric-departments',
+				'parent_slug' => 'syntric-organization',
+				'capability'  => 'edit_others_pages',
+			] );
 			// Buildings
 			acf_add_options_sub_page( [
 				'page_title'  => 'Buildings/Facilities',
@@ -249,6 +249,43 @@
 		return false;
 	}
 
+	// Remove 3rd party plugin hooks
+	add_action( 'wp_head', 'syn_remove_plugin_hooks' );
+	function syn_remove_plugin_hooks() {
+		global $tinymce_templates;
+		if ( $tinymce_templates ) {
+			//remove_filter( 'post_row_actions', array( $tinymce_templates, 'row_actions' ), 10, 2 );
+			//remove_filter( 'page_row_actions', array( $tinymce_templates, 'row_actions' ), 10, 2 );
+			remove_action( 'wp_before_admin_bar_render', [
+				$tinymce_templates,
+				'wp_before_admin_bar_render',
+			] );
+		}
+	}
+
+	/**
+	 * Require post_title
+	 */
+	/*	add_action( 'admin_init', 'syn_force_post_title' );
+		add_action( 'edit_form_advanced', 'syn_force_post_title' );
+		add_action( 'edit_page_form', 'syn_force_post_title' );
+		function syn_force_post_title() {
+			echo "<script type='text/javascript'>\n";
+			echo "jQuery('#publish').click(function(){
+			var testervar = jQuery('[id^=\"titlediv\"]')
+			.find('#title');
+			if (testervar.val().length < 1)
+			{
+				jQuery('[id^=\"titlediv\"]').css('background', '#F96');
+				setTimeout(\"jQuery('#ajax-loading').css('visibility', 'hidden');\", 100);
+				alert('POST TITLE is required');
+				setTimeout(\"jQuery('#publish').removeClass('button-primary-disabled');\", 100);
+				return false;
+			}
+		});
+	  ";
+			echo "</script>\n";
+		}*/
 	function syn_syntric_user() {
 		$syntric_user = get_user_by( 'login', 'syntric' );
 
@@ -302,7 +339,6 @@
 		if ( ! syn_current_user_can( 'administrator' ) ) {
 			//remove_menu_page( 'users.php' ); // Users
 			remove_menu_page( 'themes.php' ); // Appearance
-			remove_menu_page( 'plugins.php' ); // Plugins
 			remove_menu_page( 'settings.php' ); // Settings
 		}
 		// Remove for all but editor
@@ -310,6 +346,7 @@
 			// nothing...
 			remove_menu_page( 'users.php' ); // Users
 			// http://master.localhost/wp-admin/edit.php?post_type=tinymcetemplates
+			remove_menu_page( 'plugins.php' ); // Plugins
 			remove_menu_page( 'edit.php?post_type=syn_calendar' ); // Calendars
 			remove_menu_page( 'edit.php?post_type=tinymcetemplates' ); // Templates
 		}
@@ -658,7 +695,7 @@
 	 */
 	add_filter( 'menu_order', 'syn_menu_order' );
 	function syn_menu_order( $menu_order ) {
-		global $submenu;
+		//global $submenu;
 		$_menu_order = [
 			'index.php',
 			// Dashboard
@@ -701,90 +738,6 @@
 			'jetpack',
 			// Jetpack
 		];
-
-		/*if ( ! syn_current_user_can( 'administrator' ) ) {
-			foreach ( $submenu as $menu => $subs ) {
-				if ( 'themes.php' == $menu ) {
-					foreach ( $subs as $key => $details ) {
-						if ( 'theme-editor.php' == $details[ 2 ] ) {
-							unset( $submenu[ 'themes.php' ][ $key ] );
-						}
-					}
-				}
-				if ( 'edit.php' == $menu ) {
-					foreach ( $subs as $key => $details ) {
-						if ( 'edit-tags.php?taxonomy=microblog' == $details[ 2 ] ) {
-							unset( $submenu[ 'edit.php' ][ $key ] );
-						}
-						if ( 'edit.php?post_type=page&page=nestedpages' == $details[ 2 ] ) {
-							unset( $submenu[ 'edit.php' ][ $key ] );
-						}
-					}
-				}
-				if ( 'edit.php?post_type=page' == $menu ) {
-					foreach ( $subs as $key => $details ) {
-						if ( 'edit.php?post_type=page&page=nestedpages' == $details[ 2 ] ) {
-							unset( $submenu[ 'edit.php?post_type=page' ][ $key ] );
-						}
-					}
-				}
-				if ( 'tools.php' == $menu ) {
-					foreach ( $subs as $key => $details ) {
-						if ( 'crontrol_admin_manage_page' == $details[ 2 ] ) {
-							unset( $submenu[ 'tools.php' ][ $key ] );
-						}
-						if ( 'rvg-optimize-database' == $details[ 2 ] ) {
-							unset( $submenu[ 'tools.php' ][ $key ] );
-						}
-					}
-				}
-				if ( 'users.php' == $menu ) {
-					foreach ( $subs as $key => $details ) {
-						if ( 'users-user-role-editor.php' == $details[ 2 ] ) {
-							//unset( $submenu[ 'users.php' ][ $key ] );
-						}
-					}
-				}
-				if ( 'plugins.php' == $menu ) {
-					foreach ( $subs as $key => $details ) {
-						if ( 'plugin-editor.php' == $details[ 2 ] ) {
-							unset( $submenu[ 'plugins.php' ][ $key ] );
-						}
-					}
-				}
-				if ( 'options-general.php' == $menu ) {
-					foreach ( $subs as $key => $details ) {
-						if ( 'advanced-custom-fields-viewer/admin/options.php' == $details[ 2 ] ) {
-							unset( $submenu[ 'options-general.php' ][ $key ] );
-						}
-						if ( 'codepress-admin-columns' == $details[ 2 ] ) {
-							unset( $submenu[ 'options-general.php' ][ $key ] );
-						}
-						if ( 'format-media-titles/format-media-titles.php' == $details[ 2 ] ) {
-							unset( $submenu[ 'options-general.php' ][ $key ] );
-						}
-						if ( 'tinymce-advanced' == $details[ 2 ] ) {
-							unset( $submenu[ 'options-general.php' ][ $key ] );
-						}
-						if ( 'tpb-settings' == $details[ 2 ] ) {
-							unset( $submenu[ 'options-general.php' ][ $key ] );
-						}
-						if ( 'settings-user-role-editor.php' == $details[ 2 ] ) {
-							unset( $submenu[ 'options-general.php' ][ $key ] );
-						}
-						if ( 'crontrol_admin_options_page' == $details[ 2 ] ) {
-							unset( $submenu[ 'options-general.php' ][ $key ] );
-						}
-						if ( 'nested-pages-settings' == $details[ 2 ] ) {
-							unset( $submenu[ 'options-general.php' ][ $key ] );
-						}
-						if ( 'odb_settings_page' == $details[ 2 ] ) {
-							unset( $submenu[ 'options-general.php' ][ $key ] );
-						}
-					}
-				}
-			}
-		}*/
 
 		return $_menu_order;
 	}
@@ -872,14 +825,15 @@
 		// hide from everyone but administrator and editor
 		if ( ! current_user_can( 'administrator' ) && ! current_user_can( 'editor' ) ) {
 			$hidden[] = 'pageparentdiv'; // Page Attributes
+			$hidden[] = 'acf-group_59c5d19611678';
 			//$hidden[] = 'submitdiv'; // Publish
 		}
 
 		return $hidden;
 	}
 
-	add_filter( 'login_redirect', 'syn_login_redirect', 20, 3 );
-	function syn_login_redirect( $redirect_to, $request, $user ) {
+	//add_filter( 'login_redirect', 'syn_login_redirect', 20, 3 );
+	function _____notinuse____syn_login_redirect( $redirect_to, $request, $user ) {
 		if ( $user && $user instanceof WP_User ) {
 			$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user->ID );
 			if ( $is_teacher ) {
@@ -939,9 +893,14 @@
 	}
 
 	/*************************************** After footer (after all scripts are loaded) *****************************************/
+	/**
+	 * Print inline javascript to trigger asyncronous API calls last.
+	 * todo: change this so timing of calls are optimized for optimized page rendering
+	 */
 	add_action( 'wp_print_footer_scripts', 'syn_print_after_footer', 99 );
 	function syn_print_after_footer() {
 		// todo: rather than just looking for maps, look to see if there is an active map widget...or put call in widget itself.
+		// todo: convert this inline javascript to <script async src... to speed rendering
 		$maps = get_field( 'syn_google_maps', 'option' );
 		if ( 'syn_calendar' == get_post_type() || $maps ) :
 			$lb  = "\n";
@@ -1147,7 +1106,10 @@
 	}
 
 	function syn_load_courses( $field ) {
-		if ( 'select' == $field[ 'type' ] ) {
+		global $post;
+		//slog( 'syn_load_courses => $post');
+		//slog($post);
+		if ( 'select' == $field[ 'type' ] && $post instanceof WP_Post && 'acf-field-group' != $post->post_type ) {
 			/*$choices = [];
 			$courses = get_field( 'syn_courses', 'option' );
 			if ( $courses && is_array( $courses ) ) {
@@ -1157,9 +1119,12 @@
 			}
 			asort( $choices );
 			$field[ 'choices' ] = $choices;*/
-			$courses            = syn_get_courses();
+			$courses = syn_get_courses();
+			/******
+			 * Need to handle the different return structures from syn_get_courses()
+			 * One type is grouped by department, the other not
+			 */
 			$field[ 'choices' ] = $courses;
-
 		}
 
 		return $field;
@@ -1300,12 +1265,12 @@
 				foreach ( $teacher_pages as $teacher_page ) { // teacher_page is post->ID
 					$teacher_id   = get_field( 'syn_page_teacher', $teacher_page );
 					$teacher      = get_user_by( 'ID', $teacher_id );
-					//$teacher_name = ( $teacher ) ? ' (' . $teacher->display_name . ')' : ' (Unknown)';
+					$teacher_name = ( $teacher ) ? ' (' . $teacher->display_name . ')' : ' (Unknown)';
 					$classes      = get_field( 'syn_classes', $teacher_page );
 					if ( $classes ) {
 						foreach ( $classes as $class ) {
 							if ( $class[ 'class_id' ] ) {
-								$choices[ $class[ 'class_id' ] ] = $courses[ $class[ 'course' ] ];
+								$choices[ $class[ 'class_id' ] ] = $courses[ $class[ 'course' ] ] . ' ' . $teacher_name;
 							}
 						}
 					}
@@ -1342,6 +1307,7 @@
 					$choices[ 0 ] = '+ New calendar';
 				}
 				foreach ( $calendars as $calendar ) {
+					// todo: currently "Author > Calendar" but should be
 					$choices[ $calendar->ID ] = get_the_author_meta( 'first_name', $calendar->post_author ) . ' ' . get_the_author_meta( 'last_name', $calendar->post_author ) . ' > ' . get_the_title( $calendar->ID );
 				}
 			}
@@ -1417,7 +1383,8 @@
 		if ( ! $departments_active ) {
 			asort( $ret );
 		}
-
+		//slog( 'syn_get_courses => $ret');
+		//slog( $ret );
 		return $ret;
 	}
 
@@ -1530,17 +1497,17 @@
 	}
 
 	function syn_create_teachers_page() {
-		$site_owner       = get_field( 'syn_organization_person', 'option' );
-		$site_owner       = ( is_int( $site_owner ) ) ? $site_owner : 1;
-		$args             = [
+		$academics_page    = get_page_by_title( 'Academics' );
+		$academics_page_id = ( $academics_page instanceof WP_Post ) ? $academics_page->ID : 0;
+		$args              = [
 			'post_type'   => 'page',
 			'post_title'  => 'Teachers',
 			'post_name'   => 'teachers',
-			'post_author' => $site_owner,
-			'post_parent' => 0,
-			'post_status' => 'draft',
+			'post_author' => get_current_user_id(),
+			'post_parent' => $academics_page_id,
+			'post_status' => 'publish',
 		];
-		$teachers_page_id = wp_insert_post( $args );
+		$teachers_page_id  = wp_insert_post( $args );
 		update_post_meta( $teachers_page_id, '_wp_page_template', 'page-templates/teachers.php' );
 
 		return $teachers_page_id;
@@ -1796,6 +1763,8 @@
 
 	function syn_save_teacher_classes( $teacher_id ) {
 		$teacher_page = syn_get_teacher_page( $teacher_id );
+		//slog( 'syn_save_teacher_classes => $teacher_page');
+		//slog( $teacher_page );
 		if ( $teacher_page instanceof WP_Post ) {
 			$teacher_class_pages = syn_get_teacher_class_pages( $teacher_id, true );
 			$tcp_ids             = [];
@@ -1810,51 +1779,67 @@
 			$teacher_classes = syn_get_teacher_classes( $teacher_page->ID );
 			$tc_ids          = [];
 			$tc_args         = [];
+			//slog( 'syn_save_teacher_classes => $teacher_classes');
+			//slog( $teacher_classes );
 			if ( $teacher_classes ) {
-				$courses = get_field( 'syn_courses', 'option' );
-				$courses = array_column( $courses, 'course', 'course_id' );
-				foreach ( $teacher_classes as $teacher_class ) {
-					$include_page = $teacher_class[ 'include_page' ];
-					if ( $include_page ) {
-						$tc_ids[]                                = $teacher_class[ 'class_id' ];
-						$cp_title                                = $courses[ $teacher_class[ 'course' ] ];
-						$tc_args[ $teacher_class[ 'class_id' ] ] = [
-							'post_type'   => 'page',
-							'post_title'  => $cp_title,
-							'post_name'   => syn_sluggify( $cp_title ),
-							'post_author' => $teacher_id,
-							'post_parent' => $teacher_page->ID,
-						];
+				$departments_active = get_field( 'syn_departments_active', 'option' );
+				$courses            = get_field( 'syn_courses', 'option' );
+				$courses            = array_column( $courses, 'course', 'course_id' );
+				slog( $courses );
+				if ( count( $teacher_classes ) ) {
+					foreach ( $teacher_classes as $teacher_class ) {
+						slog( $teacher_class );
+						$include_page = $teacher_class[ 'include_page' ];
+						if ( $include_page ) {
+							$tc_ids[] = $teacher_class[ 'class_id' ];
+							$cp_title = ( $departments_active ) ? $courses[ $teacher_class[ 'course' ] ] : $teacher_class[ 'course' ];
+							//$cp_title                                = $courses[ $teacher_class[ 'course' ] ];
+							$tc_args[ $teacher_class[ 'class_id' ] ] = [
+								'post_type'   => 'page',
+								'post_title'  => $cp_title,
+								'post_name'   => syn_sluggify( $cp_title ),
+								'post_author' => $teacher_id,
+								'post_parent' => $teacher_page->ID,
+							];
+						}
 					}
 				}
+				//slog( 'syn_save_teacher_classes => $tc_args');
+				//slog( $tc_args );
 				// does - classes that have a page
 				$does = array_intersect( $tc_ids, $tcp_ids );
-				foreach ( $does as $class_id ) {
-					$args                   = $tc_args[ $class_id ];
-					$tcp                    = $tcp_pages[ $class_id ];
-					$args[ 'ID' ]           = $tcp->ID;
-					$args[ 'post_status' ]  = ( 'trash' == $tcp->post_status ) ? 'draft' : $tcp->post_status;
-					$args[ 'post_content' ] = $tcp->post_content;
-					$tcp_id                 = wp_update_post( $args );
-					update_post_meta( $tcp_id, '_wp_page_template', 'page-templates/class.php' );
-					update_field( 'syn_page_class_teacher', $teacher_id, $tcp_id );
-					update_field( 'syn_page_class', $class_id, $tcp_id );
+				if ( count( $does ) ) {
+					foreach ( $does as $class_id ) {
+						$args                   = $tc_args[ $class_id ];
+						$tcp                    = $tcp_pages[ $class_id ];
+						$args[ 'ID' ]           = $tcp->ID;
+						$args[ 'post_status' ]  = ( 'trash' == $tcp->post_status ) ? 'draft' : $tcp->post_status;
+						$args[ 'post_content' ] = $tcp->post_content;
+						$tcp_id                 = wp_update_post( $args );
+						update_post_meta( $tcp_id, '_wp_page_template', 'page-templates/class.php' );
+						update_field( 'syn_page_class_teacher', $teacher_id, $tcp_id );
+						update_field( 'syn_page_class', $class_id, $tcp_id );
+					}
 				}
 				// should - classes that don't have a page
 				$should = array_diff( $tc_ids, $tcp_ids );
-				foreach ( $should as $class_id ) {
-					$args                   = $tc_args[ $class_id ];
-					$args[ 'post_status' ]  = 'draft';
-					$args[ 'post_content' ] = syn_get_class_page_content();
-					$tcp_id                 = wp_insert_post( $args );
-					update_post_meta( $tcp_id, '_wp_page_template', 'page-templates/class.php' );
-					update_field( 'syn_page_class_teacher', $teacher_id, $tcp_id );
-					update_field( 'syn_page_class', $class_id, $tcp_id );
+				if ( count( $should ) ) {
+					foreach ( $should as $class_id ) {
+						$args                   = $tc_args[ $class_id ];
+						$args[ 'post_status' ]  = 'draft';
+						$args[ 'post_content' ] = syn_get_class_page_content();
+						$tcp_id                 = wp_insert_post( $args );
+						update_post_meta( $tcp_id, '_wp_page_template', 'page-templates/class.php' );
+						update_field( 'syn_page_class_teacher', $teacher_id, $tcp_id );
+						update_field( 'syn_page_class', $class_id, $tcp_id );
+					}
 				}
 				// should_not - pages without a class
 				$should_not = array_diff( $tcp_ids, $tc_ids );
-				foreach ( $should_not as $class_id ) {
-					$del_res = syn_trash_teacher_class_page( $teacher_id, $class_id );
+				if ( count( $should_not ) ) {
+					foreach ( $should_not as $class_id ) {
+						$del_res = syn_trash_teacher_class_page( $teacher_id, $class_id );
+					}
 				}
 			}
 		}
@@ -2119,6 +2104,13 @@
 		return false;
 	}
 
+	/**
+	 * Get a page template
+	 *
+	 * @param $post_id
+	 *
+	 * @return bool
+	 */
 	function syn_get_page_template( $post_id ) {
 		$post_id = syn_resolve_post_id( $post_id );
 		if ( 'page' == get_post_type( $post_id ) ) {
@@ -2135,26 +2127,99 @@
 		return false;
 	}
 
+	function syn_is_default_page( $post_id ) {
+		$post_id = syn_resolve_post_id( $post_id );
+		if ( 'page' == syn_get_page_template( $post_id ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	function syn_is_teachers_page( $post_id ) {
+		$post_id = syn_resolve_post_id( $post_id );
+		if ( 'teachers' == syn_get_page_template( $post_id ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	function syn_is_teacher_page( $post_id ) {
+		$post_id = syn_resolve_post_id( $post_id );
+		if ( 'teacher' == syn_get_page_template( $post_id ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	function syn_is_class_page( $post_id ) {
+		$post_id = syn_resolve_post_id( $post_id );
+		if ( 'class' == syn_get_page_template( $post_id ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	function syn_is_course_page( $post_id ) {
+		$post_id = syn_resolve_post_id( $post_id );
+		if ( 'course' == syn_get_page_template( $post_id ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	function syn_is_department_page( $post_id ) {
+		$post_id = syn_resolve_post_id( $post_id );
+		if ( 'department' == syn_get_page_template( $post_id ) ) {
+			return true;
+		}
+
+		return false;
+	}
+
 	function syn_sluggify( $string ) {
 		$slug = str_replace( ' ', '-', $string );
 		$slug = preg_replace( "/[^A-Za-z0-9\-]/", '', $slug );
 		$slug = str_replace( '--', '-', $slug );
 		$slug = str_replace( '---', '-', $slug );
 
-		return $slug;
+		return strtolower( $slug );
 	}
 
-	function syn_head() {
-		if ( syn_remove_whitespace() ) {
-			$lb  = '';
-			$tab = '';
-		} else {
-			$lb  = "\n";
-			$tab = "\t";
-		}
+	function syn_header() {
+		$lb  = syn_get_linebreak();
+		$tab = syn_get_tab();
 		echo '<div id="fb-root"></div>';
-		echo '<div class="print-header print-header-name d-print-block" aria-hidden="true">' . get_bloginfo( 'name', 'display' ) . '</div>';
-		echo '<a class="sr-only sr-only-focusable skip-to-content-link" href="#content">' . esc_html( 'Skip to content', 'syntric' ) . '</a>';
+		echo '<div class="print-header print-header-name d-print-block" aria-hidden="true">' . get_bloginfo( 'name', 'display' ) . '</div>' . $lb;
+		echo '<a class="sr-only sr-only-focusable skip-to-content-link" href="#content">' . esc_html( 'Skip to content', 'syntric' ) . '</a>' . $lb;
+		if ( 'school_district' == syn_get_organization_type() ) {
+			echo '<header class="head">' . $lb;
+			echo $tab . '<div class="container-fluid">' . $lb;
+			echo $tab . $tab . '<div class="row">' . $lb;
+			echo $tab . $tab . $tab . '<div class="col">' . $lb;
+			echo $tab . $tab . $tab . $tab . '<div class="portal-links" aria-label="Portal links">' . $lb;
+			echo $tab . $tab . $tab . $tab . $tab . '<a href="https://amadorcusd.asp.aeries.net/teacher/Login.aspx?page=default.aspx" class="teacher-portal" target="_blank">Teacher Portal <span class="fa fa-sign-in"></span></a>' . $lb;
+			echo $tab . $tab . $tab . $tab . $tab . '<a href="https://amadorcusd.asp.aeries.net/student/LoginParent.aspx?page=default.aspx" class="parent-portal" target="_blank">Parent Portal <span class="fa fa-sign-in"></span></a>' . $lb;
+			echo $tab . $tab . $tab . $tab . '</div>' . $lb;
+			echo $tab . $tab . $tab . '</div>' . $lb;
+			echo $tab . $tab . '</div>' . $lb;
+			echo $tab . '</div>' . $lb;
+			echo '</header>' . $lb;
+		}
+		syn_primary_nav();
+		get_search_form();
+		syn_banner();
+		syn_breadcrumbs();
+		syn_sidebar( 'header' );
+	}
+
+	function ___________syn_head() {
+		$lb  = syn_get_linebreak();
+		$tab = syn_get_tab();
 		echo '<header class="head">' . $lb;
 		echo $tab . '<div class="container-fluid">' . $lb;
 		echo $tab . $tab . '<div class="row">' . $lb;
@@ -2172,13 +2237,6 @@
 	function syn_banner() {
 		global $post;
 		// todo: come back and fix this...kinda clunky
-		//if ( ! is_archive() && ! is_home() && has_post_thumbnail() ) {
-		//$post_thumbnail_id       = get_post_thumbnail_id();
-		//$post_thumbnail_metadata = wp_get_attachment_metadata( $post_thumbnail_id );
-		//slog( $post_thumbnail_metadata );
-			//$thumbnail_image = get_the_post_thumbnail( $post, 'banner' );
-			//$thumbnail_image_sizes = wp_get_attachment_metadata();
-			//$banner_style_attribute = ' style="background-image: url(' . $thumbnail_image . ');" ';
 		if ( has_header_image() ) {
 			$header_image           = get_header_image();
 			$banner_style_attribute = ' style="background-image: url(' . $header_image . ');" ';
@@ -2187,13 +2245,8 @@
 		}
 		$jumbotrons = get_field( 'syn_jumbotrons', 'option' );
 		if ( has_header_image() || $jumbotrons ) {
-			if ( syn_remove_whitespace() ) {
-				$lb  = '';
-				$tab = '';
-			} else {
-				$lb  = "\n";
-				$tab = "\t";
-			}
+			$lb  = syn_get_linebreak();
+			$tab = syn_get_tab();
 			echo '<div class="banner-wrapper" aria-hidden="true"' . $banner_style_attribute . 'role="banner">' . $lb;
 			echo syn_jumbotron();
 			echo '</div>' . $lb;
@@ -2220,13 +2273,8 @@
 				}
 			}
 			if ( $jumbotron ) {
-				if ( syn_remove_whitespace() ) {
-					$lb  = '';
-					$tab = '';
-				} else {
-					$lb  = "\n";
-					$tab = "\t";
-				}
+				$lb  = syn_get_linebreak();
+				$tab = syn_get_tab();
 				echo '<div class="jumbotron-wrapper">' . $lb;
 				echo $tab . '<h1 class="jumbotron-headline">' . $jumbotron[ 'headline' ] . '</h1>' . $lb;
 				echo $tab . '<div class="jumbotron-caption">' . $jumbotron[ 'caption' ] . '</div>' . $lb;
@@ -2238,6 +2286,27 @@
 				echo '</div>' . $lb;
 			}
 		}
+	}
+
+	function syn_login_form() {
+		$args = [
+			'echo'           => false,
+			'remember'       => true,
+			'redirect'       => ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER[ 'HTTP_HOST' ] . $_SERVER[ 'REQUEST_URI' ],
+			'form_id'        => 'loginform',
+			'id_username'    => 'user_login',
+			'id_password'    => 'user_pass',
+			'id_remember'    => 'rememberme',
+			'id_submit'      => 'wp-submit',
+			'label_username' => __( 'Username or Email Address' ),
+			'label_password' => __( 'Password' ),
+			'label_remember' => __( 'Remember Me' ),
+			'label_log_in'   => __( 'Log In' ),
+			'value_username' => '',
+			'value_remember' => false,
+		];
+
+		return wp_login_form( $args );
 	}
 
 	/**
@@ -2270,7 +2339,10 @@
 				$breadcrumbs .= '<a class="breadcrumb-item' . $active . '" href="' . esc_url( get_category_link( $categories[ 0 ]->term_id ) ) . '">' . esc_html( $categories[ 0 ]->name ) . '</a>';
 			}
 		}
-		if ( is_single() ) { // post, syn_calendar or syn_event
+		if ( is_attachment() ) {
+			$breadcrumbs .= '<span class="breadcrumb-item active">Attachment</span>';
+		}
+		if ( is_single() && ! is_attachment() ) { // post, syn_calendar or syn_event
 			if ( 'syn_event' == $post->post_type ) {
 				$calendar_post_type_labels = get_post_type_labels( get_post_type_object( 'syn_calendar' ) );
 				$event_post_type_labels    = get_post_type_labels( get_post_type_object( 'syn_event' ) );
@@ -2281,8 +2353,9 @@
 			} elseif ( 'syn_calendar' == $post->post_type ) {
 				$calendar_post_type_labels = get_post_type_labels( get_post_type_object( 'syn_calendar' ) );
 				$breadcrumbs               .= '<span class="breadcrumb-item">' . esc_html( $calendar_post_type_labels->name ) . '</span>';
-			} elseif ( 'attachment' == $post->post_type ) {
-				$attachment = wp_get_attachment_metadata( $post->ID );
+				//} elseif ( 'attachment' == $post->post_type ) {
+				//$attachment = wp_get_attachment_metadata( $post->ID );
+				//$breadcrumbs               .= '<span class="breadcrumb-item">Attachment</span>';
 			} else {
 				$categories  = get_the_category( $post->ID );
 				$breadcrumbs .= '<a class="breadcrumb-item active" href="' . esc_url( get_category_link( $categories[ 0 ]->term_id ) ) . '">' . esc_html( $categories[ 0 ]->name ) . '</a>';
@@ -2322,25 +2395,20 @@
 	 */
 	function syn_foot() {
 		$organization = get_field( 'syn_organization', 'option' );
-		if ( syn_remove_whitespace() ) {
-			$lb  = '';
-			$tab = '';
-		} else {
-			$lb  = "\n";
-			$tab = "\t";
-		}
+		$lb           = syn_get_linebreak();
+		$tab          = syn_get_tab();
 		echo '<footer class="foot">' . $lb;
 		echo $tab . '<div class="container-fluid">' . $lb;
 		echo $tab . $tab . '<div class="row">' . $lb;
-		echo $tab . $tab . $tab . '<div class="non-discrimination col mb-3">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment.</div>' . $lb;
+		echo $tab . $tab . $tab . '<div class="non-discrimination col">' . $organization . ' does not discriminate on the basis of race, color, national origin, age, religion, political affiliation, gender, mental or physical disability, sexual orientation, parental or marital status, or any other basis protected by federal, state, or local law, ordinance or regulation, in its educational program(s) or employment.</div>' . $lb;
 		echo $tab . $tab . '</div>' . $lb;
 		echo $tab . $tab . '<div class="row">' . $lb;
-		echo $tab . $tab . $tab . '<div class="col-md-6">' . $lb;
+		echo $tab . $tab . $tab . '<div class="col">' . $lb;
 		//echo $tab . $tab . '<div id="google-translate" class="google-translate"></div>' . $lb;
-		echo $tab . $tab . $tab . $tab . '<div class="copyright mb-3">&copy; ' . date( 'Y' ) . ' ' . $organization . '</div>' . $lb;
+		echo $tab . $tab . $tab . $tab . '<div class="copyright">&copy; ' . date( 'Y' ) . ' ' . $organization . '</div>' . $lb;
 		echo $tab . $tab . $tab . '</div>' . $lb;
-		echo $tab . $tab . $tab . '<div class="col-md-6">' . $lb;
-		echo $tab . $tab . $tab . $tab . '<div class="login-bug mb-3">' . $lb;
+		echo $tab . $tab . $tab . '<div class="col">' . $lb;
+		echo $tab . $tab . $tab . $tab . '<div class="login-bug">' . $lb;
 		if ( is_user_logged_in() ) {
 			echo $tab . $tab . $tab . $tab . $tab . '<a href="' . wp_logout_url( get_the_permalink() ) . '" class="btn btn-sm btn-danger login-button">Logout</a>' . $lb;
 		} else {
@@ -2352,7 +2420,13 @@
 		echo $tab . $tab . '</div>' . $lb;
 		echo $tab . '</div>' . $lb;
 		echo '</footer>' . $lb;
-		comments_template();
+		syn_comments();
+	}
+
+	function syn_comments() {
+		if ( comments_open() && syn_is_staging() && is_user_logged_in() && syn_current_user_can( 'editor' ) ) {
+			comments_template();
+		}
 	}
 
 	function syn_bug() {
@@ -2369,13 +2443,8 @@
 	function syn_display_teachers() {
 		$teachers = syn_get_teachers();
 		if ( $teachers ) {
-			if ( syn_remove_whitespace() ) {
-				$lb  = '';
-				$tab = '';
-			} else {
-				$lb  = "\n";
-				$tab = "\t";
-			}
+			$lb  = syn_get_linebreak();
+			$tab = syn_get_tab();
 			echo '<h2>Teacher Roster</h2>' . $lb;
 			echo '<table class="teachers-table">' . $lb;
 			echo $tab . '<thead>' . $lb;
@@ -2397,7 +2466,11 @@
 				$teacher_page_published = ( $teacher_page && 'publish' == $teacher_page->post_status ) ? true : false;
 				$teacher_classes        = ( $teacher_page_published ) ? get_field( 'syn_classes', $teacher_page->ID ) : false;
 				$courses                = get_field( 'syn_courses', 'option' );
-				$courses                = array_column( $courses, 'course', 'course_id' );
+				if ( $courses ) {
+					$courses = array_column( $courses, 'course', 'course_id' );
+				} else {
+					$courses = [];
+				}
 				// build a csv list of classes
 				$class_array = [];
 				if ( $teacher_classes ) {
@@ -2439,13 +2512,8 @@
 					$courses        = array_column( $courses, 'course', 'course_id' );
 					$periods_active = get_field( 'syn_periods_active', 'option' );
 					$rooms_active   = get_field( 'syn_rooms_active', 'option' );
-					if ( syn_remove_whitespace() ) {
-						$lb  = '';
-						$tab = '';
-					} else {
-						$lb  = "\n";
-						$tab = "\t";
-					}
+					$lb             = syn_get_linebreak();
+					$tab            = syn_get_tab();
 					echo '<h2>Classes</h2>' . $lb;
 					echo '<table class="teacher-classes-table">' . $lb;
 					echo $tab . '<thead>' . $lb;
@@ -2462,7 +2530,7 @@
 					echo $tab . '</thead>' . $lb;
 					echo $tab . '<tbody>' . $lb;
 					while( have_rows( 'syn_classes', $post->ID ) ) : the_row();
-						$class_id                                           = get_sub_field( 'class_id' );
+						$class_id = get_sub_field( 'class_id' );
 						//$include_page = get_sub_field( 'include_page' );
 						$page = syn_get_teacher_class_page( $teacher_id, $class_id );
 						echo $tab . $tab . '<tr>' . $lb;
@@ -2500,13 +2568,8 @@
 			if ( $department ) {
 				$courses = get_field( 'syn_courses', 'option' );
 				if ( $courses ) {
-					if ( syn_remove_whitespace() ) {
-						$lb  = '';
-						$tab = '';
-					} else {
-						$lb  = "\n";
-						$tab = "\t";
-					}
+					$lb  = syn_get_linebreak();
+					$tab = syn_get_tab();
 					foreach ( $courses as $key => $row ) {
 						$c[ $key ] = $row[ 'course' ];
 					}
@@ -2940,6 +3003,7 @@
 //
 	function ___________________syn_get_post_breadcrumbs( $post_id ) {
 		$post_id = syn_resolve_post_id( $post_id );
+
 		return get_the_title( $post_id );
 		/*
 		 * This is bypassed ATM, not sure if I want a breadcrumb...

@@ -44,13 +44,8 @@
 				$unique_id = syn_generate_permanent_id();
 				//$sidebar   = syn_widget_sidebar( $args[ 'widget_id' ] );
 				$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
-				if ( syn_remove_whitespace() ) {
-					$lb  = '';
-					$tab = '';
-				} else {
-					$lb  = "\n";
-					$tab = "\t";
-				}
+				$lb = syn_get_linebreak();
+				$tab = syn_get_tab();
 				echo $args[ 'before_widget' ] . $lb;
 				if ( ! empty( $title ) ) :
 					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;

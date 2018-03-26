@@ -181,8 +181,9 @@
 				if ( $sync_now ) {
 					syn_sync_calendar( [ 'post_id'   => $post_id,
 					                     'post_type' => 'syn_calendar',
+										 'force_sync' => true,
 					] );
-					update_field( 'syn_calendar_sync_now', null, $post_id );
+					update_field( 'syn_calendar_sync_now', 0, $post_id );
 				}
 			}
 		}
@@ -229,10 +230,11 @@
 		$sync_range                 = '1 year';
 		$last_sync  = ( isset( $calendar_fields[ 'syn_calendar_last_sync' ] ) ) ? $calendar_fields[ 'syn_calendar_last_sync' ] : '';
 		// todo: implement delete events
-		if ( isset( $calendar_fields[ 'syn_calendar_delete_events' ] ) && isset( $calendar_fields[ 'syn_calendar_delete_after' ] ) ) {
+		//if ( isset( $calendar_fields[ 'syn_calendar_delete_events' ] ) && isset( $calendar_fields[ 'syn_calendar_delete_after' ] ) ) {
 			//$delete_events = ( $calendar_fields[ 'syn_calendar_delete_events' ] ) ? $calendar_fields[ 'syn_calendar_delete_events' ] : false;
 			//$delete_after = ( $calendar_fields[ 'syn_calendar_delete_after' ] ) ? $calendar_fields[ 'syn_calendar_delete_after' ] : '';
-		}
+		//}
+		$force_sync = ( isset( $args['force_sync'] ) && $args['force_sync'] ) ? true : false;
 		$time_min = date_create();
 		//date_sub( $time_min, date_interval_create_from_date_string( '1 day' ) ); // take off a day for good measure
 		$time_min = date_format( $time_min, 'c' );
@@ -274,7 +276,7 @@
 
 			return;
 		}
-		if ( ! isset( $last_sync ) || empty( $last_sync ) ) {
+		if ( ! isset( $last_sync ) || empty( $last_sync ) || $force_sync ) {
 			$refresh = true;
 		} else {
 			$local_last_updated     = date_create( $last_sync );

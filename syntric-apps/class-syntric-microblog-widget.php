@@ -54,13 +54,8 @@
 					],
 				],
 			] ) );
-			if ( syn_remove_whitespace() ) {
-				$lb  = '';
-				$tab = '';
-			} else {
-				$lb  = "\n";
-				$tab = "\t";
-			}
+			$lb = syn_get_linebreak();
+			$tab = syn_get_tab();
 			//$sidebar       = syn_widget_sidebar( $args[ 'widget_id' ] );
 			//$sidebar[ 'section' ][ 'value' ]
 			$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );

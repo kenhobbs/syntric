@@ -46,13 +46,8 @@
 			if ( isset( $video_id ) && ! empty( $video_id ) ) :
 				//$sidebar      = syn_widget_sidebar( $args[ 'widget_id' ] );
 				$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
-				if ( syn_remove_whitespace() ) {
-					$lb  = '';
-					$tab = '';
-				} else {
-					$lb  = "\n";
-					$tab = "\t";
-				}
+				$lb = syn_get_linebreak();
+				$tab = syn_get_tab();
 				echo $args[ 'before_widget' ] . $lb;
 				if ( ! empty( $title ) ) :
 					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
@@ -64,11 +59,11 @@
 					echo $tab . '<iframe class="embed-responsive-item" src="https://player.vimeo.com/video/' . $video_id . '?title=0&amp;byline=0&amp;portrait=0" frameborder="0" allowfullscreen></iframe>';
 				}
 				echo '</div>' . $lb;
-				/*if ( $caption && ! empty( $caption ) ) {
-					echo '<div class="video-caption small mt-2">' . $lb;
+				if ( $caption && ! empty( $caption ) ) {
+					echo '<div class="video-caption">' . $lb;
 					echo $caption;
 					echo '</div>' . $lb;
-				}*/
+				}
 				echo $args[ 'after_widget' ] . $lb;
 			else:
 				echo '<p>Video unavailable</p>';
