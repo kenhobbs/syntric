@@ -8482,16 +8482,10 @@ table {
       white-space: nowrap; } }
 
 .gallery {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0.5rem;
-  color: #343a40 !important;
-  background-color: #f8f9fa;
-  border: solid 1px #ddd;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0; }
+  display   : flex;
+  flex-wrap : wrap;
+  padding   : 0.5rem;
+	color   : #343a40 !important; }
   @media (min-width: 1200px) {
     .gallery.gallery-columns-1 > figure {
       width: 100%; }
@@ -8645,6 +8639,12 @@ blockquote {
       max-height: 3.125rem; }
     #primary-navbar .navbar-brand > div > div {
       line-height: 1.5625rem; }
+
+	#primary-navbar .navbar-brand > div > div:first-of-type {
+		font-size : 1rem; }
+
+	#primary-navbar .navbar-brand > div > div:last-of-type {
+		font-size : 0.8125rem; }
     #primary-navbar .navbar-nav {
       margin-left: auto !important; }
       #primary-navbar .navbar-nav > li > a {
@@ -8860,8 +8860,8 @@ body > .foot {
   body > .foot .non-discrimination {
     margin-bottom: 1rem; }
   body > .foot .login-bug {
-    display: flex;
-    float: left; }
+    display : flex;
+	  float : right; }
     body > .foot .login-bug .login-button {
       margin-right: 1rem; }
     body > .foot .login-bug .bug {
@@ -9276,44 +9276,44 @@ body > .sidebar .widget {
     text-transform: uppercase;
     margin-bottom: 4px; }
 
+.widget.syn-contact-widget > div,
+.widget.syn-roster-widget > div {
+	/*.person-phone:before,
+	  .contact-phone:before {
+		  margin          : 0 .5rem 0 0;
+		  font-family     : FontAwesome !important;
+		  content         : "\f095";
+		  text-decoration : none;
+	  }
+	  .person-email:before,
+	  .contact-email:before {
+		  margin          : 0 .5rem 0 0;
+		  font-family     : FontAwesome !important;
+		  content         : "\f0e0";
+		  text-decoration : none;
+	  }
+	  .contact-url:before {
+		  margin          : 0 .5rem 0 0;
+		  font-family     : FontAwesome !important;
+		  content         : "\f245";
+		  text-decoration : none;
+	  }*/ }
+
 .widget.syn-contact-widget > div a,
 .widget.syn-roster-widget > div a {
-  text-decoration: underline; }
-  .widget.syn-contact-widget > div a:hover,
-  .widget.syn-roster-widget > div a:hover {
-    background-color: transparent; }
+	text-decoration : underline; }
+
+.widget.syn-contact-widget > div a:hover,
+.widget.syn-roster-widget > div a:hover {
+	background-color : transparent; }
 
 .widget.syn-contact-widget > div .contact-city-state-zip-code,
 .widget.syn-roster-widget > div .contact-city-state-zip-code {
-  display: flex; }
-  .widget.syn-contact-widget > div .contact-city-state-zip-code > div,
-  .widget.syn-roster-widget > div .contact-city-state-zip-code > div {
-    margin-right: 4px; }
+	display : flex; }
 
-.widget.syn-contact-widget > div .person-phone:before,
-.widget.syn-contact-widget > div .contact-phone:before,
-.widget.syn-roster-widget > div .person-phone:before,
-.widget.syn-roster-widget > div .contact-phone:before {
-  margin: 0 .5rem 0 0;
-  font-family: FontAwesome !important;
-  content: "\f095";
-  text-decoration: none; }
-
-.widget.syn-contact-widget > div .person-email:before,
-.widget.syn-contact-widget > div .contact-email:before,
-.widget.syn-roster-widget > div .person-email:before,
-.widget.syn-roster-widget > div .contact-email:before {
-  margin: 0 .5rem 0 0;
-  font-family: FontAwesome !important;
-  content: "\f0e0";
-  text-decoration: none; }
-
-.widget.syn-contact-widget > div .contact-url:before,
-.widget.syn-roster-widget > div .contact-url:before {
-  margin: 0 .5rem 0 0;
-  font-family: FontAwesome !important;
-  content: "\f245";
-  text-decoration: none; }
+.widget.syn-contact-widget > div .contact-city-state-zip-code > div,
+.widget.syn-roster-widget > div .contact-city-state-zip-code > div {
+	margin-right : 4px; }
 
 .widget.syn-microblog-widget .list-group-item {
   flex-direction: column; }

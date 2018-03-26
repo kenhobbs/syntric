@@ -1,5 +1,5 @@
 <?php
-	get_header();
+	/*get_header();
 	if ( have_posts() ) :
 	$lb = syn_get_linebreak();
 	$tab = syn_get_tab();
@@ -26,10 +26,10 @@
 	echo '</div>' . $lb;
 	echo '</div>' . $lb;
 	endif;
-	get_footer();
-	/*get_header();
+	get_footer();*/
+	get_header();
 	syn_sidebar( 'main', 'left' );
 	syn_sidebar( 'main', 'top' );
 	syn_sidebar( 'main', 'bottom' );
 	syn_sidebar( 'main', 'right' );
-	get_footer();*/
+	get_footer();
