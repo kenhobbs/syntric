@@ -6,7 +6,7 @@
 	 */
 	add_action( 'wp_enqueue_scripts', 'syn_enqueue_scripts' );
 	function syn_enqueue_scripts() {
-		// Deregister, reregister and enqueue jQuery
+		// Deregister, reregister and enqueue jQuery todo: does deregistering jQuery have any unforseen consequences?
 		wp_deregister_script( 'jquery' );
 		wp_register_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js', null, null, true );
 		wp_enqueue_script( 'jquery' );
