@@ -9514,8 +9514,8 @@ body > .sidebar .widget {
             font-weight: 400;
             font-size: 1.125rem; }
         #fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-heading:not(:first-of-type) > .fc-widget-header {
-          padding-top: 1rem;
-          padding-bottom: 1rem; }
+          padding-top      : 1rem;
+			padding-bottom : 0.25rem; }
         #fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-item.fc-has-url > td {
           color: #008; }
           #fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-item.fc-has-url > td a {

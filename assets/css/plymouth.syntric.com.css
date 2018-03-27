@@ -8457,11 +8457,11 @@ figure {
   text-transform: uppercase; }
 
 table {
-  overflow-x: scroll;
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 0;
-  border: 1px solid #ddd; }
+	overflow-x  : hidden !important;
+  width         : 100%;
+  max-width     : 100%;
+  margin-bottom : 0;
+  border        : 1px solid #ddd; }
   table th {
     background-color: #600;
     color: #fff;
@@ -8845,6 +8845,11 @@ body > .head {
     padding: 0.25rem 0; }
     body > .head .portal-links > a:not(:last-child) {
       margin-right: 0.25rem; }
+
+@media print {
+	body > .head {
+		display : none !important; }
+}
 
 body > .foot {
   padding-top: 1rem;
@@ -9497,100 +9502,161 @@ body > .sidebar .widget {
       background-color: #ddd; }
     #fullcalendar button.fc-state-disabled {
       opacity: 0.3; }
-  #fullcalendar .fc-widget-header {
-    border: none; }
-  #fullcalendar .fc-header-toolbar {
+
+#fullcalendar .fc-toolbar {
     margin-bottom: 0.5rem !important; }
-    #fullcalendar .fc-header-toolbar .fc-center > h2 {
+
+#fullcalendar .fc-toolbar > td:not(:last-of-type) {
+	width : 33%; }
+
+#fullcalendar .fc-toolbar .fc-center > h2 {
       margin: 0; }
-  #fullcalendar .fc-list-view {
+
+#fullcalendar .fc-view-container .fc-list-view {
     border: none; }
-  #fullcalendar .fc-list-table {
-    background-color: transparent; }
-  #fullcalendar .fc-list-heading:not(:first-of-type) > .fc-widget-header {
-    padding-top: 1rem;
-    padding-bottom: 1rem; }
-  #fullcalendar .fc-list-item.fc-has-url > td {
-    color: #600; }
-    #fullcalendar .fc-list-item.fc-has-url > td a {
-      color: #600; }
-      #fullcalendar .fc-list-item.fc-has-url > td a:hover {
-        text-decoration: none; }
-  #fullcalendar .fc-list-item.fc-has-url:hover > td {
-    text-decoration: underline; }
-  #fullcalendar .fc-list-item > td {
-    border: none; }
-    #fullcalendar .fc-list-item > td.fc-list-item-marker {
-      display: none; }
-    #fullcalendar .fc-list-item > td:first-of-type {
-      padding: 0.5rem 1rem;
-      color: #600; }
-    #fullcalendar .fc-list-item > td:not(:first-of-type) {
-      padding: 0.5rem 1rem 0.5rem 0;
-      color: #600; }
-  #fullcalendar .fc-list-table {
-    border: none; }
-  #fullcalendar .fc-list-heading .fc-widget-header {
-    padding-left: 0; }
-  #fullcalendar .fc-list-heading-main {
-    font-weight: 400;
-    font-size: 1.125rem; }
-  #fullcalendar .fc-scroller {
-    overflow-y: auto !important;
-    height: auto !important; }
-  #fullcalendar .fc-day-top {
-    background: transparent !important; }
-    #fullcalendar .fc-day-top .fc-day-number {
-      font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-      font-weight: normal;
-      font-size: 0.875rem;
-      line-height: 30px;
-      background-color: #fff;
-      height: 30px;
-      width: 30px;
-      text-align: center;
-      padding: 0;
-      border: none; }
-    #fullcalendar .fc-day-top.fc-today .fc-day-number {
-      background-color: #666;
-      color: #fff;
-      border: none;
-      -webkit-border-radius: 50%;
-      -moz-border-radius: 50%;
-      border-radius: 50%; }
-  #fullcalendar .fc-view.fc-month-view table {
-    margin: 0; }
-    #fullcalendar .fc-view.fc-month-view table tr, #fullcalendar .fc-view.fc-month-view table td {
-      background-color: #fff !important;
-      border-color: #ddd !important; }
-    #fullcalendar .fc-view.fc-month-view table .fc-day-header {
-      padding: 0.5rem 0;
-      background-color: #fff;
-      color: #343a40; }
-      #fullcalendar .fc-view.fc-month-view table .fc-day-header span {
-        font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-        font-size: 0.875rem;
-        text-transform: uppercase;
-        font-weight: normal; }
-    #fullcalendar .fc-view.fc-month-view table .fc-scroller {
-      overflow-x: visible !important;
-      overflow-y: visible !important;
-      height: auto !important; }
-  #fullcalendar .fc-day-grid-event {
-    padding: 0.5rem 1rem !important;
-    margin: 2px;
-    font-size: 0.875rem;
-    background-color: maroon;
-    color: #fff !important;
-    border: none;
-    border-radius: 0; }
-    #fullcalendar .fc-day-grid-event .fc-content {
-      white-space: normal;
-      overflow: visible; }
-      #fullcalendar .fc-day-grid-event .fc-content .fc-time {
-        font-weight: 400; }
-    #fullcalendar .fc-day-grid-event[href]:hover {
-      background-color: #990000; }
+
+#fullcalendar .fc-view-container .fc-list-view .fc-scroller {
+	overflow-y : auto !important;
+	height     : auto !important; }
+
+#fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table {
+	background-color : transparent;
+	border           : none; }
+
+#fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-heading .fc-widget-header {
+	padding-left : 0;
+	border       : none; }
+
+#fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-heading .fc-widget-header .fc-list-heading-main {
+	font-weight : 400;
+	font-size   : 1.125rem; }
+
+#fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-heading:not(:first-of-type) > .fc-widget-header {
+	padding-top    : 1rem;
+	padding-bottom : 0.25rem; }
+
+#fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-item.fc-has-url > td {
+	color : #600; }
+
+#fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-item.fc-has-url > td a {
+	color : #600; }
+
+#fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-item.fc-has-url > td a:hover {
+	text-decoration : none; }
+
+#fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-item.fc-has-url:hover > td {
+	text-decoration  : underline;
+	background-color : transparent; }
+
+#fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-item > td {
+	border : none; }
+
+#fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-item > td.fc-list-item-marker {
+	display : none; }
+
+#fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-item > td:first-of-type {
+	padding : 0.25rem 1rem;
+	color   : #600; }
+
+#fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-item > td:not(:first-of-type) {
+	padding : 0.25rem;
+	color   : #600; }
+
+#fullcalendar .fc-view-container .fc-month-view table {
+	margin : 0; }
+
+#fullcalendar .fc-view-container .fc-month-view table tr, #fullcalendar .fc-view-container .fc-month-view table td {
+	background-color : #fff !important;
+	border-color     : #ddd !important; }
+
+#fullcalendar .fc-view-container .fc-month-view table thead.fc-head .fc-day-header {
+	padding          : 0.5rem 0;
+	background-color : #fff;
+	color            : #343a40; }
+
+#fullcalendar .fc-view-container .fc-month-view table thead.fc-head .fc-day-header span {
+	font-family    : Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+	font-size      : 0.875rem;
+	text-transform : uppercase;
+	font-weight    : normal; }
+
+#fullcalendar .fc-view-container .fc-month-view table tbody.fc-body div.fc-scroller {
+	overflow-x : visible !important;
+	overflow-y : visible !important;
+	height     : auto !important; }
+
+#fullcalendar .fc-view-container .fc-month-view table tbody.fc-body div.fc-scroller td.fc-day-top {
+	background : transparent !important; }
+
+#fullcalendar .fc-view-container .fc-month-view table tbody.fc-body div.fc-scroller td.fc-day-top .fc-day-number {
+	font-family      : Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+	font-weight      : normal;
+	font-size        : 0.875rem;
+	line-height      : 30px;
+	background-color : transparent;
+	height           : 30px;
+	width            : 30px;
+	text-align       : center;
+	padding          : 0;
+	margin           : 2px;
+	border           : none; }
+
+#fullcalendar .fc-view-container .fc-month-view table tbody.fc-body div.fc-scroller td.fc-day-top.fc-today .fc-day-number {
+	background-color      : #666;
+	color                 : #fff;
+	border                : none;
+	-webkit-border-radius : 50%;
+	-moz-border-radius    : 50%;
+	border-radius         : 50%; }
+
+#fullcalendar .fc-view-container .fc-month-view table tbody.fc-body div.fc-scroller .fc-day-grid-event {
+	padding          : 0.5rem 1rem !important;
+	margin           : 2px;
+	font-size        : 0.875rem;
+	background-color : maroon;
+	color            : #fff !important;
+	border           : none;
+	border-radius    : 0; }
+
+#fullcalendar .fc-view-container .fc-month-view table tbody.fc-body div.fc-scroller .fc-day-grid-event .fc-content {
+	white-space : normal;
+	overflow    : visible; }
+
+#fullcalendar .fc-view-container .fc-month-view table tbody.fc-body div.fc-scroller .fc-day-grid-event .fc-content .fc-time {
+	display     : block;
+	font-weight : 400; }
+
+#fullcalendar .fc-view-container .fc-month-view table tbody.fc-body div.fc-scroller .fc-day-grid-event[href]:hover {
+	background-color : #990000; }
+
+@media print {
+	#fullcalendar {
+		/*tr {
+			  page-break-inside: avoid;
+		  }*/ }
+
+	#fullcalendar button {
+		display : none !important; }
+
+	#fullcalendar .fc-bg td {
+		border-color : red !important; }
+
+	#fullcalendar .fc-day-grid-event {
+		border : 1px solid #999 !important; }
+
+	#fullcalendar .fc-day-grid-event .fc-content * {
+		color : #000 !important; }
+
+	#fullcalendar .fc-day-number {
+		color : #999 !important; }
+
+	#fullcalendar .fc-content-skeleton {
+		page-break-inside : avoid; }
+
+	#fullcalendar .fc-list-heading {
+		page-break-inside : avoid;
+		page-break-before : always; }
+}
 
 .poi-info-window div,
 .poi-info-window a {

@@ -1,7 +1,7 @@
 {
 	"name": "syntric",
-	"version": "0.1",
-	"description": "Syntric Wordpress theme framework",
+	"version": "0.9",
+	"description": "Syntric WordPress Framework & Theme for Schools & Districts",
 	"main": "index.js",
 	"scripts": {
 		"postinstall": "gulp copy-assets"
@@ -18,14 +18,11 @@
 	"author": "Ken Hobbs",
 	"license": "GPL-2.0",
 	"bugs": {
-		"url": "http://syntric.com"
+		"url": "https://github.com/kenhobbs/syntric/issues"
 	},
-	"homepage": "http://syntric.com",
+	"homepage": "https://github.com/kenhobbs/syntric",
 	"dependencies": {
-		"bootstrap": "^4.0.0-alpha.6",
-		"browser-sync": "^2.18.7",
 		"del": "^2.2.2",
-		"font-awesome": "^4.7.0",
 		"gulp": "^3.9.1",
 		"gulp-clone": "^1.0.0",
 		"gulp-concat": "^2.6.1",

@@ -8457,11 +8457,11 @@ figure {
   text-transform: uppercase; }
 
 table {
-  overflow-x: scroll;
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: 0;
-  border: 1px solid #ddd; }
+	overflow-x  : hidden !important;
+  width         : 100%;
+  max-width     : 100%;
+  margin-bottom : 0;
+  border        : 1px solid #ddd; }
   table th {
     background-color: #003c8f;
     color: #fff;
@@ -9533,7 +9533,7 @@ body > .sidebar .widget {
 
 #fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-heading:not(:first-of-type) > .fc-widget-header {
 	padding-top    : 1rem;
-	padding-bottom : 1rem; }
+	padding-bottom : 0.25rem; }
 
 #fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-item.fc-has-url > td {
 	color : #003c8f; }
