@@ -8482,10 +8482,10 @@ table {
       white-space: nowrap; } }
 
 .gallery {
-  display   : flex;
-  flex-wrap : wrap;
-  padding   : 0.5rem;
-	color   : #343a40 !important; }
+	display   : flex;
+	flex-wrap : wrap;
+	padding   : 0.5rem;
+	color     : #343a40 !important; }
   @media (min-width: 1200px) {
     .gallery.gallery-columns-1 > figure {
       width: 100%; }
@@ -8860,8 +8860,8 @@ body > .foot {
   body > .foot .non-discrimination {
     margin-bottom: 1rem; }
   body > .foot .login-bug {
-    display : flex;
-	  float : right; }
+	  display : flex;
+	  float   : right; }
     body > .foot .login-bug .login-button {
       margin-right: 1rem; }
     body > .foot .login-bug .bug {
@@ -9195,6 +9195,11 @@ body > .sidebar .widget {
     top: 0;
     left: 0;
     padding: 0.5rem 1rem; }
+
+.syn-google-map-widget .video,
+.syn-video-widget .video,
+.widget_media_image .video {
+	padding : 0 !important; }
   .syn-google-map-widget .video-caption,
   .syn-video-widget .video-caption,
   .widget_media_image .video-caption {

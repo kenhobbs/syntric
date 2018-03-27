@@ -1,4 +1,4 @@
-Syntric Framework & Theme for Schools & Districts
+Syntric WordPress Framework & Theme for Schools & Districts
 ===
 
 Syntric is a specialized WordPress theme for schools and school districts.  The theme is WCAG 2.0 AA compliant and also validates new posts and pages when publishing.
