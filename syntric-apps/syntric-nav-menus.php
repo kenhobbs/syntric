@@ -44,20 +44,6 @@
 		echo '</nav>' . $lb;
 	}
 
-	function ____syn_sitemap() {
-		$menu_id = syn_generate_permanent_id();
-		$args    = [
-			'container'       => 'nav',
-			'container_class' => 'navmenu',
-			'container_id'    => 'sitemap-nav',
-			'menu'            => 'primary',
-			'menu_class'      => 'nav',
-			'menu_id'         => $menu_id,
-			'depth'           => 4,
-		];
-		syn_nav_menu( $args );
-	}
-
 	/**
 	 * Nav Menu hooks for applying classes and attributes without using a custom Menu Walker
 	 *
@@ -111,26 +97,7 @@
 	add_filter( 'wp_nav_menu_args', 'syn_nav_menu_args', 10 );
 	function syn_nav_menu_args( $nav_menu_args ) {
 		/**
-		 * $nav_menu_args
-		 * (
-		 * [menu] =>
-		 * [container] =>
-		 * [container_class] =>
-		 * [container_id] =>
-		 * [menu_class] => navbar-nav ml-auto
-		 * [menu_id] => primary-nav
-		 * [echo] => 1
-		 * [fallback_cb] => wp_page_menu
-		 * [before] =>
-		 * [after] =>
-		 * [link_before] =>
-		 * [link_after] =>
-		 * [items_wrap] => <ul id="%1$s" class="%2$s">%3$s</ul>
-		 * [item_spacing] => discard
-		 * [depth] => 2
-		 * [walker] =>
-		 * [theme_location] => primary
-		 * )
+		 * $nav_menu_args is an array of args the were passed to wp_nav_menu
 		 */
 		$menu_classes = explode( ' ', $nav_menu_args[ 'menu_class' ] );
 		if ( ! in_array( 'navbar-nav', $menu_classes ) ) {
@@ -155,95 +122,11 @@
 	 */
 	add_filter( 'wp_nav_menu_objects', 'syn_nav_menu_objects', 10, 2 );
 	function syn_nav_menu_objects( $sorted_menu_items, $args ) {
+		/**
+		 * $sorted_menu_items is an array of WP_Post objects
+		 * $args is an array where key 'menu' is a WP_Term object and all other keys in the args the were passed to wp_nav_menu
+		 */
 		global $post;
-		/**
-		 * $sorted_menu_items
-		 * (
-		 * [1] => WP_Post Object
-		 * (
-		 * [ID] => 469
-		 * [post_author] => 1
-		 * [post_date] => 2017-08-02 04:31:48
-		 * [post_date_gmt] => 2017-08-02 04:31:48
-		 * [post_content] =>
-		 * [post_title] =>
-		 * [post_excerpt] =>
-		 * [post_status] => publish
-		 * [comment_status] => closed
-		 * [ping_status] => closed
-		 * [post_password] =>
-		 * [post_name] => 469
-		 * [to_ping] =>
-		 * [pinged] =>
-		 * [post_modified] => 2017-12-24 04:41:13
-		 * [post_modified_gmt] => 2017-12-24 04:41:13
-		 * [post_content_filtered] =>
-		 * [post_parent] => 0
-		 * [guid] => http://master.localhost/469/
-		 * [menu_order] => 1
-		 * [post_type] => nav_menu_item
-		 * [post_mime_type] =>
-		 * [comment_count] => 0
-		 * [filter] => raw
-		 * [db_id] => 469
-		 * [menu_item_parent] => 0
-		 * [object_id] => 2
-		 * [object] => page
-		 * [type] => post_type
-		 * [type_label] => Page
-		 * [url] => http://master.localhost/school/
-		 * [title] => School
-		 * [target] =>
-		 * [attr_title] =>
-		 * [description] =>
-		 * [classes] => Array
-		 * (
-		 * [0] =>
-		 * [1] => menu-item
-		 * [2] => menu-item-type-post_type
-		 * [3] => menu-item-object-page
-		 * [4] => menu-item-has-children
-		 * )
-		 * [xfn] => page
-		 * [current] =>
-		 * [current_item_ancestor] =>
-		 * [current_item_parent] =>
-		 * )
-		 * )*/
-		/**
-		 * $args
-		 * (
-		 * [menu] => WP_Term Object
-		 * (
-		 * [term_id] => 14
-		 * [name] => Primary
-		 * [slug] => primary
-		 * [term_group] => 0
-		 * [term_taxonomy_id] => 14
-		 * [taxonomy] => nav_menu
-		 * [description] =>
-		 * [parent] => 0
-		 * [count] => 198
-		 * [filter] => raw
-		 * )
-		 *
-		 * [container] =>
-		 * [container_class] =>
-		 * [container_id] =>
-		 * [menu_class] => navbar-nav ml-auto
-		 * [menu_id] => primary-nav
-		 * [echo] => 1
-		 * [fallback_cb] => wp_page_menu
-		 * [before] =>
-		 * [after] =>
-		 * [link_before] =>
-		 * [link_after] =>
-		 * [items_wrap] => <ul id="%1$s" class="%2$s">%3$s</ul>
-		 * [item_spacing] => discard
-		 * [depth] => 2
-		 * [walker] =>
-		 * [theme_location] => primary
-		 * )*/
 		$menu_classes = ( property_exists( $args, 'menu_class' ) && ! empty( $args->menu_class ) ) ? explode( ' ', $args->menu_class ) : [];
 		if ( in_array( 'navbar-nav', $menu_classes ) ) {
 			for ( $i = 1; $i <= count( $sorted_menu_items ); $i ++ ) {
@@ -352,6 +235,7 @@
 			} else {
 				$atts[ 'class' ] = 'dropdown-item depth-' . $depth;
 			}
+			unset( $atts[ 'title' ] );
 		}
 		// admin-nav-menu
 		if ( in_array( 'admin-nav-menu', $menu_classes ) ) {
@@ -395,6 +279,19 @@
 // Bone yard
 //
 //
+	function ________notinuse______syn_sitemap() {
+		$menu_id = syn_generate_permanent_id();
+		$args    = [
+			'container'       => 'nav',
+			'container_class' => 'navmenu',
+			'container_id'    => 'sitemap-nav',
+			'menu'            => 'primary',
+			'menu_class'      => 'nav',
+			'menu_id'         => $menu_id,
+			'depth'           => 4,
+		];
+		syn_nav_menu( $args );
+	}
 	/**
 	 * Generate the main nav menu
 	 */

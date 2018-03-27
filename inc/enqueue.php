@@ -27,6 +27,7 @@
 		// Syntric theme script
 		$syntric_js_version = date("ymdGis", filemtime( get_template_directory() . '/assets/js/syntric.min.js' ) );
 		wp_enqueue_script( 'syntric-js', get_template_directory_uri() . '/assets/js/syntric.min.js', [ 'jsdelivr' ], $syntric_js_version, true );
+		wp_enqueue_script( 'accessibility-rules', get_template_directory_uri() . '/assets/js/axs_testing.js', null, $syntric_js_version, true );
 		// Google translate
 		//wp_enqueue_script( 'google-translate', get_stylesheet_directory_uri() . '/assets/libs/google-translate/translate_a/element.js?cb=googleTranslateElementInit', null, null, true );
 		// Comment reply

@@ -9506,6 +9506,9 @@ body > .sidebar .widget {
 #fullcalendar .fc-toolbar {
     margin-bottom: 0.5rem !important; }
 
+#fullcalendar .fc-toolbar > td:not(:last-of-type) {
+	width : 33%; }
+
 #fullcalendar .fc-toolbar .fc-center > h2 {
       margin: 0; }
 
@@ -9542,7 +9545,8 @@ body > .sidebar .widget {
 	text-decoration : none; }
 
 #fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-item.fc-has-url:hover > td {
-	text-decoration : underline; }
+	text-decoration  : underline;
+	background-color : transparent; }
 
 #fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-item > td {
 	border : none; }
@@ -9551,11 +9555,11 @@ body > .sidebar .widget {
 	display : none; }
 
 #fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-item > td:first-of-type {
-	padding : 0.5rem 1rem;
+	padding : 0.25rem 1rem;
 	color   : #003c8f; }
 
 #fullcalendar .fc-view-container .fc-list-view .fc-scroller .fc-list-table .fc-list-item > td:not(:first-of-type) {
-	padding : 0.5rem 1rem 0.5rem 0;
+	padding : 0.25rem;
 	color   : #003c8f; }
 
 #fullcalendar .fc-view-container .fc-month-view table {
@@ -9619,26 +9623,39 @@ body > .sidebar .widget {
 	overflow    : visible; }
 
 #fullcalendar .fc-view-container .fc-month-view table tbody.fc-body div.fc-scroller .fc-day-grid-event .fc-content .fc-time {
+	display     : block;
 	font-weight : 400; }
 
 #fullcalendar .fc-view-container .fc-month-view table tbody.fc-body div.fc-scroller .fc-day-grid-event[href]:hover {
 	background-color : #0051c2; }
 
 @media print {
+	#fullcalendar {
+		/*tr {
+			  page-break-inside: avoid;
+		  }*/ }
+
 	#fullcalendar button {
 		display : none !important; }
 
-	#fullcalendar table, #fullcalendar tr, #fullcalendar td {
-		border-color : #000 !important; }
+	#fullcalendar .fc-bg td {
+		border-color : red !important; }
 
 	#fullcalendar .fc-day-grid-event {
 		border : 1px solid #999 !important; }
 
-	#fullcalendar .fc-day-grid-event .fc-content .fc-title {
+	#fullcalendar .fc-day-grid-event .fc-content * {
 		color : #000 !important; }
 
 	#fullcalendar .fc-day-number {
 		color : #999 !important; }
+
+	#fullcalendar .fc-content-skeleton {
+		page-break-inside : avoid; }
+
+	#fullcalendar .fc-list-heading {
+		page-break-inside : avoid;
+		page-break-before : always; }
 }
 
 .poi-info-window div,
