@@ -12,8 +12,8 @@
 	<pre id="content"></pre>
 	<script type="text/javascript">
 		// Client ID and API key from the Developer Console
-		var CLIENT_ID = '83109239662-u80lokc2svokei2lfoj3hja5l59m2vis.apps.googleusercontent.com';
-		var API_KEY = 'AIzaSyD-lipo4Nd3W6Cyowo4uITY0o2Ss7zdcZ8';
+		var CLIENT_ID = '';
+		var API_KEY = '';
 
 		// Array of API discovery doc URLs for APIs used by the quickstart
 		var DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/classroom/v1/rest'];

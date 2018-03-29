@@ -94,25 +94,26 @@
 			'items_list'            => _x( 'Events list', 'syntric' ),
 		];
 		$args   = [
-			'labels'             => $labels,
-			'public'             => false,
-			'publicly_queryable' => true,
-			'capability_type'    => 'post',
-			'has_archive'        => true,
-			'map_meta_cap'       => true,
-			'menu_position'      => 7,
-			'hierarchical'       => false,
-			'delete_with_user'   => false,
-			'supports'           => [
+			'labels'              => $labels,
+			'public'              => false,
+			'exclude_from_search' => false,
+			'publicly_queryable'  => true,
+			'capability_type'     => 'post',
+			'has_archive'         => true,
+			'map_meta_cap'        => true,
+			'menu_position'       => 7,
+			'hierarchical'        => false,
+			'delete_with_user'    => false,
+			'supports'            => [
 				'title',
 				'editor',
 			],
-			'show_in_rest'       => true,
-			'rest_base'          => 'events',
-			'can_export'         => true,
-			'show_ui'            => true,
+			'show_in_rest'        => true,
+			'rest_base'           => 'events',
+			'can_export'          => true,
+			'show_ui'             => true,
 			//'show_in_menu'       => true,
-			'show_in_menu'       => 'edit.php?post_type=syn_calendar',
+			'show_in_menu'        => 'edit.php?post_type=syn_calendar',
 			'show_in_nav_menus'  => false,
 			'show_in_admin_bar'  => false,
 			'query_var'          => false,
@@ -227,7 +228,7 @@
 			return;
 		}
 		//$sync_range = ( isset( $calendar_fields[ 'syn_calendar_sync_range' ] ) ) ? (string) $calendar_fields[ 'syn_calendar_sync_range' ] : '1 year';
-		$sync_range                 = '1 year';
+		$sync_range = '2 years';
 		$last_sync  = ( isset( $calendar_fields[ 'syn_calendar_last_sync' ] ) ) ? $calendar_fields[ 'syn_calendar_last_sync' ] : '';
 		// todo: implement delete events
 		//if ( isset( $calendar_fields[ 'syn_calendar_delete_events' ] ) && isset( $calendar_fields[ 'syn_calendar_delete_after' ] ) ) {

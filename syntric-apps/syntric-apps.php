@@ -2424,7 +2424,8 @@
 	}
 
 	function syn_comments() {
-		if ( comments_open() && syn_is_staging() && is_user_logged_in() && syn_current_user_can( 'editor' ) ) {
+		//comments_open() &&  && syn_current_user_can( 'editor' )
+		if ( syn_is_staging() && is_user_logged_in() ) {
 			comments_template();
 		}
 	}

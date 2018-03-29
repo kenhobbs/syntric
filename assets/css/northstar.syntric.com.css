@@ -437,15 +437,16 @@ mark,
   font-size: 90%;
   text-transform: uppercase; }
 
-.blockquote, blockquote {
+.blockquote, blockquote.blockquote {
   margin-bottom: 1rem;
   font-size: 1.25rem; }
 
-.blockquote-footer, blockquote p:last-child {
+.blockquote-footer {
   display: block;
   font-size: 80%;
   color: #868e96; }
-  .blockquote-footer::before, blockquote p:last-child::before {
+
+.blockquote-footer::before {
     content: "\2014 \00A0"; }
 
 .img-fluid {
@@ -8457,11 +8458,11 @@ figure {
   text-transform: uppercase; }
 
 table {
-	overflow-x  : hidden !important;
-  width         : 100%;
-  max-width     : 100%;
-  margin-bottom : 0;
-  border        : 1px solid #ddd; }
+	overflow-x    : hidden !important;
+	width         : 100%;
+	max-width     : 100%;
+	margin-bottom : 0;
+	border        : 1px solid #ddd; }
   table th {
     background-color: #036;
     color: #fff;
@@ -8506,35 +8507,49 @@ table {
     .gallery.gallery-columns-9 > figure {
       width: 11.11%; } }
 
-figure {
-  position: relative;
-  margin: 0;
-  padding: 0.5rem; }
-  figure img {
-    width: 100%;
-    height: auto; }
-  figure figcaption {
-    display: block;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    padding: 0.5rem 1rem;
-    margin: 0.5rem;
-    background-color: rgba(0, 0, 0, 0.75);
-    color: #fff;
-    font-size: 1rem; }
-  figure:hover > figcaption {
-    display: none; }
+.gallery figure {
+	position : relative;
+	margin   : 0;
+	padding  : 0.5rem; }
 
-blockquote {
-  background-color: #fafafa;
-  border: solid 1px #ddd;
-  padding: 1rem; }
-  blockquote p {
-    margin-bottom: 0.5rem; }
-  blockquote p:last-child {
+.gallery figure img {
+	width  : 100%;
+	height : auto; }
+
+.gallery figure figcaption {
+	display          : block;
+	position         : absolute;
+	bottom           : 0;
+	left             : 0;
+	right            : 0;
+	padding          : 0.5rem 1rem;
+	margin           : 0.5rem;
+	background-color : rgba(0, 0, 0, 0.75);
+	color            : #fff;
+	font-size        : 0.8125rem; }
+
+.gallery figure:hover > figcaption {
+	display : none; }
+
+blockquote.blockquote {
+	background-color : #f8f9fa;
+	color            : #343a40;
+  border             : solid 1px #ddd;
+	padding          : 1rem;
+	font-size        : 0.875rem; }
+
+blockquote.blockquote p {
+	margin-bottom : 0.5rem;
+	font-style    : italic; }
+
+blockquote.blockquote p:last-child {
     margin-bottom: 0; }
+
+blockquote.blockquote footer {
+	display    : block;
+	color      : #3f474e;
+	font-size  : inherit;
+	font-style : normal; }
 
 #primary-navbar {
   /*@extend .navbar;*/
@@ -9008,6 +9023,9 @@ aside.sidebar .widget {
   aside.sidebar .widget li > a {
     padding: 0.5rem 1rem;
     margin: 0; }
+
+aside.sidebar .widget.widget_media_image .video, aside.sidebar .widget.widget_media_image .video-caption, aside.sidebar .widget.widget_media_gallery .video, aside.sidebar .widget.widget_media_gallery .video-caption, aside.sidebar .widget.syn-video-widget .video, aside.sidebar .widget.syn-video-widget .video-caption, aside.sidebar .widget.syn-google-map-widget .video, aside.sidebar .widget.syn-google-map-widget .video-caption {
+	border : none; }
   aside.sidebar .widget.widget_media_image h2, aside.sidebar .widget.widget_media_gallery h2, aside.sidebar .widget.syn-video-widget h2, aside.sidebar .widget.syn-google-map-widget h2 {
     top: 0;
     left: 0; }
@@ -9164,7 +9182,12 @@ body > .sidebar .widget {
 
 @media (min-width: 1200px) {
   body > .sidebar .widget {
-    padding: 4rem 2rem; }
+	  padding : 4rem 2rem;
+	  /*figcaption {
+				  bottom : 0;
+				  left   : 0;
+				  right  : 0;
+			  }*/ }
     body > .sidebar .widget .textwidget,
     body > .sidebar .widget .list-group-item {
       padding: 1rem; }
@@ -9175,12 +9198,9 @@ body > .sidebar .widget {
     body > .sidebar .widget.syn-google-map-widget {
       min-height: 400px; }
     body > .sidebar .widget.syn-video-widget h2, body > .sidebar .widget.syn-google-map-widget h2, body > .sidebar .widget.widget_media_image h2 {
-      top: 3.5rem;
-      left: 2rem; }
-    body > .sidebar .widget figcaption {
-      bottom: 0;
-      left: 0;
-      right: 0; } }
+      top    : 3.5rem;
+		left : 2rem; }
+}
 
 @media print {
   body > .sidebar {
