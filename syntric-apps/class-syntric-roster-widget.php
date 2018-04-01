@@ -70,61 +70,67 @@
 					echo $tab . '</thead>' . $lb;
 					echo $tab . '<tbody>' . $lb;
 				}
+				$row_counter = 1;
 				while( have_rows( 'syn_roster_people', $post->ID ) ) : the_row();
 					$user_id      = get_sub_field( 'person' );
 					$user         = get_user_by( 'ID', $user_id );
-					$user_meta    = get_user_meta( $user_id );
-					$first_name   = $user_meta[ 'first_name' ][ 0 ];
-					$last_name    = $user_meta[ 'last_name' ][ 0 ];
-					$prefix       = get_field( 'syn_user_prefix', 'user_' . $user_id );
-					$display_name = '';
-					$display_name .= ( in_array( 'prefix', $include_fields ) && $prefix ) ? $prefix . ' ' : '';
-					$display_name .= ( in_array( 'first_name', $include_fields ) && $first_name ) ? $first_name . ' ' : '';
-					$display_name .= ( $last_name ) ? $last_name : ''; // always included
-					$titles       = get_field( 'syn_user_title', 'user_' . $user_id );
-					$titles       = str_replace( ',', ' / ', $titles );
-					$titles       = str_replace( '|', ' / ', $titles );
-					$email        = $user->data->user_email;
-					$phone        = get_field( 'syn_user_phone', 'user_' . $user_id );
-					$ext          = get_field( 'syn_user_extension', 'user_' . $user_id );
-					$ext = ( isset( $ext ) && ! empty( $ext ) && ! empty( $phone ) ) ? ' x' . $ext : '';
-					$display_name = ( ! empty( $display_name ) ) ? $display_name : '';
-					$titles = ( ! empty( $titles ) ) ? $titles : '';
-					$email = ( ! empty( $email ) ) ? $email : '';
-					$phone = ( ! empty( $phone ) ) ? $phone . $ext : '';
-					if ( 'aside' == $layout ) {
-						echo $tab . '<div class="list-group-item">' . $lb;
-						// todo: add ability to attach a photo to person
-						/*echo $tab . $tab . '<div class="list-group-item-feature">' . $lb;
-						echo $tab . $tab . '</div>' . $lb;*/
-						echo $tab . $tab . '<div class="list-group-item-content">' . $lb;
-						echo $tab . $tab . $tab . '<div class="person-name">' . $display_name . '</div>' . $lb;
-						if ( in_array( 'title', $include_fields ) && ! empty( $titles ) ) :
-							echo $tab . $tab . $tab . '<div class="person-title">' . $titles . '</div>' . $lb;
-						endif;
-						if ( in_array( 'email', $include_fields ) && ! empty( $email ) ) :
-							echo $tab . $tab . $tab . '<a href="mailto:' . antispambot( $email, true ) . '" class="person-email" title="Email">' . antispambot( $email ) . '</a>' . $lb;
-						endif;
-						if ( in_array( 'phone', $include_fields ) && ! empty( $phone ) ) :
-							echo $tab . $tab . $tab . '<div class="person-phone">' . $phone . $ext . '</div>' . $lb;
-						endif;
-						echo $tab . $tab . '</div>' . $lb;
-						echo $tab . '</div>' . $lb;
+					if ( $user instanceof WP_User ) {
+						$user_meta    = get_user_meta( $user_id );
+						$first_name   = $user_meta[ 'first_name' ][ 0 ];
+						$last_name    = $user_meta[ 'last_name' ][ 0 ];
+						$prefix       = get_field( 'syn_user_prefix', 'user_' . $user_id );
+						$display_name = '';
+						$display_name .= ( in_array( 'prefix', $include_fields ) && $prefix ) ? $prefix . ' ' : '';
+						$display_name .= ( in_array( 'first_name', $include_fields ) && $first_name ) ? $first_name . ' ' : '';
+						$display_name .= ( $last_name ) ? $last_name : ''; // always included
+						$titles       = get_field( 'syn_user_title', 'user_' . $user_id );
+						$titles       = str_replace( ',', ' / ', $titles );
+						$titles       = str_replace( '|', ' / ', $titles );
+						$email        = $user->data->user_email;
+						$phone        = get_field( 'syn_user_phone', 'user_' . $user_id );
+						$ext          = get_field( 'syn_user_extension', 'user_' . $user_id );
+						$ext          = ( isset( $ext ) && ! empty( $ext ) && ! empty( $phone ) ) ? ' x' . $ext : '';
+						$display_name = ( ! empty( $display_name ) ) ? $display_name : '';
+						$titles       = ( ! empty( $titles ) ) ? $titles : '';
+						$email        = ( ! empty( $email ) ) ? $email : '';
+						$phone        = ( ! empty( $phone ) ) ? $phone . $ext : '';
+						if ( 'aside' == $layout ) {
+							echo $tab . '<div class="list-group-item">' . $lb;
+							// todo: add ability to attach a photo to person
+							/*echo $tab . $tab . '<div class="list-group-item-feature">' . $lb;
+							echo $tab . $tab . '</div>' . $lb;*/
+							echo $tab . $tab . '<div class="list-group-item-content">' . $lb;
+							echo $tab . $tab . $tab . '<div class="person-name">' . $display_name . '</div>' . $lb;
+							if ( in_array( 'title', $include_fields ) && ! empty( $titles ) ) :
+								echo $tab . $tab . $tab . '<div class="person-title">' . $titles . '</div>' . $lb;
+							endif;
+							if ( in_array( 'email', $include_fields ) && ! empty( $email ) ) :
+								echo $tab . $tab . $tab . '<a href="mailto:' . antispambot( $email, true ) . '" class="person-email" title="Email">' . antispambot( $email ) . '</a>' . $lb;
+							endif;
+							if ( in_array( 'phone', $include_fields ) && ! empty( $phone ) ) :
+								echo $tab . $tab . $tab . '<div class="person-phone">' . $phone . $ext . '</div>' . $lb;
+							endif;
+							echo $tab . $tab . '</div>' . $lb;
+							echo $tab . '</div>' . $lb;
+						}
+						if ( 'table' == $layout ) {
+							echo $tab . $tab . '<tr valign="top">' . $lb;
+							echo $tab . $tab . $tab . '<td class="full-name">' . $display_name . '</td>' . $lb;
+							if ( in_array( 'title', $include_fields ) ) {
+								echo $tab . $tab . $tab . '<td class="titles">' . $titles . '</td>' . $lb;
+							}
+							if ( in_array( 'email', $include_fields ) ) {
+								echo $tab . $tab . $tab . '<td class="email"><a href="mailto:' . antispambot( $email, true ) . '" class="person-email" title="Email">' . antispambot( $email ) . '</a></td>' . $lb;
+							}
+							if ( in_array( 'phone', $include_fields ) ) {
+								echo $tab . $tab . $tab . '<td class="phone">' . $phone . '</td>' . $lb;
+							}
+							echo $tab . $tab . '</tr>' . $lb;
+						}
+					} else {
+						delete_row( 'syn_roster_people', $row_counter, $post->ID );
 					}
-					if ( 'table' == $layout ) {
-						echo $tab . $tab . '<tr valign="top">' . $lb;
-						echo $tab . $tab . $tab . '<td class="full-name">' . $display_name . '</td>' . $lb;
-						if ( in_array( 'title', $include_fields ) ) {
-							echo $tab . $tab . $tab . '<td class="titles">' . $titles . '</td>' . $lb;
-						}
-						if ( in_array( 'email', $include_fields ) ) {
-							echo $tab . $tab . $tab . '<td class="email"><a href="mailto:' . antispambot( $email, true ) . '" class="person-email" title="Email">' . antispambot( $email ) . '</a></td>' . $lb;
-						}
-						if ( in_array( 'phone', $include_fields ) ) {
-							echo $tab . $tab . $tab . '<td class="phone">' . $phone . '</td>' . $lb;
-						}
-						echo $tab . $tab . '</tr>' . $lb;
-					}
+					$row_counter ++;
 				endwhile;
 				if ( 'aside' == $layout ) {
 					echo '</div>' . $lb;

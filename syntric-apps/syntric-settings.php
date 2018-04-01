@@ -113,15 +113,15 @@
 						break;
 					case 'default' :
 					case 'page' :
-						slog('triggered default/page template version');
+						//slog('triggered default/page template version');
 						$teacher_page = syn_get_teacher_page( $user_id, 0 );
 						if ( $teacher_page instanceof WP_Post ) {
-							slog('inside checkpoint');
+							//slog('inside checkpoint');
 							$res = wp_update_post( [
 								'ID'          => $post_id,
 								'post_parent' => $teacher_page->ID,
 							] );
-							slog( $res );
+							//slog( $res );
 						}
 						break;
 				}

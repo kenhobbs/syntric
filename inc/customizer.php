@@ -54,7 +54,7 @@ function syn_customize_register( $wp_customize ) {
 	 */
 	$wp_customize->add_setting(
 		'syntric_container_type', array(
-			'default'           => 'container',
+			'default'           => 'container-fluid',
 			'type'              => 'theme_mod',
 			'sanitize_callback' => 'sanitize_text_field',
 			'capability'        => 'edit_theme_options',

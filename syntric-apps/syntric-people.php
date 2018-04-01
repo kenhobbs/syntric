@@ -62,36 +62,44 @@
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
-		$page = ( isset( $_REQUEST[ 'page' ] ) ) ? $_REQUEST[ 'page' ] : null;
+		//$page = ( isset( $_REQUEST[ 'page' ] ) ) ? $_REQUEST[ 'page' ] : null;
 		// should be People, New User, Edit User or Profile page
-		if ( is_admin() && ( ( 'syntric-people' == $page ) || ( 'user-edit.php' == $pagenow ) || ( 'user-new.php' == $pagenow ) || ( 'profile.php' == $pagenow ) ) ) {
+		if ( is_admin() && ( 'user-edit.php' == $pagenow || 'user-new.php' == $pagenow || 'profile.php' == $pagenow ) ) {
 			// coming from user-edit, user-new or profile so $post_id is user_###
 			$post_id_arr = explode( '_', $post_id );
-			if ( 'user' == $post_id_arr[ 0 ] ) {
-				$user_id    = $post_id_arr[ 1 ];
-				$is_teacher = get_field( 'syn_user_is_teacher', $post_id );
-				$user       = get_user_by( 'ID', $user_id );
-				$roles      = $user->roles;
-				$role       = $roles[ 0 ];
-				if ( $is_teacher ) {
-					if ( ! in_array( $role, [
-						'author',
-						'editor',
-						'administrator',
-					] ) ) {
-						$user_id = wp_update_user( [
-							'ID'   => $user_id,
-							'role' => 'author',
-						] );
-					}
-					// make sure role is at least author
-					$teacher_page_id = syn_save_teacher_page( $user_id );
-					update_field( 'syn_user_page', $teacher_page_id, 'user_' . $user_id );
-				} else {
-					syn_trash_teacher_page( $user_id );
-					update_field( 'syn_user_page', null, 'user_' . $user_id );
+			//if ( 'user' == $post_id_arr[ 0 ] ) {
+			$user_id    = $post_id_arr[ 1 ];
+			$is_teacher = get_field( 'syn_user_is_teacher', $post_id );
+			$user       = get_user_by( 'ID', $user_id );
+			$roles      = $user->roles;
+			$role       = $roles[ 0 ];
+			if ( $is_teacher ) {
+				slog( $user );
+				slog( $role );
+				if ( ! in_array( $role, [
+					'author',
+					'editor',
+					'administrator',
+				] ) ) {
+					slog( 'inside wp_update_user conditional' );
+					$user_id = wp_update_user( [
+						'ID'   => $user_id,
+						'role' => 'author',
+					] );
 				}
-			} elseif ( 'syntric-people' == $page ) {
+				syn_save_teacher_page( $user_id );
+			} else {
+				if ( $role == 'author' ) {
+					// todo: check if user owns any other pages (eg a club or sport page) and don't demote them if so
+					$user_id = wp_update_user( [
+						'ID'   => $user_id,
+						'role' => 'subscriber',
+					] );
+				}
+				syn_trash_teacher_page( $user_id );
+			}
+			//}
+			/*elseif ( 'syntric-people' == $page ) {
 				// coming from options page or somewhere besides user forms
 				$post_fields = $_POST;
 				$user_ids    = $post_fields[ 'user_ids' ];
@@ -137,7 +145,7 @@
 						}
 					}
 				}
-			}
+			}*/
 		}
 	}
 
@@ -165,6 +173,7 @@
 	add_filter( 'acf/prepare_field/name=syn_user_page', 'syn_prepare_user_fields' );
 	add_filter( 'acf/prepare_field/name=syn_user_is_teacher', 'syn_prepare_user_fields' );
 	function syn_prepare_user_fields( $field ) {
+		global $pagenow;
 		if ( ( 'syn_user_page' == $field[ '_name' ] && ! syn_current_user_can( 'administrator' ) ) ||
 		     ( 'syn_user_is_teacher' == $field[ '_name' ] && ! syn_current_user_can( 'editor' ) ) ) {
 			$field[ 'wrapper' ][ 'hidden' ] = true;
@@ -179,8 +188,8 @@
 		if ( $current_user->roles[ 0 ] != 'administrator' ) {
 			unset( $roles[ 'administrator' ] );
 		}
-		//slog( $roles );
 
+		//slog( $roles );
 		return $roles;
 	}
 

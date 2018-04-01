@@ -8534,7 +8534,7 @@ table {
 blockquote.blockquote {
 	background-color : #f8f9fa;
 	color            : #343a40;
-  border             : solid 1px #ddd;
+	border           : solid 1px #ddd;
 	padding          : 1rem;
 	font-size        : 0.875rem; }
 
@@ -9030,6 +9030,10 @@ aside.sidebar .widget.widget_media_image .video, aside.sidebar .widget.widget_me
     top: 0;
     left: 0; }
 
+aside.sidebar .widget.syn-video-widget:hover > h2,
+aside.sidebar .widget.syn-video-widget:focus > h2 {
+	display : none; }
+
 aside.sidebar.main-left-sidebar .widget {
   background-color: transparent;
   border: none; }
@@ -9198,7 +9202,7 @@ body > .sidebar .widget {
     body > .sidebar .widget.syn-google-map-widget {
       min-height: 400px; }
     body > .sidebar .widget.syn-video-widget h2, body > .sidebar .widget.syn-google-map-widget h2, body > .sidebar .widget.widget_media_image h2 {
-      top    : 3.5rem;
+		top  : 3.5rem;
 		left : 2rem; }
 }
 

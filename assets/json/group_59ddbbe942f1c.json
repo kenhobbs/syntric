@@ -1,13 +1,12 @@
 {
 	"key": "group_59ddbbe942f1c",
-	"title": "Post Settings",
+	"title": "Post Category",
 	"fields": [
 		{
 			"key": "field_59ddbcb3081a9",
 			"label": "Category",
 			"name": "syn_post_category",
-			"type": "select",
-			"value": null,
+			"type": "radio",
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": 0,
@@ -17,17 +16,16 @@
 				"id": ""
 			},
 			"choices": {
-				"129": "Microblogs (0)",
-				"1": "News (3)",
-				"0": "+ New category"
+				"140": "Announcements (3)",
+				"129": "Microblogs (7)",
+				"1": "News (3)"
 			},
-			"default_value": [],
-			"allow_null": 1,
-			"multiple": 0,
-			"ui": 0,
-			"ajax": 0,
-			"return_format": "value",
-			"placeholder": ""
+			"allow_null": 0,
+			"other_choice": 1,
+			"save_other_choice": 0,
+			"default_value": "",
+			"layout": "vertical",
+			"return_format": "value"
 		},
 		{
 			"key": "field_59e7f2f7049e2",
@@ -51,7 +49,6 @@
 			"label": "New Category",
 			"name": "syn_post_new_category",
 			"type": "text",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": [
@@ -79,7 +76,6 @@
 			"label": "Microblog",
 			"name": "syn_post_microblog",
 			"type": "select",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": [
@@ -96,9 +92,16 @@
 				"class": "",
 				"id": ""
 			},
-			"choices": [
-				"+ New microblog"
-			],
+			"choices": {
+				"133": "Academics &gt; English (2)",
+				"138": "Academics &gt; Sciences &gt; AP Chemistry (0)",
+				"136": "Academics &gt; Teachers &gt; Ken Hobbs (0)",
+				"130": "Academics &gt; Teachers &gt; Kenny Hobbs (2)",
+				"132": "Academics &gt; Teachers &gt; Kenny Hobbs, Jr (1)",
+				"141": "Academics &gt; Teachers &gt; Trini Marquis &gt; AP Biology (1)",
+				"137": "Ken Hobbs (0)",
+				"131": "Kenny Hobbs (1)"
+			},
 			"default_value": [],
 			"allow_null": 1,
 			"multiple": 0,
@@ -129,7 +132,6 @@
 			"label": "New Microblog",
 			"name": "syn_post_new_microblog",
 			"type": "text",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": [
@@ -164,6 +166,23 @@
 				"param": "post_type",
 				"operator": "==",
 				"value": "post"
+			},
+			{
+				"param": "current_user_role",
+				"operator": "==",
+				"value": "administrator"
+			}
+		],
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "post"
+			},
+			{
+				"param": "current_user_role",
+				"operator": "==",
+				"value": "editor"
 			}
 		]
 	],
@@ -172,8 +191,19 @@
 	"style": "default",
 	"label_placement": "top",
 	"instruction_placement": "label",
-	"hide_on_screen": "",
+	"hide_on_screen": [
+		"excerpt",
+		"discussion",
+		"comments",
+		"revisions",
+		"slug",
+		"author",
+		"format",
+		"categories",
+		"tags",
+		"send-trackbacks"
+	],
 	"active": 1,
 	"description": "",
-	"modified": 1509727683
+	"modified": 1522555967
 }

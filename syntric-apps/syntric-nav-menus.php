@@ -155,8 +155,10 @@
 			$prev_menu_item_parent = 0;
 			$smi                   = [];
 			for ( $j = 1; $j <= count( $sorted_menu_items ); $j ++ ) {
-				if ( $in_ancestor ) {
-					$is_custom_link = ( 'custom' == $sorted_menu_items[ $j ]->type );
+				$mi             = get_post( $sorted_menu_items[ $j ]->object_id );
+				$is_custom_link = ( 'custom' == $sorted_menu_items[ $j ]->type );
+				$is_published   = ( $mi instanceof WP_Post && 'publish' == $mi->post_status ) ? true : false;
+				if ( $in_ancestor && ( $is_custom_link || $is_published ) ) {
 					if ( ! $is_custom_link && 0 == wp_get_post_parent_id( $sorted_menu_items[ $j ]->object_id ) ) {
 						break;
 					}

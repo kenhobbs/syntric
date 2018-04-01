@@ -9017,6 +9017,10 @@ aside.sidebar .widget {
     top: 0;
     left: 0; }
 
+aside.sidebar .widget.syn-video-widget:hover > h2,
+aside.sidebar .widget.syn-video-widget:focus > h2 {
+	display : none; }
+
 aside.sidebar.main-left-sidebar .widget {
   background-color: transparent;
   border: none; }

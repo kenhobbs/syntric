@@ -1,4 +1,15 @@
 <?php
+	add_filter( 'pre_get_posts', 'syn_filter_author_posts_list' );
+	function syn_filter_author_posts_list( $query ) {
+		global $pagenow;
+		global $user_ID;
+		if ( is_admin() && 'edit.php' == $pagenow && ! syn_current_user_can( 'editor' ) ) {
+			$query->set( 'author', $user_ID );
+		}
+
+		return $query;
+	}
+
 	add_action( 'acf/save_post', 'syn_save_post', 20 );
 	function syn_save_post( $post_id ) {
 		global $pagenow;

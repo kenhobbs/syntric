@@ -15,6 +15,6 @@
 	if ( is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) ) :
 		syn_header();
 	else :
-		echo '<p>Wordpress is not configured to run Syntric Framework</p>';
+		echo '<p>Framework not configured correctly</p>';
 	endif;
 

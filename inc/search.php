@@ -85,15 +85,15 @@
 		if ( ! is_admin() && $q->is_search() && $q->is_main_query() ) {
 			//global $wpdb;
 			//remove_filter( 'posts_where', 'syn_search_posts_where' );
-			slog( $where );
+			//slog( $where );
 			$search_term = $q->get( 's' );
-			slog( $search_term );
+			//slog( $search_term );
 			$where = " AND wp_posts.post_type IN ('post', 'page', 'syn_calendar')";
 			$where .= " AND wp_posts.post_status = 'publish'";
 			$where .= " AND wp_posts.post_parent NOT IN (0)";
 			$where .= " AND ( wp_posts.post_content LIKE '%" . $search_term . "%' OR wp_posts.post_title LIKE '%" . $search_term . "%' )";
 			$where .= " AND trim(coalesce(wp_posts.post_content, '')) <>''";
-			slog( $where );
+			//slog( $where );
 		}
 
 		return $where;

@@ -6,6 +6,9 @@
 	 * todo: break down Syntric Apps: Sidebars & Widgets admin UI so that Header/Main/Footer sidebars are on separate sub-tabs
 	 * todo: test all filter variations
 	 */
+	/**
+	 * Filter generates a random ID for new records
+	 */
 	add_filter( 'acf/update_value/name=sidebar_id', 'syn_update_id' );
 	/**
 	 * Register sidebars
@@ -52,7 +55,7 @@
 						'id'            => get_sub_field( 'sidebar_id' ),
 						'description'   => get_sub_field( 'description' ),
 						'class'         => $sidebar_class,
-						// this gets overwritten
+						// before_widget gets overwritten in syn_dynamic_sidebar_params()
 						'before_widget' => '<div' . ' id="%1$s" class="widget %2$s">',
 						'after_widget'  => '</div>',
 						'before_title'  => '<h2>',

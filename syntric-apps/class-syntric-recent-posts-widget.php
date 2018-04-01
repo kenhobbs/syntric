@@ -28,7 +28,7 @@
 				$args[ 'widget_id' ] = $this->id;
 			}
 			$category_id = get_field( 'syn_recent_posts_widget_categories', 'widget_' . $args[ 'widget_id' ] );
-			slog( $category_id );
+			//slog( $category_id );
 			$category = get_category( $category_id );
 			$number   = get_field( 'syn_recent_posts_widget_posts', 'widget_' . $args[ 'widget_id' ] );
 			$posts    = new WP_Query( apply_filters( 'widget_posts_args', [

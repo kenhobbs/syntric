@@ -1,4 +1,5 @@
 <?php
+	// todo: This needs to be turned into script
 	/**
 	 *
 	 * the_author()

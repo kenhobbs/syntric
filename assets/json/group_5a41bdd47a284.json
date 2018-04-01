@@ -55,7 +55,7 @@
         },
         {
             "key": "field_5a6f8a0315963",
-            "label": "Video Host:",
+			"label": "Host:",
             "name": "syn_video_widget_host",
             "type": "select",
             "instructions": "This widget works with YouTube and Vimeo hosted videos.",
@@ -87,11 +87,85 @@
             "placeholder": ""
         },
         {
+			"key": "field_5ac02c820d597",
+			"label": "Type",
+			"name": "syn_video_widget_type",
+			"type": "radio",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a41bdd4b978e",
+						"operator": "==",
+						"value": "0"
+					},
+					{
+						"field": "field_5a6f8a0315963",
+						"operator": "==",
+						"value": "YouTube"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"Single": "Single",
+				"Playlist": "Playlist"
+			},
+			"allow_null": 0,
+			"other_choice": 0,
+			"save_other_choice": 0,
+			"default_value": "Single",
+			"layout": "vertical",
+			"return_format": "value"
+		},
+		{
             "key": "field_5a641ff5d747b",
-            "label": "YouTube Video ID:",
+			"label": "Video ID:",
             "name": "syn_video_widget_youtube_id",
             "type": "text",
-            "instructions": "Enter the YouTube Video ID which is a string of characters in the URL of the video hosted on YouTube.  For example, the Video ID of the video at https:\/\/youtube.com\/XwwXYyyYWxxW is XwwXYyyYWxxW.",
+			"instructions": "Enter the YouTube Video ID which is a string of characters in the URL of the video hosted on YouTube.  For example, the Video ID of the video at https:\/\/youtube.com\/XX11YY22ZZ33 is XX11YY22ZZ33.",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a41bdd4b978e",
+						"operator": "==",
+						"value": "0"
+					},
+					{
+						"field": "field_5a6f8a0315963",
+						"operator": "==",
+						"value": "YouTube"
+					},
+					{
+						"field": "field_5ac02c820d597",
+						"operator": "==",
+						"value": "Single"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": 20
+		},
+		{
+			"key": "field_5ac02be50d594",
+			"label": "Playlist ID:",
+			"name": "syn_video_widget_youtube_playlist_id:",
+			"type": "text",
+			"instructions": "Enter the YouTube Playlist ID which is a string of characters in the URL of the playlist hosted on YouTube.  For example, the Playlist ID of the playlist at https:\/\/www.youtube.com\/playlist?list=XX11YY22XX11YY22 is XX11YY22XX11YY22.",
             "required": 1,
             "conditional_logic": [
                 [
@@ -104,6 +178,11 @@
                         "field": "field_5a6f8a0315963",
                         "operator": "==",
                         "value": "YouTube"
+					},
+					{
+						"field": "field_5ac02c820d597",
+						"operator": "==",
+						"value": "Playlist"
                     }
                 ]
             ],
@@ -116,14 +195,14 @@
             "placeholder": "",
             "prepend": "",
             "append": "",
-            "maxlength": 15
+			"maxlength": 50
         },
         {
             "key": "field_5a6f8c1d15965",
-            "label": "Vimeo Video ID:",
+			"label": "Video ID:",
             "name": "syn_video_widget_vimeo_id",
             "type": "text",
-            "instructions": "Enter the Vimeo Video ID which is a string of characters in the URL of the video hosted on Vimeo.  For example, the Video ID of the video at https:\/\/vimeo.com\/555555555 is 555555555.",
+			"instructions": "Enter the Vimeo video ID which is a string of characters in the URL of the video hosted on Vimeo.  For example, the video ID of the video at https:\/\/vimeo.com\/XX11YY22ZZ33 is XX11YY22ZZ33.",
             "required": 1,
             "conditional_logic": [
                 [
@@ -148,7 +227,34 @@
             "placeholder": "",
             "prepend": "",
             "append": "",
-            "maxlength": 15
+			"maxlength": 20
+		},
+		{
+			"key": "field_5abead4f0dc4f",
+			"label": "Caption",
+			"name": "syn_video_widget_caption",
+			"type": "wysiwyg",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5a41bdd4b978e",
+						"operator": "==",
+						"value": "0"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"tabs": "all",
+			"toolbar": "full",
+			"media_upload": 1,
+			"delay": 1
         }
     ],
     "location": [
@@ -184,5 +290,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1517436029
+	"modified": 1522571833
 }

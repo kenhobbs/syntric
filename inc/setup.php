@@ -96,7 +96,7 @@
 			 * Add support for custom header images
 			 */
 			add_theme_support( 'custom-header', [
-				'default-image'  => get_template_directory_uri() . '/assets/images/default-header-1.png',
+				'default-image'  => get_template_directory_uri() . '/assets/images/default-header.png',
 				'random-default' => true,
 				'width'          => 1920,
 				'height'         => 500,
@@ -152,11 +152,11 @@
 			 */
 			register_default_headers( [
 				'header-1' => [
-					'url'           => get_template_directory_uri() . '/assets/images/default-header-1.png',
-					'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-1.png',
-					'description'   => __( 'Default header 1', 'syntric' ),
+					'url'           => get_template_directory_uri() . '/assets/images/default-header.png',
+					'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header.png',
+					'description'   => __( 'Default header', 'syntric' ),
 				],
-				'header-2' => [
+				/*'header-2' => [
 					'url'           => get_template_directory_uri() . '/assets/images/default-header-2.png',
 					'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-2.png',
 					'description'   => __( 'Default header 2', 'syntric' ),
@@ -170,7 +170,7 @@
 					'url'           => get_template_directory_uri() . '/assets/images/default-header-4.png',
 					'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-4.png',
 					'description'   => __( 'Default header 4', 'syntric' ),
-				],
+				],*/
 			] );
 			//~~~~~~~~~ Setup defaults for customizer settings
 			// todo: can these be eliminated?

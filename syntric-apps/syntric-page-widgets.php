@@ -47,8 +47,8 @@
 	add_filter( 'acf/prepare_field/name=syn_contact_title', 'syn_prepare_page_fields' );
 	add_filter( 'acf/prepare_field/name=syn_calendar_title', 'syn_prepare_page_fields' );
 	add_filter( 'acf/prepare_field/name=syn_new_microblog_post', 'syn_prepare_page_fields' );
-	//add_filter( 'acf/prepare_field/name=syn_microblog_category', 'syn_prepare_page_fields' );
-	//add_filter( 'acf/prepare_field/name=syn_microblog_term', 'syn_prepare_page_fields' );
+	add_filter( 'acf/prepare_field/name=syn_microblog_category', 'syn_prepare_page_fields' );
+	add_filter( 'acf/prepare_field/name=syn_microblog_term', 'syn_prepare_page_fields' );
 	add_filter( 'acf/prepare_field/key=field_59d4b242abf31', 'syn_prepare_page_fields' ); // microblog Category message field
 	add_filter( 'acf/prepare_field/key=field_59d4b278abf32', 'syn_prepare_page_fields' ); // microblog Term message field
 	add_filter( 'acf/prepare_field/key=field_598a9db813a14', 'syn_prepare_page_fields' ); // Attachments tab
@@ -66,7 +66,6 @@
 	add_filter( 'acf/prepare_field/name=syn_google_map_active', 'syn_prepare_page_fields' );
 	add_filter( 'acf/prepare_field/name=syn_google_map_title', 'syn_prepare_page_fields' );
 	add_filter( 'acf/prepare_field/name=syn_google_map_id', 'syn_prepare_page_fields' );
-
 	function syn_prepare_page_fields( $field ) {
 		global $pagenow;
 		global $post;
@@ -74,6 +73,13 @@
 			$page_template = syn_get_page_template( $post->ID );
 			if ( ! syn_current_user_can( 'administrator' ) ) {
 				switch ( $field[ '_name' ] ) {
+					case 'syn_microblog_term' :
+						if ( ! syn_current_user_can( 'editor' ) ) {
+							$field[ 'wrapper' ][ 'hidden' ] = true;
+						} else {
+							return false;
+						}
+						break;
 					case 'syn_page_teacher' :
 					case 'syn_page_class_teacher' :
 					case 'syn_page_class' :
@@ -92,7 +98,7 @@
 						}
 						break;
 					case 'syn_attachments_active':
-					case 'syn_video_active':
+						//case 'syn_video_active':
 					case 'syn_google_map_active':
 						return false;
 						break;
@@ -103,7 +109,7 @@
 						// Google Map tab
 					case 'field_5a41bf632a648' :
 						// Video tab
-					case 'field_5a41c15b2a64c' :
+						//case 'field_5a41c15b2a64c' :
 						return false;
 						break;
 				}
@@ -120,11 +126,15 @@
 			}
 			// microblog Term Message field
 			if ( 'field_59d4b278abf32' == $field[ 'key' ] ) {
-				$microblog_active = get_field( 'syn_microblog_active', $post->ID );
-				$microblog_term   = get_field( 'syn_microblog_term', $post->ID );
-				if ( $microblog_active ) {
-					if ( $microblog_term ) {
-						$field[ 'message' ] = $microblog_term->name;
+				if ( syn_current_user_can( 'editor' ) ) {
+					return false;
+				} else {
+					$microblog_active = get_field( 'syn_microblog_active', $post->ID );
+					$microblog_term   = get_field( 'syn_microblog_term', $post->ID );
+					if ( $microblog_active ) {
+						if ( $microblog_term ) {
+							$field[ 'message' ] = $microblog_term->name;
+						}
 					}
 				}
 			}

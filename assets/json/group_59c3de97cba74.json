@@ -112,18 +112,10 @@
             "type": "post_object",
             "instructions": "Do not set this value. It will populate and clear itself when using the checkbox above.",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_59c3de980525e",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
+			"conditional_logic": 0,
             "wrapper": {
                 "width": "",
-                "class": "",
+				"class": "hidden",
                 "id": ""
             },
             "post_type": [
@@ -153,5 +145,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1520446352
+	"modified": 1522455719
 }

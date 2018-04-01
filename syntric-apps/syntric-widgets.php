@@ -25,7 +25,7 @@
 	}
 
 	/**
-	 * Register/unregister custom widgets.
+	 * Register/unregister WordPress and custom widgets.
 	 */
 	add_action( 'widgets_init', 'syn_widgets_init', 20 );
 	function syn_widgets_init() {

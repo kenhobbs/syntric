@@ -54,7 +54,7 @@ require get_template_directory() . '/inc/templates.php';
  * Utility functions.
  */
 require get_template_directory() . '/inc/utility.php';
-/**
+	/**
  * Syntric Apps
  */
 // since is_plugin_active is in plugin.php and is loaded late, need to include the file before calling the function
