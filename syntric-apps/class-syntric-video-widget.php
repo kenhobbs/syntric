@@ -132,10 +132,6 @@
 					}
 				</script>
 			<?php
-
-
-			else:
-				echo '<p>Video unavailable</p>';
 			endif;
 		}
 

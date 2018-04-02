@@ -40,11 +40,11 @@
 			$_include_fields = get_field( 'syn_roster_include_fields', $post->ID );
 			$include_fields  = array_column( $_include_fields, 'value' );
 			$table_cols      = 0;
-			echo $args[ 'before_widget' ] . $lb;
-			if ( ! empty( $title ) ) :
-				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
-			endif;
 			if ( have_rows( 'syn_roster_people', $post->ID ) ) {
+				echo $args[ 'before_widget' ] . $lb;
+				if ( ! empty( $title ) ) :
+					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
+				endif;
 				if ( 'aside' == $layout ) {
 					echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
 				}
@@ -139,10 +139,11 @@
 					echo $tab . '</tbody>' . $lb;
 					echo '</table>' . $lb;
 				}
+				echo $args[ 'after_widget' ] . $lb;
 			} else {
-				echo '<p>No people in roster</p>';
+				echo '<!-- no records in roster -->';
 			}
-			echo $args[ 'after_widget' ] . $lb;
+
 		}
 
 		/**

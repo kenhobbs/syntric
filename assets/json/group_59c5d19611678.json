@@ -1,6 +1,6 @@
 {
     "key": "group_59c5d19611678",
-    "title": "Class Page Settings",
+	"title": "Page Settings - Class",
     "fields": [
         {
             "key": "field_59cc512c79563",
@@ -16,11 +16,8 @@
                 "id": ""
             },
             "choices": {
-                "236": "Author Author",
-                "190": "Editor Editor",
-                "158": "Gale Harrington",
-                "160": "Erin Headley",
-                "161": "Richard Heflin",
+				"230": "Arthur Hobbs",
+				"239": "Edward Hobbs",
                 "109": "Trini Marquis"
             },
             "default_value": [],
@@ -45,17 +42,13 @@
                 "id": ""
             },
             "choices": {
-                "id-824475494-1883130728-275678139": "AP English Language",
-                "id-795637172-1231576659-217261804": "AP English Literature",
-                "id-414694607-495621271-1928298790": "Art History",
-                "id-885916686-1100055712-1814522045": "Art History",
-                "id-1612593068-2070503038-734786383": "Band",
-                "id-56064024-1256977560-613106054": "Drama",
-                "id-995749034-108001789-615085633": "English Language Development I",
-                "id-602868035-507110086-1283310600": "English Language Development I",
-                "id-380852158-810432915-1943596332": "English Language Development II",
-                "id-2095953474-1385720114-1725637983": "Fine Art",
-                "id-503818373-509056834-1496477137": "Fine Art"
+				"id-580267380-1617645611-1599325776": "AP Biology  (Trini Marquis)",
+				"id-938799075-1614048214-1718865633": "Art History  (Arthur Hobbs)",
+				"id-728815315-1122397748-547982915": "Biology  (Trini Marquis)",
+				"id-349871282-1789279193-1303451014": "Biology  (Trini Marquis)",
+				"id-1396915752-199074398-632379648": "Chemistry  (Trini Marquis)",
+				"id-885783737-936597557-197425236": "Drama  (Arthur Hobbs)",
+				"id-2069238036-1961001141-891448710": "Fine Art  (Arthur Hobbs)"
             },
             "default_value": [],
             "allow_null": 1,
@@ -88,5 +81,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1520541037
+	"modified": 1522670374
 }

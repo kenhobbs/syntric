@@ -191,7 +191,7 @@
 		}
 	}
 
-	function syn_get_user_microblogs( $user_id ) {
+	function syn_get_user_microblog_pages( $user_id ) {
 		$args                 = [
 			'numberposts'  => - 1,
 			'post_type'    => 'page',

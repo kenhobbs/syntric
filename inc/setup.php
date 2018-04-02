@@ -118,15 +118,15 @@
 			//add_image_size( 'thumbnail', 100, 100, true );
 			update_option( 'thumbnail_size_w', 100 );
 			update_option( 'thumbnail_size_h', 100 );
-			update_option( 'thumbnail_crop', 0 );
+			update_option( 'thumbnail_crop', 1 );
 			//add_image_size( 'medium', 200, 200, true );
 			update_option( 'medium_size_w', 200 );
 			update_option( 'medium_size_h', 200 );
-			update_option( 'medium_crop', 0 );
+			update_option( 'medium_crop', 1 );
 			//add_image_size( 'medium_large', 400, 400, 1 );
 			update_option( 'medium_large_size_w', 400 );
 			update_option( 'medium_large_size_h', 400 );
-			update_option( 'medium_large_crop', 0 );
+			update_option( 'medium_large_crop', 1 );
 			//add_image_size( 'large', 800, 800, true );
 			update_option( 'large_size_w', 800 );
 			update_option( 'large_size_h', 800 );

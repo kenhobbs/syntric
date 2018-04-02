@@ -10,6 +10,7 @@
 	 * Include Syntric App files
 	 */
 	require get_template_directory() . '/syntric-apps/syntric-acf.php';
+	require get_template_directory() . '/syntric-apps/syntric-admin-columns.php';
 	require get_template_directory() . '/syntric-apps/syntric-calendars.php';
 	require get_template_directory() . '/syntric-apps/syntric-microblogs.php';
 	require get_template_directory() . '/syntric-apps/syntric-google-maps.php';
@@ -292,26 +293,6 @@
 		return $syntric_user;
 	}
 
-	function syn_reset_user_meta_boxes( $user_id = 0 ) {
-		if ( ! $user_id ) {
-			$user_id = get_current_user_id();
-		}
-		$user_options = get_user_meta( $user_id );
-		foreach ( $user_options as $key => $value ) {
-			$cuo_array = explode( '-', $key );
-			if ( 'meta' == $cuo_array[ 0 ] && 'box' == $cuo_array[ 1 ] ) {
-				//slog( $cuo_array );
-				if ( isset( $cuo_array[ 2 ] ) ) {
-					$cuo_array_2 = explode( '_', $cuo_array[ 2 ] );
-					if ( 'order' == $cuo_array_2[ 0 ] ) {
-						$res = delete_user_meta( $user_id, $key );
-						//slog( $res );
-					}
-				}
-			}
-		}
-	}
-
 	/**
 	 * Remove admin menu and submenu links by role
 	 */
@@ -398,7 +379,6 @@
 			$site_name_node        = $wp_admin_bar->get_node( 'site-name' );
 			$site_name_node->title = 'Admin';
 			$site_name_node->href  = '#';
-			$wp_admin_bar->add_node( $site_name_node );
 			// Create all the possible nodes (assign them after)
 			///////////////////////////////////////////
 			// site-name nodes
@@ -605,9 +585,15 @@
 		///////////////////////////////////////////
 		// For now just removing the New Conent menu...
 		// reenable this!
-		$wp_admin_bar->remove_node( 'new-content' );
+		//$wp_admin_bar->remove_node( 'new-content' );
 		// new-content node already has nodes for Post, Media, Page and User - which are a bad order.  Remove them and add back with custom nodes
-		/*$new_content_nodes = [];
+		$new_content_node = $wp_admin_bar->get_node( 'new-content' );
+		$wp_admin_bar->remove_node( 'new-user' );
+		$wp_admin_bar->remove_node( 'new-post' );
+		$wp_admin_bar->remove_node( 'new-media' );
+		$wp_admin_bar->remove_node( 'new-page' );
+		$wp_admin_bar->remove_node( 'new-tinymcetemplates' );
+		$new_content_nodes = [];
 		// Page
 		$new_page_node         = new stdClass();
 		$new_page_node->id     = 'new_page';
@@ -635,18 +621,21 @@
 		$new_media_node->group  = '';
 		$new_media_node->meta   = [];
 		$new_content_nodes[] = $new_media_node;
-		// User
-		$new_user_node         = new stdClass();
-		$new_user_node->id     = 'new_user';
-		$new_user_node->title  = 'User';
-		$new_user_node->parent = 'new-content';
-		$new_user_node->href   = '/wp-admin/user-new.php';
-		$new_user_node->group  = '';
-		$new_user_node->meta   = [];
-		$new_content_nodes[] = $new_user_node;
+		if ( syn_current_user_can( 'editor' ) ) {
+			// User
+			$new_user_node         = new stdClass();
+			$new_user_node->id     = 'new_user';
+			$new_user_node->title  = 'User';
+			$new_user_node->parent = 'new-content';
+			$new_user_node->href   = '/wp-admin/user-new.php';
+			$new_user_node->group  = '';
+			$new_user_node->meta   = [];
+			$new_content_nodes[]   = $new_user_node;
+		}
+
 		foreach ( $new_content_nodes as $new_content_node ) {
-			$wp_admin_bar->add_node( $new_content_nodes );
-		}*/
+			$wp_admin_bar->add_node( $new_content_node );
+		}
 		/**
 		 * Account menu
 		 */
@@ -792,7 +781,7 @@
 
 	add_filter( 'screen_layout_columns', 'syn_screen_layout_columns' );
 	function syn_screen_layout_columns( $columns ) {
-		$columns[ 'dashboard' ] = 1;
+		$columns[ 'dashboard' ] = 2;
 
 		return $columns;
 	}
@@ -800,6 +789,26 @@
 	add_filter( 'get_user_option_screen_layout_dashboard', 'syn_layout_dashboard' );
 	function syn_layout_dashboard() {
 		return 1;
+	}
+
+	function syn_reset_user_meta_boxes( $user_id = 0 ) {
+		if ( ! $user_id ) {
+			$user_id = get_current_user_id();
+		}
+		$user_options = get_user_meta( $user_id );
+		foreach ( $user_options as $key => $value ) {
+			$cuo_array = explode( '-', $key );
+			if ( 'meta' == $cuo_array[ 0 ] && 'box' == $cuo_array[ 1 ] ) {
+				//slog( $cuo_array );
+				if ( isset( $cuo_array[ 2 ] ) ) {
+					$cuo_array_2 = explode( '_', $cuo_array[ 2 ] );
+					if ( 'order' == $cuo_array_2[ 0 ] ) {
+						$res = delete_user_meta( $user_id, $key );
+						//slog( $res );
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -945,6 +954,7 @@
 
 		return $wp_meta_boxes[ $page ][ $context ];
 	}
+
 // Select field loaders
 	function syn_load_categories( $field ) {
 		if ( 'radio' == $field[ 'type' ] || 'select' == $field[ 'type' ] ) {
@@ -952,31 +962,39 @@
 			$choices    = [];
 			if ( $categories ) {
 				foreach ( $categories as $category ) {
-					$choices[ $category->cat_ID ] = $category->name . ' (' . $category->count . ')';
+					if ( syn_current_user_can( 'editor' ) || ( ! syn_current_user_can( 'editor' ) && 'microblogs' == $category->slug ) ) {
+						$choices[ $category->cat_ID ] = $category->name . ' (' . $category->count . ')';
+					}
 				}
+				//$choices[ 0 ]       = '+ New category';
+				$field[ 'choices' ] = $choices;
 			}
-			//$choices[ 0 ]       = '+ New category';
-			$field[ 'choices' ] = $choices;
-		}
 
-		return $field;
+			return $field;
+		}
 	}
 
 	function syn_load_microblogs( $field ) {
 		if ( 'radio' == $field[ 'type' ] || 'select' == $field[ 'type' ] ) {
-			$microblogs = get_terms( [
-				'taxonomy'   => 'microblog',
-				'hide_empty' => false,
-			], '' );
-			slog( '$microblogs-------------------------------------------------------' );
-			slog( $microblogs );
-			$user_microblogs = syn_get_user_microblogs( get_current_user_id() );
-			slog( '$user_microblogs-------------------------------------------------------' );
-			slog( $user_microblogs);
-			$choices    = [];
-			if ( $microblogs ) {
-				foreach ( $microblogs as $microblog ) {
-					$choices[ $microblog->term_id ] = $microblog->name . ' (' . $microblog->count . ')';
+			$choices = [];
+			$args    = [
+				'numberposts' => - 1,
+				'post_type'   => 'page',
+				'meta_key'    => 'syn_microblog_active',
+				'meta_value'  => 1,
+				'orderby'     => [ 'post_title' => 'ASC' ],
+			];
+			if ( ! syn_current_user_can( 'editor' ) ) {
+				$args[ 'author' ] = get_current_user_id();
+			}
+			$mb_pages = get_posts( $args );
+			if ( count( $mb_pages ) ) {
+				foreach ( $mb_pages as $mb_page ) {
+					$mb_active = get_field( 'syn_microblog_active', $mb_page->ID );
+					if ( $mb_active ) {
+						$mb_term                      = get_field( 'syn_microblog_term', $mb_page->ID );
+						$choices[ $mb_term->term_id ] = $mb_term->name . ' (' . $mb_term->count . ')';
+					}
 				}
 			}
 			//$choices[ 0 ]       = '+ New microblog';

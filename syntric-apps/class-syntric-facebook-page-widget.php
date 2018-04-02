@@ -77,7 +77,6 @@
 					} else {
 						echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
 						if ( property_exists( $facebook_posts, 'data' ) ) {
-
 							$post_counter = 1;
 							foreach ( $facebook_posts->data as $facebook_post ) :
 								if ( property_exists( $facebook_post, 'message' ) ) {
@@ -105,9 +104,9 @@
 							echo $tab . '<a href="http://www.facebook.com/' . $facebook_page . '" class="list-group-item list-group-item-action more-link">Go to Facebook</a>' . $lb;
 						} else {
 							if ( property_exists( $facebook_posts, 'error' ) ) {
-								echo $tab . $tab . '<div class="list-group-item">Posts unavailable</div>' . $lb;
+								echo $tab . $tab . '<div class="list-group-item">Facebook unavailable</div>' . $lb;
 							} else {
-								echo $tab . $tab . '<div class="list-group-item">No posts</div>';
+								echo $tab . $tab . '<div class="list-group-item">No Facebook posts</div>';
 							}
 						}
 						echo '</div>' . $lb;

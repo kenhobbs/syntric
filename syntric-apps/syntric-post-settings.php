@@ -64,8 +64,8 @@
 // prepare_field filters
 	add_filter( 'acf/prepare_field/name=syn_post_category', 'syn_prepare_post_fields' );
 	add_filter( 'acf/prepare_field/name=syn_post_microblog', 'syn_prepare_post_fields' );
-	add_filter( 'acf/prepare_field/key=field_59e7f2f7049e2', 'syn_prepare_post_fields' ); // category enhanced message field
-	add_filter( 'acf/prepare_field/key=field_59e7f370049e3', 'syn_prepare_post_fields' ); // microblog enhanced message field
+	add_filter( 'acf/prepare_field/key=field_59e7f2f7049e2', 'syn_prepare_post_fields' ); // Category enhanced message field
+	add_filter( 'acf/prepare_field/key=field_59e7f370049e3', 'syn_prepare_post_fields' ); // Microblog enhanced message field
 	function syn_prepare_post_fields( $field ) {
 		global $pagenow;
 		global $post;
@@ -74,13 +74,26 @@
 				if ( $field[ 'value' ] ) {
 					$field[ 'wrapper' ][ 'class' ] = 'hidden';
 				}
+				if ( ! $field[ 'value' ] && ! syn_current_user_can( 'editor' ) ) {
+					$microblogs_cat = get_category_by_slug( 'microblogs' );
+					if ( $microblogs_cat instanceof WP_Term ) {
+						$field[ 'value' ] = $microblogs_cat->term_id;
+					}
+				}
 			}
 			if ( 'syn_post_microblog' == $field[ '_name' ] ) {
 				if ( $field[ 'value' ] ) {
 					$field[ 'wrapper' ][ 'class' ] = 'hidden';
 				}
+				/*if ( ! syn_current_user_can( 'editor' ) ) {
+					$choices = [];
+					$user_microblogs = syn_get_user_microblogs( get_current_user_id() ); // returns get_posts
+					if ( count( $user_microblogs ) ) {
+
+					}
+				}*/
 			}
-			if ( 'field_59e7f2f7049e2' == $field[ 'key' ] ) {
+			if ( 'field_59e7f2f7049e2' == $field[ 'key' ] ) { // Category display
 				$category_id = get_field( 'syn_post_category', $post->ID );
 				if ( $category_id ) {
 					$category = get_category( $category_id );
@@ -90,7 +103,7 @@
 					}
 				}
 			}
-			if ( 'field_59e7f370049e3' == $field[ 'key' ] ) {
+			if ( 'field_59e7f370049e3' == $field[ 'key' ] ) { // Microblog display
 				$microblog_id = get_field( 'syn_post_microblog', $post->ID );
 
 				if ( $microblog_id ) {

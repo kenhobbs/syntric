@@ -1,13 +1,12 @@
 {
 	"key": "group_59c5d12746c46",
-	"title": "Department Page Settings",
+	"title": "Page Settings - Department",
 	"fields": [
 		{
 			"key": "field_59b8c34309606",
 			"label": "Department",
 			"name": "syn_page_department",
 			"type": "select",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": 0,
@@ -58,5 +57,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1509727189
+	"modified": 1522670412
 }

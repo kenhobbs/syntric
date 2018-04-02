@@ -63,7 +63,7 @@
 	 * Advanced Form
 	 */
 //add_action( 'af/form/submission/id=contact-form', 'syn_af_process_contact_form', 20, 3 );
-	function syn_af_process_contact_form( $form, $fields, $args ) {
+	function ______________notinuse______________syn_af_process_contact_form( $form, $fields, $args ) {
 		if ( is_admin() ) {
 			return;
 		}
@@ -179,7 +179,7 @@
 	 * Move content rich text editor and teacher classes into tabs
 	 */
 	//add_action( 'acf/input/admin_head', 'syn_move_content_editor' );
-	function syn_move_content_editor() {
+	function _____________notinuse________________syn_move_content_editor() {
 		?>
 		<script type="text/javascript">
 			(function ($) {

@@ -219,3 +219,17 @@
 		return $query;
 	}
 
+	// Automatically convert permalinks to PDFs in search results to the PDF itself, not the Attachment page
+	//add_filter( 'the_permalink', 'syn_force_direct_pdf_links', 10, 2 );
+	add_filter( 'attachment_link', 'syn_force_direct_pdf_links', 10, 2 );
+	function syn_force_direct_pdf_links( $permalink, $post_id ) {
+		//global $post;
+		if ( 'application/pdf' == get_post_mime_type( $post_id ) ) {
+			// if the result is a PDF, link directly to the file not the attachment page
+			$permalink = wp_get_attachment_url( $post_id );
+		}
+
+		return esc_url( $permalink );
+	}
+
+

@@ -1,6 +1,6 @@
 {
 	"key": "group_59ddbbe942f1c",
-	"title": "Post Category",
+	"title": "Category + Microblog",
 	"fields": [
 		{
 			"key": "field_59ddbcb3081a9",
@@ -17,11 +17,11 @@
 			},
 			"choices": {
 				"140": "Announcements (3)",
-				"129": "Microblogs (7)",
-				"1": "News (3)"
+				"129": "Microblogs (8)",
+				"1": "News (4)"
 			},
 			"allow_null": 0,
-			"other_choice": 1,
+			"other_choice": 0,
 			"save_other_choice": 0,
 			"default_value": "",
 			"layout": "vertical",
@@ -166,23 +166,6 @@
 				"param": "post_type",
 				"operator": "==",
 				"value": "post"
-			},
-			{
-				"param": "current_user_role",
-				"operator": "==",
-				"value": "administrator"
-			}
-		],
-		[
-			{
-				"param": "post_type",
-				"operator": "==",
-				"value": "post"
-			},
-			{
-				"param": "current_user_role",
-				"operator": "==",
-				"value": "editor"
 			}
 		]
 	],
@@ -192,18 +175,9 @@
 	"label_placement": "top",
 	"instruction_placement": "label",
 	"hide_on_screen": [
-		"excerpt",
-		"discussion",
-		"comments",
-		"revisions",
-		"slug",
-		"author",
-		"format",
-		"categories",
-		"tags",
-		"send-trackbacks"
+		"categories"
 	],
 	"active": 1,
 	"description": "",
-	"modified": 1522555967
+	"modified": 1522673384
 }
