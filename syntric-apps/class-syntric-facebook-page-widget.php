@@ -8,9 +8,10 @@
 		 * Set up a new widget instance
 		 */
 		public function __construct() {
-			$widget_ops = [ 'classname'                   => 'syn-facebook-page-widget',
-			                'description'                 => __( 'Displays posts from a Facebook page.' ),
-			                'customize_selective_refresh' => true,
+			$widget_ops = [
+				'classname'                   => 'syn-facebook-page-widget',
+				'description'                 => __( 'Displays posts from a Facebook page.' ),
+				'customize_selective_refresh' => true,
 			];
 			parent::__construct( 'syn-facebook-page-widget', __( 'Facebook Page' ), $widget_ops );
 			$this->alt_option_name = 'syn-facebook-page-widget';
@@ -34,22 +35,24 @@
 					return;
 				}
 				$title         = get_field( 'syn_facebook_page_title', $post->ID );
-				$facebook_page = get_field( 'syn_facebook_page_page', $post->ID );
+				$fb_page_id    = get_field( 'syn_facebook_page_page', $post->ID );
 				$include_image = get_field( 'syn_facebook_page_include_image', $post->ID );
 				$number        = get_field( 'syn_facebook_page_posts', $post->ID );
 			} else {
 				$title         = get_field( 'syn_facebook_page_widget_title', 'widget_' . $args[ 'widget_id' ] );
-				$facebook_page = get_field( 'syn_facebook_page_widget_page', 'widget_' . $args[ 'widget_id' ] );
+				$fb_page_id    = get_field( 'syn_facebook_page_widget_page', 'widget_' . $args[ 'widget_id' ] );
 				$include_image = get_field( 'syn_facebook_page_widget_include_image', 'widget_' . $args[ 'widget_id' ] );
 				$number        = get_field( 'syn_facebook_page_widget_posts', 'widget_' . $args[ 'widget_id' ] );
 			}
-			if ( isset( $facebook_page ) && ! empty( $facebook_page ) ) {
+			if ( isset( $fb_page_id ) && ! empty( $fb_page_id ) ) {
 				$posts_to_fetch = $number; // get extra because a post won't display if it doesn't have a 'message'
-				$facebook_posts = syn_get_facebook_page_posts( $facebook_page, $posts_to_fetch );
+				$facebook_posts = syn_get_facebook_page_posts( $fb_page_id, $posts_to_fetch );
+				$facebook_page  = syn_get_facebook_page( $fb_page_id );
+				//slog($facebook_page);
 				//$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
 				$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
-				$lb = syn_get_linebreak();
-				$tab = syn_get_tab();
+				$lb            = syn_get_linebreak();
+				$tab           = syn_get_tab();
 				echo $args[ 'before_widget' ] . $lb;
 				if ( ! empty( $title ) ) :
 					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
@@ -101,7 +104,7 @@
 								}
 								$post_counter ++;
 							endforeach;
-							echo $tab . '<a href="http://www.facebook.com/' . $facebook_page . '" class="list-group-item list-group-item-action more-link">Go to Facebook</a>' . $lb;
+							echo $tab . '<a href="http://www.facebook.com/' . $fb_page_id . '" class="list-group-item list-group-item-action more-link">Go to Facebook</a>' . $lb;
 						} else {
 							if ( property_exists( $facebook_posts, 'error' ) ) {
 								echo $tab . $tab . '<div class="list-group-item">Facebook unavailable</div>' . $lb;

@@ -560,6 +560,8 @@
 				$wp_admin_bar->add_node( $users_node );
 				// Social Media
 				$wp_admin_bar->add_node( $social_media_node );
+				// Customizer
+				$wp_admin_bar->add_node( $customizer_node );
 				// Headers
 				/*$headers_node         = new stdClass();
 				$headers_node->id     = 'headers';
@@ -602,7 +604,7 @@
 		$new_page_node->href   = '/wp-admin/post-new.php?post_type=page';
 		$new_page_node->group  = '';
 		$new_page_node->meta   = [];
-		$new_content_nodes[] = $new_page_node;
+		$new_content_nodes[]   = $new_page_node;
 		// Post
 		$new_post_node         = new stdClass();
 		$new_post_node->id     = 'new_post';
@@ -611,7 +613,7 @@
 		$new_post_node->href   = '/wp-admin/post-new.php';
 		$new_post_node->group  = '';
 		$new_post_node->meta   = [];
-		$new_content_nodes[] = $new_post_node;
+		$new_content_nodes[]   = $new_post_node;
 		// Media
 		$new_media_node         = new stdClass();
 		$new_media_node->id     = 'new_media';
@@ -620,7 +622,7 @@
 		$new_media_node->href   = '/wp-admin/media-new.php';
 		$new_media_node->group  = '';
 		$new_media_node->meta   = [];
-		$new_content_nodes[] = $new_media_node;
+		$new_content_nodes[]    = $new_media_node;
 		if ( syn_current_user_can( 'editor' ) ) {
 			// User
 			$new_user_node         = new stdClass();
@@ -632,7 +634,6 @@
 			$new_user_node->meta   = [];
 			$new_content_nodes[]   = $new_user_node;
 		}
-
 		foreach ( $new_content_nodes as $new_content_node ) {
 			$wp_admin_bar->add_node( $new_content_node );
 		}
@@ -942,7 +943,7 @@
 
 	function syn_get_meta_boxes( $screen = null, $context = 'advanced' ) {
 		global $wp_meta_boxes;
-		slog( 'all meta_boxes=======================================' );
+		//slog( 'all meta_boxes=======================================' );
 		if ( empty( $screen ) ) {
 			$screen = get_current_screen();
 		} elseif ( is_string( $screen ) ) {
@@ -950,7 +951,7 @@
 		}
 		$page = $screen->id;
 // todo: remove the logging
-		slog( $wp_meta_boxes );
+		//slog( $wp_meta_boxes );
 
 		return $wp_meta_boxes[ $page ][ $context ];
 	}
@@ -1148,7 +1149,8 @@
 		global $post;
 		//slog( 'syn_load_courses => $post');
 		//slog($post);
-		if ( 'select' == $field[ 'type' ] && $post instanceof WP_Post && 'acf-field-group' != $post->post_type ) {
+		//if ( 'select' == $field[ 'type' ] && $post instanceof WP_Post && 'acf-field-group' != $post->post_type ) {
+		if ( 'select' == $field[ 'type' ] ) {
 			/*$choices = [];
 			$courses = get_field( 'syn_courses', 'option' );
 			if ( $courses && is_array( $courses ) ) {
@@ -1159,6 +1161,8 @@
 			asort( $choices );
 			$field[ 'choices' ] = $choices;*/
 			$courses = syn_get_courses();
+			//slog('$courses------------------------------------------------------------------------------------');
+			//slog($courses);
 			/******
 			 * Need to handle the different return structures from syn_get_courses()
 			 * One type is grouped by department, the other not
@@ -1656,6 +1660,17 @@
 				update_field( 'syn_user_page', $teacher_page_id, 'user_' . $teacher_id );
 				update_post_meta( $teacher_page_id, '_wp_page_template', 'page-templates/teacher.php' );
 				update_field( 'syn_page_teacher', $teacher_id, $teacher_page_id );
+				update_field( 'syn_contact_active', 1, $teacher_page_id );
+				update_field( 'syn_contact_title', 'Contact Teacher', $teacher_page_id );
+				update_field( 'syn_contact_contact_type', 'person', $teacher_page_id );
+				update_field( 'syn_contact_person', $teacher_id, $teacher_page_id );
+				update_field( 'syn_contact_include_person_fields', [
+					'prefix',
+					'first_name',
+					'title',
+					'email',
+					'phone',
+				], $teacher_page_id );
 
 				return $teacher_page_id;
 			}
@@ -1665,7 +1680,8 @@
 	}
 
 	function syn_get_teacher_page_content() {
-		return '<h2>Bio</h2>
+		return '';
+		/*return '<h2>Bio</h2>
 <p>Write a bio about yourself. Consider including:</p>
 <ul>
 	<li>Birthplace</li>
@@ -1676,7 +1692,7 @@
 	<li>Unique or meaningful life experiences</li>
 </ul>
 <p>Do not list classes.  A list of classes is generated automatically from the Classes entered below.</p>
-<p>Do not include contact information. Instead activate and configure the Contact Widget below.</p>';
+<p>Do not include contact information. Instead activate and configure the Contact Widget below.</p>';*/
 	}
 
 	function syn_trash_teacher_page( $teacher_id ) {
@@ -1850,8 +1866,6 @@
 						}
 					}
 				}
-				//slog( 'syn_save_teacher_classes => $tc_args');
-				//slog( $tc_args );
 				// does - classes that have a page
 				$does = array_intersect( $tc_ids, $tcp_ids );
 				if ( count( $does ) ) {
@@ -1865,9 +1879,20 @@
 						update_post_meta( $tcp_id, '_wp_page_template', 'page-templates/class.php' );
 						update_field( 'syn_page_class_teacher', $teacher_id, $tcp_id );
 						update_field( 'syn_page_class', $class_id, $tcp_id );
+						update_field( 'syn_contact_active', 1, $tcp_id );
+						update_field( 'syn_contact_title', 'Contact Teacher', $tcp_id );
+						update_field( 'syn_contact_contact_type', 'person', $tcp_id );
+						update_field( 'syn_contact_person', $teacher_id, $tcp_id );
+						update_field( 'syn_contact_include_person_fields', [
+							'prefix',
+							'first_name',
+							'title',
+							'email',
+							'phone',
+						], $tcp_id );
 					}
 				}
-				// should - classes that don't have a page
+				// should - classes that should have a page, but don't
 				$should = array_diff( $tc_ids, $tcp_ids );
 				if ( count( $should ) ) {
 					foreach ( $should as $class_id ) {
@@ -1878,9 +1903,20 @@
 						update_post_meta( $tcp_id, '_wp_page_template', 'page-templates/class.php' );
 						update_field( 'syn_page_class_teacher', $teacher_id, $tcp_id );
 						update_field( 'syn_page_class', $class_id, $tcp_id );
+						update_field( 'syn_contact_active', 1, $tcp_id );
+						update_field( 'syn_contact_title', 'Contact Teacher', $tcp_id );
+						update_field( 'syn_contact_contact_type', 'person', $tcp_id );
+						update_field( 'syn_contact_person', $teacher_id, $tcp_id );
+						update_field( 'syn_contact_include_person_fields', [
+							'prefix',
+							'first_name',
+							'title',
+							'email',
+							'phone',
+						], $tcp_id );
 					}
 				}
-				// should_not - pages without a class
+				// should_not - classes that have a page but shouldn't
 				$should_not = array_diff( $tcp_ids, $tc_ids );
 				if ( count( $should_not ) ) {
 					foreach ( $should_not as $class_id ) {
@@ -1933,14 +1969,15 @@
 	}
 
 	function syn_get_class_page_content() {
-		return '<h2>Overview</h2>
+		return '';
+		/*return '<h2>Overview</h2>
 <p>Write an overview of the class. Consider including:</p>
 <ul>
 	<li>Major topics</li>
 	<li>Prequisites</li>
 	<li>Classes that require this class as a prerequisite</li>
 	<li>Grading policy</li>
-</ul>';
+</ul>';*/
 	}
 
 	/*************************************** Teachers *****************************************/
@@ -1982,7 +2019,7 @@
 					'compare' => '=',
 				],
 			],
-			'orderby'     => 'title',
+			'orderby'     => 'menu_order',
 			'order'       => 'ASC',
 		];
 		$posts     = get_posts( $post_args );
@@ -2498,7 +2535,8 @@
 			echo $tab . $tab . '<tr>' . $lb;
 			echo $tab . $tab . $tab . '<th scope="col">Name</th>' . $lb;
 			//echo $tab . $tab . $tab . '<th scope="col">Title</th>' . $lb;
-			//echo $tab . $tab . $tab . '<th scope="col">Email</th>' . $lb;
+			echo $tab . $tab . $tab . '<th scope="col">Email</th>' . $lb;
+			echo $tab . $tab . $tab . '<th scope="col">Phone</th>' . $lb;
 			echo $tab . $tab . $tab . '<th scope="col">Classes</th>' . $lb;
 			echo $tab . $tab . '</tr>' . $lb;
 			echo $tab . '</thead>' . $lb;
@@ -2508,7 +2546,11 @@
 				$prefix       = get_field( 'syn_user_prefix', 'user_' . $teacher->ID );
 				$full_name    = ( ! empty( $prefix ) ) ? $prefix . ' ' . $display_name : $display_name;
 				//$title                  = get_field( 'syn_user_title', 'user_' . $teacher->ID );
-				//$email                  = $teacher->data->user_email;
+				$email                  = $teacher->data->user_email;
+				$phone                  = get_field( 'syn_user_phone', 'user_' . $teacher->ID );
+				$ext                    = get_field( 'syn_user_extension', 'user_' . $teacher->ID );
+				$ext                    = ( isset( $ext ) && ! empty( $ext ) && ! empty( $phone ) ) ? ' x' . $ext : '';
+				$phone                  = ( ! empty( $phone ) ) ? $phone . $ext : '';
 				$teacher_page           = syn_get_teacher_page( $teacher->ID );
 				$teacher_page_published = ( $teacher_page && 'publish' == $teacher_page->post_status ) ? true : false;
 				$teacher_classes        = ( $teacher_page_published ) ? get_field( 'syn_classes', $teacher_page->ID ) : false;
@@ -2540,7 +2582,8 @@
 					echo '</a>' . $lb;
 				}
 				echo $tab . $tab . $tab . '</td>' . $lb;
-				//echo $tab . $tab . $tab . '<td class="email"><a href="mailto:' . antispambot( $email, true ) . '" class="teachers-list-email" title="Email">' . antispambot( $email ) . '</a></td>' . $lb;
+				echo $tab . $tab . $tab . '<td class="email"><a href="mailto:' . antispambot( $email, true ) . '" class="teachers-list-email" title="Email">' . antispambot( $email ) . '</a></td>' . $lb;
+				echo $tab . $tab . $tab . '<td class="phone">' . $phone . '</td>' . $lb;
 				echo $tab . $tab . $tab . '<td class="classes">' . implode( ' / ', $class_array ) . '</td>' . $lb;
 				echo $tab . $tab . '</tr>' . $lb;
 			}
@@ -2589,8 +2632,8 @@
 						if ( $page instanceof WP_Post && 'publish' == $page->post_status ) {
 							echo $tab . $tab . $tab . $tab . '<a href="' . get_the_permalink( $page->ID ) . '">';
 						}
+						//echo get_sub_field( 'course', false );
 						echo $courses[ get_sub_field( 'course' ) ];
-						//echo $courses[get_sub_field( 'course' )];
 						if ( $page instanceof WP_Post && 'publish' == $page->post_status ) {
 							echo '</a>' . $lb;
 						}

@@ -35,6 +35,7 @@
 		$editor_role->add_cap( 'create_users' );
 		$editor_role->add_cap( 'edit_users' );
 		$editor_role->add_cap( 'delete_users' );
+		$editor_role->add_cap( 'customize' );
 		// plugins
 		$editor_role->add_cap( 'update_plugins' );
 		$editor_role->add_cap( 'edit_plugins' );
@@ -74,14 +75,14 @@
 			$roles      = $user->roles;
 			$role       = $roles[ 0 ];
 			if ( $is_teacher ) {
-				slog( $user );
-				slog( $role );
+				//slog( $user );
+				//slog( $role );
 				if ( ! in_array( $role, [
 					'author',
 					'editor',
 					'administrator',
 				] ) ) {
-					slog( 'inside wp_update_user conditional' );
+					//slog( 'inside wp_update_user conditional' );
 					$user_id = wp_update_user( [
 						'ID'   => $user_id,
 						'role' => 'author',

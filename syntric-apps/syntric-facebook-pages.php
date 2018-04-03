@@ -32,7 +32,7 @@
 
 	// need to be more selective (vs. retrieving posts from all registered FB pages - pass an argument)
 	// todo: make more selective & cache posts?  save into WP Posts?
-	function syn_get_facebook_page_posts( $facebook_page_id, $number ) {
+	function syn_get_facebook_page_posts( $facebook_page_id, $number = 5 ) {
 		if ( have_rows( 'syn_facebook_pages', 'option' ) ) {
 			$page       = false;
 			$auth_token = false;
@@ -67,4 +67,25 @@
 		}
 
 		return false;
+	}
+
+	function syn_get_facebook_page( $facebook_page_id ) {
+		//slog('1 = ' . $facebook_page_id);
+		//slog(get_field( 'syn_facebook_pages', 'option' ) );
+		//slog('1 = ' . $facebook_page_id);
+		if ( have_rows( 'syn_facebook_pages', 'option' ) ) {
+			//slog('2');
+			while( have_rows( 'syn_facebook_pages', 'option' ) ) : the_row();
+				if ( $facebook_page_id == get_sub_field( 'facebook_page_id' ) ) {
+					//slog('3');
+					//slog( 'the_row()================================================================');
+					//slog( the_row() );
+					//slog( 'get_row()================================================================');
+					//slog( get_row() );
+					return get_sub_field( 'page' );
+				}
+			endwhile;
+		}
+
+		return;
 	}

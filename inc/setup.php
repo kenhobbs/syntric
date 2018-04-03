@@ -122,16 +122,16 @@
 			//add_image_size( 'medium', 200, 200, true );
 			update_option( 'medium_size_w', 200 );
 			update_option( 'medium_size_h', 200 );
-			update_option( 'medium_crop', 1 );
+			update_option( 'medium_crop', 0 );
 			//add_image_size( 'medium_large', 400, 400, 1 );
 			update_option( 'medium_large_size_w', 400 );
 			update_option( 'medium_large_size_h', 400 );
-			update_option( 'medium_large_crop', 1 );
+			update_option( 'medium_large_crop', 0 );
 			//add_image_size( 'large', 800, 800, true );
 			update_option( 'large_size_w', 800 );
 			update_option( 'large_size_h', 800 );
 			update_option( 'large_crop', 0 );
-			add_image_size( 'banner', 1920, 500, 1 );
+			add_image_size( 'banner', 1920, 500, 0 );
 			/**
 			 * Add ability to integrate translations using textdomain
 			 * Translations can be filed in the /assets/languages/ directory.

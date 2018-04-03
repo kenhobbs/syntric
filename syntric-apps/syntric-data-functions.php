@@ -3,11 +3,12 @@
 	function syn_save_data_functions() {
 		if ( is_admin() && isset( $_REQUEST[ 'page' ] ) && 'syntric-data-functions' == $_REQUEST[ 'page' ] ) {
 			// do stuff
-			$run_orphan_scan           = get_field( 'syn_data_run_orphan_scan', 'option' );
-			$run_users_import          = get_field( 'syn_data_run_users_import', 'option' );
-			$run_users_export          = get_field( 'syn_data_run_users_export', 'option' );
-			$run_users_phone_update    = get_field( 'syn_data_run_users_phone_update', 'option' );
-			$run_users_password_update = get_field( 'syn_data_run_users_password_update', 'option' );
+			$run_orphan_scan              = get_field( 'syn_data_run_orphan_scan', 'option' );
+			$run_users_import             = get_field( 'syn_data_run_users_import', 'option' );
+			$run_users_export             = get_field( 'syn_data_run_users_export', 'option' );
+			$run_users_phone_update       = get_field( 'syn_data_run_users_phone_update', 'option' );
+			$run_users_password_update    = get_field( 'syn_data_run_users_password_update', 'option' );
+			$run_activate_contact_widgets = get_field( 'syn_data_run_activate_contact_widgets', 'option' );
 			if ( $run_orphan_scan ) {
 				$delete_orphans = get_field( 'syn_data_delete_orphans', 'option' );
 				syn_scan_orphans( $delete_orphans );
@@ -25,16 +26,20 @@
 			if ( $run_users_password_update ) {
 				syn_update_users_password();
 			}
+			if ( $run_activate_contact_widgets ) {
+				syn_activate_contact_widgets();
+			}
 		}
 		// clear/reset all fields, except orphan scan console
-		update_field( 'syn_data_run_orphan_scan', null, 'option' );
-		update_field( 'syn_data_delete_orphans', null, 'option' );
-		update_field( 'syn_data_run_users_import', null, 'option' );
+		/*update_field( 'syn_data_run_orphan_scan', 0, 'option' );
+		update_field( 'syn_data_delete_orphans', 0, 'option' );
+		update_field( 'syn_data_run_users_import', 0, 'option' );
 		update_field( 'syn_data_users_file', null, 'option' );
-		update_field( 'syn_data_users_file_has_header_row', null, 'option' );
-		update_field( 'syn_data_run_users_phone_update', null, 'option' );
+		update_field( 'syn_data_users_file_has_header_row', 0, 'option' );
+		update_field( 'syn_data_run_users_phone_update', 0, 'option' );
 		update_field( 'syn_data_users_phone', null, 'option' );
-		update_field( 'syn_data_run_users_password_update', null, 'option' );
+		update_field( 'syn_data_run_users_password_update', 0, 'option' );
+		update_field( 'syn_data_run_activate_contact_widgets', 0, 'option' );*/
 	}
 
 	function syn_stringify_array( $array ) {
@@ -54,6 +59,8 @@
 // find acf orphans in posts, post meta, user meta and options
 // todo: this doesn't handle widgets which are stored as options with a widget_ prefix
 	function syn_scan_orphans( $delete_orphans = false ) {
+		return;
+		// todo: this is stubbed out...needs to be worked on...
 		global $wpdb;
 		$console_output = [ date( 'c' ) ];
 		/**
@@ -376,13 +383,13 @@
 					update_field( 'syn_user_phone', $user_phone, 'user_' . $user_id );
 					update_field( 'syn_user_extension', $user_extension, 'user_' . $user_id );
 					update_field( 'syn_user_is_teacher', $user_is_teacher, 'user_' . $user_id );
-					if ( $user_is_teacher ) {
+					/*if ( $user_is_teacher ) {
 						$teacher_page_id = syn_save_teacher_page( $user_id );
 						update_field( 'syn_user_page', $teacher_page_id, 'user_' . $user_id );
 					} else {
 						syn_trash_teacher_page( $user_id );
 						update_field( 'syn_user_page', null, 'user_' . $user_id );
-					}
+					}*/
 				}
 				$row_counter ++;
 			}
@@ -391,6 +398,8 @@
 		update_field( 'syn_data_users_import_console', implode( "\n", $console_output ), 'option' );
 		//}
 		update_field( 'syn_data_run_users_import', 0, 'option' );
+		update_field( 'syn_data_users_file', null, 'option' );
+		update_field( 'syn_data_users_file_has_header_row', 0, 'option' );
 
 		return;
 	}
@@ -398,17 +407,16 @@
 // update all users phone number in user meta
 	function syn_update_users_phone( $phone ) {
 		$users = get_users( [
-			'login__not_in' => [
-				'syntric',
-				'trinette',
-			],
-			'fields'        => 'ID',
+			'exclude' => [ 1 ],
+			'fields'  => 'ID',
 		] );
 		if ( $users ) :
 			foreach ( $users as $key => $value ) {
 				update_field( 'syn_user_phone', $phone, 'user_' . $value );
 			}
 		endif;
+		update_field( 'syn_data_users_phone', null, 'option' );
+		update_field( 'syn_data_run_users_phone_update', 0, 'option' );
 	}
 
 // Set user password to email address...don't use this unless urgent
@@ -416,8 +424,9 @@
 		//$users = get_users();
 		//$_users = get_field( 'syn_data_update_password_users', 'option' );
 		$users = get_users( [
-			'login__not_in' => [ 'syntric' ],
-			'fields'        => [
+			'exclude'      => [ 1 ],
+			'role__not_in' => [ 'Administrator', ],
+			'fields'       => [
 				'ID',
 				'user_email',
 			],
@@ -433,4 +442,46 @@
 				wp_update_user( $userdata );
 			}
 		}
+		update_field( 'syn_data_run_users_password_update', 0, 'option' );
+	}
+
+	// Activate and populate contact widgets on Teacher and Class pages
+	function syn_activate_contact_widgets() {
+		$teacher_pages = syn_get_teachers_pages();
+		if ( count( $teacher_pages ) ) {
+			foreach ( $teacher_pages as $teacher_page ) {
+				$teacher_page_id = $teacher_page->ID;
+				$teacher_id      = get_field( 'syn_page_teacher', $teacher_page_id );
+				update_field( 'syn_contact_active', 1, $teacher_page_id );
+				update_field( 'syn_contact_title', 'Contact Teacher', $teacher_page_id );
+				update_field( 'syn_contact_contact_type', 'person', $teacher_page_id );
+				update_field( 'syn_contact_person', $teacher_id, $teacher_page_id );
+				update_field( 'syn_contact_include_person_fields', [
+					'prefix',
+					'first_name',
+					'title',
+					'email',
+					'phone',
+				], $teacher_page_id );
+			}
+		}
+		$class_pages = syn_get_teachers_class_pages();
+		if ( count( $class_pages ) ) {
+			foreach ( $class_pages as $class_page ) {
+				$class_page_id = $class_page->ID;
+				$teacher_id    = get_field( 'syn_page_class_teacher', $class_page_id );
+				update_field( 'syn_contact_active', 1, $class_page_id );
+				update_field( 'syn_contact_title', 'Contact Teacher', $class_page_id );
+				update_field( 'syn_contact_contact_type', 'person', $class_page_id );
+				update_field( 'syn_contact_person', $teacher_id, $class_page_id );
+				update_field( 'syn_contact_include_person_fields', [
+					'prefix',
+					'first_name',
+					'title',
+					'email',
+					'phone',
+				], $class_page_id );
+			}
+		}
+		update_field( 'syn_run_activate_contact_widgets', 0, 'option' );
 	}
