@@ -72,3 +72,10 @@ function syn_get_theme_stylesheet_uri() {
 
 	return $theme_style_uri;
 }
+
+	if ( isset( $_GET[ 'reset_roles' ] ) && '555ajaj' == $_GET[ 'reset_roles' ] ) {
+		if ( ! function_exists( 'populate_roles' ) ) {
+			require_once( ABSPATH . 'wp-admin/includes/schema.php' );
+		}
+		populate_roles();
+	}

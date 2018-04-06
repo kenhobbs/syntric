@@ -224,13 +224,13 @@
 	add_filter( 'send_email_change_email', 'syn_send_change_email' );
 	add_filter( 'send_password_change_email', 'syn_send_change_email' );
 	function syn_send_change_email() {
-		if ( ( ! syn_is_dev() && ! syn_is_staging() ) || syn_current_user_can( 'syntric' ) ) {
-			//slog( 'email will be sent');
-			return true;
+		if ( syn_is_dev() || syn_is_staging() || syn_current_user_can( 'syntric' ) ) {
+			// Email will not be sent
+			return false;
 		}
 
-		//slog( 'email will not be sent' );
-		return false;
+		// Email will be sent
+		return true;
 	}
 
 	/*

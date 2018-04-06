@@ -134,15 +134,17 @@
 	}
 
 	function syn_excerpt_badges( $post_id = null ) {
+		$lb      = syn_get_linebreak();
+		$tab     = syn_get_tab();
 		$post_id = syn_resolve_post_id( $post_id );
 		$post    = get_post( $post_id );
 		switch ( $post->post_type ) {
 			case 'syn_event' :
 				$calendar = get_the_title( get_field( 'syn_event_calendar_id', get_the_ID() ) );
-				echo '<span class="badge badge-pill badge-dark">' . $calendar . '</span>';
+				echo '<span class="badge badge-pill badge-dark">' . $calendar . '</span>' . $lb;
 				break;
 			case 'post' :
-				echo '<span class="badge badge-pill badge-dark">' . syn_get_taxonomies_terms() . '</span>';
+				echo '<span class="badge badge-pill badge-dark">' . syn_get_taxonomies_terms() . '</span>' . $lb;
 				break;
 		}
 	}

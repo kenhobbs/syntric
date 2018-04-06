@@ -80,6 +80,7 @@
 					} else {
 						echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
 						if ( property_exists( $facebook_posts, 'data' ) ) {
+							//print_r( $facebook_posts );
 							$post_counter = 1;
 							foreach ( $facebook_posts->data as $facebook_post ) :
 								if ( property_exists( $facebook_post, 'message' ) ) {

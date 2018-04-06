@@ -375,6 +375,41 @@
 			"message": "",
 			"new_lines": "wpautop",
 			"esc_html": 0
+		},
+		{
+			"key": "field_5ac72f8be5499",
+			"label": "Reset User Capabilities",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_5ac72f6ee5498",
+			"label": "Reset User Capabilities",
+			"name": "syn_data_run_reset_user_capabilities",
+			"type": "true_false",
+			"instructions": "This will reset corrupted wp_capabilities values in wp_usermeta.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 0,
+			"ui_on_text": "",
+			"ui_off_text": ""
 		}
 	],
 	"location": [
@@ -394,5 +429,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1522720805
+	"modified": 1523028547
 }

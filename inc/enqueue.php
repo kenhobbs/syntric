@@ -10,6 +10,12 @@
 		wp_deregister_script( 'jquery' );
 		wp_register_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js', null, null, true );
 		wp_enqueue_script( 'jquery' );
+		// Dev styles and scripts
+		if ( syn_is_dev() ) {
+			wp_enqueue_style( 'nestable', '//cdnjs.cloudflare.com/ajax/libs/nestable2/1.6.0/jquery.nestable.min.css', null, null, null );
+			wp_enqueue_script( 'nestable', '//cdnjs.cloudflare.com/ajax/libs/nestable2/1.6.0/jquery.nestable.min.js', null, '1.6.0', true );
+			////cdnjs.cloudflare.com/ajax/libs/nestable2/1.6.0/jquery.nestable.min.js
+		}
 		// Fontawesome
 		wp_enqueue_script( 'fontawesome', '//use.fontawesome.com/f45398b257.js', null, '4.7.0', true );
 		// Fontawesome 5 SVG version todo: migrate to FA 5

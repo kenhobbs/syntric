@@ -30,6 +30,7 @@
 	require get_template_directory() . '/syntric-apps/syntric-widgets.php';
 	require get_template_directory() . '/syntric-apps/syntric-data-functions.php';
 	require get_template_directory() . '/syntric-apps/class-syntric-nav-menu-walker.php';
+	//require get_template_directory() . '/syntric-apps/syntric-nestable.php';
 	// If production, remove all whitespace
 //require get_template_directory() . '/syntric-apps/syntric-forms.php';
 //require get_template_directory() . '/syntric-apps/syntric-contact.php';
@@ -209,10 +210,11 @@
 	function syn_current_user_can( $role ) {
 		$current_user = wp_get_current_user();
 		$syntric_user = syn_syntric_user();
-		if ( 'syntric' == $role && $current_user->ID == $syntric_user->ID ) {
+		if ( 'syntric' == $role && $syntric_user instanceof WP_User && $current_user->ID == $syntric_user->ID ) {
 			return true;
 		}
-		$current_user_role = $current_user->roles ? $current_user->roles[ 0 ] : false;
+		$current_user_roles = $current_user->roles;
+		$current_user_role  = $current_user_roles ? $current_user_roles[ count( $current_user_roles ) - 1 ] : false;
 		if ( 'subscriber' == $role && in_array( $current_user_role, [
 				'subscriber',
 				'contributor',
@@ -289,6 +291,9 @@
 		}*/
 	function syn_syntric_user() {
 		$syntric_user = get_user_by( 'login', 'syntric' );
+		if ( ! $syntric_user instanceof WP_User ) {
+			$syntric_user = get_user_by( 'email', 'ken@syntric.com' );
+		}
 
 		return $syntric_user;
 	}

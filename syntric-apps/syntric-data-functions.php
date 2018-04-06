@@ -9,6 +9,7 @@
 			$run_users_phone_update       = get_field( 'syn_data_run_users_phone_update', 'option' );
 			$run_users_password_update    = get_field( 'syn_data_run_users_password_update', 'option' );
 			$run_activate_contact_widgets = get_field( 'syn_data_run_activate_contact_widgets', 'option' );
+			$run_reset_user_capabilities  = get_field( 'syn_data_run_reset_user_capabilities', 'option' );
 			if ( $run_orphan_scan ) {
 				$delete_orphans = get_field( 'syn_data_delete_orphans', 'option' );
 				syn_scan_orphans( $delete_orphans );
@@ -29,9 +30,12 @@
 			if ( $run_activate_contact_widgets ) {
 				syn_activate_contact_widgets();
 			}
+			if ( $run_reset_user_capabilities ) {
+				syn_reset_user_capabilities();
+			}
 		}
 		// clear/reset all fields, except orphan scan console
-		/*update_field( 'syn_data_run_orphan_scan', 0, 'option' );
+		update_field( 'syn_data_run_orphan_scan', 0, 'option' );
 		update_field( 'syn_data_delete_orphans', 0, 'option' );
 		update_field( 'syn_data_run_users_import', 0, 'option' );
 		update_field( 'syn_data_users_file', null, 'option' );
@@ -39,7 +43,8 @@
 		update_field( 'syn_data_run_users_phone_update', 0, 'option' );
 		update_field( 'syn_data_users_phone', null, 'option' );
 		update_field( 'syn_data_run_users_password_update', 0, 'option' );
-		update_field( 'syn_data_run_activate_contact_widgets', 0, 'option' );*/
+		update_field( 'syn_data_run_activate_contact_widgets', 0, 'option' );
+		update_field( 'syn_data_run_reset_user_capabilities', 0, 'option' );
 	}
 
 	function syn_stringify_array( $array ) {
@@ -419,10 +424,41 @@
 		update_field( 'syn_data_run_users_phone_update', 0, 'option' );
 	}
 
+	// Reset corrupted wp_usermeta.wp_capabilities
+	function syn_reset_user_capabilities() {
+		$users = get_users( [
+			'role_not_in' => [ 'Administrator' ],
+			'exclude'     => [ 1 ],
+		] );
+		if ( count( $users ) ) {
+			foreach ( $users as $user ) {
+				$user_capabilities = get_user_meta( $user->ID, 'wp_capabilities' );
+				//slog($user_capabilities);
+				$user_caps = $user_capabilities[ 0 ];
+				//slog($user_caps);
+				$user_cap_count = count( $user_caps );
+				//slog($user_cap_count);
+				if ( 1 < $user_cap_count ) {
+					//$primary_role = $user_caps[ $user_cap_count - 1 ];
+					$cap_no = 1;
+					foreach ( $user_caps as $key => $val ) {
+						//slog($key);
+						if ( $cap_no < $user_cap_count ) {
+							//slog($key . ' - REMOVED');
+							$user->remove_cap( $key );
+							$cap_no ++;
+						}
+					}
+				}
+			}
+		}
+	}
+
 // Set user password to email address...don't use this unless urgent
 	function syn_update_users_password() {
 		//$users = get_users();
 		//$_users = get_field( 'syn_data_update_password_users', 'option' );
+		return;
 		$users = get_users( [
 			'exclude'      => [ 1 ],
 			'role__not_in' => [ 'Administrator', ],
@@ -431,15 +467,17 @@
 				'user_email',
 			],
 		] );
-		foreach ( $users as $user ) {
-			$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user->ID );
-			if ( $is_teacher ) {
-				$userdata = [
-					'ID'        => $user->ID,
-					'user_pass' => $user->user_email,
-				];
-				// email and password change emails controlled via send_email_change_email filter in setup.php
-				wp_update_user( $userdata );
+		if ( count( $users ) ) {
+			foreach ( $users as $user ) {
+				$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user->ID );
+				if ( $is_teacher ) {
+					$userdata = [
+						'ID'        => $user->ID,
+						'user_pass' => $user->user_email,
+					];
+					// email and password change emails controlled via send_email_change_email filter in setup.php
+					wp_update_user( $userdata );
+				}
 			}
 		}
 		update_field( 'syn_data_run_users_password_update', 0, 'option' );

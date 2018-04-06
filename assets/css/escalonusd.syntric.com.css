@@ -9229,10 +9229,25 @@ body > .sidebar .widget {
     .widget_media_image .video-caption figcaption {
       font-size: 0.8125rem; }
 
+.widget.widget_calendar table {
+	width : initial; }
+
 .widget.widget_calendar caption {
-  font-size: 1rem;
-  padding: 0;
-  margin: 0 0 0.5rem; }
+  font-size : 1rem;
+  padding   : 0;
+	margin  : 0 0 0.5rem;
+	display : none; }
+
+.widget.widget_calendar th {
+	text-align : center; }
+
+.widget.widget_calendar td {
+	padding : 1rem; }
+
+.widget.widget_calendar td > a {
+	text-align : center;
+	color      : #004c8c !important;
+	display    : block; }
 
 .widget_text .textwidget {
   padding: 1rem !important;
@@ -9507,8 +9522,10 @@ body > .sidebar .widget {
     #fullcalendar button.fc-state-disabled {
       opacity: 0.3; }
   #fullcalendar .fc-toolbar {
-    margin-bottom: 0.5rem !important; }
-    #fullcalendar .fc-toolbar > td:not(:last-of-type) {
+	  display     : flex;
+    margin-bottom : 0.5rem !important; }
+
+#fullcalendar .fc-toolbar > div:not(:last-of-type) {
       width: 33%; }
     #fullcalendar .fc-toolbar .fc-center > h2 {
       margin: 0; }
