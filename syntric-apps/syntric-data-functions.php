@@ -10,6 +10,7 @@
 			$run_users_password_update    = get_field( 'syn_data_run_users_password_update', 'option' );
 			$run_activate_contact_widgets = get_field( 'syn_data_run_activate_contact_widgets', 'option' );
 			$run_reset_user_capabilities  = get_field( 'syn_data_run_reset_user_capabilities', 'option' );
+			$run_dedupe_events = get_field( 'syn_data_run_dedupe_events', 'option' );
 			if ( $run_orphan_scan ) {
 				$delete_orphans = get_field( 'syn_data_delete_orphans', 'option' );
 				syn_scan_orphans( $delete_orphans );
@@ -33,6 +34,9 @@
 			if ( $run_reset_user_capabilities ) {
 				syn_reset_user_capabilities();
 			}
+			if ( $run_dedupe_events ) {
+				syn_dedupe_events();
+			}
 		}
 		// clear/reset all fields, except orphan scan console
 		update_field( 'syn_data_run_orphan_scan', 0, 'option' );
@@ -45,6 +49,7 @@
 		update_field( 'syn_data_run_users_password_update', 0, 'option' );
 		update_field( 'syn_data_run_activate_contact_widgets', 0, 'option' );
 		update_field( 'syn_data_run_reset_user_capabilities', 0, 'option' );
+		update_field( 'syn_data_run_dedupe_events', 0, 'option' );
 	}
 
 	function syn_stringify_array( $array ) {
@@ -522,4 +527,30 @@
 			}
 		}
 		update_field( 'syn_run_activate_contact_widgets', 0, 'option' );
+	}
+
+	// Dedupe events (existing prior to calendar sync bug fix)
+	function syn_dedupe_events() {
+		global $wpdb;
+		$sql         = 'SELECT pm.meta_key, pm.meta_value, po.post_title, count(*) as recs FROM wp_postmeta pm LEFT OUTER JOIN wp_posts po on pm.post_id = po.id GROUP BY pm.meta_value having recs > 1 and pm.meta_key = \'syn_event_event_id\'';
+		$event_dupes = $wpdb->get_results( $sql, ARRAY_A );
+		$wpdb->flush();
+		foreach ( $event_dupes as $event_dupe ) {
+			$events      = get_posts( [
+				'numberposts' => - 1,
+				'post_type'   => 'syn_event',
+				'meta_key'    => 'syn_event_event_id',
+				'meta_value'  => $event_dupe[ 'meta_value' ],
+			] );
+			$event_count = count( $events );
+			if ( 1 < $event_count ) {
+				$counter = 1;
+				foreach ( $events as $event ) {
+					if ( 1 != $counter ) {
+						wp_delete_post( $event->ID, true );
+					}
+					$counter ++;
+				}
+			}
+		}
 	}

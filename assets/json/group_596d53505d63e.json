@@ -3,22 +3,6 @@
 	"title": "Data Functions",
 	"fields": [
 		{
-			"key": "field_59c693d78c8f4",
-			"label": "Custom Fields Orphan Scan",
-			"name": "",
-			"type": "tab",
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"placement": "top",
-			"endpoint": 0
-		},
-		{
 			"key": "field_5976990647847",
 			"label": "Run Orphan Scan",
 			"name": "syn_data_run_orphan_scan",
@@ -28,7 +12,7 @@
 			"conditional_logic": 0,
 			"wrapper": {
 				"width": "25",
-				"class": "",
+				"class": "hidden",
 				"id": ""
 			},
 			"message": "",
@@ -55,7 +39,7 @@
 			],
 			"wrapper": {
 				"width": "75",
-				"class": "",
+				"class": "hidden",
 				"id": ""
 			},
 			"message": "",
@@ -74,7 +58,7 @@
 			"conditional_logic": 0,
 			"wrapper": {
 				"width": "",
-				"class": "",
+				"class": "hidden",
 				"id": ""
 			},
 			"default_value": "",
@@ -82,22 +66,6 @@
 			"maxlength": "",
 			"rows": 20,
 			"new_lines": ""
-		},
-		{
-			"key": "field_59c6939a8c8f2",
-			"label": "Import Users",
-			"name": "",
-			"type": "tab",
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"placement": "top",
-			"endpoint": 0
 		},
 		{
 			"key": "field_596f129520f55",
@@ -125,7 +93,7 @@
 			"required": 0,
 			"conditional_logic": 0,
 			"wrapper": {
-				"width": "",
+				"width": "25",
 				"class": "",
 				"id": ""
 			},
@@ -152,7 +120,7 @@
 				]
 			],
 			"wrapper": {
-				"width": "75",
+				"width": "50",
 				"class": "",
 				"id": ""
 			},
@@ -228,22 +196,6 @@
 			"new_lines": ""
 		},
 		{
-			"key": "field_59c693b18c8f3",
-			"label": "Update Users Phone",
-			"name": "",
-			"type": "tab",
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"placement": "top",
-			"endpoint": 0
-		},
-		{
 			"key": "field_59783437a14a9",
 			"label": "Update Users Phone",
 			"name": "syn_data_run_users_phone_update",
@@ -252,7 +204,7 @@
 			"required": 0,
 			"conditional_logic": 0,
 			"wrapper": {
-				"width": "",
+				"width": "25",
 				"class": "",
 				"id": ""
 			},
@@ -279,7 +231,7 @@
 				]
 			],
 			"wrapper": {
-				"width": "",
+				"width": "75",
 				"class": "",
 				"id": ""
 			},
@@ -288,22 +240,6 @@
 			"prepend": "",
 			"append": "",
 			"maxlength": ""
-		},
-		{
-			"key": "field_59d6ecea7aca0",
-			"label": "Update Users Password",
-			"name": "",
-			"type": "tab",
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"placement": "top",
-			"endpoint": 0
 		},
 		{
 			"key": "field_59c17b3890d35",
@@ -325,22 +261,6 @@
 			"ui_off_text": ""
 		},
 		{
-			"key": "field_5ac2643bf5cfd",
-			"label": "Activate Contact Widgets",
-			"name": "",
-			"type": "tab",
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"placement": "top",
-			"endpoint": 0
-		},
-		{
 			"key": "field_5ac26409f5cfc",
 			"label": "Activate Contact Widgets",
 			"name": "syn_data_run_activate_contact_widgets",
@@ -360,39 +280,6 @@
 			"ui_off_text": ""
 		},
 		{
-			"key": "field_5ac27c5dc8c5d",
-			"label": "Instructions",
-			"name": "",
-			"type": "message",
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"message": "",
-			"new_lines": "wpautop",
-			"esc_html": 0
-		},
-		{
-			"key": "field_5ac72f8be5499",
-			"label": "Reset User Capabilities",
-			"name": "",
-			"type": "tab",
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"placement": "top",
-			"endpoint": 0
-		},
-		{
 			"key": "field_5ac72f6ee5498",
 			"label": "Reset User Capabilities",
 			"name": "syn_data_run_reset_user_capabilities",
@@ -407,7 +294,7 @@
 			},
 			"message": "",
 			"default_value": 0,
-			"ui": 0,
+			"ui": 1,
 			"ui_on_text": "",
 			"ui_off_text": ""
 		}
@@ -429,5 +316,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1523028547
+	"modified": 1523083912
 }
