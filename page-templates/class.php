@@ -14,7 +14,7 @@
 	echo '<div class="row">' . $lb;
 	syn_sidebar( 'main', 'left' );
 	echo '<main id="content" class="col content-area content">' . $lb;
-	echo '<h1 class="page-title" role="heading">' . get_the_title() . syn_post_badges() . '</h1>' . $lb;
+	echo '<h1 class="page-title" role="heading">' . get_the_title() . syn_get_post_badges() . '</h1>' . $lb;
 	syn_sidebar( 'main', 'top' );
 	if ( have_posts() ) :
 		while( have_posts() ) : the_post();

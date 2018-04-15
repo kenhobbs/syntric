@@ -17,7 +17,7 @@
 			echo $tab . $tab . $tab . $tab . $tab . $tab . '<a href="' . get_the_permalink() . '" rel="bookmark">';
 			the_title();
 			echo '</a>' . $lb;
-			syn_excerpt_badges( $post->ID );
+			echo syn_get_excerpt_badges( $post->ID );
 			echo $tab . $tab . $tab . $tab . $tab . '</h2>' . $lb;
 			echo $tab . $tab . $tab . $tab . $tab . '<div class="post-date">' . get_the_date() . '</div>' . $lb;
 			if ( syn_has_content( $post->post_content ) ) {

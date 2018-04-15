@@ -40,7 +40,6 @@
                         "post_type": "Post Type",
                         "post_category": "Post Category",
                         "page_template": "Page Template",
-                        "post_parent": "Parent",
                         "post": "Post",
                         "page": "Page"
                     },
@@ -87,7 +86,7 @@
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "40",
-                        "class": "",
+						"class": "p0 p-0 m0 m-0 border0 border-0",
                         "id": ""
                     },
                     "layout": "block",
@@ -305,5 +304,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1517392657
+	"modified": 1523096725
 }

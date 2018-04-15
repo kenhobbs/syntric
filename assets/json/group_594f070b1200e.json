@@ -7,7 +7,6 @@
 			"label": "Dynamic:",
 			"name": "syn_upcoming_events_widget_dynamic",
 			"type": "radio",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": 0,
@@ -32,7 +31,6 @@
 			"label": "Title:",
 			"name": "syn_upcoming_events_widget_title",
 			"type": "text",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": [
@@ -60,7 +58,6 @@
 			"label": "Calendar:",
 			"name": "syn_upcoming_events_widget_calendar_id",
 			"type": "select",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": [
@@ -77,12 +74,9 @@
 				"class": "",
 				"id": ""
 			},
-			"choices": {
-				"6460": "Demo Calendar",
-				"7585": "Escalon USD"
-			},
+			"choices": null,
 			"default_value": [],
-			"allow_null": 0,
+			"allow_null": 1,
 			"multiple": 0,
 			"ui": 0,
 			"ajax": 0,
@@ -94,7 +88,6 @@
 			"label": "Events to display:",
 			"name": "syn_upcoming_events_widget_events",
 			"type": "number",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": [
@@ -124,7 +117,6 @@
 			"label": "",
 			"name": "syn_upcoming_events_widget_include_date",
 			"type": "true_false",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": [
@@ -181,5 +173,5 @@
 	],
 	"active": 1,
 	"description": "",
-	"modified": 1509728120
+	"modified": 1523206881
 }

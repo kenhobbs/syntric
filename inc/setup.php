@@ -244,10 +244,6 @@
 	 */
 	add_filter( 'email_change_email', 'syn_email_change_email', 10, 3 );
 	function syn_email_change_email( $email, $user, $userdata ) {
-		/*slog( 'syn_email_change_email triggered' );
-		slog( $email );
-		slog( $user );
-		slog( $userdata );*/
 		if ( syn_is_dev() || syn_is_staging() ) {
 			$syntric_user = syn_syntric_user();
 			$to           = $syntric_user->user_email;
@@ -266,10 +262,6 @@
 
 	add_filter( 'password_change_email', 'syn_password_change_email', 10, 3 );
 	function syn_password_change_email( $email, $user, $userdata ) {
-		/*slog( 'syn_password_change_email triggered' );
-		slog( $email );
-		slog( $user );
-		slog( $userdata );*/
 		if ( syn_is_dev() || syn_is_staging() ) {
 			$syntric_user = syn_syntric_user();
 			$to           = $syntric_user->user_email;

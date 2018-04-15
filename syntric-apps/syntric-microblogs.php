@@ -143,8 +143,8 @@
 	/**
 	 * Get microblog tax term (or create it) and assign to microblog on save post (page)
 	 */
-	add_action( 'acf/save_post', 'syn_save_microblog', 20 );
-	function syn_save_microblog( $post_id ) {
+	//add_action( 'acf/save_post', 'syn_save_microblog', 20 );
+	function ___syn_save_microblog( $post_id ) {
 		global $pagenow;
 		// don't save for autosave
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {

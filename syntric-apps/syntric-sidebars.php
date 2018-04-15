@@ -75,8 +75,8 @@
 		if ( ! $post ) {
 			return;
 		}
-		$lb = syn_get_linebreak();
-		$tab = syn_get_tab();
+		$lb       = syn_get_linebreak();
+		$tab      = syn_get_tab();
 		$sidebars = get_field( 'syn_sidebars', 'option' );
 		if ( $sidebars ) {
 			foreach ( $sidebars as $sidebar ) {
@@ -111,7 +111,6 @@
 				// we are now filtered down to the only active and relevant sidebars for this call
 				if ( ! $sidebar_filters || syn_process_filters( $sidebar_filters, $post ) ) {
 					$active_widgets = syn_sidebar_active_widgets( $sidebar_id, $post->ID );
-					//slog($active_widgets);
 					if ( count( $active_widgets ) ) {
 						$widgets_classes = [];
 						foreach ( $active_widgets as $widget ) {
@@ -124,25 +123,17 @@
 						$wp_sidebar       = $wp_registered_sidebars[ $sidebar_id ];
 						$wp_sidebar_class = $wp_sidebar[ 'class' ];
 						$widgets_classes  = implode( ' ', $widgets_classes );
-						if ( 'main' == $section && in_array( $sidebar_location, [
-								'left',
-								'right',
-							] ) ) {
-							echo '<aside class="' . $wp_sidebar_class . ' col-xl-3 sidebar ' . $sidebar_section . '-' . $sidebar_location . '-sidebar ' . $widgets_classes . '">' . $lb;
+						if ( 'main' == $section && in_array( $sidebar_location, [ 'left', 'right', ] ) ) {
+							$col = ( 'left' == $sidebar_location ) ? ' col-lg-3' : ' col-xl-3';
+							echo '<aside class="' . $wp_sidebar_class . $col . ' sidebar ' . $sidebar_section . '-' . $sidebar_location . '-sidebar ' . $widgets_classes . '">' . $lb;
 							dynamic_sidebar( $sidebar_id );
 							//syn_columns( 1, 3 );
 							echo '</aside>' . $lb;
-						} elseif ( 'main' == $section && in_array( $sidebar_location, [
-								'top',
-								'bottom',
-							] ) ) {
+						} elseif ( 'main' == $section && in_array( $sidebar_location, [ 'top', 'bottom', ] ) ) {
 							echo '<section class="' . $wp_sidebar_class . ' sidebar ' . $sidebar_section . '-' . $sidebar_location . '-sidebar ' . $widgets_classes . '">' . $lb;
 							dynamic_sidebar( $sidebar_id );
 							echo '</section>' . $lb;
-						} elseif ( in_array( $section, [
-							'header',
-							'footer',
-						] ) ) {
+						} elseif ( in_array( $section, [ 'header', 'footer', ] ) ) {
 							$sidebar_layout = $sidebar[ 'layout' ][ 'value' ];
 							$sl_array       = explode( '-', $sidebar_layout );
 							$sidebar_class  = ( 1 == count( $sl_array ) ) ? 'fixed' : $sl_array[ count( $sl_array ) - 1 ];
@@ -173,9 +164,7 @@
 		$sidebars_widgets = get_option( 'sidebars_widgets', [] );
 		$sidebar_widgets  = $sidebars_widgets[ $sidebar_id ];
 		$active_widgets   = [];
-		//slog( $sidebar_widgets );
 		foreach ( $sidebar_widgets as $widget ) {
-			//slog($widget);
 			$widget_array = explode( '-', $widget );
 			if ( $widget_array[ 0 ] == 'syn' || 'nav_menu' == $widget ) {
 				array_pop( $widget_array );
@@ -278,10 +267,10 @@
 	}
 
 	/**
-	 * Set id and format phone
+	 * Save sidebar
 	 */
-	add_action( 'acf/save_post', 'syn_save_sidebars', 20 );
-	function syn_save_sidebars() {
+	//add_action( 'acf/save_post', 'syn_save_sidebars', 20 );
+	function ___syn_save_sidebars() {
 		// don't save for autosave
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;

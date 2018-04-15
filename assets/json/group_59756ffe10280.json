@@ -7,7 +7,6 @@
 			"label": "Dynamic:",
 			"name": "syn_microblogs_menu_widget_dynamic",
 			"type": "radio",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": 0,
@@ -31,7 +30,6 @@
 			"label": "Title:",
 			"name": "syn_microblogs_menu_widget_title",
 			"type": "text",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": [
@@ -59,7 +57,6 @@
 			"label": "",
 			"name": "syn_microblogs_menu_widget_all_microblogs",
 			"type": "true_false",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": [
@@ -87,7 +84,6 @@
 			"label": "Microblogs:",
 			"name": "syn_microblogs_menu_widget_microblogs",
 			"type": "taxonomy",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": [
@@ -152,5 +148,5 @@
 	],
 	"active": 1,
 	"description": "",
-	"modified": 1510171473
+	"modified": 1523096840
 }

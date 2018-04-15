@@ -28,18 +28,17 @@
 				$args[ 'widget_id' ] = $this->id;
 			}
 			$category_id = get_field( 'syn_recent_posts_widget_categories', 'widget_' . $args[ 'widget_id' ] );
-			//slog( $category_id );
-			$category = get_category( $category_id );
-			$number   = get_field( 'syn_recent_posts_widget_posts', 'widget_' . $args[ 'widget_id' ] );
-			$posts    = new WP_Query( apply_filters( 'widget_posts_args', [
+			$category    = get_category( $category_id );
+			$number      = get_field( 'syn_recent_posts_widget_posts', 'widget_' . $args[ 'widget_id' ] );
+			$posts       = new WP_Query( apply_filters( 'widget_posts_args', [
 				'posts_per_page'      => $number,
 				'no_found_rows'       => true,
 				'post_status'         => 'publish',
 				'ignore_sticky_posts' => true,
 				'cat'                 => implode( ',', $category_id ),
 			] ) );
-			$lb       = syn_get_linebreak();
-			$tab      = syn_get_tab();
+			$lb          = syn_get_linebreak();
+			$tab         = syn_get_tab();
 			//$sidebar     = syn_widget_sidebar( $args[ 'widget_id' ] );
 			$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
 			$title         = get_field( 'syn_recent_posts_widget_title', 'widget_' . $args[ 'widget_id' ] );

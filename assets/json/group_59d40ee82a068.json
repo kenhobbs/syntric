@@ -7,7 +7,6 @@
 			"label": "Term Type",
 			"name": "syn_term_type",
 			"type": "select",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": 0,
@@ -36,7 +35,6 @@
 			"label": "Academic Year Turnover Month",
 			"name": "syn_academic_year_turnover_month",
 			"type": "select",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": 0,
@@ -74,7 +72,6 @@
 			"label": "Academic Year Turnover Date",
 			"name": "syn_academic_year_turnover_date",
 			"type": "select",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": 0,
@@ -129,7 +126,6 @@
 			"label": "Summer Sessions",
 			"name": "syn_summer_sessions",
 			"type": "true_false",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": 0,
@@ -162,5 +158,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1509726752
+	"modified": 1523096615
 }

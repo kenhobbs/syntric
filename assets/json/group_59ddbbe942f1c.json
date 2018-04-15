@@ -6,7 +6,7 @@
 			"key": "field_59ddbcb3081a9",
 			"label": "Category",
 			"name": "syn_post_category",
-			"type": "radio",
+			"type": "select",
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": 0,
@@ -15,17 +15,14 @@
 				"class": "",
 				"id": ""
 			},
-			"choices": {
-				"140": "Announcements (3)",
-				"129": "Microblogs (8)",
-				"1": "News (4)"
-			},
-			"allow_null": 0,
-			"other_choice": 0,
-			"save_other_choice": 0,
-			"default_value": "",
-			"layout": "vertical",
-			"return_format": "value"
+			"choices": null,
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
 		},
 		{
 			"key": "field_59e7f2f7049e2",
@@ -92,16 +89,7 @@
 				"class": "",
 				"id": ""
 			},
-			"choices": {
-				"133": "Academics &gt; English (2)",
-				"138": "Academics &gt; Sciences &gt; AP Chemistry (0)",
-				"136": "Academics &gt; Teachers &gt; Ken Hobbs (0)",
-				"130": "Academics &gt; Teachers &gt; Kenny Hobbs (2)",
-				"132": "Academics &gt; Teachers &gt; Kenny Hobbs, Jr (1)",
-				"141": "Academics &gt; Teachers &gt; Trini Marquis &gt; AP Biology (1)",
-				"137": "Ken Hobbs (0)",
-				"131": "Kenny Hobbs (1)"
-			},
+			"choices": null,
 			"default_value": [],
 			"allow_null": 1,
 			"multiple": 0,
@@ -174,10 +162,8 @@
 	"style": "default",
 	"label_placement": "top",
 	"instruction_placement": "label",
-	"hide_on_screen": [
-		"categories"
-	],
-	"active": 1,
+	"hide_on_screen": "",
+	"active": 0,
 	"description": "",
-	"modified": 1522673384
+	"modified": 1523678228
 }

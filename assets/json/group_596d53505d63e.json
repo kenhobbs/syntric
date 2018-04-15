@@ -297,6 +297,25 @@
 			"ui": 1,
 			"ui_on_text": "",
 			"ui_off_text": ""
+		},
+		{
+			"key": "field_5ace918e2f28b",
+			"label": "Reset\/Optimize User Meta",
+			"name": "syn_data_run_optimize_usermeta",
+			"type": "true_false",
+			"instructions": "Will reset admin UI settings such as hidden metaboxes, closed metaboxes, screen options, etc.  Also purges abandoned ACF user meta records that were left behind when a field name changed.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "Reset admin UI and purge abandoned ACF user meta",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
 		}
 	],
 	"location": [
@@ -316,5 +335,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1523083912
+	"modified": 1523512534
 }

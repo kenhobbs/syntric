@@ -3,28 +3,6 @@
 	 * Syntric Apps: Widgets
 	 */
 	/**
-	 * Load custom widget fields
-	 */
-	add_filter( 'acf/load_field/name=syn_contact_widget_organization', 'syn_load_organizations' );
-	add_filter( 'acf/load_field/name=syn_contact_widget_person', 'syn_load_people' );
-	add_filter( 'acf/load_field/name=syn_upcoming_events_widget_calendar_id', 'syn_load_google_calendars' );
-// todo: dynamically load widgets on widget option page instead of using checkbox options
-	add_filter( 'acf/load_field/name=syn_widgets_wordpress', 'syn_load_wordpress_widgets' );
-	function syn_load_wordpress_widgets( $field ) {
-		$choices           = [];
-		$wp_widget_factory = $GLOBALS[ 'wp_widget_factory' ];
-		$wp_widgets        = $wp_widget_factory->widgets;
-		if ( $wp_widgets ) {
-			foreach ( $wp_widgets as $key => $value ) {
-				$choices[ $key ] = $value->name;
-			}
-			$field[ 'choices' ] = $choices;
-		}
-
-		return $field;
-	}
-
-	/**
 	 * Register/unregister WordPress and custom widgets.
 	 */
 	add_action( 'widgets_init', 'syn_widgets_init', 20 );
@@ -61,21 +39,6 @@
 		}
 	}
 
-	add_filter( 'acf/prepare_field/name=syn_contact_widget_default', 'syn_prepare_contact_widget' );
-	add_filter( 'acf/prepare_field/name=syn_contact_default', 'syn_prepare_contact_widget' );
-	function syn_prepare_contact_widget( $field ) {
-		if ( 'syn_contact_widget_default' == $field[ '_name' ] ) {
-			$field[ 'label' ]   = '';
-			$field[ 'message' ] = 'Use ' . get_field( 'syn_organization', 'option' );
-		}
-		if ( 'syn_contact_default' == $field[ '_name' ] ) {
-			$field[ 'label' ]   = get_field( 'syn_organization', 'option' );
-			$field[ 'message' ] = 'Use ' . get_field( 'syn_organization', 'option' );
-		}
-
-		return $field;
-	}
-
 	/**
 	 * Return sidebar custom fields for a widget
 	 *
@@ -103,9 +66,9 @@
 
 	/**
 	 * Returns a class representing the containing sidebar for a widget based on the sidebar's section, location (main) and layout (header/footer)
-	 * 
+	 *
 	 * For example, if the passed widget is in a footer sidebar that is set to full width this will return footer-fluid.
-	 * 
+	 *
 	 * @param $widget_id (required) id of the widget for which we want to return it's containing sidebar class
 	 *
 	 * @return string class value returns ex. main-left, main-top, footer-fluid, etc.

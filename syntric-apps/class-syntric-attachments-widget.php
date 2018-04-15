@@ -32,7 +32,7 @@
 			if ( ! isset( $args[ 'widget_id' ] ) ) {
 				$args[ 'widget_id' ] = $this->id;
 			}
-			$lb = syn_get_linebreak();
+			$lb  = syn_get_linebreak();
 			$tab = syn_get_tab();
 			//$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
 			$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );

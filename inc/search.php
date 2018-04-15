@@ -15,27 +15,6 @@
 					'syn_calendar',
 				] );
 				$query->set( 'post_status', [ 'publish' ] );
-				//$query->set( 'orderby', 'relevance' );
-				//$query->set( 'meta_key', '_np_nav_status' );
-				//$query->set( 'meta_value', 'show' );
-				//$query->set( 'meta_compare', '=' );
-				/*$meta_query   = $query->get( 'meta_query' );
-				$meta_query[] = [
-					'key'     => '_np_nav_status',
-					'value'   => 'show',
-					'compare' => 'LIKE',
-				];*/
-				/*$meta_query[] = [ 'key'     => 'meta_value',
-				                  'value'   => 'show',
-				                  'compare' => '=',
-				];*/
-				//$query->set( 'meta_query', $meta_query );
-				//$query->set( 'meta_query', [['key'=>'_np_nav_status','value'=>'show','compare'=>'=']]);
-				//$query->set( 'post_type', 'post' );
-				//slog( '------------------------------------ $query --------------------------------' );
-				//slog( $query );
-				//slog($wp_query);
-				//remove_all_actions ( '__after_loop');
 				add_filter( 'posts_distinct', 'syn_search_posts_distinct', 10, 2 );
 				add_filter( 'posts_join', 'syn_search_posts_join', 10, 2 );
 				add_filter( 'posts_where', 'syn_search_posts_where', 10, 2 );
@@ -83,17 +62,12 @@
 	// Do not delete! The function is called by hook in pre_get_posts for searches
 	function syn_search_posts_where( $where, \WP_Query $q ) {
 		if ( ! is_admin() && $q->is_search() && $q->is_main_query() ) {
-			//global $wpdb;
-			//remove_filter( 'posts_where', 'syn_search_posts_where' );
-			//slog( $where );
 			$search_term = $q->get( 's' );
-			//slog( $search_term );
 			$where = " AND wp_posts.post_type IN ('post', 'page', 'syn_calendar')";
 			$where .= " AND wp_posts.post_status = 'publish'";
 			$where .= " AND wp_posts.post_parent NOT IN (0)";
 			$where .= " AND ( wp_posts.post_content LIKE '%" . $search_term . "%' OR wp_posts.post_title LIKE '%" . $search_term . "%' )";
 			$where .= " AND trim(coalesce(wp_posts.post_content, '')) <>''";
-			//slog( $where );
 		}
 
 		return $where;

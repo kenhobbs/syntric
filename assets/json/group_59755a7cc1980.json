@@ -7,7 +7,6 @@
 			"label": "Dynamic:",
 			"name": "syn_calendars_menu_widget_dynamic",
 			"type": "radio",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": 0,
@@ -31,7 +30,6 @@
 			"label": "Title:",
 			"name": "syn_calendars_menu_widget_title",
 			"type": "text",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": [
@@ -59,7 +57,6 @@
 			"label": "",
 			"name": "syn_calendars_menu_widget_all_calendars",
 			"type": "true_false",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": 0,
@@ -79,7 +76,6 @@
 			"label": "Calendars",
 			"name": "syn_calendars_menu_widget_calendars",
 			"type": "relationship",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": [
@@ -140,5 +136,5 @@
 	],
 	"active": 1,
 	"description": "",
-	"modified": 1509727857
+	"modified": 1523096829
 }

@@ -7,15 +7,11 @@
 	echo '<div class="row">' . $lb;
 	syn_sidebar( 'main', 'left' );
 	echo '<main id="content" class="col content-area content">' . $lb;
-	//echo '<h1 class="page-title" role="heading">' . get_the_title() . '</h1>' . $lb;
 	echo '<h1 class="page-title" role="heading">' . get_the_title() . '</h1>' . $lb;
 	syn_sidebar( 'main', 'top' );
 	if ( have_posts() ) :
 		while( have_posts() ) : the_post();
 			if ( syn_has_content( $post->post_content ) ) :
-				//$attachment_metadata = wp_get_attachment_metadata( get_the_ID() );
-				//slog($attachment_metadata);
-				//echo '<h1>' . get_the_title() . '</h1>';
 				$images = array();
 				$image_sizes = get_intermediate_image_sizes();
 				array_unshift( $image_sizes, 'full' );
@@ -25,15 +21,12 @@
 					$images[] = '<a href="' . $image[0] . '">' . $name . '</a>';
 				}
 				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post->ID . '">' . $lb;
-				//echo '<div class="d-flex">';
 				echo wp_get_attachment_image( get_the_ID(), 'medium_large' );
 				echo '<div class="mt-3">';
 				echo '<h2>Sizes</h2>';
 				echo '<p>Dimensions are in pixels.</p>';
 				echo implode( ' / ', $images );
 				echo '</div>';
-				//echo '</div>';
-				//the_content();
 				echo '</article>' . $lb;
 			endif;
 		endwhile;

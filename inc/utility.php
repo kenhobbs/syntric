@@ -55,10 +55,6 @@
 		return false;
 	}
 
-	function _______notinuse______syn_get_http_host() {
-		return $_SERVER[ 'HTTP_HOST' ];
-	}
-
 	function syn_get_top_ancestor_id( $post_id ) {
 		$p = get_post( $post_id );
 		if ( $p->post_parent ) {
@@ -97,13 +93,6 @@
 		return implode($pass); //turn the array into a string*/
 	}
 
-	function _____noinuse________syn_generate_login( $name ) {
-		$login = str_replace( ' ', '', $name );
-		$login = strtolower( $login );
-		$login .= syn_generate_random_number();
-
-		return $login;
-	}
 
 	function syn_sanitize_string_to_class( $string ) {
 		$class = strtolower( $string );

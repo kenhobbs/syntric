@@ -18,7 +18,8 @@
 			"choices": {
 				"230": "Arthur Hobbs",
 				"239": "Edward Hobbs",
-				"109": "Trini Marquis"
+				"109": "Trini Marquis",
+				"240": "Sample Teacher"
 			},
 			"default_value": [],
 			"allow_null": 1,
@@ -51,5 +52,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1522670357
+	"modified": 1523096774
 }

@@ -1,6 +1,6 @@
 <?php
-	add_action( 'acf/save_post', 'syn_save_page', 20 );
-	function syn_save_page( $post_id ) {
+	//add_action( 'acf/save_post', 'syn_save_page', 20 );
+	function ___syn_save_page( $post_id ) {
 		//global $pagenow;
 		// don't save for autosave
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
@@ -27,120 +27,6 @@
 			endswitch;
 			syn_save_page_widgets( $post_id );
 		}
-	}
-
-// load_field filters
-	add_filter( 'acf/load_field/name=syn_page_class', 'syn_load_classes' );
-	add_filter( 'acf/load_field/name=syn_page_class_teacher', 'syn_load_teachers' );
-	add_filter( 'acf/load_field/name=syn_page_teacher', 'syn_load_teachers' );
-	add_filter( 'acf/load_field/name=syn_page_department', 'syn_load_departments' );
-	add_filter( 'acf/load_field/name=syn_page_course', 'syn_load_courses' );
-	add_filter( 'acf/load_field/name=syn_contact_person', 'syn_load_people' );
-	add_filter( 'acf/load_field/name=syn_contact_organization', 'syn_load_organizations' );
-	add_filter( 'acf/load_field/key=field_59af852be10d5', 'syn_load_people' ); // syn_roster['person']
-	add_filter( 'acf/load_field/name=syn_calendar_id', 'syn_load_google_calendars' );
-// prepare_field filters
-	add_filter( 'acf/prepare_field/name=syn_page_teacher', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_page_class_teacher', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_page_class', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_page_department', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_contact_title', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_calendar_title', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_new_microblog_post', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_microblog_category', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_microblog_term', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/key=field_59d4b242abf31', 'syn_prepare_page_fields' ); // microblog Category message field
-	add_filter( 'acf/prepare_field/key=field_59d4b278abf32', 'syn_prepare_page_fields' ); // microblog Term message field
-	add_filter( 'acf/prepare_field/key=field_598a9db813a14', 'syn_prepare_page_fields' ); // Attachments tab
-	add_filter( 'acf/prepare_field/name=syn_attachments_active', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_attachments_title', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_attachments', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/key=field_5a41c15b2a64c', 'syn_prepare_page_fields' ); // Video tab
-	add_filter( 'acf/prepare_field/name=syn_video_active', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_video_title', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_video_host', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_video_youtube_id', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_video_vimeo_id', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_video_caption', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/key=field_5a41bf632a648', 'syn_prepare_page_fields' ); // Google Map tab
-	add_filter( 'acf/prepare_field/name=syn_google_map_active', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_google_map_title', 'syn_prepare_page_fields' );
-	add_filter( 'acf/prepare_field/name=syn_google_map_id', 'syn_prepare_page_fields' );
-	function syn_prepare_page_fields( $field ) {
-		global $pagenow;
-		global $post;
-		if ( 'post.php' == $pagenow && 'page' == $post->post_type ) {
-			$page_template = syn_get_page_template( $post->ID );
-			if ( ! syn_current_user_can( 'administrator' ) ) {
-				switch ( $field[ '_name' ] ) {
-					case 'syn_microblog_term' :
-						if ( ! syn_current_user_can( 'editor' ) ) {
-							$field[ 'wrapper' ][ 'hidden' ] = true;
-						} else {
-							return false;
-						}
-						break;
-					case 'syn_page_teacher' :
-					case 'syn_page_class_teacher' :
-					case 'syn_page_class' :
-					case 'syn_page_department' :
-					case 'syn_page_course' :
-						if ( $field[ 'value' ] ) {
-							$field[ 'disabled' ] = true;
-						}
-						break;
-					case 'syn_new_microblog_post' :
-						$microblog_active = get_field( 'syn_microblog_active', $post->ID );
-						if ( ! $microblog_active ) {
-							$field[ 'wrapper' ][ 'hidden' ] = true;
-						} else {
-							$field[ 'wrapper' ][ 'hidden' ] = false;
-						}
-						break;
-					case 'syn_attachments_active':
-						//case 'syn_video_active':
-					case 'syn_google_map_active':
-						return false;
-						break;
-				}
-				switch ( $field[ 'key' ] ) {
-					// Attachments tab
-					case 'field_598a9db813a14' :
-						// Google Map tab
-					case 'field_5a41bf632a648' :
-						// Video tab
-						//case 'field_5a41c15b2a64c' :
-						return false;
-						break;
-				}
-			}
-			// microblog Category Message field
-			if ( 'field_59d4b242abf31' == $field[ 'key' ] ) {
-				$microblog_active   = get_field( 'syn_microblog_active', $post->ID );
-				$microblog_category = get_field( 'syn_microblog_category', $post->ID );
-				if ( $microblog_active ) {
-					if ( $microblog_category ) {
-						$field[ 'message' ] = $microblog_category->name;
-					}
-				}
-			}
-			// microblog Term Message field
-			if ( 'field_59d4b278abf32' == $field[ 'key' ] ) {
-				if ( syn_current_user_can( 'editor' ) ) {
-					return false;
-				} else {
-					$microblog_active = get_field( 'syn_microblog_active', $post->ID );
-					$microblog_term   = get_field( 'syn_microblog_term', $post->ID );
-					if ( $microblog_active ) {
-						if ( $microblog_term ) {
-							$field[ 'message' ] = $microblog_term->name;
-						}
-					}
-				}
-			}
-		}
-
-		return $field;
 	}
 
 	function syn_save_page_widgets( $post_id ) {
@@ -229,6 +115,7 @@
 				$post_content = get_field( 'syn_new_microblog_post_content', $post_id );
 				$category     = get_field( 'syn_microblog_category', $post_id );
 				$term         = get_field( 'syn_microblog_term', $post_id );
+				slog( $term );
 				// todo: post_author should be set to teacher if is a teacher or class page microblog post, not current user id
 				$author        = get_current_user_id();
 				$page_template = strtolower( syn_get_page_template( $post_id ) );

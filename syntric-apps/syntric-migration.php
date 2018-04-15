@@ -22,8 +22,8 @@
 	/**
 	 * Action that triggers the migration to run.  Listens for save of Wix options page
 	 */
-	add_action( 'acf/save_post', 'syn_migration_save_post', 20 );
-	function syn_migration_save_post( $post_id ) {
+	//add_action( 'acf/save_post', 'syn_migration_save_post', 20 );
+	function ___syn_migration_save_post( $post_id ) {
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}

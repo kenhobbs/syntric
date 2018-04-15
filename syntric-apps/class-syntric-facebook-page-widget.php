@@ -48,7 +48,6 @@
 				$posts_to_fetch = $number; // get extra because a post won't display if it doesn't have a 'message'
 				$facebook_posts = syn_get_facebook_page_posts( $fb_page_id, $posts_to_fetch );
 				$facebook_page  = syn_get_facebook_page( $fb_page_id );
-				//slog($facebook_page);
 				//$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
 				$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
 				$lb            = syn_get_linebreak();
@@ -105,7 +104,7 @@
 								}
 								$post_counter ++;
 							endforeach;
-							echo $tab . '<a href="http://www.facebook.com/' . $fb_page_id . '" class="list-group-item list-group-item-action more-link">Go to Facebook</a>' . $lb;
+							echo $tab . '<a href="http://www.facebook.com/' . $facebook_page . '" class="list-group-item list-group-item-action more-link">Go to Facebook</a>' . $lb;
 						} else {
 							if ( property_exists( $facebook_posts, 'error' ) ) {
 								echo $tab . $tab . '<div class="list-group-item">Facebook unavailable</div>' . $lb;

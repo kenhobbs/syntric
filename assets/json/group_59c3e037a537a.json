@@ -7,7 +7,6 @@
 			"label": "People",
 			"name": "syn_people",
 			"type": "true_false",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": 0,
@@ -27,7 +26,6 @@
 			"label": "People",
 			"name": "",
 			"type": "enhanced_message",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": 0,
@@ -45,7 +43,7 @@
 			{
 				"param": "options_page",
 				"operator": "==",
-				"value": "syntric-people"
+				"value": "syntric-organization"
 			}
 		]
 	],
@@ -57,5 +55,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1509727636
+	"modified": 1523096780
 }

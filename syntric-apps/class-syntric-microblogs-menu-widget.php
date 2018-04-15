@@ -35,7 +35,7 @@
 				$microblogs = get_field( 'syn_microblogs_menu_widget_microblogs', 'widget_' . $args[ 'widget_id' ] );
 			}
 			if ( $microblogs && ! is_wp_error( $microblogs ) ) :
-				$lb = syn_get_linebreak();
+				$lb  = syn_get_linebreak();
 				$tab = syn_get_tab();
 				//$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
 				$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );

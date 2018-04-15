@@ -7,7 +7,6 @@
 			"label": "Dynamic:",
 			"name": "syn_nav_menu_widget_dynamic",
 			"type": "radio",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": 0,
@@ -31,7 +30,6 @@
 			"label": "Menu:",
 			"name": "syn_nav_menu_widget_menu",
 			"type": "select",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": [
@@ -49,7 +47,8 @@
 				"id": ""
 			},
 			"choices": {
-				"14": "Primary"
+				"139": "Notices Menu",
+				"14": "Primary Menu"
 			},
 			"default_value": [],
 			"allow_null": 0,
@@ -64,7 +63,6 @@
 			"label": "Depth:",
 			"name": "syn_nav_menu_widget_depth",
 			"type": "select",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": [
@@ -132,5 +130,5 @@
 	],
 	"active": 1,
 	"description": "",
-	"modified": 1509728046
+	"modified": 1523096842
 }

@@ -10,8 +10,8 @@
 		return $query;
 	}
 
-	add_action( 'acf/save_post', 'syn_save_post', 20 );
-	function syn_save_post( $post_id ) {
+	//add_action( 'acf/save_post', 'syn_save_post', 20 );
+	function ___syn_save_post( $post_id ) {
 		global $pagenow;
 		$post_id = syn_resolve_post_id( $post_id );
 		// don't save for autosave
@@ -58,95 +58,43 @@
 		}
 	}
 
-// load_field filters
-	add_filter( 'acf/load_field/name=syn_post_category', 'syn_load_categories' );
-	add_filter( 'acf/load_field/name=syn_post_microblog', 'syn_load_microblogs' );
-// prepare_field filters
-	add_filter( 'acf/prepare_field/name=syn_post_category', 'syn_prepare_post_fields' );
-	add_filter( 'acf/prepare_field/name=syn_post_microblog', 'syn_prepare_post_fields' );
-	add_filter( 'acf/prepare_field/key=field_59e7f2f7049e2', 'syn_prepare_post_fields' ); // Category enhanced message field
-	add_filter( 'acf/prepare_field/key=field_59e7f370049e3', 'syn_prepare_post_fields' ); // Microblog enhanced message field
-	function syn_prepare_post_fields( $field ) {
-		global $pagenow;
-		global $post;
-		if ( 'post.php' == $pagenow && 'post' == $post->post_type ) {
-			if ( 'syn_post_category' == $field[ '_name' ] ) {
-				if ( $field[ 'value' ] ) {
-					$field[ 'wrapper' ][ 'class' ] = 'hidden';
-				}
-				if ( ! $field[ 'value' ] && ! syn_current_user_can( 'editor' ) ) {
-					$microblogs_cat = get_category_by_slug( 'microblogs' );
-					if ( $microblogs_cat instanceof WP_Term ) {
-						$field[ 'value' ] = $microblogs_cat->term_id;
-					}
-				}
-			}
-			if ( 'syn_post_microblog' == $field[ '_name' ] ) {
-				if ( $field[ 'value' ] ) {
-					$field[ 'wrapper' ][ 'class' ] = 'hidden';
-				}
-				/*if ( ! syn_current_user_can( 'editor' ) ) {
-					$choices = [];
-					$user_microblogs = syn_get_user_microblogs( get_current_user_id() ); // returns get_posts
-					if ( count( $user_microblogs ) ) {
-
-					}
-				}*/
-			}
-			if ( 'field_59e7f2f7049e2' == $field[ 'key' ] ) { // Category display
-				$category_id = get_field( 'syn_post_category', $post->ID );
-				if ( $category_id ) {
-					$category = get_category( $category_id );
-					if ( $category ) {
-						$field[ 'wrapper' ][ 'class' ] = '';
-						$field[ 'message' ]            = $category->name;
-					}
-				}
-			}
-			if ( 'field_59e7f370049e3' == $field[ 'key' ] ) { // Microblog display
-				$microblog_id = get_field( 'syn_post_microblog', $post->ID );
-
-				if ( $microblog_id ) {
-					$microblog = get_term( $microblog_id );
-					if ( $microblog ) {
-						$field[ 'wrapper' ][ 'class' ] = '';
-						$field[ 'message' ]            = $microblog->name;
-					}
-				}
-			}
-		}
-
-		return $field;
-	}
-
-	function syn_post_badges( $post_id = null ) {
+	function syn_get_post_badges( $post_id = null ) {
 		$post_id = syn_resolve_post_id( $post_id );
 		$post    = get_post( $post_id );
 		switch ( $post->post_type ) {
 			case 'syn_event' :
 				$calendar = get_the_title( get_field( 'syn_event_calendar_id', get_the_ID() ) );
-				echo '<span class="badge badge-pill badge-secondary">' . $calendar . '</span>';
+
+				return '<div class="badge badge-pill badge-dark">' . $calendar . '</div>';
 				break;
 			case 'post' :
-				echo '<span class="badge badge-pill badge-secondary">' . syn_get_taxonomies_terms() . '</span>';
+				return '<div class="badge badge-pill badge-dark">' . syn_get_taxonomies_terms() . '</div>';
+				break;
+			case 'page' :
+				return '<div class="badge badge-pill badge-dark">' . 'Page badge' . '</div>';
 				break;
 		}
+
+		return '';
 	}
 
-	function syn_excerpt_badges( $post_id = null ) {
-		$lb      = syn_get_linebreak();
-		$tab     = syn_get_tab();
+	function syn_get_excerpt_badges( $post_id = null ) {
+		$lb = syn_get_linebreak();
+		//$tab     = syn_get_tab();
 		$post_id = syn_resolve_post_id( $post_id );
 		$post    = get_post( $post_id );
 		switch ( $post->post_type ) {
 			case 'syn_event' :
 				$calendar = get_the_title( get_field( 'syn_event_calendar_id', get_the_ID() ) );
-				echo '<span class="badge badge-pill badge-dark">' . $calendar . '</span>' . $lb;
+
+				return '<div class="badge badge-pill badge-dark">' . $calendar . '</div>' . $lb;
 				break;
 			case 'post' :
-				echo '<span class="badge badge-pill badge-dark">' . syn_get_taxonomies_terms() . '</span>' . $lb;
+				return '<div class="badge badge-pill badge-dark">' . syn_get_taxonomies_terms() . '</div>' . $lb;
 				break;
 		}
+
+		return '';
 	}
 
 	function syn_resolve_post_id( $post_id ) {

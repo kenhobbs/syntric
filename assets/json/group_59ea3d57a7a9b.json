@@ -370,6 +370,36 @@
                                     "placeholder": ""
                                 },
                                 {
+									"key": "field_59a1f8455365d",
+									"label": "",
+									"name": "page_value",
+									"type": "post_object",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": [
+										[
+											{
+												"field": "field_59a1e3e053655",
+												"operator": "==",
+												"value": "page"
+											}
+										]
+									],
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"post_type": [
+										"page"
+									],
+									"taxonomy": [],
+									"allow_null": 0,
+									"multiple": 0,
+									"return_format": "id",
+									"ui": 1
+								},
+								{
                                     "key": "field_59a1f6305365a",
                                     "label": "",
                                     "name": "post_value",
@@ -400,9 +430,9 @@
                                     "ui": 1
                                 },
                                 {
-                                    "key": "field_59a1f8455365d",
+									"key": "field_5a71222353753",
                                     "label": "",
-                                    "name": "page_value",
+									"name": "post_parent_value",
                                     "type": "post_object",
                                     "instructions": "",
                                     "required": 0,
@@ -411,7 +441,7 @@
                                             {
                                                 "field": "field_59a1e3e053655",
                                                 "operator": "==",
-                                                "value": "page"
+												"value": "post_parent"
                                             }
                                         ]
                                     ],
@@ -511,24 +541,23 @@
                 "id": ""
             },
             "choices": {
+				"WP_Widget_Pages": "Pages",
+				"WP_Widget_Calendar": "Calendar",
+				"WP_Widget_Archives": "Archives",
+				"WP_Widget_Media_Audio": "Audio",
                 "WP_Widget_Media_Image": "Image",
                 "WP_Widget_Media_Gallery": "Gallery",
+				"WP_Widget_Media_Video": "Video",
+				"WP_Widget_Meta": "Meta",
+				"WP_Widget_Search": "Search",
                 "WP_Widget_Text": "Text",
+				"WP_Widget_Categories": "Categories",
+				"WP_Widget_Recent_Posts": "Recent Posts",
+				"WP_Widget_Recent_Comments": "Recent Comments",
+				"WP_Widget_RSS": "RSS",
+				"WP_Widget_Tag_Cloud": "Tag Cloud",
                 "WP_Nav_Menu_Widget": "Navigation Menu",
-				"WP_Widget_Custom_HTML": "Custom HTML",
-                "Syntric_Attachments_Widget": "Attachments",
-                "Syntric_Calendars_Menu_Widget": "Calendars Menu",
-                "Syntric_Categories_Menu_Widget": "Categories Menu",
-                "Syntric_Contact_Widget": "Contact",
-                "Syntric_Facebook_Page_Widget": "Facebook Page",
-                "Syntric_Google_Map_Widget": "Google Map",
-                "Syntric_Microblog_Widget": "Microblog",
-                "Syntric_Microblogs_Menu_Widget": "Microblogs Menu",
-                "Syntric_Nav_Menu_Widget": "Nav Menu",
-                "Syntric_Recent_Posts_Widget": "Recent Posts",
-                "Syntric_Roster_Widget": "Roster",
-                "Syntric_Upcoming_Events_Widget": "Upcoming Events",
-                "Syntric_Video_Widget": "Video"
+				"WP_Widget_Custom_HTML": "Custom HTML"
             },
             "allow_custom": 0,
             "save_custom": 0,
@@ -603,5 +632,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-	"modified": 1522691856
+	"modified": 1523096791
 }

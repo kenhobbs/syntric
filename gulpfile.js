@@ -103,6 +103,14 @@ var dirs = {
 
 /**
  *  Domain mappings.  This needs to be updated whenever a new site is added
+ *
+ *  Configure domainMappings such that a local scss file will be duplicated into x min.css files...
+ *
+ *  domainMappings = {
+ *  	'green.blue': ['master.localhost','master.syntric.com','another.org'],
+ *  	'teal.blue': ['escalonusd.org','amadorcoe.org'],
+ *  	etc...
+ *  }
  */
 var domainMappings = {
 	'amadorcoe.syntric.com.min': 'www.amadorcoe.org.min',
@@ -130,7 +138,8 @@ var domainMappings = {
 	'vanallen.syntric.com.min': 'www.vanallenschool.org.min',
 	'eca.syntric.com.min': 'www.escaloncharteracademy.org.min',
 	'vista.syntric.com.min': 'www.vistahighschool.org.min',
-	'master.localhost.min': 'master.syntric.com.min'
+	'master.localhost.min': 'master.syntric.com.min',
+	'syntric.localhost.min': 'www.syntric.com.min'
 };
 // Gulp watcher args
 var watcherArgs = {

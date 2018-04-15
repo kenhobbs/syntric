@@ -7,7 +7,6 @@
 			"label": "Google Javascript API Key",
 			"name": "syn_google_api_key",
 			"type": "text",
-			"value": null,
 			"instructions": "A Google Javascript API Key is needed for Google Calendars, Google Maps and Google Analytics.  Get one at the <a href=\"https:\/\/console.developers.google.com\" target=\"_blank\">Google Developers Console<\/a>.",
 			"required": 0,
 			"conditional_logic": 0,
@@ -27,7 +26,6 @@
 			"label": "Google Maps API URL",
 			"name": "syn_google_calendar_api_url",
 			"type": "text",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": 0,
@@ -47,7 +45,6 @@
 			"label": "Google Analytics Tracking ID",
 			"name": "syn_google_analytics_tracking_id",
 			"type": "text",
-			"value": null,
 			"instructions": "Enter a <a href=\"https:\/\/analytics.google.com\/analytics\" target=\"_blank\">Google Analytics Tracking ID<\/a> for this domain",
 			"required": 0,
 			"conditional_logic": 0,
@@ -80,5 +77,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1509794298
+	"modified": 1523096728
 }

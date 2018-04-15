@@ -7,7 +7,6 @@
 			"label": "Dynamic:",
 			"name": "syn_recent_posts_widget_dynamic",
 			"type": "radio",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": 0,
@@ -31,7 +30,6 @@
 			"label": "Title:",
 			"name": "syn_recent_posts_widget_title",
 			"type": "text",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": [
@@ -59,7 +57,6 @@
 			"label": "Categories:",
 			"name": "syn_recent_posts_widget_categories",
 			"type": "taxonomy",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": [
@@ -90,7 +87,6 @@
 			"label": "Posts to display:",
 			"name": "syn_recent_posts_widget_posts",
 			"type": "number",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": [
@@ -120,7 +116,6 @@
 			"label": "",
 			"name": "syn_recent_posts_widget_include_date",
 			"type": "true_false",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": [
@@ -177,5 +172,5 @@
 	],
 	"active": 1,
 	"description": "",
-	"modified": 1509728072
+	"modified": 1523096848
 }

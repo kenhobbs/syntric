@@ -28,8 +28,8 @@
 			if ( ! isset( $args[ 'widget_id' ] ) ) {
 				$args[ 'widget_id' ] = $this->id;
 			}
-			$lb = syn_get_linebreak();
-			$tab = syn_get_tab();
+			$lb              = syn_get_linebreak();
+			$tab             = syn_get_tab();
 			$sidebar         = syn_widget_sidebar( $args[ 'widget_id' ] );
 			$sidebar_class   = syn_get_sidebar_class( $args[ 'widget_id' ] );
 			$layout          = ( 'main' == $sidebar[ 'section' ][ 'value' ] && in_array( $sidebar[ 'location' ][ 'value' ], [
@@ -72,8 +72,8 @@
 				}
 				$row_counter = 1;
 				while( have_rows( 'syn_roster_people', $post->ID ) ) : the_row();
-					$user_id      = get_sub_field( 'person' );
-					$user         = get_user_by( 'ID', $user_id );
+					$user_id = get_sub_field( 'person' );
+					$user    = get_user_by( 'ID', $user_id );
 					if ( $user instanceof WP_User ) {
 						$user_meta    = get_user_meta( $user_id );
 						$first_name   = $user_meta[ 'first_name' ][ 0 ];
@@ -143,7 +143,6 @@
 			} else {
 				echo '<!-- no records in roster -->';
 			}
-
 		}
 
 		/**

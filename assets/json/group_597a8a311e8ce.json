@@ -7,7 +7,6 @@
 			"label": "Dynamic:",
 			"name": "syn_attachments_widget_dynamic",
 			"type": "radio",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": 0,
@@ -60,5 +59,5 @@
 	],
 	"active": 1,
 	"description": "",
-	"modified": 1509727839
+	"modified": 1523096824
 }

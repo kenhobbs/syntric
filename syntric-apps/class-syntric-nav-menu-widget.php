@@ -32,7 +32,7 @@
 			}
 			$nav_menu = get_field( 'syn_nav_menu_widget_menu', 'widget_' . $args[ 'widget_id' ] );
 			if ( $nav_menu ) :
-				$lb = syn_get_linebreak();
+				$lb  = syn_get_linebreak();
 				$tab = syn_get_tab();
 				//$sidebar     = syn_widget_sidebar( $args[ 'widget_id' ] );
 				$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );

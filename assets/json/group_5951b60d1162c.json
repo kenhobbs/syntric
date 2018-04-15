@@ -7,7 +7,6 @@
 			"label": "Dynamic:",
 			"name": "syn_facebook_page_widget_dynamic",
 			"type": "radio",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": 0,
@@ -32,7 +31,6 @@
 			"label": "Title:",
 			"name": "syn_facebook_page_widget_title",
 			"type": "text",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": [
@@ -60,7 +58,6 @@
 			"label": "Facebook Page:",
 			"name": "syn_facebook_page_widget_page",
 			"type": "select",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": [
@@ -78,7 +75,8 @@
 				"id": ""
 			},
 			"choices": {
-				"id-1462408310-345027989-1505337922": "Escalon USD Facebook Page"
+				"id-1462408310-345027989-1505337922": "Escalon USD",
+				"id-1442801236-1607064063-2130313130": "SchoolPRPro"
 			},
 			"default_value": [],
 			"allow_null": 1,
@@ -93,7 +91,6 @@
 			"label": "Posts to display:",
 			"name": "syn_facebook_page_widget_posts",
 			"type": "number",
-			"value": null,
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": [
@@ -123,7 +120,6 @@
 			"label": "",
 			"name": "syn_facebook_page_widget_include_image",
 			"type": "true_false",
-			"value": null,
 			"instructions": "",
 			"required": 0,
 			"conditional_logic": [
@@ -180,5 +176,5 @@
 	],
 	"active": 1,
 	"description": "",
-	"modified": 1509727917
+	"modified": 1523096835
 }

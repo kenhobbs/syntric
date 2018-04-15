@@ -202,19 +202,20 @@
 	add_filter( 'ajax_query_attachments_args', 'syn_limit_media_library_grid' );
 	function syn_limit_media_library_grid( $query ) {
 		$user_id = get_current_user_id();
-		if ( $user_id && ! syn_current_user_can('editor') ) {
-			$query['author'] = $user_id;
+		if ( $user_id && ! syn_current_user_can( 'editor' ) ) {
+			$query[ 'author' ] = $user_id;
 		}
+
 		return $query;
 	}
 
-	add_filter('pre_get_posts', 'syn_limit_media_library_list');
-	function syn_limit_media_library_list($query) {
+	add_filter( 'pre_get_posts', 'syn_limit_media_library_list' );
+	function syn_limit_media_library_list( $query ) {
 		global $pagenow;
 		global $user_ID;
-
-		if( is_admin() && 'upload.php' == $pagenow && ! syn_current_user_can('editor') )
-			$query->set('author', $user_ID);
+		if ( is_admin() && 'upload.php' == $pagenow && ! syn_current_user_can( 'editor' ) ) {
+			$query->set( 'author', $user_ID );
+		}
 
 		return $query;
 	}

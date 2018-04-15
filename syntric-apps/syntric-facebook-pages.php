@@ -12,24 +12,6 @@
 		}
 	}
 
-//load_field filters
-	add_filter( 'acf/load_field/name=syn_facebook_page_widget_page', 'syn_load_facebook_pages' );
-// update_value filters
-	add_filter( 'acf/update_value/name=facebook_page_id', 'syn_update_id' );
-// prepare_field filters
-	add_filter( 'acf/prepare_field/name=facebook_page_id', 'syn_prepare_facebook_page_fields' );
-	function syn_prepare_facebook_page_fields( $field ) {
-		global $pagenow;
-		global $post;
-		if ( is_admin() && isset( $_REQUEST[ 'page' ] ) ) {
-			if ( 'facebook_page_id' == $field[ '_name' ] ) {
-				$field[ 'wrapper' ][ 'hidden' ] = 1;
-			}
-		}
-
-		return $field;
-	}
-
 	// need to be more selective (vs. retrieving posts from all registered FB pages - pass an argument)
 	// todo: make more selective & cache posts?  save into WP Posts?
 	function syn_get_facebook_page_posts( $facebook_page_id, $number = 5 ) {
@@ -50,11 +32,9 @@
 					break;
 				}
 			endwhile;
-			//slog( $page . ' & ' . $auth_type . ' & ' . $auth_token );
 			if ( $page && $auth_token ) {
 				$url      = 'https://graph.facebook.com/' . $page . '/feed?fields=name,created_time,description,message,picture,status_type,type,link,permalink_url,actions,is_published,from,full_picture,attachments{media,type,url,title,target,description,subattachments}&limit=' . $number . '&access_token=' . $auth_token;
 				$response = wp_remote_get( $url );
-				//slog( $url );
 				if ( $response ) {
 					$body = wp_remote_retrieve_body( $response );
 					if ( $body ) {
@@ -70,21 +50,13 @@
 	}
 
 	function syn_get_facebook_page( $facebook_page_id ) {
-		//slog('1 = ' . $facebook_page_id);
-		//slog(get_field( 'syn_facebook_pages', 'option' ) );
-		//slog('1 = ' . $facebook_page_id);
-		if ( have_rows( 'syn_facebook_pages', 'option' ) ) {
-			//slog('2');
-			while( have_rows( 'syn_facebook_pages', 'option' ) ) : the_row();
-				if ( $facebook_page_id == get_sub_field( 'facebook_page_id' ) ) {
-					//slog('3');
-					//slog( 'the_row()================================================================');
-					//slog( the_row() );
-					//slog( 'get_row()================================================================');
-					//slog( get_row() );
-					return get_sub_field( 'page' );
+		$facebook_pages = get_field( 'syn_facebook_pages', 'option' );
+		if ( count( $facebook_pages ) ) {
+			foreach ( $facebook_pages as $facebook_page ) {
+				if ( $facebook_page_id == $facebook_page[ 'facebook_page_id' ] ) {
+					return $facebook_page[ 'page' ];
 				}
-			endwhile;
+			}
 		}
 
 		return;

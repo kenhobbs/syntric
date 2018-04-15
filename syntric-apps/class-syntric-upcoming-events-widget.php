@@ -24,13 +24,10 @@
 		 */
 		public function widget( $args, $instance ) {
 			global $post;
-			/*slog($args);
-			slog($instance);*/
 			if ( ! isset( $args[ 'widget_id' ] ) ) {
 				$args[ 'widget_id' ] = $this->id;
 			}
 			$dynamic = get_field( 'syn_upcoming_events_widget_dynamic', 'widget_' . $args[ 'widget_id' ] );
-			//slog($dynamic);
 			if ( $dynamic ) {
 				$active = get_field( 'syn_calendar_active', $post->ID );
 				if ( ! $active ) {
@@ -48,8 +45,8 @@
 			}
 			//$sidebar      = syn_widget_sidebar( $args[ 'widget_id' ] );
 			$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
-			$lb = syn_get_linebreak();
-			$tab = syn_get_tab();
+			$lb            = syn_get_linebreak();
+			$tab           = syn_get_tab();
 			echo $args[ 'before_widget' ] . $lb;
 			if ( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;

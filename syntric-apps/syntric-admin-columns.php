@@ -1,5 +1,5 @@
 <?php
-	add_action( 'init', 'syn_admin_columns' );
+	//add_action( 'init', 'syn_admin_columns' );
 	function syn_admin_columns() {
 		if ( function_exists( 'ac_register_columns' ) ) {
 			ac_register_columns( 'post', [

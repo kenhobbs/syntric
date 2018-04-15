@@ -143,33 +143,23 @@
 
 	//add_filter( 'gallery_style', 'syn_gallery_style' );
 	function syn_gallery_style( $gallery_style ) {
-		//slog( '//////////////////////////////////////////////////////// gallery_style filter' );
-		//slog( $gallery_style );
 		return $gallery_style;
 	}
 
 	//add_filter( 'use_default_gallery_style', 'syn_use_default_gallery_style', 10 );
 	function syn_use_default_gallery_style( $print ) {
-		//slog( '//////////////////////////////////////////////////////// use_default_gallery_style filter' );
-		//slog( $print );
 		return $print;
 	}
 
 	// fires when get_post_gallery() is called
 	//add_filter( 'get_post_gallery', 'syn_get_post_gallery', 10, 3 );
 	function syn_get_post_gallery( $gallery, $post, $galleries ) {
-		/*slog( '//////////////////////////////////////////////////////// get_post_gallery filter' );
-		slog( $gallery );
-		slog( $post );
-		slog( $galleries );*/
 		return $gallery;
 	}
 
 // Alter what is returned by the gallery shortcode
 	//add_filter( 'post_gallery', 'syn_post_gallery', 10, 3 );
 	function syn_post_gallery( $output, $atts, $instance ) {
-		//slog($atts);
-		//slog($instance);
 		$img_ids = ( ! is_array( $atts[ 'ids' ] ) ) ? explode( ',', $atts[ 'ids' ] ) : $atts[ 'ids' ];
 		//$size    = ( isset( $atts[ 'size' ] ) ) ? $atts[ 'size' ] : syn_guess_gallery_image_size( $atts );
 		$size   = syn_guess_gallery_image_size( $atts );

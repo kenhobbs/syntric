@@ -210,46 +210,29 @@
 	function syn_current_user_can( $role ) {
 		$current_user = wp_get_current_user();
 		$syntric_user = syn_syntric_user();
-		if ( 'syntric' == $role && $syntric_user instanceof WP_User && $current_user->ID == $syntric_user->ID ) {
-			return true;
+		if ( $syntric_user instanceof WP_User && $current_user->ID == $syntric_user->ID ) {
+			return 1;
 		}
 		$current_user_roles = $current_user->roles;
-		$current_user_role  = $current_user_roles ? $current_user_roles[ count( $current_user_roles ) - 1 ] : false;
-		if ( 'subscriber' == $role && in_array( $current_user_role, [
-				'subscriber',
-				'contributor',
-				'author',
-				'editor',
-				'administrator',
-			] ) ) {
-			return true;
-		}
-		if ( 'contributor' == $role && in_array( $current_user_role, [
-				'contributor',
-				'author',
-				'editor',
-				'administrator',
-			] ) ) {
-			return true;
-		}
-		if ( 'author' == $role && in_array( $current_user_role, [
-				'author',
-				'editor',
-				'administrator',
-			] ) ) {
-			return true;
-		}
-		if ( 'editor' == $role && in_array( $current_user_role, [
-				'editor',
-				'administrator',
-			] ) ) {
-			return true;
-		}
+		$role_count         = count( $current_user_roles );
+		$current_user_role  = ( $role_count ) ? $current_user_roles[ $role_count - 1 ] : 0;
 		if ( 'administrator' == $role && $current_user_role == 'administrator' ) {
-			return true;
+			return 1;
+		}
+		if ( 'editor' == $role && in_array( $current_user_role, [ 'editor', 'administrator', ] ) ) {
+			return 1;
+		}
+		if ( 'author' == $role && in_array( $current_user_role, [ 'author', 'editor', 'administrator', ] ) ) {
+			return 1;
+		}
+		if ( 'contributor' == $role && in_array( $current_user_role, [ 'contributor', 'author', 'editor', 'administrator', ] ) ) {
+			return 1;
+		}
+		if ( 'subscriber' == $role && in_array( $current_user_role, [ 'subscriber', 'contributor', 'author', 'editor', 'administrator', ] ) ) {
+			return 1;
 		}
 
-		return false;
+		return 0;
 	}
 
 	// Remove 3rd party plugin hooks
@@ -691,46 +674,45 @@
 	function syn_menu_order( $menu_order ) {
 		//global $submenu;
 		$_menu_order = [
-			'index.php',
 			// Dashboard
-			//'separator1', // Separator
-			'edit.php?post_type=page',
+			'index.php',
 			// Pages
+			'edit.php?post_type=page',
 			//'admin.php?page=nestedpages', // Pages (Nested Pages)
-			'edit.php',
 			// Posts
-			//'separator2', // Separator
-			'syntric-organization',
+			'edit.php',
 			// School or District or COE or Organization
-			'edit.php?post_type=syn_calendar',
+			'syntric-organization',
 			// Calendars
-			'syntric-jumbotrons',
+			'edit.php?post_type=syn_calendar',
 			// Jumbotrons
-			'syntric-google-maps',
+			'syntric-jumbotrons',
 			// Google Maps
-			'link-manager.php',
+			'syntric-google-maps',
 			// Links
-			'edit-comments.php',
+			'link-manager.php',
 			// Comments
-			'upload.php',
+			'edit-comments.php',
 			// Media
-			'users.php',
+			'upload.php',
+			// Templates
+			'edit.php?post_type=tinymcetemplates',
 			// Users
-			'profile.php',
+			'users.php',
 			// Profile
-			//'separator-last', // Separator
-			'themes.php',
+			'profile.php',
 			// Appearance
-			'plugins.php',
+			'themes.php',
 			// Plugins
-			'tools.php',
+			'plugins.php',
 			// Tools
-			'options-general.php',
+			'tools.php',
 			// Settings
-			'edit.php?post_type=acf-field-group',
+			'options-general.php',
 			// Custom Fields
-			'jetpack',
+			'edit.php?post_type=acf-field-group',
 			// Jetpack
+			'jetpack',
 		];
 
 		return $_menu_order;
@@ -805,12 +787,10 @@
 		foreach ( $user_options as $key => $value ) {
 			$cuo_array = explode( '-', $key );
 			if ( 'meta' == $cuo_array[ 0 ] && 'box' == $cuo_array[ 1 ] ) {
-				//slog( $cuo_array );
 				if ( isset( $cuo_array[ 2 ] ) ) {
 					$cuo_array_2 = explode( '_', $cuo_array[ 2 ] );
 					if ( 'order' == $cuo_array_2[ 0 ] ) {
 						$res = delete_user_meta( $user_id, $key );
-						//slog( $res );
 					}
 				}
 			}
@@ -849,64 +829,9 @@
 		return $hidden;
 	}
 
-	//add_filter( 'login_redirect', 'syn_login_redirect', 20, 3 );
-	function _____notinuse____syn_login_redirect( $redirect_to, $request, $user ) {
-		if ( $user && $user instanceof WP_User ) {
-			$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user->ID );
-			if ( $is_teacher ) {
-				// send teacher to their page if it exists, if not, home.
-				$teacher_page = syn_get_teacher_page( $user->ID );
-
-				return get_the_permalink( $teacher_page->ID );
-			}
-		}
-		if ( isset( $request ) ) {
-
-			return $request;
-		}
-
-		// send everyone else to home page
-		return home_url();
-	}
-
 	add_filter( 'logout_redirect', 'syn_logout_redirect', 20, 3 );
 	function syn_logout_redirect( $redirect_to, $request, $user ) {
 		return home_url();
-	}
-
-	/**
-	 * Set phone field values to phone format
-	 */
-	add_filter( 'acf/update_value/name=phone', 'syn_update_phone', 20 );
-	add_filter( 'acf/update_value/name=fax', 'syn_update_phone', 20 );
-	function syn_update_phone( $value ) {
-		// is $phone set and at least 7 characters
-		if ( strlen( $value ) < 7 ) {
-			return '';
-		}
-		// strip out all non-numeric characters
-		$phone  = preg_replace( "/[^0-9]/", "", $value );
-		$length = strlen( $phone );
-		// after stripping out non-numerics, check again if $phone at least 7 digits
-		if ( strlen( $phone ) < 7 ) {
-			return '';
-		}
-		switch ( $length ) {
-			case 7:
-				$value = preg_replace( "/([0-9]{3})([0-9]{4})/", "$1-$2", $phone );
-				break;
-			case 10:
-				$value = preg_replace( "/([0-9]{3})([0-9]{3})([0-9]{4})/", "($1) $2-$3", $phone );
-				break;
-			case 11: // if 11 characters, assume 1 prefix, strip it out
-				$value = preg_replace( "/([0-9]{1})([0-9]{3})([0-9]{3})([0-9]{4})/", "($2) $3-$4", $phone );
-				break;
-			default:
-				$value = $phone;
-				break;
-		}
-
-		return $value;
 	}
 
 	/*************************************** After footer (after all scripts are loaded) *****************************************/
@@ -935,127 +860,17 @@
 		endif;
 	}
 
-	/**
-	 * Set id field values to permanent id if not set
-	 */
-	function syn_update_id( $value ) {
-		if ( empty( $value ) ) {
-			return syn_generate_permanent_id();
-		}
-
-		return $value;
-	}
-
 	function syn_get_meta_boxes( $screen = null, $context = 'advanced' ) {
 		global $wp_meta_boxes;
-		//slog( 'all meta_boxes=======================================' );
 		if ( empty( $screen ) ) {
 			$screen = get_current_screen();
 		} elseif ( is_string( $screen ) ) {
 			$screen = convert_to_screen( $screen );
 		}
 		$page = $screen->id;
+
 // todo: remove the logging
-		//slog( $wp_meta_boxes );
-
 		return $wp_meta_boxes[ $page ][ $context ];
-	}
-
-// Select field loaders
-	function syn_load_categories( $field ) {
-		if ( 'radio' == $field[ 'type' ] || 'select' == $field[ 'type' ] ) {
-			$categories = get_categories( [ 'hide_empty' => false ] );
-			$choices    = [];
-			if ( $categories ) {
-				foreach ( $categories as $category ) {
-					if ( syn_current_user_can( 'editor' ) || ( ! syn_current_user_can( 'editor' ) && 'microblogs' == $category->slug ) ) {
-						$choices[ $category->cat_ID ] = $category->name . ' (' . $category->count . ')';
-					}
-				}
-				//$choices[ 0 ]       = '+ New category';
-				$field[ 'choices' ] = $choices;
-			}
-
-			return $field;
-		}
-	}
-
-	function syn_load_microblogs( $field ) {
-		if ( 'radio' == $field[ 'type' ] || 'select' == $field[ 'type' ] ) {
-			$choices = [];
-			$args    = [
-				'numberposts' => - 1,
-				'post_type'   => 'page',
-				'meta_key'    => 'syn_microblog_active',
-				'meta_value'  => 1,
-				'orderby'     => [ 'post_title' => 'ASC' ],
-			];
-			if ( ! syn_current_user_can( 'editor' ) ) {
-				$args[ 'author' ] = get_current_user_id();
-			}
-			$mb_pages = get_posts( $args );
-			if ( count( $mb_pages ) ) {
-				foreach ( $mb_pages as $mb_page ) {
-					$mb_active = get_field( 'syn_microblog_active', $mb_page->ID );
-					if ( $mb_active ) {
-						$mb_term                      = get_field( 'syn_microblog_term', $mb_page->ID );
-						$choices[ $mb_term->term_id ] = $mb_term->name . ' (' . $mb_term->count . ')';
-					}
-				}
-			}
-			//$choices[ 0 ]       = '+ New microblog';
-			$field[ 'choices' ] = $choices;
-		}
-
-		return $field;
-	}
-
-	function syn_load_departments( $field ) {
-		$active = get_field( 'syn_departments_active', 'option' );
-		if ( $active && 'select' == $field[ 'type' ] ) {
-			$choices     = [];
-			$departments = get_field( 'syn_departments', 'option' );
-			if ( $departments && is_array( $departments ) ) {
-				foreach ( $departments as $department ) {
-					$choices[ $department[ 'department_id' ] ] = $department[ 'department' ];
-				}
-			}
-			$field[ 'choices' ] = $choices;
-		}
-
-		return $field;
-	}
-
-	function syn_load_buildings( $field ) {
-		$active = get_field( 'syn_buildings_active', 'option' );
-		if ( $active && 'select' == $field[ 'type' ] ) {
-			$choices   = [];
-			$buildings = get_field( 'syn_buildings', 'option' );
-			if ( $buildings ) {
-				foreach ( $buildings as $building ) {
-					$choices[ $building[ 'building_id' ] ] = $building[ 'building' ];
-				}
-			}
-			$field[ 'choices' ] = $choices;
-		}
-
-		return $field;
-	}
-
-	function syn_load_rooms( $field ) {
-		$active = get_field( 'syn_rooms_active', 'option' );
-		if ( $active && 'select' == $field[ 'type' ] ) {
-			$choices = [];
-			$rooms   = get_field( 'syn_rooms', 'option' );
-			if ( $rooms ) {
-				foreach ( $rooms as $room ) {
-					$choices[ $room[ 'room_id' ] ] = $room[ 'room' ];
-				}
-			}
-			$field[ 'choices' ] = $choices;
-		}
-
-		return $field;
 	}
 
 	function syn_get_academic_years( $count = 1 ) {
@@ -1075,322 +890,69 @@
 		return $academic_years;
 	}
 
-	function syn_load_terms( $field ) {
-		if ( 'select' == $field[ 'type' ] ) {
-			$choices         = [];
-			$term_type       = get_field( 'syn_term_type', 'option' );
-			$summer_sessions = get_field( 'syn_summer_sessions', 'option' );
-			/*$ayto_month               = get_field( 'syn_academic_year_turnover_month', 'option' );
-			$ayto_date                = get_field( 'syn_academic_year_turnover_date', 'option' );
-
-			$now                      = date_create();
-			$current_year             = date_format( $now, 'Y' );
-			$current_year_ayto_string = $current_year . '-' . $ayto_month . '-' . $ayto_date;
-			$current_year_ayto_date   = date_create( $current_year_ayto_string );
-			$academic_years           = [];
-			if ( $now > $current_year_ayto_date ) {
-				$academic_years[] = $current_year . '-' . ( $current_year + 1 );
-				$academic_years[] = ( $current_year + 1 ) . '-' . ( $current_year + 2 );
-				$academic_years[] = ( $current_year + 2 ) . '-' . ( $current_year + 3 );
-			} else {
-				$academic_years[] = ( $current_year - 1 ) . '-' . $current_year;
-				$academic_years[] = $current_year . '-' . ( $current_year + 1 );
-				$academic_years[] = ( $current_year + 1 ) . '-' . ( $current_year + 2 );
-			}*/
-			$academic_years = syn_get_academic_years( 2 );
-			//slog( $term_type );
-			//slog( $academic_years );
-			$terms        = [];
-			$terms[ 'Y' ] = 'All Year';
+	function syn_get_terms() {
+		$term_type       = get_field( 'syn_term_type', 'option' );
+		$summer_sessions = get_field( 'syn_summer_sessions', 'option' );
+		$academic_years  = syn_get_academic_years( 2 );
+		$terms           = [];
+		foreach ( $academic_years as $academic_year ) {
+			$terms[] = [
+				'term_id' => $academic_year . ' All Year',
+				'term'    => $academic_year . ' - All Year',
+			];
 			switch ( $term_type ) {
 				case 'semester' :
-					$terms[ 'S1' ] = '1st Semester';
-					$terms[ 'S2' ] = '2nd Semester';
+					$terms[] = [
+						'term_id' => $academic_year . ' 1st Semester',
+						'term'    => $academic_year . ' - 1st Semester',
+					];
+					$terms[] = [
+						'term_id' => $academic_year . ' 2nd Semester',
+						'term'    => $academic_year . ' - 2nd Semester',
+					];
 					break;
 				case 'trimester' :
-					$terms[ 'T1' ] = '1st Trimester';
-					$terms[ 'T2' ] = '2nd Trimester';
-					$terms[ 'T3' ] = '3rd Trimester';
+					$terms[] = [
+						'term_id' => $academic_year . ' 1st Trimester',
+						'term'    => $academic_year . ' - 1st Trimester',
+					];
+					$terms[] = [
+						'term_id' => $academic_year . ' 2nd Trimester',
+						'term'    => $academic_year . ' - 2nd Trimester',
+					];
+					$terms[] = [
+						'term_id' => $academic_year . ' 3rd Trimester',
+						'term'    => $academic_year . ' - 3rd Trimester',
+					];
 					break;
 				case 'quarter' :
-					$terms[ 'Q1' ] = '1st Quarter';
-					$terms[ 'Q2' ] = '2nd Quarter';
-					$terms[ 'Q3' ] = '3rd Quarter';
-					$terms[ 'Q4' ] = '4th Quarter';
+					$terms[] = [
+						'term_id' => $academic_year . ' 1st Quarter',
+						'term'    => $academic_year . ' - 1st Quarter',
+					];
+					$terms[] = [
+						'term_id' => $academic_year . ' 2nd Quarter',
+						'term'    => $academic_year . ' - 2nd Quarter',
+					];
+					$terms[] = [
+						'term_id' => $academic_year . ' 3rd Quarter',
+						'term'    => $academic_year . ' - 3rd Quarter',
+					];
+					$terms[] = [
+						'term_id' => $academic_year . ' 4th Quarter',
+						'term'    => $academic_year . ' - 4th Quarter',
+					];
 					break;
 			}
 			if ( $summer_sessions ) {
-				$terms[ 'SS' ] = 'Summer Session';
+				$terms[] = [
+					'term_id' => $academic_year . ' Summer Session',
+					'term'    => $academic_year . ' - Summer Session',
+				];
 			}
-			foreach ( $academic_years as $academic_year ) {
-				foreach ( $terms as $key => $value ) {
-					$choices[ $academic_year . ' ' . $value ] = $academic_year . ' - ' . $value;
-				}
-			}
-			$field[ 'choices' ] = $choices;
 		}
 
-		return $field;
-	}
-
-// Attention!  todo: adding an is_admin() condition for loading these fields causes the id to display on the front end.
-	function syn_load_periods( $field ) {
-		$active = get_field( 'syn_periods_active', 'option' );
-		if ( $active && 'select' == $field[ 'type' ] ) {
-			$choices = [];
-			$periods = get_field( 'syn_periods', 'option' );
-			if ( $periods && is_array( $periods ) ) {
-				foreach ( $periods as $period ) {
-					$choices[ $period[ 'period_id' ] ] = $period[ 'period' ];
-				}
-			}
-			$field[ 'choices' ] = $choices;
-		}
-
-		return $field;
-	}
-
-	function syn_load_courses( $field ) {
-		global $post;
-		//slog( 'syn_load_courses => $post');
-		//slog($post);
-		//if ( 'select' == $field[ 'type' ] && $post instanceof WP_Post && 'acf-field-group' != $post->post_type ) {
-		if ( 'select' == $field[ 'type' ] ) {
-			/*$choices = [];
-			$courses = get_field( 'syn_courses', 'option' );
-			if ( $courses && is_array( $courses ) ) {
-				foreach ( $courses as $course ) {
-					$choices[ $course[ 'course_id' ] ] = $course[ 'course' ];
-				}
-			}
-			asort( $choices );
-			$field[ 'choices' ] = $choices;*/
-			$courses = syn_get_courses();
-			//slog('$courses------------------------------------------------------------------------------------');
-			//slog($courses);
-			/******
-			 * Need to handle the different return structures from syn_get_courses()
-			 * One type is grouped by department, the other not
-			 */
-			$field[ 'choices' ] = $courses;
-		}
-
-		return $field;
-	}
-
-	function syn_load_course_lengths( $field ) {
-		if ( 'select' == $field[ 'type' ] ) {
-			$choices   = [];
-			$term_type = get_field( 'syn_term_type', 'option' );
-			/*if ( $term_type ) {
-				foreach ( $courses as $course ) {
-					$choices[ $course[ 'course_id' ] ] = $course[ 'course' ];
-				}
-			}*/
-			$field[ 'choices' ] = $choices;
-		}
-
-		return $field;
-	}
-
-	function syn_load_organizations( $field ) {
-		if ( 'select' == $field[ 'type' ] ) {
-			$choices       = [];
-			$organizations = get_field( 'syn_organizations', 'option' );
-			if ( $organizations && is_array( $organizations ) ) {
-				foreach ( $organizations as $organization ) {
-					$choices[ $organization[ 'organization_id' ] ] = $organization[ 'organization' ];
-				}
-			}
-			$field[ 'choices' ] = $choices;
-		}
-
-		return $field;
-	}
-
-	function syn_load_people( $field ) {
-		if ( 'select' == $field[ 'type' ] ) {
-			$choices = [];
-			$people  = get_users( [
-				'meta_key' => 'last_name',
-				'orderby'  => 'meta_value',
-			] );
-			if ( $people ) {
-				foreach ( $people as $person ) {
-					$choices[ $person->ID ] = $person->display_name . ' / ' . get_field( 'syn_user_title', 'user_' . $person->ID );
-				}
-			}
-			$field[ 'choices' ] = $choices;
-		}
-
-		return $field;
-	}
-
-	function syn_load_administrators( $field ) {
-		if ( 'select' == $field[ 'type' ] ) {
-			$choices = [];
-			$people  = get_users( 'role=administrator' );
-			if ( $people ) {
-				foreach ( $people as $person ) {
-					$choices[ $person->ID ] = $person->display_name . ' (administrator)';
-				}
-			}
-			$field[ 'choices' ] = $choices;
-		}
-
-		return $field;
-	}
-
-	function syn_load_pageless_teachers( $field ) {
-		if ( 'select' == $field[ 'type' ] ) {
-			$choices  = [];
-			$teachers = syn_get_teachers(); // array of WP_User
-			if ( $teachers ) {
-				$teachers_pages    = syn_get_teachers_pages(); // array of WP_Post
-				$paged_teacher_ids = [];
-				if ( $teachers_pages ) {
-					foreach ( $teachers_pages as $teacher_page ) {
-						$paged_teacher_ids[] = get_field( 'syn_page_teacher', $teacher_page->ID );
-					}
-				}
-				foreach ( $teachers as $teacher ) {
-					if ( 0 == count( $paged_teacher_ids ) || ( count( $paged_teacher_ids ) && ! in_array( $teacher->ID, $paged_teacher_ids ) ) ) {
-						$choices[ $teacher->ID ] = $teacher->display_name;
-					}
-				}
-			}
-			$field[ 'choices' ] = $choices;
-		}
-
-		return $field;
-	}
-
-	function syn_load_teachers( $field ) {
-		if ( 'select' == $field[ 'type' ] ) {
-			$choices  = [];
-			$teachers = syn_get_teachers();
-			if ( $teachers ) {
-				foreach ( $teachers as $teacher ) {
-					$choices[ $teacher->ID ] = $teacher->display_name;
-				}
-			}
-			$field[ 'choices' ] = $choices;
-		}
-
-		return $field;
-	}
-
-	function syn_load_users( $field ) {
-		if ( 'select' == $field[ 'type' ] ) {
-			return syn_load_people( $field );
-		}
-
-		return $field;
-	}
-
-	function syn_load_classes( $field ) {
-		if ( 'select' == $field[ 'type' ] ) {
-			$teacher_pages = get_posts( [
-				'numberposts'  => - 1,
-				'post_type'    => 'page',
-				'post_status'  => [
-					'publish',
-					'draft',
-					'future',
-					'pending',
-					'private',
-					'trash',
-				],
-				'meta_key'     => '_wp_page_template',
-				'meta_value'   => 'page-templates/teacher.php',
-				'meta_compare' => '=',
-				'fields'       => 'ids',
-			] );
-			$choices       = [];
-			if ( $teacher_pages ) {
-				$courses = get_field( 'syn_courses', 'option' );
-				$courses = array_column( $courses, 'course', 'course_id' );
-				foreach ( $teacher_pages as $teacher_page ) { // teacher_page is post->ID
-					$teacher_id   = get_field( 'syn_page_teacher', $teacher_page );
-					$teacher      = get_user_by( 'ID', $teacher_id );
-					$teacher_name = ( $teacher ) ? ' (' . $teacher->display_name . ')' : ' (Unknown)';
-					$classes      = get_field( 'syn_classes', $teacher_page );
-					if ( $classes ) {
-						foreach ( $classes as $class ) {
-							if ( $class[ 'class_id' ] ) {
-								$choices[ $class[ 'class_id' ] ] = $courses[ $class[ 'course' ] ] . ' ' . $teacher_name;
-							}
-						}
-					}
-				}
-				asort( $choices );
-			}
-			$field[ 'choices' ] = $choices;
-		}
-
-		return $field;
-	}
-
-	function syn_load_facebook_pages( $field ) {
-		if ( 'select' == $field[ 'type' ] ) {
-			$choices        = [];
-			$facebook_pages = get_field( 'syn_facebook_pages', 'option' );
-			if ( $facebook_pages ) {
-				foreach ( $facebook_pages as $facebook_page ) {
-					$choices[ $facebook_page[ 'facebook_page_id' ] ] = $facebook_page[ 'name' ];
-				}
-			}
-			$field[ 'choices' ] = $choices;
-		}
-
-		return $field;
-	}
-
-	function syn_load_google_calendars( $field ) {
-		if ( 'select' == $field[ 'type' ] ) {
-			$choices   = [];
-			$calendars = syn_get_calendars();
-			if ( $calendars ) {
-				if ( 'syn_calendar_id' == $field[ '_name' ] ) {
-					$choices[ 0 ] = '+ New calendar';
-				}
-				foreach ( $calendars as $calendar ) {
-					// todo: currently "Author > Calendar" but should be
-					$choices[ $calendar->ID ] = get_the_author_meta( 'first_name', $calendar->post_author ) . ' ' . get_the_author_meta( 'last_name', $calendar->post_author ) . ' > ' . get_the_title( $calendar->ID );
-				}
-			}
-			$field[ 'choices' ] = $choices;
-		}
-
-		return $field;
-	}
-
-	function syn_load_google_maps( $field ) {
-		if ( 'select' == $field[ 'type' ] ) {
-			$choices     = [];
-			$google_maps = get_field( 'syn_google_maps', 'option' );
-			if ( $google_maps ) {
-				foreach ( $google_maps as $google_map ) {
-					$choices[ $google_map[ 'google_map_id' ] ] = $google_map[ 'name' ];
-				}
-			}
-			$field[ 'choices' ] = $choices;
-		}
-
-		return $field;
-	}
-
-	function syn_load_nav_menu( $field ) {
-		if ( 'select' == $field[ 'type' ] ) {
-			$choices = [];
-			$menus   = get_terms( 'nav_menu', [ 'hide_empty' => true ] );
-			foreach ( $menus as $menu ) {
-				$choices[ $menu->term_id ] = $menu->name;
-			}
-			$field[ 'choices' ] = $choices;
-		}
-
-		return $field;
+		return $terms;
 	}
 
 	/*************************************** Course *****************************************/
@@ -1431,13 +993,12 @@
 		if ( ! $departments_active ) {
 			asort( $ret );
 		}
-		//slog( 'syn_get_courses => $ret');
-		//slog( $ret );
+
 		return $ret;
 	}
 
 	function syn_get_course_teachers( $course_id ) {
-		$teacher_pages = syn_get_teachers_pages();
+		$teacher_pages = syn_get_teacher_pages();
 		$teachers      = [];
 		$teacher_ids   = [];
 		if ( $teacher_pages ) {
@@ -1592,7 +1153,7 @@
 			}
 		}
 
-		return false;
+		return 0;
 	}
 
 	/*************************************** Teacher Page *****************************************/
@@ -1634,8 +1195,16 @@
 		return;
 	}
 
+	/*function syn_get_teacher_pages() {
+		$args = [
+			'meta_key' => '_wp_page_template',
+			'meta_value' => '/blah.php',
+			'post_status' => [ 'publish', 'future', 'draft', 'private', 'pending' ],
+
+		];
+	}*/
 	function syn_save_teacher_page( $teacher_id ) {
-		$teacher = syn_get_teacher( $teacher_id );
+		$teacher = syn_get_teacher( $teacher_id ); // only returns user if is teacher, otherwise false
 		if ( $teacher instanceof WP_User ) {
 			$teacher_meta  = get_user_meta( $teacher_id );
 			$first_name    = $teacher_meta[ 'first_name' ][ 0 ];
@@ -1644,13 +1213,14 @@
 			$post_name     = syn_sluggify( $post_title );
 			$teachers_page = syn_get_teachers_page(); // Teachers page todo: this function should create the teachers page if it doesn't exist
 			if ( $teachers_page instanceof WP_Post ) {// todo: test this...make sure a teachers page is always returned
-				$args         = [
+				$args = [
 					'post_type'   => 'page',
 					'post_title'  => $post_title,
 					'post_name'   => $post_name,
 					'post_author' => $teacher_id,
 					'post_parent' => $teachers_page->ID,
 				];
+				// look for existing teacher page, even in the trash
 				$teacher_page = syn_get_teacher_page( $teacher_id, true );
 				if ( $teacher_page instanceof WP_Post ) {
 					$args[ 'ID' ]           = $teacher_page->ID;
@@ -1703,10 +1273,11 @@
 	function syn_trash_teacher_page( $teacher_id ) {
 		$teacher_page = syn_get_teacher_page( $teacher_id ); // returns WP_Post object
 		if ( $teacher_page ) {
-			$teacher_class_pages = syn_get_teacher_class_pages( $teacher_id );
-			if ( $teacher_class_pages ) {
-				foreach ( $teacher_class_pages as $teacher_class_page ) {
-					wp_delete_post( $teacher_class_page->ID );
+			// Delete all children of the teacher page to be trashed, not just class pages
+			$teacher_page_children = get_posts( [ 'numberposts' => - 1, 'post_status' => [ 'publish', 'draft', 'future', 'pending', 'private' ], 'post_parent' => $teacher_page->ID, 'fields' => 'ID' ] );
+			if ( $teacher_page_children ) {
+				foreach ( $teacher_page_children as $teacher_page_child ) {
+					wp_delete_post( $teacher_page_child->ID );
 				}
 			}
 			wp_delete_post( $teacher_page->ID );
@@ -1830,8 +1401,6 @@
 
 	function syn_save_teacher_classes( $teacher_id ) {
 		$teacher_page = syn_get_teacher_page( $teacher_id );
-		//slog( 'syn_save_teacher_classes => $teacher_page');
-		//slog( $teacher_page );
 		if ( $teacher_page instanceof WP_Post ) {
 			$teacher_class_pages = syn_get_teacher_class_pages( $teacher_id, true );
 			$tcp_ids             = [];
@@ -1846,16 +1415,12 @@
 			$teacher_classes = syn_get_teacher_classes( $teacher_page->ID );
 			$tc_ids          = [];
 			$tc_args         = [];
-			//slog( 'syn_save_teacher_classes => $teacher_classes');
-			//slog( $teacher_classes );
 			if ( $teacher_classes ) {
 				$departments_active = get_field( 'syn_departments_active', 'option' );
 				$courses            = get_field( 'syn_courses', 'option' );
 				$courses            = array_column( $courses, 'course', 'course_id' );
-				//slog( $courses );
 				if ( count( $teacher_classes ) ) {
 					foreach ( $teacher_classes as $teacher_class ) {
-						//slog( $teacher_class );
 						$include_page = $teacher_class[ 'include_page' ];
 						if ( $include_page ) {
 							$tc_ids[] = $teacher_class[ 'class_id' ];
@@ -2002,7 +1567,7 @@
 	}
 
 	/*************************************** Teachers Pages *****************************************/
-	function syn_get_teachers_pages( $include_trash = false ) {
+	function syn_get_teacher_pages( $include_trash = false ) {
 		$post_statuses = [
 			'publish',
 			'draft',
@@ -2034,9 +1599,9 @@
 
 	/*************************************** Teachers Classes *****************************************/
 	function syn_get_teachers_classes() {
-		$teachers_pages = syn_get_teachers_pages();
-		$classes        = [];
-		foreach ( $teachers_pages as $teacher_page ) {
+		$teacher_pages = syn_get_teacher_pages();
+		$classes       = [];
+		foreach ( $teacher_pages as $teacher_page ) {
 			$teacher_classes = syn_get_teacher_classes( $teacher_page->ID );
 			$classes         = array_merge( $classes, $teacher_classes );
 		}
@@ -2289,10 +1854,10 @@
 			echo $tab . '<div class="container-fluid">' . $lb;
 			echo $tab . $tab . '<div class="row">' . $lb;
 			echo $tab . $tab . $tab . '<div class="col">' . $lb;
-			echo $tab . $tab . $tab . $tab . '<div class="portal-links" aria-label="Portal links">' . $lb;
+			echo $tab . $tab . $tab . $tab . '<nav class="portal-links" aria-label="Portal links">' . $lb;
 			echo $tab . $tab . $tab . $tab . $tab . '<a href="https://amadorcusd.asp.aeries.net/teacher/Login.aspx?page=default.aspx" class="teacher-portal" target="_blank">Teacher Portal <span class="fa fa-sign-in"></span></a>' . $lb;
 			echo $tab . $tab . $tab . $tab . $tab . '<a href="https://amadorcusd.asp.aeries.net/student/LoginParent.aspx?page=default.aspx" class="parent-portal" target="_blank">Parent Portal <span class="fa fa-sign-in"></span></a>' . $lb;
-			echo $tab . $tab . $tab . $tab . '</div>' . $lb;
+			echo $tab . $tab . $tab . $tab . '</nav>' . $lb;
 			echo $tab . $tab . $tab . '</div>' . $lb;
 			echo $tab . $tab . '</div>' . $lb;
 			echo $tab . '</div>' . $lb;
@@ -2303,23 +1868,6 @@
 		syn_banner();
 		syn_breadcrumbs();
 		syn_sidebar( 'header' );
-	}
-
-	function ___________syn_head() {
-		$lb  = syn_get_linebreak();
-		$tab = syn_get_tab();
-		echo '<header class="head">' . $lb;
-		echo $tab . '<div class="container-fluid">' . $lb;
-		echo $tab . $tab . '<div class="row">' . $lb;
-		echo $tab . $tab . $tab . '<div class="col">' . $lb;
-		echo $tab . $tab . $tab . $tab . '<div class="portal-links" aria-label="Portal links">' . $lb;
-		echo $tab . $tab . $tab . $tab . $tab . '<a href="https://amadorcusd.asp.aeries.net/teacher/Login.aspx?page=default.aspx" class="teacher-portal" target="_blank">Teacher Portal <span class="fa fa-sign-in"></span></a>' . $lb;
-		echo $tab . $tab . $tab . $tab . $tab . '<a href="https://amadorcusd.asp.aeries.net/student/LoginParent.aspx?page=default.aspx" class="parent-portal" target="_blank">Parent Portal <span class="fa fa-sign-in"></span></a>' . $lb;
-		echo $tab . $tab . $tab . $tab . '</div>' . $lb;
-		echo $tab . $tab . $tab . '</div>' . $lb;
-		echo $tab . $tab . '</div>' . $lb;
-		echo $tab . '</div>' . $lb;
-		echo '</header>' . $lb;
 	}
 
 	function syn_banner() {
@@ -2603,12 +2151,22 @@
 			$teacher_id = get_field( 'syn_page_teacher', $post->ID );
 			if ( $teacher_id ) {
 				if ( have_rows( 'syn_classes', $post->ID ) ) {
+					$terms          = syn_get_terms();
+					$terms          = array_column( $terms, 'term', 'term_id' );
 					$courses        = get_field( 'syn_courses', 'option' );
 					$courses        = array_column( $courses, 'course', 'course_id' );
 					$periods_active = get_field( 'syn_periods_active', 'option' );
-					$rooms_active   = get_field( 'syn_rooms_active', 'option' );
-					$lb             = syn_get_linebreak();
-					$tab            = syn_get_tab();
+					if ( $periods_active ) {
+						$periods = get_field( 'syn_periods', 'option' );
+						$periods = array_column( $periods, 'period', 'period_id' );
+					}
+					$rooms_active = get_field( 'syn_rooms_active', 'option' );
+					if ( $rooms_active ) {
+						$rooms = get_field( 'syn_rooms', 'option' );
+						$rooms = array_column( $rooms, 'room', 'room_id' );
+					}
+					$lb  = syn_get_linebreak();
+					$tab = syn_get_tab();
 					echo '<h2>Classes</h2>' . $lb;
 					echo '<table class="teacher-classes-table">' . $lb;
 					echo $tab . '<thead>' . $lb;
@@ -2629,9 +2187,9 @@
 						//$include_page = get_sub_field( 'include_page' );
 						$page = syn_get_teacher_class_page( $teacher_id, $class_id );
 						echo $tab . $tab . '<tr>' . $lb;
-						echo $tab . $tab . $tab . '<td class="term">' . get_sub_field( 'term' ) . '</td>' . $lb;
+						echo $tab . $tab . $tab . '<td class="term">' . $terms[ get_sub_field( 'term' ) ] . '</td>' . $lb;
 						if ( $periods_active ) {
-							echo $tab . $tab . $tab . '<td class="period">' . get_sub_field( 'period' ) . '</td>' . $lb;
+							echo $tab . $tab . $tab . '<td class="period">' . $periods[ get_sub_field( 'period' ) ] . '</td>' . $lb;
 						}
 						echo $tab . $tab . $tab . '<td class="course">' . $lb;
 						if ( $page instanceof WP_Post && 'publish' == $page->post_status ) {
@@ -2644,7 +2202,7 @@
 						}
 						echo $tab . $tab . $tab . '</td>' . $lb;
 						if ( $rooms_active ) {
-							echo $tab . $tab . $tab . '<td class="room">' . get_sub_field( 'room' ) . '</td>' . $lb;
+							echo $tab . $tab . $tab . '<td class="room">' . $rooms[ get_sub_field( 'room' ) ] . '</td>' . $lb;
 						}
 						echo $tab . $tab . '</tr>' . $lb;
 					endwhile;
@@ -2908,8 +2466,20 @@
 			$teachers = []; // nothing to show...
 		}
 		if ( $teachers ) {
+			$terms          = syn_get_terms();
+			$terms          = array_column( $terms, 'term', 'term_id' );
 			$periods_active = get_field( 'syn_periods_active', 'option' );
-			$rooms_active   = get_field( 'syn_rooms_active', 'option' );
+			if ( $periods_active ) {
+				$periods = get_field( 'syn_periods', 'option' );
+				$periods = array_column( $periods, 'period', 'period_id' );
+			}
+			$rooms_active = get_field( 'syn_rooms_active', 'option' );
+			if ( $rooms_active ) {
+				$rooms = get_field( 'syn_rooms', 'option' );
+				$rooms = array_column( $rooms, 'room', 'room_id' );
+			}
+			$courses = get_field( 'syn_courses', 'option' );
+			$courses = array_column( $courses, 'course', 'course_id' );
 			usort( $teachers, function( $a, $b ) {
 				return strnatcmp( $a->user_lastname . ', ' . $a->user_firstname, $b->user_lastname . ', ' . $b->user_firstname );
 			} );
@@ -2917,24 +2487,23 @@
 			echo '<thead>';
 			echo '<tr>';
 			echo '<th class="term" scope="col">Term</th>';
-			echo '<th class="class" scope="col">Class</th>';
+			echo '<th class="class" scope="col">Course</th>';
 			if ( $periods_active ) {
 				echo '<th class="period" scope="col">Period</th>';
 			}
 			if ( $rooms_active ) {
 				echo '<th class="room" scope="col">Room</th>';
 			}
-			echo '<th class="status" scope="col">Status</th>';
+			//echo '<th class="status" scope="col">Status</th>';
 			echo '</tr>';
 			echo '</thead>';
 			$current_teacher = 0;
-			$cols            = 3;
+			$cols            = 2;
 			$cols            = ( $periods_active ) ? $cols + 1 : $cols;
 			$cols            = ( $rooms_active ) ? $cols + 1 : $cols;
 			foreach ( $teachers as $teacher ) {
 				$teacher_page = syn_get_teacher_page( $teacher->ID );
 				if ( $teacher_page instanceof WP_Post || ( is_array( $teacher_page ) && count( $teacher_page ) ) ) {
-					//slog( $teacher_page );
 					$teacher_page_status = $teacher_page->post_status;
 					if ( ! $is_teacher && $teacher->ID != $current_teacher ) {
 						echo '<thead>';
@@ -2955,30 +2524,36 @@
 					if ( $classes ) {
 						foreach ( $classes as $class ) {
 							$class_page = syn_get_teacher_class_page( $teacher->ID, $class[ 'class_id' ] );
-							if ( $class_page instanceof WP_Post ) {
-								$period = ( $periods_active && isset( $class[ 'period' ] ) ) ? $class[ 'period' ] : '';
-								$room   = ( $rooms_active && isset( $class[ 'room' ] ) ) ? $class[ 'room' ] : '';
-								echo '<tr>';
-								echo '<td>' . $class[ 'term' ] . '</td>';
-								echo '<td>';
-								if ( $class_page ) :
-									echo '<a href="/wp-admin/post.php?action=edit&post=' . $class_page->ID . '">' . $class_page->post_title . '</a>';
-								else :
-									echo $class_page->post_title;
-								endif;
-								echo '</td>';
-								if ( $periods_active ) {
-									$period_label = ( $period ) ? 'Period ' . $period : '';
-									echo '<td class="period">' . $period_label . '</td>';
-								}
-								if ( $rooms_active ) {
-									$room_label = ( $room ) ? 'Room ' . $room : '';
-									echo '<td class="room">' . $room_label . '</td>';
-								}
+							//if ( $class_page instanceof WP_Post ) {
+							$period = ( $periods_active && isset( $class[ 'period' ] ) ) ? $periods[ $class[ 'period' ] ] : '';
+							$room   = ( $rooms_active && isset( $class[ 'room' ] ) ) ? $rooms[ $class[ 'room' ] ] : '';
+							echo '<tr>';
+							echo '<td>' . $terms[ $class[ 'term' ] ] . '</td>';
+							echo '<td>';
+							if ( $class_page instanceof WP_Post ) :
+								$status = ( 'publish' == $class_page->post_status ) ? '' : '<strong> — ' . $class_page->post_status . '</strong>';
+								echo '<a href="/wp-admin/post.php?action=edit&post=' . $class_page->ID . '">' . $class_page->post_title . '</a>' . ucwords( $status );
+							else :
+								//echo $class_page->post_title;
+								echo $courses[ $class[ 'course' ] ];
+							endif;
+							echo '</td>';
+							if ( $periods_active ) {
+								//$period_label = ( $period ) ? 'Period ' . $period : '';
+								echo '<td class="period">' . $period . '</td>';
+							}
+							if ( $rooms_active ) {
+								//$room_label = ( $room ) ? 'Room ' . $room : '';
+								echo '<td class="room">' . $room . '</td>';
+							}
+							/*if ( $class_page instanceof WP_Post ) {
 								$status = ( 'publish' == $class_page->post_status ) ? 'Published' : $class_page->post_status;
 								echo '<td class="status">' . $status . '</td>';
-								echo '</tr>';
-							}
+							} else {
+								echo '<td></td>';
+							}*/
+							echo '</tr>';
+							//}
 						}
 					} else {
 						echo '<tr>';
@@ -3023,13 +2598,13 @@
 	}
 
 	function syn_qn_teachers_pages() {
-		$posts = syn_get_teachers_pages();
+		$teacher_pages = syn_get_teacher_pages();
 		echo '<ul class="admin_pages_sidenav">';
-		if ( $posts ) {
+		if ( $teacher_pages ) {
 			$link_to_edit = get_admin_url() . '/post.php?action=edit&post=';
-			foreach ( $posts as $post ) {
-				$status = ( 'publish' != $post->post_status ) ? ' - ' . ucfirst( $post->post_status ) : '';
-				echo '<li><a href="' . $link_to_edit . $post->ID . '">' . $post->post_title . '</a>' . $status . '</li>';
+			foreach ( $teacher_pages as $teacher_page ) {
+				$status = ( 'publish' != $teacher_page->post_status ) ? ' - ' . ucfirst( $teacher_page->post_status ) : '';
+				echo '<li><a href="' . $link_to_edit . $teacher_page->ID . '">' . $teacher_page->post_title . '</a>' . $status . '</li>';
 			}
 		} else {
 			echo '<li>No teacher pages</li>';
@@ -3092,45 +2667,4 @@
 			}
 			echo '</div>';
 		}
-	}
-
-//
-//
-// Bone yard
-//
-//
-	function ___________________syn_get_post_breadcrumbs( $post_id ) {
-		$post_id = syn_resolve_post_id( $post_id );
-
-		return get_the_title( $post_id );
-		/*
-		 * This is bypassed ATM, not sure if I want a breadcrumb...
-		 */
-		$post_type      = get_post_type( $post_id );
-		$post_parent_id = wp_get_post_parent_id( $post_id );
-		if ( 0 !== (int) $post_parent_id ) {
-			$post_breadcrumbs = '<span class="post-breadcrumb-ancestors">';
-			if ( 'page' == $post_type ) {
-				$ancestor_ids = array_reverse( get_post_ancestors( $post_id ) );
-				if ( $ancestor_ids ) {
-					$ancestor_count = 1;
-					foreach ( $ancestor_ids as $ancestor_id ) {
-						$ancestor         = get_post( $ancestor_id );
-						$post_breadcrumbs .= esc_html( $ancestor->post_title );
-						if ( count( $ancestor_ids ) != $ancestor_count ) {
-							$post_breadcrumbs .= ' > ';
-						}
-						$ancestor_count ++;
-					}
-				}
-			} elseif ( 'post' == $post_type ) {
-				$category_ids     = wp_get_post_categories( $post_id );
-				$category         = get_category( $category_ids[ 0 ] );
-				$post_breadcrumbs .= $category->name;
-			}
-			$post_breadcrumbs .= '</span>';
-		}
-		$post_breadcrumbs = ( isset( $post_breadcrumbs ) && ! empty( $post_breadcrumbs ) ) ? $post_breadcrumbs . ' > ' . get_the_title( $post_id ) : get_the_title( $post_id );
-
-		return $post_breadcrumbs;
 	}

@@ -3,6 +3,30 @@
     "title": "User Info",
     "fields": [
         {
+			"key": "field_5acd53bd45d45",
+			"label": "Photo",
+			"name": "syn_user_photo",
+			"type": "image",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"return_format": "array",
+			"preview_size": "thumbnail",
+			"library": "uploadedTo",
+			"min_width": 150,
+			"min_height": 200,
+			"min_size": "",
+			"max_width": 1080,
+			"max_height": 1920,
+			"max_size": "",
+			"mime_types": "jpg,jpeg,png"
+		},
+		{
             "key": "field_5a6570eff3d03",
             "label": "Prefix",
             "name": "syn_user_prefix",
@@ -26,7 +50,7 @@
             "other_choice": 1,
             "save_other_choice": 1,
             "default_value": "",
-            "layout": "vertical",
+			"layout": "horizontal",
             "return_format": "value"
         },
         {
@@ -109,23 +133,23 @@
             "key": "field_59f7a2d72ed22",
             "label": "Teacher Page",
             "name": "syn_user_page",
-            "type": "post_object",
+			"type": "select",
             "instructions": "Do not set this value. It will populate and clear itself when using the checkbox above.",
             "required": 0,
 			"conditional_logic": 0,
             "wrapper": {
                 "width": "",
-				"class": "hidden",
+				"class": "",
                 "id": ""
             },
-            "post_type": [
-                "page"
-            ],
-            "taxonomy": [],
-            "allow_null": 0,
+			"choices": [],
+			"default_value": [],
+			"allow_null": 1,
             "multiple": 0,
-            "return_format": "object",
-            "ui": 1
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
         }
     ],
     "location": [
@@ -145,5 +169,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-	"modified": 1522455719
+	"modified": 1523431299
 }

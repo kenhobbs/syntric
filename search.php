@@ -16,11 +16,9 @@
 			//echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post->ID . '">' . $lb;
 			echo '<article id="post-' . $post->ID . '">' . $lb;
 			echo '<h2 class="post-title">' . $lb;
-			echo '<a href="' . get_the_permalink() . '" rel="bookmark">' . $lb;
-			the_title();
-			echo '</a>' . $lb;
+			echo '<a href="' . get_the_permalink() . '" rel="bookmark">' . get_the_title() . '</a>' . $lb;
 			if ( 'post' == $post->post_type ) {
-				syn_excerpt_badges( $post->ID );
+				echo syn_get_excerpt_badges( $post->ID );
 			}
 			echo '</h2>' . $lb;
 			/*if ( 'post' == $post->post_type ) {

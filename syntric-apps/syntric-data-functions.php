@@ -1,56 +1,5 @@
 <?php
-	add_action( 'acf/save_post', 'syn_save_data_functions', 20 );
-	function syn_save_data_functions() {
-		if ( is_admin() && isset( $_REQUEST[ 'page' ] ) && 'syntric-data-functions' == $_REQUEST[ 'page' ] ) {
-			// do stuff
-			$run_orphan_scan              = get_field( 'syn_data_run_orphan_scan', 'option' );
-			$run_users_import             = get_field( 'syn_data_run_users_import', 'option' );
-			$run_users_export             = get_field( 'syn_data_run_users_export', 'option' );
-			$run_users_phone_update       = get_field( 'syn_data_run_users_phone_update', 'option' );
-			$run_users_password_update    = get_field( 'syn_data_run_users_password_update', 'option' );
-			$run_activate_contact_widgets = get_field( 'syn_data_run_activate_contact_widgets', 'option' );
-			$run_reset_user_capabilities  = get_field( 'syn_data_run_reset_user_capabilities', 'option' );
-			$run_dedupe_events = get_field( 'syn_data_run_dedupe_events', 'option' );
-			if ( $run_orphan_scan ) {
-				$delete_orphans = get_field( 'syn_data_delete_orphans', 'option' );
-				syn_scan_orphans( $delete_orphans );
-			}
-			if ( $run_users_import ) {
-				syn_import_users();
-			}
-			if ( $run_users_export ) {
-				syn_export_users();
-			}
-			if ( $run_users_phone_update ) {
-				$phone = get_field( 'syn_data_users_phone', 'option' );
-				syn_update_users_phone( $phone );
-			}
-			if ( $run_users_password_update ) {
-				syn_update_users_password();
-			}
-			if ( $run_activate_contact_widgets ) {
-				syn_activate_contact_widgets();
-			}
-			if ( $run_reset_user_capabilities ) {
-				syn_reset_user_capabilities();
-			}
-			if ( $run_dedupe_events ) {
-				syn_dedupe_events();
-			}
-		}
-		// clear/reset all fields, except orphan scan console
-		update_field( 'syn_data_run_orphan_scan', 0, 'option' );
-		update_field( 'syn_data_delete_orphans', 0, 'option' );
-		update_field( 'syn_data_run_users_import', 0, 'option' );
-		update_field( 'syn_data_users_file', null, 'option' );
-		update_field( 'syn_data_users_file_has_header_row', 0, 'option' );
-		update_field( 'syn_data_run_users_phone_update', 0, 'option' );
-		update_field( 'syn_data_users_phone', null, 'option' );
-		update_field( 'syn_data_run_users_password_update', 0, 'option' );
-		update_field( 'syn_data_run_activate_contact_widgets', 0, 'option' );
-		update_field( 'syn_data_run_reset_user_capabilities', 0, 'option' );
-		update_field( 'syn_data_run_dedupe_events', 0, 'option' );
-	}
+
 
 	function syn_stringify_array( $array ) {
 		$ret = '';
@@ -438,18 +387,13 @@
 		if ( count( $users ) ) {
 			foreach ( $users as $user ) {
 				$user_capabilities = get_user_meta( $user->ID, 'wp_capabilities' );
-				//slog($user_capabilities);
-				$user_caps = $user_capabilities[ 0 ];
-				//slog($user_caps);
-				$user_cap_count = count( $user_caps );
-				//slog($user_cap_count);
+				$user_caps         = $user_capabilities[ 0 ];
+				$user_cap_count    = count( $user_caps );
 				if ( 1 < $user_cap_count ) {
 					//$primary_role = $user_caps[ $user_cap_count - 1 ];
 					$cap_no = 1;
 					foreach ( $user_caps as $key => $val ) {
-						//slog($key);
 						if ( $cap_no < $user_cap_count ) {
-							//slog($key . ' - REMOVED');
 							$user->remove_cap( $key );
 							$cap_no ++;
 						}
@@ -490,7 +434,7 @@
 
 	// Activate and populate contact widgets on Teacher and Class pages
 	function syn_activate_contact_widgets() {
-		$teacher_pages = syn_get_teachers_pages();
+		$teacher_pages = syn_get_teacher_pages();
 		if ( count( $teacher_pages ) ) {
 			foreach ( $teacher_pages as $teacher_page ) {
 				$teacher_page_id = $teacher_page->ID;
@@ -553,4 +497,49 @@
 				}
 			}
 		}
+	}
+
+	function syn_optimize_usermeta() {
+		global $wpdb;
+		/**
+		 * Delete all from wp_usermeta where meta_key like 'screen_layout_%'
+		 * Delete all from wp_usermeta where meta_key like 'metaboxhidden_%'
+		 * Delete all from wp_usermeta where meta_key like 'closedpostboxes_%'
+		 * Delete all from wp_usermeta where meta_key like 'manage%'
+		 * Delete all from wp_usermeta where meta_key like 'edit_%'
+		 * Delete all from wp_usermeta where meta_key in ('title','phone','page','jetpack_tracks_anon_id','is_teacher','extension','acf_user_settings','_title','_phone','_page','_is_teacher','_extension'   )
+		 */
+		// Reset admin UI selections - screen layout (columns), meta boxes that have been hidden, etc..
+		$sql = 'DELETE FROM wp_usermeta WHERE meta_key LIKE \'screen_layout_%\' OR meta_key LIKE \'metaboxhidden_%\' OR meta_key LIKE \'closedpostboxes_%\' OR meta_key LIKE \'manage%\' OR meta_key LIKE \'edit_%\' OR meta_key = \'admin_color\' OR meta_key = \'acf_user_settings\'';
+		//$admin_ui_results = $wpdb->get_results( $sql, ARRAY_A );
+		$del_uconfig_res = $wpdb->get_results( $sql, ARRAY_A );
+		$wpdb->flush();
+		// Purge abandoned ACF records
+		// Get user meta where renaming a field caused a record to be left behind
+		$sql            = 'SELECT *, count(*) as recs FROM wp_usermeta GROUP BY user_id, meta_value HAVING meta_key LIKE \'_%\' AND meta_value LIKE \'field_%\' AND recs > 1 ORDER by user_id, meta_value';
+		$renaming_dupes = $wpdb->get_results( $sql, ARRAY_A );
+		$wpdb->flush();
+		if ( count( $renaming_dupes ) ) {
+			foreach ( $renaming_dupes as $renaming_dupe ) {
+				if ( 2 == $renaming_dupe[ 'recs' ] ) {
+					$field_key    = $renaming_dupe[ 'meta_value' ];
+					$sql          = 'SELECT * FROM wp_usermeta WHERE user_id = ' . $renaming_dupe[ 'user_id' ] . ' AND meta_value = \'' . $renaming_dupe[ 'meta_value' ] . '\' AND meta_key NOT LIKE \'_syn_%\'';
+					$dupe_records = $wpdb->get_results( $sql, ARRAY_A );
+					$wpdb->flush();
+					if ( count( $dupe_records ) ) {
+						foreach ( $dupe_records as $dupe_record ) {
+							$del_umd_res = delete_user_meta( $dupe_record[ 'user_id' ], substr( $dupe_record[ 'meta_key' ], 1 ) );
+							$del_umk_res = delete_user_meta( $dupe_record[ 'user_id' ], $dupe_record[ 'meta_key' ], $dupe_record[ 'meta_value' ] );
+						}
+					}
+				}
+			}
+		}
+		// Delete ACF user meta that doesn't start with 'syn_' or '_syn_'
+		//SELECT * FROM wp_usermeta where meta_key NOT LIKE 'syn_%' AND meta_key NOT LIKE '_syn_%' AND meta_value LIKE 'field_%'
+		$sql = 'DELETE FROM wp_usermeta where meta_key NOT LIKE \'syn_%\' AND meta_key NOT LIKE \'_syn_%\' AND meta_value LIKE \'field_%\'';
+		//$admin_ui_results = $wpdb->get_results( $sql, ARRAY_A );
+		$del_umeta_res = $wpdb->get_results( $sql, ARRAY_A );
+		$wpdb->flush();
+		//slog($del_umeta_res);
 	}

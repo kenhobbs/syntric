@@ -20,6 +20,7 @@
             "max": 0,
             "layout": "table",
             "button_label": "Add Class",
+			"hide_collapse": 1,
             "collapse_all_repeater": 0,
             "btn-icon-only": 1,
             "sub_fields": [
@@ -36,19 +37,13 @@
                         "class": "",
                         "id": ""
                     },
-                    "choices": {
-                        "2017-2018 All Year": "2017-2018 - All Year",
-                        "2017-2018 1st Trimester": "2017-2018 - 1st Trimester",
-                        "2017-2018 2nd Trimester": "2017-2018 - 2nd Trimester",
-                        "2017-2018 3rd Trimester": "2017-2018 - 3rd Trimester",
-                        "2017-2018 Summer Session": "2017-2018 - Summer Session"
-                    },
+					"choices": null,
                     "default_value": [],
                     "allow_null": 1,
                     "multiple": 0,
                     "ui": 0,
                     "ajax": 0,
-                    "return_format": "label",
+					"return_format": "value",
                     "placeholder": ""
                 },
                 {
@@ -60,24 +55,17 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "10",
+						"width": "",
                         "class": "",
                         "id": ""
                     },
-                    "choices": {
-                        "id-570481587-497897148-1363095736": "1",
-                        "id-1938920829-1096852728-1646703252": "2",
-                        "id-1197843014-461746676-454524566": "3",
-                        "id-866042511-850868880-712703552": "4",
-                        "id-1080177670-291327787-1379995756": "5",
-                        "id-1146584968-1054185863-1726310314": "6"
-                    },
+					"choices": null,
                     "default_value": [],
                     "allow_null": 1,
                     "multiple": 0,
                     "ui": 0,
                     "ajax": 0,
-                    "return_format": "label",
+					"return_format": "value",
                     "placeholder": ""
                 },
                 {
@@ -90,16 +78,16 @@
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
-                        "class": "-collapsed-target",
+						"class": "",
                         "id": ""
                     },
-                    "choices": [],
+					"choices": null,
                     "default_value": [],
                     "allow_null": 1,
                     "multiple": 0,
                     "ui": 0,
                     "ajax": 0,
-                    "return_format": "label",
+					"return_format": "value",
                     "placeholder": ""
                 },
                 {
@@ -111,32 +99,24 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "10",
+						"width": "",
                         "class": "",
                         "id": ""
                     },
-                    "choices": {
-                        "id-1683227391-1823300312-2136064425": "201",
-                        "id-842760795-1035696307-1039385083": "303",
-                        "id-873228441-141650154-2072016757": "409",
-                        "id-1611277948-388381361-1918953190": "555",
-                        "id-1452624383-284915639-1192441263": "605",
-                        "id-1219780927-1473331518-724850094": "773",
-                        "id-1475065740-1707155159-697885247": "999"
-                    },
+					"choices": null,
                     "default_value": [],
                     "allow_null": 1,
                     "multiple": 0,
                     "ui": 0,
                     "ajax": 0,
-                    "return_format": "label",
+					"return_format": "value",
                     "placeholder": ""
                 },
                 {
                     "key": "field_59d16c8161f7d",
                     "label": "Include Page?",
                     "name": "include_page",
-                    "type": "checkbox",
+					"type": "true_false",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -145,15 +125,11 @@
                         "class": "",
                         "id": ""
                     },
-                    "choices": {
-                        "1": "&nbsp;"
-                    },
-                    "allow_custom": 0,
-                    "save_custom": 0,
-                    "default_value": [],
-                    "layout": "vertical",
-                    "toggle": 0,
-                    "return_format": "value"
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
                 },
                 {
                     "key": "field_59d127e512d9a",
@@ -168,7 +144,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "message": "Generated automatically",
+					"message": "",
                     "new_lines": "",
                     "esc_html": 0
                 },
@@ -216,5 +192,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1521943081
+	"modified": 1523549825
 }
