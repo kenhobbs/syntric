@@ -31,11 +31,17 @@
 
 	function syn_save_page_widgets( $post_id ) {
 		$post_id = syn_resolve_post_id( $post_id );
-		// save new microblog post if present
+		// save contact page widget
+		// save roster page widget
+		// save attachments page widget
+		// save Google map page widget
+		// save video page widget
+		// etc...
+		// save microblog page widget
 		syn_save_microblog_page_widget_post( $post_id );
-		// save new calendar if present
+		// save calendar page widget
 		syn_save_calendar_page_widget( $post_id );
-		// if widget is not active, delete orphaned fields
+		// clean up fields (orphans of widgets made inactive, if any)
 		syn_cleanup_page_widgets( $post_id );
 	}
 
@@ -104,10 +110,51 @@
 		}
 	}
 
+	/**
+	 * Save page microblog widget.
+	 *
+	 * If active...
+	 *
+	 * 1. Verify/create Microblogs category
+	 * 2. Verify/create category for microblog under Microblogs category
+	 *      Category should be named as the breadcrumb for this page with right arrow separators
+	 * 3. Update category syn_category_page to this page
+	 * 4. Update page syn_microblog_category (message) field
+	 * 5. Check if a new post is part of the submission and if so, save the post in this microblog
+	 *
+	 * If not active...
+	 *
+	 * 1. Check a category for this page
+	 * 2. If there is a category, delete all it's posts (should prompt if there are todo: prompt for post deletion here)
+	 * 3. Delete category associated with this page
+	 * 4. Delete all microblog page widget fields for this page
+	 *
+	 * @param $post_id
+	 *
+	 * @return void
+	 */
 	function syn_save_microblog_page_widget_post( $post_id ) {
 		$post_id          = syn_resolve_post_id( $post_id );
 		$microblog_active = get_field( 'syn_microblog_active', $post_id );
 		if ( $microblog_active ) {
+			$microblog_category = syn_get_page_microblog_category();
+			slog( $microblog_category );
+
+			return;
+			// make sure microblog category is under Microblogs category
+			if ( ! count( $microblog_category ) ) {
+				$microblog_category_id = syn_create_microblogs_category();
+			}
+
+
+
+
+
+
+
+
+
+
 			$new_microblog_post = get_field( 'syn_new_microblog_post', $post_id );
 			if ( $new_microblog_post ) {
 				$post_title   = get_field( 'syn_new_microblog_post_title', $post_id );
@@ -143,6 +190,69 @@
 			update_field( 'syn_new_microblog_post_title', '', $post_id );
 			update_field( 'syn_new_microblog_post_content', '', $post_id );
 		}
+	}
+
+	/**
+	 * Get Microblogs category, create if it doesn't exist
+	 */
+	function syn_get_microblogs_category() {
+		$microblogs_categories = get_terms( [
+			'taxonomy' => 'category',
+			'name'     => 'Microblogs',
+			'parent'   => 0,
+		] );
+		if ( 0 == count( $microblogs_categories ) ) {
+			$microblogs_category_id = wp_create_category( 'Microblogs', 0 );
+			$microblogs_category    = get_term( $microblogs_category_id );
+		} elseif ( 1 == count( $microblogs_categories ) ) {
+			$microblogs_category = $microblogs_categories[ 0 ];
+		} else {
+			// error condition if there are more than one Microblogs category with parent = 0
+		}
+
+		return $microblogs_category;
+	}
+
+	/**
+	 * Get category for page microblog (under Microblogs), create if it doesn't exist.
+	 * Also takes care of checking for and creating Microblogs category wit parent = 0
+	 */
+	function syn_get_microblog_category( $post_id ) {
+		$post_id             = syn_resolve_post_id( $post_id );
+		$microblogs_category = syn_get_microblogs_category();
+		$microblog_category  = get_terms( [
+			'taxonomy'   => 'category',
+			'parent'     => $microblogs_category->term_id,
+			'meta_key'   => 'syn_category_page',
+			'meta_value' => $post_id,
+		] );
+		if ( 0 == count( $microblog_category ) ) {
+			$microblog_category_id = wp_create_category( $foo, $microblogs_category->term_id );
+			$microblog_category    = get_term( $microblog_category_id );
+		} elseif ( 1 == count( $microblog_category ) ) {
+			$microblog_category = $microblog_category[ 0 ];
+		} else {
+			// error condition if there are more than one Microblogs category with parent = 0
+		}
+
+		return $microblog_category;
+		//$microblogs_category =
+		//return wp_create_category();
+	}
+
+	/*function syn_get_microblogs_category() {
+		$microblogs_cat = get_category_by_slug( 'microblogs' );
+		if ( ! $microblogs_cat instanceof WP_Term ) {
+			$microblogs_cat = get_category( 'Microblogs' );
+		}
+
+		return $microblogs_cat;
+	}*/
+	function syn_get_microblogs_category_children() {
+		$microblogs_cat = syn_get_microblogs_category();
+		$categories     = get_categories( [ 'parent' => $microblogs_cat->term_id, 'hide_empty' => 0 ] );
+
+		return $categories;
 	}
 
 	function syn_cleanup_page_widgets( $post_id ) {

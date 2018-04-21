@@ -50,7 +50,7 @@
             "other_choice": 1,
             "save_other_choice": 1,
             "default_value": "",
-			"layout": "horizontal",
+			"layout": "vertical",
             "return_format": "value"
         },
         {
@@ -150,6 +150,31 @@
 			"ajax": 0,
 			"return_format": "value",
 			"placeholder": ""
+		},
+		{
+			"key": "field_5ad3b76d1ea8b",
+			"label": "Teacher Page",
+			"name": "",
+			"type": "message",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59c3de980525e",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"new_lines": "",
+			"esc_html": 0
         }
     ],
     "location": [
@@ -169,5 +194,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-	"modified": 1523431299
+	"modified": 1523887622
 }

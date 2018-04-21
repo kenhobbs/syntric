@@ -1145,7 +1145,7 @@
             "max": 0,
             "layout": "table",
             "button_label": "Add Person",
-            "hide_collapse": 0,
+			"hide_collapse": 1,
             "collapse_all_repeater": 0,
             "btn-icon-only": 1,
             "sub_fields": [
@@ -1654,13 +1654,13 @@
 				"class": "",
 				"id": ""
 			},
-			"collapsed": "",
+			"collapsed": "field_5ac25dac942ef",
 			"min": 0,
 			"max": 0,
 			"layout": "block",
 			"button_label": "Add Attachment Group",
 			"hide_collapse": 0,
-			"collapse_all_repeater": 0,
+			"collapse_all_repeater": 1,
 			"btn-icon-only": 1,
 			"sub_fields": [
 				{
@@ -1719,8 +1719,8 @@
 					"max": 0,
 					"layout": "block",
 					"button_label": "Add Attachment",
-					"hide_collapse": 0,
-					"collapse_all_repeater": 0,
+					"hide_collapse": 1,
+					"collapse_all_repeater": 1,
 					"btn-icon-only": 1,
 					"sub_fields": [
 						{
@@ -1733,7 +1733,7 @@
 							"conditional_logic": 0,
 							"wrapper": {
 								"width": "20",
-								"class": "",
+								"class": "-collapsed-target",
 								"id": ""
 							},
 							"choices": {
@@ -1767,7 +1767,7 @@
 							],
 							"wrapper": {
 								"width": "80",
-								"class": "",
+								"class": "-collapsed-target",
 								"id": ""
 							},
 							"return_format": "array",
@@ -1794,7 +1794,7 @@
 							],
 							"wrapper": {
 								"width": "80",
-								"class": "",
+								"class": "-collapsed-target",
 								"id": ""
 							},
 							"post_type": [
@@ -1826,7 +1826,7 @@
 							],
 							"wrapper": {
 								"width": "30",
-								"class": "",
+								"class": "-collapsed-target",
 								"id": ""
 							},
 							"default_value": "",
@@ -1853,7 +1853,7 @@
 							],
 							"wrapper": {
 								"width": "30",
-								"class": "",
+								"class": "-collapsed-target",
 								"id": ""
 							},
 							"default_value": "",
@@ -1877,7 +1877,7 @@
 							],
 							"wrapper": {
 								"width": "20",
-								"class": "",
+								"class": "-collapsed-target",
 								"id": ""
 							},
 							"message": "",
@@ -1918,5 +1918,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-	"modified": 1523587362
+	"modified": 1523954884
 }

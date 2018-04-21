@@ -1,5 +1,61 @@
 <?php
-
+	add_action( 'acf/save_post', 'syn_save_data_functions', 20 );
+	function syn_save_data_functions() {
+		if ( is_admin() && isset( $_REQUEST[ 'page' ] ) && 'syntric-data-functions' == $_REQUEST[ 'page' ] ) {
+			// do stuff
+			$run_orphan_scan              = get_field( 'syn_data_run_orphan_scan', 'option' );
+			$run_users_import             = get_field( 'syn_data_run_users_import', 'option' );
+			$run_users_export             = get_field( 'syn_data_run_users_export', 'option' );
+			$run_users_phone_update       = get_field( 'syn_data_run_users_phone_update', 'option' );
+			$run_users_password_update    = get_field( 'syn_data_run_users_password_update', 'option' );
+			$run_activate_contact_widgets = get_field( 'syn_data_run_activate_contact_widgets', 'option' );
+			$run_reset_user_capabilities  = get_field( 'syn_data_run_reset_user_capabilities', 'option' );
+			$run_dedupe_events            = get_field( 'syn_data_run_dedupe_events', 'option' );
+			$run_optimize_usermeta        = get_field( 'syn_data_run_optimize_usermeta', 'option' );
+			if ( $run_orphan_scan ) {
+				$delete_orphans = get_field( 'syn_data_delete_orphans', 'option' );
+				syn_scan_orphans( $delete_orphans );
+			}
+			if ( $run_users_import ) {
+				syn_import_users();
+			}
+			if ( $run_users_export ) {
+				syn_export_users();
+			}
+			if ( $run_users_phone_update ) {
+				$phone = get_field( 'syn_data_users_phone', 'option' );
+				syn_update_users_phone( $phone );
+			}
+			if ( $run_users_password_update ) {
+				syn_update_users_password();
+			}
+			if ( $run_activate_contact_widgets ) {
+				syn_activate_contact_widgets();
+			}
+			if ( $run_reset_user_capabilities ) {
+				syn_reset_user_capabilities();
+			}
+			if ( $run_dedupe_events ) {
+				syn_dedupe_events();
+			}
+			if ( $run_optimize_usermeta ) {
+				syn_optimize_usermeta();
+			}
+		}
+		// clear/reset all fields, except orphan scan console
+		update_field( 'syn_data_run_orphan_scan', 0, 'option' );
+		update_field( 'syn_data_delete_orphans', 0, 'option' );
+		update_field( 'syn_data_run_users_import', 0, 'option' );
+		update_field( 'syn_data_users_file', null, 'option' );
+		update_field( 'syn_data_users_file_has_header_row', 0, 'option' );
+		update_field( 'syn_data_run_users_phone_update', 0, 'option' );
+		update_field( 'syn_data_users_phone', null, 'option' );
+		update_field( 'syn_data_run_users_password_update', 0, 'option' );
+		update_field( 'syn_data_run_activate_contact_widgets', 0, 'option' );
+		update_field( 'syn_data_run_reset_user_capabilities', 0, 'option' );
+		update_field( 'syn_data_run_dedupe_events', 0, 'option' );
+		update_field( 'syn_data_run_optimize_usermeta', 0, 'option' );
+	}
 
 	function syn_stringify_array( $array ) {
 		$ret = '';
@@ -365,10 +421,10 @@
 
 // update all users phone number in user meta
 	function syn_update_users_phone( $phone ) {
-		$users = get_users( [
-			'exclude' => [ 1 ],
-			'fields'  => 'ID',
-		] );
+		$users = get_users( [ 'exclude'       => [ 1 ],
+		                      'role__not_in'  => [ 'Administrator', ],
+		                      'login__not_in' => [ 'syntric' ],
+		                      'fields'        => [ 'ID', ], ] );
 		if ( $users ) :
 			foreach ( $users as $key => $value ) {
 				update_field( 'syn_user_phone', $phone, 'user_' . $value );
@@ -380,10 +436,10 @@
 
 	// Reset corrupted wp_usermeta.wp_capabilities
 	function syn_reset_user_capabilities() {
-		$users = get_users( [
-			'role_not_in' => [ 'Administrator' ],
-			'exclude'     => [ 1 ],
-		] );
+		$users = get_users( [ 'exclude'       => [ 1 ],
+		                      'role__not_in'  => [ 'Administrator', ],
+		                      'login__not_in' => [ 'syntric' ],
+		                      'fields'        => [ 'ID', ], ] );
 		if ( count( $users ) ) {
 			foreach ( $users as $user ) {
 				$user_capabilities = get_user_meta( $user->ID, 'wp_capabilities' );
@@ -405,17 +461,11 @@
 
 // Set user password to email address...don't use this unless urgent
 	function syn_update_users_password() {
-		//$users = get_users();
-		//$_users = get_field( 'syn_data_update_password_users', 'option' );
 		return;
-		$users = get_users( [
-			'exclude'      => [ 1 ],
-			'role__not_in' => [ 'Administrator', ],
-			'fields'       => [
-				'ID',
-				'user_email',
-			],
-		] );
+		$users = get_users( [ 'exclude'       => [ 1 ],
+		                      'role__not_in'  => [ 'Administrator', ],
+		                      'login__not_in' => [ 'syntric' ],
+		                      'fields'        => [ 'ID', 'user_email', ], ] );
 		if ( count( $users ) ) {
 			foreach ( $users as $user ) {
 				$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user->ID );
@@ -511,35 +561,72 @@
 		 */
 		// Reset admin UI selections - screen layout (columns), meta boxes that have been hidden, etc..
 		$sql = 'DELETE FROM wp_usermeta WHERE meta_key LIKE \'screen_layout_%\' OR meta_key LIKE \'metaboxhidden_%\' OR meta_key LIKE \'closedpostboxes_%\' OR meta_key LIKE \'manage%\' OR meta_key LIKE \'edit_%\' OR meta_key = \'admin_color\' OR meta_key = \'acf_user_settings\'';
-		//$admin_ui_results = $wpdb->get_results( $sql, ARRAY_A );
-		$del_uconfig_res = $wpdb->get_results( $sql, ARRAY_A );
+		$wpdb->get_results( $sql, ARRAY_A );
 		$wpdb->flush();
-		// Purge abandoned ACF records
-		// Get user meta where renaming a field caused a record to be left behind
+		// Purge abandoned ACF records - Get user meta where renaming a field caused a record to be left behind
 		$sql            = 'SELECT *, count(*) as recs FROM wp_usermeta GROUP BY user_id, meta_value HAVING meta_key LIKE \'_%\' AND meta_value LIKE \'field_%\' AND recs > 1 ORDER by user_id, meta_value';
 		$renaming_dupes = $wpdb->get_results( $sql, ARRAY_A );
 		$wpdb->flush();
 		if ( count( $renaming_dupes ) ) {
 			foreach ( $renaming_dupes as $renaming_dupe ) {
 				if ( 2 == $renaming_dupe[ 'recs' ] ) {
-					$field_key    = $renaming_dupe[ 'meta_value' ];
+					//$field_key    = $renaming_dupe[ 'meta_value' ];
 					$sql          = 'SELECT * FROM wp_usermeta WHERE user_id = ' . $renaming_dupe[ 'user_id' ] . ' AND meta_value = \'' . $renaming_dupe[ 'meta_value' ] . '\' AND meta_key NOT LIKE \'_syn_%\'';
 					$dupe_records = $wpdb->get_results( $sql, ARRAY_A );
 					$wpdb->flush();
 					if ( count( $dupe_records ) ) {
 						foreach ( $dupe_records as $dupe_record ) {
-							$del_umd_res = delete_user_meta( $dupe_record[ 'user_id' ], substr( $dupe_record[ 'meta_key' ], 1 ) );
-							$del_umk_res = delete_user_meta( $dupe_record[ 'user_id' ], $dupe_record[ 'meta_key' ], $dupe_record[ 'meta_value' ] );
+							delete_user_meta( $dupe_record[ 'user_id' ], substr( $dupe_record[ 'meta_key' ], 1 ) );
+							delete_user_meta( $dupe_record[ 'user_id' ], $dupe_record[ 'meta_key' ], $dupe_record[ 'meta_value' ] );
 						}
 					}
 				}
 			}
 		}
 		// Delete ACF user meta that doesn't start with 'syn_' or '_syn_'
-		//SELECT * FROM wp_usermeta where meta_key NOT LIKE 'syn_%' AND meta_key NOT LIKE '_syn_%' AND meta_value LIKE 'field_%'
 		$sql = 'DELETE FROM wp_usermeta where meta_key NOT LIKE \'syn_%\' AND meta_key NOT LIKE \'_syn_%\' AND meta_value LIKE \'field_%\'';
-		//$admin_ui_results = $wpdb->get_results( $sql, ARRAY_A );
-		$del_umeta_res = $wpdb->get_results( $sql, ARRAY_A );
+		$wpdb->get_results( $sql, ARRAY_A );
 		$wpdb->flush();
-		//slog($del_umeta_res);
+		// Set user defaults
+		/**
+		 * [ 'exclude'       => [ 1 ],
+		 * 'role__not_in'  => [ 'Administrator', ],
+		 * 'login__not_in' => [ 'syntric' ],
+		 * 'fields'        => [ 'ID', ], ]
+		 */
+		$users = get_users();
+		if ( count( $users ) ) {
+			foreach ( $users as $user ) {
+				syn_set_admin_color( 'foo', $user );
+			}
+		}
+	}
+
+	function syn_convert_microblogs_tax() {
+		$microblogs     = get_terms( [ 'taxonomy' => 'microblog', 'hide_empty' => 0 ] );
+		$microblogs_cat = get_category_by_slug( 'microblogs' ); // returns a WP_Term
+		if ( ! $microblogs_cat instanceof WP_Term ) {
+			$microblogs_cat_id = wp_create_category( 'Microblogs' );
+		} else {
+			$microblogs_cat_id = $microblogs_cat->term_id;
+		}
+		$microblogs_cats = [];
+		if ( $microblogs ) {
+			$microblog_pages  = syn_get_microblog_pages(); // returns an array of pages (WP_Post)
+			$microblogs_pages = [];
+			if ( $microblog_pages ) {
+				foreach ( $microblog_pages as $microblog_page ) {
+					$page_microblog                            = get_field( 'syn_microblog_term', $microblog_page->ID ); // WP_Term
+					$microblogs_pages[ $page_microblog->name ] = $microblog_page->ID;
+				}
+			}
+			foreach ( $microblogs as $microblog ) {
+				$microblog_cat_id                     = wp_create_category( $microblog->name, $microblogs_cat_id );
+				$microblog_page_id                    = $microblog_pages[ $microblog->name ];
+				$microblogs_cats[ $microblog_cat_id ] = $microblog->name;
+				update_field( 'syn_category_page', $microblog_page_id, 'category_' . $microblogs_cat_id );
+				//$choices[ $microblog->term_id ] = $microblog->name . ' (' . $microblog->count . ')';
+				// term_id, name, slug, term_taxonomy_id
+			}
+		}
 	}

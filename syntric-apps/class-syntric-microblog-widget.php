@@ -32,59 +32,89 @@
 			if ( ! isset( $args[ 'widget_id' ] ) ) {
 				$args[ 'widget_id' ] = $this->id;
 			}
-			$category = get_field( 'syn_microblog_category', $post->ID );
-			$term     = get_field( 'syn_microblog_term', $post->ID );
-			$number   = get_field( 'syn_microblog_posts', $post->ID );
-			$posts    = new WP_Query( apply_filters( 'widget_posts_args', [
-				'posts_per_page'      => $number,
-				'no_found_rows'       => true,
-				'post_status'         => 'publish',
-				'ignore_sticky_posts' => true,
+			//$category = get_field( 'syn_microblog_category', $post->ID );
+			//$term     = get_field( 'syn_microblog_term', $post->ID );
+			$terms = get_terms( [
+				'taxonomy'   => 'category',
+				'meta_key'   => 'syn_category_page',
+				'meta_value' => $post->ID,
+			] );
+			if ( count( $terms ) ) {
+				$category_ids = [];
+				$number       = get_field( 'syn_microblog_posts', $post->ID );
+				foreach ( $terms as $term ) {
+					$category_ids[] = $term->term_id;
+				}
+				slog( implode( ',', $category_ids ) );
+				$microblog_posts = get_posts( [
+					'numberposts' => $number,
+					'post_type'   => 'post',
+					'category'    => implode( ',', $category_ids ),
+					//'no_found_rows'       => true,
+					'post_status' => 'publish',
+				] );
+				slog( $microblog_posts );
+				//slog( $terms );
+				/*'ignore_sticky_posts' => true,
 				'tax_query'           => [
-					'relation' => 'AND',
 					[
 						'taxonomy' => 'category',
 						'field'    => 'ID',
-						'terms'    => [ $category->term_id ],
+						'terms'    => $category_ids,
 					],
-					[
-						'taxonomy' => 'microblog',
-						'field'    => 'ID',
-						'terms'    => [ $term->term_id ],
+				],*/
+				/*$number   = get_field( 'syn_microblog_posts', $post->ID );
+				$posts    = new WP_Query( apply_filters( 'widget_posts_args', [
+					'posts_per_page'      => $number,
+					'no_found_rows'       => true,
+					'post_status'         => 'publish',
+					'ignore_sticky_posts' => true,
+					'tax_query'           => [
+						'relation' => 'AND',
+						[
+							'taxonomy' => 'category',
+							'field'    => 'ID',
+							'terms'    => [ $category->term_id ],
+						],
+						//[
+							//'taxonomy' => 'microblog',
+							//'field'    => 'ID',
+							//'terms'    => [ $term->term_id ],
+						//],
 					],
-				],
-			] ) );
-			$lb = syn_get_linebreak();
-			$tab = syn_get_tab();
-			//$sidebar       = syn_widget_sidebar( $args[ 'widget_id' ] );
-			//$sidebar[ 'section' ][ 'value' ]
-			$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
-			$title         = get_field( 'syn_microblog_title', $post->ID );
-			$show_date     = get_field( 'syn_microblog_include_date', $post->ID );
-			echo $args[ 'before_widget' ] . $lb;
-			if ( ! empty( $title ) ) :
-				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
-			endif;
-			echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
-			if ( $posts->have_posts() ) :
-				while( $posts->have_posts() ) : $posts->the_post();
-					echo $tab . '<a href="' . get_the_permalink() . '" class="list-group-item">' . $lb;
-					echo $tab . $tab . '<div class="post-title">' . get_the_title() . '</div>';
-					if ( $show_date ) :
-						echo $tab . $tab . '<div class="post-date small">' . get_the_date() . '</div>';
-					endif;
-					echo $tab . '</a>';
-				endwhile;
-				echo $tab . '<a href="' . get_term_link( $term->term_id ) . '" class="list-group-item list-group-item-action more-link">Go to blog</a>' . $lb;
-			else :
-				echo $tab . '<div class="list-group-item">No posts</div>' . $lb;
-			endif;
-			echo '</div>' . $lb;
-			echo $args[ 'after_widget' ] . $lb;
-			wp_reset_postdata();
-			wp_reset_query();
-			if ( is_user_logged_in() && ( current_user_can( 'administrator' ) || current_user_can( 'editor' ) || $post->post_author == get_current_user_id() ) ) {
-				// this is for a New Post button
+				] ) );*/
+				$lb  = syn_get_linebreak();
+				$tab = syn_get_tab();
+				//$sidebar       = syn_widget_sidebar( $args[ 'widget_id' ] );
+				//$sidebar[ 'section' ][ 'value' ]
+				$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
+				$title         = get_field( 'syn_microblog_title', $post->ID );
+				$show_date     = get_field( 'syn_microblog_include_date', $post->ID );
+				echo $args[ 'before_widget' ] . $lb;
+				if ( ! empty( $title ) ) :
+					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
+				endif;
+				echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
+				if ( count( $microblog_posts ) ) :
+					foreach ( $microblog_posts as $microblog_post ) {
+						echo $tab . '<a href="' . get_the_permalink( $microblog_post->ID ) . '" class="list-group-item">' . $lb;
+						echo $tab . $tab . '<div class="post-title">' . get_the_title( $microblog_post->ID ) . '</div>';
+						if ( $show_date ) :
+							echo $tab . $tab . '<div class="post-date small">' . get_the_date( $microblog_post->ID ) . '</div>';
+						endif;
+						echo $tab . '</a>';
+					}
+					echo $tab . '<a href="' . get_term_link( $term->term_id ) . '" class="list-group-item list-group-item-action more-link">Go to blog</a>' . $lb;
+				else :
+					echo $tab . '<div class="list-group-item">No posts</div>' . $lb;
+				endif;
+				echo '</div>' . $lb;
+				echo $args[ 'after_widget' ] . $lb;
+				//wp_reset_postdata();
+				//wp_reset_query();
+				if ( is_user_logged_in() && ( current_user_can( 'administrator' ) || current_user_can( 'editor' ) || $post->post_author == get_current_user_id() ) ) {
+					// this is for a New Post button
+				}
 			}
 		}
 

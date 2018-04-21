@@ -16,7 +16,6 @@
 	 * Register Microblog taxonomy for page microblogs
 	 *
 	 */
-// hook into the init action and call create_book_taxonomies when it fires
 	add_action( 'init', 'syn_register_microblog_taxonomy' );
 	function syn_register_microblog_taxonomy() {
 		// Add new taxonomy, make it hierarchical (like categories)
@@ -34,14 +33,14 @@
 				'new_item_name'     => __( 'New Microblog Name', 'syntric' ),
 				'menu_name'         => __( 'Microblogs', 'syntric' ),
 			],
-			'description'        => 'Taxonomy associated with microblogs',
+			'description'        => 'Microblogs post taxonomy - retired',
 			'public'             => false,
 			'publicly_queryable' => false,
 			'hierarchical'       => true,
 			'show_ui'            => current_user_can( 'administrator' ),
 			'show_in_menu'       => current_user_can( 'administrator' ),
 			'show_in_nav_menus'  => false,
-			'show_in_rest'       => true,
+			'show_in_rest'       => false,
 			'rest_base'          => 'microblogs',
 			'show_in_quick_edit' => true,
 			'show_admin_column'  => true,
@@ -189,6 +188,25 @@
 				}
 			}
 		}
+	}
+
+	function syn_get_microblog_pages() {
+		$args            = [
+			'numberposts'  => - 1,
+			'post_type'    => 'page',
+			'post_status'  => [
+				'publish',
+				'pending',
+				'draft',
+				'future',
+			],
+			'meta_key'     => 'syn_microblog_active',
+			'meta_value'   => 1,
+			'meta_compare' => '=',
+		];
+		$microblog_pages = get_posts( $args );
+
+		return $microblog_pages;
 	}
 
 	function syn_get_user_microblog_pages( $user_id ) {

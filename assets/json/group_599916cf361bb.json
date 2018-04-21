@@ -20,7 +20,8 @@
             "max": 0,
             "layout": "table",
             "button_label": "Add Rule",
-            "collapse_all_repeater": 0,
+			"hide_collapse": 0,
+			"collapse_all_repeater": 1,
             "btn-icon-only": 1,
             "sub_fields": [
                 {
@@ -33,7 +34,7 @@
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "40",
-                        "class": "",
+						"class": "-collapsed-target",
                         "id": ""
                     },
                     "choices": {
@@ -61,7 +62,7 @@
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "20",
-                        "class": "",
+						"class": "-collapsed-target",
                         "id": ""
                     },
                     "choices": {
@@ -86,7 +87,7 @@
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "40",
-						"class": "p0 p-0 m0 m-0 border0 border-0",
+						"class": "-collapsed-target",
                         "id": ""
                     },
                     "layout": "block",
@@ -304,5 +305,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-	"modified": 1523096725
+	"modified": 1523891027
 }

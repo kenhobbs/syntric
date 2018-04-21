@@ -33,14 +33,15 @@
 		//wp_register_script( 'jsdelivr', '//cdn.jsdelivr.net/combine/npm/bootstrap@4.0.0-beta.2/dist/js/bootstrap.bundle.min.js,npm/moment@2.19.4,npm/fullcalendar@3.7.0,npm/chart.js@2.7.1/dist/Chart.min.js,npm/scroll-js@1.8.8/dist/scroll-min.min.js', null, null, true );
 		//wp_register_script( 'jsdelivr', '//cdn.jsdelivr.net/combine/npm/bootstrap@4.0.0/dist/js/bootstrap.bundle.min.js,npm/moment@2.19.4,npm/fullcalendar@3.7.0', null, null, true );
 		//wp_register_script( 'jsdelivr', '//cdn.jsdelivr.net/combine/npm/bootstrap@4.0.0/dist/js/bootstrap.bundle.min.js,npm/moment@2.19.4,npm/fullcalendar@3.7.0', [ 'jquery' ], null, true );
-		wp_register_script( 'jsdelivr', '//cdn.jsdelivr.net/combine/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js,npm/moment@2/min/moment.min.js,npm/fullcalendar@3', [ 'jquery' ], null, true );
+		//https://cdn.jsdelivr.net/combine/npm/moment@2.22.0/min/moment.min.js,npm/bootstrap@4.1.0/dist/js/bootstrap.bundle.min.js,npm/fullcalendar@3.9.0,npm/anchorme@1.1.2
+		wp_register_script( 'jsdelivr', '//cdn.jsdelivr.net/combine/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js,npm/moment@2/min/moment.min.js,npm/fullcalendar@3,npm/anchorme@1.1.2', [ 'jquery' ], null, true );
 		// Fullcalendar branch with year view
 		//fullcalendar-2.2.7-yearview
 		//wp_enqueue_script( 'fullcalendar', get_template_directory_uri() . '/assets/vendor/fullcalendar-2.2.7-yearview/dist/fullcalendar.min.js', [ 'jquery', 'jsdelivr' ], null, true );
 		// Syntric theme script
 		$syntric_js_version = date("ymdGis", filemtime( get_template_directory() . '/assets/js/syntric.min.js' ) );
 		wp_enqueue_script( 'syntric', get_template_directory_uri() . '/assets/js/syntric.min.js', [ 'jquery', 'jsdelivr' ], $syntric_js_version, true );
-		wp_enqueue_script( 'accessibility-rules', get_template_directory_uri() . '/assets/js/axs_testing.js', [ 'syntric', ], $syntric_js_version, true );
+		//wp_enqueue_script( 'accessibility-rules', get_template_directory_uri() . '/assets/js/axs_testing.js', [ 'syntric', ], $syntric_js_version, true );
 		// Google translate
 		//wp_enqueue_script( 'google-translate', get_stylesheet_directory_uri() . '/assets/libs/google-translate/translate_a/element.js?cb=googleTranslateElementInit', null, null, true );
 		// Comment reply

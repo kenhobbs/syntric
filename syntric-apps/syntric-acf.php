@@ -169,6 +169,7 @@
 	/****************** Users ******************/
 	add_filter( 'acf/prepare_field/name=syn_user_page', 'syn_acf_prepare_fields' );
 	add_filter( 'acf/prepare_field/name=syn_user_is_teacher', 'syn_acf_prepare_fields' );
+	add_filter( 'acf/prepare_field/key=field_5ad3b76d1ea8b', 'syn_acf_prepare_fields' );
 	/****************** Widgets ******************/
 	add_filter( 'acf/prepare_field/name=syn_contact_widget_default', 'syn_acf_prepare_fields' );
 	add_filter( 'acf/prepare_field/name=syn_contact_widget_organization', 'syn_acf_prepare_fields' );
@@ -185,6 +186,8 @@
 	/****************** Calendar CPT ******************/
 	add_filter( 'acf/prepare_field/name=syn_calendar_last_sync', 'syn_acf_prepare_fields' );
 	add_filter( 'acf/prepare_field/name=syn_calendar_last_sync_result', 'syn_acf_prepare_fields' );
+	/****************** Taxonomy ******************/
+	add_filter( 'acf/prepare_field/name=syn_category_page', 'syn_acf_prepare_fields' );
 	//// by key
 	add_filter( 'acf/prepare_field/key=field_59b118daf73d0', 'syn_acf_prepare_fields' ); // Google Maps > markers > organization select field
 	add_filter( 'acf/prepare_field/key=field_59d127e512d9a', 'syn_acf_prepare_fields', 20 ); // Teacher classes > class page message field
@@ -198,7 +201,7 @@
 	add_filter( 'acf/prepare_field/key=field_59bb8bf493b01', 'syn_acf_prepare_fields' ); // Courses > department select field
 	add_filter( 'acf/prepare_field/key=field_59bb90c45ec6d', 'syn_acf_prepare_fields' ); // Rooms > building select field
 	function syn_acf_prepare_fields( $field ) {
-		global $post;
+		global $post, $pagenow;
 		switch ( $field[ '_name' ] ) :
 			case 'syn_contact_widget_organization' :
 				$field = syn_load_organizations( $field );
@@ -232,20 +235,22 @@
 				$field[ 'message' ] = 'Use ' . get_field( 'syn_organization', 'option' );
 				break;
 			case 'syn_user_page' :
-				global $pagenow;
+				$field[ 'wrapper' ][ 'hidden' ] = 1;
 				switch ( $pagenow ) {
-					case 'user-new.php' :
-						$field[ 'wrapper' ][ 'hidden' ] = 1;
-						break;
 					case 'profile.php' :
+						$user_id = get_current_user_id();
+						break;
 					case 'user-edit.php':
-						$user_is_teacher = get_field( 'syn_user_is_teacher', 'user_' . get_current_user_id() );
-						if ( ! $user_is_teacher || ! syn_current_user_can( 'editor' ) ) {
-							$field[ 'wrapper' ][ 'hidden' ] = 1;
-						} elseif ( $user_is_teacher ) {
-							$field[ 'disabled' ] = 1;
+						if ( isset( $_REQUEST[ 'user_id' ] ) ) {
+							$user_id = $_REQUEST[ 'user_id' ];
 						}
 						break;
+				}
+				if ( isset( $user_id ) ) {
+					$user_is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user_id );
+					if ( $user_is_teacher && syn_current_user_can( 'administrator' ) ) {
+						$field[ 'wrapper' ][ 'hidden' ] = 0;
+					}
 				}
 				/*if ( $user_is_teacher && syn_current_user_can( 'editor') ) {
 					$field[ 'wrapper' ][ 'hidden' ] = 0;
@@ -393,6 +398,24 @@
 					$field[ 'wrapper' ][ 'hidden' ] = 0;
 				}
 				break;
+			case 'syn_category_page' :
+				if ( 'edit-tags.php' == $pagenow ) {
+					// this is now handled with javascript
+					//$field['wrapper']['hidden'] = 1;
+				} elseif ( 'term.php' == $pagenow ) {
+					$cat           = get_category( $_REQUEST[ 'tag_ID' ] );
+					$cat_ancestors = get_ancestors( $cat->term_id, 'category' );
+					//slog( $cat_ancestors );
+					$microblogs_cat = get_category_by_slug( 'microblogs' );
+					//slog( $microblogs_cat );
+					//slog(in_array( $microblogs_cat->term_id, $cat_ancestors));
+					if ( ! in_array( $microblogs_cat->term_id, $cat_ancestors ) ) {
+						$field[ 'wrapper' ][ 'hidden' ] = 1;
+					} else {
+						$field[ 'wrapper' ][ 'hidden' ] = 0;
+					}
+				}
+				break;
 			//case 'syn_attachments_active':
 			//case 'syn_video_active':
 			//case 'syn_google_map_active':
@@ -405,6 +428,28 @@
 				$field[ 'disabled' ] = 1;
 				break;
 		endswitch;
+		// User > Teacher Page message field
+		if ( 'field_5ad3b76d1ea8b' == $field[ 'key' ] ) {
+			$field[ 'wrapper' ][ 'hidden' ] = 1;
+			if ( 'user-new.php' == $pagenow ) {
+				$field[ 'wrapper' ][ 'hidden' ] = 1;
+			} elseif ( 'profile.php' == $pagenow ) {
+				$user_id = get_current_user_id();
+			} elseif ( isset( $_REQUEST[ 'user_id' ] ) ) {
+				$user_id = $_REQUEST[ 'user_id' ];
+			}
+			if ( isset( $user_id ) ) {
+				$user_is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user_id );
+				$teacher_page    = syn_get_teacher_page( $user_id );
+				if ( $user_is_teacher && $teacher_page instanceof WP_Post ) {
+					$field[ 'message' ]             = '<a href="/wp-admin/post.php?post=' . $teacher_page->ID . '&action=edit">' . $teacher_page->post_title . '</a>';
+					$field[ 'wrapper' ][ 'hidden' ] = 0;
+				}
+			}
+
+			return $field;
+		}
+		//$field = syn_load_organizations( $field );
 		// Google Maps > markers > organization select field
 		if ( 'field_59b118daf73d0' == $field[ 'key' ] ) {
 			$field = syn_load_organizations( $field );
@@ -526,7 +571,7 @@
 	function syn_load_microblogs( $field ) {
 		if ( 'radio' == $field[ 'type' ] || 'select' == $field[ 'type' ] ) {
 			$microblogs = get_terms( [ 'taxonomy' => 'microblog', 'hide_empty' => false ] );
-			slog( $microblogs );
+			//slog( $microblogs );
 			$choices = [];
 			if ( $microblogs ) {
 				foreach ( $microblogs as $microblog ) {

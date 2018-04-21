@@ -1,6 +1,6 @@
 <?php
 	get_header();
-	$lb = syn_get_linebreak();
+	$lb  = syn_get_linebreak();
 	$tab = syn_get_tab();
 	echo '<div id="single-wrapper" class="content-wrapper ' . get_post_type() . '-wrapper">';
 	echo '<div class="' . esc_html( get_theme_mod( 'syntric_container_type' ) ) . '">';
@@ -26,18 +26,38 @@
 				endif;
 				//echo '</header>';
 				echo '<div class="post-content">';
-				the_content();
+	//the_content();
 				echo '</div>';
 				echo '</article>';
-			else :
-				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post->ID . '">' . $lb;
-				//echo '<header class="post-header">';
-				echo '<span class="post-date">' . get_the_date() . '</span>';
-				//echo '</header>';
-				echo '<div class="post-content">';
-				the_content();
-				echo '</div>';
-				echo '</article>';
+	/**/
+?><!--
+				<script type="text/javascript">
+					var postContent = anchorme('<?php /*the_content(); */
+?>');
+					$('.post-content').html(postContent);
+				</script>
+			--><?php
+	else :
+	echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post->ID . '">' . $lb;
+	//echo '<header class="post-header">';
+	echo '<span class="post-date">' . get_the_date() . '</span>';
+	//echo '</header>';
+	echo '<div id="-post-content" class="post-content">';
+	//the_content();
+	echo '</div>';
+	echo '</article>';
+	/**/
+?><!--
+				<script type="text/javascript">
+					(function ($) {
+						var pre = $('#-post-content');
+						var pre_text = pre.text();
+						var post_text = anchorme(pre_text);
+						console.log(post_text);
+						pre.append(post_text);
+					})(jQuery);
+				</script>
+			--><?php
 			endif;
 		endwhile;
 	} else {

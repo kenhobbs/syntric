@@ -22,7 +22,7 @@
             "button_label": "Add Google Map",
             "hide_collapse": 0,
             "collapse_all_repeater": 1,
-            "btn-icon-only": 0,
+			"btn-icon-only": 1,
             "sub_fields": [
                 {
                     "key": "field_598fcd1ee58b8",
@@ -131,11 +131,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "choices": {
-                                "id-1937146817-2040227973-1025020578": "Syntric",
-                                "id-1093359345-1461687414-1877645451": "SchoolTechPro",
-                                "id-596255435-714896445-2110829287": "WASC Elementary"
-                            },
+							"choices": null,
                             "default_value": [],
                             "allow_null": 1,
                             "multiple": 0,
@@ -526,5 +522,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-	"modified": 1523096729
+	"modified": 1523890687
 }

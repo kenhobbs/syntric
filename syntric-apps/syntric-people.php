@@ -41,7 +41,8 @@
 		$editor_role->add_cap( 'edit_plugins' );
 		$editor_role->remove_cap( 'remove_users' );
 		//$editor_role->remove_cap( 'promote_users' );
-		$editor_role->remove_cap( 'manage_categories' );
+		//$editor_role->remove_cap( 'manage_categories' );
+		$editor_role->add_cap( 'manage_categories' );
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		/// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		/// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -56,7 +57,6 @@
 	}
 
 // actions
-
 	/**
 	 * Protect ID #1 and administrator accounts from other users
 	 */
@@ -88,7 +88,9 @@
 // functions
 	// todo: move to syntric-users.php
 	function syn_list_people() {
-		$people = get_users( [ 'login__not_in' => [ 'syntric' ] ] );
+		$people = get_users( [ 'exclude'       => [ 1 ],
+		                       'role__not_in'  => [ 'Administrator', ],
+		                       'login__not_in' => [ 'syntric' ], ] );
 		if ( $people ) :
 			$organization_is_school = syn_organization_is_school();
 			$prefix_field           = get_field_object( 'field_5a6570eff3d03' );

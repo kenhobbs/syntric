@@ -17,16 +17,16 @@ function syn_set_admin_color( $user_login, $user ) {
 	if ( $user instanceof WP_User ) {
 		$args = array(
 			'ID'          => $user->ID,
-			'admin_color' => 'light',
+			'admin_color' => 'blue',
 		);
 		wp_update_user( $args );
 	}
 }
 
-// Hide Screen options tab at the top right for all but administrators
-//add_filter( 'screen_options_show_screen', 'syn_screen_options_show_screen' );
+// Hide Screen options tab at the top right for less than editor
+	add_filter( 'screen_options_show_screen', 'syn_screen_options_show_screen' );
 function syn_screen_options_show_screen() {
-	return current_user_can( 'administrator' );
+	return syn_current_user_can( 'editor' );
 }
 
 // Remove the Help tab at the top right of the main admin frame

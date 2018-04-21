@@ -12,6 +12,7 @@
 	require get_template_directory() . '/syntric-apps/syntric-acf.php';
 	require get_template_directory() . '/syntric-apps/syntric-admin-columns.php';
 	require get_template_directory() . '/syntric-apps/syntric-calendars.php';
+	require get_template_directory() . '/syntric-apps/syntric-categories.php';
 	require get_template_directory() . '/syntric-apps/syntric-microblogs.php';
 	require get_template_directory() . '/syntric-apps/syntric-google-maps.php';
 	require get_template_directory() . '/syntric-apps/syntric-jumbotrons.php';
@@ -150,13 +151,15 @@
 			'capability' => 'edit_others_pages',
 			'redirect'   => false,
 		] );
+		// Social Media
+		acf_add_options_page( [
+			'page_title' => 'Social Media',
+			'menu_title' => 'Social Media',
+			'menu_slug'  => 'syntric-social-media',
+			'capability' => 'edit_others_pages',
+			'redirect'   => false,
+		] );
 		// Lists
-		/*acf_add_options_sub_page( array(
-			'page_title'  => 'Lists',
-			'menu_title'  => 'Lists',
-			'menu_slug'   => 'syntric-lists',
-			'capability'  => 'manage_options',
-		) );*/
 		// Appearance > Sidebars & Widgets
 		acf_add_options_sub_page( [
 			'page_title'  => 'Sidebars & Widgets',
@@ -176,18 +179,10 @@
 		] );
 		// Tools > Clonables
 		acf_add_options_sub_page( [
-			'page_title'  => 'Clonables',
-			'menu_title'  => 'Clonables',
+			'page_title'  => 'Parked Field Groups',
+			'menu_title'  => 'Parked Field Groups',
 			'menu_slug'   => 'syntric-clonables',
 			'parent_slug' => 'tools.php',
-			'capability'  => 'manage_options',
-		] );
-		// Settings > Social Media
-		acf_add_options_sub_page( [
-			'page_title'  => 'Social Media',
-			'menu_title'  => 'Social Media',
-			'menu_slug'   => 'syntric-social-media',
-			'parent_slug' => 'options-general.php',
 			'capability'  => 'manage_options',
 		] );
 		// Settings > Google
@@ -207,6 +202,13 @@
 			'capability'  => 'manage_options',
 		) );*/
 	}
+	/**
+	 * Custom role checker - "has role or higher"
+	 *
+	 * @param $role - syntric, administrator, editor, author, contributor, subscriber
+	 *
+	 * @return int (1/0 as booleans)
+	 */
 	function syn_current_user_can( $role ) {
 		$current_user = wp_get_current_user();
 		$syntric_user = syn_syntric_user();
@@ -290,12 +292,9 @@
 		remove_menu_page( 'link-manager.php' ); // Links
 		remove_submenu_page( 'themes.php', 'theme-editor.php' );
 		remove_submenu_page( 'plugins.php', 'plugin-editor.php' );
-		remove_submenu_page( 'index.php', 'update-core.php' );
 		// Remove for all but Syntric user
 		if ( ! syn_current_user_can( 'syntric' ) ) {
 			remove_menu_page( 'jetpack' ); // Jetpack
-			remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Post microblog (taxonomy)
-			remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=category' ); // Post category (taxonomy)
 			remove_menu_page( 'edit-comments.php' ); // Comments
 			remove_menu_page( 'tools.php' ); // Tools
 			remove_submenu_page( 'options-general.php', 'codepress-admin-columns' );
@@ -304,15 +303,18 @@
 			remove_menu_page( 'wp-defender' ); // WP Defender
 			remove_submenu_page( 'upload.php', 'wp-smush-bulk' );
 		}
-		// Remove for all but administrator
+		// Remove for all but administrator and above
 		if ( ! syn_current_user_can( 'administrator' ) ) {
 			//remove_menu_page( 'users.php' ); // Users
+			remove_submenu_page( 'index.php', 'update-core.php' );
 			remove_menu_page( 'themes.php' ); // Appearance
 			remove_menu_page( 'settings.php' ); // Settings
 			remove_menu_page( 'admin.php?page=gutenberg' ); // Gutenburg
 		}
-		// Remove for all but editor
+		// Remove for all but editor and above
 		if ( ! syn_current_user_can( 'editor' ) ) {
+			remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Post microblog (taxonomy)
+			remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=category' ); // Post category (taxonomy)
 			remove_menu_page( 'users.php' ); // Users
 			remove_menu_page( 'plugins.php' ); // Plugins
 			remove_menu_page( 'edit.php?post_type=syn_calendar' ); // Calendars
@@ -325,6 +327,7 @@
 			remove_menu_page( 'admin.php?page=syntric-organization' ); // Organization
 			remove_menu_page( 'admin.php?page=syntric-jumbotrons' ); // Jumbotrons
 			remove_menu_page( 'admin.php?page=syntric-google-maps' ); // Google Maps
+			remove_menu_page( 'admin.php?page=syntric-social-media' ); // Social Media
 			remove_menu_page( 'edit.php' ); // Posts
 			// All that is left is Profile...
 		}
@@ -335,6 +338,7 @@
 	 */
 	add_action( 'admin_bar_menu', 'syn_admin_bar', 999 );
 	function syn_admin_bar( $wp_admin_bar ) {
+		//slog($wp_admin_bar);
 		// todo: Add targeted links to role specific resources. EG for Teachers - My Page, My Classes, etc..
 		// Remove for everyone, everywhere
 		$wp_admin_bar->remove_node( 'wp-logo' );
@@ -353,7 +357,8 @@
 			$wp_admin_bar->add_node( $site_name_node );
 		}
 		if ( ! is_admin() ) {
-			// Remove the following admin bar items for everyone
+			// Remove all nodes from the admin bar
+			$wp_admin_bar->remove_node( 'site-name' );
 			$wp_admin_bar->remove_node( 'appearance' );
 			$wp_admin_bar->remove_node( 'themes' );
 			$wp_admin_bar->remove_node( 'widgets' );
@@ -363,227 +368,104 @@
 			$wp_admin_bar->remove_node( 'user-info' );
 			$wp_admin_bar->remove_node( 'view-site' );
 			$wp_admin_bar->remove_node( 'customize' );
-			// Rename the site-name node to Admin
-			$site_name_node        = $wp_admin_bar->get_node( 'site-name' );
-			$site_name_node->title = 'Admin';
-			$site_name_node->href  = '#';
-			// Create all the possible nodes (assign them after)
-			///////////////////////////////////////////
-			// site-name nodes
-			///////////////////////////////////////////
-			$site_name_nodes = [];
-			// Pages
-			$pages_node         = new stdClass();
-			$pages_node->id     = 'pages';
-			$pages_node->title  = 'Pages';
-			$pages_node->parent = 'site-name';
-			$pages_node->href   = '/wp-admin/edit.php?post_type=page';
-			$pages_node->group  = '';
-			$pages_node->meta   = [];
-			$site_name_nodes[]  = $pages_node;
-			// Posts
-			$posts_node         = new stdClass();
-			$posts_node->id     = 'posts';
-			$posts_node->title  = 'Posts';
-			$posts_node->parent = 'site-name';
-			$posts_node->href   = '/wp-admin/edit.php';
-			$posts_node->group  = '';
-			$posts_node->meta   = [];
-			$site_name_nodes[]  = $posts_node;
-			// Media
-			$media_node         = new stdClass();
-			$media_node->id     = 'media';
-			$media_node->title  = 'Media';
-			$media_node->parent = 'site-name';
-			$media_node->href   = '/wp-admin/upload.php';
-			$media_node->group  = '';
-			$media_node->meta   = [];
-			$site_name_nodes[]  = $media_node;
-			// Organization
-			$organization_node         = new stdClass();
-			$organization_node->id     = 'organization';
-			$organization_node->title  = syn_get_organization_type_label();
-			$organization_node->parent = 'site-name';
-			$organization_node->href   = '/wp-admin/admin.php?page=syntric-organization';
-			$organization_node->group  = '';
-			$organization_node->meta   = [];
-			$site_name_nodes[]         = $organization_node;
-			// Courses
-			$courses_node         = new stdClass();
-			$courses_node->id     = 'courses';
-			$courses_node->title  = 'Courses';
-			$courses_node->parent = 'site-name';
-			$courses_node->href   = '/wp-admin/admin.php?page=syntric-courses';
-			$courses_node->group  = '';
-			$courses_node->meta   = [];
-			$site_name_nodes[]    = $courses_node;
-			// Classes
-			$classes_node         = new stdClass();
-			$classes_node->id     = 'classes';
-			$classes_node->title  = 'Classes';
-			$classes_node->parent = 'site-name';
-			$classes_node->href   = '/wp-admin/admin.php?page=syntric-classes';
-			$classes_node->group  = '';
-			$classes_node->meta   = [];
-			$site_name_nodes[]    = $classes_node;
-			// Calendars
-			$calendars_node         = new stdClass();
-			$calendars_node->id     = 'calendars';
-			$calendars_node->title  = 'Calendars';
-			$calendars_node->parent = 'site-name';
-			$calendars_node->href   = '/wp-admin/edit.php?post_type=syn_calendar';
-			$calendars_node->group  = '';
-			$calendars_node->meta   = [];
-			$site_name_nodes[]      = $calendars_node;
-			// Jumbotrons
-			$jumbotrons_node         = new stdClass();
-			$jumbotrons_node->id     = 'jumbotrons';
-			$jumbotrons_node->title  = 'Jumbotrons';
-			$jumbotrons_node->parent = 'site-name';
-			$jumbotrons_node->href   = '/wp-admin/admin.php?page=syntric-jumbotrons';
-			$jumbotrons_node->group  = '';
-			$jumbotrons_node->meta   = [];
-			$site_name_nodes[]       = $jumbotrons_node;
-			// Google Maps
-			$google_maps_node         = new stdClass();
-			$google_maps_node->id     = 'google_maps';
-			$google_maps_node->title  = 'Google Maps';
-			$google_maps_node->parent = 'site-name';
-			$google_maps_node->href   = '/wp-admin/admin.php?page=syntric-google-maps';
-			$google_maps_node->group  = '';
-			$google_maps_node->meta   = [];
-			$site_name_nodes[]        = $google_maps_node;
-			// Users
-			$users_node         = new stdClass();
-			$users_node->id     = 'users';
-			$users_node->title  = 'Users';
-			$users_node->parent = 'site-name';
-			$users_node->href   = '/wp-admin/users.php';
-			$users_node->group  = '';
-			$users_node->meta   = [];
-			$site_name_nodes[]  = $users_node;
-			// Social Media
-			$social_media_node         = new stdClass();
-			$social_media_node->id     = 'social_media';
-			$social_media_node->title  = 'Social Media';
-			$social_media_node->parent = 'site-name';
-			$social_media_node->href   = '/wp-admin/options-general.php?page=syntric-social-media';
-			$social_media_node->group  = '';
-			$social_media_node->meta   = [];
-			$site_name_nodes[]         = $social_media_node;
-			// Headers - this doesn't work
-			/*$headers_node         = new stdClass();
-			$headers_node->id     = 'headers';
-			$headers_node->title  = 'Headers';
-			$headers_node->parent = 'site-name';
-			$headers_node->href   = admin_url('customize.php?autofocus[section]=header_image');
-			//http://master.localhost/wp-admin/customize.php?return=%2Fwp-admin%2Fwidgets.php&autofocus%5Bcontrol%5D=header_image
-			$headers_node->group  = '';
-			$headers_node->meta   = [];
-			$site_name_nodes[] = $headers_node;*/
-			// Comments
-			$comments_node         = new stdClass();
-			$comments_node->id     = 'comments';
-			$comments_node->title  = 'Comments';
-			$comments_node->parent = 'site-name';
-			$comments_node->href   = '/wp-admin/edit-comments.php';
-			$comments_node->group  = '';
-			$comments_node->meta   = [];
-			$site_name_nodes[]     = $comments_node;
-			// Customizer
-			$customizer_node         = new stdClass();
-			$customizer_node->id     = 'customizer';
-			$customizer_node->title  = 'Customizer';
-			$customizer_node->parent = 'site-name';
-			$customizer_node->href   = '/wp-admin/customize.php';
-			$customizer_node->group  = '';
-			$customizer_node->meta   = [];
-			$site_name_nodes[]       = $customizer_node;
-			// Widgets
-			$widgets_node         = new stdClass();
-			$widgets_node->id     = 'widgets';
-			$widgets_node->title  = 'Widgets';
-			$widgets_node->parent = 'site-name';
-			$widgets_node->href   = '/wp-admin/widgets.php';
-			$widgets_node->group  = '';
-			$widgets_node->meta   = [];
-			$site_name_nodes[]    = $widgets_node;
-			// Sidebars
-			$sidebars_node         = new stdClass();
-			$sidebars_node->id     = 'sidebars';
-			$sidebars_node->title  = 'Sidebars';
-			$sidebars_node->parent = 'site-name';
-			$sidebars_node->href   = '/wp-admin/options-general.php?page=syntric-sidebars-widgets';
-			$sidebars_node->group  = '';
-			$sidebars_node->meta   = [];
-			$site_name_nodes[]     = $sidebars_node;
-			if ( current_user_can( 'author' ) ) {
-				// Pages
-				$wp_admin_bar->add_node( $pages_node );
-				// Posts
-				$wp_admin_bar->add_node( $posts_node );
-				// Media
-				$wp_admin_bar->add_node( $media_node );
+			$wp_admin_bar->remove_node( 'new-content' );
+			$wp_admin_bar->remove_node( 'comments' );
+			//$wp_admin_bar->remove_node( 'my-account' );
+			//$wp_admin_bar->remove_node( 'edit' );
+			$wp_admin_bar->remove_node( 'new-user' );
+			$wp_admin_bar->remove_node( 'new-post' );
+			$wp_admin_bar->remove_node( 'new-media' );
+			$wp_admin_bar->remove_node( 'new-page' );
+			$wp_admin_bar->remove_node( 'new-tinymcetemplates' );
+			$wpab_nodes = [];
+			// Admin menu
+			$wpab_nodes[] = syn_new_wp_admin_bar_node( '01admin', 'Admin', '', '#' );
+			$wpab_nodes[] = syn_new_wp_admin_bar_node( '010dashboard', 'Dashboard', '01admin', '/wp-admin/index.php' );
+			$wpab_nodes[] = syn_new_wp_admin_bar_node( '020pages', 'Pages', '01admin', '/wp-admin/edit.php?post_type=page&page=nestedpages' );
+			$wpab_nodes[] = syn_new_wp_admin_bar_node( '040posts', 'Posts', '01admin', '/wp-admin/edit.php' );
+			$wpab_nodes[] = syn_new_wp_admin_bar_node( '180media', 'Media', '01admin', '/wp-admin/upload.php' );
+			if ( syn_current_user_can( 'syntric' ) ) {
+				$wpab_nodes[] = syn_new_wp_admin_bar_node( '170comments', 'Comments', '01admin', '/wp-admin/edit-comments.php' );
+				$wpab_nodes[] = syn_new_wp_admin_bar_node( '290fieldgroups', 'Field Groups', '01admin', '/wp-admin/edit.php?post_type=acf-field-group' );
 			}
-			if ( current_user_can( 'editor' ) ) {
-				// Pages
-				$wp_admin_bar->add_node( $pages_node );
-				// Posts
-				$wp_admin_bar->add_node( $posts_node );
-				// Media
-				$wp_admin_bar->add_node( $media_node );
-				// Organization
-				$wp_admin_bar->add_node( $organization_node );
-				// Courses
-				$wp_admin_bar->add_node( $courses_node );
-				// Classes
-				$wp_admin_bar->add_node( $classes_node );
-				// Calendars
-				$wp_admin_bar->add_node( $calendars_node );
-				// Jumbotrons
-				$wp_admin_bar->add_node( $jumbotrons_node );
-				// Google Maps
-				$wp_admin_bar->add_node( $google_maps_node );
-				// Users
-				$wp_admin_bar->add_node( $users_node );
-				// Social Media
-				$wp_admin_bar->add_node( $social_media_node );
-				// Customizer
-				$wp_admin_bar->add_node( $customizer_node );
-				// Headers
-				/*$headers_node         = new stdClass();
-				$headers_node->id     = 'headers';
-				$headers_node->title  = 'Headers';
-				$headers_node->parent = 'site-name';
-				$headers_node->href   = admin_url('customize.php?autofocus[section]=header_image');
-				//http://master.localhost/wp-admin/customize.php?return=%2Fwp-admin%2Fwidgets.php&autofocus%5Bcontrol%5D=header_image
-				$headers_node->group  = '';
-				$headers_node->meta   = [];
-				$wp_admin_bar->add_node( $headers_node );*/
+			if ( syn_current_user_can( 'administrator' ) ) {
+				$wpab_nodes[] = syn_new_wp_admin_bar_node( '240widgets', 'Widgets', '01admin', '/wp-admin/widgets.php' );
+				$wpab_nodes[] = syn_new_wp_admin_bar_node( '250plugins', 'Plugins', '01admin', '/wp-admin/plugins.php' );
+				$wpab_nodes[] = syn_new_wp_admin_bar_node( '270sidebarswidgets', 'Sidebars & Widgets', '01admin', '/wp-admin/options-general.php?page=syntric-sidebars-widgets' );
+				$wpab_nodes[] = syn_new_wp_admin_bar_node( '280google', 'Google', '01admin', '/wp-admin/options-general.php?page=syntric-google' );
 			}
-			if ( current_user_can( 'administrator' ) ) {
-				foreach ( $site_name_nodes as $site_name_node ) {
-					$wp_admin_bar->add_node( $site_name_node );
+			if ( syn_current_user_can( 'editor' ) ) {
+				$departments_active = get_field( 'syn_departments_active', 'option' );
+				$buildings_active   = get_field( 'syn_buildings_active', 'option' );
+				$rooms_active       = get_field( 'syn_rooms_active', 'option' );
+				$periods_active     = get_field( 'syn_periods_active', 'option' );
+				$wpab_nodes[]       = syn_new_wp_admin_bar_node( '060organization', syn_get_organization_type_label(), '01admin', '/wp-admin/admin.php?page=syntric-organization' );
+				$wpab_nodes[]       = syn_new_wp_admin_bar_node( '070organizations', syn_get_organizations_type_label(), '01admin', '/wp-admin/admin.php?page=syntric-organizations' );
+				if ( $departments_active ) {
+					$wpab_nodes[] = syn_new_wp_admin_bar_node( '080departments', 'Departments', '01admin', '/wp-admin/admin.php?page=syntric-departments' );
 				}
+				if ( $buildings_active ) {
+					$wpab_nodes[] = syn_new_wp_admin_bar_node( '090buildings', 'Buildings', '01admin', '/wp-admin/admin.php?page=syntric-buildings' );
+				}
+				if ( $rooms_active ) {
+					$wpab_nodes[] = syn_new_wp_admin_bar_node( '100rooms', 'Rooms', '01admin', '/wp-admin/admin.php?page=syntric-rooms' );
+				}
+				if ( $periods_active ) {
+					$wpab_nodes[] = syn_new_wp_admin_bar_node( '110periods', 'Periods', '01admin', '/wp-admin/admin.php?page=syntric-periods' );
+				}
+				$wpab_nodes[] = syn_new_wp_admin_bar_node( '120courses', 'Courses', '01admin', '/wp-admin/admin.php?page=syntric-courses' );
+				$wpab_nodes[] = syn_new_wp_admin_bar_node( '130classes', 'Classes', '01admin', '/wp-admin/admin.php?page=syntric-classes' );
+				$wpab_nodes[] = syn_new_wp_admin_bar_node( '140calendars', 'Calendars', '01admin', '/wp-admin/edit.php?post_type=syn_calendar' );
+				$wpab_nodes[] = syn_new_wp_admin_bar_node( '150jumbotrons', 'Jumbotrons', '01admin', '/wp-admin/edit.php?post_type=syntric-jumbotrons' );
+				$wpab_nodes[] = syn_new_wp_admin_bar_node( '160maps', 'Maps', '01admin', '/wp-admin/edit.php?post_type=syntric-google-maps' );
+				$wpab_nodes[] = syn_new_wp_admin_bar_node( '190social_media', 'Social Media', '01admin', '/wp-admin/edit.php?post_type=syntric-social-media' );
+				$wpab_nodes[] = syn_new_wp_admin_bar_node( '200templates', 'Templates', '01admin', '/wp-admin/edit.php?post_type=tinymcetemplates' );
+				$wpab_nodes[] = syn_new_wp_admin_bar_node( '230customizer', 'Customizer', '01admin', '/wp-admin/customize.php' );
+				$wpab_nodes[] = syn_new_wp_admin_bar_node( '210users', 'Users', '01admin', '/wp-admin/users.php' );
 			}
+			$wpab_nodes[] = syn_new_wp_admin_bar_node( '02newcontent', 'New', '', '#' );
+			$wpab_nodes[] = syn_new_wp_admin_bar_node( '030newpage', 'New Page', '02newcontent', '/wp-admin/post-new.php?post_type=page' );
+			$wpab_nodes[] = syn_new_wp_admin_bar_node( '050newpost', 'New Post', '02newcontent', '/wp-admin/post-new.php' );
+			if ( syn_current_user_can( 'syntric' ) ) {
+				$wpab_nodes[] = syn_new_wp_admin_bar_node( '300newfieldgroup', 'New Field Group', '02newcontent', '/wp-admin/post-new.php?post_type=acf-field-group' );
+			}
+			if ( syn_current_user_can( 'administrator' ) ) {
+				$wpab_nodes[] = syn_new_wp_admin_bar_node( '260newplugin', 'New Plugin', '02newcontent', '/wp-admin/plugin-install.php' );
+			}
+			if ( syn_current_user_can( 'editor' ) ) {
+				$wpab_nodes[] = syn_new_wp_admin_bar_node( '220newuser', 'New User', '02newcontent', '/wp-admin/user-new.php' );
+			}
+			sort( $wpab_nodes );
+			foreach ( $wpab_nodes as $wpab_node ) {
+				$wp_admin_bar->add_node( $wpab_node );
+			}
+			$edit_node = $wp_admin_bar->get_node( 'edit' );
+			if ( $edit_node ) {
+				$edit_node->parent = 'top-secondary';
+				$wp_admin_bar->add_node( $edit_node );
+			}
+			$my_account_node        = $wp_admin_bar->get_node( 'my-account' );
+			$my_account_node->title = str_replace( 'Howdy, ', '', $my_account_node->title );
+			$wp_admin_bar->add_node( $my_account_node );
+			$edit_profile_node        = $wp_admin_bar->get_node( 'edit-profile' );
+			$edit_profile_node->title = str_replace( 'Edit My Profile', 'Profile', $edit_profile_node->title );
+			$wp_admin_bar->add_node( $edit_profile_node );
+			$logout_node        = $wp_admin_bar->get_node( 'logout' );
+			$logout_node->title = str_replace( 'Log Out', 'Logout', $logout_node->title );
+			$wp_admin_bar->add_node( $logout_node );
 		}
+
+		return;
 		/**
-		 * New Contact menu
+		 * New Content nodes + menu
 		 */
-		///////////////////////////////////////////
-		// new-content nodes
-		///////////////////////////////////////////
-		// For now just removing the New Conent menu...
-		// reenable this!
-		//$wp_admin_bar->remove_node( 'new-content' );
-		// new-content node already has nodes for Post, Media, Page and User - which are a bad order.  Remove them and add back with custom nodes
-		$new_content_node = $wp_admin_bar->get_node( 'new-content' );
-		$wp_admin_bar->remove_node( 'new-user' );
+		//$new_content_node = $wp_admin_bar->get_node( 'new-content' );
+		/*$wp_admin_bar->remove_node( 'new-user' );
 		$wp_admin_bar->remove_node( 'new-post' );
 		$wp_admin_bar->remove_node( 'new-media' );
 		$wp_admin_bar->remove_node( 'new-page' );
-		$wp_admin_bar->remove_node( 'new-tinymcetemplates' );
-		$new_content_nodes = [];
+		$wp_admin_bar->remove_node( 'new-tinymcetemplates' );*/
+		/*$new_content_nodes = [];
 		// Page
 		$new_page_node         = new stdClass();
 		$new_page_node->id     = 'new_page';
@@ -622,13 +504,14 @@
 			$new_user_node->meta   = [];
 			$new_content_nodes[]   = $new_user_node;
 		}
+		sort( $new_content_nodes );
 		foreach ( $new_content_nodes as $new_content_node ) {
 			$wp_admin_bar->add_node( $new_content_node );
-		}
+		}*/
 		/**
 		 * Account menu
 		 */
-		$my_account_node        = $wp_admin_bar->get_node( 'my-account' );
+		/*$my_account_node        = $wp_admin_bar->get_node( 'my-account' );
 		$my_account_node->title = str_replace( 'Howdy, ', '', $my_account_node->title );
 		$wp_admin_bar->add_node( $my_account_node );
 		$edit_profile_node        = $wp_admin_bar->get_node( 'edit-profile' );
@@ -636,13 +519,13 @@
 		$wp_admin_bar->add_node( $edit_profile_node );
 		$logout_node        = $wp_admin_bar->get_node( 'logout' );
 		$logout_node->title = str_replace( 'Log Out', 'Logout', $logout_node->title );
-		$wp_admin_bar->add_node( $logout_node );
+		$wp_admin_bar->add_node( $logout_node );*/
 		// Remove comments link for everyone except Syntric
-		if ( ! syn_current_user_can( 'syntric' ) ) {
+		/*if ( ! syn_current_user_can( 'syntric' ) ) {
 			$wp_admin_bar->remove_node( 'comments' );
-		}
+		}*/
 		// Move edit/view link to right side of admin bar
-		if ( is_admin() ) {
+		/*if ( is_admin() ) {
 			$view_node = $wp_admin_bar->get_node( 'view' );
 			if ( $view_node ) {
 				$view_node->parent = 'top-secondary';
@@ -654,7 +537,19 @@
 				$edit_node->parent = 'top-secondary';
 				$wp_admin_bar->add_node( $edit_node );
 			}
-		}
+		}*/
+	}
+
+	function syn_new_wp_admin_bar_node( $id, $title, $parent = '', $href = '#', $group = '', $meta = [] ) {
+		$wpab_node         = new stdClass();
+		$wpab_node->id     = $id;
+		$wpab_node->title  = $title;
+		$wpab_node->parent = $parent;
+		$wpab_node->href   = $href;
+		$wpab_node->group  = $group;
+		$wpab_node->meta   = $meta;
+
+		return $wpab_node;
 	}
 
 	/**
@@ -695,6 +590,8 @@
 			'edit-comments.php',
 			// Media
 			'upload.php',
+			// Social Media
+			'syntric-social-media',
 			// Templates
 			'edit.php?post_type=tinymcetemplates',
 			// Users
