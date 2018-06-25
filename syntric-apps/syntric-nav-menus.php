@@ -53,7 +53,6 @@
 		if ( syn_remove_whitespace() ) {
 			$nav_menu_args[ 'item_spacing' ] = 'discard';
 		}
-
 		return $nav_menu_args;
 	}
 

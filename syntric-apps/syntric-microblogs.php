@@ -16,7 +16,7 @@
 	 * Register Microblog taxonomy for page microblogs
 	 *
 	 */
-	add_action( 'init', 'syn_register_microblog_taxonomy' );
+	//add_action( 'init', 'syn_register_microblog_taxonomy' );
 	function syn_register_microblog_taxonomy() {
 		// Add new taxonomy, make it hierarchical (like categories)
 		$tax_args = [
@@ -60,7 +60,10 @@
 	 */
 	add_action( 'registered_taxonomy', 'syn_setup_terms', 10, 3 );
 	function syn_setup_terms( $taxonomy, $object_type, $args ) {
-		if ( 'microblog' == $taxonomy ) {
+		//slog($taxonomy);
+		//slog($object_type);
+		//slog($args);
+		/*if ( 'microblog' == $taxonomy ) {
 			$uncat_term_tax_ids = term_exists( 'uncategorized', 'category' );
 			$uncat_exists       = ( $uncat_term_tax_ids ) ? true : false;
 			$uncat_is_default   = ( $uncat_exists && 1 == $uncat_term_tax_ids[ 'term_id' ] ) ? true : false;
@@ -136,61 +139,147 @@
 					'parent' => 0,
 				] );
 			}
-		}
+		}*/
 	}
 
 	/**
-	 * Get microblog tax term (or create it) and assign to microblog on save post (page)
+	 * Save page microblog widget.
+	 *
+	 * If active...
+	 *
+	 * 1. Verify/create Microblogs category
+	 * 2. Verify/create category for microblog under Microblogs category
+	 *      Category should be named as the breadcrumb for this page with right arrow separators
+	 * 3. Update category syn_category_page to this page
+	 * 4. Update page syn_microblog_category (message) field
+	 * 5. Check if a new post is part of the submission and if so, save the post in this microblog
+	 *
+	 * If not active...
+	 *
+	 * 1. Check a category for this page
+	 * 2. If there is a category, delete all it's posts (should prompt if there are todo: prompt for post deletion here)
+	 * 3. Delete category associated with this page
+	 * 4. Delete all microblog page widget fields for this page
+	 *
+	 * @param $post_id
+	 *
+	 * @return void
 	 */
-	//add_action( 'acf/save_post', 'syn_save_microblog', 20 );
-	function ___syn_save_microblog( $post_id ) {
-		global $pagenow;
-		// don't save for autosave
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+	function syn_save_page_microblog( $post_id ) {
+		$post_id          = syn_resolve_post_id( $post_id );
+		$microblog_active = get_field( 'syn_microblog_active', $post_id );
+		if ( $microblog_active ) {
+			syn_get_page_microblog_category( $post_id );
+		}
+		/*slog( $microblog_category );
 			return;
-		}
-		$post_id = syn_resolve_post_id( $post_id );
-		$post    = get_post( $post_id );
-		// todo: reduce all the "security and validity" conditional wrappers, like the next line, into a function call eg. syn_continue_if('admin','page','teacher_template')...
-		if ( is_admin() && $post instanceof WP_Post && 'page' == $post->post_type && isset( $_REQUEST[ 'acf' ] ) && ! wp_is_post_revision( $post->ID ) ) {
-			// set term in taxonomy "microblog"
-			$microblog_active = get_field( 'syn_microblog_active', $post->ID );
-			if ( $microblog_active ) {
-				if ( category_exists( 'Microblogs' ) ) {
-					$cat    = get_category_by_slug( 'microblogs' );
-					$cat_id = $cat->cat_ID;
-				} else {
-					$cat_id = wp_insert_category( [ 'cat_name' => 'Microblogs' ] );
+
+			$new_microblog_post = get_field( 'syn_new_microblog_post', $post_id );
+			if ( $new_microblog_post ) {
+				$post_title   = get_field( 'syn_new_microblog_post_title', $post_id );
+				$post_name    = syn_sluggify( $post_title );
+				$post_content = get_field( 'syn_new_microblog_post_content', $post_id );
+				$category     = get_field( 'syn_microblog_category', $post_id );
+				$term         = get_field( 'syn_microblog_term', $post_id );
+				slog( $term );
+				// todo: post_author should be set to teacher if is a teacher or class page microblog post, not current user id
+				$author        = get_current_user_id();
+				$page_template = strtolower( syn_get_page_template( $post_id ) );
+				if ( 'teacher' == $page_template ) {
+					$author = get_field( 'syn_page_teacher', $post_id );
+				} elseif ( 'class' == $page_template ) {
+					$author = get_field( 'syn_page_class_teacher', $post_id );
 				}
-				$ancestor_ids = array_reverse( get_post_ancestors( $post->ID ) );
-				$titles       = '';
-				$slugs        = '';
-				foreach ( $ancestor_ids as $ancestor_id ) {
-					$titles .= get_the_title( $ancestor_id ) . ' > ';
-					$slugs  .= get_post_field( 'post_name', $ancestor_id ) . '-';
-				}
-				$titles .= $post->post_title;
-				$slugs  .= $post->post_name;
-				if ( term_exists( $slugs, 'microblog' ) ) {
-					$term    = get_term_by( 'slug', $slugs, 'microblog' );
-					$term_id = $term->term_id;
-				} else {
-					$tax_term_ids = wp_insert_term( $titles, 'microblog', [
-						'slug'        => $slugs,
-						'description' => 'Microblog associated with <a href="/wp-admin/post.php?post=' . $post->ID . '&action=edit">' . $titles . '</a> page',
-					] );
-					$term_id      = $tax_term_ids[ 'term_id' ];
-				}
-				if ( is_int( $cat_id ) && is_int( $term_id ) ) {
-					wp_set_post_categories( $post->ID, [ (int) $cat_id ], false );
-					wp_set_post_terms( $post->ID, [ (int) $term_id ], 'microblog', false );
-					//update_field( 'syn_microblog_page', $post->ID, 'microblog_' . $term_id );
-				}
+				$post_args         = [
+					'post_type'     => 'post',
+					'post_title'    => $post_title,
+					'post_name'     => $post_name,
+					// slug
+					'post_status'   => 'publish',
+					'post_author'   => $author,
+					'post_content'  => $post_content,
+					'post_category' => [ $category->term_id ],
+					'tax_input'     => [ 'microblog' => [ $term->term_id ] ],
+				];
+				$microblog_post_id = wp_insert_post( $post_args );
+				update_field( 'syn_post_category', $category->term_id, $microblog_post_id );
+				update_field( 'syn_post_microblog', $term->term_id, $microblog_post_id );
 			}
-		}
+			update_field( 'syn_new_microblog_post', '', $post_id );
+			update_field( 'syn_new_microblog_post_title', '', $post_id );
+			update_field( 'syn_new_microblog_post_content', '', $post_id );*/
 	}
 
-	function syn_get_microblog_pages() {
+	/**
+	 * Get Microblogs category, create if it doesn't exist
+	 */
+	function syn_get_microblogs_category() {
+		$microblogs_categories = get_terms( [
+			'taxonomy' => 'category',
+			'name'     => 'Microblogs',
+			'parent'   => 0,
+		] );
+		if ( 0 == count( $microblogs_categories ) ) {
+			$microblogs_category_id = wp_create_category( 'Microblogs', 0 );
+			$microblogs_category    = get_term( $microblogs_category_id );
+		} elseif ( 1 == count( $microblogs_categories ) ) {
+			$microblogs_category = $microblogs_categories[ 0 ];
+		} else {
+			// error condition if there are more than one Microblogs category with parent = 0
+		}
+
+		return $microblogs_category;
+	}
+
+	/**
+	 * Get a page's microblog category (under Microblogs), create if it doesn't exist.
+	 * Also takes care of checking for and creating the Microblogs category (parent = 0)
+	 */
+	function syn_get_page_microblog_category( $post_id ) {
+		$post_id             = syn_resolve_post_id( $post_id );
+		$post                = get_post( $post_id );
+		$microblogs_category = syn_get_microblogs_category();
+		$microblog_category  = get_terms( [
+			'taxonomy'   => 'category',
+			'parent'     => $microblogs_category->term_id,
+			'meta_key'   => 'syn_category_page',
+			'meta_value' => $post_id,
+		] );
+		if ( 0 == count( $microblog_category ) ) {
+			$ancestor_ids = array_reverse( get_post_ancestors( $post_id ) );
+			$titles       = '';
+			//$slugs        = '';
+			foreach ( $ancestor_ids as $ancestor_id ) {
+				$titles .= get_the_title( $ancestor_id ) . ' > ';
+				//$slugs  .= get_post_field( 'post_name', $ancestor_id ) . '-';
+			}
+			$titles .= $post->post_title;
+			//$slugs                 .= $post->post_name;
+			$microblog_category_id = wp_create_category( $titles, $microblogs_category->term_id );
+			update_field( 'syn_category_page', $post_id, 'category_' . $microblog_category_id );
+			$microblog_category    = get_term( $microblog_category_id );
+		} elseif ( 1 == count( $microblog_category ) ) {
+			$microblog_category = $microblog_category[ 0 ];
+		} else {
+			// error condition if there are more than one Microblogs category with parent = 0
+		}
+
+		return $microblog_category;
+	}
+
+	/**
+	 * Get microblog categories (categories with Microblogs as a parent)
+	 *
+	 * @return array
+	 */
+	function syn_get_microblog_categories() {
+		$microblogs_cat = syn_get_microblogs_category();
+		$categories     = get_categories( [ 'parent' => $microblogs_cat->term_id, 'hide_empty' => 0 ] );
+
+		return $categories;
+	}
+
+	function syn_get_page_microblogs() {
 		$args            = [
 			'numberposts'  => - 1,
 			'post_type'    => 'page',
@@ -228,3 +317,16 @@
 
 		return $user_microblog_pages;
 	}
+
+	function syn_get_microblog_title( $category_id ) {
+		$post = get_field( 'syn_category_page', 'category_' . $category_id ); // WP_Post
+		$ancestor_ids = array_reverse( get_post_ancestors( $post->ID ) );
+		$titles       = '';
+		foreach ( $ancestor_ids as $ancestor_id ) {
+			$titles .= get_the_title( $ancestor_id ) . ' > ';
+		}
+		$titles .= $post->post_title;
+	}
+
+
+

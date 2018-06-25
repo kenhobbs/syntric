@@ -1,9 +1,9 @@
 {
-    "key": "group_598a99e35f248",
-    "title": "Page Widgets",
+    "key": "group_5b0e9651b8200",
+    "title": "Page Widgets (copy)",
     "fields": [
         {
-            "key": "field_59a5b62d88d98",
+            "key": "field_5b0e9651d7085",
             "label": "Contact",
             "name": "",
             "type": "tab",
@@ -19,7 +19,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_59ab362921325",
+            "key": "field_5b0e9651d7469",
             "label": "Activate Contact",
             "name": "syn_contact_active",
             "type": "true_false",
@@ -38,7 +38,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_59ab362121324",
+            "key": "field_5b0e9651d7851",
             "label": "Title",
             "name": "syn_contact_title",
             "type": "text",
@@ -47,7 +47,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59ab362921325",
+                        "field": "field_5b0e9651d7469",
                         "operator": "==",
                         "value": "1"
                     }
@@ -65,7 +65,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_59af57222831c",
+            "key": "field_5b0e9651d7c4e",
             "label": "Contact Type",
             "name": "syn_contact_contact_type",
             "type": "radio",
@@ -74,7 +74,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59ab362921325",
+                        "field": "field_5b0e9651d7469",
                         "operator": "==",
                         "value": "1"
                     }
@@ -97,7 +97,7 @@
             "return_format": "value"
         },
         {
-            "key": "field_59af572228ee6",
+            "key": "field_5b0e9651d804f",
             "label": "Person",
             "name": "syn_contact_person",
             "type": "select",
@@ -106,12 +106,12 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59ab362921325",
+                        "field": "field_5b0e9651d7469",
                         "operator": "==",
                         "value": "1"
                     },
                     {
-                        "field": "field_59af57222831c",
+                        "field": "field_5b0e9651d7c4e",
                         "operator": "==",
                         "value": "person"
                     }
@@ -132,7 +132,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_59af5722292a4",
+            "key": "field_5b0e9651d840c",
             "label": "Organization",
             "name": "syn_contact_organization",
             "type": "select",
@@ -141,12 +141,12 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59ab362921325",
+                        "field": "field_5b0e9651d7469",
                         "operator": "==",
                         "value": "1"
                     },
                     {
-                        "field": "field_59af57222831c",
+                        "field": "field_5b0e9651d7c4e",
                         "operator": "==",
                         "value": "organization"
                     }
@@ -167,7 +167,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_59af5722286fd",
+            "key": "field_5b0e9651d87ee",
             "label": "Include Fields",
             "name": "syn_contact_include_person_fields",
             "type": "checkbox",
@@ -176,12 +176,12 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59ab362921325",
+                        "field": "field_5b0e9651d7469",
                         "operator": "==",
                         "value": "1"
                     },
                     {
-                        "field": "field_59af57222831c",
+                        "field": "field_5b0e9651d7c4e",
                         "operator": "==",
                         "value": "person"
                     }
@@ -213,7 +213,7 @@
             "return_format": "array"
         },
         {
-            "key": "field_59af572228b29",
+            "key": "field_5b0e9651d8bd6",
             "label": "Include Fields",
             "name": "syn_contact_include_organization_fields",
             "type": "checkbox",
@@ -222,12 +222,12 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59ab362921325",
+                        "field": "field_5b0e9651d7469",
                         "operator": "==",
                         "value": "1"
                     },
                     {
-                        "field": "field_59af57222831c",
+                        "field": "field_5b0e9651d7c4e",
                         "operator": "==",
                         "value": "organization"
                     }
@@ -262,7 +262,7 @@
             "return_format": "array"
         },
         {
-            "key": "field_59b705bae7599",
+            "key": "field_5b0e9651d8fbc",
             "label": "Calendar",
             "name": "",
             "type": "tab",
@@ -278,7 +278,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_59b720b6e759d",
+            "key": "field_5b0e9651d93ae",
             "label": "Activate Calendar",
             "name": "syn_calendar_active",
             "type": "true_false",
@@ -297,7 +297,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_59b75b89b8567",
+            "key": "field_5b0e9651d978b",
             "label": "Title",
             "name": "syn_calendar_title",
             "type": "text",
@@ -306,7 +306,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59b720b6e759d",
+                        "field": "field_5b0e9651d93ae",
                         "operator": "==",
                         "value": "1"
                     }
@@ -324,7 +324,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_59b2606c98c04",
+            "key": "field_5b0e9651d9b7c",
             "label": "Calendar",
             "name": "syn_calendar_id",
             "type": "select",
@@ -333,7 +333,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59b720b6e759d",
+                        "field": "field_5b0e9651d93ae",
                         "operator": "==",
                         "value": "1"
                     }
@@ -354,7 +354,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_59b25f40a698e",
+            "key": "field_5b0e9651d9f5b",
             "label": "Display Count",
             "name": "syn_calendar_events",
             "type": "number",
@@ -363,7 +363,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59b720b6e759d",
+                        "field": "field_5b0e9651d93ae",
                         "operator": "==",
                         "value": "1"
                     }
@@ -383,7 +383,7 @@
             "step": 1
         },
         {
-            "key": "field_59b25f43a698f",
+            "key": "field_5b0e9651da34c",
             "label": "Include Event Date",
             "name": "syn_calendar_include_date",
             "type": "true_false",
@@ -392,7 +392,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59b720b6e759d",
+                        "field": "field_5b0e9651d93ae",
                         "operator": "==",
                         "value": "1"
                     }
@@ -410,7 +410,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_598ff1017eb9b",
+            "key": "field_5b0e9651da737",
             "label": "Google Calendar ID",
             "name": "syn_new_calendar_id",
             "type": "text",
@@ -419,12 +419,12 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59b720b6e759d",
+                        "field": "field_5b0e9651d93ae",
                         "operator": "==",
                         "value": "1"
                     },
                     {
-                        "field": "field_59b2606c98c04",
+                        "field": "field_5b0e9651d9b7c",
                         "operator": "==",
                         "value": ""
                     }
@@ -442,7 +442,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_598ff10d7eb9d",
+            "key": "field_5b0e9651dab1a",
             "label": "Sync Now",
             "name": "syn_new_calendar_sync_now",
             "type": "true_false",
@@ -451,12 +451,12 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59b720b6e759d",
+                        "field": "field_5b0e9651d93ae",
                         "operator": "==",
                         "value": "1"
                     },
                     {
-                        "field": "field_59b2606c98c04",
+                        "field": "field_5b0e9651d9b7c",
                         "operator": "==",
                         "value": "0"
                     }
@@ -474,7 +474,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_598ff1097eb9c",
+            "key": "field_5b0e9651daf04",
             "label": "Schedule Sync",
             "name": "syn_new_calendar_sync",
             "type": "true_false",
@@ -483,12 +483,12 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59b720b6e759d",
+                        "field": "field_5b0e9651d93ae",
                         "operator": "==",
                         "value": "1"
                     },
                     {
-                        "field": "field_59b2606c98c04",
+                        "field": "field_5b0e9651d9b7c",
                         "operator": "==",
                         "value": "0"
                     }
@@ -506,7 +506,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_598ff10f7eb9e",
+            "key": "field_5b0e9651db2e9",
             "label": "Sync Frequency",
             "name": "syn_new_calendar_sync_frequency",
             "type": "select",
@@ -515,17 +515,17 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59b720b6e759d",
+                        "field": "field_5b0e9651d93ae",
                         "operator": "==",
                         "value": "1"
                     },
                     {
-                        "field": "field_59b2606c98c04",
+                        "field": "field_5b0e9651d9b7c",
                         "operator": "==",
                         "value": ""
                     },
                     {
-                        "field": "field_598ff1097eb9c",
+                        "field": "field_5b0e9651daf04",
                         "operator": "==",
                         "value": "1"
                     }
@@ -549,7 +549,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_598ff1127eb9f",
+            "key": "field_5b0e9651db6dd",
             "label": "Sync Range",
             "name": "syn_new_calendar_sync_range",
             "type": "select",
@@ -558,17 +558,17 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59b720b6e759d",
+                        "field": "field_5b0e9651d93ae",
                         "operator": "==",
                         "value": "1"
                     },
                     {
-                        "field": "field_59b2606c98c04",
+                        "field": "field_5b0e9651d9b7c",
                         "operator": "==",
                         "value": "0"
                     },
                     {
-                        "field": "field_598ff1097eb9c",
+                        "field": "field_5b0e9651daf04",
                         "operator": "==",
                         "value": "1"
                     }
@@ -592,7 +592,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_598ff1187eba0",
+            "key": "field_5b0e9651dbaae",
             "label": "Delete Events (hidden)",
             "name": "syn_new_calendar_delete_events",
             "type": "true_false",
@@ -611,7 +611,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_598ff11c7eba1",
+            "key": "field_5b0e9651dbe9f",
             "label": "Delete After (hidden)",
             "name": "syn_new_calendar_delete_after",
             "type": "select",
@@ -639,7 +639,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_598a9de513a16",
+            "key": "field_5b0e9651dc286",
             "label": "Microblog",
             "name": "",
             "type": "tab",
@@ -655,7 +655,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_59ab366c21327",
+            "key": "field_5b0e9651dc68d",
             "label": "Activate Microblog",
             "name": "syn_microblog_active",
             "type": "true_false",
@@ -674,7 +674,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_59ab365321326",
+            "key": "field_5b0e9651dca52",
             "label": "Title",
             "name": "syn_microblog_title",
             "type": "text",
@@ -683,7 +683,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59ab366c21327",
+                        "field": "field_5b0e9651dc68d",
                         "operator": "==",
                         "value": "1"
                     }
@@ -701,7 +701,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_59b441f2a32bb",
+            "key": "field_5b0e9651dce59",
             "label": "Category",
             "name": "syn_microblog_category",
             "type": "select",
@@ -710,7 +710,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59ab366c21327",
+                        "field": "field_5b0e9651dc68d",
                         "operator": "==",
                         "value": "1"
                     }
@@ -731,7 +731,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_59d4b242abf31",
+            "key": "field_5b0e9651dd21d",
             "label": "Category",
             "name": "",
             "type": "message",
@@ -740,7 +740,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59ab366c21327",
+                        "field": "field_5b0e9651dc68d",
                         "operator": "==",
                         "value": "1"
                     }
@@ -756,7 +756,7 @@
             "esc_html": 0
         },
         {
-            "key": "field_59aca70f2d9cd",
+            "key": "field_5b0e9651dd603",
             "label": "Posts to display:",
             "name": "syn_microblog_posts",
             "type": "number",
@@ -765,7 +765,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59ab366c21327",
+                        "field": "field_5b0e9651dc68d",
                         "operator": "==",
                         "value": "1"
                     }
@@ -785,7 +785,7 @@
             "step": 1
         },
         {
-            "key": "field_59aca7a42d9ce",
+            "key": "field_5b0e9651dd9ea",
             "label": "Include Post Date",
             "name": "syn_microblog_include_date",
             "type": "true_false",
@@ -794,7 +794,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59ab366c21327",
+                        "field": "field_5b0e9651dc68d",
                         "operator": "==",
                         "value": "1"
                     }
@@ -812,7 +812,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_59cfd0c08c935",
+            "key": "field_5b0e9651dddd1",
             "label": "Add New Post",
             "name": "syn_new_microblog_post",
             "type": "true_false",
@@ -821,7 +821,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59ab366c21327",
+                        "field": "field_5b0e9651dc68d",
                         "operator": "==",
                         "value": "1"
                     }
@@ -839,7 +839,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_59cfd09c8c934",
+            "key": "field_5b0e9651de1b9",
             "label": "Microblog Post Title",
             "name": "syn_new_microblog_post_title",
             "type": "text",
@@ -848,12 +848,12 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59ab366c21327",
+                        "field": "field_5b0e9651dc68d",
                         "operator": "==",
                         "value": "1"
                     },
                     {
-                        "field": "field_59cfd0c08c935",
+                        "field": "field_5b0e9651dddd1",
                         "operator": "==",
                         "value": "1"
                     }
@@ -871,7 +871,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_59cfd16f8c936",
+            "key": "field_5b0e9651de5a1",
             "label": "Microblog Post Content",
             "name": "syn_new_microblog_post_content",
             "type": "wysiwyg",
@@ -880,12 +880,12 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59ab366c21327",
+                        "field": "field_5b0e9651dc68d",
                         "operator": "==",
                         "value": "1"
                     },
                     {
-                        "field": "field_59cfd0c08c935",
+                        "field": "field_5b0e9651dddd1",
                         "operator": "==",
                         "value": "1"
                     }
@@ -903,7 +903,7 @@
             "delay": 1
         },
         {
-            "key": "field_598a9e4613a18",
+            "key": "field_5b0e9651de987",
             "label": "Roster",
             "name": "",
             "type": "tab",
@@ -919,7 +919,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_59ab36d12132b",
+            "key": "field_5b0e9651ded8d",
             "label": "Activate Roster",
             "name": "syn_roster_active",
             "type": "true_false",
@@ -938,7 +938,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_59ab36be2132a",
+            "key": "field_5b0e9651df16b",
             "label": "Title",
             "name": "syn_roster_title",
             "type": "text",
@@ -947,7 +947,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59ab36d12132b",
+                        "field": "field_5b0e9651ded8d",
                         "operator": "==",
                         "value": "1"
                     }
@@ -965,7 +965,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_59ab495554793",
+            "key": "field_5b0e9651df56d",
             "label": "People",
             "name": "syn_roster_people",
             "type": "repeater",
@@ -974,7 +974,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59ab36d12132b",
+                        "field": "field_5b0e9651ded8d",
                         "operator": "==",
                         "value": "1"
                     }
@@ -995,7 +995,7 @@
             "btn-icon-only": 1,
             "sub_fields": [
                 {
-                    "key": "field_59af852be10d5",
+                    "key": "field_5b0e9652beba8",
                     "label": "Person",
                     "name": "person",
                     "type": "select",
@@ -1007,7 +1007,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "choices": null,
+                    "choices": [],
                     "default_value": [],
                     "allow_null": 1,
                     "multiple": 0,
@@ -1019,7 +1019,7 @@
             ]
         },
         {
-            "key": "field_59685755d41a0",
+            "key": "field_5b0e9651df929",
             "label": "Include Fields",
             "name": "syn_roster_include_fields",
             "type": "checkbox",
@@ -1028,7 +1028,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_59ab36d12132b",
+                        "field": "field_5b0e9651ded8d",
                         "operator": "==",
                         "value": "1"
                     }
@@ -1060,7 +1060,7 @@
             "return_format": "array"
         },
         {
-            "key": "field_5a41bf632a648",
+            "key": "field_5b0e9651dfd3c",
             "label": "Google Map",
             "name": "",
             "type": "tab",
@@ -1076,7 +1076,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_5a41c0a82a649",
+            "key": "field_5b0e9651e00fb",
             "label": "Activate Google Map",
             "name": "syn_google_map_active",
             "type": "true_false",
@@ -1095,7 +1095,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_5a41c0e12a64a",
+            "key": "field_5b0e9651e04e0",
             "label": "Title",
             "name": "syn_google_map_title",
             "type": "text",
@@ -1104,7 +1104,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5a41c0a82a649",
+                        "field": "field_5b0e9651e00fb",
                         "operator": "==",
                         "value": "1"
                     }
@@ -1122,7 +1122,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_5a41c1312a64b",
+            "key": "field_5b0e9651e08c6",
             "label": "Google  Map",
             "name": "syn_google_map_id",
             "type": "select",
@@ -1131,7 +1131,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5a41c0a82a649",
+                        "field": "field_5b0e9651e00fb",
                         "operator": "==",
                         "value": "1"
                     }
@@ -1152,7 +1152,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_5a41c15b2a64c",
+            "key": "field_5b0e9651e0cab",
             "label": "Video\/Playlist",
             "name": "",
             "type": "tab",
@@ -1168,7 +1168,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_5a41c16e2a64d",
+            "key": "field_5b0e9651e1091",
             "label": "Activate Video\/Playlist",
             "name": "syn_video_active",
             "type": "true_false",
@@ -1187,7 +1187,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_5a41c24b2a64f",
+            "key": "field_5b0e9651e147c",
             "label": "Title",
             "name": "syn_video_title",
             "type": "text",
@@ -1196,7 +1196,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5a41c16e2a64d",
+                        "field": "field_5b0e9651e1091",
                         "operator": "==",
                         "value": "1"
                     }
@@ -1214,7 +1214,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_5a6f8ec21ff93",
+            "key": "field_5b0e9651e1860",
             "label": "Host",
             "name": "syn_video_host",
             "type": "select",
@@ -1223,7 +1223,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5a41c16e2a64d",
+                        "field": "field_5b0e9651e1091",
                         "operator": "==",
                         "value": "1"
                     }
@@ -1247,7 +1247,7 @@
             "placeholder": ""
         },
         {
-            "key": "field_5ac027b713ca6",
+            "key": "field_5b0e9651e1c4c",
             "label": "Type",
             "name": "syn_video_type",
             "type": "radio",
@@ -1256,12 +1256,12 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5a41c16e2a64d",
+                        "field": "field_5b0e9651e1091",
                         "operator": "==",
                         "value": "1"
                     },
                     {
-                        "field": "field_5a6f8ec21ff93",
+                        "field": "field_5b0e9651e1860",
                         "operator": "==",
                         "value": "YouTube"
                     }
@@ -1284,7 +1284,7 @@
             "return_format": "value"
         },
         {
-            "key": "field_5a41da62e0094",
+            "key": "field_5b0e9651e2030",
             "label": "Video ID",
             "name": "syn_video_youtube_id",
             "type": "text",
@@ -1293,17 +1293,17 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5a41c16e2a64d",
+                        "field": "field_5b0e9651e1091",
                         "operator": "==",
                         "value": "1"
                     },
                     {
-                        "field": "field_5a6f8ec21ff93",
+                        "field": "field_5b0e9651e1860",
                         "operator": "==",
                         "value": "YouTube"
                     },
                     {
-                        "field": "field_5ac027b713ca6",
+                        "field": "field_5b0e9651e1c4c",
                         "operator": "==",
                         "value": "single"
                     }
@@ -1321,7 +1321,7 @@
             "maxlength": 20
         },
         {
-            "key": "field_5ac0288138845",
+            "key": "field_5b0e9651e2416",
             "label": "Playlist ID",
             "name": "syn_video_youtube_playlist_id",
             "type": "text",
@@ -1330,17 +1330,17 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5a41c16e2a64d",
+                        "field": "field_5b0e9651e1091",
                         "operator": "==",
                         "value": "1"
                     },
                     {
-                        "field": "field_5a6f8ec21ff93",
+                        "field": "field_5b0e9651e1860",
                         "operator": "==",
                         "value": "YouTube"
                     },
                     {
-                        "field": "field_5ac027b713ca6",
+                        "field": "field_5b0e9651e1c4c",
                         "operator": "==",
                         "value": "playlist"
                     }
@@ -1358,7 +1358,7 @@
             "maxlength": 50
         },
         {
-            "key": "field_5a6f8ea21ff92",
+            "key": "field_5b0e9651e282d",
             "label": "Video ID",
             "name": "syn_video_vimeo_id",
             "type": "text",
@@ -1367,12 +1367,12 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5a41c16e2a64d",
+                        "field": "field_5b0e9651e1091",
                         "operator": "==",
                         "value": "1"
                     },
                     {
-                        "field": "field_5a6f8ec21ff93",
+                        "field": "field_5b0e9651e1860",
                         "operator": "==",
                         "value": "Vimeo"
                     }
@@ -1390,7 +1390,7 @@
             "maxlength": 20
         },
         {
-            "key": "field_5a81ce5c0b0da",
+            "key": "field_5b0e9651e2bf4",
             "label": "Caption",
             "name": "syn_video_caption",
             "type": "wysiwyg",
@@ -1399,7 +1399,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5a41c16e2a64d",
+                        "field": "field_5b0e9651e1091",
                         "operator": "==",
                         "value": "1"
                     }
@@ -1417,7 +1417,7 @@
             "delay": 1
         },
         {
-            "key": "field_5ac25dab1f08d",
+            "key": "field_5b0e9651e2fce",
             "label": "Attachments",
             "name": "",
             "type": "tab",
@@ -1433,7 +1433,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_5ac25dab1f480",
+            "key": "field_5b0e9651e33b4",
             "label": "Activate Attachments",
             "name": "syn_attachments_active",
             "type": "true_false",
@@ -1452,7 +1452,7 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_5ac25dab1f875",
+            "key": "field_5b0e9651e379b",
             "label": "Title",
             "name": "syn_attachments_title",
             "type": "text",
@@ -1461,7 +1461,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5ac25dab1f480",
+                        "field": "field_5b0e9651e33b4",
                         "operator": "==",
                         "value": "1"
                     }
@@ -1479,7 +1479,7 @@
             "maxlength": ""
         },
         {
-            "key": "field_5ac25dab1fc6d",
+            "key": "field_5b0e9651e3b82",
             "label": "Attachment Groups",
             "name": "syn_attachments",
             "type": "repeater",
@@ -1488,7 +1488,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5ac25dab1f480",
+                        "field": "field_5b0e9651e33b4",
                         "operator": "==",
                         "value": "1"
                     }
@@ -1509,7 +1509,7 @@
             "btn-icon-only": 1,
             "sub_fields": [
                 {
-                    "key": "field_5ac25dac942ef",
+                    "key": "field_5b0e965346c78",
                     "label": "Header",
                     "name": "header",
                     "type": "text",
@@ -1528,7 +1528,7 @@
                     "maxlength": ""
                 },
                 {
-                    "key": "field_5ac25dac946d8",
+                    "key": "field_5b0e96534705d",
                     "label": "Description",
                     "name": "description",
                     "type": "textarea",
@@ -1547,7 +1547,7 @@
                     "new_lines": ""
                 },
                 {
-                    "key": "field_5ac25dac94ab9",
+                    "key": "field_5b0e965347472",
                     "label": "Attachments",
                     "name": "attachments",
                     "type": "repeater",
@@ -1569,7 +1569,7 @@
                     "btn-icon-only": 1,
                     "sub_fields": [
                         {
-                            "key": "field_5ac25daca5ae1",
+                            "key": "field_5b0e965358595",
                             "label": "Attachment Type",
                             "name": "attachment_type",
                             "type": "select",
@@ -1595,7 +1595,7 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_5ac25daca5ec9",
+                            "key": "field_5b0e965358970",
                             "label": "File",
                             "name": "file",
                             "type": "file",
@@ -1604,7 +1604,7 @@
                             "conditional_logic": [
                                 [
                                     {
-                                        "field": "field_5ac25daca5ae1",
+                                        "field": "field_5b0e965358595",
                                         "operator": "==",
                                         "value": "file"
                                     }
@@ -1622,7 +1622,7 @@
                             "mime_types": "pdf,doc,docx,xls,xlsx,ppt,pptx"
                         },
                         {
-                            "key": "field_5ac25daca6299",
+                            "key": "field_5b0e965358d65",
                             "label": "Internal Link",
                             "name": "internal_link",
                             "type": "post_object",
@@ -1631,7 +1631,7 @@
                             "conditional_logic": [
                                 [
                                     {
-                                        "field": "field_5ac25daca5ae1",
+                                        "field": "field_5b0e965358595",
                                         "operator": "==",
                                         "value": "internal_link"
                                     }
@@ -1654,7 +1654,7 @@
                             "ui": 1
                         },
                         {
-                            "key": "field_5ac25daca6684",
+                            "key": "field_5b0e96535913e",
                             "label": "Link Title",
                             "name": "title",
                             "type": "text",
@@ -1663,7 +1663,7 @@
                             "conditional_logic": [
                                 [
                                     {
-                                        "field": "field_5ac25daca5ae1",
+                                        "field": "field_5b0e965358595",
                                         "operator": "==",
                                         "value": "external_link"
                                     }
@@ -1681,7 +1681,7 @@
                             "maxlength": ""
                         },
                         {
-                            "key": "field_5ac25daca6a6f",
+                            "key": "field_5b0e965359538",
                             "label": "Web Address",
                             "name": "url",
                             "type": "url",
@@ -1690,7 +1690,7 @@
                             "conditional_logic": [
                                 [
                                     {
-                                        "field": "field_5ac25daca5ae1",
+                                        "field": "field_5b0e965358595",
                                         "operator": "==",
                                         "value": "external_link"
                                     }
@@ -1705,7 +1705,7 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_5ac25daca6e6b",
+                            "key": "field_5b0e965359910",
                             "label": "New Window",
                             "name": "new_window",
                             "type": "true_false",
@@ -1714,7 +1714,7 @@
                             "conditional_logic": [
                                 [
                                     {
-                                        "field": "field_5ac25daca5ae1",
+                                        "field": "field_5b0e965358595",
                                         "operator": "==",
                                         "value": "external_link"
                                     }
@@ -1756,12 +1756,12 @@
         ]
     ],
     "menu_order": 2,
-    "position": "normal",
+    "position": "side",
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1527696069
+    "modified": 1527707865
 }

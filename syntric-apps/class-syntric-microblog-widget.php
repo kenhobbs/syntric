@@ -45,7 +45,7 @@
 				foreach ( $terms as $term ) {
 					$category_ids[] = $term->term_id;
 				}
-				slog( implode( ',', $category_ids ) );
+				//slog( implode( ',', $category_ids ) );
 				$microblog_posts = get_posts( [
 					'numberposts' => $number,
 					'post_type'   => 'post',
@@ -53,7 +53,7 @@
 					//'no_found_rows'       => true,
 					'post_status' => 'publish',
 				] );
-				slog( $microblog_posts );
+				//slog( $microblog_posts );
 				//slog( $terms );
 				/*'ignore_sticky_posts' => true,
 				'tax_query'           => [

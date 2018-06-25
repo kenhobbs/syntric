@@ -117,8 +117,26 @@
 	add_filter( 'acf/prepare_field/name=organization_id', 'syn_hide_field' );
 	add_filter( 'acf/prepare_field/name=syn_organization_id', 'syn_hide_field' );
 	add_filter( 'acf/prepare_field/name=jumbotron_id', 'syn_hide_field' );
+	//add_filter( 'acf/prepare_field/key=field_59a5b62d88d98', 'syn_hide_field' ); // Page widgets Contact tab
+	//add_filter( 'acf/prepare_field/name=syn_contact_active', 'syn_hide_field' );
+	//add_filter( 'acf/prepare_field/name=syn_contact_title', 'syn_hide_field' );
+	//add_filter( 'acf/prepare_field/name=syn_contact_contact_type', 'syn_hide_field' );
+	//add_filter( 'acf/prepare_field/name=syn_contact_person', 'syn_hide_field' );
+	//add_filter( 'acf/prepare_field/name=syn_contact_organization', 'syn_hide_field' );
+	//add_filter( 'acf/prepare_field/name=syn_contact_default', 'syn_hide_field' );
+	//add_filter( 'acf/prepare_field/name=syn_contact_include_person_fields', 'syn_hide_field' );
+	//add_filter( 'acf/prepare_field/name=syn_contact_include_organization_fields', 'syn_hide_field' );
+	add_filter( 'acf/prepare_field/key=field_5ac25dab1f08d', 'syn_hide_field' ); // Page widgets Attachments tab
+	add_filter( 'acf/prepare_field/name=syn_attachments_active', 'syn_hide_field' );
+	add_filter( 'acf/prepare_field/name=syn_attachments_title', 'syn_hide_field' );
+	add_filter( 'acf/prepare_field/name=syn_attachments', 'syn_hide_field' );
 	function syn_hide_field( $field ) {
-		$field[ 'wrapper' ][ 'hidden' ] = 1;
+		global $post;
+		$page_template = syn_get_page_template( $post->ID );
+		if ( 'page' != $post->post_type ||
+		     ( 'page' == $post->post_type && in_array( $page_template, [ 'teachers' ] ) && ( in_array( $field[ '_name' ], [ 'syn_contact_active', 'syn_contact_title', 'syn_contact_contact_type', 'syn_contact_person', 'syn_contact_organization', 'syn_contact_default', 'syn_contact_include_person_fields', 'syn_contact_include_organization_fields' ] ) || 'field_59a5b62d88d98' == $field[ 'key' ] ) ) ) {
+			$field[ 'wrapper' ][ 'hidden' ] = 1;
+		}
 	}
 
 	/****************** Posts ******************/
@@ -136,9 +154,10 @@
 	add_filter( 'acf/prepare_field/name=period', 'syn_acf_prepare_fields' );
 	add_filter( 'acf/prepare_field/name=course', 'syn_acf_prepare_fields' );
 	add_filter( 'acf/prepare_field/name=room', 'syn_acf_prepare_fields' );
+	//add_filter( 'acf/prepare_field/name=include_page', 'syn_acf_prepare_fields' );
 	// page widgets
 	add_filter( 'acf/prepare_field/name=syn_contact_title', 'syn_acf_prepare_fields' );
-	add_filter( 'acf/prepare_field/name=syn_contact_default', 'syn_acf_prepare_fields' );
+	//add_filter( 'acf/prepare_field/name=syn_contact_default', 'syn_acf_prepare_fields' );
 	add_filter( 'acf/prepare_field/name=syn_contact_person', 'syn_acf_prepare_fields' );
 	//add_filter( 'acf/prepare_field/name=syn_contact_person_include_fields', 'syn_acf_prepare_fields' );
 	add_filter( 'acf/prepare_field/name=syn_contact_organization', 'syn_acf_prepare_fields' );
@@ -171,7 +190,7 @@
 	add_filter( 'acf/prepare_field/name=syn_user_is_teacher', 'syn_acf_prepare_fields' );
 	add_filter( 'acf/prepare_field/key=field_5ad3b76d1ea8b', 'syn_acf_prepare_fields' );
 	/****************** Widgets ******************/
-	add_filter( 'acf/prepare_field/name=syn_contact_widget_default', 'syn_acf_prepare_fields' );
+	//add_filter( 'acf/prepare_field/name=syn_contact_widget_default', 'syn_acf_prepare_fields' );
 	add_filter( 'acf/prepare_field/name=syn_contact_widget_organization', 'syn_acf_prepare_fields' );
 	add_filter( 'acf/prepare_field/name=syn_contact_widget_person', 'syn_acf_prepare_fields' );
 	add_filter( 'acf/prepare_field/name=syn_upcoming_events_widget_calendar_id', 'syn_acf_prepare_fields' );
@@ -190,7 +209,7 @@
 	add_filter( 'acf/prepare_field/name=syn_category_page', 'syn_acf_prepare_fields' );
 	//// by key
 	add_filter( 'acf/prepare_field/key=field_59b118daf73d0', 'syn_acf_prepare_fields' ); // Google Maps > markers > organization select field
-	add_filter( 'acf/prepare_field/key=field_59d127e512d9a', 'syn_acf_prepare_fields', 20 ); // Teacher classes > class page message field
+	add_filter( 'acf/prepare_field/key=field_59d127e512d9a', 'syn_acf_prepare_fields', 20 ); // syn_classes Class Page message field
 	add_filter( 'acf/prepare_field/key=field_59e7f2f7049e2', 'syn_acf_prepare_fields' ); // Post category message field
 	add_filter( 'acf/prepare_field/key=field_59e7f370049e3', 'syn_acf_prepare_fields' ); // Post term (microblog) message field
 	add_filter( 'acf/prepare_field/key=field_59d4b242abf31', 'syn_acf_prepare_fields' ); // Page widgets microblog category message field
@@ -215,14 +234,14 @@
 			case 'syn_nav_menu_widget_menu' :
 				$field = syn_load_nav_menu( $field );
 				break;
-			case 'syn_contact_widget_default' :
+			/*case 'syn_contact_widget_default' :
 				$field[ 'label' ]   = '';
 				$field[ 'message' ] = 'Use ' . get_field( 'syn_organization', 'option' );
 				break;
 			case 'syn_contact_default' :
 				$field[ 'label' ]   = get_field( 'syn_organization', 'option' );
 				$field[ 'message' ] = 'Use ' . get_field( 'syn_organization', 'option' );
-				break;
+				break;*/
 			case 'syn_facebook_page_widget_page' :
 				$field = syn_load_facebook_pages( $field );
 				break;
@@ -292,6 +311,12 @@
 					}
 				}*/
 				break;
+			case 'term' :
+				if ( $field[ 'value' ] ) {
+					$field[ 'disabled' ] = 1;
+				}
+				$field = syn_load_terms( $field );
+				break;
 			case 'period' :
 				$periods_active = get_field( 'syn_periods_active', 'option' );
 				if ( ! $periods_active ) {
@@ -301,6 +326,12 @@
 				}
 				$field = syn_load_periods( $field );
 				break;
+			case 'course' :
+				if ( $field[ 'value' ] ) {
+					$field[ 'disabled' ] = 1;
+				}
+				$field = syn_load_courses( $field );
+				break;
 			case 'room' :
 				$rooms_active = get_field( 'syn_rooms_active', 'option' );
 				if ( ! $rooms_active ) {
@@ -309,18 +340,6 @@
 					$field[ 'disabled' ] = 1;
 				}
 				$field = syn_load_rooms( $field );
-				break;
-			case 'term' :
-				if ( $field[ 'value' ] ) {
-					$field[ 'disabled' ] = 1;
-				}
-				$field = syn_load_terms( $field );
-				break;
-			case 'course' :
-				if ( $field[ 'value' ] ) {
-					$field[ 'disabled' ] = 1;
-				}
-				$field = syn_load_courses( $field );
 				break;
 			case 'syn_page_class' :
 				$field = syn_load_classes( $field );
@@ -357,6 +376,11 @@
 				break;
 			case 'syn_contact_organization' :
 				$field = syn_load_organizations( $field );
+				if ( ! $field[ 'value' ] ) {
+					$organization_id = get_field( 'syn_organization_id', 'option' );
+					//slog($organization_id);
+					$field[ 'value' ] = $organization_id;
+				}
 				break;
 			case 'syn_calendar_id' :
 				$field = syn_load_google_calendars( $field );
@@ -399,9 +423,12 @@
 				}
 				break;
 			case 'syn_category_page' :
-				if ( 'edit-tags.php' == $pagenow ) {
+				if ( 'edit-tags.php' == $pagenow || 'term.php' == $pagenow ) {
+					$field[ 'wrapper' ][ 'hidden' ] = 1;
+				}
+				/*if ( 'edit-tags.php' == $pagenow ) {
 					// this is now handled with javascript
-					//$field['wrapper']['hidden'] = 1;
+					$field['wrapper']['hidden'] = 1;
 				} elseif ( 'term.php' == $pagenow ) {
 					$cat           = get_category( $_REQUEST[ 'tag_ID' ] );
 					$cat_ancestors = get_ancestors( $cat->term_id, 'category' );
@@ -414,7 +441,7 @@
 					} else {
 						$field[ 'wrapper' ][ 'hidden' ] = 0;
 					}
-				}
+				}*/
 				break;
 			//case 'syn_attachments_active':
 			//case 'syn_video_active':
@@ -454,25 +481,25 @@
 		if ( 'field_59b118daf73d0' == $field[ 'key' ] ) {
 			$field = syn_load_organizations( $field );
 		}
-		// Teacher classes > class page message field
-		if ( 'field_59d127e512d9a' == $field[ 'key' ] ) { // syn_classes message field
-			$classes = get_field( 'syn_classes', $post->ID );
-			if ( ! count( $classes ) ) {
-				$field[ 'wrapper' ][ 'hidden' ] = 1;
-				$field[ 'wrapper' ][ 'width' ]  = 1;
-			}
-			$field_prefix_array = explode( '[', str_replace( ']', '', $field[ 'prefix' ] ) );
-			$row_index          = $field_prefix_array[ count( $field_prefix_array ) - 1 ];
-			if ( is_numeric( $row_index ) ) {
-				$class      = $classes[ $row_index ];
-				$class_id   = $class[ 'class_id' ];
-				$teacher_id = get_field( 'syn_page_teacher', $post->ID );
-				$class_page = syn_get_teacher_class_page( $teacher_id, $class_id );
-				if ( $class_page instanceof WP_Post ) {
-					$field[ 'wrapper' ][ 'hidden' ] = 0;
-					$field[ 'wrapper' ][ 'width' ]  = '';
-					$status                         = ( 'publish' != $class_page->post_status ) ? ' - ' . ucwords( $class_page->post_status ) : '';
-					$field[ 'message' ]             = $class_page->post_title . $status . '<span style="float: right;"><a href="' . get_the_permalink( $class_page->ID ) . '">View</a> / <a href="/wp-admin/post.php?action=edit&post=' . $class_page->ID . '">Edit</a></span>';
+		// syn_classes > Class Page message field
+		if ( 'field_59d127e512d9a' == $field[ 'key' ] ) {
+			$field[ 'wrapper' ][ 'hidden' ] = 1;
+			$field[ 'wrapper' ][ 'width' ]  = 1;
+			$classes                        = get_field( 'syn_classes', $post->ID );
+			if ( $classes ) {
+				$field[ 'wrapper' ][ 'hidden' ] = 0;
+				$field[ 'wrapper' ][ 'width' ]  = '';
+				$field_prefix_array             = explode( '[', str_replace( ']', '', $field[ 'prefix' ] ) );
+				$row_index                      = $field_prefix_array[ count( $field_prefix_array ) - 1 ];
+				if ( is_numeric( $row_index ) ) {
+					$class      = $classes[ $row_index ];
+					$class_id   = $class[ 'class_id' ];
+					$teacher_id = get_field( 'syn_page_teacher', $post->ID );
+					$class_page = syn_get_teacher_class_page( $teacher_id, $class_id );
+					if ( $class_page instanceof WP_Post ) {
+						$status             = ( 'publish' != $class_page->post_status ) ? ' - ' . ucwords( $class_page->post_status ) : '';
+						$field[ 'message' ] = $class_page->post_title . $status . '<span style="float: right;"><a href="' . get_the_permalink( $class_page->ID ) . '">View</a> / <a href="/wp-admin/post.php?action=edit&post=' . $class_page->ID . '">Edit</a></span>';
+					}
 				}
 			}
 		}
@@ -575,7 +602,10 @@
 			$choices = [];
 			if ( $microblogs ) {
 				foreach ( $microblogs as $microblog ) {
-					$choices[ $microblog->term_id ] = $microblog->name . ' (' . $microblog->count . ')';
+					if ( property_exists( $microblog, 'term_id') ) {
+						slog($microblog);
+						$choices[ $microblog->term_id ] = $microblog->name . ' (' . $microblog->count . ')';
+					}
 				}
 			}
 			/*$args    = [
@@ -1052,6 +1082,7 @@
 		// Switch on post type
 		switch ( $post_type ) :
 			case 'user' :
+				//slog('post_type user saved');
 				// saved logic for people view
 				/*if ( 'syntric-people' == $pagenow ) {
 					// coming from options page or somewhere besides user forms
@@ -1105,33 +1136,7 @@
 				$post_id = null;
 				$user    = get_user_by( 'ID', $user_id );
 				if ( $user instanceof WP_User ) {
-					// get user roles
-					$roles = $user->roles;
-					// if there are more than one role, remove all but the last in the roles array then set the user role variable
-					if ( 1 < count( $roles ) ) {
-						$last_role = $roles[ count( $roles ) - 1 ];
-						foreach ( $roles as $role ) {
-							$user->remove_role( $role );
-						}
-						$user->set_role( $last_role );
-						$role = $last_role;
-					} else {
-						$role = $roles[ 0 ];
-					}
-					$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user->ID );
-					if ( $is_teacher ) {
-						if ( ! in_array( $role, [ 'author', 'editor', 'administrator', ] ) ) {
-							syn_save_teacher_page( $user_id );
-							wp_update_user( [ 'ID' => $user->ID, 'role' => 'author', ] );
-						}
-						syn_save_teacher_page( $user->ID );
-					} elseif ( ! $is_teacher ) {
-						if ( 'author' == $role ) {
-							// todo: also look for class and custom pages under teacher page - maybe another function syn_trash_teacher_pages
-							syn_trash_teacher_page( $user->ID );
-							wp_update_user( [ 'ID' => $user_id, 'role' => 'subscriber' ] );
-						}
-					}
+					syn_do_teacher_page( $user->ID );
 				}
 				break;
 			case 'widget' :
@@ -1251,7 +1256,7 @@
 				///////////////// todo: page microblog
 				// todo: reduce all the "security and validity" conditional wrappers, like the next line, into a function call eg. syn_continue_if('admin','page','teacher_template').
 				// set term in taxonomy "microblog"
-				$microblog_active = get_field( 'syn_microblog_active', $post_id );
+				/*$microblog_active = get_field( 'syn_microblog_active', $post_id );
 				if ( $microblog_active ) {
 					if ( category_exists( 'Microblogs' ) ) {
 						$cat    = get_category_by_slug( 'microblogs' );
@@ -1289,6 +1294,10 @@
 						update_field( 'syn_microblog_category_select', $cat_id, $post_id );
 						update_field( 'syn_microblog_term_select', $term_id, $post_id );
 					}
+				}*/
+				$microblog_active = get_field( 'syn_microblog_active', $post_id );
+				if ( $microblog_active ) {
+					$page_microblog_category = syn_get_page_microblog_category( $post_id );
 				}
 				//////////////// todo: migration field group
 				$run_migration_task = get_field( 'syn_migration_run_next', $post_id );
@@ -1363,12 +1372,20 @@
 					syn_schedule_calendar_sync( $post_id );
 				}
 				if ( $sync_now ) {
+					$sync_back        = get_field( 'syn_calendar_sync_back', $post_id );
+					$sync_back_months = get_field( 'syn_calendar_sync_back_months', $post_id );
+					$sync_back        = ( $sync_back ) ? (int) $sync_back : 0;
+					$sync_back_months = ( $sync_back_months ) ? (int) $sync_back_months : 1;
 					syn_sync_calendar( [
-						'post_id'    => $post_id,
-						'post_type'  => 'syn_calendar',
-						'force_sync' => true,
+						'post_id'          => $post_id,
+						'post_type'        => 'syn_calendar',
+						'force_sync'       => true,
+						'sync_back'        => $sync_back,
+						'sync_back_months' => $sync_back_months,
 					] );
 					update_field( 'syn_calendar_sync_now', 0, $post_id );
+					update_field( 'syn_calendar_sync_back', 0, $post_id );
+					update_field( 'syn_calendar_sync_back_months', '', $post_id );
 				}
 				break;
 			case 'syn_event' :

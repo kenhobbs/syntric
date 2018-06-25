@@ -294,6 +294,7 @@
 		remove_submenu_page( 'plugins.php', 'plugin-editor.php' );
 		// Remove for all but Syntric user
 		if ( ! syn_current_user_can( 'syntric' ) ) {
+			remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Post microblog (taxonomy) - this is deprecated
 			remove_menu_page( 'jetpack' ); // Jetpack
 			remove_menu_page( 'edit-comments.php' ); // Comments
 			remove_menu_page( 'tools.php' ); // Tools
@@ -313,7 +314,6 @@
 		}
 		// Remove for all but editor and above
 		if ( ! syn_current_user_can( 'editor' ) ) {
-			remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Post microblog (taxonomy)
 			remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=category' ); // Post category (taxonomy)
 			remove_menu_page( 'users.php' ); // Users
 			remove_menu_page( 'plugins.php' ); // Plugins
@@ -573,7 +573,7 @@
 			'index.php',
 			// Pages
 			'edit.php?post_type=page',
-			//'admin.php?page=nestedpages', // Pages (Nested Pages)
+			'nestedpages', // Pages (Nested Pages)
 			// Posts
 			'edit.php',
 			// School or District or COE or Organization
@@ -1092,6 +1092,38 @@
 		return;
 	}
 
+	function syn_do_teacher_page( $user_id ) {
+		$user = get_user_by( 'ID', $user_id );
+		// get user roles
+		$roles = $user->roles;
+		// if there are more than one role, remove all but the last in the roles array then set the user role variable
+		if ( 1 < count( $roles ) ) {
+			$last_role = $roles[ count( $roles ) - 1 ];
+			foreach ( $roles as $role ) {
+				$user->remove_role( $role );
+			}
+			$user->set_role( $last_role );
+			$role = $last_role;
+		} else {
+			$role = $roles[ 0 ];
+		}
+		$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user_id );
+		if ( $is_teacher ) {
+			syn_save_teacher_page( $user_id );
+			if ( ! in_array( $role, [ 'author', 'editor', 'administrator', ] ) ) {
+				wp_update_user( [ 'ID' => $user_id, 'role' => 'author', ] );
+			}
+			syn_save_teacher_page( $user_id );
+		} else {
+			$teacher_page = syn_get_teacher_page( $user_id );
+			// If this user is not a teacher but they have a teacher page, their status just changed
+			if ( $teacher_page instanceof WP_Post && 'author' == $role ) {
+				wp_update_user( [ 'ID' => $user_id, 'role' => 'subscriber' ] );
+			}
+			syn_trash_teacher_page( $user_id );
+		}
+	}
+
 	/*function syn_get_teacher_pages() {
 		$args = [
 			'meta_key' => '_wp_page_template',
@@ -1169,9 +1201,14 @@
 
 	function syn_trash_teacher_page( $teacher_id ) {
 		$teacher_page = syn_get_teacher_page( $teacher_id ); // returns WP_Post object
-		if ( $teacher_page ) {
+		if ( $teacher_page instanceof WP_Post ) {
 			// Delete all children of the teacher page to be trashed, not just class pages
-			$teacher_page_children = get_posts( [ 'numberposts' => - 1, 'post_status' => [ 'publish', 'draft', 'future', 'pending', 'private' ], 'post_parent' => $teacher_page->ID, 'fields' => 'ID' ] );
+			$teacher_page_children = get_posts( [
+				'numberposts' => - 1,
+				'post_status' => [ 'publish', 'draft', 'future', 'pending', 'private' ],
+				'post_parent' => $teacher_page->ID,
+				'fields'      => 'ID',
+			] );
 			if ( $teacher_page_children ) {
 				foreach ( $teacher_page_children as $teacher_page_child ) {
 					wp_delete_post( $teacher_page_child->ID );
@@ -1316,7 +1353,7 @@
 				$departments_active = get_field( 'syn_departments_active', 'option' );
 				$courses            = get_field( 'syn_courses', 'option' );
 				$courses            = array_column( $courses, 'course', 'course_id' );
-				if ( count( $teacher_classes ) ) {
+				if ( $teacher_classes ) {
 					foreach ( $teacher_classes as $teacher_class ) {
 						$include_page = $teacher_class[ 'include_page' ];
 						if ( $include_page ) {
@@ -1664,14 +1701,18 @@
 	function syn_get_page_template( $post_id ) {
 		$post_id = syn_resolve_post_id( $post_id );
 		if ( 'page' == get_post_type( $post_id ) ) {
-			$page_meta              = get_post_meta( $post_id );
-			$page_template_path     = $page_meta[ '_wp_page_template' ];
-			$page_template_path_arr = explode( '/', $page_template_path[ 0 ] );
-			$page_template_file     = $page_template_path_arr[ count( $page_template_path_arr ) - 1 ];
-			$page_template_file_arr = explode( '.', $page_template_file );
-			$page_template          = $page_template_file_arr[ 0 ];
+			$page_meta = get_post_meta( $post_id );
+			if ( isset( $page_meta[ '_wp_page_template' ] ) ) {
+				$page_template_path     = $page_meta[ '_wp_page_template' ];
+				$page_template_path_arr = explode( '/', $page_template_path[ 0 ] );
+				$page_template_file     = $page_template_path_arr[ count( $page_template_path_arr ) - 1 ];
+				$page_template_file_arr = explode( '.', $page_template_file );
+				$page_template          = $page_template_file_arr[ 0 ];
 
-			return $page_template;
+				return $page_template;
+			}
+
+			return 'default';
 		}
 
 		return false;
@@ -1792,7 +1833,7 @@
 			return;
 		}
 		$jumbotrons = get_field( 'syn_jumbotrons', 'option' );
-		if ( $jumbotrons ) {
+		if ( 0 < count( $jumbotrons ) ) {
 			$jumbotron = false;
 			foreach ( $jumbotrons as $_jumbotron ) {
 				$filters        = $_jumbotron[ 'filters' ];
@@ -1929,6 +1970,7 @@
 	function syn_foot() {
 		$organization = get_field( 'syn_organization', 'option' );
 		$lb           = syn_get_linebreak();
+		// 11111
 		$tab          = syn_get_tab();
 		echo '<footer class="foot">' . $lb;
 		echo $tab . '<div class="container-fluid">' . $lb;
@@ -2480,18 +2522,22 @@
 
 	}
 
+	function syn_list_archived_classes() {
+		echo 'archived classes table with Term, Course, Period, Room and Class Page';
+	}
+
 // quick nav
 	function syn_qn_all_pages() {
 		$qn_args = [
+			'theme_location'  => 'primary',
 			'container'       => '',
 			'container_id'    => '',
 			'container_class' => '',
-			'menu'            => 'primary menu',
 			'menu_id'         => 'qn-all-pages',
 			'menu_class'      => 'admin-nav-menu',
-			'depth'           => 0,
+			//'depth'           => 0,
 		];
-		wp_nav_menu( $qn_args );
+		wp_nav_menu( (array) $qn_args );
 	}
 
 	function syn_qn_teachers_pages() {
@@ -2564,4 +2610,13 @@
 			}
 			echo '</div>';
 		}
+	}
+
+	// Add schwag to the list tables
+	add_filter( 'views_edit-syn_calendar', 'syn_views_edit_syn_calendar', 10, 1 );
+	function syn_views_edit_syn_calendar( $views ) {
+		//slog( $views );
+		$views[ 'google_calendar' ] = '<a href="http://calendar.google.com" target="_blank">Go to Google Calendar</a>';
+
+		return $views;
 	}

@@ -1,46 +1,46 @@
 {
-	"key": "group_5ad345237516a",
-	"title": "Category Settings",
-	"fields": [
-		{
-			"key": "field_5ad3454acb6a2",
-			"label": "Linked Page",
-			"name": "syn_category_page",
-			"type": "post_object",
-			"instructions": "",
-			"required": 0,
-			"conditional_logic": 0,
-			"wrapper": {
-				"width": "",
-				"class": "",
-				"id": ""
-			},
-			"post_type": [
-				"page"
-			],
-			"taxonomy": [],
-			"allow_null": 1,
-			"multiple": 0,
-			"return_format": "id",
-			"ui": 1
-		}
-	],
-	"location": [
-		[
-			{
-				"param": "taxonomy",
-				"operator": "==",
-				"value": "category"
-			}
-		]
-	],
-	"menu_order": 0,
-	"position": "acf_after_title",
-	"style": "default",
-	"label_placement": "top",
-	"instruction_placement": "label",
-	"hide_on_screen": "",
-	"active": 1,
-	"description": "",
-	"modified": 1524278119
+    "key": "group_5ad345237516a",
+    "title": "Category Page",
+    "fields": [
+        {
+            "key": "field_5ad3454acb6a2",
+            "label": "Home Page",
+            "name": "syn_category_page",
+            "type": "post_object",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "page"
+            ],
+            "taxonomy": [],
+            "allow_null": 1,
+            "multiple": 0,
+            "return_format": "object",
+            "ui": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "category"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1524315195
 }

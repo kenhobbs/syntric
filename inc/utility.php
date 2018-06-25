@@ -48,7 +48,7 @@
 	}
 
 	function syn_remove_whitespace() {
-		if ( ! syn_is_dev() ) {
+		if ( ! syn_is_dev() || is_admin() ) {
 			return true;
 		}
 

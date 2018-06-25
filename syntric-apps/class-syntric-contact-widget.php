@@ -36,7 +36,8 @@
 					return;
 				}
 				$title = get_field( 'syn_contact_title', $post->ID );
-			} else {
+			}
+			if ( ! $dynamic ) {
 				$title = get_field( 'syn_contact_widget_title', 'widget_' . $args[ 'widget_id' ] );
 			}
 			$lb           = syn_get_linebreak();
@@ -73,6 +74,7 @@
 						/**
 						 * todo: add ability to associate a photo with a person contact
 						 */
+						$photo   = get_field( 'syn_contact_photo', 'user_' . $user_id );
 						$contact .= $tab . '<div class="list-group-item-content">' . $lb;
 						$contact .= $tab . $tab . '<div class="contact-name">' . $display_name . '</div>' . $lb;
 						if ( in_array( 'title', $include_fields ) && $titles ) :
@@ -87,7 +89,8 @@
 						$contact .= $tab . '</div>' . $lb;
 					}
 				}
-			} elseif ( 'organization' == $contact_type ) {
+			}
+			if ( 'organization' == $contact_type ) {
 				if ( $dynamic ) {
 					$default_organization = get_field( 'syn_contact_organization_default', $post->ID );
 					$include_fields       = get_field( 'syn_contact_include_organization_fields', $post->ID );
@@ -194,8 +197,6 @@
 					endif;
 					$contact .= $tab . '</div>' . $lb;
 				}
-			} else {
-				return;
 			}
 			$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
 			// widget title

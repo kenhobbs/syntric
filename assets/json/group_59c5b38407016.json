@@ -1,6 +1,6 @@
 {
     "key": "group_59c5b38407016",
-    "title": "Teacher Classes",
+    "title": "Classes",
     "fields": [
         {
             "key": "field_59c5b229f02a9",
@@ -20,7 +20,7 @@
             "max": 0,
             "layout": "table",
             "button_label": "Add Class",
-			"hide_collapse": 1,
+            "hide_collapse": 1,
             "collapse_all_repeater": 0,
             "btn-icon-only": 1,
             "sub_fields": [
@@ -37,13 +37,13 @@
                         "class": "",
                         "id": ""
                     },
-					"choices": null,
+                    "choices": null,
                     "default_value": [],
                     "allow_null": 1,
                     "multiple": 0,
                     "ui": 0,
                     "ajax": 0,
-					"return_format": "value",
+                    "return_format": "value",
                     "placeholder": ""
                 },
                 {
@@ -55,17 +55,17 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-						"width": "",
+                        "width": "",
                         "class": "",
                         "id": ""
                     },
-					"choices": null,
+                    "choices": null,
                     "default_value": [],
                     "allow_null": 1,
                     "multiple": 0,
                     "ui": 0,
                     "ajax": 0,
-					"return_format": "value",
+                    "return_format": "value",
                     "placeholder": ""
                 },
                 {
@@ -78,16 +78,16 @@
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
-						"class": "",
+                        "class": "",
                         "id": ""
                     },
-					"choices": null,
+                    "choices": null,
                     "default_value": [],
                     "allow_null": 1,
                     "multiple": 0,
                     "ui": 0,
                     "ajax": 0,
-					"return_format": "value",
+                    "return_format": "value",
                     "placeholder": ""
                 },
                 {
@@ -99,37 +99,37 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-						"width": "",
+                        "width": "",
                         "class": "",
                         "id": ""
                     },
-					"choices": null,
+                    "choices": null,
                     "default_value": [],
                     "allow_null": 1,
                     "multiple": 0,
                     "ui": 0,
                     "ajax": 0,
-					"return_format": "value",
+                    "return_format": "value",
                     "placeholder": ""
                 },
                 {
                     "key": "field_59d16c8161f7d",
-                    "label": "Include Page?",
+                    "label": "Class page?",
                     "name": "include_page",
-					"type": "true_false",
+                    "type": "true_false",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "10",
+                        "width": "",
                         "class": "",
                         "id": ""
                     },
-					"message": "",
-					"default_value": 0,
-					"ui": 1,
-					"ui_on_text": "",
-					"ui_off_text": ""
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": ""
                 },
                 {
                     "key": "field_59d127e512d9a",
@@ -144,7 +144,7 @@
                         "class": "",
                         "id": ""
                     },
-					"message": "",
+                    "message": "",
                     "new_lines": "",
                     "esc_html": 0
                 },
@@ -192,5 +192,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-	"modified": 1523549825
+    "modified": 1524673962
 }

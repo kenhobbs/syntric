@@ -603,7 +603,8 @@
 	}
 
 	function syn_convert_microblogs_tax() {
-		$microblogs     = get_terms( [ 'taxonomy' => 'microblog', 'hide_empty' => 0 ] );
+		// this whole thing needs to be sanity checked with the post category changes for microblogs
+		/*$microblogs     = get_terms( [ 'taxonomy' => 'microblog', 'hide_empty' => 0 ] );
 		$microblogs_cat = get_category_by_slug( 'microblogs' ); // returns a WP_Term
 		if ( ! $microblogs_cat instanceof WP_Term ) {
 			$microblogs_cat_id = wp_create_category( 'Microblogs' );
@@ -612,21 +613,21 @@
 		}
 		$microblogs_cats = [];
 		if ( $microblogs ) {
-			$microblog_pages  = syn_get_microblog_pages(); // returns an array of pages (WP_Post)
+			$page_microblogs  = syn_get_page_microblogs(); // returns an array of pages (WP_Post)
 			$microblogs_pages = [];
-			if ( $microblog_pages ) {
-				foreach ( $microblog_pages as $microblog_page ) {
-					$page_microblog                            = get_field( 'syn_microblog_term', $microblog_page->ID ); // WP_Term
-					$microblogs_pages[ $page_microblog->name ] = $microblog_page->ID;
+			if ( $page_microblogs ) {
+				foreach ( $page_microblogs as $page_microblog ) {
+					$page_microblog_term                       = get_field( 'syn_microblog_term', $page_microblog->ID ); // WP_Term
+					$microblogs_pages[ $page_microblog_term->name ] = $page_microblog->ID;
 				}
 			}
 			foreach ( $microblogs as $microblog ) {
 				$microblog_cat_id                     = wp_create_category( $microblog->name, $microblogs_cat_id );
-				$microblog_page_id                    = $microblog_pages[ $microblog->name ];
+				$microblog_page_id                    = $page_microblogs[ $microblog->name ];
 				$microblogs_cats[ $microblog_cat_id ] = $microblog->name;
 				update_field( 'syn_category_page', $microblog_page_id, 'category_' . $microblogs_cat_id );
 				//$choices[ $microblog->term_id ] = $microblog->name . ' (' . $microblog->count . ')';
 				// term_id, name, slug, term_taxonomy_id
 			}
-		}
+		}*/
 	}
