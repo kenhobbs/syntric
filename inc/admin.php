@@ -67,10 +67,12 @@
 	 * @return string Full URI to a theme stylesheet
 	 */
 	function syn_get_theme_stylesheet_uri() {
-		$http_host       = $_SERVER[ 'HTTP_HOST' ];
-		$theme_style_uri = get_stylesheet_directory_uri() . '/assets/css/' . $http_host . '.min.css';
-
-		return $theme_style_uri;
+		$http_host           = $_SERVER[ 'HTTP_HOST' ];
+		$site_stylesheet_uri = get_template_directory_uri() . '/assets/css/' . $http_host . '.min.css';
+		//if ( ! file_exists( $site_stylesheet_uri ) ) {
+		//return get_template_directory_uri() . '/syntric.com.min.css';
+		//}
+		return $site_stylesheet_uri;
 	}
 
 	if ( isset( $_GET[ 'reset_roles' ] ) && '555ajaj' == $_GET[ 'reset_roles' ] ) {

@@ -225,7 +225,7 @@
 		$tab  = syn_get_tab();
 		$args = [
 			'theme_location'  => 'primary',
-			'container'       => 'div',
+			'container'       => 'ul',
 			'container_id'    => 'primary-nav-collapse',
 			'container_class' => 'collapse navbar-collapse',
 			'menu_class'      => 'navbar-nav',

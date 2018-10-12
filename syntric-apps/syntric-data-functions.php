@@ -12,6 +12,7 @@
 			$run_reset_user_capabilities  = get_field( 'syn_data_run_reset_user_capabilities', 'option' );
 			$run_dedupe_events            = get_field( 'syn_data_run_dedupe_events', 'option' );
 			$run_optimize_usermeta        = get_field( 'syn_data_run_optimize_usermeta', 'option' );
+			$run_theme_init               = get_field( 'syn_data_run_theme_init', 'option' );
 			if ( $run_orphan_scan ) {
 				$delete_orphans = get_field( 'syn_data_delete_orphans', 'option' );
 				syn_scan_orphans( $delete_orphans );
@@ -41,6 +42,9 @@
 			if ( $run_optimize_usermeta ) {
 				syn_optimize_usermeta();
 			}
+			if ( $run_theme_init ) {
+				syn_init_theme();
+			}
 		}
 		// clear/reset all fields, except orphan scan console
 		update_field( 'syn_data_run_orphan_scan', 0, 'option' );
@@ -55,6 +59,7 @@
 		update_field( 'syn_data_run_reset_user_capabilities', 0, 'option' );
 		update_field( 'syn_data_run_dedupe_events', 0, 'option' );
 		update_field( 'syn_data_run_optimize_usermeta', 0, 'option' );
+		update_field( 'syn_data_run_theme_init', 0, 'option' );
 	}
 
 	function syn_stringify_array( $array ) {
@@ -375,15 +380,8 @@
 				$user_extension  = ( isset( $user_row[ 8 ] ) && ! empty( $user_row[ 8 ] ) ) ? $user_row[ 8 ] : false;
 				$user_is_teacher = ( isset( $user_row[ 9 ] ) && ! empty( $user_row[ 9 ] ) ) ? $user_row[ 9 ] : false;
 				$user_role       = ( $user_is_teacher && ( 'subscriber' == $user_role || 'contributor' == $user_role ) ) ? 'author' : $user_role;
-				$userdata        = [
-					'user_nicename' => $user_firstname . ' ' . $user_lastname,
-					'user_email'    => $user_email,
-					'display_name'  => $user_firstname . ' ' . $user_lastname,
-					'nickname'      => $user_firstname,
-					'first_name'    => $user_firstname,
-					'last_name'     => $user_lastname,
-					'role'          => $user_role,
-				];
+				$userdata        = [ 'user_nicename' => $user_firstname . ' ' . $user_lastname, 'user_email' => $user_email, 'display_name' => $user_firstname . ' ' . $user_lastname,
+				                     'nickname'      => $user_firstname, 'first_name' => $user_firstname, 'last_name' => $user_lastname, 'role' => $user_role, ];
 				if ( 0 < $user_id ) {
 					$userdata[ 'ID' ] = $user_id;
 					$user_id          = wp_update_user( $userdata );
@@ -421,10 +419,7 @@
 
 // update all users phone number in user meta
 	function syn_update_users_phone( $phone ) {
-		$users = get_users( [ 'exclude'       => [ 1 ],
-		                      'role__not_in'  => [ 'Administrator', ],
-		                      'login__not_in' => [ 'syntric' ],
-		                      'fields'        => [ 'ID', ], ] );
+		$users = get_users( [ 'exclude' => [ 1 ], 'role__not_in' => [ 'Administrator', ], 'login__not_in' => [ 'syntric' ], 'fields' => [ 'ID', ], ] );
 		if ( $users ) :
 			foreach ( $users as $key => $value ) {
 				update_field( 'syn_user_phone', $phone, 'user_' . $value );
@@ -436,10 +431,7 @@
 
 	// Reset corrupted wp_usermeta.wp_capabilities
 	function syn_reset_user_capabilities() {
-		$users = get_users( [ 'exclude'       => [ 1 ],
-		                      'role__not_in'  => [ 'Administrator', ],
-		                      'login__not_in' => [ 'syntric' ],
-		                      'fields'        => [ 'ID', ], ] );
+		$users = get_users( [ 'exclude' => [ 1 ], 'role__not_in' => [ 'Administrator', ], 'login__not_in' => [ 'syntric' ], 'fields' => [ 'ID', ], ] );
 		if ( count( $users ) ) {
 			foreach ( $users as $user ) {
 				$user_capabilities = get_user_meta( $user->ID, 'wp_capabilities' );
@@ -462,18 +454,12 @@
 // Set user password to email address...don't use this unless urgent
 	function syn_update_users_password() {
 		return;
-		$users = get_users( [ 'exclude'       => [ 1 ],
-		                      'role__not_in'  => [ 'Administrator', ],
-		                      'login__not_in' => [ 'syntric' ],
-		                      'fields'        => [ 'ID', 'user_email', ], ] );
+		$users = get_users( [ 'exclude' => [ 1 ], 'role__not_in' => [ 'Administrator', ], 'login__not_in' => [ 'syntric' ], 'fields' => [ 'ID', 'user_email', ], ] );
 		if ( count( $users ) ) {
 			foreach ( $users as $user ) {
 				$is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user->ID );
 				if ( $is_teacher ) {
-					$userdata = [
-						'ID'        => $user->ID,
-						'user_pass' => $user->user_email,
-					];
+					$userdata = [ 'ID' => $user->ID, 'user_pass' => $user->user_email, ];
 					// email and password change emails controlled via send_email_change_email filter in setup.php
 					wp_update_user( $userdata );
 				}
@@ -493,13 +479,7 @@
 				update_field( 'syn_contact_title', 'Contact Teacher', $teacher_page_id );
 				update_field( 'syn_contact_contact_type', 'person', $teacher_page_id );
 				update_field( 'syn_contact_person', $teacher_id, $teacher_page_id );
-				update_field( 'syn_contact_include_person_fields', [
-					'prefix',
-					'first_name',
-					'title',
-					'email',
-					'phone',
-				], $teacher_page_id );
+				update_field( 'syn_contact_include_person_fields', [ 'prefix', 'first_name', 'title', 'email', 'phone', ], $teacher_page_id );
 			}
 		}
 		$class_pages = syn_get_teachers_class_pages();
@@ -511,13 +491,7 @@
 				update_field( 'syn_contact_title', 'Contact Teacher', $class_page_id );
 				update_field( 'syn_contact_contact_type', 'person', $class_page_id );
 				update_field( 'syn_contact_person', $teacher_id, $class_page_id );
-				update_field( 'syn_contact_include_person_fields', [
-					'prefix',
-					'first_name',
-					'title',
-					'email',
-					'phone',
-				], $class_page_id );
+				update_field( 'syn_contact_include_person_fields', [ 'prefix', 'first_name', 'title', 'email', 'phone', ], $class_page_id );
 			}
 		}
 		update_field( 'syn_run_activate_contact_widgets', 0, 'option' );
@@ -530,12 +504,7 @@
 		$event_dupes = $wpdb->get_results( $sql, ARRAY_A );
 		$wpdb->flush();
 		foreach ( $event_dupes as $event_dupe ) {
-			$events      = get_posts( [
-				'numberposts' => - 1,
-				'post_type'   => 'syn_event',
-				'meta_key'    => 'syn_event_event_id',
-				'meta_value'  => $event_dupe[ 'meta_value' ],
-			] );
+			$events      = get_posts( [ 'numberposts' => - 1, 'post_type' => 'syn_event', 'meta_key' => 'syn_event_event_id', 'meta_value' => $event_dupe[ 'meta_value' ], ] );
 			$event_count = count( $events );
 			if ( 1 < $event_count ) {
 				$counter = 1;
@@ -630,4 +599,18 @@
 				// term_id, name, slug, term_taxonomy_id
 			}
 		}*/
+	}
+
+	/**
+	 * Initialize Syntric theme
+	 * */
+	function syn_init_theme() {
+		$theme      = wp_get_theme();
+		$theme_name = $theme->get( 'Name' );
+		if ( 'syntric' == strtolower( $theme_name ) ) {
+			syn_set_site_options();
+			syn_set_permalink_structure();
+			syn_set_default_post_categories();
+			syn_setup_primary_menu();
+		}
 	}

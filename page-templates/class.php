@@ -19,6 +19,9 @@
 	if ( have_posts() ) :
 		while( have_posts() ) : the_post();
 			if ( syn_has_content( $post->post_content ) ) :
+				////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				echo 'here';
+				var_dump( syn_get_class( $post->ID ) );
 				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post->ID . '">' . $lb;
 				the_content();
 				echo '</article>' . $lb;

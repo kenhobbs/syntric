@@ -12,9 +12,5 @@
 </head>
 <body <?php body_class(); ?>>
 <?php
-	if ( is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) ) :
-		syn_header();
-	else :
-		echo '<p>Framework not configured correctly</p>';
-	endif;
+	syn_header();
 

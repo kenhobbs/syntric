@@ -1,4 +1,5 @@
 <?php
+	/** Prohibit roles less than editor from editing pages other than their own (where they are the author) */
 	add_filter( 'pre_get_posts', 'syn_filter_author_pages_list' );
 	function syn_filter_author_pages_list( $query ) {
 		global $pagenow;

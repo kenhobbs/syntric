@@ -58,7 +58,7 @@
             "label": "Google Map:",
             "name": "syn_google_map_widget_map_id",
             "type": "select",
-            "instructions": "",
+			"instructions": "Map not listed? <a href=\"\/wp-admin\/admin.php?page=syntric-google-maps\" target=\"_blank\">Add a map<\/a>",
             "required": 1,
             "conditional_logic": [
                 [
@@ -74,15 +74,13 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-				"id-66808195-1164469976-1610569086": "Syntric Maps"
-            },
+			"choices": null,
             "default_value": [],
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
-            "ajax": 0,
             "return_format": "value",
+			"ajax": 0,
             "placeholder": ""
         }
     ],
@@ -104,7 +102,6 @@
         "permalink",
         "the_content",
         "excerpt",
-        "custom_fields",
         "discussion",
         "comments",
         "revisions",
@@ -119,5 +116,5 @@
     ],
     "active": 1,
     "description": "",
-	"modified": 1523096836
+	"modified": 1537197822
 }

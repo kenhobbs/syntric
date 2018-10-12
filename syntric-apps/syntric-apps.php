@@ -9,6 +9,12 @@
 	/**
 	 * Include Syntric App files
 	 */
+	if ( is_multisite() ) {
+		require get_template_directory() . '/syntric-apps/syntric-multisite.php';
+	}
+	if ( 'master.localhost' != $_SERVER[ 'HTTP_HOST' ] ) {
+		require get_template_directory() . '/syntric-apps/syntric-acf-fields.php';
+	}
 	require get_template_directory() . '/syntric-apps/syntric-acf.php';
 	require get_template_directory() . '/syntric-apps/syntric-admin-columns.php';
 	require get_template_directory() . '/syntric-apps/syntric-calendars.php';
@@ -16,7 +22,8 @@
 	require get_template_directory() . '/syntric-apps/syntric-microblogs.php';
 	require get_template_directory() . '/syntric-apps/syntric-google-maps.php';
 	require get_template_directory() . '/syntric-apps/syntric-jumbotrons.php';
-	require get_template_directory() . '/syntric-apps/syntric-media-enhancements.php';
+	//require get_template_directory() . '/syntric-apps/syntric-media-enhancements.php';
+	require get_template_directory() . '/syntric-apps/syntric-media.php';
 	require get_template_directory() . '/syntric-apps/syntric-organizations.php';
 	require get_template_directory() . '/syntric-apps/syntric-classes.php';
 	require get_template_directory() . '/syntric-apps/syntric-people.php';
@@ -209,6 +216,7 @@
 	 *
 	 * @return int (1/0 as booleans)
 	 */
+	// todo: fix this to account for user having multiple roles (eg multisite where user is superadmin, admin and editor)
 	function syn_current_user_can( $role ) {
 		$current_user = wp_get_current_user();
 		$syntric_user = syn_syntric_user();
@@ -218,19 +226,22 @@
 		$current_user_roles = $current_user->roles;
 		$role_count         = count( $current_user_roles );
 		$current_user_role  = ( $role_count ) ? $current_user_roles[ $role_count - 1 ] : 0;
-		if ( 'administrator' == $role && $current_user_role == 'administrator' ) {
+		if ( 'superadmin' == $role && $current_user_role == 'superadmin' ) {
 			return 1;
 		}
-		if ( 'editor' == $role && in_array( $current_user_role, [ 'editor', 'administrator', ] ) ) {
+		if ( 'administrator' == $role && in_array( $current_user_role, [ 'administrator', 'superadmin', ] ) ) {
 			return 1;
 		}
-		if ( 'author' == $role && in_array( $current_user_role, [ 'author', 'editor', 'administrator', ] ) ) {
+		if ( 'editor' == $role && in_array( $current_user_role, [ 'editor', 'administrator', 'superadmin', ] ) ) {
 			return 1;
 		}
-		if ( 'contributor' == $role && in_array( $current_user_role, [ 'contributor', 'author', 'editor', 'administrator', ] ) ) {
+		if ( 'author' == $role && in_array( $current_user_role, [ 'author', 'editor', 'administrator', 'superadmin', ] ) ) {
 			return 1;
 		}
-		if ( 'subscriber' == $role && in_array( $current_user_role, [ 'subscriber', 'contributor', 'author', 'editor', 'administrator', ] ) ) {
+		if ( 'contributor' == $role && in_array( $current_user_role, [ 'contributor', 'author', 'editor', 'administrator', 'superadmin', ] ) ) {
+			return 1;
+		}
+		if ( 'subscriber' == $role && in_array( $current_user_role, [ 'subscriber', 'contributor', 'author', 'editor', 'administrator', 'superadmin', ] ) ) {
 			return 1;
 		}
 
@@ -573,6 +584,7 @@
 			'index.php',
 			// Pages
 			'edit.php?post_type=page',
+			'edit.php?post_type=page_nestedpages',
 			'nestedpages', // Pages (Nested Pages)
 			// Posts
 			'edit.php',
@@ -852,6 +864,28 @@
 		return $terms;
 	}
 
+	/*************************************** Class *****************************************/
+	function syn_get_class_page_teacher( $post_id ) {
+		$teacher_id = get_field( 'syn_page_class_teacher', $post_id );
+		$teacher = syn_get_teacher( $teacher_id );
+		return $teacher;
+	}
+
+	function syn_get_class( $post_id ) {
+		$class_id = get_field( 'syn_page_class', $post_id );
+		$teacher_id = get_field( 'syn_page_class_teacher', $post_id );
+		$class = syn_get_teacher_class( $teacher_id, $class_id);
+		$teacher = syn_get_teacher( $teacher_id );
+		return [ 'class' => $class, 'teacher' => $teacher ];
+		//var_dump( $class );
+		//var_dump( $teacher );
+
+	}
+
+	/*function syn_get_class_page_class( $post_id ) {
+		$class_id = get_field(  'syn_page_class', $post_id );
+
+	}*/
 	/*************************************** Course *****************************************/
 	function syn_get_course( $course_id ) {
 		$courses = get_field( 'syn_courses', 'option' );
@@ -1787,7 +1821,7 @@
 		echo '<div id="fb-root"></div>';
 		echo '<div class="print-header print-header-name d-print-block" aria-hidden="true">' . get_bloginfo( 'name', 'display' ) . '</div>' . $lb;
 		echo '<a class="sr-only sr-only-focusable skip-to-content-link" href="#content">' . esc_html( 'Skip to content', 'syntric' ) . '</a>' . $lb;
-		if ( 'school_district' == syn_get_organization_type() ) {
+		if ( 'school_district' == syn_get_organization_type() && ( 'www.amadorcoe.org' == $_SERVER[ 'HTTP_HOST' ] || 'amadorcoe.org' == $_SERVER[ 'HTTP_HOST'] || 'www.acusd.org' == $_SERVER[ 'HTTP_HOST' ] || 'acusd.org' == $_SERVER[ 'HTTP_HOST'] ) ) {
 			echo '<header class="head">' . $lb;
 			echo $tab . '<div class="container-fluid">' . $lb;
 			echo $tab . $tab . '<div class="row">' . $lb;
@@ -1969,6 +2003,7 @@
 	 */
 	function syn_foot() {
 		$organization = get_field( 'syn_organization', 'option' );
+		$organization = ( $organization ) ? $organization : get_bloginfo( 'name' );
 		$lb           = syn_get_linebreak();
 		// 11111
 		$tab          = syn_get_tab();

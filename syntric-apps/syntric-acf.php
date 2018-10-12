@@ -132,10 +132,20 @@
 	add_filter( 'acf/prepare_field/name=syn_attachments', 'syn_hide_field' );
 	function syn_hide_field( $field ) {
 		global $post;
-		$page_template = syn_get_page_template( $post->ID );
-		if ( 'page' != $post->post_type ||
-		     ( 'page' == $post->post_type && in_array( $page_template, [ 'teachers' ] ) && ( in_array( $field[ '_name' ], [ 'syn_contact_active', 'syn_contact_title', 'syn_contact_contact_type', 'syn_contact_person', 'syn_contact_organization', 'syn_contact_default', 'syn_contact_include_person_fields', 'syn_contact_include_organization_fields' ] ) || 'field_59a5b62d88d98' == $field[ 'key' ] ) ) ) {
-			$field[ 'wrapper' ][ 'hidden' ] = 1;
+		if ( $post instanceof WP_Post ) {
+			$page_template = syn_get_page_template( $post->ID );
+			if ( 'page' != $post->post_type || ( 'page' == $post->post_type && in_array( $page_template, [ 'teachers' ] ) && ( in_array( $field[ '_name' ],
+							[ 'syn_contact_active',
+	                          'syn_contact_title',
+	                          'syn_contact_contact_type',
+	                          'syn_contact_person',
+	                          'syn_contact_organization',
+	                          'syn_contact_default',
+	                          'syn_contact_include_person_fields',
+	                          'syn_contact_include_organization_fields'
+							] ) || 'field_59a5b62d88d98' == $field[ 'key' ] ) ) ) {
+				$field[ 'wrapper' ][ 'hidden' ] = 1;
+			}
 		}
 	}
 
@@ -268,7 +278,9 @@
 				if ( isset( $user_id ) ) {
 					$user_is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user_id );
 					if ( $user_is_teacher && syn_current_user_can( 'administrator' ) ) {
+						$teacher_page                   = syn_get_teacher_page( $user_id );
 						$field[ 'wrapper' ][ 'hidden' ] = 0;
+						$field[ 'instructions' ]        = 'Go to <a href="/wp-admin/post.php?post=' . $teacher_page->ID . '&action=edit">' . $teacher_page->post_title . '</a> page';
 					}
 				}
 				/*if ( $user_is_teacher && syn_current_user_can( 'editor') ) {
@@ -465,7 +477,7 @@
 			} elseif ( isset( $_REQUEST[ 'user_id' ] ) ) {
 				$user_id = $_REQUEST[ 'user_id' ];
 			}
-			if ( isset( $user_id ) ) {
+			if ( isset( $user_id ) && ! syn_current_user_can( 'administrator' ) ) {
 				$user_is_teacher = get_field( 'syn_user_is_teacher', 'user_' . $user_id );
 				$teacher_page    = syn_get_teacher_page( $user_id );
 				if ( $user_is_teacher && $teacher_page instanceof WP_Post ) {
@@ -602,8 +614,8 @@
 			$choices = [];
 			if ( $microblogs ) {
 				foreach ( $microblogs as $microblog ) {
-					if ( property_exists( $microblog, 'term_id') ) {
-						slog($microblog);
+					if ( property_exists( $microblog, 'term_id' ) ) {
+						slog( $microblog );
 						$choices[ $microblog->term_id ] = $microblog->name . ' (' . $microblog->count . ')';
 					}
 				}
@@ -763,10 +775,7 @@
 	function syn_load_people( $field ) {
 		if ( 'select' == $field[ 'type' ] ) {
 			$choices = [];
-			$people  = get_users( [
-				'meta_key' => 'last_name',
-				'orderby'  => 'meta_value',
-			] );
+			$people  = get_users( [ 'meta_key' => 'last_name', 'orderby' => 'meta_value', ] );
 			if ( $people ) {
 				foreach ( $people as $person ) {
 					$choices[ $person->ID ] = $person->display_name . ' / ' . get_field( 'syn_user_title', 'user_' . $person->ID );
@@ -857,22 +866,8 @@
 
 	function syn_load_classes( $field ) {
 		if ( 'select' == $field[ 'type' ] ) {
-			$teacher_pages = get_posts( [
-				'numberposts'  => - 1,
-				'post_type'    => 'page',
-				'post_status'  => [
-					'publish',
-					'draft',
-					'future',
-					'pending',
-					'private',
-					'trash',
-				],
-				'meta_key'     => '_wp_page_template',
-				'meta_value'   => 'page-templates/teacher.php',
-				'meta_compare' => '=',
-				'fields'       => 'ids',
-			] );
+			$teacher_pages = get_posts( [ 'numberposts' => - 1, 'post_type' => 'page', 'post_status' => [ 'publish', 'draft', 'future', 'pending', 'private', 'trash', ],
+			                              'meta_key'    => '_wp_page_template', 'meta_value' => 'page-templates/teacher.php', 'meta_compare' => '=', 'fields' => 'ids', ] );
 			$choices       = [];
 			if ( $teacher_pages ) {
 				$courses = get_field( 'syn_courses', 'option' );
@@ -923,13 +918,9 @@
 					$page_template = syn_get_page_template( $calendar_widget_page->ID );
 					$calendar_id   = get_post_meta( $calendar_widget_page->ID, 'syn_calendar_id', 1 );
 					//$calendar_id                      = get_field( 'syn_calendar_id', $calendar_widget_page->ID );
-					$calendar_widgets[ $calendar_id ] = [
-						'post_id'       => $calendar_widget_page->ID,
-						'post_title'    => $calendar_widget_page->post_title,
-						'post_status'   => $calendar_widget_page->post_status,
-						'post_author'   => $calendar_widget_page->post_author,
-						'page_template' => $page_template,
-					];
+					$calendar_widgets[ $calendar_id ] = [ 'post_id'       => $calendar_widget_page->ID, 'post_title' => $calendar_widget_page->post_title,
+					                                      'post_status'   => $calendar_widget_page->post_status, 'post_author' => $calendar_widget_page->post_author,
+					                                      'page_template' => $page_template, ];
 				}
 			}
 			$calendars = syn_get_calendars();
@@ -1026,29 +1017,30 @@
 		return $field_obj[ 'key' ];
 	}
 
-	/**
-	 * Change the path where ACF will save the local JSON file
-	 */
-	add_filter( 'acf/settings/save_json', 'syn_acf_json_save_point' );
-	function syn_acf_json_save_point() {
-		$path = get_stylesheet_directory() . '/assets/json';
+	if ( 'master.localhost' == $_SERVER[ 'HTTP_HOST' ] ) {
+		/**
+		 * Change the path where ACF will save the local JSON file
+		 */
+		add_filter( 'acf/settings/save_json', 'syn_acf_json_save_point' );
+		function syn_acf_json_save_point() {
+			$path = get_stylesheet_directory() . '/assets/json';
 
-		return $path;
+			return $path;
+		}
+
+		/**
+		 * Specify path where ACF should look for local JSON files
+		 */
+		add_filter( 'acf/settings/load_json', 'syn_acf_json_load_point' );
+		function syn_acf_json_load_point( $paths ) {
+			// remove original path (optional)
+			unset( $paths[ 0 ] );
+			// append new path
+			$paths[] = get_stylesheet_directory() . '/assets/json';
+
+			return $paths;
+		}
 	}
-
-	/**
-	 * Specify path where ACF should look for local JSON files
-	 */
-	add_filter( 'acf/settings/load_json', 'syn_acf_json_load_point' );
-	function syn_acf_json_load_point( $paths ) {
-		// remove original path (optional)
-		unset( $paths[ 0 ] );
-		// append new path
-		$paths[] = get_stylesheet_directory() . '/assets/json';
-
-		return $paths;
-	}
-
 	/**
 	 * Save post actions for all saves of posts, pages, options, users, CPTs, etc - fires every time a post save has ACF fields included
 	 */
@@ -1328,10 +1320,7 @@
 							if ( $post_teacher == $user_id ) {
 								$teachers_page = syn_get_teachers_page();
 								if ( $teachers_page instanceof WP_Post ) {
-									wp_update_post( [
-										'ID'          => $post_id,
-										'post_parent' => $teachers_page->ID,
-									] );
+									wp_update_post( [ 'ID' => $post_id, 'post_parent' => $teachers_page->ID, ] );
 								}
 							}
 							break;
@@ -1340,10 +1329,7 @@
 							if ( $class_teacher == $user_id ) {
 								$teacher_page = syn_get_teacher_page( $user_id, 0 );
 								if ( $teacher_page instanceof WP_Post ) {
-									wp_update_post( [
-										'ID'          => $post_id,
-										'post_parent' => $teacher_page->ID,
-									] );
+									wp_update_post( [ 'ID' => $post_id, 'post_parent' => $teacher_page->ID, ] );
 								}
 							}
 							break;
@@ -1353,10 +1339,7 @@
 							$teacher_page = syn_get_teacher_page( $user_id, 0 );
 							if ( $teacher_page instanceof WP_Post ) {
 								//slog('inside checkpoint');
-								$res = wp_update_post( [
-									'ID'          => $post_id,
-									'post_parent' => $teacher_page->ID,
-								] );
+								$res = wp_update_post( [ 'ID' => $post_id, 'post_parent' => $teacher_page->ID, ] );
 								//slog( $res );
 							}
 							break;
@@ -1376,13 +1359,7 @@
 					$sync_back_months = get_field( 'syn_calendar_sync_back_months', $post_id );
 					$sync_back        = ( $sync_back ) ? (int) $sync_back : 0;
 					$sync_back_months = ( $sync_back_months ) ? (int) $sync_back_months : 1;
-					syn_sync_calendar( [
-						'post_id'          => $post_id,
-						'post_type'        => 'syn_calendar',
-						'force_sync'       => true,
-						'sync_back'        => $sync_back,
-						'sync_back_months' => $sync_back_months,
-					] );
+					syn_sync_calendar( [ 'post_id' => $post_id, 'post_type' => 'syn_calendar', 'force_sync' => true, 'sync_back' => $sync_back, 'sync_back_months' => $sync_back_months, ] );
 					update_field( 'syn_calendar_sync_now', 0, $post_id );
 					update_field( 'syn_calendar_sync_back', 0, $post_id );
 					update_field( 'syn_calendar_sync_back_months', '', $post_id );
@@ -1598,11 +1575,7 @@
 					syn_schedule_calendar_sync( $post_id );
 				}
 				if ( $sync_now ) {
-					syn_sync_calendar( [
-						'post_id'    => $post_id,
-						'post_type'  => 'syn_calendar',
-						'force_sync' => true,
-					] );
+					syn_sync_calendar( [ 'post_id' => $post_id, 'post_type' => 'syn_calendar', 'force_sync' => true, ] );
 					update_field( 'syn_calendar_sync_now', 0, $post_id );
 				}
 			}
@@ -1670,10 +1643,7 @@
 						if ( $post_teacher == $user_id ) {
 							$teachers_page = syn_get_teachers_page();
 							if ( $teachers_page instanceof WP_Post ) {
-								wp_update_post( [
-									'ID'          => $post_id,
-									'post_parent' => $teachers_page->ID,
-								] );
+								wp_update_post( [ 'ID' => $post_id, 'post_parent' => $teachers_page->ID, ] );
 							}
 						}
 						break;
@@ -1682,10 +1652,7 @@
 						if ( $class_teacher == $user_id ) {
 							$teacher_page = syn_get_teacher_page( $user_id, 0 );
 							if ( $teacher_page instanceof WP_Post ) {
-								wp_update_post( [
-									'ID'          => $post_id,
-									'post_parent' => $teacher_page->ID,
-								] );
+								wp_update_post( [ 'ID' => $post_id, 'post_parent' => $teacher_page->ID, ] );
 							}
 						}
 						break;
@@ -1695,10 +1662,7 @@
 						$teacher_page = syn_get_teacher_page( $user_id, 0 );
 						if ( $teacher_page instanceof WP_Post ) {
 							//slog('inside checkpoint');
-							$res = wp_update_post( [
-								'ID'          => $post_id,
-								'post_parent' => $teacher_page->ID,
-							] );
+							$res = wp_update_post( [ 'ID' => $post_id, 'post_parent' => $teacher_page->ID, ] );
 							//slog( $res );
 						}
 						break;
@@ -1847,10 +1811,8 @@
 					$term    = get_term_by( 'slug', $slugs, 'microblog' );
 					$term_id = $term->term_id;
 				} else {
-					$tax_term_ids = wp_insert_term( $titles, 'microblog', [
-						'slug'        => $slugs,
-						'description' => 'Microblog associated with <a href="/wp-admin/post.php?post=' . $post->ID . '&action=edit">' . $titles . '</a> page',
-					] );
+					$tax_term_ids = wp_insert_term( $titles, 'microblog', [ 'slug'        => $slugs,
+					                                                        'description' => 'Microblog associated with <a href="/wp-admin/post.php?post=' . $post->ID . '&action=edit">' . $titles . '</a> page', ] );
 					$term_id      = $tax_term_ids[ 'term_id' ];
 				}
 				if ( is_int( $cat_id ) && is_int( $term_id ) ) {

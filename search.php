@@ -3,7 +3,7 @@
 	$lb = syn_get_linebreak();
 	$tab = syn_get_tab();
 	$results = $wp_query->found_posts;
-	$results_label = ( 1 < $results ) ? ' results' : ' result';
+	$results_label = ( 1 < $results || 0 == $results ) ? ' results' : ' result';
 	echo '<div id="search-wrapper" class="content-wrapper ' . get_post_type() . '-wrapper">' . $lb;
 	echo '<div class="' . esc_html( get_theme_mod( 'syntric_container_type' ) ) . '">' . $lb;
 	echo '<div class="row">' . $lb;

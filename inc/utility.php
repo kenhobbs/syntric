@@ -93,7 +93,6 @@
 		return implode($pass); //turn the array into a string*/
 	}
 
-
 	function syn_sanitize_string_to_class( $string ) {
 		$class = strtolower( $string );
 		$class = str_replace( ' ', '-', $class );

@@ -54,7 +54,7 @@
                 ]
             ],
             "wrapper": {
-                "width": "25",
+				"width": "",
                 "class": "",
                 "id": ""
             },
@@ -81,7 +81,7 @@
                 ]
             ],
             "wrapper": {
-                "width": "25",
+				"width": "",
                 "class": "",
                 "id": ""
             },
@@ -91,10 +91,10 @@
             },
             "allow_null": 0,
             "other_choice": 0,
-            "save_other_choice": 0,
             "default_value": "",
             "layout": "vertical",
-            "return_format": "value"
+			"return_format": "value",
+			"save_other_choice": 0
         },
         {
             "key": "field_59af572228ee6",
@@ -118,7 +118,7 @@
                 ]
             ],
             "wrapper": {
-                "width": "25",
+				"width": "",
                 "class": "",
                 "id": ""
             },
@@ -127,8 +127,8 @@
             "allow_null": 1,
             "multiple": 0,
             "ui": 0,
-            "ajax": 0,
             "return_format": "value",
+			"ajax": 0,
             "placeholder": ""
         },
         {
@@ -153,7 +153,7 @@
                 ]
             ],
             "wrapper": {
-                "width": "25",
+				"width": "",
                 "class": "",
                 "id": ""
             },
@@ -162,8 +162,8 @@
             "allow_null": 1,
             "multiple": 0,
             "ui": 0,
+			"return_format": "value",
             "ajax": 0,
-            "return_format": "value",
             "placeholder": ""
         },
         {
@@ -188,7 +188,7 @@
                 ]
             ],
             "wrapper": {
-                "width": "25",
+				"width": "",
                 "class": "",
                 "id": ""
             },
@@ -200,7 +200,6 @@
                 "phone": "Phone"
             },
             "allow_custom": 0,
-            "save_custom": 0,
             "default_value": [
                 "prefix",
                 "first_name",
@@ -210,7 +209,8 @@
             ],
             "layout": "vertical",
             "toggle": 0,
-            "return_format": "array"
+			"return_format": "array",
+			"save_custom": 0
         },
         {
             "key": "field_59af572228b29",
@@ -234,7 +234,7 @@
                 ]
             ],
             "wrapper": {
-                "width": "25",
+				"width": "",
                 "class": "",
                 "id": ""
             },
@@ -247,7 +247,6 @@
                 "logo": "Logo"
             },
             "allow_custom": 0,
-            "save_custom": 0,
             "default_value": [
                 "address",
                 "city_state_zip_code",
@@ -259,7 +258,8 @@
             ],
             "layout": "vertical",
             "toggle": 0,
-            "return_format": "array"
+			"return_format": "array",
+			"save_custom": 0
         },
         {
             "key": "field_59b705bae7599",
@@ -1753,6 +1753,13 @@
                 "operator": "!=",
                 "value": "posts_page"
             }
+		],
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "post"
+			}
         ]
     ],
     "menu_order": 2,
@@ -1763,5 +1770,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1527696069
+	"modified": 1534711029
 }

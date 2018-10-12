@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /*$final-footer-border-top : #000;
 $final-footer-background : #000;
 $final-footer-text : #fff;
@@ -8476,16 +8475,16 @@ body.logged-in.admin-bar {
 		}*/ }
     body.logged-in.admin-bar #wpadminbar #wp-admin-bar-admin > .ab-item:before {
       font-family: FontAwesome !important;
-      content: "" !important; }
+		content: '\f0e4' !important; }
     body.logged-in.admin-bar #wpadminbar #wp-admin-bar-new > .ab-item:before {
       font-family: FontAwesome !important;
-      content: "" !important; }
+		content: '\f055' !important; }
     body.logged-in.admin-bar #wpadminbar #wp-admin-bar-edit > .ab-item:before {
       font-family: FontAwesome !important;
-      content: "" !important; }
+		content: '\f044' !important; }
     body.logged-in.admin-bar #wpadminbar #wp-admin-bar-my-account > .ab-item:before {
       font-family: FontAwesome !important;
-      content: "" !important; }
+		content: '\f2bc' !important; }
     @media print {
       body.logged-in.admin-bar #wpadminbar {
         display: none !important; } }
@@ -8525,7 +8524,8 @@ h4 {
   font-size: 1.125rem; }
 
 h5 {
-  font-size: 1rem; }
+	font-size: 1rem;
+	font-weight: bold; }
 
 h6 {
   font-size: 0.875rem; }
@@ -8627,9 +8627,9 @@ table {
       right: auto;
       padding: 0.5rem 1rem;
       margin: 0.5rem;
-      background-color: rgba(0, 0, 0, 0.75);
+		background-color: rgba(0, 0, 0, 0.8);
       color: #fff;
-      font-size: 0.8125rem; }
+		font-size: 0.875rem; }
     .gallery figure:hover > figcaption,
     .gallery figure:hover > .gallery-caption, .gallery .gallery-item:hover > figcaption,
     .gallery .gallery-item:hover > .gallery-caption {
@@ -8672,7 +8672,8 @@ blockquote.blockquote {
       padding: 0;
       font-size: 1rem;
       color: #fff; }
-      #primary-navbar .navbar-brand-toggler .navbar-brand img.brand-logo {
+
+#primary-navbar .navbar-brand-toggler .navbar-brand img {
         width: auto;
         margin-right: 0.5rem; }
       #primary-navbar .navbar-brand-toggler .navbar-brand > div {
@@ -9015,7 +9016,7 @@ body > .head {
 body > .foot {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #333;
+	background-color: #000;
   color: #fff;
   font-size: 0.8125rem; }
   body > .foot .non-discrimination {
@@ -9171,14 +9172,17 @@ aside.sidebar .widget {
   aside.sidebar .widget li > a {
     padding: 0.5rem 1rem;
     margin: 0; }
-  aside.sidebar .widget.widget_media_image .video, aside.sidebar .widget.widget_media_image .video-caption, aside.sidebar .widget.widget_media_gallery .video, aside.sidebar .widget.widget_media_gallery .video-caption, aside.sidebar .widget.syn-video-widget .video, aside.sidebar .widget.syn-video-widget .video-caption, aside.sidebar .widget.syn-embed-widget .video, aside.sidebar .widget.syn-embed-widget .video-caption, aside.sidebar .widget.syn-google-map-widget .video, aside.sidebar .widget.syn-google-map-widget .video-caption {
+
+aside.sidebar .widget.widget_media_image .video, aside.sidebar .widget.widget_media_image .video-caption, aside.sidebar .widget.widget_media_gallery .video, aside.sidebar .widget.widget_media_gallery .video-caption, aside.sidebar .widget.syn-video-widget .video, aside.sidebar .widget.syn-video-widget .video-caption, aside.sidebar .widget.syn-embed-widget .video, aside.sidebar .widget.syn-embed-widget .video-caption, aside.sidebar .widget.syn-google-map-widget .video, aside.sidebar .widget.syn-google-map-widget .video-caption, aside.sidebar .widget.widget_custom_html .video, aside.sidebar .widget.widget_custom_html .video-caption {
     border: none; }
-  aside.sidebar .widget.widget_media_image h2, aside.sidebar .widget.widget_media_gallery h2, aside.sidebar .widget.syn-video-widget h2, aside.sidebar .widget.syn-embed-widget h2, aside.sidebar .widget.syn-google-map-widget h2 {
+
+aside.sidebar .widget.widget_media_image h2, aside.sidebar .widget.widget_media_gallery h2, aside.sidebar .widget.syn-video-widget h2, aside.sidebar .widget.syn-embed-widget h2, aside.sidebar .widget.syn-google-map-widget h2, aside.sidebar .widget.widget_custom_html h2 {
     top: 0;
     left: 0; }
   aside.sidebar .widget.syn-video-widget:hover > h2,
   aside.sidebar .widget.syn-video-widget:focus > h2, aside.sidebar .widget.syn-embed-widget:hover > h2,
-  aside.sidebar .widget.syn-embed-widget:focus > h2 {
+  aside.sidebar .widget.syn-embed-widget:focus > h2, aside.sidebar .widget.widget_custom_html:hover > h2,
+  aside.sidebar .widget.widget_custom_html:focus > h2 {
     display: none; }
 
 aside.sidebar.main-left-sidebar .widget {
@@ -9274,12 +9278,14 @@ aside.sidebar.main-right-sidebar .widget:last-of-type {
   .main-bottom-sidebar .widget > table {
     padding-top: 0;
     padding-bottom: 0; }
-  .main-top-sidebar .widget.widget_media_image h2, .main-top-sidebar .widget.widget_media_gallery h2, .main-top-sidebar .widget.syn-video-widget h2, .main-top-sidebar .widget.syn-embed-widget h2, .main-top-sidebar .widget.syn-google-map-widget h2,
+
+.main-top-sidebar .widget.widget_media_image h2, .main-top-sidebar .widget.widget_media_gallery h2, .main-top-sidebar .widget.syn-video-widget h2, .main-top-sidebar .widget.syn-embed-widget h2, .main-top-sidebar .widget.syn-google-map-widget h2, .main-top-sidebar .widget.widget_custom_html h2,
   .main-bottom-sidebar .widget.widget_media_image h2,
   .main-bottom-sidebar .widget.widget_media_gallery h2,
   .main-bottom-sidebar .widget.syn-video-widget h2,
   .main-bottom-sidebar .widget.syn-embed-widget h2,
-  .main-bottom-sidebar .widget.syn-google-map-widget h2 {
+.main-bottom-sidebar .widget.syn-google-map-widget h2,
+.main-bottom-sidebar .widget.widget_custom_html h2 {
     position: static;
     padding: 0; }
 
@@ -9291,7 +9297,8 @@ body > .sidebar:nth-of-type(odd) {
       color: #fff; }
     body > .sidebar:nth-of-type(odd) .widget a {
       color: #fff; }
-    body > .sidebar:nth-of-type(odd) .widget.widget_media_image h2, body > .sidebar:nth-of-type(odd) .widget.syn-video-widget h2, body > .sidebar:nth-of-type(odd) .widget.syn-embed-widget h2, body > .sidebar:nth-of-type(odd) .widget.syn-google-map-widget h2 {
+
+body > .sidebar:nth-of-type(odd) .widget.widget_media_image h2, body > .sidebar:nth-of-type(odd) .widget.syn-video-widget h2, body > .sidebar:nth-of-type(odd) .widget.syn-embed-widget h2, body > .sidebar:nth-of-type(odd) .widget.syn-google-map-widget h2, body > .sidebar:nth-of-type(odd) .widget.widget_custom_html h2 {
       background-color: #060; }
 
 body > .sidebar:nth-of-type(even) {
@@ -9302,7 +9309,8 @@ body > .sidebar:nth-of-type(even) {
       color: #030; }
     body > .sidebar:nth-of-type(even) .widget a {
       color: #030; }
-    body > .sidebar:nth-of-type(even) .widget.widget_media_image h2, body > .sidebar:nth-of-type(even) .widget.syn-video-widget h2, body > .sidebar:nth-of-type(even) .widget.syn-embed-widget h2, body > .sidebar:nth-of-type(even) .widget.syn-google-map-widget h2 {
+
+body > .sidebar:nth-of-type(even) .widget.widget_media_image h2, body > .sidebar:nth-of-type(even) .widget.syn-video-widget h2, body > .sidebar:nth-of-type(even) .widget.syn-embed-widget h2, body > .sidebar:nth-of-type(even) .widget.syn-google-map-widget h2, body > .sidebar:nth-of-type(even) .widget.widget_custom_html h2 {
       background-color: #caae53; }
 
 body > .sidebar .widget {
@@ -9326,7 +9334,8 @@ body > .sidebar .widget {
     margin-right: 0; }
     body > .sidebar .widget > table thead {
       background-color: rgba(0, 0, 0, 0.1); }
-  body > .sidebar .widget.widget_media_image h2, body > .sidebar .widget.widget_media_image h3, body > .sidebar .widget.syn-video-widget h2, body > .sidebar .widget.syn-video-widget h3, body > .sidebar .widget.syn-embed-widget h2, body > .sidebar .widget.syn-embed-widget h3, body > .sidebar .widget.syn-google-map-widget h2, body > .sidebar .widget.syn-google-map-widget h3 {
+
+body > .sidebar .widget.widget_media_image h2, body > .sidebar .widget.widget_media_image h3, body > .sidebar .widget.syn-video-widget h2, body > .sidebar .widget.syn-video-widget h3, body > .sidebar .widget.syn-embed-widget h2, body > .sidebar .widget.syn-embed-widget h3, body > .sidebar .widget.syn-google-map-widget h2, body > .sidebar .widget.syn-google-map-widget h3, body > .sidebar .widget.widget_custom_html h2, body > .sidebar .widget.widget_custom_html h3 {
     top: 1.5rem;
     left: 1rem; }
   body > .sidebar .widget:nth-child(even) {
@@ -9349,7 +9358,8 @@ body > .sidebar .widget {
       text-decoration: none; }
     body > .sidebar .widget.syn-google-map-widget {
       min-height: 400px; }
-    body > .sidebar .widget.syn-video-widget h2, body > .sidebar .widget.syn-embed-widget h2, body > .sidebar .widget.syn-google-map-widget h2, body > .sidebar .widget.widget_media_image h2 {
+
+	body > .sidebar .widget.syn-video-widget h2, body > .sidebar .widget.syn-embed-widget h2, body > .sidebar .widget.syn-google-map-widget h2, body > .sidebar .widget.widget_media_image h2, body > .sidebar .widget.widget_custom_html h2 {
       top: 3.5rem;
       left: 2rem; } }
 
@@ -9426,7 +9436,8 @@ body > .sidebar .widget {
 .syn-google-map-widget,
 .syn-video-widget,
 .syn-embed-widget,
-.widget_media_image {
+.widget_media_image,
+.widget_custom_html {
   padding: 0 !important;
   position: relative; }
   .syn-google-map-widget h2, .syn-google-map-widget h3,
@@ -9435,7 +9446,9 @@ body > .sidebar .widget {
   .syn-embed-widget h2,
   .syn-embed-widget h3,
   .widget_media_image h2,
-  .widget_media_image h3 {
+  .widget_media_image h3,
+  .widget_custom_html h2,
+  .widget_custom_html h3 {
     z-index: 1000;
     position: absolute;
     display: block;

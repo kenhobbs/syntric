@@ -6,43 +6,47 @@
 		// Author
 		///////////////////////////////
 		$author_role = get_role( 'author' );
-		// pages
-		$author_role->add_cap( 'edit_pages' );
-		$author_role->add_cap( 'publish_pages' );
-		$author_role->add_cap( 'delete_pages' );
-		// published
-		$author_role->add_cap( 'edit_published_pages' );
-		$author_role->add_cap( 'delete_published_pages' );
-		// private
-		$author_role->add_cap( 'edit_private_pages' );
-		$author_role->add_cap( 'delete_private_pages' );
-		// posts
-		//$author_role->add_cap( 'edit_posts' );
-		//$author_role->add_cap( 'publish_posts' );
-		//$author_role->add_cap( 'delete_posts' );
-		// published
-		//$author_role->add_cap( 'edit_published_posts' );
-		//$author_role->add_cap( 'delete_published_posts' );
-		// private
-		$author_role->add_cap( 'edit_private_posts' );
-		$author_role->add_cap( 'delete_private_posts' );
+		if ( $author_role instanceof WP_Role ) {
+			// pages
+			$author_role->add_cap( 'edit_pages' );
+			$author_role->add_cap( 'publish_pages' );
+			$author_role->add_cap( 'delete_pages' );
+			// published
+			$author_role->add_cap( 'edit_published_pages' );
+			$author_role->add_cap( 'delete_published_pages' );
+			// private
+			$author_role->add_cap( 'edit_private_pages' );
+			$author_role->add_cap( 'delete_private_pages' );
+			// posts
+			//$author_role->add_cap( 'edit_posts' );
+			//$author_role->add_cap( 'publish_posts' );
+			//$author_role->add_cap( 'delete_posts' );
+			// published
+			//$author_role->add_cap( 'edit_published_posts' );
+			//$author_role->add_cap( 'delete_published_posts' );
+			// private
+			$author_role->add_cap( 'edit_private_posts' );
+			$author_role->add_cap( 'delete_private_posts' );
+		}
 		///////////////////////////////
 		// Editor
 		///////////////////////////////
 		$editor_role = get_role( 'editor' );
-		// users
-		$editor_role->add_cap( 'list_users' );
-		$editor_role->add_cap( 'create_users' );
-		$editor_role->add_cap( 'edit_users' );
-		$editor_role->add_cap( 'delete_users' );
-		$editor_role->add_cap( 'customize' );
-		// plugins
-		$editor_role->add_cap( 'update_plugins' );
-		$editor_role->add_cap( 'edit_plugins' );
-		$editor_role->remove_cap( 'remove_users' );
-		//$editor_role->remove_cap( 'promote_users' );
-		//$editor_role->remove_cap( 'manage_categories' );
-		$editor_role->add_cap( 'manage_categories' );
+		if ( $editor_role instanceof WP_Role ) {
+			// users
+			$editor_role->add_cap( 'list_users' );
+			$editor_role->add_cap( 'create_users' );
+			$editor_role->add_cap( 'edit_users' );
+			$editor_role->add_cap( 'delete_users' );
+			$editor_role->add_cap( 'customize' );
+			// plugins
+			$editor_role->add_cap( 'update_plugins' );
+			$editor_role->add_cap( 'edit_plugins' );
+			$editor_role->remove_cap( 'remove_users' );
+			//$editor_role->remove_cap( 'promote_users' );
+			//$editor_role->remove_cap( 'manage_categories' );
+			$editor_role->add_cap( 'manage_categories' );
+		}
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		/// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		/// ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,39 +62,38 @@
 
 // actions
 	/**
-	 * Protect ID #1 and administrator accounts from other users
+	 * Protect Syntric admin account from other users
 	 */
-	add_action( 'pre_user_query', 'syn_hide_administrators' );
-	function syn_hide_administrators( $query ) {
-		if ( is_admin() && is_user_logged_in() ) {
+	// todo: clean this and editable_roles up to protect only Syntric admin/superadmin users
+	if ( ( is_admin() || is_network_admin() ) && is_user_logged_in() && ! syn_syntric_user() ) {
+		add_action( 'pre_user_query', 'syn_hide_administrators' );
+		function syn_hide_administrators( $query ) {
 			global $wpdb;
-			$current_user = wp_get_current_user();
-			// hide user ID #1 from everyone else
-			if ( $current_user->roles[ 0 ] == 'administrator' && $current_user->ID != 1 ) {
+			$query->query_where = str_replace( 'WHERE 1=1', "WHERE 1=1 AND {$wpdb->users}.email NOT LIKE '%@syntric.com'", $query->query_where );
+			/*//$current_user = wp_get_current_user();
+			//hide user ID #1 from everyone else && $current_user->ID != 1
+			if ( $current_user->roles[ 0 ] == 'administrator' || $current_user->roles[ 0 ] == 'superadmin' ) {
 				$query->query_where = str_replace( 'WHERE 1=1', "WHERE 1=1 AND {$wpdb->users}.ID<>1", $query->query_where );
 				// hide administrators from non-administrators
-			} elseif ( $current_user->roles[ 0 ] != 'administrator' ) {
-				$query->query_where = str_replace( 'WHERE 1=1', "WHERE 1=1 AND {$wpdb->users}.ID IN (SELECT {$wpdb->usermeta}.user_id FROM $wpdb->usermeta	WHERE {$wpdb->usermeta}.meta_key = '{$wpdb->prefix}capabilities' AND {$wpdb->usermeta}.meta_value NOT LIKE '%administrator%')", $query->query_where );
-			}
+			} elseif ( $current_user->roles[ 0 ] != 'administrator' && $current_user->roles[ 0 ] != 'superadmin' ) {
+				$query->query_where = str_replace( 'WHERE 1=1', "WHERE 1=1 AND {$wpdb->users}.ID IN (SELECT {$wpdb->usermeta}.user_id FROM $wpdb->usermeta	WHERE {$wpdb->usermeta}.meta_key = '{$wpdb->prefix}capabilities' AND {$wpdb->usermeta}.meta_value NOT LIKE '%administrator%' AND {$wpdb->usermeta}.meta_value NOT LIKE '%superadmin%')", $query->query_where );
+			}*/
 		}
 	}
 
-	add_filter( 'editable_roles', 'syn_editable_roles', 20 );
-	function syn_editable_roles( $roles ) {
-		$current_user = wp_get_current_user();
-		if ( $current_user->roles[ 0 ] != 'administrator' ) {
+	if ( ( is_admin() || is_network_admin() ) && is_user_logged_in() && ! syn_syntric_user() ) {
+		add_filter( 'editable_roles', 'syn_editable_roles', 20 );
+		function syn_editable_roles( $roles ) {
 			unset( $roles[ 'administrator' ] );
+			unset( $roles[ 'superadmin' ] );
+
+			return $roles;
 		}
-
-		return $roles;
 	}
-
 // functions
 	// todo: move to syntric-users.php
 	function syn_list_people() {
-		$people = get_users( [ 'exclude'       => [ 1 ],
-		                       'role__not_in'  => [ 'Administrator', ],
-		                       'login__not_in' => [ 'syntric' ], ] );
+		$people = get_users( [ 'exclude' => [ 1 ], 'role__not_in' => [ 'Administrator', ], 'login__not_in' => [ 'syntric' ], ] );
 		if ( $people ) :
 			$organization_is_school = syn_organization_is_school();
 			$prefix_field           = get_field_object( 'field_5a6570eff3d03' );

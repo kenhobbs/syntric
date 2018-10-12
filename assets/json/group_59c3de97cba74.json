@@ -164,6 +164,11 @@
 						"field": "field_59c3de980525e",
 						"operator": "==",
 						"value": "1"
+					},
+					{
+						"field": "field_59f7a2d72ed22",
+						"operator": "!=",
+						"value": ""
 					}
 				]
 			],
@@ -194,5 +199,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-	"modified": 1523887622
+	"modified": 1534737733
 }

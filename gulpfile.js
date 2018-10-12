@@ -113,6 +113,32 @@ var dirs = {
  *  }
  */
 var domainMappings = {
+	/*'amadorcoe.syntric.com.min': 'amadorcoe.syntric.school.min',
+	'amadoradulted.syntric.com.min': 'amadoradulted.syntric.school.min',
+	'amadorhs.syntric.com.min': 'amadorhs.syntric.school.min',
+	'argonauths.syntric.com.min': 'argonauths.syntric.school.min',
+	'ionejr.syntric.com.min': 'ionejr.syntric.school.min',
+	'jacksonjr.syntric.com.min': 'jacksonjr.syntric.school.min',
+	'shenandoah.syntric.com.min': 'shenandoah.syntric.school.min',
+	'ione.syntric.com.min': 'ioneel.syntric.school.min',
+	'jackson.syntric.com.min': 'jacksonel.syntric.school.min',
+	'pinegrove.syntric.com.min': 'pinegroveel.syntric.school.min',
+	'pioneer.syntric.com.min': 'pioneerel.syntric.school.min',
+	'plymouth.syntric.com.min': 'plymouthel.syntric.school.min',
+	'suttercreek.syntric.com.min': 'suttercreekel.syntric.school.min',
+	'northstar.syntric.com.min': 'northstar.syntric.school.min',
+	'independent.syntric.com.min': 'independent.syntric.school.min',
+	'community.syntric.com.min': 'community.syntric.school.min',
+	'escalonusd.syntric.com.min': 'escalonusd.syntric.school.min',
+	'escalonhs.syntric.com.min': 'escalonhigh.syntric.school.min',
+	'elportal.syntric.com.min': 'elportalmiddle.syntric.school.min',
+	'collegeville.syntric.com.min': 'collegevilleschool.syntric.school.min',
+	'dent.syntric.com.min': 'dentschool.syntric.school.min',
+	'farmington.syntric.com.min': 'farmingtonschool.syntric.school.min',
+	'vanallen.syntric.com.min': 'vanallenschool.syntric.school.min',
+	'eca.syntric.com.min': 'escaloncharteracademy.syntric.school.min',
+	'vista.syntric.com.min': 'vistahighschool.syntric.school.min',*/
+	
 	'amadorcoe.syntric.com.min': 'www.amadorcoe.org.min',
 	'amadoradulted.syntric.com.min': 'www.amadoradulted.org.min',
 	'amadorhs.syntric.com.min': 'amadorhs.amadorcoe.org.min',
@@ -138,8 +164,18 @@ var domainMappings = {
 	'vanallen.syntric.com.min': 'www.vanallenschool.org.min',
 	'eca.syntric.com.min': 'www.escaloncharteracademy.org.min',
 	'vista.syntric.com.min': 'www.vistahighschool.org.min',
+	
 	'master.localhost.min': 'master.syntric.com.min',
-	'syntric.localhost.min': 'www.syntric.com.min'
+	'syntric.localhost.min': 'www.syntric.com.min',
+	'blue': 'blue.min',
+	'purple': 'purple.min',
+	'green': 'green.min',
+	'orange': 'orange.min',
+	'grey': 'grey.min',
+	'silver': 'silver.min',
+	'teal': 'teal.min',
+	'black': 'black.min',
+	'white': 'white.min'
 };
 // Gulp watcher args
 var watcherArgs = {
@@ -163,7 +199,7 @@ gulp.task('watch', function () {
 });
 
 gulp.task('compileSASS', function () {
-	return gulp.src([dirs.src_sass + '*.localhost.scss', dirs.src_sass + '*.syntric.com.scss'])
+	return gulp.src([dirs.src_sass + '*.scss', '!' + dirs.src_sass + '*-admin.scss'])
 	// cache files so they are only compiled if they have changed
 	.pipe(cached('sassFiles'))
 	.pipe(plumber())
@@ -182,9 +218,9 @@ gulp.task('compileSASS', function () {
 	.pipe(plumber())
 
 	.pipe(rename(function (path) {
-		console.log(path);
+		//console.log(path);
 		path.basename = domainMappings[path.basename];
-		console.log(path);
+		console.log(path.basename);
 	}))
 	.pipe(gulp.dest(dirs.dist_css))
 	.pipe(plumber())
