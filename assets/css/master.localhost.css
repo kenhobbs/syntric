@@ -9861,3 +9861,8 @@ body > .sidebar .widget.widget_media_image h2, body > .sidebar .widget.widget_me
   width: 100%;
   margin-left: auto;
   margin-right: auto; }
+
+.editor-bar {
+	margin: 0.5rem 15px 0;
+	padding: 0.5rem;
+	background-color: #000; }

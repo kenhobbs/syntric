@@ -1752,6 +1752,11 @@
                 "param": "page_type",
                 "operator": "!=",
                 "value": "posts_page"
+			},
+			{
+				"param": "post_template",
+				"operator": "!=",
+				"value": "page-templates\/schedules.php"
             }
 		],
 		[
@@ -1770,5 +1775,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-	"modified": 1534711029
+	"modified": 1540925221
 }

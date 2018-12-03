@@ -182,6 +182,13 @@
                 "operator": "==",
                 "value": "page-templates\/teacher.php"
             }
+		],
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "syntric-clonables"
+			}
         ]
     ],
     "menu_order": 1,
@@ -192,5 +199,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1524673962
+	"modified": 1540007641
 }

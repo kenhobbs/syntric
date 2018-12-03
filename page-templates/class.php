@@ -7,8 +7,9 @@
 	 * @package syntric
 	 */
 	get_header();
-	$lb = syn_get_linebreak();
-	$tab = syn_get_tab();
+	$lb    = syn_get_linebreak();
+	$tab   = syn_get_tab();
+	$class = syn_get_class();
 	echo '<div id="class-wrapper" class="content-wrapper ' . get_post_type() . '-wrapper">' . $lb;
 	echo '<div class="' . esc_html( get_theme_mod( 'syntric_container_type' ) ) . '">' . $lb;
 	echo '<div class="row">' . $lb;
@@ -19,9 +20,11 @@
 	if ( have_posts() ) :
 		while( have_posts() ) : the_post();
 			if ( syn_has_content( $post->post_content ) ) :
+				var_dump( 'class on class.php' );
+				var_dump( $class );
 				////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-				echo 'here';
-				var_dump( syn_get_class( $post->ID ) );
+				//echo 'Class object follows...';
+				//var_dump( syn_get_class( $post->ID ) );
 				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post->ID . '">' . $lb;
 				the_content();
 				echo '</article>' . $lb;

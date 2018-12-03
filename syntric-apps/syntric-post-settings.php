@@ -84,9 +84,9 @@
 						$first_name   = $teacher_meta[ 'first_name' ][ 0 ];
 						$last_name    = $teacher_meta[ 'last_name' ][ 0 ];
 						$class_id     = get_field( 'syn_page_class', $post_id );
-						var_dump( $class_id );
+						//var_dump( $class_id );
 						$class        = syn_get_teacher_class( $teacher->ID, $class_id );
-						var_dump( $class );
+						//var_dump( $class );
 						$badge_text = $first_name . ' ' . $last_name;
 						break;
 					/*case 'course':

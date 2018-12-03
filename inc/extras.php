@@ -29,6 +29,9 @@
 		if ( ! is_singular() ) {
 			$classes[] = 'hfeed';
 		}
+		//$classes[] = 'wp-admin wp-core-ui js jetpack-connected block-editor-page gutenberg-editor-page wp-embed-responsive';
+		//wp-admin wp-core-ui js jetpack-connected block-editor-page gutenberg-editor-page wp-embed-responsive post-php auto-fold admin-bar post-type-post branch-4-9 version-4-9-8 admin-color-fresh locale-en-us multisite customize-support svg
+
 
 		return $classes;
 	}

@@ -160,6 +160,7 @@
 	add_filter( 'acf/prepare_field/name=syn_page_department', 'syn_acf_prepare_fields' );
 	add_filter( 'acf/prepare_field/name=syn_page_course', 'syn_acf_prepare_fields' );
 	// teacher classes ------------------------------------------------------Check these too, should the use keys?
+	add_filter( 'acf/prepare_field/name=teacher', 'syn_acf_prepare_fields' );
 	add_filter( 'acf/prepare_field/name=term', 'syn_acf_prepare_fields' );
 	add_filter( 'acf/prepare_field/name=period', 'syn_acf_prepare_fields' );
 	add_filter( 'acf/prepare_field/name=course', 'syn_acf_prepare_fields' );
@@ -322,6 +323,12 @@
 
 					}
 				}*/
+				break;
+			case 'teacher' :
+				if ( $field[ 'value' ] ) {
+					$field[ 'disabled' ] = 1;
+				}
+				$field = syn_load_teachers( $field );
 				break;
 			case 'term' :
 				if ( $field[ 'value' ] ) {

@@ -21,7 +21,7 @@
 				$name     = $image[ 1 ] . 'x' . $image[ 2 ];
 				$images[] = '<a href="' . $image[ 0 ] . '">' . $name . '</a>';
 			}
-			var_dump( $images );
+			//var_dump( $images );
 			echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post->ID . '">' . $lb;
 			echo wp_get_attachment_image( get_the_ID(), 'medium_large' );
 			echo '<div class="mt-3">';

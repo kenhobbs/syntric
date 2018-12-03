@@ -20,6 +20,7 @@
 			require get_template_directory() . '/inc/templates.php';
 			require get_template_directory() . '/inc/utility.php';
 			require get_template_directory() . '/syntric-apps/syntric-apps.php';
+			//require get_template_directory() . '/syntric-apps/syntric-frontenberg.php';
 		//} else {
 			// If ACF isn't loaded, present a "not configured" screen
 			//echo '<div style="text-align: center">';

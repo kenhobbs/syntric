@@ -11496,3 +11496,7 @@ body > .sidebar .widget:nth-child(even) {
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto; }
+
+.editor-bar {
+	margin: 0.5rem 0;
+	padding: 0.5rem; }
