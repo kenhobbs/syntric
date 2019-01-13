@@ -111,6 +111,7 @@
 				// we are now filtered down to the only active and relevant sidebars for this call
 				if ( ! $sidebar_filters || syn_process_filters( $sidebar_filters, $post ) ) {
 					$active_widgets = syn_sidebar_active_widgets( $sidebar_id, $post->ID );
+					//var_dump( $active_widgets );
 					if ( count( $active_widgets ) ) {
 						$widgets_classes = [];
 						foreach ( $active_widgets as $widget ) {
@@ -164,18 +165,55 @@
 		$sidebars_widgets = get_option( 'sidebars_widgets', [] );
 		$sidebar_widgets  = $sidebars_widgets[ $sidebar_id ];
 		$active_widgets   = [];
+		//var_dump( $sidebar_widgets );
 		foreach ( $sidebar_widgets as $widget ) {
 			$widget_array = explode( '-', $widget );
-			if ( $widget_array[ 0 ] == 'syn' || 'nav_menu' == $widget ) {
-				array_pop( $widget_array );
-				$widget_name = implode( '_', $widget_array );
+			// @ this point $widget is the base_id from the widget class (syn-nav-menu-widget, syn-categories-menu-widget, syn-calendars-menu-widget, etc
+			// todo: why/what is the next conditional doing with 'nav_menu' == $widget?? ---> || 'nav_menu' == $widget
+			// process Syntric widgets...
+			if ( 'syn' == $widget_array[ 0 ] ) {
+				/*if ( 'nav' == $widget_array[ 1 ] && 'menu' == $widget_array[ 2 ] && ! syn_nav_menu_children_count( $post_id ) ) {
+					return $active_widgets;
+				}*/
+				array_pop( $widget_array ); // remove the integer at the end of the widget name eg - syn-nav-menu-widget-2 where the 2 is removed from the array
+				$widget_name = implode( '_', $widget_array ); // $widget name is the name of the widget minus the integer eg syn-nav-menu, syn-upcoming-events, etc
 				$dynamic     = get_field( $widget_name . '_dynamic', 'widget_' . $widget );
 				if ( $dynamic ) {
-					array_pop( $widget_array );
+					array_pop( $widget_array ); // remove "widget" from end of $widget_id/$widget_name...syn_nav_menu
 					$widget_fieldname = implode( '_', $widget_array );
+					$widget_active    = get_field( $widget_fieldname . '_active', $post_id );
+					if ( ! $widget_active ) {
+						continue;
+					}
+					switch ( $widget_fieldname ) :
+						case 'syn_nav_menu':
+							if ( ! syn_nav_menu_children_count( $post_id ) ) {
+								continue;
+							}
+							break;
+						/*case 'syn_categories_menu':
+							if ( ! syn_categories_menu_children_count( $post_id ) ) {
+								continue;
+							}
+							break;
+						case 'syn_calendars_menu':
+							if ( ! syn_calendars_menu_children_count( $post_id ) ) {
+								continue;
+							}
+							break;
+						case 'syn_microblogs_menu':
+							if ( ! syn_microblogs_menu_children_count( $post_id ) ) {
+								continue;
+							}
+							break;*/
+						case 'syn_upcoming_events':
+							break;
+					endswitch;
+
+
 					// todo: this is stupid...change syn_calendar in page widgets to syn_upcoming_events
 					if ( 'syn_upcoming_events' == $widget_fieldname ) {
-						$widget_active = get_field( 'syn_calendar_active', $post_id );
+
 					} else {
 						$widget_active = get_field( $widget_fieldname . '_active', $post_id );
 					}
@@ -185,11 +223,21 @@
 					}
 				} else {
 					$active_widgets[] = $widget;
-				}
-			} else {
-				// handle WP widgets here
-				$active_widgets[] = $widget;
+				} //&& syn_categories_menu_cats_count()
 			}
+			/*if ( 'syn' == $widget_array[0] && 'categories' == $widget_array[1] && 'menu' == $widget_array[2] && 0 != syn_categories_menu_cats_count() ) {
+				echo ' categories menu';
+				echo ' cats count' .  syn_categories_menu_cats_count();
+				var_dump( $active_widgets );
+				return $active_widgets;
+			}
+			if ( 'syn' == $widget_array[0] && 'calendars' == $widget_array[1] && 'menu' == $widget_array[2] && ! syn_calendars_menu_cals_count()  ) {
+				echo ' calendars_menu';
+				return $active_widgets;
+			}
+			// handle WP widgets here
+			echo ' default';*/
+			$active_widgets[] = $widget;
 		}
 
 		return $active_widgets;

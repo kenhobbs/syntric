@@ -32,13 +32,17 @@
 			}
 			$nav_menu = get_field( 'syn_nav_menu_widget_menu', 'widget_' . $args[ 'widget_id' ] );
 			if ( $nav_menu ) :
-				$lb  = syn_get_linebreak();
-				$tab = syn_get_tab();
+				$ancestor_id = syn_get_top_ancestor_id( $post->ID );
+				if ( $post->ID == $ancestor_id && ! syn_nav_menu_children_count( $post->ID ) ) {
+					return;
+				}
+				$ancestor = get_post( $ancestor_id );
 				//$sidebar     = syn_widget_sidebar( $args[ 'widget_id' ] );
+				$depth = get_field( 'syn_nav_menu_widget_depth', 'widget_' . $args[ 'widget_id' ] );
+				// don't output a nav menu for a top level nav with no children
 				$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
-				$depth         = get_field( 'syn_nav_menu_widget_depth', 'widget_' . $args[ 'widget_id' ] );
-				$ancestor_id   = syn_get_top_ancestor_id( $post->ID );
-				$ancestor      = get_post( $ancestor_id );
+				$lb            = syn_get_linebreak();
+				$tab           = syn_get_tab();
 				echo $lb;
 				echo $args[ 'before_widget' ] . $lb;
 				echo $args[ 'before_title' ] . $ancestor->post_title . '<span class="sr-only"> section navigiation</span>' . $args[ 'after_title' ] . $lb;

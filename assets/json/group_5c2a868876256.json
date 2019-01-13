@@ -1,0 +1,117 @@
+{
+	"key": "group_5c2a868876256",
+	"title": "Widget: Google Form",
+	"fields": [
+		{
+			"key": "field_5c2a8688869fc",
+			"label": "Dynamic:",
+			"name": "syn_form_widget_dynamic",
+			"type": "radio",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"choices": [
+				"No",
+				"Yes"
+			],
+			"allow_null": 0,
+			"other_choice": 0,
+			"default_value": 0,
+			"layout": "horizontal",
+			"return_format": "value",
+			"save_other_choice": 0
+		},
+		{
+			"key": "field_5c2a868886dd9",
+			"label": "Title:",
+			"name": "syn_form_widget_title",
+			"type": "text",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c2a8688869fc",
+						"operator": "==",
+						"value": "0"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5c2a868887946",
+			"label": "Form ID:",
+			"name": "syn_form_widget_id",
+			"type": "text",
+			"instructions": "Enter the Google Form ID which is a string of characters in the URL of the form hosted on Google.",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c2a8688869fc",
+						"operator": "==",
+						"value": "0"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": 20
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "widget",
+				"operator": "==",
+				"value": "custom_html"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": [
+		"permalink",
+		"the_content",
+		"excerpt",
+		"discussion",
+		"comments",
+		"revisions",
+		"slug",
+		"author",
+		"format",
+		"page_attributes",
+		"featured_image",
+		"categories",
+		"tags",
+		"send-trackbacks"
+	],
+	"active": 1,
+	"description": "",
+	"modified": 1546320532
+}

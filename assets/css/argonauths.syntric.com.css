@@ -8654,6 +8654,66 @@ blockquote.blockquote {
     font-size: inherit;
     font-style: normal; }
 
+body > .head {
+	background-color: #333;
+	color: #fff; }
+
+body > .head a {
+	padding: 0.25rem 0.5rem;
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	color: #fff;
+	border: solid 1px transparent;
+	background-color: transparent; }
+
+body > .head a:hover {
+	text-decoration: none;
+	background-color: transparent; }
+
+body > .head a .fa {
+	font-size: 1rem;
+	vertical-align: text-bottom;
+	margin: auto 0.25rem; }
+
+body > .head .portal-links {
+	float: right;
+	display: flex;
+	padding: 0.25rem 0; }
+
+body > .head .portal-links > a:not(:last-child) {
+	margin-right: 0.25rem; }
+
+@media print {
+	body > .head {
+		display: none !important; }
+}
+
+body > .foot {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	background-color: #000;
+	color: #fff;
+	font-size: 0.8125rem; }
+
+body > .foot .non-discrimination {
+	margin-bottom: 1rem; }
+
+body > .foot .login-bug {
+	display: flex;
+	float: right; }
+
+body > .foot .login-bug .login-button {
+	margin-right: 1rem; }
+
+body > .foot .login-bug .bug {
+	color: #fff;
+	background-color: transparent; }
+
+@media print {
+	body > .foot {
+		display: none !important; }
+}
+
 #primary-navbar {
   display: flex;
   padding: 0;
@@ -8985,53 +9045,6 @@ main.content {
         display: none !important; } }
   main.content table {
     background-color: #f8f9fa; }
-
-body > .head {
-  background-color: #333;
-  color: #fff; }
-  body > .head a {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    color: #fff;
-    border: solid 1px transparent;
-    background-color: transparent; }
-    body > .head a:hover {
-      text-decoration: none;
-      background-color: transparent; }
-    body > .head a .fa {
-      font-size: 1rem;
-      vertical-align: text-bottom;
-      margin: auto 0.25rem; }
-  body > .head .portal-links {
-    float: right;
-    display: flex;
-    padding: 0.25rem 0; }
-    body > .head .portal-links > a:not(:last-child) {
-      margin-right: 0.25rem; }
-  @media print {
-    body > .head {
-      display: none !important; } }
-
-body > .foot {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-	background-color: #000;
-  color: #fff;
-  font-size: 0.8125rem; }
-  body > .foot .non-discrimination {
-    margin-bottom: 1rem; }
-  body > .foot .login-bug {
-    display: flex;
-    float: right; }
-    body > .foot .login-bug .login-button {
-      margin-right: 1rem; }
-    body > .foot .login-bug .bug {
-      color: #fff;
-      background-color: transparent; }
-  @media print {
-    body > .foot {
-      display: none !important; } }
 
 .comments-wrapper {
   background-color: #eee;
@@ -9371,7 +9384,6 @@ body > .sidebar .widget.widget_media_image h2, body > .sidebar .widget.widget_me
   width: initial; }
 
 .widget.widget_calendar caption {
-  font-size: 0.8125rem;
   padding: 0;
   margin: 0 0 0.5rem;
   display: none; }
@@ -9438,7 +9450,7 @@ body > .sidebar .widget.widget_media_image h2, body > .sidebar .widget.widget_me
 .syn-embed-widget,
 .widget_media_image,
 .widget_custom_html {
-  padding: 0 !important;
+	padding: 0;
   position: relative; }
   .syn-google-map-widget h2, .syn-google-map-widget h3,
   .syn-video-widget h2,
@@ -9557,14 +9569,10 @@ body > .sidebar .widget.widget_media_image h2, body > .sidebar .widget.widget_me
 .syn-embed-widget .video-caption {
   overflow: auto;
   padding: 1rem !important;
-  font-size: 0.8125rem;
   border-top: none !important; }
   .widget.syn-video-widget .video-caption p:last-of-type,
   .syn-embed-widget .video-caption p:last-of-type {
     margin-bottom: 0; }
-  .widget.syn-video-widget .video-caption figcaption,
-  .syn-embed-widget .video-caption figcaption {
-    font-size: 0.8125rem; }
 
 @media print {
   .widget.syn-video-widget,
@@ -9862,6 +9870,7 @@ body > .sidebar .widget.widget_media_image h2, body > .sidebar .widget.widget_me
   margin-left: auto;
   margin-right: auto; }
 
-.editor-bar {
-	margin: 0.5rem 0;
-	padding: 0.5rem; }
+.editor-toolbar {
+	margin: 0.5rem 15px 0;
+	padding: 0.5rem;
+	background-color: #000; }

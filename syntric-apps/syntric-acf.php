@@ -170,6 +170,7 @@
 	add_filter( 'acf/prepare_field/name=syn_contact_title', 'syn_acf_prepare_fields' );
 	//add_filter( 'acf/prepare_field/name=syn_contact_default', 'syn_acf_prepare_fields' );
 	add_filter( 'acf/prepare_field/name=syn_contact_person', 'syn_acf_prepare_fields' );
+	add_filter( 'acf/prepare_field/name=person', 'syn_acf_prepare_fields' );
 	//add_filter( 'acf/prepare_field/name=syn_contact_person_include_fields', 'syn_acf_prepare_fields' );
 	add_filter( 'acf/prepare_field/name=syn_contact_organization', 'syn_acf_prepare_fields' );
 	//add_filter( 'acf/prepare_field/name=syn_contact_organization_include_fields', 'syn_acf_prepare_fields' );
@@ -237,6 +238,9 @@
 				$field = syn_load_organizations( $field );
 				break;
 			case 'syn_contact_widget_person' :
+				$field = syn_load_people( $field );
+				break;
+			case 'person' :
 				$field = syn_load_people( $field );
 				break;
 			case 'syn_upcoming_events_widget_calendar_id' :
@@ -1047,6 +1051,8 @@
 
 			return $paths;
 		}
+	} else {
+		syn_load_acf();
 	}
 	/**
 	 * Save post actions for all saves of posts, pages, options, users, CPTs, etc - fires every time a post save has ACF fields included

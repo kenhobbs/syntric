@@ -48,20 +48,20 @@
 				$type    = strtolower( get_field( 'syn_video_widget_type', 'widget_' . $args[ 'widget_id' ] ) );
 				$host    = strtolower( get_field( 'syn_video_widget_host', 'widget_' . $args[ 'widget_id' ] ) );
 				if ( 'single' == $type ) {
-					$video_id = ( 'youtube' == $host ) ? get_field( 'syn_video_widget_youtube_id', $post->ID ) : get_field( 'syn_video_widget_vimeo_id', $post->ID );
+					$video_id = ( 'youtube' == $host ) ? get_field( 'syn_video_widget_youtube_id', 'widget_' . $args[ 'widget_id' ] ) : get_field( 'syn_video_widget_vimeo_id', 'widget_' . $args[ 'widget_id' ] );
 				} elseif ( 'youtube' == $host && 'playlist' == $type ) {
-					$video_id = ( 'youtube' == $host ) ? get_field( 'syn_video_widget_youtube_playlist_id', $post->ID ) : 0;
+					$video_id = ( 'youtube' == $host ) ? get_field( 'syn_video_widget_youtube_playlist_id', 'widget_' . $args[ 'widget_id' ] ) : 0;
 				}
 			}
 			if ( isset( $video_id ) && ! empty( $video_id ) ) :
 				if ( 'youtube' == $host ) {
 					if ( 'single' == $type ) {
-						$iframe = '<iframe id="youtube-player-' . $video_id . '" class="embed-responsive-item" src="https://www.youtube.com/embed/' . $video_id . '?rel=0&controls=1&showinfo=0&enablejsapi=1" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen=""></iframe>';
+						$iframe = '<iframe id="youtube-player-' . $video_id . '" class="embed-responsive-item" src="https://www.youtube.com/embed/' . $video_id . '?autoplay=0&modestbranding=1&rel=0&controls=1&showinfo=0&enablejsapi=1" frameborder="0" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>';
 					} elseif ( 'playlist' == $type ) {
-						$iframe = '<iframe id="youtube-player-' . $video_id . '" class="embed-responsive-item" src="https://www.youtube.com/embed/videoseries?list=' . $video_id . '&enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
+						$iframe = '<iframe id="youtube-player-' . $video_id . '" class="embed-responsive-item" src="https://www.youtube.com/embed/videoseries?list=' . $video_id . '&autoplay=0&modestbranding=1&rel=0&controls=1&showinfo=0&enablejsapi=1" frameborder="0" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>';
 					}
 				} elseif ( 'vimeo' == $host ) {
-					$iframe = '<iframe id="vimeo-player-' . $video_id . '" class="embed-responsive-item" src="https://player.vimeo.com/video/' . $video_id . '?title=0&byline=0&portrait=0" frameborder="0" allowfullscreen></iframe>';
+					$iframe = '<iframe id="vimeo-player-' . $video_id . '" class="embed-responsive-item" src="https://player.vimeo.com/video/' . $video_id . '?title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen; encrypted-media" allowfullscreen></iframe>';
 				}
 				//$sidebar      = syn_widget_sidebar( $args[ 'widget_id' ] );
 				$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
@@ -69,15 +69,15 @@
 				$tab           = syn_get_tab();
 				echo $args[ 'before_widget' ] . $lb;
 				if ( ! empty( $title ) ) :
-					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
+					echo $tab . $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 				endif;
-				echo '<div class="video ' . $sidebar_class . ' ' . strtolower( $host ) . ' embed-responsive embed-responsive-16by9">' . $lb;
-				echo $iframe;
-				echo '</div>' . $lb;
+				echo $tab . '<div class="video ' . $sidebar_class . ' ' . strtolower( $host ) . ' embed-responsive embed-responsive-16by9">' . $lb;
+				echo $tab . $tab . $iframe . $lb;
+				echo $tab . '</div>' . $lb;
 				if ( $caption && ! empty( $caption ) ) {
-					echo '<div class="video-caption">' . $lb;
-					echo $caption;
-					echo '</div>' . $lb;
+					echo $tab . '<div class="video-caption">' . $lb;
+					echo $tab . $tab . $caption;
+					echo $tab . '</div>' . $lb;
 				}
 				echo $args[ 'after_widget' ] . $lb;
 				?>

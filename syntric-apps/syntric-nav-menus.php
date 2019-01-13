@@ -44,15 +44,17 @@
 	add_filter( 'wp_nav_menu_args', 'syn_nav_menu_args', 10 );
 	function syn_nav_menu_args( $nav_menu_args ) {
 		/**
-		 * $nav_menu_args is an array of args the were passed to wp_nav_menu
+		 * $nav_menu_args is an array of args passed in wp_nav_menu()
 		 */
 		$menu_classes = explode( ' ', $nav_menu_args[ 'menu_class' ] );
 		if ( ! in_array( 'navbar-nav', $menu_classes ) ) {
 			$nav_menu_args[ 'container' ] = '';
+			//$nav_menu_args[ 'container' ] = ( ! in_array( 'navbar-nav', $menu_classes ) ) ? '' : '';
 		}
-		if ( syn_remove_whitespace() ) {
-			$nav_menu_args[ 'item_spacing' ] = 'discard';
-		}
+		//if ( syn_remove_whitespace() ) {
+		//$nav_menu_args[ 'item_spacing' ] = 'discard';
+		//}
+		$nav_menu_args[ 'item_spacing' ] = ( syn_remove_whitespace() ) ? 'discard' : 'preserve';
 		return $nav_menu_args;
 	}
 
@@ -260,4 +262,16 @@
 		echo $tab . '</div>' . $lb;
 		wp_nav_menu( $args );
 		echo '</nav>' . $lb;
+	}
+
+	function syn_nav_menu_children_count( $post_id ) {
+		$ancestor_id = syn_get_top_ancestor_id( $post_id );
+		$children    = get_posts( [
+			'post_parent' => $ancestor_id,
+			'post_status' => 'publish',
+			'post_type'   => 'page',
+			'fields'      => 'ids',
+		] );
+
+		return count( $children );
 	}

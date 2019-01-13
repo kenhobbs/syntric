@@ -163,7 +163,7 @@
 		{
 			"key": "field_5ac02be50d594",
 			"label": "Playlist ID:",
-			"name": "syn_video_widget_youtube_playlist_id:",
+			"name": "syn_video_widget_youtube_playlist_id",
 			"type": "text",
 			"instructions": "Enter the YouTube Playlist ID which is a string of characters in the URL of the playlist hosted on YouTube.  For example, the Playlist ID of the playlist at https:\/\/www.youtube.com\/playlist?list=XX11YY22XX11YY22 is XX11YY22XX11YY22.",
             "required": 1,
@@ -275,7 +275,6 @@
         "permalink",
         "the_content",
         "excerpt",
-        "custom_fields",
         "discussion",
         "comments",
         "revisions",
@@ -290,5 +289,5 @@
     ],
     "active": 1,
     "description": "",
-	"modified": 1523096854
+	"modified": 1546312201
 }

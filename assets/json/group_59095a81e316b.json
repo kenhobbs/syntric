@@ -27,7 +27,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "80",
+				"width": "100",
                 "class": "",
                 "id": ""
             },
@@ -39,8 +39,27 @@
             "choices": null
         },
         {
+			"key": "field_5c37d09dfe8dd",
+			"label": "Purge Calendar",
+			"name": "syn_purge_calendar",
+			"type": "true_false",
+			"instructions": "Deletes all events from calendar",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "Delete all events from calendar",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
             "key": "field_59b80ac417de4",
-            "label": "Sync Daily",
+			"label": "Schedule Sync",
             "name": "syn_calendar_sync",
             "type": "true_false",
             "instructions": "Automatically sync every 24 hours",
@@ -58,6 +77,41 @@
             "ui_off_text": ""
         },
         {
+			"key": "field_59b80afc17de6",
+			"label": "Sync Frequency",
+			"name": "syn_calendar_sync_frequency",
+			"type": "select",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_59b80ac417de4",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "hidden",
+				"id": ""
+			},
+			"choices": {
+				"hourly": "Hourly",
+				"daily": "Daily"
+			},
+			"default_value": [
+				"daily"
+			],
+			"allow_null": 0,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
             "key": "field_59b80ad117de5",
             "label": "Sync Now",
             "name": "syn_calendar_sync_now",
@@ -152,123 +206,6 @@
             "placeholder": ""
         },
         {
-            "key": "field_5add5cdff3944",
-            "label": "",
-            "name": "",
-            "type": "enhanced_message",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_59b80ad117de5",
-                        "operator": "!=",
-                        "value": "1"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "80",
-                "class": "",
-                "id": ""
-            },
-            "enhanced_message": "",
-            "hide_label": "no"
-        },
-        {
-            "key": "field_5add5d13f3945",
-            "label": "",
-            "name": "",
-            "type": "enhanced_message",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_59b80ad117de5",
-                        "operator": "==",
-                        "value": "1"
-                    },
-                    {
-                        "field": "field_5add5974b6683",
-                        "operator": "!=",
-                        "value": "1"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "60",
-                "class": "",
-                "id": ""
-            },
-            "enhanced_message": "",
-            "hide_label": "no"
-        },
-        {
-            "key": "field_5add5d36f3947",
-            "label": "",
-            "name": "",
-            "type": "enhanced_message",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_59b80ad117de5",
-                        "operator": "==",
-                        "value": "1"
-                    },
-                    {
-                        "field": "field_5add5974b6683",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "40",
-                "class": "",
-                "id": ""
-            },
-            "enhanced_message": "",
-            "hide_label": "no"
-        },
-        {
-            "key": "field_59b80afc17de6",
-            "label": "Sync Frequency",
-            "name": "syn_calendar_sync_frequency",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_59b80ac417de4",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "hidden",
-                "id": ""
-            },
-            "choices": {
-                "hourly": "Hourly",
-                "daily": "Daily"
-            },
-            "default_value": [
-                "daily"
-            ],
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "ajax": 0,
-            "return_format": "value",
-            "placeholder": ""
-        },
-        {
             "key": "field_59b80b1a17de7",
             "label": "Sync Range",
             "name": "syn_calendar_sync_range",
@@ -290,8 +227,8 @@
                 "id": ""
             },
             "choices": {
-                "1 year": "Sync up to 1 year forward",
-                "2 years": "Sync up to 2 years forward"
+				"1 year": "Sync 1 year forward",
+				"2 years": "Sync 2 years forward"
             },
             "default_value": [
                 "1 year"
@@ -299,8 +236,8 @@
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
+			"return_format": "value",
             "ajax": 0,
-            "return_format": "value",
             "placeholder": ""
         },
         {
@@ -456,7 +393,6 @@
     "hide_on_screen": [
         "the_content",
         "excerpt",
-        "custom_fields",
         "discussion",
         "comments",
         "revisions",
@@ -471,5 +407,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1524482486
+	"modified": 1547190712
 }

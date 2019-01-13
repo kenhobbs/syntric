@@ -203,6 +203,11 @@
 		$log         = '';
 		$lb          = "\n";
 		$log         .= 'Sync started with values ' . $lb . print_r( $args, true );
+		$log         .= 'Sync type: ' . ( $args[ 'force_sync' ] ) ? 'manual sync' : 'scheduled sync';
+		$log         .= 'Sync back: ' . ( $args[ 'sync_back' ] ) ? 'yes' : 'no';
+		if ( $args[ 'sync_back' ] && $args[ 'sync_back_months' ] ) {
+			$log .= 'Sync back range: ' . $args[ 'sync_back_months' ] . ' months';
+		}
 		update_field( 'syn_calendar_last_sync_result', $log, $calendar_id );
 		// bail if $sync_args doesn't contain both post_type and post_id or if post_type isn't syn_calendar
 		if ( ! $args[ 'post_type' ] || ! $args[ 'post_id' ] || $args[ 'post_type' ] != 'syn_calendar' ) {
@@ -395,6 +400,30 @@
 		$events      = $body->items;
 		$event_count = 0;
 		foreach ( $events as $event ) {
+			// delete all existing events that have the same event id and are not recurring.
+			$dupe_events = get_posts( [
+				'post_type'  => 'syn_event',
+				'meta_query' => [
+					'relation' => 'AND',
+					[
+						'key'     => 'syn_event_event_id',
+						'value'   => $event->id,
+						'compare' => '=',
+					],
+					[
+						'key'     => 'syn_event_calendar_id',
+						'value'   => $calendar_id,
+						'compare' => '=',
+					],
+				],
+			] );
+			if ( $dupe_events ) {
+				$log .= 'Dupe events exist, will be deleted';
+				foreach ( $dupe_events as $dupe_event ) {
+					wp_delete_post( $dupe_event->ID );
+					$log .= 'Dupe event ' . $event->summary . ' deleted';
+				}
+			}
 			$args     = [
 				'post_content' => ( isset( $event->description ) ) ? $event->description : '',
 				'post_title'   => ( isset( $event->summary ) ) ? $event->summary : '',

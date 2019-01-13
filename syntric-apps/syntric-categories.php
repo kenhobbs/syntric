@@ -80,6 +80,16 @@
 		return $actions;
 	}
 
+	function syn_categories_menu_cats_count() {
+		$cats = get_categories( [
+			'taxonomy' => 'category',
+			'parent'   => 0,
+		] );
+
+		//print_r( $cats );
+		return count( $cats );
+	}
+
 // boneyard
 
 	function ___notinuse___syn_is_microblogs_category( $cat ) {

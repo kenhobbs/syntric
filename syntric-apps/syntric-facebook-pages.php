@@ -4,13 +4,6 @@
 	 *
 	 * Custom outputs and widgets for Facebook and Twitter
 	 */
-	//add_action( 'wp_enqueue_scripts', 'syn_enqueue_facebook_scripts' );
-	function syn_enqueue_facebook_scripts() {
-		$facebook_pages = get_field( 'syn_facebook_pages', 'option' );
-		if ( $facebook_pages ) {
-			wp_enqueue_script( 'syntric-facebook', get_template_directory_uri() . '/syntric-apps/assets/js/syntric-facebook.js', [ 'jquery' ], null, false );
-		}
-	}
 
 	// need to be more selective (vs. retrieving posts from all registered FB pages - pass an argument)
 	// todo: make more selective & cache posts?  save into WP Posts?
@@ -60,4 +53,12 @@
 		}
 
 		return;
+	}
+
+	//add_action( 'wp_enqueue_scripts', 'syn_enqueue_facebook_scripts' );
+	function syn_enqueue_facebook_scripts() {
+		$facebook_pages = get_field( 'syn_facebook_pages', 'option' );
+		if ( $facebook_pages ) {
+			wp_enqueue_script( 'syntric-facebook', get_template_directory_uri() . '/syntric-apps/assets/js/syntric-facebook.js', [ 'jquery' ], null, false );
+		}
 	}

@@ -15,7 +15,7 @@
                 "class": "",
                 "id": ""
             },
-            "placement": "left",
+			"placement": "top",
             "endpoint": 0
         },
         {
@@ -274,7 +274,7 @@
                 "class": "",
                 "id": ""
             },
-            "placement": "left",
+			"placement": "top",
             "endpoint": 0
         },
         {
@@ -640,7 +640,7 @@
         },
         {
             "key": "field_598a9de513a16",
-            "label": "Microblog",
+			"label": "Blog",
             "name": "",
             "type": "tab",
             "instructions": "",
@@ -651,7 +651,7 @@
                 "class": "",
                 "id": ""
             },
-            "placement": "left",
+			"placement": "top",
             "endpoint": 0
         },
         {
@@ -915,7 +915,7 @@
                 "class": "",
                 "id": ""
             },
-            "placement": "left",
+			"placement": "top",
             "endpoint": 0
         },
         {
@@ -1061,7 +1061,7 @@
         },
         {
             "key": "field_5a41bf632a648",
-            "label": "Google Map",
+			"label": "Map",
             "name": "",
             "type": "tab",
             "instructions": "",
@@ -1072,7 +1072,7 @@
                 "class": "",
                 "id": ""
             },
-            "placement": "left",
+			"placement": "top",
             "endpoint": 0
         },
         {
@@ -1153,7 +1153,7 @@
         },
         {
             "key": "field_5a41c15b2a64c",
-            "label": "Video\/Playlist",
+			"label": "Video",
             "name": "",
             "type": "tab",
             "instructions": "",
@@ -1164,7 +1164,7 @@
                 "class": "",
                 "id": ""
             },
-            "placement": "left",
+			"placement": "top",
             "endpoint": 0
         },
         {
@@ -1772,8 +1772,15 @@
     "style": "default",
     "label_placement": "top",
     "instruction_placement": "label",
-    "hide_on_screen": "",
+	"hide_on_screen": [
+		"discussion",
+		"comments",
+		"revisions",
+		"slug",
+		"format",
+		"send-trackbacks"
+	],
     "active": 1,
     "description": "",
-	"modified": 1540925221
+	"modified": 1546307246
 }

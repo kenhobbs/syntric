@@ -11,7 +11,9 @@
 	function syn_enqueue_scripts() {
 		$domain_stylesheet_dir  = '/assets/css/' . $_SERVER[ 'HTTP_HOST' ] . '.min.css';
 		$domain_stylesheet_path = get_template_directory() . $domain_stylesheet_dir;
-		if ( file_exists( $domain_stylesheet_path ) ) {
+		$domain_stylesheet_file = $_SERVER[ 'HTTP_HOST' ] . '.min.css';
+		//if ( file_exists( $domain_stylesheet_path ) ) {
+		if ( file_exists( $domain_stylesheet_path . $domain_stylesheet_file ) ) {
 			$domain_stylesheet_uri      = get_template_directory_uri() . $domain_stylesheet_dir;
 			$domain_stylesheet_filetime = date( 'YmdGis', filemtime( $domain_stylesheet_path ) );
 			wp_enqueue_style( 'domain', $domain_stylesheet_uri, null, $domain_stylesheet_filetime );

@@ -44,9 +44,10 @@
 //require get_template_directory() . '/syntric-apps/syntric-contact.php';
 //require get_template_directory() . '/syntric-apps/syntric-twitter-feeds.php';
 //require get_template_directory() . '/syntric-apps/syntric-google-analytics.php';
-	if ( ! syn_current_user_is( 'teacher' ) ) {
+	// todo: check this out...commented out late and didn't regression test
+	/*if ( ! syn_current_user_is( 'teacher' ) ) {
 		add_filter( 'show_admin_bar', '__return_false' );
-	}
+	}*/
 	/**
 	 * Register option pages using ACF
 	 */
@@ -204,9 +205,10 @@
 		if ( $syntric_user instanceof WP_User && $current_user->ID == $syntric_user->ID ) {
 			return 1;
 		}
-		$current_user_roles = $current_user->roles;
+		/*$current_user_roles = $current_user->roles;
 		$role_count         = count( $current_user_roles );
-		$current_user_role  = ( $role_count ) ? $current_user_roles[ $role_count - 1 ] : 0;
+		$current_user_role  = ( $role_count ) ? $current_user_roles[ $role_count - 1 ] : 0;*/
+		$current_user_role = syn_current_user_role();
 		if ( 'superadmin' == $role && $current_user_role == 'superadmin' ) {
 			return 1;
 		}
@@ -244,12 +246,61 @@
 		return 0;
 	}
 
-	function syn_current_user_is( $role ) {
+	function syn_current_user_role() {
+		if ( is_user_logged_in() ) {
+			$user  = wp_get_current_user();
+			$roles = (array) $user->roles;
+			if ( 1 == count( $roles ) ) {
+				return $roles[ 0 ];
+			} else {
+				if ( in_array( 'superadmin', $roles ) ) {
+					return 'superadmin';
+				} elseif ( in_array( 'administrator', $roles ) ) {
+					return 'administrator';
+				} elseif ( in_array( 'editor', $roles ) ) {
+					return 'editor';
+				} elseif ( in_array( 'author', $roles ) ) {
+					return 'author';
+				} elseif ( in_array( 'contributor', $roles ) ) {
+					return 'contributor';
+				} elseif ( in_array( 'subscriber', $roles ) ) {
+					return 'subscriber';
+				}
+
+				return '';
+			}
+		} else {
+			return '';
+		}
+	}
+
+	/*function syn_current_user_is( $role ) {
 		switch ( $role ) {
 			case 'teacher':
 				return get_field( 'syn_user_is_teacher', 'user_' . get_current_user_id() );
 				break;
 		}
+	}*/
+	function syn_current_user_can_edit() {
+		if ( ! is_user_logged_in() ) {
+			return 0;
+		}
+		if ( syn_syntric_user() ) {
+			return 1;
+		}
+		$role = syn_current_user_role();
+		if ( 'superadmin' == $role || 'administrator' == 'role' || 'editor' == $role ) {
+			return 1;
+		}
+		if ( 'author' == $role ) {
+			if ( get_current_user_id() == get_post_field( 'post_author' ) ) {
+				return 1;
+			} else {
+				return 0;
+			}
+		}
+
+		return 0;
 	}
 
 	// Remove 3rd party plugin hooks
@@ -1795,7 +1846,10 @@
 	function syn_header() {
 		$lb  = syn_get_linebreak();
 		$tab = syn_get_tab();
-		syn_editor_toolbar();
+		// todo: need a page/post/calendar/etc-specific cap check based on role and author
+		if ( is_user_logged_in() && syn_current_user_can_edit() ) {
+			syn_editor();
+		}
 		echo '<div id="fb-root"></div>';
 		echo '<div class="print-header print-header-name d-print-block" aria-hidden="true">' . get_bloginfo( 'name', 'display' ) . '</div>' . $lb;
 		echo '<a class="sr-only sr-only-focusable skip-to-content-link" href="#content">' . esc_html( 'Skip to content', 'syntric' ) . '</a>' . $lb;
@@ -1975,8 +2029,7 @@
 	/**
 	 * Outputs controls for editing page content from the front end if user is logged in and has permission to edit current page
 	 */
-	function syn_editor_toolbar() {
-
+	function syn_editor() {
 		?>
 		<nav class="editor-toolbar navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
 			<a class="navbar-brand" href="#">Editor Toolbar</a>
@@ -1986,45 +2039,37 @@
 			<div class="navbar-collapse collapse" id="navbarCollapse" style="">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
-						<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+						<!-- <a class="nav-link" href="<?php echo $_SERVER[ 'REQUEST_URI' ] ?>?edit=1">Edit</a> -->
+						<a class="nav-link" onclick="edit_post();">Edit</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Link</a>
+					<!--<li class="nav-item">
+						<a class="nav-link" href="#">New page</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link disabled" href="#">Disabled</a>
-					</li>
+					</li>-->
 					<li class="nav-item dropup">
-						<a class="nav-link dropdown-toggle" href="https://getbootstrap.com" id="dropdown10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropup</a>
-						<div class="dropdown-menu" aria-labelledby="dropdown10">
-							<a class="dropdown-item" href="#">Action</a> <a class="dropdown-item" href="#">Another action</a> <a class="dropdown-item" href="#">Something else here</a>
+						<a class="nav-link dropdown-toggle" href="#" id="newDropup" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">New</a>
+						<div class="dropdown-menu" aria-labelledby="newDropup">
+							<a class="dropdown-item" href="http://www.google.com">Page</a>
+							<!-- todo: iterate over post categories here instead of just using "Post" -->
+							<a class="dropdown-item" href="http://www.yahoo.com">Post</a>
 						</div>
 					</li>
 				</ul>
 			</div>
-		</nav>		<!--<div class="editor-toolbar">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col">
-						<div class="btn-group btn-group-sm" role="group" aria-label="Editor bar">
-							<button type="button" class="btn btn-dark">Edit</button>
-							<div class="btn-group" role="group">
-								<button id="editor-bar-dd1" type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Dropdown
-								</button>
-								<div class="dropdown-menu" aria-labelledby="editor-bar-dd1">
-									<a class="dropdown-item" href="#">Link</a> <a class="dropdown-item" href="#">Link</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-		--><?php
-		/*		echo '</div>';*/
+		</nav>
+		<script type="text/javascript">
+			function edit_post() {
+				var pageTitle = document.getElementsByClassName('page-title');
+				//alert(pageTitle);
+				console.log(pageTitle[0].innerText);
+				var pageContent = document.getElementsByClassName('hentry');
+				//alert(pageContent);
+				console.log(pageContent[0].innerHTML);
+			}
+		</script>
+		<?php
 	}
 
 	/**
@@ -2032,7 +2077,7 @@
 	 * be edited.  It does need to be modified to reflect current site.
 	 * todo: move non-discrimination copy into an option. perhaps make translation element toggelable.
 	 */
-	function syn_foot() {
+	function syn_footer() {
 		$organization = get_field( 'syn_organization', 'option' );
 		$organization = ( $organization ) ? $organization : get_bloginfo( 'name' );
 		$lb           = syn_get_linebreak();
