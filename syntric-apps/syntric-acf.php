@@ -18,6 +18,7 @@
 	add_filter( 'acf/update_value/name=google_map_id', 'syn_set_id' ); // Google maps
 	add_filter( 'acf/update_value/name=jumbotron_id', 'syn_set_id' ); // Jumbotrons
 	add_filter( 'acf/update_value/name=facebook_page_id', 'syn_set_id' ); // Social media
+	add_filter( 'acf/update_value/name=sidebar_id', 'syn_set_id' ); // Sidebars
 	add_filter( 'acf/update_value/name=class_id', 'syn_set_id' ); // Teacher classes (in page)
 	function syn_set_id( $value ) {
 		if ( empty( $value ) ) {
@@ -350,10 +351,13 @@
 				$field = syn_load_periods( $field );
 				break;
 			case 'course' :
+				slog( 'update_field/course' );
+				slog( $field );
+				$field = syn_load_courses( $field );
+				slog( $field );
 				if ( $field[ 'value' ] ) {
 					$field[ 'disabled' ] = 1;
 				}
-				$field = syn_load_courses( $field );
 				break;
 			case 'room' :
 				$rooms_active = get_field( 'syn_rooms_active', 'option' );
@@ -626,7 +630,7 @@
 			if ( $microblogs ) {
 				foreach ( $microblogs as $microblog ) {
 					if ( property_exists( $microblog, 'term_id' ) ) {
-						slog( $microblog );
+						//slog( $microblog );
 						$choices[ $microblog->term_id ] = $microblog->name . ' (' . $microblog->count . ')';
 					}
 				}
@@ -740,6 +744,7 @@
 
 	function syn_load_courses( $field ) {
 		if ( 'select' == $field[ 'type' ] ) {
+			//slog('syn_load_courses');
 			$choices = [];
 			$courses = get_field( 'syn_courses', 'option' );
 			if ( $courses && is_array( $courses ) ) {
@@ -1028,10 +1033,8 @@
 		return $field_obj[ 'key' ];
 	}
 
-	if ( 'master.localhost' == $_SERVER[ 'HTTP_HOST' ] ) {
-		/**
-		 * Change the path where ACF will save the local JSON file
-		 */
+	//if ( 'master.localhost' == $_SERVER[ 'HTTP_HOST' ] ) {
+	// Change the path where ACF will save the local JSON file
 		add_filter( 'acf/settings/save_json', 'syn_acf_json_save_point' );
 		function syn_acf_json_save_point() {
 			$path = get_stylesheet_directory() . '/assets/json';
@@ -1039,9 +1042,7 @@
 			return $path;
 		}
 
-		/**
-		 * Specify path where ACF should look for local JSON files
-		 */
+	// Specify path where ACF should look for local JSON files
 		add_filter( 'acf/settings/load_json', 'syn_acf_json_load_point' );
 		function syn_acf_json_load_point( $paths ) {
 			// remove original path (optional)
@@ -1051,9 +1052,10 @@
 
 			return $paths;
 		}
-	} else {
-		syn_load_acf();
-	}
+
+	//} else {
+	//syn_load_acf();
+	//}
 	/**
 	 * Save post actions for all saves of posts, pages, options, users, CPTs, etc - fires every time a post save has ACF fields included
 	 */

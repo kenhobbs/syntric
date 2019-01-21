@@ -200,7 +200,7 @@
 	 */
 	add_filter( 'wp_handle_upload_prefilter', 'syn_handle_upload_prefilter' );
 	function syn_handle_upload_prefilter( $file ) {
-		slog( get_allowed_mime_types() );
+		//slog( get_allowed_mime_types() );
 		// First check that the site is not using the month/year option for uploads and if it is, reset the options cache and upate the option
 		if ( false === get_option( 'uploads_use_yearmonth_folders' ) && false === update_option( 'uploads_use_yearmonth_folders', false ) ) {
 			update_option( 'uploads_use_yearmonth_folders', 0 );

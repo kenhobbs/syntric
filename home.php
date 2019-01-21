@@ -10,9 +10,15 @@
 	echo $tab . $tab . $tab . $tab . '<h1 class="page-title" role="heading">' . get_the_title( get_option( 'page_for_posts' ) ) . '</h1>' . $lb;
 	syn_sidebar( 'main', 'top' );
 	if ( have_posts() ) :
+		echo '<div class="list-group">';
 		while( have_posts() ) : the_post();
-			//echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post->ID . '">' . $lb;
-			echo $tab . $tab . $tab . $tab . '<article id="post-' . $post->ID . '">' . $lb;
+			echo $tab . $tab . $tab . $tab . '<article id="post-' . $post->ID . '" class="list-group-item">' . $lb;
+			if ( has_post_thumbnail() ) :
+				echo '<div class="list-group-item-feature">';
+				the_post_thumbnail( 'thumbnail', [ 'class' => 'alignleft' ] );
+				echo '</div>';
+			endif;
+			echo '<div class="list-group-item-content">';
 			echo $tab . $tab . $tab . $tab . $tab . '<h2 class="post-title">' . $lb;
 			echo $tab . $tab . $tab . $tab . $tab . $tab . '<a href="' . get_the_permalink() . '" rel="bookmark">';
 			the_title();
@@ -25,8 +31,10 @@
 				the_excerpt();
 				echo $tab . $tab . $tab . $tab . $tab . '</div>' . $lb;
 			}
+			echo '</div>';
 			echo $tab . $tab . $tab . $tab . '</article>' . $lb;
 		endwhile;
+		echo '</div>';
 		syn_pagination();
 	endif;
 	syn_sidebar( 'main', 'bottom' );

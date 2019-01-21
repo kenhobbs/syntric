@@ -9,7 +9,7 @@
 	/**
 	 * Filter generates a random ID for new records
 	 */
-	add_filter( 'acf/update_value/name=sidebar_id', 'syn_update_id' );
+	//add_filter( 'acf/update_value/name=sidebar_id', 'syn_update_id' );
 	/**
 	 * Register sidebars
 	 */
@@ -277,7 +277,7 @@
 									$col_classes = 'col-lg-4 col-md-6';
 								}
 							} elseif ( 6 == $widget_count ) {
-								$col_classes = 'col-xl-2 col-lg-4 col-md-6';
+								$col_classes = 'col-lg-4 col-md-6';
 							} elseif ( 7 == $widget_count ) {
 								$col_classes = 'col';
 								/*$first_widget = $active_widgets[ 0 ];

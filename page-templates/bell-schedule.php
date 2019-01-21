@@ -53,7 +53,7 @@
 				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post->ID . '">' . $lb;
 				the_content();
 				echo '</article>' . $lb;
-				var_dump( $bell_schedules );
+				//var_dump( $bell_schedules );
 			endif;
 		endwhile;
 	endif;

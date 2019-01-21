@@ -131,7 +131,7 @@
 	/**
 	 * Add posts lists dropdown for filtering
 	 */
-// Using filter from Admin Columns Pro
+// Using filter from Admin Columns Pro instead of this action+function
 //add_action( 'restrict_manage_posts', 'syn_calendar_restrict_manage_posts', 10 );
 	function syn_calendar_restrict_manage_posts() {
 		global $post_type;
@@ -402,8 +402,9 @@
 		foreach ( $events as $event ) {
 			// delete all existing events that have the same event id and are not recurring.
 			$dupe_events = get_posts( [
-				'post_type'  => 'syn_event',
-				'meta_query' => [
+				'post_type'   => 'syn_event',
+				'post_status' => 'publish',
+				'meta_query'  => [
 					'relation' => 'AND',
 					[
 						'key'     => 'syn_event_event_id',
@@ -415,12 +416,18 @@
 						'value'   => $calendar_id,
 						'compare' => '=',
 					],
+					// not a recurring event
+					[
+						'key'     => 'syn_event_recurring_id',
+						'value'   => '',
+						'compare' => '=',
+					],
 				],
 			] );
 			if ( $dupe_events ) {
 				$log .= 'Dupe events exist, will be deleted';
 				foreach ( $dupe_events as $dupe_event ) {
-					wp_delete_post( $dupe_event->ID );
+					wp_delete_post( $dupe_event->ID, true );
 					$log .= 'Dupe event ' . $event->summary . ' deleted';
 				}
 			}

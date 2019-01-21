@@ -20,8 +20,8 @@
 	if ( have_posts() ) :
 		while( have_posts() ) : the_post();
 			if ( syn_has_content( $post->post_content ) ) :
-				var_dump( 'class on class.php' );
-				var_dump( $class );
+				//var_dump( 'class on class.php' );
+				//ar_dump( $class );
 				////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				//echo 'Class object follows...';
 				//var_dump( syn_get_class( $post->ID ) );

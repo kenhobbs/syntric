@@ -10909,7 +10909,8 @@ body > .sidebar .widget:nth-child(even) {
 		text-decoration: none; }
 
 	body > .sidebar .widget.syn-google-map-widget {
-		min-height: 400px; }
+		min-height: 400px;
+		padding: 0; }
 
 	body > .sidebar .widget.syn-video-widget h2, body > .sidebar .widget.syn-embed-widget h2, body > .sidebar .widget.syn-google-map-widget h2, body > .sidebar .widget.widget_media_image h2, body > .sidebar .widget.widget_custom_html h2 {
 		top: 3.5rem;

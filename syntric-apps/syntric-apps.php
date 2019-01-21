@@ -357,14 +357,14 @@
 		remove_submenu_page( 'themes.php', 'theme-editor.php' );
 		remove_submenu_page( 'plugins.php', 'plugin-editor.php' );
 		// Remove for all but Syntric user
-		if ( ! syn_current_user_can( 'syntric' ) ) {
+		if ( ! syn_current_user_can( 'syntric' ) && ! syn_current_user_can( 'superadmin' ) ) {
 			remove_submenu_page( 'edit.php', 'edit-tags.php?taxonomy=microblog' ); // Post microblog (taxonomy) - this is deprecated
 			remove_menu_page( 'jetpack' ); // Jetpack
 			remove_menu_page( 'edit-comments.php' ); // Comments
 			remove_menu_page( 'tools.php' ); // Tools
-			remove_submenu_page( 'options-general.php', 'codepress-admin-columns' );
+			//remove_submenu_page( 'options-general.php', 'codepress-admin-columns' );
 			remove_menu_page( 'edit.php?post_type=acf-field-group' ); // Custom Fields
-			remove_menu_page( 'wpmudev' ); // WPMU Dev
+			//remove_menu_page( 'wpmudev' ); // WPMU Dev
 			remove_menu_page( 'wp-defender' ); // WP Defender
 			remove_submenu_page( 'upload.php', 'wp-smush-bulk' );
 		}
@@ -637,6 +637,7 @@
 		                 // Pages
 		                 'edit.php?post_type=page',
 		                 'edit.php?post_type=page_nestedpages',
+		                 'edit.php?page=nestedpages',
 		                 'nestedpages',
 		                 // Pages (Nested Pages)
 		                 // Posts
@@ -687,7 +688,7 @@
 		global $wp_meta_boxes;
 		global $pagenow;
 		if ( is_admin() && 'index.php' == $pagenow ) {
-			var_dump( $wp_meta_boxes );
+			//var_dump( $wp_meta_boxes );
 			remove_meta_box( 'dashboard_incoming_links', 'dashboard', 'normal' );
 			remove_meta_box( 'dashboard_plugins', 'dashboard', 'normal' );
 			remove_meta_box( 'dashboard_primary', 'dashboard', 'side' );
@@ -1847,9 +1848,9 @@
 		$lb  = syn_get_linebreak();
 		$tab = syn_get_tab();
 		// todo: need a page/post/calendar/etc-specific cap check based on role and author
-		if ( is_user_logged_in() && syn_current_user_can_edit() ) {
+		/*if ( is_user_logged_in() && syn_current_user_can_edit() ) {
 			syn_editor();
-		}
+		}*/
 		echo '<div id="fb-root"></div>';
 		echo '<div class="print-header print-header-name d-print-block" aria-hidden="true">' . get_bloginfo( 'name', 'display' ) . '</div>' . $lb;
 		echo '<a class="sr-only sr-only-focusable skip-to-content-link" href="#content">' . esc_html( 'Skip to content', 'syntric' ) . '</a>' . $lb;
@@ -1899,7 +1900,7 @@
 			return;
 		}
 		$jumbotrons = get_field( 'syn_jumbotrons', 'option' );
-		if ( 0 < count( $jumbotrons ) ) {
+		if ( $jumbotrons ) {
 			$jumbotron = false;
 			foreach ( $jumbotrons as $_jumbotron ) {
 				$filters        = $_jumbotron[ 'filters' ];
@@ -2139,7 +2140,7 @@
 			echo $tab . $tab . $tab . '<th scope="col">Name</th>' . $lb;
 			//echo $tab . $tab . $tab . '<th scope="col">Title</th>' . $lb;
 			echo $tab . $tab . $tab . '<th scope="col">Email</th>' . $lb;
-			echo $tab . $tab . $tab . '<th scope="col">Phone</th>' . $lb;
+			//echo $tab . $tab . $tab . '<th scope="col">Phone</th>' . $lb;
 			echo $tab . $tab . $tab . '<th scope="col">Classes</th>' . $lb;
 			echo $tab . $tab . '</tr>' . $lb;
 			echo $tab . '</thead>' . $lb;
@@ -2186,7 +2187,7 @@
 				}
 				echo $tab . $tab . $tab . '</td>' . $lb;
 				echo $tab . $tab . $tab . '<td class="email"><a href="mailto:' . antispambot( $email, true ) . '" class="teachers-list-email" title="Email">' . antispambot( $email ) . '</a></td>' . $lb;
-				echo $tab . $tab . $tab . '<td class="phone">' . $phone . '</td>' . $lb;
+				//echo $tab . $tab . $tab . '<td class="phone">' . $phone . '</td>' . $lb;
 				echo $tab . $tab . $tab . '<td class="classes">' . implode( ' / ', $class_array ) . '</td>' . $lb;
 				echo $tab . $tab . '</tr>' . $lb;
 			}
@@ -2566,7 +2567,7 @@
 						$current_teacher = $teacher->ID;
 					}
 					$classes = get_field( 'syn_classes', $teacher_page->ID );
-					var_dump( $classes );
+					//var_dump( $classes );
 					echo '<tbody>';
 					if ( $classes ) {
 						foreach ( $classes as $class ) {

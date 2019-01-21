@@ -618,5 +618,5 @@
 	function syn_convert_classes() {
 		// syn_get_teachers_classes
 		$classes = syn_get_teachers_classes();
-		var_dump( $classes );
+		//var_dump( $classes );
 	}

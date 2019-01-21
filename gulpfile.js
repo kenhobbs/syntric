@@ -135,7 +135,6 @@ var domainMappings = {
 	'collegeville.syntric.com.min': 'collegevilleschool.syntric.school.min',
 	'dent.syntric.com.min': 'dentschool.syntric.school.min',
 	'farmington.syntric.com.min': 'farmingtonschool.syntric.school.min',
-	'vanallen.syntric.com.min': 'vanallenschool.syntric.school.min',
 	'eca.syntric.com.min': 'escaloncharteracademy.syntric.school.min',
 	'vista.syntric.com.min': 'vistahighschool.syntric.school.min',*/
 	
@@ -175,7 +174,9 @@ var domainMappings = {
 	'silver': 'silver.min',
 	'teal': 'teal.min',
 	'black': 'black.min',
-	'white': 'white.min'
+	'white': 'white.min',
+
+	'www.vanallenschool.org.min': 'vanallenel.syntric.school.min'
 };
 // Gulp watcher args
 var watcherArgs = {
