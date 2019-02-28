@@ -1,52 +1,53 @@
 <?php
-	function syn_load_acf() {
-		if ( function_exists( 'acf_add_local_field_group' ) ):
-			acf_add_local_field_group( array(
+	
+	function syntric_load_acf() {
+		if( function_exists( 'acf_add_local_field_group' ) ):
+			acf_add_local_field_group( [
 				'key'                   => 'group_59d40ee82a068',
 				'title'                 => 'Academic Calendar',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59bdc71cea40f',
 						'label'             => 'Term Type',
-						'name'              => 'syn_term_type',
+						'name'              => 'syntric_term_type',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'semester'  => 'Semester',
 							'trimester' => 'Trimester',
 							'quarter'   => 'Quarter',
-						),
-						'default_value'     => array(
+						],
+						'default_value'     => [
 							0 => 'semester',
-						),
+						],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59bdc7cbea411',
 						'label'             => 'Academic Year Turnover Month',
-						'name'              => 'syn_academic_year_turnover_month',
+						'name'              => 'syntric_academic_year_turnover_month',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'January'   => 'January',
 							'February'  => 'February',
 							'March'     => 'March',
@@ -59,31 +60,31 @@
 							'October'   => 'October',
 							'November'  => 'November',
 							'December'  => 'December',
-						),
-						'default_value'     => array(
+						],
+						'default_value'     => [
 							0 => 'August',
-						),
+						],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59bdc8b1ea412',
 						'label'             => 'Academic Year Turnover Date',
-						'name'              => 'syn_academic_year_turnover_date',
+						'name'              => 'syntric_academic_year_turnover_date',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							1  => '1',
 							2  => '2',
 							3  => '3',
@@ -115,44 +116,44 @@
 							29 => '29',
 							30 => '30',
 							31 => '31',
-						),
-						'default_value'     => array(),
+						],
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59bdc758ea410',
 						'label'             => 'Summer Sessions',
-						'name'              => 'syn_summer_sessions',
+						'name'              => 'syntric_summer_sessions',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-academic-calendar',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -161,359 +162,359 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_594c325a7aee1',
 				'title'                 => 'ADA Compliance',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_594af4f3cf31d',
 						'label'             => 'Enable ADA Compliance',
-						'name'              => 'syn_enable_ada_compliance',
+						'name'              => 'syntric_enable_ada_compliance',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'hide_admin'        => 0,
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_594c3ba1eea11',
 						'label'             => 'Global',
 						'name'              => '',
 						'type'              => 'tab',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_594af4f3cf31d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'hide_admin'        => 0,
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_594c359feea0a',
 						'label'             => 'Global Recipients',
-						'name'              => 'syn_ada_recipients',
+						'name'              => 'syntric_ada_recipients',
 						'type'              => 'user',
 						'instructions'      => 'Select users who should receive notification of non-compliant content (site-wide).',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'hide_admin'        => 0,
 						'role'              => '',
 						'allow_null'        => 0,
 						'multiple'          => 1,
 						'return_format'     => 'array',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_594c39d7eea0f',
 						'label'             => 'Block New',
-						'name'              => 'syn_ada_block_new',
+						'name'              => 'syntric_ada_block_new',
 						'type'              => 'true_false',
 						'instructions'      => 'Prevent new content from being published until compliant.',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'hide_admin'        => 0,
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_594c3af5eea10',
 						'label'             => 'Block Updates',
-						'name'              => 'syn_ada_block_updates',
+						'name'              => 'syntric_ada_block_updates',
 						'type'              => 'true_false',
 						'instructions'      => 'Prevent existing content from publishing updates until compliant. Last compliant version will be published until new content passes compliance test.',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'hide_admin'        => 0,
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_594c3bbbeea12',
 						'label'             => 'Scopes',
 						'name'              => '',
 						'type'              => 'tab',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_594af4f3cf31d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'hide_admin'        => 0,
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_594c3630eea0b',
 						'label'             => 'Scopes',
-						'name'              => 'syn_ada_scopes',
+						'name'              => 'syntric_ada_scopes',
 						'type'              => 'repeater',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'hide_admin'        => 0,
 						'collapsed'         => 'field_594c3c496f6da',
 						'min'               => 0,
 						'max'               => 0,
 						'layout'            => 'block',
 						'button_label'      => 'Add Scope',
-						'sub_fields'        => array(
-							array(
+						'sub_fields'        => [
+							[
 								'key'               => 'field_594c3c496f6da',
 								'label'             => 'Pages',
-								'name'              => 'syn_ada_scope_pages',
+								'name'              => 'syntric_ada_scope_pages',
 								'type'              => 'page_link',
 								'instructions'      => 'Select the pages to be tested in this scope',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'hide_admin'        => 0,
-								'post_type'         => array(
+								'post_type'         => [
 									0 => 'page',
-								),
-								'taxonomy'          => array(),
+								],
+								'taxonomy'          => [],
 								'allow_null'        => 0,
 								'allow_archives'    => 0,
 								'multiple'          => 1,
-							),
-							array(
+							],
+							[
 								'key'               => 'field_594c3923eea0e',
 								'label'             => 'Recursive',
-								'name'              => 'syn_ada_scope_recursive',
+								'name'              => 'syntric_ada_scope_recursive',
 								'type'              => 'true_false',
 								'instructions'      => 'Test all pages below the selected pages',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'hide_admin'        => 0,
 								'message'           => '',
 								'default_value'     => 0,
 								'ui'                => 1,
 								'ui_on_text'        => '',
 								'ui_off_text'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_594c372beea0d',
 								'label'             => 'Recipients',
-								'name'              => 'syn_ada_scope_recipients',
+								'name'              => 'syntric_ada_scope_recipients',
 								'type'              => 'user',
 								'instructions'      => 'Select users who should receive notification of non-compliant content in this scope.',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'hide_admin'        => 0,
 								'role'              => '',
 								'allow_null'        => 0,
 								'multiple'          => 1,
 								'return_format'     => 'array',
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'key'               => 'field_594c85aced260',
 						'label'             => 'Logs',
 						'name'              => '',
 						'type'              => 'tab',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_594af4f3cf31d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'hide_admin'        => 0,
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_594c8449ed25b',
 						'label'             => 'Logs',
-						'name'              => 'syn_ada_logs',
+						'name'              => 'syntric_ada_logs',
 						'type'              => 'repeater',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'hide_admin'        => 0,
 						'collapsed'         => 'field_594c845fed25c',
 						'min'               => 0,
 						'max'               => 0,
 						'layout'            => 'block',
 						'button_label'      => 'Add Entry',
-						'sub_fields'        => array(
-							array(
+						'sub_fields'        => [
+							[
 								'key'               => 'field_594c845fed25c',
 								'label'             => 'Page',
-								'name'              => 'syn_ada_log_page',
+								'name'              => 'syntric_ada_log_page',
 								'type'              => 'page_link',
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'hide_admin'        => 0,
-								'post_type'         => array(
+								'post_type'         => [
 									0 => 'page',
-								),
-								'taxonomy'          => array(),
+								],
+								'taxonomy'          => [],
 								'allow_null'        => 0,
 								'allow_archives'    => 0,
 								'multiple'          => 0,
-							),
-							array(
+							],
+							[
 								'key'               => 'field_594c84beed25d',
 								'label'             => 'Date',
-								'name'              => 'syn_ada_log_date',
+								'name'              => 'syntric_ada_log_date',
 								'type'              => 'date_time_picker',
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '50',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'hide_admin'        => 0,
 								'display_format'    => 'n/j/Y g:i a',
 								'return_format'     => 'n/j/Y g:i a',
 								'first_day'         => 1,
-							),
-							array(
+							],
+							[
 								'key'               => 'field_594c851ded25f',
 								'label'             => 'Author',
-								'name'              => 'syn_ada_log_user',
+								'name'              => 'syntric_ada_log_user',
 								'type'              => 'user',
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '50',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'hide_admin'        => 0,
 								'role'              => '',
 								'allow_null'        => 0,
 								'multiple'          => 0,
 								'return_format'     => 'array',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_594c84f2ed25e',
 								'label'             => 'Description',
-								'name'              => 'syn_ada_log_description',
+								'name'              => 'syntric_ada_log_description',
 								'type'              => 'textarea',
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'hide_admin'        => 0,
 								'default_value'     => '',
 								'placeholder'       => '',
 								'maxlength'         => '',
 								'rows'              => 4,
 								'new_lines'         => '',
-							),
-						),
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+							],
+						],
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-ada-compliance',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -523,51 +524,51 @@
 				'active'                => 0,
 				'description'           => '',
 				'modified'              => 1509793963,
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59edb4b81b867',
 				'title'                 => 'Buildings',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59bb91a45ec72',
 						'label'             => 'Active',
-						'name'              => 'syn_buildings_active',
+						'name'              => 'syntric_buildings_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'                   => 'field_59bb90f75ec6f',
 						'label'                 => 'Buildings',
-						'name'                  => 'syn_buildings',
+						'name'                  => 'syntric_buildings',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 0,
-						'conditional_logic'     => array(
-							array(
-								array(
+						'conditional_logic'     => [
+							[
+								[
 									'field'    => 'field_59bb91a45ec72',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'               => array(
+								],
+							],
+						],
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_59bb915c5ec70',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -576,8 +577,8 @@
 						'hide_collapse'         => 1,
 						'collapse_all_repeater' => 0,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_59bb915c5ec70',
 								'label'             => 'Building',
 								'name'              => 'building',
@@ -585,18 +586,18 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59bb91745ec71',
 								'label'             => 'Building ID',
 								'name'              => 'building_id',
@@ -604,29 +605,29 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '1',
 									'class' => 'hidden',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-						),
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+							],
+						],
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-buildings',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -635,34 +636,34 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59ddbbe942f1c',
 				'title'                 => 'Category + Microblog',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59ddbcb3081a9',
 						'label'             => 'Category',
-						'name'              => 'syn_post_category',
+						'name'              => 'syntric_post_category',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59e7f2f7049e2',
 						'label'             => 'Category',
 						'name'              => '',
@@ -670,73 +671,73 @@
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => 'hidden',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'new_lines'         => '',
 						'esc_html'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ddc1744818e',
 						'label'             => 'New Category',
-						'name'              => 'syn_post_new_category',
+						'name'              => 'syntric_post_new_category',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ddbcb3081a9',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ddbbfc9a650',
 						'label'             => 'Microblog',
-						'name'              => 'syn_post_microblog',
+						'name'              => 'syntric_post_microblog',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ddbcb3081a9',
 									'operator' => '==',
 									'value'    => '129',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59e7f370049e3',
 						'label'             => 'Microblog',
 						'name'              => '',
@@ -744,57 +745,57 @@
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => 'hidden',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'new_lines'         => '',
 						'esc_html'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ddc1994818f',
 						'label'             => 'New Microblog',
-						'name'              => 'syn_post_new_microblog',
+						'name'              => 'syntric_post_new_microblog',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ddbcb3081a9',
 									'operator' => '==',
 									'value'    => '129',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59ddbbfc9a650',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'post',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'side',
 				'style'                 => 'default',
@@ -803,43 +804,43 @@
 				'hide_on_screen'        => '',
 				'active'                => 0,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5ad345237516a',
 				'title'                 => 'Category Page',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_5ad3454acb6a2',
 						'label'             => 'Home Page',
-						'name'              => 'syn_category_page',
+						'name'              => 'syntric_category_page',
 						'type'              => 'post_object',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'post_type'         => array(
+						],
+						'post_type'         => [
 							0 => 'page',
-						),
-						'taxonomy'          => array(),
+						],
+						'taxonomy'          => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'return_format'     => 'object',
 						'ui'                => 1,
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'taxonomy',
 							'operator' => '==',
 							'value'    => 'category',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'acf_after_title',
 				'style'                 => 'default',
@@ -848,12 +849,12 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59bb843293763',
 				'title'                 => 'Classes List',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59cdd095c90ac',
 						'label'             => 'Classes',
 						'name'              => '',
@@ -861,24 +862,24 @@
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'enhanced_message'  => '<?php syn_list_classes(); ?>',
+						],
+						'enhanced_message'  => '<?php syntric_list_classes(); ?>',
 						'hide_label'        => 'yes',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-classes',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -887,24 +888,24 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59eda0e2aa349',
 				'title'                 => 'Courses',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'                   => 'field_59b8bd0c20477',
 						'label'                 => 'Courses',
-						'name'                  => 'syn_courses',
+						'name'                  => 'syntric_courses',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 0,
 						'conditional_logic'     => 0,
-						'wrapper'               => array(
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_59b8bd1b20478',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -913,8 +914,8 @@
 						'hide_collapse'         => 0,
 						'collapse_all_repeater' => 0,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_59b8bd1b20478',
 								'label'             => 'Course',
 								'name'              => 'course',
@@ -922,19 +923,19 @@
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '80',
 									'class' => '-collapsed-target',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
 								'choices'           => null,
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5a28a3a90f302',
 								'label'             => 'Active',
 								'name'              => 'active',
@@ -942,18 +943,18 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '20',
 									'class' => '-collapsed-target',
 									'id'    => '',
-								),
+								],
 								'message'           => '',
 								'default_value'     => 0,
 								'ui'                => 1,
 								'ui_on_text'        => '',
 								'ui_off_text'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59bb8bf493b01',
 								'label'             => 'Department',
 								'name'              => 'department',
@@ -961,12 +962,12 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '25',
 									'class' => '',
 									'id'    => '',
-								),
-								'choices'           => array(
+								],
+								'choices'           => [
 									'id-2040897388-752304541-1411741476'  => 'Arts',
 									'id-1185042063-1341354796-1832532734' => 'CTE',
 									'id-1279125767-1351269013-828438742'  => 'English',
@@ -976,16 +977,16 @@
 									'id-1709568394-1782388424-1579918998' => 'Sciences',
 									'id-599600823-282234850-69920155'     => 'Social Sciences',
 									'id-524852117-2036490172-913286242'   => 'Special Education',
-								),
-								'default_value'     => array(),
+								],
+								'default_value'     => [],
 								'allow_null'        => 0,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5ab6a009d84cf',
 								'label'             => 'Course Length',
 								'name'              => 'course_length',
@@ -993,14 +994,14 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '50',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'layout'            => 'block',
-								'sub_fields'        => array(
-									array(
+								'sub_fields'        => [
+									[
 										'key'               => 'field_5a289c4decd23',
 										'label'             => '',
 										'name'              => 'length_quantity',
@@ -1008,26 +1009,26 @@
 										'instructions'      => '',
 										'required'          => 0,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '50',
 											'class' => '',
 											'id'    => '',
-										),
-										'choices'           => array(
+										],
+										'choices'           => [
 											1 => '1',
 											2 => '2',
 											3 => '3',
 											4 => '4',
-										),
-										'default_value'     => array(),
+										],
+										'default_value'     => [],
 										'allow_null'        => 1,
 										'multiple'          => 0,
 										'ui'                => 0,
 										'ajax'              => 0,
 										'return_format'     => 'value',
 										'placeholder'       => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_5a289b42ecd22',
 										'label'             => '',
 										'name'              => 'length_unit',
@@ -1035,28 +1036,28 @@
 										'instructions'      => '',
 										'required'          => 0,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '50',
 											'class' => '',
 											'id'    => '',
-										),
-										'choices'           => array(
+										],
+										'choices'           => [
 											'quarter'   => 'Quarter',
 											'trimester' => 'Trimester',
 											'semester'  => 'Semester',
 											'year'      => 'Year',
-										),
-										'default_value'     => array(),
+										],
+										'default_value'     => [],
 										'allow_null'        => 1,
 										'multiple'          => 0,
 										'ui'                => 0,
 										'ajax'              => 0,
 										'return_format'     => 'value',
 										'placeholder'       => '',
-									),
-								),
-							),
-							array(
+									],
+								],
+							],
+							[
 								'key'               => 'field_5a289d85ecd27',
 								'label'             => 'Units',
 								'name'              => 'units',
@@ -1064,26 +1065,26 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '25',
 									'class' => '',
 									'id'    => '',
-								),
-								'choices'           => array(
+								],
+								'choices'           => [
 									5  => '5',
 									10 => '10',
 									15 => '15',
 									20 => '20',
-								),
-								'default_value'     => array(),
+								],
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5a289af6ecd21',
 								'label'             => 'Grades',
 								'name'              => 'grades',
@@ -1091,25 +1092,25 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '20',
 									'class' => 'hidden',
 									'id'    => '',
-								),
-								'choices'           => array(
+								],
+								'choices'           => [
 									9  => '9th',
 									10 => '10th',
 									11 => '11th',
 									12 => '12th',
-								),
+								],
 								'allow_custom'      => 0,
 								'save_custom'       => 0,
-								'default_value'     => array(),
+								'default_value'     => [],
 								'layout'            => 'vertical',
 								'toggle'            => 0,
 								'return_format'     => 'value',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5a289e7428ae7',
 								'label'             => 'Attributes',
 								'name'              => 'attributes',
@@ -1117,24 +1118,24 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '20',
 									'class' => 'hidden',
 									'id'    => '',
-								),
-								'choices'           => array(
+								],
+								'choices'           => [
 									'graduation_requirement' => 'Graduation Requirement',
 									'college_requirement'    => 'College Requirement',
 									'advanced_placement'     => 'Advanced Placement (AP)',
-								),
+								],
 								'allow_custom'      => 0,
 								'save_custom'       => 0,
-								'default_value'     => array(),
+								'default_value'     => [],
 								'layout'            => 'vertical',
 								'toggle'            => 0,
 								'return_format'     => 'value',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5a289addecd20',
 								'label'             => 'Description',
 								'name'              => 'description',
@@ -1142,18 +1143,18 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'tabs'              => 'all',
 								'toolbar'           => 'full',
 								'media_upload'      => 0,
 								'delay'             => 1,
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59bb6fbf70f0d',
 								'label'             => 'Course ID',
 								'name'              => 'course_id',
@@ -1161,29 +1162,29 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '1',
 									'class' => 'hidden',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-						),
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+							],
+						],
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-courses',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -1192,51 +1193,51 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59eda1c85cb15',
 				'title'                 => 'Departments',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59bb8b3093aff',
 						'label'             => 'Active',
-						'name'              => 'syn_departments_active',
+						'name'              => 'syntric_departments_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'                   => 'field_59b8bcc420475',
 						'label'                 => 'Departments',
-						'name'                  => 'syn_departments',
+						'name'                  => 'syntric_departments',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 0,
-						'conditional_logic'     => array(
-							array(
-								array(
+						'conditional_logic'     => [
+							[
+								[
 									'field'    => 'field_59bb8b3093aff',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'               => array(
+								],
+							],
+						],
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_59b8bcde20476',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -1245,8 +1246,8 @@
 						'hide_collapse'         => 1,
 						'collapse_all_repeater' => 0,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_59b8bcde20476',
 								'label'             => 'Department',
 								'name'              => 'department',
@@ -1254,18 +1255,18 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59bb8c3393b02',
 								'label'             => 'Department ID',
 								'name'              => 'department_id',
@@ -1273,29 +1274,29 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '1',
 									'class' => 'hidden',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-						),
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+							],
+						],
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-departments',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -1304,12 +1305,12 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_599916cf361bb',
 				'title'                 => 'Filters',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'                   => 'field_59a1e3cb53654',
 						'label'                 => 'Filters',
 						'name'                  => 'filters',
@@ -1317,11 +1318,11 @@
 						'instructions'          => 'Filters are rules that allow you to show and/or hide pages and posts.',
 						'required'              => 0,
 						'conditional_logic'     => 0,
-						'wrapper'               => array(
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_59a1e3e053655',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -1330,8 +1331,8 @@
 						'hide_collapse'         => 0,
 						'collapse_all_repeater' => 1,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_59a1e3e053655',
 								'label'             => 'Parameter',
 								'name'              => 'parameter',
@@ -1339,27 +1340,27 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '40',
 									'class' => '-collapsed-target',
 									'id'    => '',
-								),
-								'choices'           => array(
+								],
+								'choices'           => [
 									'post_type'     => 'Post Type',
 									'post_category' => 'Post Category',
 									'page_template' => 'Page Template',
 									'post'          => 'Post',
 									'page'          => 'Page',
-								),
-								'default_value'     => array(),
+								],
+								'default_value'     => [],
 								'allow_null'        => 0,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'array',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59a1e46953656',
 								'label'             => 'Operator',
 								'name'              => 'operator',
@@ -1367,24 +1368,24 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '20',
 									'class' => '-collapsed-target',
 									'id'    => '',
-								),
-								'choices'           => array(
+								],
+								'choices'           => [
 									'is'     => 'is',
 									'is_not' => 'is not',
-								),
-								'default_value'     => array(),
+								],
+								'default_value'     => [],
 								'allow_null'        => 0,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'array',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59b5d1015d65f',
 								'label'             => 'Value',
 								'name'              => 'value',
@@ -1392,69 +1393,69 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '40',
 									'class' => '-collapsed-target',
 									'id'    => '',
-								),
+								],
 								'layout'            => 'block',
-								'sub_fields'        => array(
-									array(
+								'sub_fields'        => [
+									[
 										'key'               => 'field_59a1f43953657',
 										'label'             => '',
 										'name'              => 'post_type_value',
 										'type'              => 'select',
 										'instructions'      => '',
 										'required'          => 0,
-										'conditional_logic' => array(
-											array(
-												array(
+										'conditional_logic' => [
+											[
+												[
 													'field'    => 'field_59a1e3e053655',
 													'operator' => '==',
 													'value'    => 'post_type',
-												),
-											),
-										),
-										'wrapper'           => array(
+												],
+											],
+										],
+										'wrapper'           => [
 											'width' => '',
 											'class' => '',
 											'id'    => '',
-										),
-										'choices'           => array(
-											'post'         => 'Post',
-											'page'         => 'Page',
-											'syn_calendar' => 'Calendar',
-											'syn_event'    => 'Event',
-										),
-										'default_value'     => array(),
+										],
+										'choices'           => [
+											'post'             => 'Post',
+											'page'             => 'Page',
+											'syntric_calendar' => 'Calendar',
+											'syntric_event'    => 'Event',
+										],
+										'default_value'     => [],
 										'allow_null'        => 0,
 										'multiple'          => 0,
 										'ui'                => 0,
 										'ajax'              => 0,
 										'return_format'     => 'array',
 										'placeholder'       => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_59a1f5f853659',
 										'label'             => '',
 										'name'              => 'post_category_value',
 										'type'              => 'taxonomy',
 										'instructions'      => '',
 										'required'          => 0,
-										'conditional_logic' => array(
-											array(
-												array(
+										'conditional_logic' => [
+											[
+												[
 													'field'    => 'field_59a1e3e053655',
 													'operator' => '==',
 													'value'    => 'post_category',
-												),
-											),
-										),
-										'wrapper'           => array(
+												],
+											],
+										],
+										'wrapper'           => [
 											'width' => '',
 											'class' => '',
 											'id'    => '',
-										),
+										],
 										'taxonomy'          => 'category',
 										'field_type'        => 'select',
 										'allow_null'        => 0,
@@ -1463,147 +1464,147 @@
 										'load_terms'        => 0,
 										'return_format'     => 'id',
 										'multiple'          => 0,
-									),
-									array(
+									],
+									[
 										'key'               => 'field_59a1f76e5365c',
 										'label'             => '',
 										'name'              => 'page_template_value',
 										'type'              => 'select',
 										'instructions'      => '',
 										'required'          => 0,
-										'conditional_logic' => array(
-											array(
-												array(
+										'conditional_logic' => [
+											[
+												[
 													'field'    => 'field_59a1e3e053655',
 													'operator' => '==',
 													'value'    => 'page_template',
-												),
-											),
-										),
-										'wrapper'           => array(
+												],
+											],
+										],
+										'wrapper'           => [
 											'width' => '',
 											'class' => '',
 											'id'    => '',
-										),
-										'choices'           => array(
+										],
+										'choices'           => [
 											'page.php'                      => 'Default',
 											'page-templates/class.php'      => 'Class',
 											'page-templates/department.php' => 'Department',
 											'page-templates/teacher.php'    => 'Teacher',
 											'page-templates/teachers.php'   => 'Teachers',
-										),
-										'default_value'     => array(),
+										],
+										'default_value'     => [],
 										'allow_null'        => 0,
 										'multiple'          => 0,
 										'ui'                => 0,
 										'ajax'              => 0,
 										'return_format'     => 'array',
 										'placeholder'       => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_59a1f8455365d',
 										'label'             => '',
 										'name'              => 'page_value',
 										'type'              => 'post_object',
 										'instructions'      => '',
 										'required'          => 0,
-										'conditional_logic' => array(
-											array(
-												array(
+										'conditional_logic' => [
+											[
+												[
 													'field'    => 'field_59a1e3e053655',
 													'operator' => '==',
 													'value'    => 'page',
-												),
-											),
-										),
-										'wrapper'           => array(
+												],
+											],
+										],
+										'wrapper'           => [
 											'width' => '',
 											'class' => '',
 											'id'    => '',
-										),
-										'post_type'         => array(
+										],
+										'post_type'         => [
 											0 => 'page',
-										),
-										'taxonomy'          => array(),
+										],
+										'taxonomy'          => [],
 										'allow_null'        => 0,
 										'multiple'          => 0,
 										'return_format'     => 'id',
 										'ui'                => 1,
-									),
-									array(
+									],
+									[
 										'key'               => 'field_59a1f6305365a',
 										'label'             => '',
 										'name'              => 'post_value',
 										'type'              => 'post_object',
 										'instructions'      => '',
 										'required'          => 0,
-										'conditional_logic' => array(
-											array(
-												array(
+										'conditional_logic' => [
+											[
+												[
 													'field'    => 'field_59a1e3e053655',
 													'operator' => '==',
 													'value'    => 'post',
-												),
-											),
-										),
-										'wrapper'           => array(
+												],
+											],
+										],
+										'wrapper'           => [
 											'width' => '',
 											'class' => '',
 											'id'    => '',
-										),
-										'post_type'         => array(
+										],
+										'post_type'         => [
 											0 => 'post',
-										),
-										'taxonomy'          => array(),
+										],
+										'taxonomy'          => [],
 										'allow_null'        => 0,
 										'multiple'          => 0,
 										'return_format'     => 'id',
 										'ui'                => 1,
-									),
-									array(
+									],
+									[
 										'key'               => 'field_5a71222353753',
 										'label'             => '',
 										'name'              => 'post_parent_value',
 										'type'              => 'post_object',
 										'instructions'      => '',
 										'required'          => 0,
-										'conditional_logic' => array(
-											array(
-												array(
+										'conditional_logic' => [
+											[
+												[
 													'field'    => 'field_59a1e3e053655',
 													'operator' => '==',
 													'value'    => 'post_parent',
-												),
-											),
-										),
-										'wrapper'           => array(
+												],
+											],
+										],
+										'wrapper'           => [
 											'width' => '',
 											'class' => '',
 											'id'    => '',
-										),
-										'post_type'         => array(
+										],
+										'post_type'         => [
 											0 => 'page',
-										),
-										'taxonomy'          => array(),
+										],
+										'taxonomy'          => [],
 										'allow_null'        => 0,
 										'multiple'          => 0,
 										'return_format'     => 'id',
 										'ui'                => 1,
-									),
-								),
-							),
-						),
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+									],
+								],
+							],
+						],
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-clonables',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -1612,83 +1613,83 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5ae3beb672a15',
 				'title'                 => 'Gallery',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_5ae3e32878df2',
 						'label'             => 'Dynamic',
-						'name'              => 'syn_gallery_widget_dynamic',
+						'name'              => 'syntric_gallery_widget_dynamic',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							0 => 'No',
 							1 => 'Yes',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 0,
 						'layout'            => 'horizontal',
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ae3e24e78df1',
 						'label'             => 'Title',
-						'name'              => 'syn_gallery_widget_title',
+						'name'              => 'syntric_gallery_widget_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ae3e32878df2',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ae3bebf74ac9',
 						'label'             => 'Gallery',
-						'name'              => 'syn_gallery_widget_gallery',
+						'name'              => 'syntric_gallery_widget_gallery',
 						'type'              => 'gallery',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ae3e32878df2',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'min'               => '',
 						'max'               => '',
 						'insert'            => 'append',
@@ -1700,17 +1701,17 @@
 						'max_height'        => '',
 						'max_size'          => '',
 						'mime_types'        => 'jpg,png,gif',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'widget',
 							'operator' => '==',
 							'value'    => 'syn-gallery-widget',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -1719,78 +1720,78 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59ea3e96d6174',
 				'title'                 => 'Google',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59b6ea73f2798',
 						'label'             => 'Google Javascript API Key',
-						'name'              => 'syn_google_api_key',
+						'name'              => 'syntric_google_api_key',
 						'type'              => 'text',
 						'instructions'      => 'A Google Javascript API Key is needed for Google Calendars, Google Maps and Google Analytics.	Get one at the <a href="https://console.developers.google.com" target="_blank">Google Developers Console</a>.',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59b6f0663b359',
 						'label'             => 'Google Maps API URL',
-						'name'              => 'syn_google_calendar_api_url',
+						'name'              => 'syntric_google_calendar_api_url',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'https://www.googleapis.com/calendar/v3/calendars/',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_594333aa09c26',
 						'label'             => 'Google Analytics Tracking ID',
-						'name'              => 'syn_google_analytics_tracking_id',
+						'name'              => 'syntric_google_analytics_tracking_id',
 						'type'              => 'text',
 						'instructions'      => 'Enter a <a href="https://analytics.google.com/analytics" target="_blank">Google Analytics Tracking ID</a> for this domain',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => 'hidden',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => 'UA-#########-#',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-google',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -1799,24 +1800,24 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59f005d5019ad',
 				'title'                 => 'Google Maps',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'                   => 'field_59a726ca08765',
 						'label'                 => 'Google Maps',
-						'name'                  => 'syn_google_maps',
+						'name'                  => 'syntric_google_maps',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 0,
 						'conditional_logic'     => 0,
-						'wrapper'               => array(
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_598fcd1ee58b8',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -1825,8 +1826,8 @@
 						'hide_collapse'         => 0,
 						'collapse_all_repeater' => 1,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_598fcd1ee58b8',
 								'label'             => 'Name',
 								'name'              => 'name',
@@ -1834,18 +1835,18 @@
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '-collapsed-target',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fcd1ee58bf',
 								'label'             => 'Include Markers',
 								'name'              => 'include_markers',
@@ -1853,38 +1854,38 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'message'           => '',
 								'default_value'     => 0,
 								'ui'                => 1,
 								'ui_on_text'        => '',
 								'ui_off_text'       => '',
-							),
-							array(
+							],
+							[
 								'key'                   => 'field_598fcd1ee58c3',
 								'label'                 => 'Markers',
 								'name'                  => 'markers',
 								'type'                  => 'repeater',
 								'instructions'          => '',
 								'required'              => 0,
-								'conditional_logic'     => array(
-									array(
-										array(
+								'conditional_logic'     => [
+									[
+										[
 											'field'    => 'field_598fcd1ee58bf',
 											'operator' => '==',
 											'value'    => '1',
-										),
-									),
-								),
-								'wrapper'               => array(
+										],
+									],
+								],
+								'wrapper'               => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'collapsed'             => 'field_59b118daf73d0',
 								'min'                   => 0,
 								'max'                   => 0,
@@ -1892,8 +1893,8 @@
 								'button_label'          => 'Add Marker',
 								'collapse_all_repeater' => 1,
 								'btn-icon-only'         => 1,
-								'sub_fields'            => array(
-									array(
+								'sub_fields'            => [
+									[
 										'key'               => 'field_59efde970195f',
 										'label'             => 'Default Organization',
 										'name'              => 'default_organization',
@@ -1901,48 +1902,48 @@
 										'instructions'      => '',
 										'required'          => 0,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '',
 											'class' => '',
 											'id'    => '',
-										),
+										],
 										'message'           => 'This organization',
 										'default_value'     => 1,
 										'ui'                => 1,
 										'ui_on_text'        => '',
 										'ui_off_text'       => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_59b118daf73d0',
 										'label'             => 'Organization',
 										'name'              => 'organization',
 										'type'              => 'select',
 										'instructions'      => '',
 										'required'          => 1,
-										'conditional_logic' => array(
-											array(
-												array(
+										'conditional_logic' => [
+											[
+												[
 													'field'    => 'field_59efde970195f',
 													'operator' => '!=',
 													'value'    => '1',
-												),
-											),
-										),
-										'wrapper'           => array(
+												],
+											],
+										],
+										'wrapper'           => [
 											'width' => '',
 											'class' => '',
 											'id'    => '',
-										),
+										],
 										'choices'           => null,
-										'default_value'     => array(),
+										'default_value'     => [],
 										'allow_null'        => 1,
 										'multiple'          => 0,
 										'ui'                => 0,
 										'ajax'              => 0,
 										'return_format'     => 'value',
 										'placeholder'       => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_598fcd1ee58ce',
 										'label'             => 'Latitude',
 										'name'              => 'lat',
@@ -1950,11 +1951,11 @@
 										'instructions'      => '',
 										'required'          => 1,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '50',
 											'class' => '',
 											'id'    => '',
-										),
+										],
 										'default_value'     => '',
 										'placeholder'       => '',
 										'prepend'           => '',
@@ -1962,8 +1963,8 @@
 										'min'               => '',
 										'max'               => '',
 										'step'              => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_598fcd1ee58cf',
 										'label'             => 'Longitude',
 										'name'              => 'lng',
@@ -1971,11 +1972,11 @@
 										'instructions'      => '',
 										'required'          => 1,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '50',
 											'class' => '',
 											'id'    => '',
-										),
+										],
 										'default_value'     => '',
 										'placeholder'       => '',
 										'prepend'           => '',
@@ -1983,8 +1984,8 @@
 										'min'               => '',
 										'max'               => '',
 										'step'              => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_598fcd1ee58d0',
 										'label'             => 'Icon',
 										'name'              => 'icon',
@@ -1992,11 +1993,11 @@
 										'instructions'      => 'PNG 32px x 32px',
 										'required'          => 0,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '',
 											'class' => '',
 											'id'    => '',
-										),
+										],
 										'return_format'     => 'url',
 										'preview_size'      => 'full',
 										'library'           => 'all',
@@ -2007,30 +2008,30 @@
 										'max_height'        => 32,
 										'max_size'          => '',
 										'mime_types'        => 'png',
-									),
-								),
-							),
-							array(
+									],
+								],
+							],
+							[
 								'key'               => 'field_598fcd1ee58c0',
 								'label'             => 'Center Latitude',
 								'name'              => 'center_lat',
 								'type'              => 'number',
 								'instructions'      => '',
 								'required'          => 1,
-								'conditional_logic' => array(
-									array(
-										array(
+								'conditional_logic' => [
+									[
+										[
 											'field'    => 'field_598fcd1ee58bf',
 											'operator' => '!=',
 											'value'    => '1',
-										),
-									),
-								),
-								'wrapper'           => array(
+										],
+									],
+								],
+								'wrapper'           => [
 									'width' => '33',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
@@ -2038,28 +2039,28 @@
 								'min'               => '',
 								'max'               => '',
 								'step'              => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fcd1ee58c1',
 								'label'             => 'Center Longitude',
 								'name'              => 'center_lng',
 								'type'              => 'number',
 								'instructions'      => '',
 								'required'          => 1,
-								'conditional_logic' => array(
-									array(
-										array(
+								'conditional_logic' => [
+									[
+										[
 											'field'    => 'field_598fcd1ee58bf',
 											'operator' => '!=',
 											'value'    => '1',
-										),
-									),
-								),
-								'wrapper'           => array(
+										],
+									],
+								],
+								'wrapper'           => [
 									'width' => '33',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
@@ -2067,29 +2068,29 @@
 								'min'               => '',
 								'max'               => '',
 								'step'              => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fcd1ee58c2',
 								'label'             => 'Zoom Level',
 								'name'              => 'zoom_level',
 								'type'              => 'select',
 								'instructions'      => '',
 								'required'          => 1,
-								'conditional_logic' => array(
-									array(
-										array(
+								'conditional_logic' => [
+									[
+										[
 											'field'    => 'field_598fcd1ee58bf',
 											'operator' => '!=',
 											'value'    => '1',
-										),
-									),
-								),
-								'wrapper'           => array(
+										],
+									],
+								],
+								'wrapper'           => [
 									'width' => '34',
 									'class' => '',
 									'id'    => '',
-								),
-								'choices'           => array(
+								],
+								'choices'           => [
 									5  => '5',
 									6  => '6',
 									7  => '7',
@@ -2106,18 +2107,18 @@
 									18 => '18',
 									19 => '19',
 									20 => '20',
-								),
-								'default_value'     => array(
+								],
+								'default_value'     => [
 									0 => 16,
-								),
+								],
 								'allow_null'        => 0,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59a7276adc98b',
 								'label'             => 'Include Styles',
 								'name'              => 'include_styles',
@@ -2125,45 +2126,45 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'message'           => '',
 								'default_value'     => 0,
 								'ui'                => 1,
 								'ui_on_text'        => '',
 								'ui_off_text'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fcd1ee58be',
 								'label'             => 'Styles',
 								'name'              => 'styles',
 								'type'              => 'textarea',
 								'instructions'      => 'Include <a href="https://mapstyle.withgoogle.com/" target="_blank">Google Maps Styles</a> to customize map appearance',
 								'required'          => 0,
-								'conditional_logic' => array(
-									array(
-										array(
+								'conditional_logic' => [
+									[
+										[
 											'field'    => 'field_59a7276adc98b',
 											'operator' => '==',
 											'value'    => '1',
-										),
-									),
-								),
-								'wrapper'           => array(
+										],
+									],
+								],
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'maxlength'         => '',
 								'rows'              => '',
 								'new_lines'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fcd1ee58d2',
 								'label'             => 'Include Boundary',
 								'name'              => 'include_boundary',
@@ -2171,18 +2172,18 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => 'hidden',
 									'id'    => '',
-								),
+								],
 								'message'           => '',
 								'default_value'     => 0,
 								'ui'                => 1,
 								'ui_on_text'        => '',
 								'ui_off_text'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fcd1ee58d3',
 								'label'             => 'Boundary Coordinates',
 								'name'              => 'boundary_coordinates',
@@ -2190,18 +2191,18 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => 'hidden',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'maxlength'         => '',
 								'rows'              => '',
 								'new_lines'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fcd1ee58ba',
 								'label'             => 'Map Type',
 								'name'              => 'map_type',
@@ -2209,26 +2210,26 @@
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '25',
 									'class' => 'hidden',
 									'id'    => '',
-								),
-								'choices'           => array(
+								],
+								'choices'           => [
 									'roadmap'   => 'Roadmap',
 									'satellite' => 'Satellite',
-								),
-								'default_value'     => array(
+								],
+								'default_value'     => [
 									0 => 'roadmap',
-								),
+								],
 								'allow_null'        => 0,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fcd1ee58bb',
 								'label'             => 'Map Type Control',
 								'name'              => 'map_type_control',
@@ -2236,18 +2237,18 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '25',
 									'class' => 'hidden',
 									'id'    => '',
-								),
+								],
 								'message'           => '',
 								'default_value'     => 1,
 								'ui'                => 1,
 								'ui_on_text'        => '',
 								'ui_off_text'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fcd1ee58bc',
 								'label'             => 'Zoom Control',
 								'name'              => 'zoom_control',
@@ -2255,18 +2256,18 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '25',
 									'class' => 'hidden',
 									'id'    => '',
-								),
+								],
 								'message'           => '',
 								'default_value'     => 1,
 								'ui'                => 1,
 								'ui_on_text'        => '',
 								'ui_off_text'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fcd1ee58bd',
 								'label'             => 'Street View Control',
 								'name'              => 'street_view_control',
@@ -2274,18 +2275,18 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '25',
 									'class' => 'hidden',
 									'id'    => '',
-								),
+								],
 								'message'           => '',
 								'default_value'     => 1,
 								'ui'                => 1,
 								'ui_on_text'        => '',
 								'ui_off_text'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59a750ac2313f',
 								'label'             => 'Google Map ID',
 								'name'              => 'google_map_id',
@@ -2293,29 +2294,29 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-						),
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+							],
+						],
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-google-maps',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -2324,24 +2325,24 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5ad53cc9d1c89',
 				'title'                 => 'Job Descriptions',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'                   => 'field_5ad54561839fe',
 						'label'                 => 'Job Descriptions',
-						'name'                  => 'syn_job_descriptions',
+						'name'                  => 'syntric_job_descriptions',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 0,
 						'conditional_logic'     => 0,
-						'wrapper'               => array(
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_5ad53e19f86ae',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -2350,8 +2351,8 @@
 						'hide_collapse'         => 0,
 						'collapse_all_repeater' => 1,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_5ad53e19f86ae',
 								'label'             => 'Title',
 								'name'              => 'title',
@@ -2359,18 +2360,18 @@
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5ad545d983a00',
 								'label'             => 'Description',
 								'name'              => '',
@@ -2378,15 +2379,15 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'placement'         => 'top',
 								'endpoint'          => 0,
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5ad53e39f86af',
 								'label'             => 'Description',
 								'name'              => 'description',
@@ -2394,18 +2395,18 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'tabs'              => 'all',
 								'toolbar'           => 'basic',
 								'media_upload'      => 0,
 								'delay'             => 1,
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5ad54137f86b5',
 								'label'             => 'Responsibilities',
 								'name'              => '',
@@ -2413,15 +2414,15 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'placement'         => 'top',
 								'endpoint'          => 0,
-							),
-							array(
+							],
+							[
 								'key'                   => 'field_5ad54759e23d1',
 								'label'                 => 'Responsibilities',
 								'name'                  => 'responsibilities',
@@ -2429,11 +2430,11 @@
 								'instructions'          => '',
 								'required'              => 0,
 								'conditional_logic'     => 0,
-								'wrapper'               => array(
+								'wrapper'               => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'collapsed'             => 'field_5ad54759e23d2',
 								'min'                   => 0,
 								'max'                   => 0,
@@ -2442,8 +2443,8 @@
 								'hide_collapse'         => 1,
 								'collapse_all_repeater' => 0,
 								'btn-icon-only'         => 0,
-								'sub_fields'            => array(
-									array(
+								'sub_fields'            => [
+									[
 										'key'               => 'field_5ad54759e23d2',
 										'label'             => 'Responsibility',
 										'name'              => 'responsibility',
@@ -2451,20 +2452,20 @@
 										'instructions'      => '',
 										'required'          => 1,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
+										],
 										'default_value'     => '',
 										'placeholder'       => '',
 										'prepend'           => '',
 										'append'            => '',
 										'maxlength'         => '',
-									),
-								),
-							),
-							array(
+									],
+								],
+							],
+							[
 								'key'               => 'field_5ad5410af86b4',
 								'label'             => 'Qualifications',
 								'name'              => '',
@@ -2472,15 +2473,15 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'placement'         => 'top',
 								'endpoint'          => 0,
-							),
-							array(
+							],
+							[
 								'key'                   => 'field_5ad53e78f86b1',
 								'label'                 => 'Qualifications',
 								'name'                  => 'qualifications',
@@ -2488,11 +2489,11 @@
 								'instructions'          => '',
 								'required'              => 0,
 								'conditional_logic'     => 0,
-								'wrapper'               => array(
+								'wrapper'               => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'collapsed'             => 'field_5ad53f61f86b2',
 								'min'                   => 0,
 								'max'                   => 0,
@@ -2501,8 +2502,8 @@
 								'hide_collapse'         => 1,
 								'collapse_all_repeater' => 0,
 								'btn-icon-only'         => 0,
-								'sub_fields'            => array(
-									array(
+								'sub_fields'            => [
+									[
 										'key'               => 'field_5ad53f61f86b2',
 										'label'             => 'Qualification',
 										'name'              => 'qualification',
@@ -2510,18 +2511,18 @@
 										'instructions'      => '',
 										'required'          => 1,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '75',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
+										],
 										'default_value'     => '',
 										'placeholder'       => '',
 										'prepend'           => '',
 										'append'            => '',
 										'maxlength'         => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_5ad53f8cf86b3',
 										'label'             => 'Proficiency',
 										'name'              => 'proficiency',
@@ -2529,28 +2530,28 @@
 										'instructions'      => '',
 										'required'          => 1,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '25',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
-										'choices'           => array(
+										],
+										'choices'           => [
 											'Expert'       => 'Expert',
 											'Intermediate' => 'Intermediate',
 											'Novice'       => 'Novice',
 											'Familiarity'  => 'Familiarity',
-										),
-										'default_value'     => array(),
+										],
+										'default_value'     => [],
 										'allow_null'        => 1,
 										'multiple'          => 0,
 										'ui'                => 0,
 										'ajax'              => 0,
 										'return_format'     => 'value',
 										'placeholder'       => '',
-									),
-								),
-							),
-							array(
+									],
+								],
+							],
+							[
 								'key'               => 'field_5ad545cb839ff',
 								'label'             => 'Requirements',
 								'name'              => '',
@@ -2558,15 +2559,15 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'placement'         => 'top',
 								'endpoint'          => 0,
-							),
-							array(
+							],
+							[
 								'key'                   => 'field_5ad5417df86b6',
 								'label'                 => 'Requirements',
 								'name'                  => 'requirements',
@@ -2574,11 +2575,11 @@
 								'instructions'          => '',
 								'required'              => 0,
 								'conditional_logic'     => 0,
-								'wrapper'               => array(
+								'wrapper'               => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'collapsed'             => 'field_5ad54193f86b7',
 								'min'                   => 0,
 								'max'                   => 0,
@@ -2587,8 +2588,8 @@
 								'hide_collapse'         => 1,
 								'collapse_all_repeater' => 0,
 								'btn-icon-only'         => 0,
-								'sub_fields'            => array(
-									array(
+								'sub_fields'            => [
+									[
 										'key'               => 'field_5ad54193f86b7',
 										'label'             => 'Requirement',
 										'name'              => 'requirement',
@@ -2596,18 +2597,18 @@
 										'instructions'      => '',
 										'required'          => 1,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '75',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
+										],
 										'default_value'     => '',
 										'placeholder'       => '',
 										'prepend'           => '',
 										'append'            => '',
 										'maxlength'         => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_5ad541fbf86b9',
 										'label'             => 'Requirement Type',
 										'name'              => 'requirement_type',
@@ -2615,30 +2616,30 @@
 										'instructions'      => '',
 										'required'          => 1,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '25',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
-										'choices'           => array(
+										],
+										'choices'           => [
 											'Experience' => 'Experience',
 											'Education'  => 'Education',
 											'License'    => 'License',
 											'Credential' => 'Credential',
 											'Ability'    => 'Ability',
 											'Other'      => 'Other',
-										),
-										'default_value'     => array(),
+										],
+										'default_value'     => [],
 										'allow_null'        => 1,
 										'multiple'          => 0,
 										'ui'                => 0,
 										'ajax'              => 0,
 										'return_format'     => 'value',
 										'placeholder'       => '',
-									),
-								),
-							),
-							array(
+									],
+								],
+							],
+							[
 								'key'               => 'field_5ad543e5f86bd',
 								'label'             => 'Salary Schedule',
 								'name'              => '',
@@ -2646,15 +2647,15 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'placement'         => 'top',
 								'endpoint'          => 0,
-							),
-							array(
+							],
+							[
 								'key'                   => 'field_5ad542f8f86ba',
 								'label'                 => 'Salary Schedule',
 								'name'                  => 'salary_schedule',
@@ -2662,11 +2663,11 @@
 								'instructions'          => '',
 								'required'              => 0,
 								'conditional_logic'     => 0,
-								'wrapper'               => array(
+								'wrapper'               => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'collapsed'             => 'field_5ad54323f86bb',
 								'min'                   => 0,
 								'max'                   => 0,
@@ -2675,8 +2676,8 @@
 								'hide_collapse'         => 1,
 								'collapse_all_repeater' => 0,
 								'btn-icon-only'         => 0,
-								'sub_fields'            => array(
-									array(
+								'sub_fields'            => [
+									[
 										'key'               => 'field_5ad54323f86bb',
 										'label'             => 'Level',
 										'name'              => 'level',
@@ -2684,18 +2685,18 @@
 										'instructions'      => '',
 										'required'          => 1,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '75',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
+										],
 										'default_value'     => '',
 										'placeholder'       => '',
 										'prepend'           => '',
 										'append'            => '',
 										'maxlength'         => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_5ad54339f86bc',
 										'label'             => 'Salary',
 										'name'              => 'salary',
@@ -2703,11 +2704,11 @@
 										'instructions'      => '',
 										'required'          => 1,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '25',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
+										],
 										'default_value'     => '',
 										'placeholder'       => '',
 										'prepend'           => '',
@@ -2715,21 +2716,21 @@
 										'min'               => '',
 										'max'               => '',
 										'step'              => '',
-									),
-								),
-							),
-						),
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+									],
+								],
+							],
+						],
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-clonables',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -2738,24 +2739,24 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_594d4afb1305c',
 				'title'                 => 'Jumbotrons',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'                   => 'field_59b11e4179792',
 						'label'                 => 'Jumbotrons',
-						'name'                  => 'syn_jumbotrons',
+						'name'                  => 'syntric_jumbotrons',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 0,
 						'conditional_logic'     => 0,
-						'wrapper'               => array(
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_598fd4fc82c7d',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -2763,8 +2764,8 @@
 						'button_label'          => 'Add Jumbotron',
 						'collapse_all_repeater' => 1,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_598fd4fc82c7d',
 								'label'             => 'Headline',
 								'name'              => 'headline',
@@ -2772,18 +2773,18 @@
 								'instructions'      => 'Enter a headline',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '-collapsed-target',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => 50,
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fd4fc83069',
 								'label'             => 'Caption',
 								'name'              => 'caption',
@@ -2791,18 +2792,18 @@
 								'instructions'      => 'Enter a caption (limit 185 characters)',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'maxlength'         => 185,
 								'rows'              => 2,
 								'new_lines'         => 'wpautop',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fd4fc83808',
 								'label'             => 'Start Date/Time',
 								'name'              => 'start_datetime',
@@ -2810,16 +2811,16 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '50',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'display_format'    => 'n/j/Y g:i a',
 								'return_format'     => 'n/j/Y g:i a',
 								'first_day'         => 1,
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fd4fc83bf7',
 								'label'             => 'End Date/Time',
 								'name'              => 'end_datetime',
@@ -2827,16 +2828,16 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '50',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'display_format'    => 'n/j/Y g:i a',
 								'return_format'     => 'n/j/Y g:i a',
 								'first_day'         => 1,
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fd4fc83ff2',
 								'label'             => 'Include Button',
 								'name'              => 'include_button',
@@ -2844,171 +2845,171 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'message'           => '',
 								'default_value'     => 0,
 								'ui'                => 1,
 								'ui_on_text'        => '',
 								'ui_off_text'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59b61cbe05d6d',
 								'label'             => 'Button Target',
 								'name'              => 'button_target',
 								'type'              => 'select',
 								'instructions'      => '',
 								'required'          => 1,
-								'conditional_logic' => array(
-									array(
-										array(
+								'conditional_logic' => [
+									[
+										[
 											'field'    => 'field_598fd4fc83ff2',
 											'operator' => '==',
 											'value'    => '1',
-										),
-									),
-								),
-								'wrapper'           => array(
+										],
+									],
+								],
+								'wrapper'           => [
 									'width' => '25',
 									'class' => '',
 									'id'    => '',
-								),
-								'choices'           => array(
+								],
+								'choices'           => [
 									'page' => 'Internal link',
 									'url'  => 'External link',
-								),
-								'default_value'     => array(
+								],
+								'default_value'     => [
 									0 => 'page',
-								),
+								],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fd4fc843f1',
 								'label'             => 'Button Text',
 								'name'              => 'button_text',
 								'type'              => 'text',
 								'instructions'      => '',
 								'required'          => 1,
-								'conditional_logic' => array(
-									array(
-										array(
+								'conditional_logic' => [
+									[
+										[
 											'field'    => 'field_598fd4fc83ff2',
 											'operator' => '==',
 											'value'    => '1',
-										),
-									),
-								),
-								'wrapper'           => array(
+										],
+									],
+								],
+								'wrapper'           => [
 									'width' => '25',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => 25,
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fd4fc84bb0',
 								'label'             => 'Button Page',
 								'name'              => 'button_page',
 								'type'              => 'page_link',
 								'instructions'      => '',
 								'required'          => 1,
-								'conditional_logic' => array(
-									array(
-										array(
+								'conditional_logic' => [
+									[
+										[
 											'field'    => 'field_598fd4fc83ff2',
 											'operator' => '==',
 											'value'    => '1',
-										),
-										array(
+										],
+										[
 											'field'    => 'field_59b61cbe05d6d',
 											'operator' => '==',
 											'value'    => 'page',
-										),
-									),
-								),
-								'wrapper'           => array(
+										],
+									],
+								],
+								'wrapper'           => [
 									'width' => '25',
 									'class' => '',
 									'id'    => '',
-								),
-								'post_type'         => array(
+								],
+								'post_type'         => [
 									0 => 'page',
 									1 => 'post',
-								),
-								'taxonomy'          => array(),
+								],
+								'taxonomy'          => [],
 								'allow_null'        => 0,
 								'allow_archives'    => 0,
 								'multiple'          => 0,
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fd4fc84f84',
 								'label'             => 'Button URL',
 								'name'              => 'button_url',
 								'type'              => 'url',
 								'instructions'      => '',
 								'required'          => 1,
-								'conditional_logic' => array(
-									array(
-										array(
+								'conditional_logic' => [
+									[
+										[
 											'field'    => 'field_598fd4fc83ff2',
 											'operator' => '==',
 											'value'    => '1',
-										),
-										array(
+										],
+										[
 											'field'    => 'field_59b61cbe05d6d',
 											'operator' => '==',
 											'value'    => 'url',
-										),
-									),
-								),
-								'wrapper'           => array(
+										],
+									],
+								],
+								'wrapper'           => [
 									'width' => '25',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_599f6b0773a35',
 								'label'             => 'New Window',
 								'name'              => 'button_new_window',
 								'type'              => 'true_false',
 								'instructions'      => '',
 								'required'          => 0,
-								'conditional_logic' => array(
-									array(
-										array(
+								'conditional_logic' => [
+									[
+										[
 											'field'    => 'field_598fd4fc83ff2',
 											'operator' => '==',
 											'value'    => '1',
-										),
-									),
-								),
-								'wrapper'           => array(
+										],
+									],
+								],
+								'wrapper'           => [
 									'width' => '25',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'message'           => '',
 								'default_value'     => 0,
 								'ui'                => 1,
 								'ui_on_text'        => '',
 								'ui_off_text'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59b11d7d10837',
 								'label'             => 'Filters',
 								'name'              => 'filters_clone',
@@ -3016,20 +3017,20 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
-								'clone'             => array(
+								],
+								'clone'             => [
 									0 => 'group_599916cf361bb',
-								),
+								],
 								'display'           => 'seamless',
 								'layout'            => 'block',
 								'prefix_label'      => 0,
 								'prefix_name'       => 0,
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59d2cccbe61ae',
 								'label'             => 'Jumbotron ID',
 								'name'              => 'jumbotron_id',
@@ -3037,35 +3038,35 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-						),
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+							],
+						],
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-jumbotrons',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'top',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0  => 'permalink',
 					1  => 'the_content',
 					2  => 'excerpt',
@@ -3081,67 +3082,67 @@
 					12 => 'categories',
 					13 => 'tags',
 					14 => 'send-trackbacks',
-				),
+				],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5a713d51d2b62',
 				'title'                 => 'Microblog Post',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_5a713d6632950',
 						'label'             => 'Title',
-						'name'              => 'syn_microblog_post_title',
+						'name'              => 'syntric_microblog_post_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a713da632951',
 						'label'             => 'Content',
-						'name'              => 'syn_microblog_post_content',
+						'name'              => 'syntric_microblog_post_content',
 						'type'              => 'wysiwyg',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'tabs'              => 'all',
 						'toolbar'           => 'full',
 						'media_upload'      => 1,
 						'delay'             => 0,
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'page',
-						),
-						array(
+						],
+						[
 							'param'    => 'current_user',
 							'operator' => '==',
 							'value'    => 'logged_in',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -3151,130 +3152,130 @@
 				'active'                => 0,
 				'description'           => '',
 				'modified'              => 1517400795,
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59ee46beed358',
 				'title'                 => 'Organization',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59ee4730c8415',
 						'label'             => 'Organization',
-						'name'              => 'syn_organization',
+						'name'              => 'syntric_organization',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '-collapsed-target',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ee4730c8416',
 						'label'             => 'Organization Type',
-						'name'              => 'syn_organization_type',
+						'name'              => 'syntric_organization_type',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '-collapsed-target',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'coe'               => 'County Office of Education',
 							'school_district'   => 'School District',
 							'elementary_school' => 'Elementary School',
 							'secondary_school'  => 'Secondary School',
 							'adult_ed_school'   => 'Adult Education School',
 							'other'             => 'Other',
-						),
-						'default_value'     => array(),
+						],
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'array',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ee4730c8417',
 						'label'             => 'Address',
-						'name'              => 'syn_organization_address',
+						'name'              => 'syntric_organization_address',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ee4731c8418',
 						'label'             => 'Address 2',
-						'name'              => 'syn_organization_address_2',
+						'name'              => 'syntric_organization_address_2',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ee4731c8419',
 						'label'             => 'City',
-						'name'              => 'syn_organization_city',
+						'name'              => 'syntric_organization_city',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ee4731c841a',
 						'label'             => 'State',
-						'name'              => 'syn_organization_state',
+						'name'              => 'syntric_organization_state',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'AZ' => 'Arizona',
 							'AR' => 'Arkansas',
 							'CA' => 'California',
@@ -3323,28 +3324,28 @@
 							'WV' => 'West Virginia',
 							'WI' => 'Wisconsin',
 							'WY' => 'Wyoming',
-						),
-						'default_value'     => array(),
+						],
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ee4731c841b',
 						'label'             => 'Zip Code',
-						'name'              => 'syn_organization_zip_code',
+						'name'              => 'syntric_organization_zip_code',
 						'type'              => 'number',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
@@ -3352,112 +3353,112 @@
 						'min'               => 10000,
 						'max'               => 99999,
 						'step'              => 1,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ee4731c841c',
 						'label'             => 'Email',
-						'name'              => 'syn_organization_email',
+						'name'              => 'syntric_organization_email',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ee4731c841d',
 						'label'             => 'Web Address',
-						'name'              => 'syn_organization_url',
+						'name'              => 'syntric_organization_url',
 						'type'              => 'url',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ee4731c841e',
 						'label'             => 'Phone',
-						'name'              => 'syn_organization_phone',
+						'name'              => 'syntric_organization_phone',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '35',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ee4731c841f',
 						'label'             => 'Extension',
-						'name'              => 'syn_organization_extension',
+						'name'              => 'syntric_organization_extension',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '15',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ee4731c8420',
 						'label'             => 'Fax',
-						'name'              => 'syn_organization_fax',
+						'name'              => 'syntric_organization_fax',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ee4731c8421',
 						'label'             => 'Logo',
-						'name'              => 'syn_organization_logo',
+						'name'              => 'syntric_organization_logo',
 						'type'              => 'image',
 						'instructions'      => 'Image should between 75 and 300 pixels square and have a transparent background',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'return_format'     => 'array',
 						'preview_size'      => 'thumbnail',
 						'library'           => 'all',
@@ -3468,36 +3469,36 @@
 						'max_height'        => 300,
 						'max_size'          => '',
 						'mime_types'        => 'jpg,gif,png',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ee4731c8422',
 						'label'             => 'Organization ID',
-						'name'              => 'syn_organization_id',
+						'name'              => 'syntric_organization_id',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-organization',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -3506,24 +3507,24 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59ad9e6962594',
 				'title'                 => 'Organizations',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'                   => 'field_59ad9e7a1595f',
 						'label'                 => 'Organizations',
-						'name'                  => 'syn_organizations',
+						'name'                  => 'syntric_organizations',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 0,
 						'conditional_logic'     => 0,
-						'wrapper'               => array(
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_59ad9e9e15960',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -3531,8 +3532,8 @@
 						'button_label'          => 'Add Organization',
 						'collapse_all_repeater' => 1,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_59d1dbd9f2569',
 								'label'             => 'Organization',
 								'name'              => 'organization',
@@ -3540,18 +3541,18 @@
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '50',
 									'class' => '-collapsed-target',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59adaf54bd26c',
 								'label'             => 'Organization Type',
 								'name'              => 'organization_type',
@@ -3559,28 +3560,28 @@
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '50',
 									'class' => '-collapsed-target',
 									'id'    => '',
-								),
-								'choices'           => array(
+								],
+								'choices'           => [
 									'coe'               => 'County Office of Education',
 									'school_district'   => 'School District',
 									'elementary_school' => 'Elementary School',
 									'secondary_school'  => 'Secondary School',
 									'adult_ed_school'   => 'Adult Education School',
 									'other'             => 'Other',
-								),
-								'default_value'     => array(),
+								],
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'array',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5990d0a58a8e9',
 								'label'             => 'Address',
 								'name'              => 'address',
@@ -3588,18 +3589,18 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '50',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5990d0a58ab21',
 								'label'             => 'Address 2',
 								'name'              => 'address_2',
@@ -3607,18 +3608,18 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '50',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5990d0a58acde',
 								'label'             => 'City',
 								'name'              => 'city',
@@ -3626,18 +3627,18 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '50',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5990d0a58b102',
 								'label'             => 'State',
 								'name'              => 'state',
@@ -3645,12 +3646,12 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '25',
 									'class' => '',
 									'id'    => '',
-								),
-								'choices'           => array(
+								],
+								'choices'           => [
 									'AZ' => 'Arizona',
 									'AR' => 'Arkansas',
 									'CA' => 'California',
@@ -3699,16 +3700,16 @@
 									'WV' => 'West Virginia',
 									'WI' => 'Wisconsin',
 									'WY' => 'Wyoming',
-								),
-								'default_value'     => array(),
+								],
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5990d0a58b2be',
 								'label'             => 'Zip Code',
 								'name'              => 'zip_code',
@@ -3716,11 +3717,11 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '25',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
@@ -3728,8 +3729,8 @@
 								'min'               => 10000,
 								'max'               => 99999,
 								'step'              => 1,
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5990d0a58be86',
 								'label'             => 'Email',
 								'name'              => 'email',
@@ -3737,18 +3738,18 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '50',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5990d0a58c25f',
 								'label'             => 'Web Address',
 								'name'              => 'url',
@@ -3756,15 +3757,15 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '50',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5990d0a58b4e7',
 								'label'             => 'Phone',
 								'name'              => 'phone',
@@ -3772,18 +3773,18 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '35',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5990d0a58b69b',
 								'label'             => 'Ext',
 								'name'              => 'extension',
@@ -3791,18 +3792,18 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '15',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59acf9441fc36',
 								'label'             => 'Fax',
 								'name'              => 'fax',
@@ -3810,18 +3811,18 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '50',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5990d29373009',
 								'label'             => 'Logo',
 								'name'              => 'logo',
@@ -3829,11 +3830,11 @@
 								'instructions'      => 'Image should between 75 and 300 pixels square and have a transparent background',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'return_format'     => 'array',
 								'preview_size'      => 'thumbnail',
 								'library'           => 'all',
@@ -3844,8 +3845,8 @@
 								'max_height'        => 300,
 								'max_size'          => '',
 								'mime_types'        => 'jpg,gif,png',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59adda2a71ca5',
 								'label'             => 'Organization ID',
 								'name'              => 'organization_id',
@@ -3853,29 +3854,29 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-						),
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+							],
+						],
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-organizations',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -3884,31 +3885,31 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59c3e037a537a',
 				'title'                 => 'People',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59c865443398f',
 						'label'             => 'People',
-						'name'              => 'syn_people',
+						'name'              => 'syntric_people',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => 'hidden',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 1,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59c85f5601896',
 						'label'             => 'People',
 						'name'              => '',
@@ -3916,24 +3917,24 @@
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'enhanced_message'  => '<?php syn_list_people(); ?>',
+						],
+						'enhanced_message'  => '<?php syntric_list_people(); ?>',
 						'hide_label'        => 'yes',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-organization',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -3942,51 +3943,51 @@
 				'hide_on_screen'        => '',
 				'active'                => 0,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59eda3ec00b40',
 				'title'                 => 'Periods',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59bb95dec1fa1',
 						'label'             => 'Active',
-						'name'              => 'syn_periods_active',
+						'name'              => 'syntric_periods_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '-collapsed-target',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'                   => 'field_59bb9590c1f9e',
 						'label'                 => 'Periods',
-						'name'                  => 'syn_periods',
+						'name'                  => 'syntric_periods',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 0,
-						'conditional_logic'     => array(
-							array(
-								array(
+						'conditional_logic'     => [
+							[
+								[
 									'field'    => 'field_59bb95dec1fa1',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'               => array(
+								],
+							],
+						],
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_59bb95b2c1f9f',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -3995,8 +3996,8 @@
 						'hide_collapse'         => 1,
 						'collapse_all_repeater' => 1,
 						'btn-icon-only'         => 0,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_59bb95b2c1f9f',
 								'label'             => 'Period',
 								'name'              => 'period',
@@ -4004,19 +4005,19 @@
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
 								'choices'           => null,
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59bd7e699681b',
 								'label'             => 'Period ID',
 								'name'              => 'period_id',
@@ -4024,29 +4025,29 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '1',
 									'class' => 'hidden',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-						),
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+							],
+						],
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-periods',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -4055,24 +4056,24 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5ad116565e3f6',
 				'title'                 => 'Post Category',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_5ad118164a993',
 						'label'             => 'Category',
-						'name'              => 'syn_post_category',
+						'name'              => 'syntric_post_category',
 						'type'              => 'taxonomy',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'taxonomy'          => 'category',
 						'field_type'        => 'select',
 						'allow_null'        => 1,
@@ -4082,20 +4083,20 @@
 						'return_format'     => 'object',
 						'multiple'          => 0,
 						'choices'           => null,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ad118d2deb65',
 						'label'             => 'Microblog',
-						'name'              => 'syn_post_term',
+						'name'              => 'syntric_post_term',
 						'type'              => 'taxonomy',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'taxonomy'          => 'microblog',
 						'field_type'        => 'select',
 						'allow_null'        => 0,
@@ -4104,39 +4105,39 @@
 						'load_terms'        => 1,
 						'return_format'     => 'object',
 						'multiple'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ad1168661fd1',
 						'label'             => 'Page',
-						'name'              => 'syn_post_microblog_page',
+						'name'              => 'syntric_post_microblog_page',
 						'type'              => 'post_object',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'post_type'         => array(
+						],
+						'post_type'         => [
 							0 => 'page',
-						),
-						'taxonomy'          => array(),
+						],
+						'taxonomy'          => [],
 						'allow_null'        => 0,
 						'multiple'          => 0,
 						'return_format'     => 'object',
 						'ui'                => 1,
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'post',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -4145,48 +4146,48 @@
 				'hide_on_screen'        => '',
 				'active'                => 0,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5abfcf4cd6cfa',
 				'title'                 => 'Post Settings - Microblog',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_5abfcf4cefe07',
 						'label'             => 'Microblog',
-						'name'              => 'syn_post_microblog',
+						'name'              => 'syntric_post_microblog',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 0,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'post',
-						),
-						array(
+						],
+						[
 							'param'    => 'post_category',
 							'operator' => '==',
 							'value'    => 'category:microblogs',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'side',
 				'style'                 => 'default',
@@ -4196,51 +4197,51 @@
 				'active'                => 0,
 				'description'           => '',
 				'modified'              => 1522672915,
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59eda284d4d43',
 				'title'                 => 'Rooms',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59bb920a5ec73',
 						'label'             => 'Active',
-						'name'              => 'syn_rooms_active',
+						'name'              => 'syntric_rooms_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'                   => 'field_59bb90975ec6a',
 						'label'                 => 'Rooms',
-						'name'                  => 'syn_rooms',
+						'name'                  => 'syntric_rooms',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 0,
-						'conditional_logic'     => array(
-							array(
-								array(
+						'conditional_logic'     => [
+							[
+								[
 									'field'    => 'field_59bb920a5ec73',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'               => array(
+								],
+							],
+						],
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_59bb90a45ec6b',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -4249,8 +4250,8 @@
 						'hide_collapse'         => 1,
 						'collapse_all_repeater' => 0,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_59bb90c45ec6d',
 								'label'             => 'Building',
 								'name'              => 'building',
@@ -4258,25 +4259,25 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
-								'choices'           => array(
+								],
+								'choices'           => [
 									'id-1410657020-742205427-119697453'  => 'Science Building',
 									'id-928694372-1594139176-1523481414' => 'Math Building',
 									'id-342521015-1812126826-984399009'  => 'Gym',
-								),
-								'default_value'     => array(),
+								],
+								'default_value'     => [],
 								'allow_null'        => 0,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59bb90a45ec6b',
 								'label'             => 'Room',
 								'name'              => 'room',
@@ -4284,19 +4285,19 @@
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
 								'choices'           => null,
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59bb90bb5ec6c',
 								'label'             => 'Room ID',
 								'name'              => 'room_id',
@@ -4304,29 +4305,29 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '1',
 									'class' => 'hidden',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-						),
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+							],
+						],
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-rooms',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -4335,24 +4336,24 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5bd6f0f77792d',
 				'title'                 => 'Schedules',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'                   => 'field_5bd6f11fa43e4',
 						'label'                 => 'Schedules',
-						'name'                  => 'syn_schedules',
+						'name'                  => 'syntric_schedules',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 0,
 						'conditional_logic'     => 0,
-						'wrapper'               => array(
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_5bd6f151a43e5',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -4361,8 +4362,8 @@
 						'hide_collapse'         => 0,
 						'collapse_all_repeater' => 1,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_5bd6f151a43e5',
 								'label'             => 'Schedule Type',
 								'name'              => 'schedule_type',
@@ -4370,46 +4371,46 @@
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
-								'choices'           => array(
+								],
+								'choices'           => [
 									'regular: Dump this'   => 'regular: Dump this',
 									'Regular Schedule'     => 'Regular Schedule',
 									'Minimum Day Schedule' => 'Minimum Day Schedule',
 									'Other'                => 'Other',
-								),
-								'default_value'     => array(),
+								],
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'return_format'     => 'value',
 								'ajax'              => 0,
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'                   => 'field_5bd6f21da43e7',
 								'label'                 => 'Periods',
 								'name'                  => 'periods',
 								'type'                  => 'repeater',
 								'instructions'          => '',
 								'required'              => 1,
-								'conditional_logic'     => array(
-									array(
-										array(
+								'conditional_logic'     => [
+									[
+										[
 											'field'    => 'field_5bd6f151a43e5',
 											'operator' => '!=',
 											'value'    => '',
-										),
-									),
-								),
-								'wrapper'               => array(
+										],
+									],
+								],
+								'wrapper'               => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'collapsed'             => 'field_5bd853679f92b',
 								'min'                   => 0,
 								'max'                   => 0,
@@ -4418,8 +4419,8 @@
 								'hide_collapse'         => 1,
 								'collapse_all_repeater' => 0,
 								'btn-icon-only'         => 0,
-								'sub_fields'            => array(
-									array(
+								'sub_fields'            => [
+									[
 										'key'               => 'field_5bd853679f92b',
 										'label'             => 'Label',
 										'name'              => 'label',
@@ -4427,18 +4428,18 @@
 										'instructions'      => '',
 										'required'          => 1,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '25',
 											'class' => '',
 											'id'    => '',
-										),
+										],
 										'default_value'     => '',
 										'placeholder'       => '',
 										'prepend'           => '',
 										'append'            => '',
 										'maxlength'         => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_5bd6f1c8a43e6',
 										'label'             => 'Start Time',
 										'name'              => 'start_time',
@@ -4446,15 +4447,15 @@
 										'instructions'      => '',
 										'required'          => 1,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '25',
 											'class' => '',
 											'id'    => '',
-										),
+										],
 										'display_format'    => 'g:i A',
 										'return_format'     => 'g:i A',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_5bd6f25aa43e8',
 										'label'             => 'End Time',
 										'name'              => 'end_time',
@@ -4462,15 +4463,15 @@
 										'instructions'      => '',
 										'required'          => 1,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '25',
 											'class' => '',
 											'id'    => '',
-										),
+										],
 										'display_format'    => 'g:i A',
 										'return_format'     => 'g:i A',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_5bd6f6ea8de02',
 										'label'             => 'Instructional Period',
 										'name'              => 'is_instructional_period',
@@ -4478,37 +4479,37 @@
 										'instructions'      => '',
 										'required'          => 0,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '25',
 											'class' => '',
 											'id'    => '',
-										),
+										],
 										'message'           => '',
 										'default_value'     => 0,
 										'ui'                => 1,
 										'ui_on_text'        => '',
 										'ui_off_text'       => '',
-									),
-								),
-							),
-						),
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+									],
+								],
+							],
+						],
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'page_template',
 							'operator' => '==',
 							'value'    => 'page-templates/schedules.php',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'top',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0  => 'permalink',
 					1  => 'the_content',
 					2  => 'excerpt',
@@ -4522,29 +4523,29 @@
 					10 => 'categories',
 					11 => 'tags',
 					12 => 'send-trackbacks',
-				),
+				],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'settings',
 				'title'                 => 'Settings',
 				'fields'                => false,
-				'location'              => array(),
+				'location'              => [],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'top',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(),
+				'hide_on_screen'        => [],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59ea3d57a7a9b',
 				'title'                 => 'Sidebars & Widgets',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59bb99eaf61ff',
 						'label'             => 'Sidebars',
 						'name'              => '',
@@ -4552,27 +4553,27 @@
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'                   => 'field_59a96515428e8',
 						'label'                 => 'Sidebars',
-						'name'                  => 'syn_sidebars',
+						'name'                  => 'syntric_sidebars',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 0,
 						'conditional_logic'     => 0,
-						'wrapper'               => array(
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_599fc71505913',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -4580,8 +4581,8 @@
 						'button_label'          => 'Add Sidebar',
 						'collapse_all_repeater' => 1,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_599fc71505913_field_599a5d06b3adb',
 								'label'             => 'Name',
 								'name'              => 'name',
@@ -4589,18 +4590,18 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '80',
 									'class' => '-collapsed-target',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_599fc71505913_field_59a118cac509a',
 								'label'             => 'Active',
 								'name'              => 'active',
@@ -4608,11 +4609,11 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '20',
 									'class' => '-collapsed-target',
 									'id'    => '',
-								),
+								],
 								'message'           => '',
 								'default_value'     => 0,
 								'ui'                => 1,
@@ -4622,8 +4623,8 @@
 								'__key'             => 'field_59a118cac509a',
 								'__name'            => 'active',
 								'__label'           => 'Active',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_599fc71505913_field_599a5d06b3add',
 								'label'             => 'Section',
 								'name'              => 'section',
@@ -4631,93 +4632,93 @@
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '50',
 									'class' => '',
 									'id'    => '',
-								),
-								'choices'           => array(
+								],
+								'choices'           => [
 									'header' => 'Header',
 									'main'   => 'Main',
 									'footer' => 'Footer',
-								),
-								'default_value'     => array(),
+								],
+								'default_value'     => [],
 								'allow_null'        => 0,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'array',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_599fc71505913_field_599a5d06b3ade',
 								'label'             => 'Location',
 								'name'              => 'location',
 								'type'              => 'select',
 								'instructions'      => '',
 								'required'          => 1,
-								'conditional_logic' => array(
-									array(
-										array(
+								'conditional_logic' => [
+									[
+										[
 											'field'    => 'field_599fc71505913_field_599a5d06b3add',
 											'operator' => '==',
 											'value'    => 'main',
-										),
-									),
-								),
-								'wrapper'           => array(
+										],
+									],
+								],
+								'wrapper'           => [
 									'width' => '50',
 									'class' => '',
 									'id'    => '',
-								),
-								'choices'           => array(
+								],
+								'choices'           => [
 									'left'   => 'Left',
 									'top'    => 'Top',
 									'bottom' => 'Bottom',
 									'right'  => 'Right',
-								),
-								'default_value'     => array(),
+								],
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'array',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_599fc71505913_field_599a5d06b3adf',
 								'label'             => 'Layout',
 								'name'              => 'layout',
 								'type'              => 'select',
 								'instructions'      => '',
 								'required'          => 1,
-								'conditional_logic' => array(
-									array(
-										array(
+								'conditional_logic' => [
+									[
+										[
 											'field'    => 'field_599fc71505913_field_599a5d06b3add',
 											'operator' => '!=',
 											'value'    => 'main',
-										),
-									),
-								),
-								'wrapper'           => array(
+										],
+									],
+								],
+								'wrapper'           => [
 									'width' => '50',
 									'class' => '',
 									'id'    => '',
-								),
-								'choices'           => array(
+								],
+								'choices'           => [
 									'container'       => 'Fixed width',
 									'container-fluid' => 'Full width',
-								),
-								'default_value'     => array(),
+								],
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'array',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'                   => 'field_599fc71505913_field_59a119204a973_field_59a1e3cb53654',
 								'label'                 => 'Filters',
 								'name'                  => 'filters',
@@ -4725,11 +4726,11 @@
 								'instructions'          => 'Filters are rules that allow you to show and/or hide pages and posts.',
 								'required'              => 0,
 								'conditional_logic'     => 0,
-								'wrapper'               => array(
+								'wrapper'               => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'collapsed'             => '',
 								'min'                   => 0,
 								'max'                   => 0,
@@ -4741,8 +4742,8 @@
 								'__key'                 => 'field_59a1e3cb53654',
 								'__name'                => 'filters',
 								'__label'               => 'Filters',
-								'sub_fields'            => array(
-									array(
+								'sub_fields'            => [
+									[
 										'key'               => 'field_59a1e3e053655',
 										'label'             => 'Parameter',
 										'name'              => 'parameter',
@@ -4750,27 +4751,27 @@
 										'instructions'      => '',
 										'required'          => 0,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '40',
 											'class' => '',
 											'id'    => '',
-										),
-										'choices'           => array(
+										],
+										'choices'           => [
 											'post_type'     => 'Post Type',
 											'post_category' => 'Post Category',
 											'page_template' => 'Page Template',
 											'post'          => 'Post',
 											'page'          => 'Page',
-										),
-										'default_value'     => array(),
+										],
+										'default_value'     => [],
 										'allow_null'        => 0,
 										'multiple'          => 0,
 										'ui'                => 0,
 										'ajax'              => 0,
 										'return_format'     => 'array',
 										'placeholder'       => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_59a1e46953656',
 										'label'             => 'Operator',
 										'name'              => 'operator',
@@ -4778,24 +4779,24 @@
 										'instructions'      => '',
 										'required'          => 0,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '20',
 											'class' => '',
 											'id'    => '',
-										),
-										'choices'           => array(
+										],
+										'choices'           => [
 											'is'     => 'is',
 											'is_not' => 'is not',
-										),
-										'default_value'     => array(),
+										],
+										'default_value'     => [],
 										'allow_null'        => 0,
 										'multiple'          => 0,
 										'ui'                => 0,
 										'ajax'              => 0,
 										'return_format'     => 'array',
 										'placeholder'       => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_59b5d1015d65f',
 										'label'             => 'Value',
 										'name'              => 'value',
@@ -4803,69 +4804,69 @@
 										'instructions'      => '',
 										'required'          => 0,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '40',
 											'class' => 'p0 p-0 m0 m-0 border0 border-0',
 											'id'    => '',
-										),
+										],
 										'layout'            => 'block',
-										'sub_fields'        => array(
-											array(
+										'sub_fields'        => [
+											[
 												'key'               => 'field_59a1f43953657',
 												'label'             => '',
 												'name'              => 'post_type_value',
 												'type'              => 'select',
 												'instructions'      => '',
 												'required'          => 0,
-												'conditional_logic' => array(
-													array(
-														array(
+												'conditional_logic' => [
+													[
+														[
 															'field'    => 'field_59a1e3e053655',
 															'operator' => '==',
 															'value'    => 'post_type',
-														),
-													),
-												),
-												'wrapper'           => array(
+														],
+													],
+												],
+												'wrapper'           => [
 													'width' => '',
 													'class' => '',
 													'id'    => '',
-												),
-												'choices'           => array(
-													'post'         => 'Post',
-													'page'         => 'Page',
-													'syn_calendar' => 'Calendar',
-													'syn_event'    => 'Event',
-												),
-												'default_value'     => array(),
+												],
+												'choices'           => [
+													'post'             => 'Post',
+													'page'             => 'Page',
+													'syntric_calendar' => 'Calendar',
+													'syntric_event'    => 'Event',
+												],
+												'default_value'     => [],
 												'allow_null'        => 0,
 												'multiple'          => 0,
 												'ui'                => 0,
 												'ajax'              => 0,
 												'return_format'     => 'array',
 												'placeholder'       => '',
-											),
-											array(
+											],
+											[
 												'key'               => 'field_59a1f5f853659',
 												'label'             => '',
 												'name'              => 'post_category_value',
 												'type'              => 'taxonomy',
 												'instructions'      => '',
 												'required'          => 0,
-												'conditional_logic' => array(
-													array(
-														array(
+												'conditional_logic' => [
+													[
+														[
 															'field'    => 'field_59a1e3e053655',
 															'operator' => '==',
 															'value'    => 'post_category',
-														),
-													),
-												),
-												'wrapper'           => array(
+														],
+													],
+												],
+												'wrapper'           => [
 													'width' => '',
 													'class' => '',
 													'id'    => '',
-												),
+												],
 												'taxonomy'          => 'category',
 												'field_type'        => 'select',
 												'allow_null'        => 0,
@@ -4874,138 +4875,138 @@
 												'load_terms'        => 0,
 												'return_format'     => 'id',
 												'multiple'          => 0,
-											),
-											array(
+											],
+											[
 												'key'               => 'field_59a1f76e5365c',
 												'label'             => '',
 												'name'              => 'page_template_value',
 												'type'              => 'select',
 												'instructions'      => '',
 												'required'          => 0,
-												'conditional_logic' => array(
-													array(
-														array(
+												'conditional_logic' => [
+													[
+														[
 															'field'    => 'field_59a1e3e053655',
 															'operator' => '==',
 															'value'    => 'page_template',
-														),
-													),
-												),
-												'wrapper'           => array(
+														],
+													],
+												],
+												'wrapper'           => [
 													'width' => '',
 													'class' => '',
 													'id'    => '',
-												),
-												'choices'           => array(
+												],
+												'choices'           => [
 													'page.php'                      => 'Default',
 													'page-templates/class.php'      => 'Class',
 													'page-templates/department.php' => 'Department',
 													'page-templates/teacher.php'    => 'Teacher',
 													'page-templates/teachers.php'   => 'Teachers',
-												),
-												'default_value'     => array(),
+												],
+												'default_value'     => [],
 												'allow_null'        => 0,
 												'multiple'          => 0,
 												'ui'                => 0,
 												'ajax'              => 0,
 												'return_format'     => 'array',
 												'placeholder'       => '',
-											),
-											array(
+											],
+											[
 												'key'               => 'field_59a1f8455365d',
 												'label'             => '',
 												'name'              => 'page_value',
 												'type'              => 'post_object',
 												'instructions'      => '',
 												'required'          => 0,
-												'conditional_logic' => array(
-													array(
-														array(
+												'conditional_logic' => [
+													[
+														[
 															'field'    => 'field_59a1e3e053655',
 															'operator' => '==',
 															'value'    => 'page',
-														),
-													),
-												),
-												'wrapper'           => array(
+														],
+													],
+												],
+												'wrapper'           => [
 													'width' => '',
 													'class' => '',
 													'id'    => '',
-												),
-												'post_type'         => array(
+												],
+												'post_type'         => [
 													0 => 'page',
-												),
-												'taxonomy'          => array(),
+												],
+												'taxonomy'          => [],
 												'allow_null'        => 0,
 												'multiple'          => 0,
 												'return_format'     => 'id',
 												'ui'                => 1,
-											),
-											array(
+											],
+											[
 												'key'               => 'field_59a1f6305365a',
 												'label'             => '',
 												'name'              => 'post_value',
 												'type'              => 'post_object',
 												'instructions'      => '',
 												'required'          => 0,
-												'conditional_logic' => array(
-													array(
-														array(
+												'conditional_logic' => [
+													[
+														[
 															'field'    => 'field_59a1e3e053655',
 															'operator' => '==',
 															'value'    => 'post',
-														),
-													),
-												),
-												'wrapper'           => array(
+														],
+													],
+												],
+												'wrapper'           => [
 													'width' => '',
 													'class' => '',
 													'id'    => '',
-												),
-												'post_type'         => array(
+												],
+												'post_type'         => [
 													0 => 'post',
-												),
-												'taxonomy'          => array(),
+												],
+												'taxonomy'          => [],
 												'allow_null'        => 0,
 												'multiple'          => 0,
 												'return_format'     => 'id',
 												'ui'                => 1,
-											),
-											array(
+											],
+											[
 												'key'               => 'field_5a71222353753',
 												'label'             => '',
 												'name'              => 'post_parent_value',
 												'type'              => 'post_object',
 												'instructions'      => '',
 												'required'          => 0,
-												'conditional_logic' => array(
-													array(
-														array(
+												'conditional_logic' => [
+													[
+														[
 															'field'    => 'field_59a1e3e053655',
 															'operator' => '==',
 															'value'    => 'post_parent',
-														),
-													),
-												),
-												'wrapper'           => array(
+														],
+													],
+												],
+												'wrapper'           => [
 													'width' => '',
 													'class' => '',
 													'id'    => '',
-												),
-												'post_type'         => array(
+												],
+												'post_type'         => [
 													0 => 'page',
-												),
-												'taxonomy'          => array(),
+												],
+												'taxonomy'          => [],
 												'allow_null'        => 0,
 												'multiple'          => 0,
 												'return_format'     => 'id',
 												'ui'                => 1,
-											),
-										),
-									),
-								),
-							),
-							array(
+											],
+										],
+									],
+								],
+							],
+							[
 								'key'               => 'field_599fc71505913_field_599a5d06b3adc',
 								'label'             => 'Description',
 								'name'              => 'description',
@@ -5013,11 +5014,11 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => 'hidden',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'maxlength'         => '',
@@ -5027,8 +5028,8 @@
 								'__key'             => 'field_599a5d06b3adc',
 								'__name'            => 'description',
 								'__label'           => 'Description',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_599fc71505913_field_599a5d06b3ae4',
 								'label'             => 'Sidebar ID',
 								'name'              => 'sidebar_id',
@@ -5036,11 +5037,11 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
@@ -5050,10 +5051,10 @@
 								'__key'             => 'field_599a5d06b3ae4',
 								'__name'            => 'sidebar_id',
 								'__label'           => 'Sidebar ID',
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'key'               => 'field_59bb99fbf6200',
 						'label'             => 'Widgets',
 						'name'              => '',
@@ -5061,28 +5062,28 @@
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59a0ca99ecccd',
 						'label'             => 'Wordpress Widgets',
-						'name'              => 'syn_widgets_wordpress',
+						'name'              => 'syntric_widgets_wordpress',
 						'type'              => 'checkbox',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'WP_Widget_Media_Gallery'        => 'Gallery',
 							'WP_Widget_Custom_HTML'          => 'Custom HTML',
 							'Syntric_Attachments_Widget'     => 'Attachments',
@@ -5099,28 +5100,28 @@
 							'Syntric_Upcoming_Events_Widget' => 'Upcoming Events',
 							'Syntric_Video_Widget'           => 'Video',
 							'Syntric_Embed_Widget'           => 'Embed',
-						),
+						],
 						'allow_custom'      => 0,
 						'save_custom'       => 0,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'layout'            => 'vertical',
 						'toggle'            => 0,
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59a0cae0eccce',
 						'label'             => 'Syntric Widgets',
-						'name'              => 'syn_widgets_syntric',
+						'name'              => 'syntric_widgets_syntric',
 						'type'              => 'checkbox',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'Syntric_Attachments_Widget'     => 'Attachments',
 							'Syntric_Calendars_Menu_Widget'  => 'Calendars Menu',
 							'Syntric_Categories_Menu_Widget' => 'Categories Menu',
@@ -5135,10 +5136,10 @@
 							'Syntric_Upcoming_Events_Widget' => 'Upcoming Events',
 							'Syntric_Video_Widget'           => 'Video',
 							'Syntric_Embed_Widget'           => 'Embed',
-						),
+						],
 						'allow_custom'      => 0,
 						'save_custom'       => 0,
-						'default_value'     => array(
+						'default_value'     => [
 							0  => 'Syntric_Attachments_Widget',
 							1  => 'Syntric_Calendars_Menu_Widget',
 							2  => 'Syntric_Categories_Menu_Widget',
@@ -5152,21 +5153,21 @@
 							10 => 'Syntric_Upcoming_Events_Widget',
 							11 => 'Syntric_Video_Widget',
 							12 => 'Syntric_Embed_Widget',
-						),
+						],
 						'layout'            => 'vertical',
 						'toggle'            => 0,
 						'return_format'     => 'value',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-sidebars-widgets',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -5175,12 +5176,12 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59ea48e076051',
 				'title'                 => 'Social Media',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59ea48f94ac56',
 						'label'             => 'Facebook Pages',
 						'name'              => '',
@@ -5188,27 +5189,27 @@
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'                   => 'field_59a8d46396914',
 						'label'                 => 'Facebook Pages',
-						'name'                  => 'syn_facebook_pages',
+						'name'                  => 'syntric_facebook_pages',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 0,
 						'conditional_logic'     => 0,
-						'wrapper'               => array(
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_598fba990e65e',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -5216,8 +5217,8 @@
 						'button_label'          => 'Add Facebook Page',
 						'collapse_all_repeater' => 1,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_598fba990e65e',
 								'label'             => 'Name',
 								'name'              => 'name',
@@ -5225,18 +5226,18 @@
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '50',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fba990e660',
 								'label'             => 'Page',
 								'name'              => 'page',
@@ -5244,18 +5245,18 @@
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '50',
 									'class' => '-collapsed-target',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5a4bff8b1bd1b',
 								'label'             => 'Authorization',
 								'name'              => '',
@@ -5263,16 +5264,16 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'message'           => 'Preferred method is App ID + App Secret as it does not expire. Optionally use an App Token which requires renewals. More details available at <a href="https://developers.facebook.com" target="_blank">Facebook for Developers</a>.',
 								'new_lines'         => 'wpautop',
 								'esc_html'          => 0,
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5a4bf89ff79dc',
 								'label'             => 'Auth Type',
 								'name'              => 'auth_type',
@@ -5280,105 +5281,105 @@
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '20',
 									'class' => '',
 									'id'    => '',
-								),
-								'choices'           => array(
+								],
+								'choices'           => [
 									'app_client' => 'App ID + App Secret',
 									'app_token'  => 'App Token',
-								),
-								'default_value'     => array(),
+								],
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_598fba990e662',
 								'label'             => 'App Token',
 								'name'              => 'app_token',
 								'type'              => 'text',
 								'instructions'      => '',
 								'required'          => 1,
-								'conditional_logic' => array(
-									array(
-										array(
+								'conditional_logic' => [
+									[
+										[
 											'field'    => 'field_5a4bf89ff79dc',
 											'operator' => '==',
 											'value'    => 'app_token',
-										),
-									),
-								),
-								'wrapper'           => array(
+										],
+									],
+								],
+								'wrapper'           => [
 									'width' => '80',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5a4bfe13363e7',
 								'label'             => 'App ID',
 								'name'              => 'app_id',
 								'type'              => 'text',
 								'instructions'      => '',
 								'required'          => 1,
-								'conditional_logic' => array(
-									array(
-										array(
+								'conditional_logic' => [
+									[
+										[
 											'field'    => 'field_5a4bf89ff79dc',
 											'operator' => '==',
 											'value'    => 'app_client',
-										),
-									),
-								),
-								'wrapper'           => array(
+										],
+									],
+								],
+								'wrapper'           => [
 									'width' => '40',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5a4bfe46363e8',
 								'label'             => 'App Secret',
 								'name'              => 'app_secret',
 								'type'              => 'text',
 								'instructions'      => '',
 								'required'          => 1,
-								'conditional_logic' => array(
-									array(
-										array(
+								'conditional_logic' => [
+									[
+										[
 											'field'    => 'field_5a4bf89ff79dc',
 											'operator' => '==',
 											'value'    => 'app_client',
-										),
-									),
-								),
-								'wrapper'           => array(
+										],
+									],
+								],
+								'wrapper'           => [
 									'width' => '40',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59d1f1dbf7063',
 								'label'             => 'Facebook Page ID',
 								'name'              => 'facebook_page_id',
@@ -5386,20 +5387,20 @@
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'key'               => 'field_59ea49114ac57',
 						'label'             => 'Twitter Feeds',
 						'name'              => '',
@@ -5407,15 +5408,15 @@
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59f6bd3e8a516',
 						'label'             => 'Twitter Feeds Coming Soon',
 						'name'              => '',
@@ -5423,25 +5424,25 @@
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => 'Twitter Feeds are not currently available.	They are scheduled for release by the end of 2017.',
 						'new_lines'         => 'wpautop',
 						'esc_html'          => 0,
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-social-media',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -5450,24 +5451,24 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59c3de97cba74',
 				'title'                 => 'User Info',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_5acd53bd45d45',
 						'label'             => 'Photo',
-						'name'              => 'syn_user_photo',
+						'name'              => 'syntric_user_photo',
 						'type'              => 'image',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'return_format'     => 'array',
 						'preview_size'      => 'thumbnail',
 						'library'           => 'uploadedTo',
@@ -5478,172 +5479,172 @@
 						'max_height'        => 1920,
 						'max_size'          => '',
 						'mime_types'        => 'jpg,jpeg,png',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a6570eff3d03',
 						'label'             => 'Prefix',
-						'name'              => 'syn_user_prefix',
+						'name'              => 'syntric_user_prefix',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'Ms.'  => 'Ms.',
 							'Mrs.' => 'Mrs.',
 							'Mr.'  => 'Mr.',
 							'Mx.'  => 'Mx.',
 							'Dr.'  => 'Dr.',
-						),
+						],
 						'allow_null'        => 1,
 						'other_choice'      => 1,
 						'save_other_choice' => 1,
 						'default_value'     => '',
 						'layout'            => 'vertical',
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59c3de9804864',
 						'label'             => 'Title',
-						'name'              => 'syn_user_title',
+						'name'              => 'syntric_user_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59c3de9804c7e',
 						'label'             => 'Phone',
-						'name'              => 'syn_user_phone',
+						'name'              => 'syntric_user_phone',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59c3de9804e7c',
 						'label'             => 'Ext',
-						'name'              => 'syn_user_extension',
+						'name'              => 'syntric_user_extension',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59c3de980525e',
 						'label'             => 'Teacher?',
-						'name'              => 'syn_user_is_teacher',
+						'name'              => 'syntric_user_is_teacher',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => 'Check to create a teacher page for this user',
 						'default_value'     => 0,
 						'ui'                => 0,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59f7a2d72ed22',
 						'label'             => 'Teacher Page',
-						'name'              => 'syn_user_page',
+						'name'              => 'syntric_user_page',
 						'type'              => 'select',
 						'instructions'      => 'Do not set this value. It will populate and clear itself when using the checkbox above.',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(),
-						'default_value'     => array(),
+						],
+						'choices'           => [],
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ad3b76d1ea8b',
 						'label'             => 'Teacher Page',
 						'name'              => '',
 						'type'              => 'message',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59c3de980525e',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59f7a2d72ed22',
 									'operator' => '!=',
 									'value'    => '',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'new_lines'         => '',
 						'esc_html'          => 0,
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'user_form',
 							'operator' => '==',
 							'value'    => 'edit',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -5652,50 +5653,50 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_597a8a311e8ce',
 				'title'                 => 'Widget: Attachments',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59b593f28c430',
 						'label'             => 'Dynamic:',
-						'name'              => 'syn_attachments_widget_dynamic',
+						'name'              => 'syntric_attachments_widget_dynamic',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							1 => 'Yes',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 1,
 						'layout'            => 'horizontal',
 						'return_format'     => 'value',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'widget',
 							'operator' => '==',
 							'value'    => 'syn-attachments-widget',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'left',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0  => 'permalink',
 					1  => 'the_content',
 					2  => 'excerpt',
@@ -5711,130 +5712,130 @@
 					12 => 'categories',
 					13 => 'tags',
 					14 => 'send-trackbacks',
-				),
+				],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59755a7cc1980',
 				'title'                 => 'Widget: Calendars Menu',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59b595a694ed5',
 						'label'             => 'Dynamic:',
-						'name'              => 'syn_calendars_menu_widget_dynamic',
+						'name'              => 'syntric_calendars_menu_widget_dynamic',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							0 => 'No',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 0,
 						'layout'            => 'horizontal',
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59755a7cd4b5b',
 						'label'             => 'Title:',
-						'name'              => 'syn_calendars_menu_widget_title',
+						'name'              => 'syntric_calendars_menu_widget_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b595a694ed5',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Calendars',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59e3c4e2aae40',
 						'label'             => '',
-						'name'              => 'syn_calendars_menu_widget_all_calendars',
+						'name'              => 'syntric_calendars_menu_widget_all_calendars',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => 'All calendars',
 						'default_value'     => 1,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59e3bb8a7ea4e',
 						'label'             => 'Calendars',
-						'name'              => 'syn_calendars_menu_widget_calendars',
+						'name'              => 'syntric_calendars_menu_widget_calendars',
 						'type'              => 'relationship',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59e3c4e2aae40',
 									'operator' => '!=',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'post_type'         => array(
-							0 => 'syn_calendar',
-						),
-						'taxonomy'          => array(),
+						],
+						'post_type'         => [
+							0 => 'syntric_calendar',
+						],
+						'taxonomy'          => [],
 						'filters'           => '',
 						'elements'          => '',
 						'min'               => '',
 						'max'               => '',
 						'return_format'     => 'object',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'widget',
 							'operator' => '==',
 							'value'    => 'syn-calendars-menu-widget',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'left',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0  => 'permalink',
 					1  => 'the_content',
 					2  => 'excerpt',
@@ -5850,117 +5851,117 @@
 					12 => 'categories',
 					13 => 'tags',
 					14 => 'send-trackbacks',
-				),
+				],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_597458e903b59',
 				'title'                 => 'Widget: Categories Menu',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59b59b9554c92',
 						'label'             => 'Dynamic:',
-						'name'              => 'syn_categories_menu_widget_dynamic',
+						'name'              => 'syntric_categories_menu_widget_dynamic',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							0 => 'No',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => '',
 						'layout'            => 'vertical',
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_597458e9153d5',
 						'label'             => 'Title:',
-						'name'              => 'syn_categories_menu_widget_title',
+						'name'              => 'syntric_categories_menu_widget_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b59b9554c92',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Categories',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a02f16d64426',
 						'label'             => '',
-						'name'              => 'syn_categories_menu_widget_all_categories',
+						'name'              => 'syntric_categories_menu_widget_all_categories',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b59b9554c92',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => 'All categories',
 						'default_value'     => 1,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_597458e9157ce',
 						'label'             => 'Categories:',
-						'name'              => 'syn_categories_menu_widget_categories',
+						'name'              => 'syntric_categories_menu_widget_categories',
 						'type'              => 'taxonomy',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b59b9554c92',
 									'operator' => '==',
 									'value'    => '0',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5a02f16d64426',
 									'operator' => '!=',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'taxonomy'          => 'category',
 						'field_type'        => 'checkbox',
 						'allow_null'        => 0,
@@ -5969,8 +5970,8 @@
 						'load_terms'        => 0,
 						'return_format'     => 'object',
 						'multiple'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5aadd1642d8a3',
 						'label'             => 'Categories',
 						'name'              => '',
@@ -5978,33 +5979,33 @@
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'widget',
 							'operator' => '==',
 							'value'    => 'syn-categories-menu-widget',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'left',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0  => 'permalink',
 					1  => 'the_content',
 					2  => 'excerpt',
@@ -6020,280 +6021,280 @@
 					12 => 'categories',
 					13 => 'tags',
 					14 => 'send-trackbacks',
-				),
+				],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_596da562637ad',
 				'title'                 => 'Widget: Contact',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59a5b5995b0d9',
 						'label'             => 'Dynamic:',
-						'name'              => 'syn_contact_widget_dynamic',
+						'name'              => 'syntric_contact_widget_dynamic',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							0 => 'No',
 							1 => 'Yes',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 0,
 						'layout'            => 'horizontal',
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ad09a065301',
 						'label'             => 'Title:',
-						'name'              => 'syn_contact_widget_title',
+						'name'              => 'syntric_contact_widget_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59a5b5995b0d9',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59af4b2594446',
 						'label'             => 'Contact Type:',
-						'name'              => 'syn_contact_widget_contact_type',
+						'name'              => 'syntric_contact_widget_contact_type',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59a5b5995b0d9',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'person'       => 'Person',
 							'organization' => 'Organization',
-						),
-						'default_value'     => array(
+						],
+						'default_value'     => [
 							0 => 'person',
-						),
+						],
 						'allow_null'        => 0,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ee83a63de7b',
 						'label'             => 'Default Organization:',
-						'name'              => 'syn_contact_widget_default',
+						'name'              => 'syntric_contact_widget_default',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59a5b5995b0d9',
 									'operator' => '==',
 									'value'    => '0',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59af4b2594446',
 									'operator' => '==',
 									'value'    => 'organization',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => 'This organization',
 						'default_value'     => 1,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59af4e239ed34',
 						'label'             => 'Person:',
-						'name'              => 'syn_contact_widget_person',
+						'name'              => 'syntric_contact_widget_person',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59a5b5995b0d9',
 									'operator' => '==',
 									'value'    => '0',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59af4b2594446',
 									'operator' => '==',
 									'value'    => 'person',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59af4e489ed36',
 						'label'             => 'Organization:',
-						'name'              => 'syn_contact_widget_organization',
+						'name'              => 'syntric_contact_widget_organization',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59a5b5995b0d9',
 									'operator' => '==',
 									'value'    => '0',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59af4b2594446',
 									'operator' => '==',
 									'value'    => 'organization',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59ee83a63de7b',
 									'operator' => '!=',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59af4c0694447',
 						'label'             => 'Include Fields:',
-						'name'              => 'syn_contact_widget_include_person_fields',
+						'name'              => 'syntric_contact_widget_include_person_fields',
 						'type'              => 'checkbox',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59a5b5995b0d9',
 									'operator' => '==',
 									'value'    => '0',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59af4b2594446',
 									'operator' => '==',
 									'value'    => 'person',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'prefix'     => 'Prefix',
 							'first_name' => 'First Name',
 							'title'      => 'Title',
 							'email'      => 'Email',
 							'phone'      => 'Phone',
-						),
+						],
 						'allow_custom'      => 0,
 						'save_custom'       => 0,
-						'default_value'     => array(
+						'default_value'     => [
 							0 => 'prefix',
 							1 => 'first_name',
 							2 => 'title',
 							3 => 'email',
 							4 => 'phone',
-						),
+						],
 						'layout'            => 'vertical',
 						'toggle'            => 0,
 						'return_format'     => 'array',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59af4c9694449',
 						'label'             => 'Include Fields:',
-						'name'              => 'syn_contact_widget_include_organization_fields',
+						'name'              => 'syntric_contact_widget_include_organization_fields',
 						'type'              => 'checkbox',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59a5b5995b0d9',
 									'operator' => '==',
 									'value'    => '0',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59af4b2594446',
 									'operator' => '==',
 									'value'    => 'organization',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'address'             => 'Address',
 							'city_state_zip_code' => 'City / State / Zip Code',
 							'email'               => 'Email',
@@ -6301,10 +6302,10 @@
 							'fax'                 => 'Fax',
 							'url'                 => 'Web Address',
 							'logo'                => 'Logo',
-						),
+						],
 						'allow_custom'      => 0,
 						'save_custom'       => 0,
-						'default_value'     => array(
+						'default_value'     => [
 							0 => 'address',
 							1 => 'city_state_zip_code',
 							2 => 'email',
@@ -6312,21 +6313,21 @@
 							4 => 'fax',
 							5 => 'url',
 							6 => 'logo',
-						),
+						],
 						'layout'            => 'vertical',
 						'toggle'            => 0,
 						'return_format'     => 'array',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'widget',
 							'operator' => '==',
 							'value'    => 'syn-contact-widget',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -6335,106 +6336,106 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5ad6ab8f492c7',
 				'title'                 => 'Widget: Embed',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_5ae24ab0a3095',
 						'label'             => 'Dynamic:',
-						'name'              => 'syn_embed_widget_dynamic',
+						'name'              => 'syntric_embed_widget_dynamic',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5c2acaa57495b',
 						'label'             => 'Active',
-						'name'              => 'syn_embed_widget_active',
+						'name'              => 'syntric_embed_widget_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ae24ab0a3095',
 									'operator' => '!=',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ae24afda3096',
 						'label'             => 'Title:',
-						'name'              => 'syn_embed_widget_title',
+						'name'              => 'syntric_embed_widget_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ae24ab0a3095',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5c2a8a2b02c3b',
 						'label'             => 'Type:',
-						'name'              => 'syn_embed_widget_type',
+						'name'              => 'syntric_embed_widget_type',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ae24ab0a3095',
 									'operator' => '!=',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'doc'      => 'Google Document',
 							'folder'   => 'Google Drive folder',
 							'form'     => 'Google Form',
@@ -6444,165 +6445,165 @@
 							'playlist' => 'YouTube playlist',
 							'youtube'  => 'YouTube video',
 							'other'    => 'Other',
-						),
-						'default_value'     => array(),
+						],
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'return_format'     => 'value',
 						'ajax'              => 0,
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5c2ae063ca55f',
 						'label'             => 'ID:',
-						'name'              => 'syn_embed_widget_id',
+						'name'              => 'syntric_embed_widget_id',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ae24ab0a3095',
 									'operator' => '!=',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5c2a8a2b02c3b',
 									'operator' => '==',
 									'value'    => 'folder',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5c2adfc321de3',
 						'label'             => 'Folder View:',
-						'name'              => 'syn_embed_widget_folder_view',
+						'name'              => 'syntric_embed_widget_folder_view',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ae24ab0a3095',
 									'operator' => '!=',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5c2a8a2b02c3b',
 									'operator' => '==',
 									'value'    => 'folder',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'list' => 'List',
 							'grid' => 'Grid',
-						),
-						'default_value'     => array(
+						],
+						'default_value'     => [
 							0 => 'list',
-						),
+						],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'return_format'     => 'value',
 						'ajax'              => 0,
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5c2a8c8402c43',
 						'label'             => 'SRC:',
-						'name'              => 'syn_embed_widget_src',
+						'name'              => 'syntric_embed_widget_src',
 						'type'              => 'url',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ae24ab0a3095',
 									'operator' => '!=',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5c2a8a2b02c3b',
 									'operator' => '==',
 									'value'    => 'other',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'                 => 'field_5c2aee64aae5d',
 						'label'               => 'YouTube Video:',
-						'name'                => 'syn_embed_widget_youtube_video',
+						'name'                => 'syntric_embed_widget_youtube_video',
 						'type'                => 'youtubepicker',
 						'instructions'        => '',
 						'required'            => 0,
-						'conditional_logic'   => array(
-							array(
-								array(
+						'conditional_logic'   => [
+							[
+								[
 									'field'    => 'field_5ae24ab0a3095',
 									'operator' => '!=',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5c2a8a2b02c3b',
 									'operator' => '==',
 									'value'    => 'youtube',
-								),
-							),
-							array(
-								array(
+								],
+							],
+							[
+								[
 									'field'    => 'field_5ae24ab0a3095',
 									'operator' => '!=',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5c2a8a2b02c3b',
 									'operator' => '==',
 									'value'    => 'playlist',
-								),
-							),
-						),
-						'wrapper'             => array(
+								],
+							],
+						],
+						'wrapper'             => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'multiple'            => 1,
 						'yp_advanced_options' => 1,
 						'api_key'             => 'AIzaSyAuHQVhEmD4m2AXL6TvADwZIxZjNogVRF0',
-						'answerOptions'       => array(
+						'answerOptions'       => [
 							0 => 'title',
 							1 => 'vid',
 							2 => 'url',
 							3 => 'thumbs',
 							4 => 'duration',
 							5 => 'iframe',
-						),
+						],
 						'channelId'           => '',
 						'channelType'         => '',
 						'eventType'           => '',
@@ -6622,17 +6623,17 @@
 						'regionCode'          => '',
 						'relevanceLanguage'   => '',
 						'maxResults'          => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'widget',
 							'operator' => '==',
 							'value'    => 'syn-embed-widget',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'seamless',
@@ -6641,113 +6642,113 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5951b60d1162c',
 				'title'                 => 'Widget: Facebook Page',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59a8ce62d1bd5',
 						'label'             => 'Dynamic:',
-						'name'              => 'syn_facebook_page_widget_dynamic',
+						'name'              => 'syntric_facebook_page_widget_dynamic',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							0 => 'No',
 							1 => 'Yes',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 0,
 						'layout'            => 'horizontal',
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_596be78e4dd50',
 						'label'             => 'Title:',
-						'name'              => 'syn_facebook_page_widget_title',
+						'name'              => 'syntric_facebook_page_widget_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59a8ce62d1bd5',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Recent Facebook Posts',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5951b62a2f42e',
 						'label'             => 'Facebook Page:',
-						'name'              => 'syn_facebook_page_widget_page',
+						'name'              => 'syntric_facebook_page_widget_page',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59a8ce62d1bd5',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5952819b53ae7',
 						'label'             => 'Posts to display:',
-						'name'              => 'syn_facebook_page_widget_posts',
+						'name'              => 'syntric_facebook_page_widget_posts',
 						'type'              => 'number',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59a8ce62d1bd5',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 2,
 						'placeholder'       => '',
 						'prepend'           => '',
@@ -6755,50 +6756,50 @@
 						'min'               => 1,
 						'max'               => '',
 						'step'              => 1,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_595308b754884',
 						'label'             => '',
-						'name'              => 'syn_facebook_page_widget_include_image',
+						'name'              => 'syntric_facebook_page_widget_include_image',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59a8ce62d1bd5',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => 'Include post image',
 						'default_value'     => 1,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'widget',
 							'operator' => '==',
 							'value'    => 'syn-facebook-page-widget',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'top',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0  => 'permalink',
 					1  => 'the_content',
 					2  => 'excerpt',
@@ -6814,108 +6815,108 @@
 					12 => 'categories',
 					13 => 'tags',
 					14 => 'send-trackbacks',
-				),
+				],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5c2a868876256',
 				'title'                 => 'Widget: Google Form',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_5c2a8688869fc',
 						'label'             => 'Dynamic:',
-						'name'              => 'syn_form_widget_dynamic',
+						'name'              => 'syntric_form_widget_dynamic',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							0 => 'No',
 							1 => 'Yes',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'default_value'     => 0,
 						'layout'            => 'horizontal',
 						'return_format'     => 'value',
 						'save_other_choice' => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5c2a868886dd9',
 						'label'             => 'Title:',
-						'name'              => 'syn_form_widget_title',
+						'name'              => 'syntric_form_widget_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5c2a8688869fc',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5c2a868887946',
 						'label'             => 'Form ID:',
-						'name'              => 'syn_form_widget_id',
+						'name'              => 'syntric_form_widget_id',
 						'type'              => 'text',
 						'instructions'      => 'Enter the Google Form ID which is a string of characters in the URL of the form hosted on Google.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5c2a8688869fc',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => 20,
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'widget',
 							'operator' => '==',
 							'value'    => 'custom_html',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'top',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0  => 'permalink',
 					1  => 'the_content',
 					2  => 'excerpt',
@@ -6930,111 +6931,111 @@
 					11 => 'categories',
 					12 => 'tags',
 					13 => 'send-trackbacks',
-				),
+				],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5955c9669983f',
 				'title'                 => 'Widget: Google Map',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59b5990860b20',
 						'label'             => 'Dynamic:',
-						'name'              => 'syn_google_map_widget_dynamic',
+						'name'              => 'syntric_google_map_widget_dynamic',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							0 => 'No',
 							1 => 'Yes',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 0,
 						'layout'            => 'horizontal',
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_597e20c9b5128',
 						'label'             => 'Title:',
-						'name'              => 'syn_google_map_widget_title',
+						'name'              => 'syntric_google_map_widget_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b5990860b20',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Map',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5955c966d5c6d',
 						'label'             => 'Google Map:',
-						'name'              => 'syn_google_map_widget_map_id',
+						'name'              => 'syntric_google_map_widget_map_id',
 						'type'              => 'select',
 						'instructions'      => 'Map not listed? <a href="/wp-admin/admin.php?page=syntric-google-maps" target="_blank">Add a map</a>',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b5990860b20',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 0,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'return_format'     => 'value',
 						'ajax'              => 0,
 						'placeholder'       => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'widget',
 							'operator' => '==',
 							'value'    => 'syn-google-map-widget',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'top',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0  => 'permalink',
 					1  => 'the_content',
 					2  => 'excerpt',
@@ -7049,79 +7050,79 @@
 					11 => 'categories',
 					12 => 'tags',
 					13 => 'send-trackbacks',
-				),
+				],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59b5f315c33fb',
 				'title'                 => 'Widget: Jumbotron',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59b5f315d96e0',
 						'label'             => 'Dynamic:',
-						'name'              => 'syn_jumbotron_widget_dynamic',
+						'name'              => 'syntric_jumbotron_widget_dynamic',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							0 => 'No',
 							1 => 'Yes',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 0,
 						'layout'            => 'horizontal',
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59b5f315d9edd',
 						'label'             => '',
 						'name'              => '',
 						'type'              => 'message',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b5f315d96e0',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => 'Static (not dynamic) Jumbotrons are configured on the <a href="/wp-admin/admin.php?page=syntric-jumbotrons" target="_blank">Jumbotrons page</a>.',
 						'new_lines'         => 'wpautop',
 						'esc_html'          => 0,
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'widget',
 							'operator' => '==',
 							'value'    => 'all',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'top',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0  => 'permalink',
 					1  => 'the_content',
 					2  => 'excerpt',
@@ -7137,54 +7138,54 @@
 					12 => 'categories',
 					13 => 'tags',
 					14 => 'send-trackbacks',
-				),
+				],
 				'active'                => 0,
 				'description'           => '',
 				'modified'              => 1509794222,
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_596ae368c8171',
 				'title'                 => 'Widget: Microblog',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59b59a814790b',
 						'label'             => 'Dynamic:',
-						'name'              => 'syn_microblog_widget_dynamic',
+						'name'              => 'syntric_microblog_widget_dynamic',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							1 => 'Yes',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 1,
 						'layout'            => 'horizontal',
 						'return_format'     => 'value',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'widget',
 							'operator' => '==',
 							'value'    => 'syn-microblog-widget',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'left',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0  => 'permalink',
 					1  => 'the_content',
 					2  => 'excerpt',
@@ -7200,117 +7201,117 @@
 					12 => 'categories',
 					13 => 'tags',
 					14 => 'send-trackbacks',
-				),
+				],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59756ffe10280',
 				'title'                 => 'Widget: Microblogs Menu',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59b59cd2e9fda',
 						'label'             => 'Dynamic:',
-						'name'              => 'syn_microblogs_menu_widget_dynamic',
+						'name'              => 'syntric_microblogs_menu_widget_dynamic',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							0 => 'No',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 0,
 						'layout'            => 'horizontal',
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59756ffe1f9b2',
 						'label'             => 'Title:',
-						'name'              => 'syn_microblogs_menu_widget_title',
+						'name'              => 'syntric_microblogs_menu_widget_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b59cd2e9fda',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Microblogs',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a02f0cd00a12',
 						'label'             => '',
-						'name'              => 'syn_microblogs_menu_widget_all_microblogs',
+						'name'              => 'syntric_microblogs_menu_widget_all_microblogs',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b59cd2e9fda',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => 'All microblogs',
 						'default_value'     => 1,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59b44862f066c',
 						'label'             => 'Microblogs:',
-						'name'              => 'syn_microblogs_menu_widget_microblogs',
+						'name'              => 'syntric_microblogs_menu_widget_microblogs',
 						'type'              => 'taxonomy',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b59cd2e9fda',
 									'operator' => '==',
 									'value'    => '0',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5a02f0cd00a12',
 									'operator' => '!=',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'taxonomy'          => 'microblog',
 						'field_type'        => 'checkbox',
 						'allow_null'        => 0,
@@ -7319,23 +7320,23 @@
 						'load_terms'        => 1,
 						'return_format'     => 'object',
 						'multiple'          => 0,
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'widget',
 							'operator' => '==',
 							'value'    => 'syn-microblogs-menu-widget',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'left',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0  => 'permalink',
 					1  => 'the_content',
 					2  => 'excerpt',
@@ -7351,121 +7352,121 @@
 					12 => 'categories',
 					13 => 'tags',
 					14 => 'send-trackbacks',
-				),
+				],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_593a1b64da9ae',
 				'title'                 => 'Widget: Nav Menu',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59b59d77d7b68',
 						'label'             => 'Dynamic:',
-						'name'              => 'syn_nav_menu_widget_dynamic',
+						'name'              => 'syntric_nav_menu_widget_dynamic',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							0 => 'No',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 0,
 						'layout'            => 'vertical',
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59b5b970888b5',
 						'label'             => 'Menu:',
-						'name'              => 'syn_nav_menu_widget_menu',
+						'name'              => 'syntric_nav_menu_widget_menu',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b59d77d7b68',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 0,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_596bdb93eb98d',
 						'label'             => 'Depth:',
-						'name'              => 'syn_nav_menu_widget_depth',
+						'name'              => 'syntric_nav_menu_widget_depth',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b59d77d7b68',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							999 => 'No limit',
 							1   => '1',
 							2   => '2',
 							3   => '3',
 							4   => '4',
-						),
-						'default_value'     => array(
+						],
+						'default_value'     => [
 							0 => - 1,
-						),
+						],
 						'allow_null'        => 0,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'widget',
 							'operator' => '==',
 							'value'    => 'syn-nav-menu-widget',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'left',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0  => 'permalink',
 					1  => 'the_content',
 					2  => 'excerpt',
@@ -7481,15 +7482,15 @@
 					12 => 'categories',
 					13 => 'tags',
 					14 => 'send-trackbacks',
-				),
+				],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5a408f9453939',
 				'title'                 => 'Widget: Navigation Menu',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_5a408fa709164',
 						'label'             => 'Dynamic',
 						'name'              => 'wp_nav_menu_widget_dynamic',
@@ -7497,32 +7498,32 @@
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							0 => 'No',
 							1 => 'Yes',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 0,
 						'layout'            => 'horizontal',
 						'return_format'     => 'value',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'widget',
 							'operator' => '==',
 							'value'    => 'nav_menu',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -7531,82 +7532,82 @@
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_594f06967bb4e',
 				'title'                 => 'Widget: Recent Posts',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59b5bc7aba818',
 						'label'             => 'Dynamic:',
-						'name'              => 'syn_recent_posts_widget_dynamic',
+						'name'              => 'syntric_recent_posts_widget_dynamic',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							0 => 'No',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 1,
 						'layout'            => 'horizontal',
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_596c6510bae30',
 						'label'             => 'Title:',
-						'name'              => 'syn_recent_posts_widget_title',
+						'name'              => 'syntric_recent_posts_widget_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b5bc7aba818',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Recent Posts',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_595357c639648',
 						'label'             => 'Categories:',
-						'name'              => 'syn_recent_posts_widget_categories',
+						'name'              => 'syntric_recent_posts_widget_categories',
 						'type'              => 'taxonomy',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b5bc7aba818',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'taxonomy'          => 'category',
 						'field_type'        => 'checkbox',
 						'allow_null'        => 0,
@@ -7615,28 +7616,28 @@
 						'load_terms'        => 0,
 						'return_format'     => 'id',
 						'multiple'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5953584639649',
 						'label'             => 'Posts to display:',
-						'name'              => 'syn_recent_posts_widget_posts',
+						'name'              => 'syntric_recent_posts_widget_posts',
 						'type'              => 'number',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b5bc7aba818',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 5,
 						'placeholder'       => '',
 						'prepend'           => '',
@@ -7644,50 +7645,50 @@
 						'min'               => 1,
 						'max'               => '',
 						'step'              => 1,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_595358903964a',
 						'label'             => '',
-						'name'              => 'syn_recent_posts_widget_include_date',
+						'name'              => 'syntric_recent_posts_widget_include_date',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b5bc7aba818',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => 'Include post date',
 						'default_value'     => 1,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'widget',
 							'operator' => '==',
 							'value'    => 'syn-recent-posts-widget',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'left',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0  => 'permalink',
 					1  => 'the_content',
 					2  => 'excerpt',
@@ -7703,53 +7704,53 @@
 					12 => 'categories',
 					13 => 'tags',
 					14 => 'send-trackbacks',
-				),
+				],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59718c093bfa6',
 				'title'                 => 'Widget: Roster',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59b5bce592375',
 						'label'             => 'Dynamic:',
-						'name'              => 'syn_roster_widget_dynamic',
+						'name'              => 'syntric_roster_widget_dynamic',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							1 => 'Yes',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 1,
 						'layout'            => 'horizontal',
 						'return_format'     => 'value',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'widget',
 							'operator' => '==',
 							'value'    => 'syn-roster-widget',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'left',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0  => 'permalink',
 					1  => 'the_content',
 					2  => 'excerpt',
@@ -7765,116 +7766,116 @@
 					12 => 'categories',
 					13 => 'tags',
 					14 => 'send-trackbacks',
-				),
+				],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_594f070b1200e',
 				'title'                 => 'Widget: Upcoming Events',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59b25d834e5a3',
 						'label'             => 'Dynamic:',
-						'name'              => 'syn_upcoming_events_widget_dynamic',
+						'name'              => 'syntric_upcoming_events_widget_dynamic',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							0 => 'No',
 							1 => 'Yes',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 0,
 						'layout'            => 'horizontal',
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_596c62117fa7e',
 						'label'             => 'Title:',
-						'name'              => 'syn_upcoming_events_widget_title',
+						'name'              => 'syntric_upcoming_events_widget_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b25d834e5a3',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Upcoming Events',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_595358dfd2396',
 						'label'             => 'Calendar:',
-						'name'              => 'syn_upcoming_events_widget_calendar_id',
+						'name'              => 'syntric_upcoming_events_widget_calendar_id',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b25d834e5a3',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59535930d2397',
 						'label'             => 'Events to display:',
-						'name'              => 'syn_upcoming_events_widget_events',
+						'name'              => 'syntric_upcoming_events_widget_events',
 						'type'              => 'number',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b25d834e5a3',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 5,
 						'placeholder'       => '',
 						'prepend'           => '',
@@ -7882,50 +7883,50 @@
 						'min'               => 1,
 						'max'               => '',
 						'step'              => 1,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59535962d2398',
 						'label'             => '',
-						'name'              => 'syn_upcoming_events_widget_include_date',
+						'name'              => 'syntric_upcoming_events_widget_include_date',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b25d834e5a3',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => 'Include event date',
 						'default_value'     => 1,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'widget',
 							'operator' => '==',
 							'value'    => 'syn-upcoming-events-widget',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'left',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0  => 'permalink',
 					1  => 'the_content',
 					2  => 'excerpt',
@@ -7941,284 +7942,284 @@
 					12 => 'categories',
 					13 => 'tags',
 					14 => 'send-trackbacks',
-				),
+				],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5a41bdd47a284',
 				'title'                 => 'Widget: Video',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_5a41bdd4b978e',
 						'label'             => 'Dynamic:',
-						'name'              => 'syn_video_widget_dynamic',
+						'name'              => 'syntric_video_widget_dynamic',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							0 => 'No',
 							1 => 'Yes',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 0,
 						'layout'            => 'horizontal',
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a41bdd4b9b70',
 						'label'             => 'Title:',
-						'name'              => 'syn_video_widget_title',
+						'name'              => 'syntric_video_widget_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5a41bdd4b978e',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a6f8a0315963',
 						'label'             => 'Host:',
-						'name'              => 'syn_video_widget_host',
+						'name'              => 'syntric_video_widget_host',
 						'type'              => 'select',
 						'instructions'      => 'This widget works with YouTube and Vimeo hosted videos.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5a41bdd4b978e',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'YouTube' => 'YouTube',
 							'Vimeo'   => 'Vimeo',
-						),
-						'default_value'     => array(),
+						],
+						'default_value'     => [],
 						'allow_null'        => 0,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac02c820d597',
 						'label'             => 'Type',
-						'name'              => 'syn_video_widget_type',
+						'name'              => 'syntric_video_widget_type',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5a41bdd4b978e',
 									'operator' => '==',
 									'value'    => '0',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5a6f8a0315963',
 									'operator' => '==',
 									'value'    => 'YouTube',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'Single'   => 'Single',
 							'Playlist' => 'Playlist',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 'Single',
 						'layout'            => 'vertical',
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a641ff5d747b',
 						'label'             => 'Video ID:',
-						'name'              => 'syn_video_widget_youtube_id',
+						'name'              => 'syntric_video_widget_youtube_id',
 						'type'              => 'text',
 						'instructions'      => 'Enter the YouTube Video ID which is a string of characters in the URL of the video hosted on YouTube.	For example, the Video ID of the video at https://youtube.com/XX11YY22ZZ33 is XX11YY22ZZ33.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5a41bdd4b978e',
 									'operator' => '==',
 									'value'    => '0',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5a6f8a0315963',
 									'operator' => '==',
 									'value'    => 'YouTube',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac02c820d597',
 									'operator' => '==',
 									'value'    => 'Single',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => 20,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac02be50d594',
 						'label'             => 'Playlist ID:',
-						'name'              => 'syn_video_widget_youtube_playlist_id',
+						'name'              => 'syntric_video_widget_youtube_playlist_id',
 						'type'              => 'text',
 						'instructions'      => 'Enter the YouTube Playlist ID which is a string of characters in the URL of the playlist hosted on YouTube.	For example, the Playlist ID of the playlist at https://www.youtube.com/playlist?list=XX11YY22XX11YY22 is XX11YY22XX11YY22.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5a41bdd4b978e',
 									'operator' => '==',
 									'value'    => '0',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5a6f8a0315963',
 									'operator' => '==',
 									'value'    => 'YouTube',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac02c820d597',
 									'operator' => '==',
 									'value'    => 'Playlist',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => 50,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a6f8c1d15965',
 						'label'             => 'Video ID:',
-						'name'              => 'syn_video_widget_vimeo_id',
+						'name'              => 'syntric_video_widget_vimeo_id',
 						'type'              => 'text',
 						'instructions'      => 'Enter the Vimeo video ID which is a string of characters in the URL of the video hosted on Vimeo.	For example, the video ID of the video at https://vimeo.com/XX11YY22ZZ33 is XX11YY22ZZ33.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5a41bdd4b978e',
 									'operator' => '==',
 									'value'    => '0',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5a6f8a0315963',
 									'operator' => '==',
 									'value'    => 'Vimeo',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => 20,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5abead4f0dc4f',
 						'label'             => 'Caption',
-						'name'              => 'syn_video_widget_caption',
+						'name'              => 'syntric_video_widget_caption',
 						'type'              => 'wysiwyg',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5a41bdd4b978e',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'tabs'              => 'all',
 						'toolbar'           => 'full',
 						'media_upload'      => 1,
 						'delay'             => 1,
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'widget',
 							'operator' => '==',
 							'value'    => 'syn-video-widget',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'top',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0  => 'permalink',
 					1  => 'the_content',
 					2  => 'excerpt',
@@ -8233,15 +8234,15 @@
 					11 => 'categories',
 					12 => 'tags',
 					13 => 'send-trackbacks',
-				),
+				],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59095a81e316b',
 				'title'                 => 'Calendar',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59b6f6e6ba124',
 						'label'             => 'Settings',
 						'name'              => '',
@@ -8249,180 +8250,180 @@
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59b80aa817de3',
 						'label'             => 'Google Calendar ID',
-						'name'              => 'syn_calendar_id',
+						'name'              => 'syntric_calendar_id',
 						'type'              => 'text',
 						'instructions'      => 'Calendar ID under Settings > Integrate Calendar at <a href="https://calendar.google.com/calendar/" target="_blank">Google Calendars</a>',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '100',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
 						'choices'           => null,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5c37d09dfe8dd',
 						'label'             => 'Purge Calendar',
-						'name'              => 'syn_purge_calendar',
+						'name'              => 'syntric_purge_calendar',
 						'type'              => 'true_false',
 						'instructions'      => 'Deletes all events from calendar',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => 'Delete all events from calendar',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59b80ac417de4',
 						'label'             => 'Schedule Sync',
-						'name'              => 'syn_calendar_sync',
+						'name'              => 'syntric_calendar_sync',
 						'type'              => 'true_false',
 						'instructions'      => 'Automatically sync every 24 hours',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '20',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59b80afc17de6',
 						'label'             => 'Sync Frequency',
-						'name'              => 'syn_calendar_sync_frequency',
+						'name'              => 'syntric_calendar_sync_frequency',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b80ac417de4',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => 'hidden',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'hourly' => 'Hourly',
 							'daily'  => 'Daily',
-						),
-						'default_value'     => array(
+						],
+						'default_value'     => [
 							0 => 'daily',
-						),
+						],
 						'allow_null'        => 0,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59b80ad117de5',
 						'label'             => 'Sync Now',
-						'name'              => 'syn_calendar_sync_now',
+						'name'              => 'syntric_calendar_sync_now',
 						'type'              => 'true_false',
 						'instructions'      => 'Sync on publish/update',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '20',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5add5974b6683',
 						'label'             => 'Sync Backwards',
-						'name'              => 'syn_calendar_sync_back',
+						'name'              => 'syntric_calendar_sync_back',
 						'type'              => 'true_false',
 						'instructions'      => 'Purge and sync past months',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b80ad117de5',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '20',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5add59adb6684',
 						'label'             => 'Months Past',
-						'name'              => 'syn_calendar_sync_back_months',
+						'name'              => 'syntric_calendar_sync_back_months',
 						'type'              => 'select',
 						'instructions'      => 'Number of months to sync backwards',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b80ad117de5',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5add5974b6683',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '20',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							1  => '1',
 							2  => '2',
 							3  => '3',
@@ -8435,101 +8436,101 @@
 							10 => '10',
 							11 => '11',
 							12 => '12',
-						),
-						'default_value'     => array(
-						),
+						],
+						'default_value'     => [
+						],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59b80b1a17de7',
 						'label'             => 'Sync Range',
-						'name'              => 'syn_calendar_sync_range',
+						'name'              => 'syntric_calendar_sync_range',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b80ac417de4',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => 'hidden',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'1 year'  => 'Sync 1 year forward',
 							'2 years' => 'Sync 2 years forward',
-						),
-						'default_value'     => array(
+						],
+						'default_value'     => [
 							0 => '1 year',
-						),
+						],
 						'allow_null'        => 0,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'return_format'     => 'value',
 						'ajax'              => 0,
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59b80b3b17de8',
 						'label'             => 'Delete Events',
-						'name'              => 'syn_calendar_delete_events',
+						'name'              => 'syntric_calendar_delete_events',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => 'hidden',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 1,
 						'ui'                => 0,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59b80b7817de9',
 						'label'             => 'Delete After',
-						'name'              => 'syn_calendar_delete_after',
+						'name'              => 'syntric_calendar_delete_after',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => 'hidden',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'1 month'  => 'Delete after 1 month',
 							'3 months' => 'Delete after 3 months',
 							'6 months' => 'Delete after 6 months',
 							'1 year'   => 'Delete after 1 year',
 							'2 years'  => 'Delete after 2 years',
-						),
-						'default_value'     => array(
+						],
+						'default_value'     => [
 							0 => '1 year',
-						),
+						],
 						'allow_null'        => 0,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_592762a87765c',
 						'label'             => 'Synced Events',
 						'name'              => '',
@@ -8537,15 +8538,15 @@
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_590fd39e55e3a',
 						'label'             => 'Events',
 						'name'              => '',
@@ -8553,22 +8554,22 @@
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'enhanced_message'  => '<?php
 $post_id = get_the_ID();;
 $args = array(
 	\'numberposts\' => - 1,
-	\'post_type\'	 => \'syn_event\',
+	\'post_type\'	 => \'syntric_event\',
 	\'post_status\' => \'publish\',
-	\'meta_key\'		=> \'syn_event_start_date\',
+	\'meta_key\'		=> \'syntric_event_start_date\',
 	\'orderby\'		 => \'meta_value\',
 	\'order\'			 => \'ASC\',
 	\'meta_query\'	=> array(array(
-			\'key\'		 => \'syn_event_calendar_id\',
+			\'key\'		 => \'syntric_event_calendar_id\',
 			\'value\'	 => $post_id ,
 			\'compare\' => \'=\',
 		)
@@ -8593,13 +8594,13 @@ if ( $events ) :
 <?php
 foreach ( $events as $event ) : 
 $event_id = $event->ID;
-$dates = syn_get_event_dates( $event_id );
+$dates = syntric_get_event_dates( $event_id );
 ?>
 
 <tr>
 <td nowrap><?php echo get_the_title( $event_id ); ?></td>
 <td nowrap><?php echo $dates; ?></td>
-<td><?php echo get_field( \'syn_event_location\', $event_id	); ?></td>
+<td><?php echo get_field( \'syntric_event_location\', $event_id	); ?></td>
 </tr>
 
 <?php 
@@ -8615,8 +8616,8 @@ echo \'<p>No events</p>\';
 endif;
 ?>',
 						'hide_label'        => 'no',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59d7eee4363c3',
 						'label'             => 'Last Sync',
 						'name'              => '',
@@ -8624,68 +8625,68 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_598ff1acca26e',
 						'label'             => 'Last Synced',
-						'name'              => 'syn_calendar_last_sync',
+						'name'              => 'syntric_calendar_last_sync',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_598ff1afca26f',
 						'label'             => 'Last Sync Result',
-						'name'              => 'syn_calendar_last_sync_result',
+						'name'              => 'syntric_calendar_last_sync_result',
 						'type'              => 'textarea',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'maxlength'         => '',
 						'rows'              => 12,
 						'new_lines'         => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
-							'value'    => 'syn_calendar',
-						),
-					),
-				),
+							'value'    => 'syntric_calendar',
+						],
+					],
+				],
 				'menu_order'            => 1,
 				'position'              => 'acf_after_title',
 				'style'                 => 'default',
 				'label_placement'       => 'top',
 				'instruction_placement' => 'field',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0  => 'the_content',
 					1  => 'excerpt',
 					2  => 'discussion',
@@ -8699,27 +8700,27 @@ endif;
 					10 => 'categories',
 					11 => 'tags',
 					12 => 'send-trackbacks',
-				),
+				],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59c5b38407016',
 				'title'                 => 'Classes',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'                   => 'field_59c5b229f02a9',
 						'label'                 => 'Classes',
-						'name'                  => 'syn_classes',
+						'name'                  => 'syntric_classes',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 0,
 						'conditional_logic'     => 0,
-						'wrapper'               => array(
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_59c5b1d230ea1',
 						'min'                   => 0,
 						'max'                   => 100,
@@ -8728,8 +8729,8 @@ endif;
 						'hide_collapse'         => 1,
 						'collapse_all_repeater' => 0,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_59c5b18a30e9f',
 								'label'             => 'Term',
 								'name'              => 'term',
@@ -8737,21 +8738,21 @@ endif;
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'choices'           => null,
-								'default_value'     => array(),
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59c5b1be30ea0',
 								'label'             => 'Period',
 								'name'              => 'period',
@@ -8759,21 +8760,21 @@ endif;
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'choices'           => null,
-								'default_value'     => array(),
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59c5b1d230ea1',
 								'label'             => 'Course',
 								'name'              => 'course',
@@ -8781,21 +8782,21 @@ endif;
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'choices'           => null,
-								'default_value'     => array(),
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59c5b1e130ea2',
 								'label'             => 'Room',
 								'name'              => 'room',
@@ -8803,21 +8804,21 @@ endif;
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'choices'           => null,
-								'default_value'     => array(),
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59d16c8161f7d',
 								'label'             => 'Class page?',
 								'name'              => 'include_page',
@@ -8825,77 +8826,77 @@ endif;
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
-									'id' => '',
-								),
+									'id'    => '',
+								],
 								'message'           => '',
 								'default_value'     => 0,
 								'ui'                => 1,
 								'ui_on_text'        => '',
 								'ui_off_text'       => '',
-							),
-							array(
-								'key' => 'field_59d127e512d9a',
-								'label' => 'Class Page',
-								'name' => '',
-								'type' => 'message',
-								'instructions' => '',
-								'required' => 0,
+							],
+							[
+								'key'               => 'field_59d127e512d9a',
+								'label'             => 'Class Page',
+								'name'              => '',
+								'type'              => 'message',
+								'instructions'      => '',
+								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper' => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
-									'id' => '',
-								),
-								'message' => '',
-								'new_lines' => '',
-								'esc_html' => 0,
-							),
-							array(
-								'key' => 'field_59c5b1f230ea3',
-								'label' => 'Class ID',
-								'name' => 'class_id',
-								'type' => 'text',
-								'instructions' => '',
-								'required' => 0,
+									'id'    => '',
+								],
+								'message'           => '',
+								'new_lines'         => '',
+								'esc_html'          => 0,
+							],
+							[
+								'key'               => 'field_59c5b1f230ea3',
+								'label'             => 'Class ID',
+								'name'              => 'class_id',
+								'type'              => 'text',
+								'instructions'      => '',
+								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper' => array(
+								'wrapper'           => [
 									'width' => '1',
 									'class' => 'hidden',
 									'id'    => '',
-								),
-								'default_value' => '',
-								'placeholder' => '',
-								'prepend' => '',
-								'append' => '',
-								'maxlength' => '',
-							),
-						),
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+								],
+								'default_value'     => '',
+								'placeholder'       => '',
+								'prepend'           => '',
+								'append'            => '',
+								'maxlength'         => '',
+							],
+						],
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'page',
-						),
-						array(
+						],
+						[
 							'param'    => 'page_template',
 							'operator' => '==',
 							'value'    => 'page-templates/teacher.php',
-						),
-					),
-					array(
-						array(
+						],
+					],
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-clonables',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 1,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -8904,24 +8905,24 @@ endif;
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5bd5ba034ee1b',
 				'title'                 => 'Classes 2',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'                   => 'field_5bd5ba035f1f2',
 						'label'                 => 'Classes 2',
-						'name'                  => 'syn_classes_2',
+						'name'                  => 'syntric_classes_2',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 0,
 						'conditional_logic'     => 0,
-						'wrapper'               => array(
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_59c5b1d230ea1',
 						'min'                   => 0,
 						'max'                   => 100,
@@ -8930,8 +8931,8 @@ endif;
 						'hide_collapse'         => 1,
 						'collapse_all_repeater' => 0,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_5bd5ba036a96a',
 								'label'             => 'Term',
 								'name'              => 'term',
@@ -8939,21 +8940,21 @@ endif;
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'choices'           => null,
-								'default_value'     => array(),
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5bd5ba036ad5b',
 								'label'             => 'Period',
 								'name'              => 'period',
@@ -8961,21 +8962,21 @@ endif;
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'choices'           => null,
-								'default_value'     => array(),
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5bd5ba036b13c',
 								'label'             => 'Course',
 								'name'              => 'course',
@@ -8983,21 +8984,21 @@ endif;
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'choices'           => null,
-								'default_value'     => array(),
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5bd5ba036b520',
 								'label'             => 'Room',
 								'name'              => 'room',
@@ -9005,21 +9006,21 @@ endif;
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'choices'           => null,
-								'default_value'     => array(),
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5bd5ba036b905',
 								'label'             => 'Class page?',
 								'name'              => 'include_page',
@@ -9027,18 +9028,18 @@ endif;
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'message'           => '',
 								'default_value'     => 0,
 								'ui'                => 1,
 								'ui_on_text'        => '',
 								'ui_off_text'       => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5bd5ba036bcf3',
 								'label'             => 'Class Page',
 								'name'              => '',
@@ -9046,16 +9047,16 @@ endif;
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'message'           => '',
 								'new_lines'         => '',
 								'esc_html'          => 0,
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5bd5ba036c0d6',
 								'label'             => 'Class ID',
 								'name'              => 'class_id',
@@ -9063,18 +9064,18 @@ endif;
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '1',
 									'class' => 'hidden',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5bd5ba31afc51',
 								'label'             => 'Teacher',
 								'name'              => 'teacher',
@@ -9082,37 +9083,37 @@ endif;
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
-								'choices'           => array(),
-								'default_value'     => array(),
+								],
+								'choices'           => [],
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'return_format'     => 'value',
 								'ajax'              => 0,
 								'placeholder'       => '',
-							),
-						),
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+							],
+						],
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'page',
-						),
-						array(
+						],
+						[
 							'param'    => 'page_template',
 							'operator' => '==',
 							'value'    => 'page-templates/teacher.php',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 1,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -9121,12 +9122,12 @@ endif;
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59093e3000860',
 				'title'                 => 'Event',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_596d18f66340e',
 						'label'             => 'Settings',
 						'name'              => '',
@@ -9134,98 +9135,98 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'hide_admin'        => 0,
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_590b73c246359',
 						'label'             => 'Start Date',
-						'name'              => 'syn_event_start_date',
+						'name'              => 'syntric_event_start_date',
 						'type'              => 'date_picker',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'hide_admin'        => 0,
 						'display_format'    => 'F j, Y',
 						'return_format'     => 'F j, Y',
 						'first_day'         => 1,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_590b73c24635a',
 						'label'             => 'Start Time',
-						'name'              => 'syn_event_start_time',
+						'name'              => 'syntric_event_start_time',
 						'type'              => 'time_picker',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'hide_admin'        => 0,
 						'display_format'    => 'g:i A',
 						'return_format'     => 'g:i A',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_590b74004635b',
 						'label'             => 'End Date',
-						'name'              => 'syn_event_end_date',
+						'name'              => 'syntric_event_end_date',
 						'type'              => 'date_picker',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'hide_admin'        => 0,
 						'display_format'    => 'F j, Y',
 						'return_format'     => 'F j, Y',
 						'first_day'         => 1,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_590b742b4635c',
 						'label'             => 'End Time',
-						'name'              => 'syn_event_end_time',
+						'name'              => 'syntric_event_end_time',
 						'type'              => 'time_picker',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'hide_admin'        => 0,
 						'display_format'    => 'g:i A',
 						'return_format'     => 'g:i A',
-					),
-					array(
+					],
+					[
 						'key'                => 'field_596d1a9543eb7',
 						'label'              => 'Location',
-						'name'               => 'syn_event_location',
+						'name'               => 'syntric_event_location',
 						'type'               => 'text',
 						'instructions'       => '',
 						'required'           => 0,
 						'conditional_logic'  => 0,
-						'wrapper'            => array(
+						'wrapper'            => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'hide_admin'         => 0,
 						'default_value'      => '',
 						'placeholder'        => '',
@@ -9236,30 +9237,30 @@ endif;
 						'show_column_weight' => 1000,
 						'allow_quickedit'    => 0,
 						'allow_bulkedit'     => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_590ccddc0240e',
 						'label'             => 'Calendar ID',
-						'name'              => 'syn_event_calendar_id',
+						'name'              => 'syntric_event_calendar_id',
 						'type'              => 'post_object',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
-						'post_type'         => array(
-							0 => 'syn_calendar',
-						),
-						'taxonomy'          => array(),
+						],
+						'post_type'         => [
+							0 => 'syntric_calendar',
+						],
+						'taxonomy'          => [],
 						'allow_null'        => 0,
 						'multiple'          => 0,
 						'return_format'     => 'id',
 						'ui'                => 1,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_596d19106340f',
 						'label'             => 'Sync Details',
 						'name'              => '',
@@ -9267,82 +9268,82 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'hide_admin'        => 0,
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_590cfa05bcba4',
 						'label'             => 'Last Sync',
-						'name'              => 'syn_event_last_sync',
+						'name'              => 'syntric_event_last_sync',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_590cf9e7bcba2',
 						'label'             => 'Event ID',
-						'name'              => 'syn_event_event_id',
+						'name'              => 'syntric_event_event_id',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_590cf9f6bcba3',
 						'label'             => 'Recurring ID',
-						'name'              => 'syn_event_recurring_id',
+						'name'              => 'syntric_event_recurring_id',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
-							'value'    => 'syn_event',
-						),
-					),
-				),
+							'value'    => 'syntric_event',
+						],
+					],
+				],
 				'menu_order'            => 1,
 				'position'              => 'acf_after_title',
 				'style'                 => 'default',
@@ -9351,12 +9352,12 @@ endif;
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5930597fca0a7',
 				'title'                 => 'Page Not Editable',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59305a09c99c4',
 						'label'             => '',
 						'name'              => '',
@@ -9364,41 +9365,41 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => 'The content of this page is rendered dynamically and can not be changed.
 
 <strong>Please do not change the title of this page.</strong>',
 						'new_lines'         => 'wpautop',
 						'esc_html'          => 0,
-					),
-					array(
+					],
+					[
 						'key'                 => 'field_5bdcc1a3706e1',
 						'label'               => 'YouTube Picker',
-						'name'                => 'syn_youtube_picker',
+						'name'                => 'syntric_youtube_picker',
 						'type'                => 'youtubepicker',
 						'instructions'        => '',
 						'required'            => 0,
 						'conditional_logic'   => 0,
-						'wrapper'             => array(
+						'wrapper'             => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'multiple'            => 1,
 						'yp_advanced_options' => 1,
 						'api_key'             => 'AIzaSyCsAJv4afamh_D_OirN5mmHVUf3qu2Wzc0',
-						'answerOptions'       => array(
+						'answerOptions'       => [
 							0 => 'title',
 							1 => 'vid',
 							2 => 'url',
 							3 => 'thumbs',
 							4 => 'duration',
 							5 => 'iframe',
-						),
+						],
 						'channelId'           => 'UCpPUuhCbLmdmY2rsNu5XzcQ',
 						'channelType'         => '',
 						'eventType'           => '',
@@ -9418,57 +9419,57 @@ endif;
 						'regionCode'          => '',
 						'relevanceLanguage'   => '',
 						'maxResults'          => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5bdceb11c6b4b',
 						'label'             => 'oEmbed',
-						'name'              => 'syn_oembed',
+						'name'              => 'syntric_oembed',
 						'type'              => 'oembed',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'width'             => '',
 						'height'            => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5bdd108aeff99',
 						'label'             => 'Google Map',
-						'name'              => 'syn_google_map',
+						'name'              => 'syntric_google_map',
 						'type'              => 'google_map',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'center_lat'        => '',
 						'center_lng'        => '',
 						'zoom'              => '',
 						'height'            => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'page_type',
 							'operator' => '==',
 							'value'    => 'posts_page',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 1,
 				'position'              => 'acf_after_title',
 				'style'                 => 'default',
 				'label_placement'       => 'top',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0  => 'permalink',
 					1  => 'the_content',
 					2  => 'excerpt',
@@ -9481,15 +9482,15 @@ endif;
 					9  => 'categories',
 					10 => 'tags',
 					11 => 'send-trackbacks',
-				),
+				],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_598a99e35f248',
 				'title'                 => 'Page Widgets',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59a5b62d88d98',
 						'label'             => 'Contact',
 						'name'              => '',
@@ -9497,244 +9498,244 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ab362921325',
 						'label'             => 'Activate Contact',
-						'name'              => 'syn_contact_active',
+						'name'              => 'syntric_contact_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ab362121324',
 						'label'             => 'Title',
-						'name'              => 'syn_contact_title',
+						'name'              => 'syntric_contact_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ab362921325',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Contact',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59af57222831c',
 						'label'             => 'Contact Type',
-						'name'              => 'syn_contact_contact_type',
+						'name'              => 'syntric_contact_contact_type',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ab362921325',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'person'       => 'Person',
 							'organization' => 'Organization',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'default_value'     => '',
 						'layout'            => 'vertical',
 						'return_format'     => 'value',
 						'save_other_choice' => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59af572228ee6',
 						'label'             => 'Person',
-						'name'              => 'syn_contact_person',
+						'name'              => 'syntric_contact_person',
 						'type'              => 'select',
 						'instructions'      => '<a href="/wp-admin/user-new.php">Add new user</a>',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ab362921325',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59af57222831c',
 									'operator' => '==',
 									'value'    => 'person',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'return_format'     => 'value',
 						'ajax'              => 0,
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59af5722292a4',
 						'label'             => 'Organization',
-						'name'              => 'syn_contact_organization',
+						'name'              => 'syntric_contact_organization',
 						'type'              => 'select',
 						'instructions'      => '<a href="/wp-admin/admin.php?page=syntric-organizations">Add new organization</a>',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ab362921325',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59af57222831c',
 									'operator' => '==',
 									'value'    => 'organization',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'return_format'     => 'value',
 						'ajax'              => 0,
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59af5722286fd',
 						'label'             => 'Include Fields',
-						'name'              => 'syn_contact_include_person_fields',
+						'name'              => 'syntric_contact_include_person_fields',
 						'type'              => 'checkbox',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ab362921325',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59af57222831c',
 									'operator' => '==',
 									'value'    => 'person',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'prefix'     => 'Prefix',
 							'first_name' => 'First Name',
 							'title'      => 'Title',
 							'email'      => 'Email',
 							'phone'      => 'Phone',
-						),
+						],
 						'allow_custom'      => 0,
-						'default_value'     => array(
+						'default_value'     => [
 							0 => 'prefix',
 							1 => 'first_name',
 							2 => 'title',
 							3 => 'email',
 							4 => 'phone',
-						),
+						],
 						'layout'            => 'vertical',
 						'toggle'            => 0,
 						'return_format'     => 'array',
 						'save_custom'       => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59af572228b29',
 						'label'             => 'Include Fields',
-						'name'              => 'syn_contact_include_organization_fields',
+						'name'              => 'syntric_contact_include_organization_fields',
 						'type'              => 'checkbox',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ab362921325',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59af57222831c',
 									'operator' => '==',
 									'value'    => 'organization',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'address' => 'Address',
 							'email'   => 'Email',
 							'phone'   => 'Phone',
 							'fax'     => 'Fax',
 							'url'     => 'Website',
 							'logo'    => 'Logo',
-						),
+						],
 						'allow_custom'      => 0,
-						'default_value'     => array(
+						'default_value'     => [
 							0 => 'address',
 							1 => 'city_state_zip_code',
 							2 => 'email',
@@ -9742,13 +9743,13 @@ endif;
 							4 => 'fax',
 							5 => 'url',
 							6 => 'logo',
-						),
+						],
 						'layout'            => 'vertical',
 						'toggle'            => 0,
 						'return_format'     => 'array',
 						'save_custom'       => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59b705bae7599',
 						'label'             => 'Calendar',
 						'name'              => '',
@@ -9756,111 +9757,111 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59b720b6e759d',
 						'label'             => 'Activate Calendar',
-						'name'              => 'syn_calendar_active',
+						'name'              => 'syntric_calendar_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59b75b89b8567',
 						'label'             => 'Title',
-						'name'              => 'syn_calendar_title',
+						'name'              => 'syntric_calendar_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b720b6e759d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Calendar',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59b2606c98c04',
 						'label'             => 'Calendar',
-						'name'              => 'syn_calendar_id',
+						'name'              => 'syntric_calendar_id',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b720b6e759d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59b25f40a698e',
 						'label'             => 'Display Count',
-						'name'              => 'syn_calendar_events',
+						'name'              => 'syntric_calendar_events',
 						'type'              => 'number',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b720b6e759d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 5,
 						'placeholder'       => '',
 						'prepend'           => '',
@@ -9868,264 +9869,264 @@ endif;
 						'min'               => 1,
 						'max'               => '',
 						'step'              => 1,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59b25f43a698f',
 						'label'             => 'Include Event Date',
-						'name'              => 'syn_calendar_include_date',
+						'name'              => 'syntric_calendar_include_date',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b720b6e759d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 1,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_598ff1017eb9b',
 						'label'             => 'Google Calendar ID',
-						'name'              => 'syn_new_calendar_id',
+						'name'              => 'syntric_new_calendar_id',
 						'type'              => 'text',
 						'instructions'      => 'Value can be found in the calendar settings at <a href="https://calendar.google.com/calendar/" target="_blank">Google Calendars</a>.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b720b6e759d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59b2606c98c04',
 									'operator' => '==',
 									'value'    => '',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_598ff10d7eb9d',
 						'label'             => 'Sync Now',
-						'name'              => 'syn_new_calendar_sync_now',
+						'name'              => 'syntric_new_calendar_sync_now',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b720b6e759d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59b2606c98c04',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_598ff1097eb9c',
 						'label'             => 'Schedule Sync',
-						'name'              => 'syn_new_calendar_sync',
+						'name'              => 'syntric_new_calendar_sync',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b720b6e759d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59b2606c98c04',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_598ff10f7eb9e',
 						'label'             => 'Sync Frequency',
-						'name'              => 'syn_new_calendar_sync_frequency',
+						'name'              => 'syntric_new_calendar_sync_frequency',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b720b6e759d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59b2606c98c04',
 									'operator' => '==',
 									'value'    => '',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_598ff1097eb9c',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'hourly' => 'Hourly',
 							'daily'  => 'Daily',
-						),
-						'default_value'     => array(),
+						],
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_598ff1127eb9f',
 						'label'             => 'Sync Range',
-						'name'              => 'syn_new_calendar_sync_range',
+						'name'              => 'syntric_new_calendar_sync_range',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59b720b6e759d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59b2606c98c04',
 									'operator' => '==',
 									'value'    => '0',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_598ff1097eb9c',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'1 year'  => 'Sync up to 1 year forward',
 							'2 years' => 'Sync up to 2 years forward',
-						),
-						'default_value'     => array(),
+						],
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_598ff1187eba0',
 						'label'             => 'Delete Events (hidden)',
-						'name'              => 'syn_new_calendar_delete_events',
+						'name'              => 'syntric_new_calendar_delete_events',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => 'hidden',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_598ff11c7eba1',
 						'label'             => 'Delete After (hidden)',
-						'name'              => 'syn_new_calendar_delete_after',
+						'name'              => 'syntric_new_calendar_delete_after',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => 'hidden',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'1 month'  => 'Delete after 1 month',
 							'3 months' => 'Delete after 3 months',
 							'6 months' => 'Delete after 6 months',
 							'1 year'   => 'Delete after 1 year',
 							'2 years'  => 'Delete after 2 years',
-						),
-						'default_value'     => array(),
+						],
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_598a9de513a16',
 						'label'             => 'Blog',
 						'name'              => '',
@@ -10133,136 +10134,136 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ab366c21327',
 						'label'             => 'Activate Microblog',
-						'name'              => 'syn_microblog_active',
+						'name'              => 'syntric_microblog_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ab365321326',
 						'label'             => 'Title',
-						'name'              => 'syn_microblog_title',
+						'name'              => 'syntric_microblog_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ab366c21327',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Blog',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59b441f2a32bb',
 						'label'             => 'Category',
-						'name'              => 'syn_microblog_category',
+						'name'              => 'syntric_microblog_category',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ab366c21327',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(),
-						'default_value'     => array(),
+						],
+						'choices'           => [],
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59d4b242abf31',
 						'label'             => 'Category',
 						'name'              => '',
 						'type'              => 'message',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ab366c21327',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => 'Generated automatically',
 						'new_lines'         => '',
 						'esc_html'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59aca70f2d9cd',
 						'label'             => 'Posts to display:',
-						'name'              => 'syn_microblog_posts',
+						'name'              => 'syntric_microblog_posts',
 						'type'              => 'number',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ab366c21327',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 5,
 						'placeholder'       => '',
 						'prepend'           => '',
@@ -10270,126 +10271,126 @@ endif;
 						'min'               => 1,
 						'max'               => '',
 						'step'              => 1,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59aca7a42d9ce',
 						'label'             => 'Include Post Date',
-						'name'              => 'syn_microblog_include_date',
+						'name'              => 'syntric_microblog_include_date',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ab366c21327',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 1,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59cfd0c08c935',
 						'label'             => 'Add New Post',
-						'name'              => 'syn_new_microblog_post',
+						'name'              => 'syntric_new_microblog_post',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ab366c21327',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59cfd09c8c934',
 						'label'             => 'Microblog Post Title',
-						'name'              => 'syn_new_microblog_post_title',
+						'name'              => 'syntric_new_microblog_post_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ab366c21327',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59cfd0c08c935',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59cfd16f8c936',
 						'label'             => 'Microblog Post Content',
-						'name'              => 'syn_new_microblog_post_content',
+						'name'              => 'syntric_new_microblog_post_content',
 						'type'              => 'wysiwyg',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ab366c21327',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_59cfd0c08c935',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'tabs'              => 'all',
 						'toolbar'           => 'full',
 						'media_upload'      => 1,
 						'delay'             => 1,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_598a9e4613a18',
 						'label'             => 'Roster',
 						'name'              => '',
@@ -10397,81 +10398,81 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ab36d12132b',
 						'label'             => 'Activate Roster',
-						'name'              => 'syn_roster_active',
+						'name'              => 'syntric_roster_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ab36be2132a',
 						'label'             => 'Title',
-						'name'              => 'syn_roster_title',
+						'name'              => 'syntric_roster_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ab36d12132b',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Roster',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'                   => 'field_59ab495554793',
 						'label'                 => 'People',
-						'name'                  => 'syn_roster_people',
+						'name'                  => 'syntric_roster_people',
 						'type'                  => 'repeater',
 						'instructions'          => '<a href="/wp-admin/user-new.php" target="blank">Add new user</a>',
 						'required'              => 1,
-						'conditional_logic'     => array(
-							array(
-								array(
+						'conditional_logic'     => [
+							[
+								[
 									'field'    => 'field_59ab36d12132b',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'               => array(
+								],
+							],
+						],
+						'wrapper'               => [
 							'width' => '75',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_59af852be10d5',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -10480,8 +10481,8 @@ endif;
 						'hide_collapse'         => 1,
 						'collapse_all_repeater' => 0,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_59af852be10d5',
 								'label'             => 'Person',
 								'name'              => 'person',
@@ -10489,64 +10490,64 @@ endif;
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'choices'           => null,
-								'default_value'     => array(),
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'key'               => 'field_59685755d41a0',
 						'label'             => 'Include Fields',
-						'name'              => 'syn_roster_include_fields',
+						'name'              => 'syntric_roster_include_fields',
 						'type'              => 'checkbox',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59ab36d12132b',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'prefix'     => 'Prefix',
 							'first_name' => 'First Name',
 							'title'      => 'Title',
 							'email'      => 'Email',
 							'phone'      => 'Phone',
-						),
+						],
 						'allow_custom'      => 0,
 						'save_custom'       => 0,
-						'default_value'     => array(
+						'default_value'     => [
 							0 => 'prefix',
 							1 => 'first_name',
 							2 => 'title',
 							3 => 'email',
 							4 => 'phone',
-						),
+						],
 						'layout'            => 'vertical',
 						'toggle'            => 0,
 						'return_format'     => 'array',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a41bf632a648',
 						'label'             => 'Map',
 						'name'              => '',
@@ -10554,91 +10555,91 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a41c0a82a649',
 						'label'             => 'Activate Google Map',
-						'name'              => 'syn_google_map_active',
+						'name'              => 'syntric_google_map_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a41c0e12a64a',
 						'label'             => 'Title',
-						'name'              => 'syn_google_map_title',
+						'name'              => 'syntric_google_map_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5a41c0a82a649',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Map',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a41c1312a64b',
 						'label'             => 'Google	Map',
-						'name'              => 'syn_google_map_id',
+						'name'              => 'syntric_google_map_id',
 						'type'              => 'select',
 						'instructions'      => '<a href="/wp-admin/admin.php?page=syntric-google-maps">Add new map</a>',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5a41c0a82a649',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 0,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a41c15b2a64c',
 						'label'             => 'Video',
 						'name'              => '',
@@ -10646,264 +10647,264 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a41c16e2a64d',
 						'label'             => 'Activate Video/Playlist',
-						'name'              => 'syn_video_active',
+						'name'              => 'syntric_video_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a41c24b2a64f',
 						'label'             => 'Title',
-						'name'              => 'syn_video_title',
+						'name'              => 'syntric_video_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5a41c16e2a64d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a6f8ec21ff93',
 						'label'             => 'Host',
-						'name'              => 'syn_video_host',
+						'name'              => 'syntric_video_host',
 						'type'              => 'select',
 						'instructions'      => 'This widget works with YouTube and Vimeo hosted videos.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5a41c16e2a64d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'YouTube' => 'YouTube',
 							'Vimeo'   => 'Vimeo',
-						),
-						'default_value'     => array(),
+						],
+						'default_value'     => [],
 						'allow_null'        => 0,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac027b713ca6',
 						'label'             => 'Type',
-						'name'              => 'syn_video_type',
+						'name'              => 'syntric_video_type',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5a41c16e2a64d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5a6f8ec21ff93',
 									'operator' => '==',
 									'value'    => 'YouTube',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'single'   => 'Single',
 							'playlist' => 'Playlist',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 'single',
 						'layout'            => 'vertical',
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a41da62e0094',
 						'label'             => 'Video ID',
-						'name'              => 'syn_video_youtube_id',
+						'name'              => 'syntric_video_youtube_id',
 						'type'              => 'text',
 						'instructions'      => 'Enter the YouTube Video ID which is a string of characters in the URL of the video hosted on YouTube.	For example, the Video ID of the video at https://youtube.com/XX11YY22ZZ33 is XX11YY22ZZ33.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5a41c16e2a64d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5a6f8ec21ff93',
 									'operator' => '==',
 									'value'    => 'YouTube',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac027b713ca6',
 									'operator' => '==',
 									'value'    => 'single',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => 20,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac0288138845',
 						'label'             => 'Playlist ID',
-						'name'              => 'syn_video_youtube_playlist_id',
+						'name'              => 'syntric_video_youtube_playlist_id',
 						'type'              => 'text',
 						'instructions'      => 'Enter the YouTube Playlist ID which is a string of characters in the URL of the playlist hosted on YouTube.	For example, the Playlist ID of the playlist at https://www.youtube.com/playlist?list=XX11YY22XX11YY22 is XX11YY22XX11YY22.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5a41c16e2a64d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5a6f8ec21ff93',
 									'operator' => '==',
 									'value'    => 'YouTube',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac027b713ca6',
 									'operator' => '==',
 									'value'    => 'playlist',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => 50,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a6f8ea21ff92',
 						'label'             => 'Video ID',
-						'name'              => 'syn_video_vimeo_id',
+						'name'              => 'syntric_video_vimeo_id',
 						'type'              => 'text',
 						'instructions'      => 'Enter the Vimeo Video ID which is a string of characters in the URL of the video hosted on Vimeo.	For example, the Video ID of the video at https://vimeo.com/555555555 is 555555555.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5a41c16e2a64d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5a6f8ec21ff93',
 									'operator' => '==',
 									'value'    => 'Vimeo',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => 20,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a81ce5c0b0da',
 						'label'             => 'Caption',
-						'name'              => 'syn_video_caption',
+						'name'              => 'syntric_video_caption',
 						'type'              => 'wysiwyg',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5a41c16e2a64d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'tabs'              => 'all',
 						'toolbar'           => 'full',
 						'media_upload'      => 1,
 						'delay'             => 1,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1f08d',
 						'label'             => 'Attachments',
 						'name'              => '',
@@ -10911,81 +10912,81 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'left',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1f480',
 						'label'             => 'Activate Attachments',
-						'name'              => 'syn_attachments_active',
+						'name'              => 'syntric_attachments_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1f875',
 						'label'             => 'Title',
-						'name'              => 'syn_attachments_title',
+						'name'              => 'syntric_attachments_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1f480',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Resources',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'                   => 'field_5ac25dab1fc6d',
 						'label'                 => 'Attachment Groups',
-						'name'                  => 'syn_attachments',
+						'name'                  => 'syntric_attachments',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 1,
-						'conditional_logic'     => array(
-							array(
-								array(
+						'conditional_logic'     => [
+							[
+								[
 									'field'    => 'field_5ac25dab1f480',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'               => array(
+								],
+							],
+						],
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_5ac25dac942ef',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -10994,8 +10995,8 @@ endif;
 						'hide_collapse'         => 0,
 						'collapse_all_repeater' => 1,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_5ac25dac942ef',
 								'label'             => 'Header',
 								'name'              => 'header',
@@ -11003,18 +11004,18 @@ endif;
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5ac25dac946d8',
 								'label'             => 'Description',
 								'name'              => 'description',
@@ -11022,18 +11023,18 @@ endif;
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'maxlength'         => '',
 								'rows'              => 3,
 								'new_lines'         => '',
-							),
-							array(
+							],
+							[
 								'key'                   => 'field_5ac25dac94ab9',
 								'label'                 => 'Attachments',
 								'name'                  => 'attachments',
@@ -11041,11 +11042,11 @@ endif;
 								'instructions'          => '',
 								'required'              => 0,
 								'conditional_logic'     => 0,
-								'wrapper'               => array(
+								'wrapper'               => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'collapsed'             => '',
 								'min'                   => 0,
 								'max'                   => 0,
@@ -11054,8 +11055,8 @@ endif;
 								'hide_collapse'         => 1,
 								'collapse_all_repeater' => 1,
 								'btn-icon-only'         => 1,
-								'sub_fields'            => array(
-									array(
+								'sub_fields'            => [
+									[
 										'key'               => 'field_5ac25daca5ae1',
 										'label'             => 'Attachment Type',
 										'name'              => 'attachment_type',
@@ -11063,218 +11064,218 @@ endif;
 										'instructions'      => '',
 										'required'          => 1,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '20',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
-										'choices'           => array(
+										],
+										'choices'           => [
 											'file'          => 'File',
 											'internal_link' => 'Internal link',
 											'external_link' => 'External link',
-										),
-										'default_value'     => array(),
+										],
+										'default_value'     => [],
 										'allow_null'        => 0,
 										'multiple'          => 0,
 										'ui'                => 0,
 										'ajax'              => 0,
 										'return_format'     => 'array',
 										'placeholder'       => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_5ac25daca5ec9',
 										'label'             => 'File',
 										'name'              => 'file',
 										'type'              => 'file',
 										'instructions'      => '',
 										'required'          => 1,
-										'conditional_logic' => array(
-											array(
-												array(
+										'conditional_logic' => [
+											[
+												[
 													'field'    => 'field_5ac25daca5ae1',
 													'operator' => '==',
 													'value'    => 'file',
-												),
-											),
-										),
-										'wrapper'           => array(
+												],
+											],
+										],
+										'wrapper'           => [
 											'width' => '80',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
+										],
 										'return_format'     => 'array',
 										'library'           => 'all',
 										'min_size'          => '',
 										'max_size'          => '',
 										'mime_types'        => 'pdf,doc,docx,xls,xlsx,ppt,pptx',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_5ac25daca6299',
 										'label'             => 'Internal Link',
 										'name'              => 'internal_link',
 										'type'              => 'post_object',
 										'instructions'      => '',
 										'required'          => 1,
-										'conditional_logic' => array(
-											array(
-												array(
+										'conditional_logic' => [
+											[
+												[
 													'field'    => 'field_5ac25daca5ae1',
 													'operator' => '==',
 													'value'    => 'internal_link',
-												),
-											),
-										),
-										'wrapper'           => array(
+												],
+											],
+										],
+										'wrapper'           => [
 											'width' => '80',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
-										'post_type'         => array(
+										],
+										'post_type'         => [
 											0 => 'post',
 											1 => 'page',
-											2 => 'syn_calendar',
-										),
-										'taxonomy'          => array(),
+											2 => 'syntric_calendar',
+										],
+										'taxonomy'          => [],
 										'allow_null'        => 0,
 										'multiple'          => 0,
 										'return_format'     => 'object',
 										'ui'                => 1,
-									),
-									array(
+									],
+									[
 										'key'               => 'field_5ac25daca6684',
 										'label'             => 'Link Title',
 										'name'              => 'title',
 										'type'              => 'text',
 										'instructions'      => '',
 										'required'          => 1,
-										'conditional_logic' => array(
-											array(
-												array(
+										'conditional_logic' => [
+											[
+												[
 													'field'    => 'field_5ac25daca5ae1',
 													'operator' => '==',
 													'value'    => 'external_link',
-												),
-											),
-										),
-										'wrapper'           => array(
+												],
+											],
+										],
+										'wrapper'           => [
 											'width' => '30',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
+										],
 										'default_value'     => '',
 										'placeholder'       => '',
 										'prepend'           => '',
 										'append'            => '',
 										'maxlength'         => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_5ac25daca6a6f',
 										'label'             => 'Web Address',
 										'name'              => 'url',
 										'type'              => 'url',
 										'instructions'      => '',
 										'required'          => 1,
-										'conditional_logic' => array(
-											array(
-												array(
+										'conditional_logic' => [
+											[
+												[
 													'field'    => 'field_5ac25daca5ae1',
 													'operator' => '==',
 													'value'    => 'external_link',
-												),
-											),
-										),
-										'wrapper'           => array(
+												],
+											],
+										],
+										'wrapper'           => [
 											'width' => '30',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
+										],
 										'default_value'     => '',
 										'placeholder'       => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_5ac25daca6e6b',
 										'label'             => 'New Window',
 										'name'              => 'new_window',
 										'type'              => 'true_false',
 										'instructions'      => '',
 										'required'          => 0,
-										'conditional_logic' => array(
-											array(
-												array(
+										'conditional_logic' => [
+											[
+												[
 													'field'    => 'field_5ac25daca5ae1',
 													'operator' => '==',
 													'value'    => 'external_link',
-												),
-											),
-										),
-										'wrapper'           => array(
+												],
+											],
+										],
+										'wrapper'           => [
 											'width' => '20',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
+										],
 										'message'           => '',
 										'default_value'     => 0,
 										'ui'                => 1,
 										'ui_on_text'        => '',
 										'ui_off_text'       => '',
-									),
-								),
-							),
-						),
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+									],
+								],
+							],
+						],
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'page',
-						),
-						array(
+						],
+						[
 							'param'    => 'page_type',
 							'operator' => '!=',
 							'value'    => 'front_page',
-						),
-						array(
+						],
+						[
 							'param'    => 'page_type',
 							'operator' => '!=',
 							'value'    => 'posts_page',
-						),
-						array(
+						],
+						[
 							'param'    => 'post_template',
 							'operator' => '!=',
 							'value'    => 'page-templates/schedules.php',
-						),
-					),
-					array(
-						array(
+						],
+					],
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'post',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 2,
 				'position'              => 'normal',
 				'style'                 => 'default',
 				'label_placement'       => 'top',
 				'instruction_placement' => 'label',
-				'hide_on_screen'        => array(
+				'hide_on_screen'        => [
 					0 => 'discussion',
 					1 => 'comments',
 					2 => 'revisions',
 					3 => 'slug',
 					4 => 'format',
 					5 => 'send-trackbacks',
-				),
+				],
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5ac25daab2d3f',
 				'title'                 => 'Page Widgets (backup 20180402)',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_5ac25dab1254d',
 						'label'             => 'Contact',
 						'name'              => '',
@@ -11282,285 +11283,285 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'left',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1292e',
 						'label'             => 'Activate Contact',
-						'name'              => 'syn_contact_active',
+						'name'              => 'syntric_contact_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab12d6a',
 						'label'             => 'Title',
-						'name'              => 'syn_contact_title',
+						'name'              => 'syntric_contact_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1292e',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Contact',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab130fd',
 						'label'             => 'Contact Type',
-						'name'              => 'syn_contact_contact_type',
+						'name'              => 'syntric_contact_contact_type',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1292e',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'person'       => 'Person',
 							'organization' => 'Organization',
-						),
-						'default_value'     => array(
+						],
+						'default_value'     => [
 							0 => 'person',
-						),
+						],
 						'allow_null'        => 0,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab134eb',
 						'label'             => 'Person',
-						'name'              => 'syn_contact_person',
+						'name'              => 'syntric_contact_person',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1292e',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab130fd',
 									'operator' => '==',
 									'value'    => 'person',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab138bf',
 						'label'             => 'Organization',
-						'name'              => 'syn_contact_organization',
+						'name'              => 'syntric_contact_organization',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1292e',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab130fd',
 									'operator' => '==',
 									'value'    => 'organization',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab13ca6',
 									'operator' => '!=',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab13ca6',
 						'label'             => 'Default Organization',
-						'name'              => 'syn_contact_default',
+						'name'              => 'syntric_contact_default',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1292e',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab130fd',
 									'operator' => '==',
 									'value'    => 'organization',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => 'This organization',
 						'default_value'     => 1,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1408d',
 						'label'             => 'Include Fields',
-						'name'              => 'syn_contact_include_person_fields',
+						'name'              => 'syntric_contact_include_person_fields',
 						'type'              => 'checkbox',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1292e',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab130fd',
 									'operator' => '==',
 									'value'    => 'person',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'prefix'     => 'Prefix',
 							'first_name' => 'First Name',
 							'title'      => 'Title',
 							'email'      => 'Email',
 							'phone'      => 'Phone',
-						),
+						],
 						'allow_custom'      => 0,
 						'save_custom'       => 0,
-						'default_value'     => array(
+						'default_value'     => [
 							0 => 'prefix',
 							1 => 'first_name',
 							2 => 'title',
 							3 => 'email',
 							4 => 'phone',
-						),
+						],
 						'layout'            => 'vertical',
 						'toggle'            => 0,
 						'return_format'     => 'array',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab14482',
 						'label'             => 'Include Fields',
-						'name'              => 'syn_contact_include_organization_fields',
+						'name'              => 'syntric_contact_include_organization_fields',
 						'type'              => 'checkbox',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1292e',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab130fd',
 									'operator' => '==',
 									'value'    => 'organization',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'address' => 'Address',
 							'email'   => 'Email',
 							'phone'   => 'Phone',
 							'fax'     => 'Fax',
 							'url'     => 'Website',
 							'logo'    => 'Logo',
-						),
+						],
 						'allow_custom'      => 0,
 						'save_custom'       => 0,
-						'default_value'     => array(
+						'default_value'     => [
 							0 => 'address',
 							1 => 'city_state_zip_code',
 							2 => 'email',
@@ -11568,12 +11569,12 @@ endif;
 							4 => 'fax',
 							5 => 'url',
 							6 => 'logo',
-						),
+						],
 						'layout'            => 'vertical',
 						'toggle'            => 0,
 						'return_format'     => 'array',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab14866',
 						'label'             => 'Calendar',
 						'name'              => '',
@@ -11581,111 +11582,111 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'left',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab14c60',
 						'label'             => 'Activate Calendar',
-						'name'              => 'syn_calendar_active',
+						'name'              => 'syntric_calendar_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab15047',
 						'label'             => 'Title',
-						'name'              => 'syn_calendar_title',
+						'name'              => 'syntric_calendar_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab14c60',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Calendar',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab15425',
 						'label'             => 'Calendar',
-						'name'              => 'syn_calendar_id',
+						'name'              => 'syntric_calendar_id',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab14c60',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '60',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab15808',
 						'label'             => 'Display Count',
-						'name'              => 'syn_calendar_events',
+						'name'              => 'syntric_calendar_events',
 						'type'              => 'number',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab14c60',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '15',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 5,
 						'placeholder'       => '',
 						'prepend'           => '',
@@ -11693,264 +11694,264 @@ endif;
 						'min'               => 1,
 						'max'               => '',
 						'step'              => 1,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab15be7',
 						'label'             => 'Include Event Date',
-						'name'              => 'syn_calendar_include_date',
+						'name'              => 'syntric_calendar_include_date',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab14c60',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 1,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab15fdd',
 						'label'             => 'Google Calendar ID',
-						'name'              => 'syn_new_calendar_id',
+						'name'              => 'syntric_new_calendar_id',
 						'type'              => 'text',
 						'instructions'      => 'Value can be found in the calendar settings at <a href="https://calendar.google.com/calendar/" target="_blank">Google Calendars</a>.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab14c60',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab15425',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab163ca',
 						'label'             => 'Sync Now',
-						'name'              => 'syn_new_calendar_sync_now',
+						'name'              => 'syntric_new_calendar_sync_now',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab14c60',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab15425',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1679d',
 						'label'             => 'Schedule Sync',
-						'name'              => 'syn_new_calendar_sync',
+						'name'              => 'syntric_new_calendar_sync',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab14c60',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab15425',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab16b87',
 						'label'             => 'Sync Frequency',
-						'name'              => 'syn_new_calendar_sync_frequency',
+						'name'              => 'syntric_new_calendar_sync_frequency',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab14c60',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab15425',
 									'operator' => '==',
 									'value'    => '0',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab1679d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'hourly' => 'Hourly',
 							'daily'  => 'Daily',
-						),
-						'default_value'     => array(),
+						],
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab16f84',
 						'label'             => 'Sync Range',
-						'name'              => 'syn_new_calendar_sync_range',
+						'name'              => 'syntric_new_calendar_sync_range',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab14c60',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab15425',
 									'operator' => '==',
 									'value'    => '0',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab1679d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'1 year'  => 'Sync up to 1 year forward',
 							'2 years' => 'Sync up to 2 years forward',
-						),
-						'default_value'     => array(),
+						],
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1737f',
 						'label'             => 'Delete Events (hidden)',
-						'name'              => 'syn_new_calendar_delete_events',
+						'name'              => 'syntric_new_calendar_delete_events',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => 'hidden',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab17752',
 						'label'             => 'Delete After (hidden)',
-						'name'              => 'syn_new_calendar_delete_after',
+						'name'              => 'syntric_new_calendar_delete_after',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => 'hidden',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'1 month'  => 'Delete after 1 month',
 							'3 months' => 'Delete after 3 months',
 							'6 months' => 'Delete after 6 months',
 							'1 year'   => 'Delete after 1 year',
 							'2 years'  => 'Delete after 2 years',
-						),
-						'default_value'     => array(),
+						],
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab17b30',
 						'label'             => 'Microblog',
 						'name'              => '',
@@ -11958,81 +11959,81 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'left',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab17f11',
 						'label'             => 'Activate Microblog',
-						'name'              => 'syn_microblog_active',
+						'name'              => 'syntric_microblog_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab18303',
 						'label'             => 'Title',
-						'name'              => 'syn_microblog_title',
+						'name'              => 'syntric_microblog_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab17f11',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Blog',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab18703',
 						'label'             => 'Category',
-						'name'              => 'syn_microblog_category',
+						'name'              => 'syntric_microblog_category',
 						'type'              => 'taxonomy',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab17f11',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => 'hidden',
 							'id'    => '',
-						),
+						],
 						'taxonomy'          => 'category',
 						'field_type'        => 'select',
 						'allow_null'        => 1,
@@ -12041,28 +12042,28 @@ endif;
 						'load_terms'        => 1,
 						'return_format'     => 'object',
 						'multiple'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab18af2',
 						'label'             => 'Microblog',
-						'name'              => 'syn_microblog_term',
+						'name'              => 'syntric_microblog_term',
 						'type'              => 'taxonomy',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab17f11',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'taxonomy'          => 'microblog',
 						'field_type'        => 'select',
 						'allow_null'        => 1,
@@ -12071,78 +12072,78 @@ endif;
 						'load_terms'        => 1,
 						'return_format'     => 'object',
 						'multiple'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab18edb',
 						'label'             => 'Category',
 						'name'              => '',
 						'type'              => 'message',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab17f11',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => 'hidden',
 							'id'    => '',
-						),
+						],
 						'message'           => 'Generated automatically',
 						'new_lines'         => '',
 						'esc_html'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1931e',
 						'label'             => 'Microblog',
 						'name'              => '',
 						'type'              => 'message',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab17f11',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => 'Generated automatically',
 						'new_lines'         => '',
 						'esc_html'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab196e2',
 						'label'             => 'Posts to display:',
-						'name'              => 'syn_microblog_posts',
+						'name'              => 'syntric_microblog_posts',
 						'type'              => 'number',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab17f11',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '20',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 5,
 						'placeholder'       => '',
 						'prepend'           => '',
@@ -12150,126 +12151,126 @@ endif;
 						'min'               => 1,
 						'max'               => '',
 						'step'              => 1,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab19a8b',
 						'label'             => 'Include Post Date',
-						'name'              => 'syn_microblog_include_date',
+						'name'              => 'syntric_microblog_include_date',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab17f11',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '30',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 1,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab19e74',
 						'label'             => 'Add New Post',
-						'name'              => 'syn_new_microblog_post',
+						'name'              => 'syntric_new_microblog_post',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab17f11',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1a25f',
 						'label'             => 'Microblog Post Title',
-						'name'              => 'syn_new_microblog_post_title',
+						'name'              => 'syntric_new_microblog_post_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab17f11',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab19e74',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1a644',
 						'label'             => 'Microblog Post Content',
-						'name'              => 'syn_new_microblog_post_content',
+						'name'              => 'syntric_new_microblog_post_content',
 						'type'              => 'wysiwyg',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab17f11',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab19e74',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'tabs'              => 'all',
 						'toolbar'           => 'full',
 						'media_upload'      => 1,
 						'delay'             => 1,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1aa31',
 						'label'             => 'Roster',
 						'name'              => '',
@@ -12277,81 +12278,81 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'left',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1ae25',
 						'label'             => 'Activate Roster',
-						'name'              => 'syn_roster_active',
+						'name'              => 'syntric_roster_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1b20b',
 						'label'             => 'Title',
-						'name'              => 'syn_roster_title',
+						'name'              => 'syntric_roster_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1ae25',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Roster',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'                   => 'field_5ac25dab1b609',
 						'label'                 => 'People',
-						'name'                  => 'syn_roster_people',
+						'name'                  => 'syntric_roster_people',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 1,
-						'conditional_logic'     => array(
-							array(
-								array(
+						'conditional_logic'     => [
+							[
+								[
 									'field'    => 'field_5ac25dab1ae25',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'               => array(
+								],
+							],
+						],
+						'wrapper'               => [
 							'width' => '75',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_59af852be10d5',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -12360,8 +12361,8 @@ endif;
 						'hide_collapse'         => 0,
 						'collapse_all_repeater' => 0,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_5ac25dac1ade0',
 								'label'             => 'Person',
 								'name'              => 'person',
@@ -12369,70 +12370,70 @@ endif;
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
-								'choices'           => array(
+								],
+								'choices'           => [
 									1   => 'Ken Hobbs / Hobbs',
 									230 => 'Arthur Hobbs / Teacher',
 									239 => 'Edward Hobbs / Teacher',
 									109 => 'Trini Marquis / Teacher',
 									240 => 'Sample Teacher / Teacher',
-								),
-								'default_value'     => array(),
+								],
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'key'               => 'field_5ac25dab1b9e1',
 						'label'             => 'Include Fields',
-						'name'              => 'syn_roster_include_fields',
+						'name'              => 'syntric_roster_include_fields',
 						'type'              => 'checkbox',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1ae25',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'prefix'     => 'Prefix',
 							'first_name' => 'First Name',
 							'title'      => 'Title',
 							'email'      => 'Email',
 							'phone'      => 'Phone',
-						),
+						],
 						'allow_custom'      => 0,
 						'save_custom'       => 0,
-						'default_value'     => array(
+						'default_value'     => [
 							0 => 'prefix',
 							1 => 'first_name',
 							2 => 'title',
 							3 => 'email',
 							4 => 'phone',
-						),
+						],
 						'layout'            => 'vertical',
 						'toggle'            => 0,
 						'return_format'     => 'array',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1bdc8',
 						'label'             => 'Google Map',
 						'name'              => '',
@@ -12440,91 +12441,91 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'left',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1c1ae',
 						'label'             => 'Activate Google Map',
-						'name'              => 'syn_google_map_active',
+						'name'              => 'syntric_google_map_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1c596',
 						'label'             => 'Title',
-						'name'              => 'syn_google_map_title',
+						'name'              => 'syntric_google_map_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1c1ae',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Map',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1c9ba',
 						'label'             => 'Google	Map',
-						'name'              => 'syn_google_map_id',
+						'name'              => 'syntric_google_map_id',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1c1ae',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 0,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1cd5a',
 						'label'             => 'Video',
 						'name'              => '',
@@ -12532,283 +12533,283 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'left',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1d153',
 						'label'             => 'Activate Video',
-						'name'              => 'syn_video_active',
+						'name'              => 'syntric_video_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1d54b',
 						'label'             => 'Title',
-						'name'              => 'syn_video_title',
+						'name'              => 'syntric_video_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1d153',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1d91d',
 						'label'             => 'Host',
-						'name'              => 'syn_video_host',
+						'name'              => 'syntric_video_host',
 						'type'              => 'select',
 						'instructions'      => 'This widget works with YouTube and Vimeo hosted videos.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1d153',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'YouTube' => 'YouTube',
 							'Vimeo'   => 'Vimeo',
-						),
-						'default_value'     => array(),
+						],
+						'default_value'     => [],
 						'allow_null'        => 0,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1dd07',
 						'label'             => 'Type',
-						'name'              => 'syn_video_type',
+						'name'              => 'syntric_video_type',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1d153',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab1d91d',
 									'operator' => '==',
 									'value'    => 'YouTube',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'single'   => 'Single',
 							'playlist' => 'Playlist',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 'single',
 						'layout'            => 'vertical',
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1e0ee',
 						'label'             => 'Video ID',
-						'name'              => 'syn_video_youtube_id',
+						'name'              => 'syntric_video_youtube_id',
 						'type'              => 'text',
 						'instructions'      => 'Enter the YouTube Video ID which is a string of characters in the URL of the video hosted on YouTube.	For example, the Video ID of the video at https://youtube.com/XX11YY22ZZ33 is XX11YY22ZZ33.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1d153',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab1d91d',
 									'operator' => '==',
 									'value'    => 'YouTube',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab1dd07',
 									'operator' => '==',
 									'value'    => 'single',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => 20,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1e4e8',
 						'label'             => 'Playlist ID',
-						'name'              => 'syn_video_youtube_playlist_id',
+						'name'              => 'syntric_video_youtube_playlist_id',
 						'type'              => 'text',
 						'instructions'      => 'Enter the YouTube Playlist ID which is a string of characters in the URL of the playlist hosted on YouTube.	For example, the Playlist ID of the playlist at https://www.youtube.com/playlist?list=XX11YY22XX11YY22 is XX11YY22XX11YY22.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1d153',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab1d91d',
 									'operator' => '==',
 									'value'    => 'YouTube',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab1dd07',
 									'operator' => '==',
 									'value'    => 'playlist',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => 50,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1e8c0',
 						'label'             => 'Video ID',
-						'name'              => 'syn_video_vimeo_id',
+						'name'              => 'syntric_video_vimeo_id',
 						'type'              => 'text',
 						'instructions'      => 'Enter the Vimeo Video ID which is a string of characters in the URL of the video hosted on Vimeo.	For example, the Video ID of the video at https://vimeo.com/555555555 is 555555555.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1d153',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5ac25dab1d91d',
 									'operator' => '==',
 									'value'    => 'Vimeo',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => 20,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac25dab1eca6',
 						'label'             => 'Caption',
-						'name'              => 'syn_video_caption',
+						'name'              => 'syntric_video_caption',
 						'type'              => 'wysiwyg',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5ac25dab1d153',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'tabs'              => 'all',
 						'toolbar'           => 'full',
 						'media_upload'      => 1,
 						'delay'             => 1,
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'page',
-						),
-						array(
+						],
+						[
 							'param'    => 'page_type',
 							'operator' => '!=',
 							'value'    => 'front_page',
-						),
-						array(
+						],
+						[
 							'param'    => 'page_type',
 							'operator' => '!=',
 							'value'    => 'posts_page',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 2,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -12817,12 +12818,12 @@ endif;
 				'hide_on_screen'        => '',
 				'active'                => 0,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5b0e9651b8200',
 				'title'                 => 'Page Widgets (copy)',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_5b0e9651d7085',
 						'label'             => 'Contact',
 						'name'              => '',
@@ -12830,245 +12831,245 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'left',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651d7469',
 						'label'             => 'Activate Contact',
-						'name'              => 'syn_contact_active',
+						'name'              => 'syntric_contact_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651d7851',
 						'label'             => 'Title',
-						'name'              => 'syn_contact_title',
+						'name'              => 'syntric_contact_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651d7469',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Contact',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651d7c4e',
 						'label'             => 'Contact Type',
-						'name'              => 'syn_contact_contact_type',
+						'name'              => 'syntric_contact_contact_type',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651d7469',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'person'       => 'Person',
 							'organization' => 'Organization',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => '',
 						'layout'            => 'vertical',
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651d804f',
 						'label'             => 'Person',
-						'name'              => 'syn_contact_person',
+						'name'              => 'syntric_contact_person',
 						'type'              => 'select',
 						'instructions'      => '<a href="/wp-admin/user-new.php">Add new user</a>',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651d7469',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651d7c4e',
 									'operator' => '==',
 									'value'    => 'person',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651d840c',
 						'label'             => 'Organization',
-						'name'              => 'syn_contact_organization',
+						'name'              => 'syntric_contact_organization',
 						'type'              => 'select',
 						'instructions'      => '<a href="/wp-admin/admin.php?page=syntric-organizations">Add new organization</a>',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651d7469',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651d7c4e',
 									'operator' => '==',
 									'value'    => 'organization',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651d87ee',
 						'label'             => 'Include Fields',
-						'name'              => 'syn_contact_include_person_fields',
+						'name'              => 'syntric_contact_include_person_fields',
 						'type'              => 'checkbox',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651d7469',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651d7c4e',
 									'operator' => '==',
 									'value'    => 'person',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'prefix'     => 'Prefix',
 							'first_name' => 'First Name',
 							'title'      => 'Title',
 							'email'      => 'Email',
 							'phone'      => 'Phone',
-						),
+						],
 						'allow_custom'      => 0,
 						'save_custom'       => 0,
-						'default_value'     => array(
+						'default_value'     => [
 							0 => 'prefix',
 							1 => 'first_name',
 							2 => 'title',
 							3 => 'email',
 							4 => 'phone',
-						),
+						],
 						'layout'            => 'vertical',
 						'toggle'            => 0,
 						'return_format'     => 'array',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651d8bd6',
 						'label'             => 'Include Fields',
-						'name'              => 'syn_contact_include_organization_fields',
+						'name'              => 'syntric_contact_include_organization_fields',
 						'type'              => 'checkbox',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651d7469',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651d7c4e',
 									'operator' => '==',
 									'value'    => 'organization',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'address' => 'Address',
 							'email'   => 'Email',
 							'phone'   => 'Phone',
 							'fax'     => 'Fax',
 							'url'     => 'Website',
 							'logo'    => 'Logo',
-						),
+						],
 						'allow_custom'      => 0,
 						'save_custom'       => 0,
-						'default_value'     => array(
+						'default_value'     => [
 							0 => 'address',
 							1 => 'city_state_zip_code',
 							2 => 'email',
@@ -13076,12 +13077,12 @@ endif;
 							4 => 'fax',
 							5 => 'url',
 							6 => 'logo',
-						),
+						],
 						'layout'            => 'vertical',
 						'toggle'            => 0,
 						'return_format'     => 'array',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651d8fbc',
 						'label'             => 'Calendar',
 						'name'              => '',
@@ -13089,111 +13090,111 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'left',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651d93ae',
 						'label'             => 'Activate Calendar',
-						'name'              => 'syn_calendar_active',
+						'name'              => 'syntric_calendar_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651d978b',
 						'label'             => 'Title',
-						'name'              => 'syn_calendar_title',
+						'name'              => 'syntric_calendar_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651d93ae',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Calendar',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651d9b7c',
 						'label'             => 'Calendar',
-						'name'              => 'syn_calendar_id',
+						'name'              => 'syntric_calendar_id',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651d93ae',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651d9f5b',
 						'label'             => 'Display Count',
-						'name'              => 'syn_calendar_events',
+						'name'              => 'syntric_calendar_events',
 						'type'              => 'number',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651d93ae',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 5,
 						'placeholder'       => '',
 						'prepend'           => '',
@@ -13201,264 +13202,264 @@ endif;
 						'min'               => 1,
 						'max'               => '',
 						'step'              => 1,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651da34c',
 						'label'             => 'Include Event Date',
-						'name'              => 'syn_calendar_include_date',
+						'name'              => 'syntric_calendar_include_date',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651d93ae',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 1,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651da737',
 						'label'             => 'Google Calendar ID',
-						'name'              => 'syn_new_calendar_id',
+						'name'              => 'syntric_new_calendar_id',
 						'type'              => 'text',
 						'instructions'      => 'Value can be found in the calendar settings at <a href="https://calendar.google.com/calendar/" target="_blank">Google Calendars</a>.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651d93ae',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651d9b7c',
 									'operator' => '==',
 									'value'    => '',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651dab1a',
 						'label'             => 'Sync Now',
-						'name'              => 'syn_new_calendar_sync_now',
+						'name'              => 'syntric_new_calendar_sync_now',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651d93ae',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651d9b7c',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651daf04',
 						'label'             => 'Schedule Sync',
-						'name'              => 'syn_new_calendar_sync',
+						'name'              => 'syntric_new_calendar_sync',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651d93ae',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651d9b7c',
 									'operator' => '==',
 									'value'    => '0',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651db2e9',
 						'label'             => 'Sync Frequency',
-						'name'              => 'syn_new_calendar_sync_frequency',
+						'name'              => 'syntric_new_calendar_sync_frequency',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651d93ae',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651d9b7c',
 									'operator' => '==',
 									'value'    => '',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651daf04',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'hourly' => 'Hourly',
 							'daily'  => 'Daily',
-						),
-						'default_value'     => array(),
+						],
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651db6dd',
 						'label'             => 'Sync Range',
-						'name'              => 'syn_new_calendar_sync_range',
+						'name'              => 'syntric_new_calendar_sync_range',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651d93ae',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651d9b7c',
 									'operator' => '==',
 									'value'    => '0',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651daf04',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'1 year'  => 'Sync up to 1 year forward',
 							'2 years' => 'Sync up to 2 years forward',
-						),
-						'default_value'     => array(),
+						],
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651dbaae',
 						'label'             => 'Delete Events (hidden)',
-						'name'              => 'syn_new_calendar_delete_events',
+						'name'              => 'syntric_new_calendar_delete_events',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => 'hidden',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651dbe9f',
 						'label'             => 'Delete After (hidden)',
-						'name'              => 'syn_new_calendar_delete_after',
+						'name'              => 'syntric_new_calendar_delete_after',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '50',
 							'class' => 'hidden',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'1 month'  => 'Delete after 1 month',
 							'3 months' => 'Delete after 3 months',
 							'6 months' => 'Delete after 6 months',
 							'1 year'   => 'Delete after 1 year',
 							'2 years'  => 'Delete after 2 years',
-						),
-						'default_value'     => array(),
+						],
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651dc286',
 						'label'             => 'Microblog',
 						'name'              => '',
@@ -13466,136 +13467,136 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'left',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651dc68d',
 						'label'             => 'Activate Microblog',
-						'name'              => 'syn_microblog_active',
+						'name'              => 'syntric_microblog_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651dca52',
 						'label'             => 'Title',
-						'name'              => 'syn_microblog_title',
+						'name'              => 'syntric_microblog_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651dc68d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Blog',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651dce59',
 						'label'             => 'Category',
-						'name'              => 'syn_microblog_category',
+						'name'              => 'syntric_microblog_category',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651dc68d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(),
-						'default_value'     => array(),
+						],
+						'choices'           => [],
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651dd21d',
 						'label'             => 'Category',
 						'name'              => '',
 						'type'              => 'message',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651dc68d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => 'Generated automatically',
 						'new_lines'         => '',
 						'esc_html'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651dd603',
 						'label'             => 'Posts to display:',
-						'name'              => 'syn_microblog_posts',
+						'name'              => 'syntric_microblog_posts',
 						'type'              => 'number',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651dc68d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 5,
 						'placeholder'       => '',
 						'prepend'           => '',
@@ -13603,126 +13604,126 @@ endif;
 						'min'               => 1,
 						'max'               => '',
 						'step'              => 1,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651dd9ea',
 						'label'             => 'Include Post Date',
-						'name'              => 'syn_microblog_include_date',
+						'name'              => 'syntric_microblog_include_date',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651dc68d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 1,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651dddd1',
 						'label'             => 'Add New Post',
-						'name'              => 'syn_new_microblog_post',
+						'name'              => 'syntric_new_microblog_post',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651dc68d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651de1b9',
 						'label'             => 'Microblog Post Title',
-						'name'              => 'syn_new_microblog_post_title',
+						'name'              => 'syntric_new_microblog_post_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651dc68d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651dddd1',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651de5a1',
 						'label'             => 'Microblog Post Content',
-						'name'              => 'syn_new_microblog_post_content',
+						'name'              => 'syntric_new_microblog_post_content',
 						'type'              => 'wysiwyg',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651dc68d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651dddd1',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'tabs'              => 'all',
 						'toolbar'           => 'full',
 						'media_upload'      => 1,
 						'delay'             => 1,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651de987',
 						'label'             => 'Roster',
 						'name'              => '',
@@ -13730,81 +13731,81 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'left',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651ded8d',
 						'label'             => 'Activate Roster',
-						'name'              => 'syn_roster_active',
+						'name'              => 'syntric_roster_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651df16b',
 						'label'             => 'Title',
-						'name'              => 'syn_roster_title',
+						'name'              => 'syntric_roster_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651ded8d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Roster',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'                   => 'field_5b0e9651df56d',
 						'label'                 => 'People',
-						'name'                  => 'syn_roster_people',
+						'name'                  => 'syntric_roster_people',
 						'type'                  => 'repeater',
 						'instructions'          => '<a href="/wp-admin/user-new.php" target="blank">Add new user</a>',
 						'required'              => 1,
-						'conditional_logic'     => array(
-							array(
-								array(
+						'conditional_logic'     => [
+							[
+								[
 									'field'    => 'field_5b0e9651ded8d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'               => array(
+								],
+							],
+						],
+						'wrapper'               => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_59af852be10d5',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -13813,8 +13814,8 @@ endif;
 						'hide_collapse'         => 1,
 						'collapse_all_repeater' => 0,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_5b0e9652beba8',
 								'label'             => 'Person',
 								'name'              => 'person',
@@ -13822,64 +13823,64 @@ endif;
 								'instructions'      => '',
 								'required'          => 1,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
-								'choices'           => array(),
-								'default_value'     => array(),
+								],
+								'choices'           => [],
+								'default_value'     => [],
 								'allow_null'        => 1,
 								'multiple'          => 0,
 								'ui'                => 0,
 								'ajax'              => 0,
 								'return_format'     => 'value',
 								'placeholder'       => '',
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'key'               => 'field_5b0e9651df929',
 						'label'             => 'Include Fields',
-						'name'              => 'syn_roster_include_fields',
+						'name'              => 'syntric_roster_include_fields',
 						'type'              => 'checkbox',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651ded8d',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'prefix'     => 'Prefix',
 							'first_name' => 'First Name',
 							'title'      => 'Title',
 							'email'      => 'Email',
 							'phone'      => 'Phone',
-						),
+						],
 						'allow_custom'      => 0,
 						'save_custom'       => 0,
-						'default_value'     => array(
+						'default_value'     => [
 							0 => 'prefix',
 							1 => 'first_name',
 							2 => 'title',
 							3 => 'email',
 							4 => 'phone',
-						),
+						],
 						'layout'            => 'vertical',
 						'toggle'            => 0,
 						'return_format'     => 'array',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651dfd3c',
 						'label'             => 'Google Map',
 						'name'              => '',
@@ -13887,91 +13888,91 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'left',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651e00fb',
 						'label'             => 'Activate Google Map',
-						'name'              => 'syn_google_map_active',
+						'name'              => 'syntric_google_map_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651e04e0',
 						'label'             => 'Title',
-						'name'              => 'syn_google_map_title',
+						'name'              => 'syntric_google_map_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651e00fb',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Map',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651e08c6',
 						'label'             => 'Google	Map',
-						'name'              => 'syn_google_map_id',
+						'name'              => 'syntric_google_map_id',
 						'type'              => 'select',
 						'instructions'      => '<a href="/wp-admin/admin.php?page=syntric-google-maps">Add new map</a>',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651e00fb',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 0,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651e0cab',
 						'label'             => 'Video/Playlist',
 						'name'              => '',
@@ -13979,264 +13980,264 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'left',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651e1091',
 						'label'             => 'Activate Video/Playlist',
-						'name'              => 'syn_video_active',
+						'name'              => 'syntric_video_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651e147c',
 						'label'             => 'Title',
-						'name'              => 'syn_video_title',
+						'name'              => 'syntric_video_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651e1091',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651e1860',
 						'label'             => 'Host',
-						'name'              => 'syn_video_host',
+						'name'              => 'syntric_video_host',
 						'type'              => 'select',
 						'instructions'      => 'This widget works with YouTube and Vimeo hosted videos.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651e1091',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'YouTube' => 'YouTube',
 							'Vimeo'   => 'Vimeo',
-						),
-						'default_value'     => array(),
+						],
+						'default_value'     => [],
 						'allow_null'        => 0,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651e1c4c',
 						'label'             => 'Type',
-						'name'              => 'syn_video_type',
+						'name'              => 'syntric_video_type',
 						'type'              => 'radio',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651e1091',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651e1860',
 									'operator' => '==',
 									'value'    => 'YouTube',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
-						'choices'           => array(
+						],
+						'choices'           => [
 							'single'   => 'Single',
 							'playlist' => 'Playlist',
-						),
+						],
 						'allow_null'        => 0,
 						'other_choice'      => 0,
 						'save_other_choice' => 0,
 						'default_value'     => 'single',
 						'layout'            => 'vertical',
 						'return_format'     => 'value',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651e2030',
 						'label'             => 'Video ID',
-						'name'              => 'syn_video_youtube_id',
+						'name'              => 'syntric_video_youtube_id',
 						'type'              => 'text',
 						'instructions'      => 'Enter the YouTube Video ID which is a string of characters in the URL of the video hosted on YouTube.	For example, the Video ID of the video at https://youtube.com/XX11YY22ZZ33 is XX11YY22ZZ33.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651e1091',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651e1860',
 									'operator' => '==',
 									'value'    => 'YouTube',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651e1c4c',
 									'operator' => '==',
 									'value'    => 'single',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => 20,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651e2416',
 						'label'             => 'Playlist ID',
-						'name'              => 'syn_video_youtube_playlist_id',
+						'name'              => 'syntric_video_youtube_playlist_id',
 						'type'              => 'text',
 						'instructions'      => 'Enter the YouTube Playlist ID which is a string of characters in the URL of the playlist hosted on YouTube.	For example, the Playlist ID of the playlist at https://www.youtube.com/playlist?list=XX11YY22XX11YY22 is XX11YY22XX11YY22.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651e1091',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651e1860',
 									'operator' => '==',
 									'value'    => 'YouTube',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651e1c4c',
 									'operator' => '==',
 									'value'    => 'playlist',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => 50,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651e282d',
 						'label'             => 'Video ID',
-						'name'              => 'syn_video_vimeo_id',
+						'name'              => 'syntric_video_vimeo_id',
 						'type'              => 'text',
 						'instructions'      => 'Enter the Vimeo Video ID which is a string of characters in the URL of the video hosted on Vimeo.	For example, the Video ID of the video at https://vimeo.com/555555555 is 555555555.',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651e1091',
 									'operator' => '==',
 									'value'    => '1',
-								),
-								array(
+								],
+								[
 									'field'    => 'field_5b0e9651e1860',
 									'operator' => '==',
 									'value'    => 'Vimeo',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => 20,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651e2bf4',
 						'label'             => 'Caption',
-						'name'              => 'syn_video_caption',
+						'name'              => 'syntric_video_caption',
 						'type'              => 'wysiwyg',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651e1091',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'tabs'              => 'all',
 						'toolbar'           => 'full',
 						'media_upload'      => 1,
 						'delay'             => 1,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651e2fce',
 						'label'             => 'Attachments',
 						'name'              => '',
@@ -14244,81 +14245,81 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'left',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651e33b4',
 						'label'             => 'Activate Attachments',
-						'name'              => 'syn_attachments_active',
+						'name'              => 'syntric_attachments_active',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5b0e9651e379b',
 						'label'             => 'Title',
-						'name'              => 'syn_attachments_title',
+						'name'              => 'syntric_attachments_title',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 1,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5b0e9651e33b4',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => 'Resources',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'                   => 'field_5b0e9651e3b82',
 						'label'                 => 'Attachment Groups',
-						'name'                  => 'syn_attachments',
+						'name'                  => 'syntric_attachments',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 1,
-						'conditional_logic'     => array(
-							array(
-								array(
+						'conditional_logic'     => [
+							[
+								[
 									'field'    => 'field_5b0e9651e33b4',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'               => array(
+								],
+							],
+						],
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_5ac25dac942ef',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -14327,8 +14328,8 @@ endif;
 						'hide_collapse'         => 0,
 						'collapse_all_repeater' => 1,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_5b0e965346c78',
 								'label'             => 'Header',
 								'name'              => 'header',
@@ -14336,18 +14337,18 @@ endif;
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_5b0e96534705d',
 								'label'             => 'Description',
 								'name'              => 'description',
@@ -14355,18 +14356,18 @@ endif;
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'maxlength'         => '',
 								'rows'              => 3,
 								'new_lines'         => '',
-							),
-							array(
+							],
+							[
 								'key'                   => 'field_5b0e965347472',
 								'label'                 => 'Attachments',
 								'name'                  => 'attachments',
@@ -14374,11 +14375,11 @@ endif;
 								'instructions'          => '',
 								'required'              => 0,
 								'conditional_logic'     => 0,
-								'wrapper'               => array(
+								'wrapper'               => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'collapsed'             => '',
 								'min'                   => 0,
 								'max'                   => 0,
@@ -14387,8 +14388,8 @@ endif;
 								'hide_collapse'         => 1,
 								'collapse_all_repeater' => 1,
 								'btn-icon-only'         => 1,
-								'sub_fields'            => array(
-									array(
+								'sub_fields'            => [
+									[
 										'key'               => 'field_5b0e965358595',
 										'label'             => 'Attachment Type',
 										'name'              => 'attachment_type',
@@ -14396,185 +14397,185 @@ endif;
 										'instructions'      => '',
 										'required'          => 1,
 										'conditional_logic' => 0,
-										'wrapper'           => array(
+										'wrapper'           => [
 											'width' => '20',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
-										'choices'           => array(
+										],
+										'choices'           => [
 											'file'          => 'File',
 											'internal_link' => 'Internal link',
 											'external_link' => 'External link',
-										),
-										'default_value'     => array(),
+										],
+										'default_value'     => [],
 										'allow_null'        => 0,
 										'multiple'          => 0,
 										'ui'                => 0,
 										'ajax'              => 0,
 										'return_format'     => 'array',
 										'placeholder'       => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_5b0e965358970',
 										'label'             => 'File',
 										'name'              => 'file',
 										'type'              => 'file',
 										'instructions'      => '',
 										'required'          => 1,
-										'conditional_logic' => array(
-											array(
-												array(
+										'conditional_logic' => [
+											[
+												[
 													'field'    => 'field_5b0e965358595',
 													'operator' => '==',
 													'value'    => 'file',
-												),
-											),
-										),
-										'wrapper'           => array(
+												],
+											],
+										],
+										'wrapper'           => [
 											'width' => '80',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
+										],
 										'return_format'     => 'array',
 										'library'           => 'all',
 										'min_size'          => '',
 										'max_size'          => '',
 										'mime_types'        => 'pdf,doc,docx,xls,xlsx,ppt,pptx',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_5b0e965358d65',
 										'label'             => 'Internal Link',
 										'name'              => 'internal_link',
 										'type'              => 'post_object',
 										'instructions'      => '',
 										'required'          => 1,
-										'conditional_logic' => array(
-											array(
-												array(
+										'conditional_logic' => [
+											[
+												[
 													'field'    => 'field_5b0e965358595',
 													'operator' => '==',
 													'value'    => 'internal_link',
-												),
-											),
-										),
-										'wrapper'           => array(
+												],
+											],
+										],
+										'wrapper'           => [
 											'width' => '80',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
-										'post_type'         => array(
+										],
+										'post_type'         => [
 											0 => 'post',
 											1 => 'page',
-											2 => 'syn_calendar',
-										),
-										'taxonomy'          => array(),
+											2 => 'syntric_calendar',
+										],
+										'taxonomy'          => [],
 										'allow_null'        => 0,
 										'multiple'          => 0,
 										'return_format'     => 'object',
 										'ui'                => 1,
-									),
-									array(
+									],
+									[
 										'key'               => 'field_5b0e96535913e',
 										'label'             => 'Link Title',
 										'name'              => 'title',
 										'type'              => 'text',
 										'instructions'      => '',
 										'required'          => 1,
-										'conditional_logic' => array(
-											array(
-												array(
+										'conditional_logic' => [
+											[
+												[
 													'field'    => 'field_5b0e965358595',
 													'operator' => '==',
 													'value'    => 'external_link',
-												),
-											),
-										),
-										'wrapper'           => array(
+												],
+											],
+										],
+										'wrapper'           => [
 											'width' => '30',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
+										],
 										'default_value'     => '',
 										'placeholder'       => '',
 										'prepend'           => '',
 										'append'            => '',
 										'maxlength'         => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_5b0e965359538',
 										'label'             => 'Web Address',
 										'name'              => 'url',
 										'type'              => 'url',
 										'instructions'      => '',
 										'required'          => 1,
-										'conditional_logic' => array(
-											array(
-												array(
+										'conditional_logic' => [
+											[
+												[
 													'field'    => 'field_5b0e965358595',
 													'operator' => '==',
 													'value'    => 'external_link',
-												),
-											),
-										),
-										'wrapper'           => array(
+												],
+											],
+										],
+										'wrapper'           => [
 											'width' => '30',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
+										],
 										'default_value'     => '',
 										'placeholder'       => '',
-									),
-									array(
+									],
+									[
 										'key'               => 'field_5b0e965359910',
 										'label'             => 'New Window',
 										'name'              => 'new_window',
 										'type'              => 'true_false',
 										'instructions'      => '',
 										'required'          => 0,
-										'conditional_logic' => array(
-											array(
-												array(
+										'conditional_logic' => [
+											[
+												[
 													'field'    => 'field_5b0e965358595',
 													'operator' => '==',
 													'value'    => 'external_link',
-												),
-											),
-										),
-										'wrapper'           => array(
+												],
+											],
+										],
+										'wrapper'           => [
 											'width' => '20',
 											'class' => '-collapsed-target',
 											'id'    => '',
-										),
+										],
 										'message'           => '',
 										'default_value'     => 0,
 										'ui'                => 1,
 										'ui_on_text'        => '',
 										'ui_off_text'       => '',
-									),
-								),
-							),
-						),
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+									],
+								],
+							],
+						],
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'page',
-						),
-						array(
+						],
+						[
 							'param'    => 'page_type',
 							'operator' => '!=',
 							'value'    => 'front_page',
-						),
-						array(
+						],
+						[
 							'param'    => 'page_type',
 							'operator' => '!=',
 							'value'    => 'posts_page',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 2,
 				'position'              => 'side',
 				'style'                 => 'default',
@@ -14583,77 +14584,77 @@ endif;
 				'hide_on_screen'        => '',
 				'active'                => 0,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_596d53505d63e',
 				'title'                 => 'Data Functions',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_5976990647847',
 						'label'             => 'Run Orphan Scan',
-						'name'              => 'syn_data_run_orphan_scan',
+						'name'              => 'syntric_data_run_orphan_scan',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '25',
 							'class' => 'hidden',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59ce7c2d40e88',
 						'label'             => 'Delete Orphans',
-						'name'              => 'syn_data_delete_orphans',
+						'name'              => 'syntric_data_delete_orphans',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_5976990647847',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '75',
 							'class' => 'hidden',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59c695d4c7dfa',
 						'label'             => 'Orphan Scan Console',
-						'name'              => 'syn_data_orphan_scan_console',
+						'name'              => 'syntric_data_orphan_scan_console',
 						'type'              => 'textarea',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => 'hidden',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'maxlength'         => '',
 						'rows'              => 20,
 						'new_lines'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_596f129520f55',
 						'label'             => 'Instructions',
 						'name'              => '',
@@ -14661,11 +14662,11 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '<p>Insert new users and update existing users from a CSV file.</p>
 <p>File columns</p>
 <ol>
@@ -14682,269 +14683,269 @@ endif;
 </ol>',
 						'new_lines'         => '',
 						'esc_html'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_597835d3a14ab',
 						'label'             => 'Run Users Import',
-						'name'              => 'syn_data_run_users_import',
+						'name'              => 'syntric_data_run_users_import',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_596d535df6faa',
 						'label'             => 'Users File',
-						'name'              => 'syn_data_users_file',
+						'name'              => 'syntric_data_users_file',
 						'type'              => 'file',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_597835d3a14ab',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '50',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'return_format'     => 'array',
 						'library'           => 'all',
 						'min_size'          => '',
 						'max_size'          => '',
 						'mime_types'        => 'csv',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59880a6deecd6',
 						'label'             => 'Has Header Row',
-						'name'              => 'syn_data_users_file_has_header_row',
+						'name'              => 'syntric_data_users_file_has_header_row',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_597835d3a14ab',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59dd08dab17b7',
 						'label'             => 'Run Users Export',
-						'name'              => 'syn_data_run_users_export',
+						'name'              => 'syntric_data_run_users_export',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59dcf5b48e958',
 						'label'             => 'Users Import/Export Console',
-						'name'              => 'syn_data_users_import_console',
+						'name'              => 'syntric_data_users_import_console',
 						'type'              => 'textarea',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'maxlength'         => '',
 						'rows'              => 12,
 						'new_lines'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59783437a14a9',
 						'label'             => 'Update Users Phone',
-						'name'              => 'syn_data_run_users_phone_update',
+						'name'              => 'syntric_data_run_users_phone_update',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '25',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_596f15e8a7e49',
 						'label'             => 'Phone',
-						'name'              => 'syn_data_users_phone',
+						'name'              => 'syntric_data_users_phone',
 						'type'              => 'text',
 						'instructions'      => '',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59783437a14a9',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '75',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'prepend'           => '',
 						'append'            => '',
 						'maxlength'         => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59c17b3890d35',
 						'label'             => 'Update Users Password',
-						'name'              => 'syn_data_run_users_password_update',
+						'name'              => 'syntric_data_run_users_password_update',
 						'type'              => 'true_false',
 						'instructions'      => 'This will update all user passwords to their email address',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac26409f5cfc',
 						'label'             => 'Activate Contact Widgets',
-						'name'              => 'syn_data_run_activate_contact_widgets',
+						'name'              => 'syntric_data_run_activate_contact_widgets',
 						'type'              => 'true_false',
 						'instructions'      => 'This will forcefully activate and set the contact widgets on all teacher and class pages.	The contact will be set to the page author/owner.',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ac72f6ee5498',
 						'label'             => 'Reset User Capabilities',
-						'name'              => 'syn_data_run_reset_user_capabilities',
+						'name'              => 'syntric_data_run_reset_user_capabilities',
 						'type'              => 'true_false',
 						'instructions'      => 'This will reset corrupted wp_capabilities values in wp_usermeta.',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5ace918e2f28b',
 						'label'             => 'Reset/Optimize User Meta',
-						'name'              => 'syn_data_run_optimize_usermeta',
+						'name'              => 'syntric_data_run_optimize_usermeta',
 						'type'              => 'true_false',
 						'instructions'      => 'Will reset admin UI settings such as hidden metaboxes, closed metaboxes, screen options, etc.	Also purges abandoned ACF user meta records that were left behind when a field name changed.',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => 'Reset admin UI and purge abandoned ACF user meta',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5bb2cd285166e',
 						'label'             => 'Initialize Syntric Theme',
-						'name'              => 'syn_data_run_theme_init',
+						'name'              => 'syntric_data_run_theme_init',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'options_page',
 							'operator' => '==',
 							'value'    => 'syntric-data-functions',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 10,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -14953,70 +14954,70 @@ endif;
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59c5d19611678',
 				'title'                 => 'Page Settings - Class',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59cc512c79563',
 						'label'             => 'Teacher',
-						'name'              => 'syn_page_class_teacher',
+						'name'              => 'syntric_page_class_teacher',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59c59338e0341',
 						'label'             => 'Class',
-						'name'              => 'syn_page_class',
+						'name'              => 'syntric_page_class',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'page',
-						),
-						array(
+						],
+						[
 							'param'    => 'page_template',
 							'operator' => '==',
 							'value'    => 'page-templates/class.php',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 10,
 				'position'              => 'side',
 				'style'                 => 'default',
@@ -15025,100 +15026,100 @@ endif;
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-
-			acf_add_local_field_group(array(
-				'key' => 'group_5a78875f6fedb',
-				'title' => 'Page Settings - Course',
-				'fields' => array(
-					array(
+			] );
+			
+			acf_add_local_field_group( [
+				'key'                   => 'group_5a78875f6fedb',
+				'title'                 => 'Page Settings - Course',
+				'fields'                => [
+					[
 						'key'               => 'field_5a78875fa9ca1',
 						'label'             => 'Course',
-						'name'              => 'syn_page_course',
+						'name'              => 'syntric_page_course',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
-							'id' => '',
-						),
+							'id'    => '',
+						],
 						'choices'           => null,
-						'default_value'     => array(
-						),
+						'default_value'     => [
+						],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-				),
-				'location' => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'page',
-						),
-						array(
+						],
+						[
 							'param'    => 'page_template',
 							'operator' => '==',
 							'value'    => 'page-templates/course.php',
-						),
-					),
-				),
-				'menu_order' => 10,
-				'position' => 'side',
-				'style' => 'default',
-				'label_placement' => 'top',
+						],
+					],
+				],
+				'menu_order'            => 10,
+				'position'              => 'side',
+				'style'                 => 'default',
+				'label_placement'       => 'top',
 				'instruction_placement' => 'label',
-				'hide_on_screen' => '',
-				'active' => 1,
-				'description' => '',
-			) );
-			acf_add_local_field_group( array(
+				'hide_on_screen'        => '',
+				'active'                => 1,
+				'description'           => '',
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59c5d12746c46',
 				'title'                 => 'Page Settings - Department',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59b8c34309606',
 						'label'             => 'Department',
-						'name'              => 'syn_page_department',
+						'name'              => 'syntric_page_department',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'page',
-						),
-						array(
+						],
+						[
 							'param'    => 'page_template',
 							'operator' => '==',
 							'value'    => 'page-templates/department.php',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 10,
 				'position'              => 'side',
 				'style'                 => 'default',
@@ -15127,48 +15128,48 @@ endif;
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59c5d0f68dd2f',
 				'title'                 => 'Page Settings - Teacher',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59c592539d05b',
 						'label'             => 'Teacher',
-						'name'              => 'syn_page_teacher',
+						'name'              => 'syntric_page_teacher',
 						'type'              => 'select',
 						'instructions'      => '',
 						'required'          => 1,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'choices'           => null,
-						'default_value'     => array(),
+						'default_value'     => [],
 						'allow_null'        => 1,
 						'multiple'          => 0,
 						'ui'                => 0,
 						'ajax'              => 0,
 						'return_format'     => 'value',
 						'placeholder'       => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'page',
-						),
-						array(
+						],
+						[
 							'param'    => 'page_template',
 							'operator' => '==',
 							'value'    => 'page-templates/teacher.php',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 10,
 				'position'              => 'side',
 				'style'                 => 'default',
@@ -15177,12 +15178,12 @@ endif;
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5968583f207df',
 				'title'                 => 'Migration',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59dc7d2aa2871',
 						'label'             => 'Tasks',
 						'name'              => '',
@@ -15190,15 +15191,15 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5971681eb220c',
 						'label'             => 'Migration Tasks',
 						'name'              => '',
@@ -15206,11 +15207,11 @@ endif;
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => 'hidden',
 							'id'    => '',
-						),
+						],
 						'message'           => 'Each task will run one-at-a-time and in the order they are listed below.	
 
 You do not need to toggle the task switches manually - the migration script will toggle each switch as it is completed.
@@ -15218,103 +15219,103 @@ You do not need to toggle the task switches manually - the migration script will
 Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed task to re-run the task.',
 						'new_lines'         => 'wpautop',
 						'esc_html'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_596859af231b4',
 						'label'             => 'Run Next',
-						'name'              => 'syn_migration_run_next',
+						'name'              => 'syntric_migration_run_next',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '20',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_596859af239c5',
 						'label'             => 'Files Indexed',
-						'name'              => 'syn_migration_files_indexed',
+						'name'              => 'syntric_migration_files_indexed',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '20',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_596859af23dae',
 						'label'             => 'Files Synced',
-						'name'              => 'syn_migration_files_synced',
+						'name'              => 'syntric_migration_files_synced',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '20',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_596859af2419a',
 						'label'             => 'Links Converted',
-						'name'              => 'syn_migration_links_converted',
+						'name'              => 'syntric_migration_links_converted',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '20',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_596859af24968',
 						'label'             => 'Content Cleaned',
-						'name'              => 'syn_migration_content_cleaned',
+						'name'              => 'syntric_migration_content_cleaned',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '20',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59dc7d50a2872',
 						'label'             => 'Files',
 						'name'              => '',
@@ -15322,27 +15323,27 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'                   => 'field_596859af24d48',
 						'label'                 => 'Files',
-						'name'                  => 'syn_migration_files',
+						'name'                  => 'syntric_migration_files',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 0,
 						'conditional_logic'     => 0,
-						'wrapper'               => array(
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_596859af542be',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -15350,8 +15351,8 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 						'button_label'          => 'Add File',
 						'collapse_all_repeater' => 1,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_596859af542be',
 								'label'             => 'Local Title',
 								'name'              => 'local_title',
@@ -15359,18 +15360,18 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_596859af544bd',
 								'label'             => 'Local Filename',
 								'name'              => 'local_filename',
@@ -15378,18 +15379,18 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_596859af546c3',
 								'label'             => 'Local File',
 								'name'              => 'local_file',
@@ -15397,18 +15398,18 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'return_format'     => 'id',
 								'library'           => 'all',
 								'min_size'          => '',
 								'max_size'          => '',
 								'mime_types'        => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_59dbeee2db578',
 								'label'             => 'Remote Title',
 								'name'              => 'remote_title',
@@ -15416,18 +15417,18 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_596859af548de',
 								'label'             => 'Remote Filename',
 								'name'              => 'remote_filename',
@@ -15435,18 +15436,18 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_596859af54adb',
 								'label'             => 'Remote URL',
 								'name'              => 'remote_url',
@@ -15454,17 +15455,17 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'key'               => 'field_59dc7d65a2873',
 						'label'             => 'Images',
 						'name'              => '',
@@ -15472,27 +15473,27 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'                   => 'field_596859af24f4c',
 						'label'                 => 'Images',
-						'name'                  => 'syn_migration_images',
+						'name'                  => 'syntric_migration_images',
 						'type'                  => 'repeater',
 						'instructions'          => '',
 						'required'              => 0,
 						'conditional_logic'     => 0,
-						'wrapper'               => array(
+						'wrapper'               => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'collapsed'             => 'field_596859af79a38',
 						'min'                   => 0,
 						'max'                   => 0,
@@ -15500,8 +15501,8 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 						'button_label'          => 'Add Image',
 						'collapse_all_repeater' => 0,
 						'btn-icon-only'         => 1,
-						'sub_fields'            => array(
-							array(
+						'sub_fields'            => [
+							[
 								'key'               => 'field_596859af79a38',
 								'label'             => 'Local Title',
 								'name'              => 'local_title',
@@ -15509,18 +15510,18 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_596859af79c5f',
 								'label'             => 'Local Filename',
 								'name'              => 'local_filename',
@@ -15528,18 +15529,18 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_596859af79e53',
 								'label'             => 'Local File',
 								'name'              => 'local_file',
@@ -15547,11 +15548,11 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'return_format'     => 'id',
 								'preview_size'      => 'thumbnail',
 								'library'           => 'all',
@@ -15562,8 +15563,8 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 								'max_height'        => '',
 								'max_size'          => '',
 								'mime_types'        => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_596859af7a05f',
 								'label'             => 'Remote Filename',
 								'name'              => 'remote_filename',
@@ -15571,18 +15572,18 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
 									'id'    => '',
-								),
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
 								'prepend'           => '',
 								'append'            => '',
 								'maxlength'         => '',
-							),
-							array(
+							],
+							[
 								'key'               => 'field_596859af7a20c',
 								'label'             => 'Remote URL',
 								'name'              => 'remote_url',
@@ -15590,17 +15591,17 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 								'instructions'      => '',
 								'required'          => 0,
 								'conditional_logic' => 0,
-								'wrapper'           => array(
+								'wrapper'           => [
 									'width' => '',
 									'class' => '',
-									'id' => '',
-								),
+									'id'    => '',
+								],
 								'default_value'     => '',
 								'placeholder'       => '',
-							),
-						),
-					),
-					array(
+							],
+						],
+					],
+					[
 						'key'               => 'field_59dc7d7ea2874',
 						'label'             => 'Import Attachments HTML',
 						'name'              => '',
@@ -15608,75 +15609,75 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59e7c5efd70ce',
 						'label'             => 'Run Attachments Import',
-						'name'              => 'syn_migration_run_import_attachments_html',
+						'name'              => 'syntric_migration_run_import_attachments_html',
 						'type'              => 'true_false',
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'message'           => '',
 						'default_value'     => 0,
 						'ui'                => 1,
 						'ui_on_text'        => '',
 						'ui_off_text'       => '',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_59dc7c66cafd4',
 						'label'             => 'Attachments HTML',
-						'name'              => 'syn_migration_attachments_html',
+						'name'              => 'syntric_migration_attachments_html',
 						'type'              => 'textarea',
 						'instructions'      => 'Paste local attachments HTML to import into the Attachments Widget.',
 						'required'          => 0,
-						'conditional_logic' => array(
-							array(
-								array(
+						'conditional_logic' => [
+							[
+								[
 									'field'    => 'field_59e7c5efd70ce',
 									'operator' => '==',
 									'value'    => '1',
-								),
-							),
-						),
-						'wrapper'           => array(
+								],
+							],
+						],
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'default_value'     => '',
 						'placeholder'       => '',
 						'maxlength'         => '',
 						'rows'              => 12,
 						'new_lines'         => '',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'page',
-						),
-						array(
+						],
+						[
 							'param'    => 'page',
 							'operator' => '!=',
 							'value'    => '636',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 100,
 				'position'              => 'normal',
 				'style'                 => 'default',
@@ -15686,12 +15687,12 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 				'active'                => 0,
 				'description'           => '',
 				'modified'              => 1513822093,
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_5a835fca4968e',
 				'title'                 => 'Quick Nav',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_5a835fca5fb1a',
 						'label'             => '',
 						'name'              => '',
@@ -15699,41 +15700,41 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'enhanced_message'  => '<?php syn_qn_all_pages(); ?>',
+						],
+						'enhanced_message'  => '<?php syntric_qn_all_pages(); ?>',
 						'hide_label'        => 'yes',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'page',
-						),
-						array(
+						],
+						[
 							'param'    => 'current_user_role',
 							'operator' => '==',
 							'value'    => 'administrator',
-						),
-					),
-					array(
-						array(
+						],
+					],
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'page',
-						),
-						array(
+						],
+						[
 							'param'    => 'current_user_role',
 							'operator' => '==',
 							'value'    => 'editor',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 9999,
 				'position'              => 'side',
 				'style'                 => 'default',
@@ -15743,12 +15744,12 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 				'active'                => 0,
 				'description'           => '',
 				'modified'              => 1522710130,
-			) );
-			acf_add_local_field_group( array(
+			] );
+			acf_add_local_field_group( [
 				'key'                   => 'group_59b8c17541486',
 				'title'                 => 'Quick Nav +',
-				'fields'                => array(
-					array(
+				'fields'                => [
+					[
 						'key'               => 'field_59c828fc65355',
 						'label'             => 'All',
 						'name'              => '',
@@ -15756,15 +15757,15 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_592d1a7dae144',
 						'label'             => '',
 						'name'              => '',
@@ -15772,15 +15773,15 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'enhanced_message'  => '<?php syn_qn_all_pages(); ?>',
+						],
+						'enhanced_message'  => '<?php syntric_qn_all_pages(); ?>',
 						'hide_label'        => 'yes',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a0cd936cca79',
 						'label'             => 'Teachers',
 						'name'              => '',
@@ -15788,15 +15789,15 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a0cd944cca7a',
 						'label'             => '',
 						'name'              => '',
@@ -15804,15 +15805,15 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'enhanced_message'  => '<?php syn_qn_teachers_pages(); ?>',
+						],
+						'enhanced_message'  => '<?php syntric_qn_teachers_pages(); ?>',
 						'hide_label'        => 'yes',
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a0cd8b2cca77',
 						'label'             => 'Classes',
 						'name'              => '',
@@ -15820,15 +15821,15 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
+						],
 						'placement'         => 'top',
 						'endpoint'          => 0,
-					),
-					array(
+					],
+					[
 						'key'               => 'field_5a0cd8d8cca78',
 						'label'             => '',
 						'name'              => '',
@@ -15836,41 +15837,41 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 						'instructions'      => '',
 						'required'          => 0,
 						'conditional_logic' => 0,
-						'wrapper'           => array(
+						'wrapper'           => [
 							'width' => '',
 							'class' => '',
 							'id'    => '',
-						),
-						'enhanced_message'  => '<?php syn_qn_teachers_class_pages(); ?>',
+						],
+						'enhanced_message'  => '<?php syntric_qn_teachers_class_pages(); ?>',
 						'hide_label'        => 'yes',
-					),
-				),
-				'location'              => array(
-					array(
-						array(
+					],
+				],
+				'location'              => [
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'page',
-						),
-						array(
+						],
+						[
 							'param'    => 'current_user_role',
 							'operator' => '==',
 							'value'    => 'administrator',
-						),
-					),
-					array(
-						array(
+						],
+					],
+					[
+						[
 							'param'    => 'post_type',
 							'operator' => '==',
 							'value'    => 'page',
-						),
-						array(
+						],
+						[
 							'param'    => 'current_user_role',
 							'operator' => '==',
 							'value'    => 'editor',
-						),
-					),
-				),
+						],
+					],
+				],
 				'menu_order'            => 9999,
 				'position'              => 'side',
 				'style'                 => 'default',
@@ -15879,7 +15880,7 @@ Toggle a switch manually to skip it\'s task.	Toggle the switch for a completed t
 				'hide_on_screen'        => '',
 				'active'                => 1,
 				'description'           => '',
-			) );
-
+			] );
+		
 		endif;
 	}

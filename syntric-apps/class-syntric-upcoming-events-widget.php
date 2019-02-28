@@ -1,5 +1,5 @@
 <?php
-
+	
 	/**
 	 * Syntric_Upcoming_Events_Widget
 	 */
@@ -12,10 +12,10 @@
 			                'description'                 => __( 'Displays upcoming calendar events.' ),
 			                'customize_selective_refresh' => true,
 			];
-			parent::__construct( 'syn-upcoming-events-widget', __( 'Upcoming Events' ), $widget_ops );
-			$this->alt_option_name = 'syn-upcoming-events-widget';
+			parent ::__construct( 'syn-upcoming-events-widget', __( 'Upcoming Events' ), $widget_ops );
+			$this -> alt_option_name = 'syn-upcoming-events-widget';
 		}
-
+		
 		/**
 		 * Output widget content
 		 *
@@ -24,43 +24,43 @@
 		 */
 		public function widget( $args, $instance ) {
 			global $post;
-			if ( ! isset( $args[ 'widget_id' ] ) ) {
-				$args[ 'widget_id' ] = $this->id;
+			if( ! isset( $args[ 'widget_id' ] ) ) {
+				$args[ 'widget_id' ] = $this -> id;
 			}
 			$dynamic = get_field( 'syn_upcoming_events_widget_dynamic', 'widget_' . $args[ 'widget_id' ] );
-			if ( $dynamic ) {
-				$active = get_field( 'syn_calendar_active', $post->ID );
-				if ( ! $active ) {
+			if( $dynamic ) {
+				$active = get_field( 'syn_calendar_active', $post -> ID );
+				if( ! $active ) {
 					return;
 				}
-				$title       = get_field( 'syn_calendar_title', $post->ID );
-				$calendar_id = get_field( 'syn_calendar_id', $post->ID );
-				$number      = get_field( 'syn_calendar_events', $post->ID );
-				$show_date   = get_field( 'syn_calendar_include_date', $post->ID );
+				$title       = get_field( 'syn_calendar_title', $post -> ID );
+				$calendar_id = get_field( 'syn_calendar_id', $post -> ID );
+				$number      = get_field( 'syn_calendar_events', $post -> ID );
+				$show_date   = get_field( 'syn_calendar_include_date', $post -> ID );
 			} else {
 				$title       = get_field( 'syn_upcoming_events_widget_title', 'widget_' . $args[ 'widget_id' ] );
 				$calendar_id = get_field( 'syn_upcoming_events_widget_calendar_id', 'widget_' . $args[ 'widget_id' ] );
 				$number      = get_field( 'syn_upcoming_events_widget_events', 'widget_' . $args[ 'widget_id' ] );
 				$show_date   = get_field( 'syn_upcoming_events_widget_include_date', 'widget_' . $args[ 'widget_id' ] );
 			}
-			//$sidebar      = syn_widget_sidebar( $args[ 'widget_id' ] );
-			$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
-			$lb            = syn_get_linebreak();
-			$tab           = syn_get_tab();
+			//$sidebar      = syntric_widget_sidebar( $args[ 'widget_id' ] );
+			$sidebar_class = syntric_get_sidebar_class( $args[ 'widget_id' ] );
+			$lb            = syntric_linebreak();
+			$tab           = syntric_tab();
 			echo $args[ 'before_widget' ] . $lb;
-			if ( ! empty( $title ) ) :
+			if( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
-			$events = syn_get_calendar_events( $calendar_id, null, 'next', $number, 'ID,post_title,post_content' );
+			$events = syntric_get_calendar_events( $calendar_id, null, 'next', $number, 'ID,post_title,post_content' );
 			echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
-			if ( $events ) {
-				foreach ( $events as $event ) :
-					$dates       = syn_get_event_dates( $event->ID );
-					$start_date  = get_field( 'syn_event_start_date', $event->ID );
+			if( $events ) {
+				foreach( $events as $event ) :
+					$dates       = syntric_get_event_dates( $event -> ID );
+					$start_date  = get_field( 'syn_event_start_date', $event -> ID );
 					$_start_date = date_create( $start_date );
-					$location    = get_field( 'syn_event_location', $event->ID );
-					if ( ! empty( $event->post_content ) ) :
-						echo $tab . '<a href="' . get_the_permalink( $event->ID ) . '" class="list-group-item list-group-item-action">' . $lb;
+					$location    = get_field( 'syn_event_location', $event -> ID );
+					if( ! empty( $event -> post_content ) ) :
+						echo $tab . '<a href="' . get_the_permalink( $event -> ID ) . '" class="list-group-item list-group-item-action">' . $lb;
 					else :
 						echo $tab . '<div class="list-group-item">' . $lb;
 					endif;
@@ -71,15 +71,15 @@
 					echo $tab . $tab . $tab . '</div>' . $lb;
 					echo $tab . $tab . '</div>' . $lb;
 					echo $tab . $tab . '<div class="list-group-item-content">' . $lb;
-					echo $tab . $tab . $tab . '<div class="event-title">' . $event->post_title . '</div>' . $lb;
-					if ( $show_date ) :
+					echo $tab . $tab . $tab . '<div class="event-title">' . $event -> post_title . '</div>' . $lb;
+					if( $show_date ) :
 						echo $tab . $tab . $tab . '<div class="event-date small">' . $dates . '</div>' . $lb;
 					endif;
-					if ( ! empty( $location ) ) :
+					if( ! empty( $location ) ) :
 						echo $tab . $tab . $tab . '<div class="event-location small">' . $location . '</div>' . $lb;
 					endif;
 					echo $tab . $tab . '</div>' . $lb;
-					if ( ! empty( $event->post_content ) ) :
+					if( ! empty( $event -> post_content ) ) :
 						echo $tab . '</a>' . $lb;
 					else :
 						echo $tab . '</div>' . $lb;
@@ -93,7 +93,7 @@
 			echo $args[ 'after_widget' ] . $lb;
 			wp_reset_postdata();
 		}
-
+		
 		/**
 		 * Update settings for the current widget instance
 		 *
@@ -104,10 +104,10 @@
 		 */
 		public function update( $new_instance, $old_instance ) {
 			$instance = $old_instance;
-
+			
 			return $instance;
 		}
-
+		
 		/**
 		 * Render settings form for the widget
 		 *
@@ -115,5 +115,6 @@
 		 *
 		 * @return void Displays settings form
 		 */
-		public function form( $instance ) { }
+		public function form( $instance ) {
+		}
 	}

@@ -1,48 +1,48 @@
 {
-    "key": "group_59c5d19611678",
+	"key": "group_59c5d19611678",
 	"title": "Page Settings - Class",
-    "fields": [
-        {
-            "key": "field_59cc512c79563",
-            "label": "Teacher",
-            "name": "syn_page_class_teacher",
-            "type": "select",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
+	"fields": [
+		{
+			"key": "field_59cc512c79563",
+			"label": "Teacher",
+			"name": "syntric_page_class_teacher",
+			"type": "select",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
 				"230": "Arthur Hobbs",
 				"239": "Edward Hobbs",
 				"109": "Trini Marquis",
 				"240": "Sample Teacher"
-            },
-            "default_value": [],
-            "allow_null": 1,
-            "multiple": 0,
-            "ui": 0,
-            "ajax": 0,
-            "return_format": "value",
-            "placeholder": ""
-        },
-        {
-            "key": "field_59c59338e0341",
-            "label": "Class",
-            "name": "syn_page_class",
-            "type": "select",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
+			},
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_59c59338e0341",
+			"label": "Class",
+			"name": "syntric_page_class",
+			"type": "select",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
 				"id-476977188-737236206-168751596": "AP Biology  (Sample Teacher)",
 				"id-121281799-1513819277-1086005343": "AP Biology  (Sample Teacher)",
 				"id-580267380-1617645611-1599325776": "AP Biology  (Trini Marquis)",
@@ -55,37 +55,37 @@
 				"id-1396915752-199074398-632379648": "Chemistry  (Trini Marquis)",
 				"id-885783737-936597557-197425236": "Drama  (Arthur Hobbs)",
 				"id-2069238036-1961001141-891448710": "Fine Art  (Arthur Hobbs)"
-            },
-            "default_value": [],
-            "allow_null": 1,
-            "multiple": 0,
-            "ui": 0,
-            "ajax": 0,
-            "return_format": "value",
-            "placeholder": ""
-        }
-    ],
-    "location": [
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "page"
-            },
-            {
-                "param": "page_template",
-                "operator": "==",
-                "value": "page-templates\/class.php"
-            }
-        ]
-    ],
-    "menu_order": 10,
-    "position": "side",
-    "style": "default",
-    "label_placement": "top",
-    "instruction_placement": "label",
-    "hide_on_screen": "",
-    "active": 1,
-    "description": "",
+			},
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "page"
+			},
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "page-templates\/class.php"
+			}
+		]
+	],
+	"menu_order": 10,
+	"position": "side",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
 	"modified": 1523096743
 }

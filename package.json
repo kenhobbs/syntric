@@ -40,5 +40,7 @@
 		"merge2": "^1.0.3",
 		"run-sequence": "^1.2.2"
 	},
-	"devDependencies": {}
+	"devDependencies": {
+		"gulp-changed": "^3.2.0"
+	}
 }

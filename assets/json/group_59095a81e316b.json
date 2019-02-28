@@ -1,6 +1,6 @@
 {
     "key": "group_59095a81e316b",
-    "title": "Calendar",
+	"title": "Syn Calendar",
     "fields": [
         {
             "key": "field_59b6f6e6ba124",
@@ -306,7 +306,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_590fd39e55e3a",
+			"key": "field_5c770d3f3d5cf",
             "label": "Events",
             "name": "",
             "type": "enhanced_message",
@@ -318,7 +318,7 @@
                 "class": "",
                 "id": ""
             },
-            "enhanced_message": "<?php\r\n$post_id = get_the_ID();;\r\n$args = array(\r\n\t'numberposts' => - 1,\r\n\t'post_type'   => 'syn_event',\r\n\t'post_status' => 'publish',\r\n\t'meta_key'    => 'syn_event_start_date',\r\n\t'orderby'     => 'meta_value',\r\n\t'order'       => 'ASC',\r\n\t'meta_query'  => array(\r\n\t\tarray(\r\n\t\t\t'key'     => 'syn_event_calendar_id',\r\n\t\t\t'value'   => $post_id ,\r\n\t\t\t'compare' => '=',\r\n\t\t)\r\n\t)\r\n);\r\n$events = get_posts( $args ); \r\n\r\nif ( $events ) :\r\n?>\r\n\r\n\r\n<table width=\"100%\" cellpadding=\"6\" cellspacing=\"0\" border=\"1\" frame=\"void\" rules=\"rows\" sortable=\"sortable\" style=\"border-color: #eee;\">\r\n<thead>\r\n<tr align=\"left\">\r\n<th>Event<\/th>\r\n<th>Date\/Time<\/th>\r\n<th>Location<\/th>\r\n<\/tr>\r\n<\/thead>\r\n<tbody>\r\n\r\n<?php\r\nforeach ( $events as $event ) : \r\n$event_id = $event->ID;\r\n$dates = syn_get_event_dates( $event_id );\r\n?>\r\n\r\n<tr>\r\n<td nowrap><?php echo get_the_title( $event_id ); ?><\/td>\r\n<td nowrap><?php echo $dates; ?><\/td>\r\n<td><?php echo get_field( 'syn_event_location', $event_id  ); ?><\/td>\r\n<\/tr>\r\n\r\n<?php \r\nendforeach;\r\n ?>\r\n\r\n<\/tbody>\r\n<\/table>\r\n\r\n<?php\r\nelse :\r\necho '<p>No events<\/p>';\r\nendif;\r\n?>",
+			"enhanced_message": "<?php\r\n$post_id = get_the_ID();\r\n$args = array(\r\n\t'numberposts' => - 1,\r\n\t'post_type'   => 'syn_event',\r\n\t'post_status' => 'publish',\r\n\t'meta_key'    => 'syn_event_start_date',\r\n\t'orderby'     => 'meta_value',\r\n\t'order'       => 'ASC',\r\n\t'meta_query'  => array(\r\n\t\tarray(\r\n\t\t\t'key'     => 'syn_event_calendar_id',\r\n\t\t\t'value'   => $post_id ,\r\n\t\t\t'compare' => '=',\r\n\t\t)\r\n\t)\r\n);\r\n$events = get_posts( $args ); \r\n\r\nif ( $events ) :\r\n?>\r\n\r\n\r\n<table width=\"100%\" cellpadding=\"6\" cellspacing=\"0\" border=\"1\" frame=\"void\" rules=\"rows\" sortable=\"sortable\" style=\"border-color: #eee;\">\r\n<thead>\r\n<tr align=\"left\">\r\n<th>Event<\/th>\r\n<th>Date\/Time<\/th>\r\n<th>Location<\/th>\r\n<\/tr>\r\n<\/thead>\r\n<tbody>\r\n\r\n<?php\r\nforeach ( $events as $event ) : \r\n$event_id = $event->ID;\r\n$dates = syntric_get_event_dates( $event_id );\r\n?>\r\n\r\n<tr>\r\n<td nowrap><?php echo get_the_title( $event_id ); ?><\/td>\r\n<td nowrap><?php echo $dates; ?><\/td>\r\n<td><?php echo get_field( 'syn_event_location', $event_id  ); ?><\/td>\r\n<\/tr>\r\n\r\n<?php \r\nendforeach;\r\n ?>\r\n\r\n<\/tbody>\r\n<\/table>\r\n\r\n<?php\r\nelse :\r\necho '<p>No events<\/p>';\r\nendif;\r\n?>",
             "hide_label": "no"
         },
         {
@@ -407,5 +407,5 @@
     ],
     "active": 1,
     "description": "",
-	"modified": 1547190712
+	"modified": 1551367247
 }

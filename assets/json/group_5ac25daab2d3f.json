@@ -21,7 +21,7 @@
 		{
 			"key": "field_5ac25dab1292e",
 			"label": "Activate Contact",
-			"name": "syn_contact_active",
+			"name": "syntric_contact_active",
 			"type": "true_false",
 			"instructions": "",
 			"required": 0,
@@ -40,7 +40,7 @@
 		{
 			"key": "field_5ac25dab12d6a",
 			"label": "Title",
-			"name": "syn_contact_title",
+			"name": "syntric_contact_title",
 			"type": "text",
 			"instructions": "",
 			"required": 1,
@@ -67,7 +67,7 @@
 		{
 			"key": "field_5ac25dab130fd",
 			"label": "Contact Type",
-			"name": "syn_contact_contact_type",
+			"name": "syntric_contact_contact_type",
 			"type": "select",
 			"instructions": "",
 			"required": 1,
@@ -102,7 +102,7 @@
 		{
 			"key": "field_5ac25dab134eb",
 			"label": "Person",
-			"name": "syn_contact_person",
+			"name": "syntric_contact_person",
 			"type": "select",
 			"instructions": "",
 			"required": 1,
@@ -137,7 +137,7 @@
 		{
 			"key": "field_5ac25dab138bf",
 			"label": "Organization",
-			"name": "syn_contact_organization",
+			"name": "syntric_contact_organization",
 			"type": "select",
 			"instructions": "",
 			"required": 1,
@@ -177,7 +177,7 @@
 		{
 			"key": "field_5ac25dab13ca6",
 			"label": "Default Organization",
-			"name": "syn_contact_default",
+			"name": "syntric_contact_default",
 			"type": "true_false",
 			"instructions": "",
 			"required": 0,
@@ -209,7 +209,7 @@
 		{
 			"key": "field_5ac25dab1408d",
 			"label": "Include Fields",
-			"name": "syn_contact_include_person_fields",
+			"name": "syntric_contact_include_person_fields",
 			"type": "checkbox",
 			"instructions": "",
 			"required": 0,
@@ -255,7 +255,7 @@
 		{
 			"key": "field_5ac25dab14482",
 			"label": "Include Fields",
-			"name": "syn_contact_include_organization_fields",
+			"name": "syntric_contact_include_organization_fields",
 			"type": "checkbox",
 			"instructions": "",
 			"required": 0,
@@ -320,7 +320,7 @@
 		{
 			"key": "field_5ac25dab14c60",
 			"label": "Activate Calendar",
-			"name": "syn_calendar_active",
+			"name": "syntric_calendar_active",
 			"type": "true_false",
 			"instructions": "",
 			"required": 0,
@@ -339,7 +339,7 @@
 		{
 			"key": "field_5ac25dab15047",
 			"label": "Title",
-			"name": "syn_calendar_title",
+			"name": "syntric_calendar_title",
 			"type": "text",
 			"instructions": "",
 			"required": 1,
@@ -366,7 +366,7 @@
 		{
 			"key": "field_5ac25dab15425",
 			"label": "Calendar",
-			"name": "syn_calendar_id",
+			"name": "syntric_calendar_id",
 			"type": "select",
 			"instructions": "",
 			"required": 1,
@@ -396,7 +396,7 @@
 		{
 			"key": "field_5ac25dab15808",
 			"label": "Display Count",
-			"name": "syn_calendar_events",
+			"name": "syntric_calendar_events",
 			"type": "number",
 			"instructions": "",
 			"required": 1,
@@ -425,7 +425,7 @@
 		{
 			"key": "field_5ac25dab15be7",
 			"label": "Include Event Date",
-			"name": "syn_calendar_include_date",
+			"name": "syntric_calendar_include_date",
 			"type": "true_false",
 			"instructions": "",
 			"required": 0,
@@ -452,7 +452,7 @@
 		{
 			"key": "field_5ac25dab15fdd",
 			"label": "Google Calendar ID",
-			"name": "syn_new_calendar_id",
+			"name": "syntric_new_calendar_id",
 			"type": "text",
 			"instructions": "Value can be found in the calendar settings at <a href=\"https:\/\/calendar.google.com\/calendar\/\" target=\"_blank\">Google Calendars<\/a>.",
 			"required": 1,
@@ -484,7 +484,7 @@
 		{
 			"key": "field_5ac25dab163ca",
 			"label": "Sync Now",
-			"name": "syn_new_calendar_sync_now",
+			"name": "syntric_new_calendar_sync_now",
 			"type": "true_false",
 			"instructions": "",
 			"required": 0,
@@ -516,7 +516,7 @@
 		{
 			"key": "field_5ac25dab1679d",
 			"label": "Schedule Sync",
-			"name": "syn_new_calendar_sync",
+			"name": "syntric_new_calendar_sync",
 			"type": "true_false",
 			"instructions": "",
 			"required": 0,
@@ -548,7 +548,7 @@
 		{
 			"key": "field_5ac25dab16b87",
 			"label": "Sync Frequency",
-			"name": "syn_new_calendar_sync_frequency",
+			"name": "syntric_new_calendar_sync_frequency",
 			"type": "select",
 			"instructions": "",
 			"required": 1,
@@ -591,7 +591,7 @@
 		{
 			"key": "field_5ac25dab16f84",
 			"label": "Sync Range",
-			"name": "syn_new_calendar_sync_range",
+			"name": "syntric_new_calendar_sync_range",
 			"type": "select",
 			"instructions": "",
 			"required": 1,
@@ -634,7 +634,7 @@
 		{
 			"key": "field_5ac25dab1737f",
 			"label": "Delete Events (hidden)",
-			"name": "syn_new_calendar_delete_events",
+			"name": "syntric_new_calendar_delete_events",
 			"type": "true_false",
 			"instructions": "",
 			"required": 0,
@@ -653,7 +653,7 @@
 		{
 			"key": "field_5ac25dab17752",
 			"label": "Delete After (hidden)",
-			"name": "syn_new_calendar_delete_after",
+			"name": "syntric_new_calendar_delete_after",
 			"type": "select",
 			"instructions": "",
 			"required": 0,
@@ -697,7 +697,7 @@
 		{
 			"key": "field_5ac25dab17f11",
 			"label": "Activate Microblog",
-			"name": "syn_microblog_active",
+			"name": "syntric_microblog_active",
 			"type": "true_false",
 			"instructions": "",
 			"required": 0,
@@ -716,7 +716,7 @@
 		{
 			"key": "field_5ac25dab18303",
 			"label": "Title",
-			"name": "syn_microblog_title",
+			"name": "syntric_microblog_title",
 			"type": "text",
 			"instructions": "",
 			"required": 1,
@@ -743,7 +743,7 @@
 		{
 			"key": "field_5ac25dab18703",
 			"label": "Category",
-			"name": "syn_microblog_category",
+			"name": "syntric_microblog_category",
 			"type": "taxonomy",
 			"instructions": "",
 			"required": 0,
@@ -773,7 +773,7 @@
 		{
 			"key": "field_5ac25dab18af2",
 			"label": "Microblog",
-			"name": "syn_microblog_term",
+			"name": "syntric_microblog_term",
 			"type": "taxonomy",
 			"instructions": "",
 			"required": 0,
@@ -853,7 +853,7 @@
 		{
 			"key": "field_5ac25dab196e2",
 			"label": "Posts to display:",
-			"name": "syn_microblog_posts",
+			"name": "syntric_microblog_posts",
 			"type": "number",
 			"instructions": "",
 			"required": 1,
@@ -882,7 +882,7 @@
 		{
 			"key": "field_5ac25dab19a8b",
 			"label": "Include Post Date",
-			"name": "syn_microblog_include_date",
+			"name": "syntric_microblog_include_date",
 			"type": "true_false",
 			"instructions": "",
 			"required": 0,
@@ -909,7 +909,7 @@
 		{
 			"key": "field_5ac25dab19e74",
 			"label": "Add New Post",
-			"name": "syn_new_microblog_post",
+			"name": "syntric_new_microblog_post",
 			"type": "true_false",
 			"instructions": "",
 			"required": 0,
@@ -936,7 +936,7 @@
 		{
 			"key": "field_5ac25dab1a25f",
 			"label": "Microblog Post Title",
-			"name": "syn_new_microblog_post_title",
+			"name": "syntric_new_microblog_post_title",
 			"type": "text",
 			"instructions": "",
 			"required": 1,
@@ -968,7 +968,7 @@
 		{
 			"key": "field_5ac25dab1a644",
 			"label": "Microblog Post Content",
-			"name": "syn_new_microblog_post_content",
+			"name": "syntric_new_microblog_post_content",
 			"type": "wysiwyg",
 			"instructions": "",
 			"required": 1,
@@ -1016,7 +1016,7 @@
 		{
 			"key": "field_5ac25dab1ae25",
 			"label": "Activate Roster",
-			"name": "syn_roster_active",
+			"name": "syntric_roster_active",
 			"type": "true_false",
 			"instructions": "",
 			"required": 0,
@@ -1035,7 +1035,7 @@
 		{
 			"key": "field_5ac25dab1b20b",
 			"label": "Title",
-			"name": "syn_roster_title",
+			"name": "syntric_roster_title",
 			"type": "text",
 			"instructions": "",
 			"required": 1,
@@ -1062,7 +1062,7 @@
 		{
 			"key": "field_5ac25dab1b609",
 			"label": "People",
-			"name": "syn_roster_people",
+			"name": "syntric_roster_people",
 			"type": "repeater",
 			"instructions": "",
 			"required": 1,
@@ -1122,7 +1122,7 @@
 		{
 			"key": "field_5ac25dab1b9e1",
 			"label": "Include Fields",
-			"name": "syn_roster_include_fields",
+			"name": "syntric_roster_include_fields",
 			"type": "checkbox",
 			"instructions": "",
 			"required": 1,
@@ -1179,7 +1179,7 @@
 		{
 			"key": "field_5ac25dab1c1ae",
 			"label": "Activate Google Map",
-			"name": "syn_google_map_active",
+			"name": "syntric_google_map_active",
 			"type": "true_false",
 			"instructions": "",
 			"required": 0,
@@ -1198,7 +1198,7 @@
 		{
 			"key": "field_5ac25dab1c596",
 			"label": "Title",
-			"name": "syn_google_map_title",
+			"name": "syntric_google_map_title",
 			"type": "text",
 			"instructions": "",
 			"required": 1,
@@ -1225,7 +1225,7 @@
 		{
 			"key": "field_5ac25dab1c9ba",
 			"label": "Google  Map",
-			"name": "syn_google_map_id",
+			"name": "syntric_google_map_id",
 			"type": "select",
 			"instructions": "",
 			"required": 1,
@@ -1271,7 +1271,7 @@
 		{
 			"key": "field_5ac25dab1d153",
 			"label": "Activate Video",
-			"name": "syn_video_active",
+			"name": "syntric_video_active",
 			"type": "true_false",
 			"instructions": "",
 			"required": 0,
@@ -1290,7 +1290,7 @@
 		{
 			"key": "field_5ac25dab1d54b",
 			"label": "Title",
-			"name": "syn_video_title",
+			"name": "syntric_video_title",
 			"type": "text",
 			"instructions": "",
 			"required": 1,
@@ -1317,7 +1317,7 @@
 		{
 			"key": "field_5ac25dab1d91d",
 			"label": "Host",
-			"name": "syn_video_host",
+			"name": "syntric_video_host",
 			"type": "select",
 			"instructions": "This widget works with YouTube and Vimeo hosted videos.",
 			"required": 1,
@@ -1350,7 +1350,7 @@
 		{
 			"key": "field_5ac25dab1dd07",
 			"label": "Type",
-			"name": "syn_video_type",
+			"name": "syntric_video_type",
 			"type": "radio",
 			"instructions": "",
 			"required": 1,
@@ -1387,7 +1387,7 @@
 		{
 			"key": "field_5ac25dab1e0ee",
 			"label": "Video ID",
-			"name": "syn_video_youtube_id",
+			"name": "syntric_video_youtube_id",
 			"type": "text",
 			"instructions": "Enter the YouTube Video ID which is a string of characters in the URL of the video hosted on YouTube.  For example, the Video ID of the video at https:\/\/youtube.com\/XX11YY22ZZ33 is XX11YY22ZZ33.",
 			"required": 1,
@@ -1424,7 +1424,7 @@
 		{
 			"key": "field_5ac25dab1e4e8",
 			"label": "Playlist ID",
-			"name": "syn_video_youtube_playlist_id",
+			"name": "syntric_video_youtube_playlist_id",
 			"type": "text",
 			"instructions": "Enter the YouTube Playlist ID which is a string of characters in the URL of the playlist hosted on YouTube.  For example, the Playlist ID of the playlist at https:\/\/www.youtube.com\/playlist?list=XX11YY22XX11YY22 is XX11YY22XX11YY22.",
 			"required": 1,
@@ -1461,7 +1461,7 @@
 		{
 			"key": "field_5ac25dab1e8c0",
 			"label": "Video ID",
-			"name": "syn_video_vimeo_id",
+			"name": "syntric_video_vimeo_id",
 			"type": "text",
 			"instructions": "Enter the Vimeo Video ID which is a string of characters in the URL of the video hosted on Vimeo.  For example, the Video ID of the video at https:\/\/vimeo.com\/555555555 is 555555555.",
 			"required": 1,
@@ -1493,7 +1493,7 @@
 		{
 			"key": "field_5ac25dab1eca6",
 			"label": "Caption",
-			"name": "syn_video_caption",
+			"name": "syntric_video_caption",
 			"type": "wysiwyg",
 			"instructions": "",
 			"required": 0,

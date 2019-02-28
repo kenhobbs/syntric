@@ -1,5 +1,5 @@
 <?php
-
+	
 	/**
 	 * Syntric_Embed_Widget
 	 */
@@ -12,10 +12,10 @@
 			                'description'                 => __( 'Displays an embedded object (oEmbed)' ),
 			                'customize_selective_refresh' => true,
 			];
-			parent::__construct( 'syn-embed-widget', __( 'Embed' ), $widget_ops );
-			$this->alt_option_name = 'syn-embed-widget';
+			parent ::__construct( 'syn-embed-widget', __( 'Embed' ), $widget_ops );
+			$this -> alt_option_name = 'syn-embed-widget';
 		}
-
+		
 		/**
 		 * Output widget content
 		 *
@@ -28,14 +28,14 @@
 		*/
 		public function widget( $args, $instance ) {
 			global $post;
-			if ( ! isset( $args[ 'widget_id' ] ) ) {
-				$args[ 'widget_id' ] = $this->id;
+			if( ! isset( $args[ 'widget_id' ] ) ) {
+				$args[ 'widget_id' ] = $this -> id;
 			}
 			$dynamic   = get_field( 'syn_embed_widget_dynamic', 'widget_' . $args[ 'widget_id' ] );
-			$widget_id = ( $dynamic ) ? $post->ID : 'widget_' . $args[ 'widget_id' ];
-			$name_base = ( $dynamic ) ? 'syn_embed_' : 'syn_embed_widget_';
+			$widget_id = ( $dynamic ) ? $post -> ID : 'widget_' . $args[ 'widget_id' ];
+			$name_base = ( $dynamic ) ? 'syntric_embed_' : 'syntric_embed_widget_';
 			$active    = get_field( $name_base . 'active', $widget_id );
-			if ( ! $active ) {
+			if( ! $active ) {
 				return;
 			}
 			$title       = get_field( $name_base . 'title', $widget_id );
@@ -43,7 +43,7 @@
 			$folder_view = get_field( $name_base . 'folder_view', $widget_id );
 			$id          = get_field( $name_base . 'id', $widget_id );
 			$src         = get_field( $name_base . 'src', $widget_id );
-			switch ( $type ) {
+			switch( $type ) {
 				case 'doc':
 					break;
 				case 'form':
@@ -116,12 +116,12 @@
 				} elseif ( 'vimeo' == $host ) {
 					$iframe = '<iframe id="vimeo-player-' . $video_id . '" class="embed-responsive-item" src="https://player.vimeo.com/video/' . $video_id . '?title=0&byline=0&portrait=0" frameborder="0" allowfullscreen></iframe>';
 				}*/
-			//$sidebar      = syn_widget_sidebar( $args[ 'widget_id' ] );
-			$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
-			$lb            = syn_get_linebreak();
-			$tab           = syn_get_tab();
+			//$sidebar      = syntric_widget_sidebar( $args[ 'widget_id' ] );
+			$sidebar_class = syntric_get_sidebar_class( $args[ 'widget_id' ] );
+			$lb            = syntric_linebreak();
+			$tab           = syntric_tab();
 			echo $args[ 'before_widget' ] . $lb;
-			if ( ! empty( $title ) ) :
+			if( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
 			echo '<div class="' . $type . ' ' . $sidebar_class . ' embed-responsive embed-responsive-16by9">' . $lb;
@@ -153,7 +153,7 @@
 			echo $args[ 'after_widget' ] . $lb;
 			//endif;
 		}
-
+		
 		/**
 		 * Update settings for the current widget instance
 		 *
@@ -164,10 +164,10 @@
 		 */
 		public function update( $new_instance, $old_instance ) {
 			$instance = $old_instance;
-
+			
 			return $instance;
 		}
-
+		
 		/**
 		 * Render settings form for the widget
 		 *
@@ -175,5 +175,6 @@
 		 *
 		 * @return void Displays settings form
 		 */
-		public function form( $instance ) {}
+		public function form( $instance ) {
+		}
 	}

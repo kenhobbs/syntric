@@ -5,7 +5,7 @@
 		{
 			"key": "field_594af4f3cf31d",
 			"label": "Enable ADA Compliance",
-			"name": "syn_enable_ada_compliance",
+			"name": "syntric_enable_ada_compliance",
 			"type": "true_false",
 			"value": null,
 			"instructions": "",
@@ -51,7 +51,7 @@
 		{
 			"key": "field_594c359feea0a",
 			"label": "Global Recipients",
-			"name": "syn_ada_recipients",
+			"name": "syntric_ada_recipients",
 			"type": "user",
 			"value": null,
 			"instructions": "Select users who should receive notification of non-compliant content (site-wide).",
@@ -70,7 +70,7 @@
 		{
 			"key": "field_594c39d7eea0f",
 			"label": "Block New",
-			"name": "syn_ada_block_new",
+			"name": "syntric_ada_block_new",
 			"type": "true_false",
 			"value": null,
 			"instructions": "Prevent new content from being published until compliant.",
@@ -91,7 +91,7 @@
 		{
 			"key": "field_594c3af5eea10",
 			"label": "Block Updates",
-			"name": "syn_ada_block_updates",
+			"name": "syntric_ada_block_updates",
 			"type": "true_false",
 			"value": null,
 			"instructions": "Prevent existing content from publishing updates until compliant. Last compliant version will be published until new content passes compliance test.",
@@ -137,7 +137,7 @@
 		{
 			"key": "field_594c3630eea0b",
 			"label": "Scopes",
-			"name": "syn_ada_scopes",
+			"name": "syntric_ada_scopes",
 			"type": "repeater",
 			"value": null,
 			"instructions": "",
@@ -158,7 +158,7 @@
 				{
 					"key": "field_594c3c496f6da",
 					"label": "Pages",
-					"name": "syn_ada_scope_pages",
+					"name": "syntric_ada_scope_pages",
 					"type": "page_link",
 					"value": null,
 					"instructions": "Select the pages to be tested in this scope",
@@ -181,7 +181,7 @@
 				{
 					"key": "field_594c3923eea0e",
 					"label": "Recursive",
-					"name": "syn_ada_scope_recursive",
+					"name": "syntric_ada_scope_recursive",
 					"type": "true_false",
 					"value": null,
 					"instructions": "Test all pages below the selected pages",
@@ -202,7 +202,7 @@
 				{
 					"key": "field_594c372beea0d",
 					"label": "Recipients",
-					"name": "syn_ada_scope_recipients",
+					"name": "syntric_ada_scope_recipients",
 					"type": "user",
 					"value": null,
 					"instructions": "Select users who should receive notification of non-compliant content in this scope.",
@@ -248,7 +248,7 @@
 		{
 			"key": "field_594c8449ed25b",
 			"label": "Logs",
-			"name": "syn_ada_logs",
+			"name": "syntric_ada_logs",
 			"type": "repeater",
 			"value": null,
 			"instructions": "",
@@ -269,7 +269,7 @@
 				{
 					"key": "field_594c845fed25c",
 					"label": "Page",
-					"name": "syn_ada_log_page",
+					"name": "syntric_ada_log_page",
 					"type": "page_link",
 					"value": null,
 					"instructions": "",
@@ -292,7 +292,7 @@
 				{
 					"key": "field_594c84beed25d",
 					"label": "Date",
-					"name": "syn_ada_log_date",
+					"name": "syntric_ada_log_date",
 					"type": "date_time_picker",
 					"value": null,
 					"instructions": "",
@@ -311,7 +311,7 @@
 				{
 					"key": "field_594c851ded25f",
 					"label": "Author",
-					"name": "syn_ada_log_user",
+					"name": "syntric_ada_log_user",
 					"type": "user",
 					"value": null,
 					"instructions": "",
@@ -330,7 +330,7 @@
 				{
 					"key": "field_594c84f2ed25e",
 					"label": "Description",
-					"name": "syn_ada_log_description",
+					"name": "syntric_ada_log_description",
 					"type": "textarea",
 					"value": null,
 					"instructions": "",

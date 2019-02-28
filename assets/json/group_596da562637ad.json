@@ -6,7 +6,7 @@
             "key": "field_59a5b5995b0d9",
             "label": "Dynamic:",
             "name": "syn_contact_widget_dynamic",
-            "type": "radio",
+			"type": "true_false",
             "instructions": "",
             "required": 1,
             "conditional_logic": 0,
@@ -15,16 +15,11 @@
                 "class": "",
                 "id": ""
             },
-            "choices": [
-                "No",
-                "Yes"
-            ],
-            "allow_null": 0,
-            "other_choice": 0,
-            "save_other_choice": 0,
+			"message": "",
             "default_value": 0,
-            "layout": "horizontal",
-            "return_format": "value"
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
         },
         {
             "key": "field_59ad09a065301",
@@ -319,5 +314,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-	"modified": 1523096834
+	"modified": 1551246689
 }

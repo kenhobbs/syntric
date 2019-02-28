@@ -5,7 +5,7 @@
 		{
 			"key": "field_59b5f315d96e0",
 			"label": "Dynamic:",
-			"name": "syn_jumbotron_widget_dynamic",
+			"name": "syntric_jumbotron_widget_dynamic",
 			"type": "radio",
 			"value": null,
 			"instructions": "",

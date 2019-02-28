@@ -6,7 +6,7 @@
 			"key": "field_59a8ce62d1bd5",
 			"label": "Dynamic:",
 			"name": "syn_facebook_page_widget_dynamic",
-			"type": "radio",
+			"type": "true_false",
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": 0,
@@ -15,16 +15,11 @@
 				"class": "",
 				"id": ""
 			},
-			"choices": [
-				"No",
-				"Yes"
-			],
-			"allow_null": 0,
-			"other_choice": 0,
-			"save_other_choice": 0,
+			"message": "",
 			"default_value": 0,
-			"layout": "horizontal",
-			"return_format": "value"
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
 		},
 		{
 			"key": "field_596be78e4dd50",
@@ -161,7 +156,6 @@
 		"permalink",
 		"the_content",
 		"excerpt",
-		"custom_fields",
 		"discussion",
 		"comments",
 		"revisions",
@@ -176,5 +170,5 @@
 	],
 	"active": 1,
 	"description": "",
-	"modified": 1523096835
+	"modified": 1551246716
 }

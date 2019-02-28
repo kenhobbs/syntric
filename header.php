@@ -12,5 +12,6 @@
 </head>
 <body <?php body_class(); ?>>
 <?php
-	syn_header();
+	
+	syntric_header();
 

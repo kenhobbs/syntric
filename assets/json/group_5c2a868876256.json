@@ -6,7 +6,7 @@
 			"key": "field_5c2a8688869fc",
 			"label": "Dynamic:",
 			"name": "syn_form_widget_dynamic",
-			"type": "radio",
+			"type": "true_false",
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": 0,
@@ -15,16 +15,11 @@
 				"class": "",
 				"id": ""
 			},
-			"choices": [
-				"No",
-				"Yes"
-			],
-			"allow_null": 0,
-			"other_choice": 0,
+			"message": "",
 			"default_value": 0,
-			"layout": "horizontal",
-			"return_format": "value",
-			"save_other_choice": 0
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
 		},
 		{
 			"key": "field_5c2a868886dd9",
@@ -111,7 +106,7 @@
 		"tags",
 		"send-trackbacks"
 	],
-	"active": 1,
+	"active": 0,
 	"description": "",
-	"modified": 1546320532
+	"modified": 1551277649
 }

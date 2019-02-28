@@ -6,7 +6,7 @@
 	 * @subpackage Widgets
 	 * @since      4.4.0
 	 */
-
+	
 	/**
 	 * Core class used to implement the Calendar widget.
 	 *
@@ -24,7 +24,7 @@
 		 * @var int
 		 */
 		private static $instance = 0;
-
+		
 		/**
 		 * Sets up a new Calendar widget instance.
 		 *
@@ -36,9 +36,9 @@
 				'description'                 => __( 'Month calendar grid' ),
 				'customize_selective_refresh' => true,
 			];
-			parent::__construct( 'calendar', __( 'Calendar' ), $widget_ops );
+			parent ::__construct( 'calendar', __( 'Calendar' ), $widget_ops );
 		}
-
+		
 		/**
 		 * Outputs the content for the current Calendar widget instance.
 		 *
@@ -51,22 +51,22 @@
 		public function widget( $args, $instance ) {
 			$title = ! empty( $instance[ 'title' ] ) ? $instance[ 'title' ] : '';
 			/** This filter is documented in wp-includes/widgets/class-wp-widget-pages.php */
-			$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
+			$title = apply_filters( 'widget_title', $title, $instance, $this -> id_base );
 			echo $args[ 'before_widget' ];
-			if ( $title ) {
+			if( $title ) {
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ];
 			}
-			if ( 0 === self::$instance ) {
+			if( 0 === self ::$instance ) {
 				//echo '<div id="calendar_wrap" class="calendar_wrap">';
 			} else {
 				//echo '<div class="calendar_wrap">';
 			}
-			syn_display_calendar();
+			syntric_display_calendar();
 			//echo '</div>';
 			echo $args[ 'after_widget' ];
-			self::$instance ++;
+			self ::$instance ++;
 		}
-
+		
 		/**
 		 * Handles updating settings for the current Calendar widget instance.
 		 *
@@ -81,10 +81,10 @@
 		public function update( $new_instance, $old_instance ) {
 			$instance            = $old_instance;
 			$instance[ 'title' ] = sanitize_text_field( $new_instance[ 'title' ] );
-
+			
 			return $instance;
 		}
-
+		
 		/**
 		 * Outputs the settings form for the Calendar widget.
 		 *
@@ -96,9 +96,10 @@
 			$instance = wp_parse_args( (array) $instance, [ 'title' => '' ] );
 			$title    = sanitize_text_field( $instance[ 'title' ] );
 			?>
-			<p><label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
-				<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>"/>
+			<p><label for="<?php echo $this -> get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
+				<input class="widefat" id="<?php echo $this -> get_field_id( 'title' ); ?>" name="<?php echo $this -> get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>"/>
 			</p>
 			<?php
+			
 		}
 	}

@@ -17,10 +17,11 @@ var minifyCSS = require('gulp-cssnano');
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var compressImage = require('gulp-imagemin');
+//var compressImage = require('gulp-imagemin');
 var cached = require('gulp-cached');
 var gap = require('gulp-append-prepend');
 var sourcemaps = require('gulp-sourcemaps');
+//var changed = require('gulp-changed');
 //var merge2 = require('merge2');
 //var ignore = require('gulp-ignore');
 //var rimraf = require('gulp-rimraf');
@@ -30,9 +31,6 @@ var sourcemaps = require('gulp-sourcemaps');
 //var del = require('del');
 
 var theme = 'syntric';
-var src_dir = './src/';
-var lib_dir = './libs/';
-var dist_dir = './assets/';
 
 /**
  * Directories for source and build stylesheets, scripts and images.
@@ -78,27 +76,12 @@ var dist_dir = './assets/';
  * be aliased
  */
 var dirs = {
-	src_dir: './src/',
-
 	src_sass: './src/sass/',
 	src_js: './src/js/',
 	src_img: './src/img/',
-
-	src_admin_sass: './src/sass/',
-	src_admin_js: './src/js/',
-	src_admin_img: './src/img/',
-
-	lib_dir: './libs/',
-
-	dist_dir: './assets/',
-
-	dist_css: './assets/css/',
-	dist_js: './assets/js/',
-	dist_img: './assets/images/',
-
-	dist_admin_css: './assets/css/',
-	dist_admin_js: './assets/js/',
-	dist_admin_img: './assets/images/'
+	dest_css: './assets/css/',
+	dest_js: './assets/js/',
+	dest_img: './assets/images/'
 };
 
 /**
@@ -110,34 +93,27 @@ var dirs = {
  *  	'green.blue': ['master.localhost','master.syntric.com','another.org'],
  *  	'teal.blue': ['escalonusd.org','amadorcoe.org'],
  *  	etc...
- *  }
+ *
+ *	Mapping schema.
+ *
+ *	1. Create a mapping for each domain without "www" e.g. syntric.com, clouddeep.com, etc
+ *	2. Each mapping will generate dev, staging and production ccs files both formatted and minimized, and a map file
+ *	3. Also, include mappings for each color scheme which generates formatted, minimized and map files the same for dev, stage and prod e.g. blue, orange, silver, etc
+ *
+ * 	Color schemes: cyan, blue, green, magenta, red, yellow, silver, grey, black, white
+ *
+ * 'blue': 'blue.min',
+	'purple': 'purple.min',
+	'green': 'green.min',
+	'orange': 'orange.min',
+	'grey': 'grey.min',
+	'silver': 'silver.min',
+	'teal': 'teal.min',
+	'black': 'black.min',
+	'white': 'white.min',
+ *
  */
-var domainMappings = {
-	/*'amadorcoe.syntric.com.min': 'amadorcoe.syntric.school.min',
-	'amadoradulted.syntric.com.min': 'amadoradulted.syntric.school.min',
-	'amadorhs.syntric.com.min': 'amadorhs.syntric.school.min',
-	'argonauths.syntric.com.min': 'argonauths.syntric.school.min',
-	'ionejr.syntric.com.min': 'ionejr.syntric.school.min',
-	'jacksonjr.syntric.com.min': 'jacksonjr.syntric.school.min',
-	'shenandoah.syntric.com.min': 'shenandoah.syntric.school.min',
-	'ione.syntric.com.min': 'ioneel.syntric.school.min',
-	'jackson.syntric.com.min': 'jacksonel.syntric.school.min',
-	'pinegrove.syntric.com.min': 'pinegroveel.syntric.school.min',
-	'pioneer.syntric.com.min': 'pioneerel.syntric.school.min',
-	'plymouth.syntric.com.min': 'plymouthel.syntric.school.min',
-	'suttercreek.syntric.com.min': 'suttercreekel.syntric.school.min',
-	'northstar.syntric.com.min': 'northstar.syntric.school.min',
-	'independent.syntric.com.min': 'independent.syntric.school.min',
-	'community.syntric.com.min': 'community.syntric.school.min',
-	'escalonusd.syntric.com.min': 'escalonusd.syntric.school.min',
-	'escalonhs.syntric.com.min': 'escalonhigh.syntric.school.min',
-	'elportal.syntric.com.min': 'elportalmiddle.syntric.school.min',
-	'collegeville.syntric.com.min': 'collegevilleschool.syntric.school.min',
-	'dent.syntric.com.min': 'dentschool.syntric.school.min',
-	'farmington.syntric.com.min': 'farmingtonschool.syntric.school.min',
-	'eca.syntric.com.min': 'escaloncharteracademy.syntric.school.min',
-	'vista.syntric.com.min': 'vistahighschool.syntric.school.min',*/
-	
+/*var domainMappings = {
 	'amadorcoe.syntric.com.min': 'www.amadorcoe.org.min',
 	'amadoradulted.syntric.com.min': 'www.amadoradulted.org.min',
 	'amadorhs.syntric.com.min': 'amadorhs.amadorcoe.org.min',
@@ -163,7 +139,6 @@ var domainMappings = {
 	'vanallen.syntric.com.min': 'www.vanallenschool.org.min',
 	'eca.syntric.com.min': 'www.escaloncharteracademy.org.min',
 	'vista.syntric.com.min': 'www.vistahighschool.org.min',
-	
 	'master.localhost.min': 'master.syntric.com.min',
 	'syntric.localhost.min': 'www.syntric.com.min',
 	'blue': 'blue.min',
@@ -175,123 +150,324 @@ var domainMappings = {
 	'teal': 'teal.min',
 	'black': 'black.min',
 	'white': 'white.min',
-
 	'www.vanallenschool.org.min': 'vanallenel.syntric.school.min'
-};
-// Gulp watcher args
-var watcherArgs = {
-	ignoreInitial: false
-};
+};*/
+
+/*var domains = [
+	'amadorcoe.org.scss',
+	'amadorhs.amadorcoe.org.scss',
+	'argonauths.amadorcoe.org.scss',
+	'ionejr.amadorcoe.org.scss',
+	'jacksonjr.amadorcoe.org.scss',
+	'shenandoah.amadorcoe.org.scss',
+	'ioneel.amadorcoe.org.scss',
+	'jacksonel.amadorcoe.org.scss',
+	'pinegroveel.amadorcoe.org.scss',
+	'pioneerel.amadorcoe.org.scss',
+	'plymouthel.amadorcoe.org.scss',
+	'suttercreekel.amadorcoe.org.scss',
+	'northstar.amadorcoe.org.scss',
+	'independent.amadorcoe.org.scss',
+	'community.amadorcoe.org.scss',
+	'escalonusd.org.scss',
+	'escalonhigh.org.scss',
+	'elportalmiddle.org.scss',
+	'escaloncharteracademy.org.scss',
+	'collegevilleschool.orgv',
+	'dentschool.org.scss',
+	'farmingtonschool.org.scss',
+	'vanallenschool.org.scss',
+	'vistahighschool.org.scss'
+];
+
+var colors = [
+	'color.blue.scss',
+	'color.white.scss',
+	'color.silver.scss',
+	'color.grey.scss',
+	'color.black.scss',
+	'color.purple.scss',
+	'color.green.scss',
+	'color.orange.scss',
+	'color.teal.scss'
+];
+
+var base = [
+	'_syntric.scss',
+	'_variables.scss'
+];
+
+var admin = [
+	'syntric-admin.scss'
+];*/
+
+var domains = dirs.src_sass + '*.+(org|com).scss';
+var colors = dirs.src_sass + 'color.*.scss';
+var base = dirs.src_sass + '_*.scss';
+var admin = dirs.src_sass + '*-admin.scss';
+
+var js = dirs.src_js + 'syntric.js';
+var js_admin = dirs.src_sass + 'syntric-admin.js';
+
+/**
+ * Watchers
+ *
+ * If a base file (starts with an underscore) is changed, rerun all it's dependents.
+ * If a dependent file is changed, run only the dependent.
+ *
+ * Watch and run front-end files separately from admin files
+ */
+
 // File watcher
 gulp.task('watch', function () {
-
-	// SASS watchers   , '!' + dirs.src_sass + '_*.scss'
-	gulp.watch([dirs.src_sass + '*.scss', '!' + dirs.src_sass + '*-admin.scss'], watcherArgs, ['compileSASS']);
-	gulp.watch([dirs.src_admin_sass + '*-admin.scss'], watcherArgs, ['compileAdminSASS']);
+	// SASS watchers
+	// base change, run all
+	gulp.watch(domains, ['compileDomain']);
+	// domain or color change, run only it
+	gulp.watch(colors, ['compileColor']);
+	// admin change, run only it
+	gulp.watch(admin, ['compileAdmin']);
+	// base change, run domains and colors
+	gulp.watch(base, ['compileAll']);
 
 	// Javascript watchers
-	gulp.watch([dirs.src_js + 'syntric.js'], watcherArgs, ['compileJS']);
-	gulp.watch(dirs.src_admin_js + '*-admin.js', watcherArgs, ['compileAdminJS']);
-	gulp.watch(dirs.src_admin_js + 'customizer.js', watcherArgs, ['compileCustomizerJS']);
+	// change to front-end js - currently syntric.js
+	gulp.watch(js, ['compileFrontendJS']);
+	// change to admin js - currently syntric-admin.js
+	gulp.watch(js_admin, ['compileAdminJS']);
 
+	// Javascript watchers
+	//gulp.watch([dirs.src_js + 'syntric.js'], {ignoreInitial: false}, ['compileJS']);
+	//gulp.watch([dirs.src_js + '*-admin.js'], {ignoreInitial: false}, ['compileAdminJS']);
+	//gulp.watch([dirs.src_js + 'customizer.js'], {ignoreInitial: false}, ['compileCustomizerJS']);
 	// Image watchers
 	//gulp.watch(dirs.src_img + '*.*', watcherArgs, ['compressImages']);
-	//gulp.watch(dirs.src_admin_img + '*.*', watcherArgs, ['compressAdminImages']);
+	//gulp.watch(dirs.src_img + '*.*', watcherArgs, ['compressAdminImages']);
 });
+
+/*
+Compile domain files
+ */
+gulp.task('compileDomain', function () {
+		console.log('compileDomain running');
+		return gulp.src(domains)
+		//.pipe(changed(dirs.dest_css))
+		.pipe(compileSASS())
+		.pipe(gulp.dest(dirs.dest_css))
+		.pipe(plumber())
+		.pipe(sourcemaps.init({loadMaps: true}))
+		.pipe(rename({suffix: '.min'}))
+		.pipe(minifyCSS({discardComments: {removeAll: true}}))
+		.pipe(sourcemaps.write('./'))
+		.pipe(gulp.dest(dirs.dest_css))
+		.pipe(plumber())
+		.pipe(rename(function (path) {
+			console.log(path);
+			path.basename = domains[path.basename];
+		}))
+		.pipe(gulp.dest(dirs.dest_css))
+		.pipe(plumber())
+		.pipe(rename({prefix: ''}))
+		.pipe(gulp.dest(dirs.dest_css));
+	}
+);
+gulp.task('compileColor', function () {
+		console.log('compileColor running');
+		return gulp.src(colors)
+		//.pipe(changed(dirs.dest_css))
+		.pipe(compileSASS())
+		.pipe(gulp.dest(dirs.dest_css))
+		.pipe(plumber())
+		.pipe(sourcemaps.init({loadMaps: true}))
+		.pipe(rename({suffix: '.min'}))
+		.pipe(minifyCSS({discardComments: {removeAll: true}}))
+		.pipe(sourcemaps.write('./'))
+		.pipe(gulp.dest(dirs.dest_css))
+		.pipe(plumber())
+		.pipe(rename(function (path) {
+			console.log(path);
+			path.basename = domains[path.basename];
+		}))
+		.pipe(gulp.dest(dirs.dest_css))
+		.pipe(plumber())
+		.pipe(rename({prefix: ''}))
+		.pipe(gulp.dest(dirs.dest_css));
+	}
+);
+gulp.task('compileAdmin', function () {
+		console.log('compileAdmin running');
+		return gulp.src(admin)
+		//.pipe(changed(dirs.dest_css))
+		.pipe(compileSASS())
+		.pipe(gulp.dest(dirs.dest_css))
+		.pipe(plumber())
+		.pipe(sourcemaps.init({loadMaps: true}))
+		.pipe(rename({suffix: '.min'}))
+		.pipe(minifyCSS({discardComments: {removeAll: true}}))
+		.pipe(sourcemaps.write('./'))
+		.pipe(gulp.dest(dirs.dest_css))
+		.pipe(plumber())
+		.pipe(rename(function (path) {
+			console.log(path);
+			path.basename = domains[path.basename];
+		}))
+		.pipe(gulp.dest(dirs.dest_css))
+		.pipe(plumber())
+		.pipe(rename({prefix: ''}))
+		.pipe(gulp.dest(dirs.dest_css));
+	}
+);
+gulp.task('compileAll', function () {
+		console.log('compileAll running');
+		return gulp.src([domains, colors])
+		//.pipe(changed(dirs.dest_css))
+		.pipe(compileSASS())
+		.pipe(gulp.dest(dirs.dest_css))
+		.pipe(plumber())
+		.pipe(sourcemaps.init({loadMaps: true}))
+		.pipe(rename({suffix: '.min'}))
+		.pipe(minifyCSS({discardComments: {removeAll: true}}))
+		.pipe(sourcemaps.write('./'))
+		.pipe(gulp.dest(dirs.dest_css))
+		.pipe(plumber())
+		.pipe(rename(function (path) {
+			console.log(path);
+			path.basename = domains[path.basename];
+		}))
+		.pipe(gulp.dest(dirs.dest_css))
+		.pipe(plumber())
+		.pipe(rename({prefix: ''}))
+		.pipe(gulp.dest(dirs.dest_css));
+	}
+);
+/*gulp.task('compileDomain', function () {
+	//var dependents = domains.concat(colors);
+	return gulp.src(domains)
+	// cache files so they are only compiled if they have changed
+	//.pipe(cached('sassFiles'))
+	//.pipe(plumber())
+	.pipe(compileSASS())
+	.pipe(gulp.dest(dirs.dest_css))
+	.pipe(plumber())
+	.pipe(sourcemaps.init({loadMaps: true}))
+	.pipe(plumber())
+	.pipe(rename({suffix: '.min'}))
+	.pipe(minifyCSS({discardComments: {removeAll: true}}))
+	.pipe(sourcemaps.write('./'))
+	.pipe(gulp.dest(dirs.dest_css))
+	.pipe(plumber())
+	.pipe(rename(function (path) {
+		console.log(path);
+		path.basename = domains[path.basename];
+		console.log(path);
+	}))
+	.pipe(gulp.dest(dirs.dest_css))
+	.pipe(plumber())
+	.pipe(rename({prefix: ''}))
+	.pipe(gulp.dest(dirs.dest_css));
+});
+
+gulp.task('compileColor', function () {
+	//var dependents = domains.concat(colors);
+	return gulp.src(domains)
+	// cache files so they are only compiled if they have changed
+	//.pipe(cached('sassFiles'))
+	//.pipe(plumber())
+	.pipe(compileSASS())
+	.pipe(gulp.dest(dirs.dest_css))
+	.pipe(plumber())
+	.pipe(sourcemaps.init({loadMaps: true}))
+	.pipe(plumber())
+	.pipe(rename({suffix: '.min'}))
+	.pipe(minifyCSS({discardComments: {removeAll: true}}))
+	.pipe(sourcemaps.write('./'))
+	.pipe(gulp.dest(dirs.dest_css))
+	.pipe(plumber())
+	.pipe(rename(function (path) {
+		console.log(path);
+		path.basename = domains[path.basename];
+		console.log(path);
+	}))
+	.pipe(gulp.dest(dirs.dest_css))
+	.pipe(plumber())
+	.pipe(rename({prefix: ''}))
+	.pipe(gulp.dest(dirs.dest_css));
+});*/
 
 gulp.task('compileSASS', function () {
 	return gulp.src([dirs.src_sass + '*.scss', '!' + dirs.src_sass + '*-admin.scss'])
 	// cache files so they are only compiled if they have changed
 	.pipe(cached('sassFiles'))
 	.pipe(plumber())
-
 	.pipe(compileSASS())
-	.pipe(gulp.dest(dirs.dist_css))
+	.pipe(gulp.dest(dirs.dest_css))
 	.pipe(plumber())
-
 	.pipe(sourcemaps.init({loadMaps: true}))
 	.pipe(plumber())
-
 	.pipe(rename({suffix: '.min'}))
 	.pipe(minifyCSS({discardComments: {removeAll: true}}))
 	.pipe(sourcemaps.write('./'))
-	.pipe(gulp.dest(dirs.dist_css))
+	.pipe(gulp.dest(dirs.dest_css))
 	.pipe(plumber())
-
 	.pipe(rename(function (path) {
 		//console.log(path);
 		path.basename = domainMappings[path.basename];
 		console.log(path.basename);
 	}))
-	.pipe(gulp.dest(dirs.dist_css))
+	.pipe(gulp.dest(dirs.dest_css))
 	.pipe(plumber())
-
 	.pipe(rename({prefix: ''}))
-	.pipe(gulp.dest(dirs.dist_css));
+	.pipe(gulp.dest(dirs.dest_css));
 });
-/*
-gulp.task('minifyCSS', function () {
- gulp.src(dirs.dist_css + theme + '*.css')
- .pipe(sourcemaps.init({loadMaps: true}))
- .pipe(plumber())
- .pipe(rename({suffix: '.min'}))
- .pipe(minifyCSS({discardComments: {removeAll: true}}))
- .pipe(sourcemaps.write('./'))
- .pipe(gulp.dest(dirs.dist_css));
- });
- */
 
 gulp.task('compileAdminSASS', function () {
-	return gulp.src([dirs.src_admin_sass + '*-admin.scss'])
+	return gulp.src([dirs.src_sass + '*-admin.scss'])
 	.pipe(cached('sassAdminFiles'))
 	.pipe(plumber())
 	.pipe(compileSASS())
 	.pipe(rename({suffix: '.min'}))
 	.pipe(minifyCSS({discardComments: {removeAll: true}}))
-	.pipe(gulp.dest(dirs.dist_admin_css));
+	.pipe(gulp.dest(dirs.dest_css));
 });
-//, dirs.lib_dir + 'jquery-3.2.1/jquery.js', dirs.lib_dir + 'bootstrap-4.0.0-beta.2/dist/js/bootstrap.bundle.js', dirs.lib_dir + 'fullcalendar-3.6.1/lib/moment.min.js', dirs.lib_dir + 'fullcalendar-3.6.1/fullcalendar.js'
-gulp.task('compileJS', function () {
+
+gulp.task('compileFrontendJS', function () {
+	console.log('Compiling front end js');
 	return gulp.src([dirs.src_js + 'syntric.js'])
-	//.pipe(cached('jsFiles'))
-	//.pipe(concat(theme + '.js'))
-	//.pipe(gap.prependText('(function($) {'))
-	//.pipe(gap.appendText('})(jQuery);'))
 	.pipe(rename({suffix: '.min'}))
 	.pipe(uglify())
-	.pipe(gulp.dest(dirs.dist_js));
+	.pipe(gulp.dest(dirs.dest_js));
 });
 
 gulp.task('compileAdminJS', function () {
-	return gulp.src(dirs.src_admin_js + '*-admin.js')
+	return gulp.src(dirs.src_js + '*-admin.js')
 	.pipe(cached('jsAdminFiles'))
 	.pipe(plumber())
 	.pipe(concat(theme + '-admin.js'))
-	.pipe(gulp.dest(dirs.dist_admin_js))
+	.pipe(gulp.dest(dirs.dest_js))
 	.pipe(plumber())
 	.pipe(rename(theme + '-admin.min.js'))
 	.pipe(uglify())
-	.pipe(gulp.dest(dirs.dist_admin_js));
+	.pipe(gulp.dest(dirs.dest_js));
 });
 gulp.task('compileCustomizerJS', function () {
 	return gulp.src(dirs.src_js + 'customizer.js')
 	.pipe(cached('jsCustomizerFiles'))
 	.pipe(plumber())
-	.pipe(gulp.dest(dirs.dist_js))
+	.pipe(gulp.dest(dirs.dest_js))
 	.pipe(plumber())
 	.pipe(rename('customizer.min'))
 	.pipe(uglify())
-	.pipe(gulp.dest(dirs.dist_js));
+	.pipe(gulp.dest(dirs.dest_js));
 });
 
 gulp.task('compressImages', function () {
 	gulp.src([dirs.src_img + '*.jpg', dirs.src_img + '*.gif', dirs.src_img + '*.png', '!' + dirs.src_img + '_*.*'])
 	.pipe(compressImage())
-	.pipe(gulp.dest(dirs.dist_img));
+	.pipe(gulp.dest(dirs.dest_img));
 });
 
 gulp.task('compressAdminImages', function () {
-	gulp.src([dirs.src_admin_img + '*.jpg', dirs.src_admin_img + '*.gif', dirs.src_admin_img + '*.png'])
+	gulp.src([dirs.src_img + '*.jpg', dirs.src_img + '*.gif', dirs.src_img + '*.png'])
 	.pipe(compressImage())
-	.pipe(gulp.dest(dirs.dist_admin_img));
+	.pipe(gulp.dest(dirs.dest_img));
 });

@@ -1,4 +1,5 @@
 <?php
+	
 	/**
 	 * Search form template
 	 *
@@ -6,8 +7,8 @@
 	 *
 	 * @package syntric
 	 */
-	$lb = syn_get_linebreak();
-	$tab = syn_get_tab();
+	$lb  = syntric_linebreak();
+	$tab = syntric_tab();
 	echo '<div class="search-wrapper d-print-none">' . $lb;
 	echo $tab . '<form method="get" id="searchform" class="form-inline search-form" action="' . esc_url( home_url( '/' ) ) . '" role="search">' . $lb;
 	echo $tab . $tab . '<label class="assistive-text sr-only sr-only-focusable" for="s">Search site by keywords</label>' . $lb;
@@ -21,5 +22,5 @@
 	echo $tab . $tab . '</div>' . $lb;
 	echo $tab . '</form>' . $lb;
 	echo '</div>' . $lb;
-
+	
 	//	placeholder="Search"

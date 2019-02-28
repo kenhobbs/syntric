@@ -1,0 +1,2079 @@
+{
+	"key": "group_5c5414b89fd09",
+	"title": "Page Widgets (copy)",
+	"fields": [
+		{
+			"key": "field_5c5415ec404d2",
+			"label": "Widgets",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_5c5414ca404ce",
+			"label": "Widgets",
+			"name": "syntric_page_widgets",
+			"type": "flexible_content",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"layouts": {
+				"5c5414fc63e73": {
+					"key": "5c5414fc63e73",
+					"name": "roster",
+					"label": "Roster",
+					"display": "block",
+					"sub_fields": [
+						{
+							"key": "field_5c541521404cf",
+							"label": "Title",
+							"name": "title",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": "",
+							"maxlength": ""
+						},
+						{
+							"key": "field_5c541545404d0",
+							"label": "People",
+							"name": "people",
+							"type": "repeater",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"collapsed": "field_5c541583404d1",
+							"min": 0,
+							"max": 0,
+							"layout": "table",
+							"button_label": "Add Person",
+							"hide_collapse": 0,
+							"collapse_all_repeater": 0,
+							"btn-icon-only": 1,
+							"sub_fields": [
+								{
+									"key": "field_5c541583404d1",
+									"label": "Person",
+									"name": "person",
+									"type": "user",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"role": "",
+									"allow_null": 0,
+									"multiple": 0,
+									"return_format": "array"
+								}
+							]
+						},
+						{
+							"key": "field_5c541620404d3",
+							"label": "Include",
+							"name": "include_fields",
+							"type": "checkbox",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"choices": {
+								"prefix": "Prefix",
+								"first_name": "First Name",
+								"title": "Title",
+								"email": "Email",
+								"phone": "Phone"
+							},
+							"allow_custom": 0,
+							"default_value": [
+								"prefix",
+								"first_name",
+								"title",
+								"email",
+								"phone"
+							],
+							"layout": "vertical",
+							"toggle": 0,
+							"return_format": "array",
+							"save_custom": 0
+						}
+					],
+					"min": "0",
+					"max": "1"
+				},
+				"layout_5c59a3aecb7ed": {
+					"key": "layout_5c59a3aecb7ed",
+					"name": "contact",
+					"label": "Contact",
+					"display": "block",
+					"sub_fields": [
+						{
+							"key": "field_5c59a3d7cb7ee",
+							"label": "Title",
+							"name": "title",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": "",
+							"maxlength": ""
+						},
+						{
+							"key": "field_5c59a3e4cb7ef",
+							"label": "Person",
+							"name": "person",
+							"type": "user",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"role": "",
+							"allow_null": 0,
+							"multiple": 0,
+							"return_format": "array"
+						},
+						{
+							"key": "field_5c59a40bcb7f0",
+							"label": "Include",
+							"name": "include_fields",
+							"type": "checkbox",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"choices": {
+								"prefix": "Prefix",
+								"first_name": "First Name",
+								"title": "Title",
+								"email": "Email",
+								"phone": "Phone"
+							},
+							"allow_custom": 0,
+							"default_value": [
+								"prefix",
+								"first_name",
+								"title",
+								"email",
+								"phone"
+							],
+							"layout": "vertical",
+							"toggle": 0,
+							"return_format": "array",
+							"save_custom": 0
+						}
+					],
+					"min": "0",
+					"max": "1"
+				},
+				"layout_5c5416b1404d4": {
+					"key": "layout_5c5416b1404d4",
+					"name": "calendar",
+					"label": "Calendar",
+					"display": "block",
+					"sub_fields": [
+						{
+							"key": "field_5c5416c3404d5",
+							"label": "Title",
+							"name": "title",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": "",
+							"maxlength": ""
+						},
+						{
+							"key": "field_5c5416cd404d6",
+							"label": "Calendar",
+							"name": "calendar",
+							"type": "post_object",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"post_type": [
+								"syntric_calendar"
+							],
+							"taxonomy": "",
+							"allow_null": 1,
+							"multiple": 0,
+							"return_format": "object",
+							"ui": 1
+						}
+					],
+					"min": "0",
+					"max": "1"
+				},
+				"layout_5c541757404d7": {
+					"key": "layout_5c541757404d7",
+					"name": "map",
+					"label": "Map",
+					"display": "block",
+					"sub_fields": [
+						{
+							"key": "field_5c54176c404d8",
+							"label": "Title",
+							"name": "title",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": "",
+							"maxlength": ""
+						},
+						{
+							"key": "field_5c541774404d9",
+							"label": "Map",
+							"name": "map",
+							"type": "google_map",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"center_lat": "",
+							"center_lng": "",
+							"zoom": "",
+							"height": ""
+						}
+					],
+					"min": "0",
+					"max": "1"
+				},
+				"layout_5c59a51d2e98a": {
+					"key": "layout_5c59a51d2e98a",
+					"name": "video_playlist",
+					"label": "Video\/Playlist",
+					"display": "block",
+					"sub_fields": [
+						{
+							"key": "field_5c59a5362e98b",
+							"label": "Title",
+							"name": "title",
+							"type": "text",
+							"instructions": "Title will appear above the video or playlist.",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": "",
+							"maxlength": ""
+						},
+						{
+							"key": "field_5c59ab8b9b77b",
+							"label": "Videos\/Playlists",
+							"name": "videos_playlists",
+							"type": "repeater",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"collapsed": "field_5c59ab9b9b77c",
+							"min": 0,
+							"max": 0,
+							"layout": "block",
+							"button_label": "Add Video\/Playlist",
+							"hide_collapse": 0,
+							"collapse_all_repeater": 1,
+							"btn-icon-only": 1,
+							"sub_fields": [
+								{
+									"key": "field_5c59ab9b9b77c",
+									"label": "Video\/Playlist URL",
+									"name": "video_playlist_url",
+									"type": "oembed",
+									"instructions": "",
+									"required": 1,
+									"conditional_logic": 0,
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"width": "",
+									"height": ""
+								}
+							]
+						}
+					],
+					"min": "0",
+					"max": "1"
+				}
+			},
+			"button_label": "Add Widget",
+			"min": "",
+			"max": "",
+			"hide_collapse": 0,
+			"collapse_all_flexible": 1,
+			"btn-icon-only": 1
+		},
+		{
+			"key": "field_5c5414b8c04e4",
+			"label": "Archive (formerly Contact)",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_5c5414b8c092a",
+			"label": "Activate Contact",
+			"name": "syntric_contact_active",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5c5414b8c0c97",
+			"label": "Title",
+			"name": "syntric_contact_title",
+			"type": "text",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c092a",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "Contact",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5c5414b8c1088",
+			"label": "Contact Type",
+			"name": "syntric_contact_contact_type",
+			"type": "radio",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c092a",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"person": "Person",
+				"organization": "Organization"
+			},
+			"allow_null": 0,
+			"other_choice": 0,
+			"default_value": "",
+			"layout": "vertical",
+			"return_format": "value",
+			"save_other_choice": 0
+		},
+		{
+			"key": "field_5c5414b8c13ec",
+			"label": "Person",
+			"name": "syntric_contact_person",
+			"type": "select",
+			"instructions": "<a href=\"\/wp-admin\/user-new.php\">Add new user<\/a>",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c092a",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5c5414b8c1088",
+						"operator": "==",
+						"value": "person"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"choices": null,
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"return_format": "value",
+			"ajax": 0,
+			"placeholder": ""
+		},
+		{
+			"key": "field_5c5414b8c185a",
+			"label": "Organization",
+			"name": "syntric_contact_organization",
+			"type": "select",
+			"instructions": "<a href=\"\/wp-admin\/admin.php?page=syntric-organizations\">Add new organization<\/a>",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c092a",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5c5414b8c1088",
+						"operator": "==",
+						"value": "organization"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"choices": null,
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"return_format": "value",
+			"ajax": 0,
+			"placeholder": ""
+		},
+		{
+			"key": "field_5c5414b8c1c59",
+			"label": "Include Fields",
+			"name": "syntric_contact_include_person_fields",
+			"type": "checkbox",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c092a",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5c5414b8c1088",
+						"operator": "==",
+						"value": "person"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"prefix": "Prefix",
+				"first_name": "First Name",
+				"title": "Title",
+				"email": "Email",
+				"phone": "Phone"
+			},
+			"allow_custom": 0,
+			"default_value": [
+				"prefix",
+				"first_name",
+				"title",
+				"email",
+				"phone"
+			],
+			"layout": "vertical",
+			"toggle": 0,
+			"return_format": "array",
+			"save_custom": 0
+		},
+		{
+			"key": "field_5c5414b8c2052",
+			"label": "Include Fields",
+			"name": "syntric_contact_include_organization_fields",
+			"type": "checkbox",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c092a",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5c5414b8c1088",
+						"operator": "==",
+						"value": "organization"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"address": "Address",
+				"email": "Email",
+				"phone": "Phone",
+				"fax": "Fax",
+				"url": "Website",
+				"logo": "Logo"
+			},
+			"allow_custom": 0,
+			"default_value": [
+				"address",
+				"city_state_zip_code",
+				"email",
+				"phone",
+				"fax",
+				"url",
+				"logo"
+			],
+			"layout": "vertical",
+			"toggle": 0,
+			"return_format": "array",
+			"save_custom": 0
+		},
+		{
+			"key": "field_5c5414b8c2806",
+			"label": "Activate Calendar",
+			"name": "syntric_calendar_active",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5c5414b8c2be9",
+			"label": "Title",
+			"name": "syntric_calendar_title",
+			"type": "text",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c2806",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "Calendar",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5c5414b8c2fef",
+			"label": "Calendar",
+			"name": "syntric_calendar_id",
+			"type": "select",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c2806",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": null,
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_5c5414b8c33b9",
+			"label": "Display Count",
+			"name": "syntric_calendar_events",
+			"type": "number",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c2806",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"default_value": 5,
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"min": 1,
+			"max": "",
+			"step": 1
+		},
+		{
+			"key": "field_5c5414b8c37a0",
+			"label": "Include Event Date",
+			"name": "syntric_calendar_include_date",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c2806",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 1,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5c5414b8c3b85",
+			"label": "Google Calendar ID",
+			"name": "syntric_new_calendar_id",
+			"type": "text",
+			"instructions": "Value can be found in the calendar settings at <a href=\"https:\/\/calendar.google.com\/calendar\/\" target=\"_blank\">Google Calendars<\/a>.",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c2806",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5c5414b8c2fef",
+						"operator": "==",
+						"value": ""
+					}
+				]
+			],
+			"wrapper": {
+				"width": "50",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5c5414b8c3f6c",
+			"label": "Sync Now",
+			"name": "syntric_new_calendar_sync_now",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c2806",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5c5414b8c2fef",
+						"operator": "==",
+						"value": "0"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5c5414b8c4368",
+			"label": "Schedule Sync",
+			"name": "syntric_new_calendar_sync",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c2806",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5c5414b8c2fef",
+						"operator": "==",
+						"value": "0"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5c5414b8c4725",
+			"label": "Sync Frequency",
+			"name": "syntric_new_calendar_sync_frequency",
+			"type": "select",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c2806",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5c5414b8c2fef",
+						"operator": "==",
+						"value": ""
+					},
+					{
+						"field": "field_5c5414b8c4368",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"hourly": "Hourly",
+				"daily": "Daily"
+			},
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_5c5414b8c4b15",
+			"label": "Sync Range",
+			"name": "syntric_new_calendar_sync_range",
+			"type": "select",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c2806",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5c5414b8c2fef",
+						"operator": "==",
+						"value": "0"
+					},
+					{
+						"field": "field_5c5414b8c4368",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"1 year": "Sync up to 1 year forward",
+				"2 years": "Sync up to 2 years forward"
+			},
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_5c5414b8c4f1a",
+			"label": "Delete Events (hidden)",
+			"name": "syntric_new_calendar_delete_events",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "50",
+				"class": "hidden",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5c5414b8c52de",
+			"label": "Delete After (hidden)",
+			"name": "syntric_new_calendar_delete_after",
+			"type": "select",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "50",
+				"class": "hidden",
+				"id": ""
+			},
+			"choices": {
+				"1 month": "Delete after 1 month",
+				"3 months": "Delete after 3 months",
+				"6 months": "Delete after 6 months",
+				"1 year": "Delete after 1 year",
+				"2 years": "Delete after 2 years"
+			},
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_5c5414b8c5acd",
+			"label": "Activate Microblog",
+			"name": "syntric_microblog_active",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5c5414b8c5eb1",
+			"label": "Title",
+			"name": "syntric_microblog_title",
+			"type": "text",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c5acd",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "Blog",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5c5414b8c6292",
+			"label": "Category",
+			"name": "syntric_microblog_category",
+			"type": "select",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c5acd",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "50",
+				"class": "",
+				"id": ""
+			},
+			"choices": [],
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_5c5414b8c6676",
+			"label": "Category",
+			"name": "",
+			"type": "message",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c5acd",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "50",
+				"class": "",
+				"id": ""
+			},
+			"message": "Generated automatically",
+			"new_lines": "",
+			"esc_html": 0
+		},
+		{
+			"key": "field_5c5414b8c6ad3",
+			"label": "Posts to display:",
+			"name": "syntric_microblog_posts",
+			"type": "number",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c5acd",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"default_value": 5,
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"min": 1,
+			"max": "",
+			"step": 1
+		},
+		{
+			"key": "field_5c5414b8c6ecf",
+			"label": "Include Post Date",
+			"name": "syntric_microblog_include_date",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c5acd",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 1,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5c5414b8c72a3",
+			"label": "Add New Post",
+			"name": "syntric_new_microblog_post",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c5acd",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5c5414b8c7693",
+			"label": "Microblog Post Title",
+			"name": "syntric_new_microblog_post_title",
+			"type": "text",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c5acd",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5c5414b8c72a3",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5c5414b8c7a6a",
+			"label": "Microblog Post Content",
+			"name": "syntric_new_microblog_post_content",
+			"type": "wysiwyg",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c5acd",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5c5414b8c72a3",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"tabs": "all",
+			"toolbar": "full",
+			"media_upload": 1,
+			"delay": 1
+		},
+		{
+			"key": "field_5c5414b8c8250",
+			"label": "Activate Roster",
+			"name": "syntric_roster_active",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5c5414b8c863c",
+			"label": "Title",
+			"name": "syntric_roster_title",
+			"type": "text",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c8250",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "Roster",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5c5414b8c8a1e",
+			"label": "People",
+			"name": "syntric_roster_people",
+			"type": "repeater",
+			"instructions": "<a href=\"\/wp-admin\/user-new.php\" target=\"blank\">Add new user<\/a>",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c8250",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "75",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "field_59af852be10d5",
+			"min": 0,
+			"max": 0,
+			"layout": "table",
+			"button_label": "Add Person",
+			"hide_collapse": 1,
+			"collapse_all_repeater": 0,
+			"btn-icon-only": 1,
+			"sub_fields": [
+				{
+					"key": "field_5c5414b9a165c",
+					"label": "Person",
+					"name": "person",
+					"type": "select",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": [],
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"ajax": 0,
+					"return_format": "value",
+					"placeholder": ""
+				}
+			]
+		},
+		{
+			"key": "field_5c5414b8c8e06",
+			"label": "Include Fields",
+			"name": "syntric_roster_include_fields",
+			"type": "checkbox",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c8250",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"prefix": "Prefix",
+				"first_name": "First Name",
+				"title": "Title",
+				"email": "Email",
+				"phone": "Phone"
+			},
+			"allow_custom": 0,
+			"save_custom": 0,
+			"default_value": [
+				"prefix",
+				"first_name",
+				"title",
+				"email",
+				"phone"
+			],
+			"layout": "vertical",
+			"toggle": 0,
+			"return_format": "array"
+		},
+		{
+			"key": "field_5c5414b8c960f",
+			"label": "Activate Google Map",
+			"name": "syntric_google_map_active",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5c5414b8c99b0",
+			"label": "Title",
+			"name": "syntric_google_map_title",
+			"type": "text",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c960f",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "50",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "Map",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5c5414b8c9d97",
+			"label": "Google  Map",
+			"name": "syntric_google_map_id",
+			"type": "select",
+			"instructions": "<a href=\"\/wp-admin\/admin.php?page=syntric-google-maps\">Add new map<\/a>",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8c960f",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "50",
+				"class": "",
+				"id": ""
+			},
+			"choices": null,
+			"default_value": [],
+			"allow_null": 0,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_5c5414b8ca57d",
+			"label": "Activate Video\/Playlist",
+			"name": "syntric_video_active",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5c5414b8ca964",
+			"label": "Title",
+			"name": "syntric_video_title",
+			"type": "text",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8ca57d",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5c5414b8cad4b",
+			"label": "Host",
+			"name": "syntric_video_host",
+			"type": "select",
+			"instructions": "This widget works with YouTube and Vimeo hosted videos.",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8ca57d",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"YouTube": "YouTube",
+				"Vimeo": "Vimeo"
+			},
+			"default_value": [],
+			"allow_null": 0,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		},
+		{
+			"key": "field_5c5414b8cb135",
+			"label": "Type",
+			"name": "syntric_video_type",
+			"type": "radio",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8ca57d",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5c5414b8cad4b",
+						"operator": "==",
+						"value": "YouTube"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"choices": {
+				"single": "Single",
+				"playlist": "Playlist"
+			},
+			"allow_null": 0,
+			"other_choice": 0,
+			"save_other_choice": 0,
+			"default_value": "single",
+			"layout": "vertical",
+			"return_format": "value"
+		},
+		{
+			"key": "field_5c5414b8cb51c",
+			"label": "Video ID",
+			"name": "syntric_video_youtube_id",
+			"type": "text",
+			"instructions": "Enter the YouTube Video ID which is a string of characters in the URL of the video hosted on YouTube.  For example, the Video ID of the video at https:\/\/youtube.com\/XX11YY22ZZ33 is XX11YY22ZZ33.",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8ca57d",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5c5414b8cad4b",
+						"operator": "==",
+						"value": "YouTube"
+					},
+					{
+						"field": "field_5c5414b8cb135",
+						"operator": "==",
+						"value": "single"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": 20
+		},
+		{
+			"key": "field_5c5414b8cb902",
+			"label": "Playlist ID",
+			"name": "syntric_video_youtube_playlist_id",
+			"type": "text",
+			"instructions": "Enter the YouTube Playlist ID which is a string of characters in the URL of the playlist hosted on YouTube.  For example, the Playlist ID of the playlist at https:\/\/www.youtube.com\/playlist?list=XX11YY22XX11YY22 is XX11YY22XX11YY22.",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8ca57d",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5c5414b8cad4b",
+						"operator": "==",
+						"value": "YouTube"
+					},
+					{
+						"field": "field_5c5414b8cb135",
+						"operator": "==",
+						"value": "playlist"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": 50
+		},
+		{
+			"key": "field_5c5414b8cbce9",
+			"label": "Video ID",
+			"name": "syntric_video_vimeo_id",
+			"type": "text",
+			"instructions": "Enter the Vimeo Video ID which is a string of characters in the URL of the video hosted on Vimeo.  For example, the Video ID of the video at https:\/\/vimeo.com\/555555555 is 555555555.",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8ca57d",
+						"operator": "==",
+						"value": "1"
+					},
+					{
+						"field": "field_5c5414b8cad4b",
+						"operator": "==",
+						"value": "Vimeo"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "25",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": 20
+		},
+		{
+			"key": "field_5c5414b8cc0cd",
+			"label": "Caption",
+			"name": "syntric_video_caption",
+			"type": "wysiwyg",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8ca57d",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"tabs": "all",
+			"toolbar": "full",
+			"media_upload": 1,
+			"delay": 1
+		},
+		{
+			"key": "field_5c5414b8cc8b6",
+			"label": "Activate Attachments",
+			"name": "syntric_attachments_active",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_5c5414b8ccc88",
+			"label": "Title",
+			"name": "syntric_attachments_title",
+			"type": "text",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8cc8b6",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "Resources",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_5c5414b8cd06d",
+			"label": "Attachment Groups",
+			"name": "syntric_attachments",
+			"type": "repeater",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": [
+				[
+					{
+						"field": "field_5c5414b8cc8b6",
+						"operator": "==",
+						"value": "1"
+					}
+				]
+			],
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "field_5ac25dac942ef",
+			"min": 0,
+			"max": 0,
+			"layout": "block",
+			"button_label": "Add Attachment Group",
+			"hide_collapse": 0,
+			"collapse_all_repeater": 1,
+			"btn-icon-only": 1,
+			"sub_fields": [
+				{
+					"key": "field_5c5414ba1d60c",
+					"label": "Header",
+					"name": "header",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5c5414ba1d9e6",
+					"label": "Description",
+					"name": "description",
+					"type": "textarea",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"maxlength": "",
+					"rows": 3,
+					"new_lines": ""
+				},
+				{
+					"key": "field_5c5414ba1de37",
+					"label": "Attachments",
+					"name": "attachments",
+					"type": "repeater",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"collapsed": "",
+					"min": 0,
+					"max": 0,
+					"layout": "block",
+					"button_label": "Add Attachment",
+					"hide_collapse": 1,
+					"collapse_all_repeater": 1,
+					"btn-icon-only": 1,
+					"sub_fields": [
+						{
+							"key": "field_5c5414ba2eeff",
+							"label": "Attachment Type",
+							"name": "attachment_type",
+							"type": "select",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "20",
+								"class": "-collapsed-target",
+								"id": ""
+							},
+							"choices": {
+								"file": "File",
+								"internal_link": "Internal link",
+								"external_link": "External link"
+							},
+							"default_value": [],
+							"allow_null": 0,
+							"multiple": 0,
+							"ui": 0,
+							"ajax": 0,
+							"return_format": "array",
+							"placeholder": ""
+						},
+						{
+							"key": "field_5c5414ba2f2ff",
+							"label": "File",
+							"name": "file",
+							"type": "file",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_5c5414ba2eeff",
+										"operator": "==",
+										"value": "file"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "80",
+								"class": "-collapsed-target",
+								"id": ""
+							},
+							"return_format": "array",
+							"library": "all",
+							"min_size": "",
+							"max_size": "",
+							"mime_types": "pdf,doc,docx,xls,xlsx,ppt,pptx"
+						},
+						{
+							"key": "field_5c5414ba2f6ce",
+							"label": "Internal Link",
+							"name": "internal_link",
+							"type": "post_object",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_5c5414ba2eeff",
+										"operator": "==",
+										"value": "internal_link"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "80",
+								"class": "-collapsed-target",
+								"id": ""
+							},
+							"post_type": [
+								"post",
+								"page",
+								"syntric_calendar"
+							],
+							"taxonomy": [],
+							"allow_null": 0,
+							"multiple": 0,
+							"return_format": "object",
+							"ui": 1
+						},
+						{
+							"key": "field_5c5414ba2fafc",
+							"label": "Link Title",
+							"name": "title",
+							"type": "text",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_5c5414ba2eeff",
+										"operator": "==",
+										"value": "external_link"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "30",
+								"class": "-collapsed-target",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": "",
+							"maxlength": ""
+						},
+						{
+							"key": "field_5c5414ba2fe97",
+							"label": "Web Address",
+							"name": "url",
+							"type": "url",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_5c5414ba2eeff",
+										"operator": "==",
+										"value": "external_link"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "30",
+								"class": "-collapsed-target",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": ""
+						},
+						{
+							"key": "field_5c5414ba302d8",
+							"label": "New Window",
+							"name": "new_window",
+							"type": "true_false",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": [
+								[
+									{
+										"field": "field_5c5414ba2eeff",
+										"operator": "==",
+										"value": "external_link"
+									}
+								]
+							],
+							"wrapper": {
+								"width": "20",
+								"class": "-collapsed-target",
+								"id": ""
+							},
+							"message": "",
+							"default_value": 0,
+							"ui": 1,
+							"ui_on_text": "",
+							"ui_off_text": ""
+						}
+					]
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "page"
+			},
+			{
+				"param": "page_type",
+				"operator": "!=",
+				"value": "front_page"
+			},
+			{
+				"param": "page_type",
+				"operator": "!=",
+				"value": "posts_page"
+			},
+			{
+				"param": "post_template",
+				"operator": "!=",
+				"value": "page-templates\/schedules.php"
+			}
+		],
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "post"
+			}
+		]
+	],
+	"menu_order": 2,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "field",
+	"hide_on_screen": [
+		"discussion",
+		"comments",
+		"revisions",
+		"slug",
+		"format",
+		"send-trackbacks"
+	],
+	"active": 1,
+	"description": "",
+	"modified": 1549409842
+}

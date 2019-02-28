@@ -1,5 +1,5 @@
 <?php
-
+	
 	/**
 	 * Syntric_Nav_Menu_Widget
 	 */
@@ -13,9 +13,9 @@
 				'description'                 => __( 'Displays menu of child navs under a top-level nav.' ),
 				'customize_selective_refresh' => true,
 			];
-			parent::__construct( 'syn-nav-menu-widget', __( 'Nav Menu' ), $widget_ops );
+			parent ::__construct( 'syn-nav-menu-widget', __( 'Nav Menu' ), $widget_ops );
 		}
-
+		
 		/**
 		 * Output widget content
 		 *
@@ -24,32 +24,32 @@
 		 */
 		public function widget( $args, $instance ) {
 			global $post;
-			if ( 'page' != $post->post_type ) {
+			if( 'page' != $post -> post_type ) {
 				return;
 			}
-			if ( ! isset( $args[ 'widget_id' ] ) ) {
-				$args[ 'widget_id' ] = $this->id;
+			if( ! isset( $args[ 'widget_id' ] ) ) {
+				$args[ 'widget_id' ] = $this -> id;
 			}
 			$nav_menu = get_field( 'syn_nav_menu_widget_menu', 'widget_' . $args[ 'widget_id' ] );
-			if ( $nav_menu ) :
-				$ancestor_id = syn_get_top_ancestor_id( $post->ID );
-				if ( $post->ID == $ancestor_id && ! syn_nav_menu_children_count( $post->ID ) ) {
+			if( $nav_menu ) :
+				$ancestor_id = syntric_get_top_ancestor_id( $post -> ID );
+				if( $post -> ID == $ancestor_id && ! syntric_nav_menu_children_count( $post -> ID ) ) {
 					return;
 				}
 				$ancestor = get_post( $ancestor_id );
-				//$sidebar     = syn_widget_sidebar( $args[ 'widget_id' ] );
+				//$sidebar     = syntric_widget_sidebar( $args[ 'widget_id' ] );
 				$depth = get_field( 'syn_nav_menu_widget_depth', 'widget_' . $args[ 'widget_id' ] );
 				// don't output a nav menu for a top level nav with no children
-				$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
-				$lb            = syn_get_linebreak();
-				$tab           = syn_get_tab();
+				$sidebar_class = syntric_get_sidebar_class( $args[ 'widget_id' ] );
+				$lb            = syntric_linebreak();
+				$tab           = syntric_tab();
 				echo $lb;
 				echo $args[ 'before_widget' ] . $lb;
-				echo $args[ 'before_title' ] . $ancestor->post_title . '<span class="sr-only"> section navigiation</span>' . $args[ 'after_title' ] . $lb;
+				echo $args[ 'before_title' ] . $ancestor -> post_title . '<span class="sr-only"> section navigiation</span>' . $args[ 'after_title' ] . $lb;
 				$nav_menu_args          = [
 					'container'   => '',
 					'menu'        => $nav_menu,
-					'menu_id'     => syn_generate_permanent_id(),
+					'menu_id'     => syntric_generate_permanent_id(),
 					//'menu_class' => 'nav',
 					'menu_class'  => 'list-group ' . $sidebar_class,
 					'items_wrap'  => '<div id="%1$s" class="%2$s">%3$s</div>',
@@ -63,7 +63,7 @@
 				echo $args[ 'after_widget' ] . $lb;
 			endif;
 		}
-
+		
 		/**
 		 * Update settings for the current widget instance
 		 *
@@ -74,13 +74,13 @@
 		 */
 		public function update( $new_instance, $old_instance ) {
 			$instance = [];
-			if ( ! empty( $new_instance[ 'syn-nav-menu-widget' ] ) ) {
+			if( ! empty( $new_instance[ 'syn-nav-menu-widget' ] ) ) {
 				$instance[ 'syn-nav-menu-widget' ] = (int) $new_instance[ 'syn-nav-menu-widget' ];
 			}
-
+			
 			return $instance;
 		}
-
+		
 		/**
 		 * Render settings form for the widget
 		 *
@@ -88,5 +88,6 @@
 		 *
 		 * @return void Displays settings form
 		 */
-		public function form( $instance ) { }
+		public function form( $instance ) {
+		}
 	}

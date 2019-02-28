@@ -1,4 +1,5 @@
 <?php
+	
 	/**
 	 * Template Name: Class
 	 * Template Post Type: page
@@ -7,33 +8,33 @@
 	 * @package syntric
 	 */
 	get_header();
-	$lb    = syn_get_linebreak();
-	$tab   = syn_get_tab();
-	$class = syn_get_class();
+	$lb    = syntric_linebreak();
+	$tab   = syntric_tab();
+	$class = syntric_get_class();
 	echo '<div id="class-wrapper" class="content-wrapper ' . get_post_type() . '-wrapper">' . $lb;
 	echo '<div class="' . esc_html( get_theme_mod( 'syntric_container_type' ) ) . '">' . $lb;
 	echo '<div class="row">' . $lb;
-	syn_sidebar( 'main', 'left' );
+	syntric_sidebar( 'main', 'left' );
 	echo '<main id="content" class="col content-area content">' . $lb;
-	echo '<h1 class="page-title" role="heading">' . get_the_title() . syn_get_post_badges() . '</h1>' . $lb;
-	syn_sidebar( 'main', 'top' );
-	if ( have_posts() ) :
+	echo '<h1 class="page-title" role="heading">' . get_the_title() . syntric_get_post_badges() . '</h1>' . $lb;
+	syntric_sidebar( 'main', 'top' );
+	if( have_posts() ) :
 		while( have_posts() ) : the_post();
-			if ( syn_has_content( $post->post_content ) ) :
+			if( syntric_has_content( $post -> post_content ) ) :
 				//var_dump( 'class on class.php' );
 				//ar_dump( $class );
 				////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				//echo 'Class object follows...';
-				//var_dump( syn_get_class( $post->ID ) );
-				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post->ID . '">' . $lb;
+				//var_dump( syntric_get_class( $post->ID ) );
+				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post -> ID . '">' . $lb;
 				the_content();
 				echo '</article>' . $lb;
 			endif;
 		endwhile;
 	endif;
-	syn_sidebar( 'main', 'bottom' );
+	syntric_sidebar( 'main', 'bottom' );
 	echo '</main>' . $lb;
-	syn_sidebar( 'main', 'right' );
+	syntric_sidebar( 'main', 'right' );
 	echo '</div>' . $lb;
 	echo '</div>' . $lb;
 	echo '</div>' . $lb;

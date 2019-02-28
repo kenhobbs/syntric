@@ -1,6 +1,6 @@
 {
 	"key": "group_59093e3000860",
-	"title": "Event",
+	"title": "Syn Event",
 	"fields": [
 		{
 			"key": "field_596d18f66340e",
@@ -227,5 +227,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1523096724
+	"modified": 1551365478
 }

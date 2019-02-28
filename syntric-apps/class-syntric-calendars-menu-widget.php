@@ -1,5 +1,5 @@
 <?php
-
+	
 	/**
 	 * Syntric_Calendars_Menu_Widget
 	 */
@@ -13,10 +13,10 @@
 				'description'                 => __( 'Displays a list of calendars.' ),
 				'customize_selective_refresh' => true,
 			];
-			parent::__construct( 'syn-calendars-menu-widget', __( 'Calendars Menu' ), $widget_ops );
-			$this->alt_option_name = 'syn-calendars-menu-widget';
+			parent ::__construct( 'syn-calendars-menu-widget', __( 'Calendars Menu' ), $widget_ops );
+			$this -> alt_option_name = 'syn-calendars-menu-widget';
 		}
-
+		
 		/**
 		 * Output widget content
 		 *
@@ -25,30 +25,30 @@
 		 */
 		public function widget( $args, $instance ) {
 			global $post;
-			if ( ! isset( $args[ 'widget_id' ] ) ) {
-				$args[ 'widget_id' ] = $this->id;
+			if( ! isset( $args[ 'widget_id' ] ) ) {
+				$args[ 'widget_id' ] = $this -> id;
 			}
 			$all_calendars = get_field( 'syn_calendars_menu_widget_all_calendars', 'widget_' . $args[ 'widget_id' ] );
-			if ( $all_calendars ) {
-				$calendars = syn_get_calendars();
+			if( $all_calendars ) {
+				$calendars = syntric_get_calendars();
 			} else {
 				$calendars = get_field( 'syn_calendars_menu_widget_calendars', 'widget_' . $args[ 'widget_id' ] );
 			}
-			$lb  = syn_get_linebreak();
-			$tab = syn_get_tab();
-			//$sidebar = syn_widget_sidebar( $args[ 'widget_id' ] );
-			$sidebar_class = syn_get_sidebar_class( $args[ 'widget_id' ] );
+			$lb  = syntric_linebreak();
+			$tab = syntric_tab();
+			//$sidebar = syntric_widget_sidebar( $args[ 'widget_id' ] );
+			$sidebar_class = syntric_get_sidebar_class( $args[ 'widget_id' ] );
 			$title         = get_field( 'syn_calendars_menu_widget_title', 'widget_' . $args[ 'widget_id' ] );
 			echo $args[ 'before_widget' ] . $lb;
-			if ( ! empty( $title ) ) :
+			if( ! empty( $title ) ) :
 				echo $args[ 'before_title' ] . $title . $args[ 'after_title' ] . $lb;
 			endif;
 			echo '<div class="list-group ' . $sidebar_class . '">' . $lb;
-			if ( $calendars ) :
+			if( $calendars ) :
 				$ref_date = ( isset( $_GET[ 'ref_date' ] ) ) ? $_GET[ 'ref_date' ] : date( 'Ymd' );
-				foreach ( $calendars as $calendar ) {
-					echo $tab . $tab . '<a href="' . get_the_permalink( $calendar->ID ) . '?ref_date=' . $ref_date . '" data-id="' . $calendar->ID . '" class="list-group-item list-group-item-action">';
-					echo $tab . $tab . $tab . $calendar->post_title . $lb;
+				foreach( $calendars as $calendar ) {
+					echo $tab . $tab . '<a href="' . get_the_permalink( $calendar -> ID ) . '?ref_date=' . $ref_date . '" data-id="' . $calendar -> ID . '" class="list-group-item list-group-item-action">';
+					echo $tab . $tab . $tab . $calendar -> post_title . $lb;
 					echo '</a>' . $lb;
 				};
 			else :
@@ -57,7 +57,7 @@
 			echo '</div>' . $lb;
 			echo $args[ 'after_widget' ] . $lb;
 		}
-
+		
 		/**
 		 * Update settings for the current widget instance
 		 *
@@ -68,10 +68,10 @@
 		 */
 		public function update( $new_instance, $old_instance ) {
 			$instance = $old_instance;
-
+			
 			return $instance;
 		}
-
+		
 		/**
 		 * Render settings form for the widget
 		 *
@@ -79,5 +79,6 @@
 		 *
 		 * @return void Displays settings form
 		 */
-		public function form( $instance ) { }
+		public function form( $instance ) {
+		}
 	}

@@ -1,137 +1,137 @@
 {
-    "key": "group_59b8c17541486",
+	"key": "group_59b8c17541486",
 	"title": "Quick Nav +",
-    "fields": [
-        {
-            "key": "field_59c828fc65355",
-            "label": "All",
-            "name": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "placement": "top",
-            "endpoint": 0
-        },
-        {
-            "key": "field_592d1a7dae144",
-            "label": "",
-            "name": "",
-            "type": "enhanced_message",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "enhanced_message": "<?php syn_qn_all_pages(); ?>",
-            "hide_label": "yes"
-        },
-        {
-            "key": "field_5a0cd936cca79",
-            "label": "Teachers",
-            "name": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "placement": "top",
-            "endpoint": 0
-        },
-        {
-            "key": "field_5a0cd944cca7a",
-            "label": "",
-            "name": "",
-            "type": "enhanced_message",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "enhanced_message": "<?php syn_qn_teachers_pages(); ?>",
-            "hide_label": "yes"
-        },
-        {
-            "key": "field_5a0cd8b2cca77",
-            "label": "Classes",
-            "name": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "placement": "top",
-            "endpoint": 0
-        },
-        {
-            "key": "field_5a0cd8d8cca78",
-            "label": "",
-            "name": "",
-            "type": "enhanced_message",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "enhanced_message": "<?php syn_qn_teachers_class_pages(); ?>",
-            "hide_label": "yes"
-        }
-    ],
-    "location": [
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "page"
-            },
-            {
-                "param": "current_user_role",
-                "operator": "==",
-                "value": "administrator"
-            }
-        ],
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "page"
-            },
-            {
-                "param": "current_user_role",
-                "operator": "==",
-                "value": "editor"
-            }
-        ]
-    ],
-    "menu_order": 9999,
-    "position": "side",
-    "style": "default",
-    "label_placement": "top",
-    "instruction_placement": "label",
-    "hide_on_screen": "",
+	"fields": [
+		{
+			"key": "field_59c828fc65355",
+			"label": "All",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_592d1a7dae144",
+			"label": "",
+			"name": "",
+			"type": "enhanced_message",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"enhanced_message": "<?php syntric_qn_all_pages(); ?>",
+			"hide_label": "yes"
+		},
+		{
+			"key": "field_5a0cd936cca79",
+			"label": "Teachers",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_5a0cd944cca7a",
+			"label": "",
+			"name": "",
+			"type": "enhanced_message",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"enhanced_message": "<?php syntric_qn_teachers_pages(); ?>",
+			"hide_label": "yes"
+		},
+		{
+			"key": "field_5a0cd8b2cca77",
+			"label": "Classes",
+			"name": "",
+			"type": "tab",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"placement": "top",
+			"endpoint": 0
+		},
+		{
+			"key": "field_5a0cd8d8cca78",
+			"label": "",
+			"name": "",
+			"type": "enhanced_message",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"enhanced_message": "<?php syntric_qn_teachers_class_pages(); ?>",
+			"hide_label": "yes"
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "page"
+			},
+			{
+				"param": "current_user_role",
+				"operator": "==",
+				"value": "administrator"
+			}
+		],
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "page"
+			},
+			{
+				"param": "current_user_role",
+				"operator": "==",
+				"value": "editor"
+			}
+		]
+	],
+	"menu_order": 9999,
+	"position": "side",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
 	"active": 1,
-    "description": "",
+	"description": "",
 	"modified": 1523096786
 }

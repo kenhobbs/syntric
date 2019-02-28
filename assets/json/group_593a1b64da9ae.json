@@ -6,7 +6,7 @@
 			"key": "field_59b59d77d7b68",
 			"label": "Dynamic:",
 			"name": "syn_nav_menu_widget_dynamic",
-			"type": "radio",
+			"type": "true_false",
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": 0,
@@ -15,15 +15,11 @@
 				"class": "",
 				"id": ""
 			},
-			"choices": [
-				"No"
-			],
-			"allow_null": 0,
-			"other_choice": 0,
-			"save_other_choice": 0,
+			"message": "",
 			"default_value": 0,
-			"layout": "vertical",
-			"return_format": "value"
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
 		},
 		{
 			"key": "field_59b5b970888b5",
@@ -115,7 +111,6 @@
 		"permalink",
 		"the_content",
 		"excerpt",
-		"custom_fields",
 		"discussion",
 		"comments",
 		"revisions",
@@ -130,5 +125,5 @@
 	],
 	"active": 1,
 	"description": "",
-	"modified": 1523096842
+	"modified": 1551246550
 }

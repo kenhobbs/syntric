@@ -1,20 +1,20 @@
 {
-    "key": "group_5a78875f6fedb",
+	"key": "group_5a78875f6fedb",
 	"title": "Page Settings - Course",
-    "fields": [
-        {
-            "key": "field_5a78875fa9ca1",
-            "label": "Course",
-            "name": "syn_page_course",
-            "type": "select",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
+	"fields": [
+		{
+			"key": "field_5a78875fa9ca1",
+			"label": "Course",
+			"name": "syntric_page_course",
+			"type": "select",
+			"instructions": "",
+			"required": 1,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
 			"choices": {
 				"Arts": {
 					"id-474247380-1146110031-1166995209": "Fine Art",
@@ -44,36 +44,36 @@
 					"id-1478802812-206589450-1546230541": "Spanish 1"
 				}
 			},
-            "default_value": [],
-            "allow_null": 1,
-            "multiple": 0,
-            "ui": 0,
-            "ajax": 0,
-            "return_format": "value",
-            "placeholder": ""
-        }
-    ],
-    "location": [
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "page"
-            },
-            {
-                "param": "page_template",
-                "operator": "==",
-                "value": "page-templates\/course.php"
-            }
-        ]
-    ],
-    "menu_order": 10,
-    "position": "side",
-    "style": "default",
-    "label_placement": "top",
-    "instruction_placement": "label",
-    "hide_on_screen": "",
-    "active": 1,
-    "description": "",
+			"default_value": [],
+			"allow_null": 1,
+			"multiple": 0,
+			"ui": 0,
+			"ajax": 0,
+			"return_format": "value",
+			"placeholder": ""
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "page"
+			},
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "page-templates\/course.php"
+			}
+		]
+	],
+	"menu_order": 10,
+	"position": "side",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
 	"modified": 1523096744
 }

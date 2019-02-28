@@ -15,7 +15,7 @@
 				"class": "",
 				"id": ""
 			},
-			"enhanced_message": "<?php syn_qn_all_pages(); ?>",
+			"enhanced_message": "<?php syntric_qn_all_pages(); ?>",
 			"hide_label": "yes"
 		}
 	],

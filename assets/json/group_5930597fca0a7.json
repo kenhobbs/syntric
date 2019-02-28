@@ -22,7 +22,7 @@
 		{
 			"key": "field_5bdcc1a3706e1",
 			"label": "YouTube Picker",
-			"name": "syn_youtube_picker",
+			"name": "syntric_youtube_picker",
 			"type": "youtubepicker",
 			"instructions": "",
 			"required": 0,
@@ -66,7 +66,7 @@
 		{
 			"key": "field_5bdceb11c6b4b",
 			"label": "oEmbed",
-			"name": "syn_oembed",
+			"name": "syntric_oembed",
 			"type": "oembed",
 			"instructions": "",
 			"required": 0,
@@ -82,7 +82,7 @@
 		{
 			"key": "field_5bdd108aeff99",
 			"label": "Google Map",
-			"name": "syn_google_map",
+			"name": "syntric_google_map",
 			"type": "google_map",
 			"instructions": "",
 			"required": 0,

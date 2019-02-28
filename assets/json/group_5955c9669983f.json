@@ -6,7 +6,7 @@
             "key": "field_59b5990860b20",
             "label": "Dynamic:",
             "name": "syn_google_map_widget_dynamic",
-            "type": "radio",
+			"type": "true_false",
             "instructions": "",
             "required": 1,
             "conditional_logic": 0,
@@ -15,16 +15,11 @@
                 "class": "",
                 "id": ""
             },
-            "choices": [
-                "No",
-                "Yes"
-            ],
-            "allow_null": 0,
-            "other_choice": 0,
-            "save_other_choice": 0,
+			"message": "",
             "default_value": 0,
-            "layout": "horizontal",
-            "return_format": "value"
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
         },
         {
             "key": "field_597e20c9b5128",
@@ -74,7 +69,7 @@
                 "class": "",
                 "id": ""
             },
-			"choices": null,
+			"choices": [],
             "default_value": [],
             "allow_null": 0,
             "multiple": 0,
@@ -116,5 +111,5 @@
     ],
     "active": 1,
     "description": "",
-	"modified": 1537197822
+	"modified": 1551246776
 }

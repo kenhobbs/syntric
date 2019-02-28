@@ -6,7 +6,7 @@
 			"key": "field_59b25d834e5a3",
 			"label": "Dynamic:",
 			"name": "syn_upcoming_events_widget_dynamic",
-			"type": "radio",
+			"type": "true_false",
 			"instructions": "",
 			"required": 1,
 			"conditional_logic": 0,
@@ -15,16 +15,11 @@
 				"class": "",
 				"id": ""
 			},
-			"choices": [
-				"No",
-				"Yes"
-			],
-			"allow_null": 0,
-			"other_choice": 0,
-			"save_other_choice": 0,
+			"message": "",
 			"default_value": 0,
-			"layout": "horizontal",
-			"return_format": "value"
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
 		},
 		{
 			"key": "field_596c62117fa7e",
@@ -74,7 +69,7 @@
 				"class": "",
 				"id": ""
 			},
-			"choices": null,
+			"choices": [],
 			"default_value": [],
 			"allow_null": 1,
 			"multiple": 0,
@@ -158,7 +153,6 @@
 		"permalink",
 		"the_content",
 		"excerpt",
-		"custom_fields",
 		"discussion",
 		"comments",
 		"revisions",
@@ -173,5 +167,5 @@
 	],
 	"active": 1,
 	"description": "",
-	"modified": 1523206881
+	"modified": 1551246830
 }

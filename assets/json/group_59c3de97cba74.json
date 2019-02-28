@@ -1,11 +1,11 @@
 {
-    "key": "group_59c3de97cba74",
-    "title": "User Info",
-    "fields": [
-        {
+	"key": "group_59c3de97cba74",
+	"title": "User Info",
+	"fields": [
+		{
 			"key": "field_5acd53bd45d45",
 			"label": "Photo",
-			"name": "syn_user_photo",
+			"name": "syntric_user_photo",
 			"type": "image",
 			"instructions": "",
 			"required": 0,
@@ -27,125 +27,125 @@
 			"mime_types": "jpg,jpeg,png"
 		},
 		{
-            "key": "field_5a6570eff3d03",
-            "label": "Prefix",
-            "name": "syn_user_prefix",
-            "type": "radio",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "Ms.": "Ms.",
-                "Mrs.": "Mrs.",
-                "Mr.": "Mr.",
-                "Mx.": "Mx.",
-                "Dr.": "Dr."
-            },
-            "allow_null": 1,
-            "other_choice": 1,
-            "save_other_choice": 1,
-            "default_value": "",
-			"layout": "vertical",
-            "return_format": "value"
-        },
-        {
-            "key": "field_59c3de9804864",
-            "label": "Title",
-            "name": "syn_user_title",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_59c3de9804c7e",
-            "label": "Phone",
-            "name": "syn_user_phone",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_59c3de9804e7c",
-            "label": "Ext",
-            "name": "syn_user_extension",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_59c3de980525e",
-            "label": "Teacher?",
-            "name": "syn_user_is_teacher",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "Check to create a teacher page for this user",
-            "default_value": 0,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_59f7a2d72ed22",
-            "label": "Teacher Page",
-            "name": "syn_user_page",
-			"type": "select",
-            "instructions": "Do not set this value. It will populate and clear itself when using the checkbox above.",
-            "required": 0,
+			"key": "field_5a6570eff3d03",
+			"label": "Prefix",
+			"name": "syntric_user_prefix",
+			"type": "radio",
+			"instructions": "",
+			"required": 0,
 			"conditional_logic": 0,
-            "wrapper": {
-                "width": "",
+			"wrapper": {
+				"width": "",
 				"class": "",
-                "id": ""
-            },
+				"id": ""
+			},
+			"choices": {
+				"Ms.": "Ms.",
+				"Mrs.": "Mrs.",
+				"Mr.": "Mr.",
+				"Mx.": "Mx.",
+				"Dr.": "Dr."
+			},
+			"allow_null": 1,
+			"other_choice": 1,
+			"save_other_choice": 1,
+			"default_value": "",
+			"layout": "vertical",
+			"return_format": "value"
+		},
+		{
+			"key": "field_59c3de9804864",
+			"label": "Title",
+			"name": "syntric_user_title",
+			"type": "text",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_59c3de9804c7e",
+			"label": "Phone",
+			"name": "syntric_user_phone",
+			"type": "text",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_59c3de9804e7c",
+			"label": "Ext",
+			"name": "syntric_user_extension",
+			"type": "text",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"placeholder": "",
+			"prepend": "",
+			"append": "",
+			"maxlength": ""
+		},
+		{
+			"key": "field_59c3de980525e",
+			"label": "Teacher?",
+			"name": "syntric_user_is_teacher",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "Check to create a teacher page for this user",
+			"default_value": 0,
+			"ui": 0,
+			"ui_on_text": "",
+			"ui_off_text": ""
+		},
+		{
+			"key": "field_59f7a2d72ed22",
+			"label": "Teacher Page",
+			"name": "syntric_user_page",
+			"type": "select",
+			"instructions": "Do not set this value. It will populate and clear itself when using the checkbox above.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
 			"choices": [],
 			"default_value": [],
 			"allow_null": 1,
-            "multiple": 0,
+			"multiple": 0,
 			"ui": 0,
 			"ajax": 0,
 			"return_format": "value",
@@ -180,24 +180,24 @@
 			"message": "",
 			"new_lines": "",
 			"esc_html": 0
-        }
-    ],
-    "location": [
-        [
-            {
-                "param": "user_form",
-                "operator": "==",
-                "value": "edit"
-            }
-        ]
-    ],
-    "menu_order": 0,
-    "position": "normal",
-    "style": "default",
-    "label_placement": "top",
-    "instruction_placement": "field",
-    "hide_on_screen": "",
-    "active": 1,
-    "description": "",
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "user_form",
+				"operator": "==",
+				"value": "edit"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "field",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
 	"modified": 1534737733
 }

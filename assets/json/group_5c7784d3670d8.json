@@ -1,0 +1,205 @@
+{
+	"key": "group_5c7784d3670d8",
+	"title": "Event",
+	"fields": [
+		{
+			"key": "field_5c778521b7d99",
+			"label": "Event",
+			"name": "syntric_event",
+			"type": "group",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"layout": "block",
+			"sub_fields": [
+				{
+					"key": "field_5c7784d37c702",
+					"label": "Start Date",
+					"name": "start_date",
+					"type": "date_picker",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"display_format": "F j, Y",
+					"return_format": "F j, Y",
+					"first_day": 1
+				},
+				{
+					"key": "field_5c7784d37ccbd",
+					"label": "Start Time",
+					"name": "start_time",
+					"type": "time_picker",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"display_format": "g:i A",
+					"return_format": "g:i A"
+				},
+				{
+					"key": "field_5c7784d37d05e",
+					"label": "End Date",
+					"name": "end_date",
+					"type": "date_picker",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"display_format": "F j, Y",
+					"return_format": "F j, Y",
+					"first_day": 1
+				},
+				{
+					"key": "field_5c7784d37d48c",
+					"label": "End Time",
+					"name": "end_time",
+					"type": "time_picker",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"display_format": "g:i A",
+					"return_format": "g:i A"
+				},
+				{
+					"key": "field_5c7784d37d816",
+					"label": "Location",
+					"name": "location",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5c7784d37e7d0",
+					"label": "Event ID",
+					"name": "event_id",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5c7784d37ec0b",
+					"label": "Recurring ID",
+					"name": "recurring_id",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5c7784d37dc09",
+					"label": "Calendar ID",
+					"name": "google_calendar_id",
+					"type": "post_object",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"post_type": [
+						"syn_calendar"
+					],
+					"taxonomy": "",
+					"allow_null": 0,
+					"multiple": 0,
+					"return_format": "id",
+					"ui": 1
+				},
+				{
+					"key": "field_5c7784d37e3cb",
+					"label": "Last Sync",
+					"name": "last_sync",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_type",
+				"operator": "==",
+				"value": "syntric_event"
+			}
+		]
+	],
+	"menu_order": 1,
+	"position": "acf_after_title",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1551365960
+}

@@ -1,4 +1,5 @@
 <?php
+	
 	/**
 	 * Template Name: Schedules
 	 * Template Post Type: page
@@ -7,18 +8,18 @@
 	 * @package syntric
 	 */
 	get_header();
-	$lb        = syn_get_linebreak();
-	$tab       = syn_get_tab();
+	$lb        = syntric_linebreak();
+	$tab       = syntric_tab();
 	$schedules = get_field( 'syn_schedules', get_the_ID() );
 	echo '<div id="bell-schedule-wrapper" class="content-wrapper ' . get_post_type() . '-wrapper">' . $lb;
 	echo '<div class="' . esc_html( get_theme_mod( 'syntric_container_type' ) ) . '">' . $lb;
 	echo '<div class="row">' . $lb;
-	syn_sidebar( 'main', 'left' );
+	syntric_sidebar( 'main', 'left' );
 	echo '<main id="content" class="col content-area content">' . $lb;
 	echo '<h1 class="page-title" role="heading">' . get_the_title() . '</h1>' . $lb;
-	syn_sidebar( 'main', 'top' );
-	if ( $schedules ) {
-		foreach ( $schedules as $schedule ) {
+	syntric_sidebar( 'main', 'top' );
+	if( $schedules ) {
+		foreach( $schedules as $schedule ) {
 			echo '<h2>' . $schedule[ 'schedule_type' ] . '</h2>';
 			echo '<table>';
 			echo '<caption class="sr-only">' . $schedule[ 'schedule_type' ] . '</caption>';
@@ -31,7 +32,7 @@
 			echo '</tr>';
 			echo '</thead>';
 			echo '<tbody>';
-			foreach ( $schedule[ 'periods' ] as $period ) {
+			foreach( $schedule[ 'periods' ] as $period ) {
 				$instructional_period = ( $period[ 'is_instructional_period' ] ) ? 'Yes' : 'No';
 				echo '<tr valign="top">';
 				echo '<td style="width: 50%;">' . $period[ 'label' ] . '</td>';
@@ -46,18 +47,18 @@
 	} else {
 		echo 'No schedules are available.';
 	}
-	if ( have_posts() ) :
+	if( have_posts() ) :
 		while( have_posts() ) : the_post();
-			if ( syn_has_content( $post->post_content ) ) :
-				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post->ID . '">' . $lb;
+			if( syntric_has_content( $post -> post_content ) ) :
+				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post -> ID . '">' . $lb;
 				the_content();
 				echo '</article>' . $lb;
 			endif;
 		endwhile;
 	endif;
-	syn_sidebar( 'main', 'bottom' );
+	syntric_sidebar( 'main', 'bottom' );
 	echo '</main>' . $lb;
-	syn_sidebar( 'main', 'right' );
+	syntric_sidebar( 'main', 'right' );
 	echo '</div>' . $lb;
 	echo '</div>' . $lb;
 	echo '</div>' . $lb;

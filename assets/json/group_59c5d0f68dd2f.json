@@ -5,7 +5,7 @@
 		{
 			"key": "field_59c592539d05b",
 			"label": "Teacher",
-			"name": "syn_page_teacher",
+			"name": "syntric_page_teacher",
 			"type": "select",
 			"instructions": "",
 			"required": 1,

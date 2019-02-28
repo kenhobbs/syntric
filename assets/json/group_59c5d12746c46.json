@@ -5,7 +5,7 @@
 		{
 			"key": "field_59b8c34309606",
 			"label": "Department",
-			"name": "syn_page_department",
+			"name": "syntric_page_department",
 			"type": "select",
 			"instructions": "",
 			"required": 1,

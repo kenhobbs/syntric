@@ -335,6 +335,25 @@
 			"ui": 1,
 			"ui_on_text": "",
 			"ui_off_text": ""
+		},
+		{
+			"key": "field_5c7770336fa7e",
+			"label": "Run Calendar Migation",
+			"name": "syn_data_run_calendar_migration",
+			"type": "true_false",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"message": "Migrate syn_calendar to syntric_calendar. Moves all syn_calendar and syn_event to trash.",
+			"default_value": 0,
+			"ui": 1,
+			"ui_on_text": "",
+			"ui_off_text": ""
 		}
 	],
 	"location": [
@@ -354,5 +373,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1538469840
+	"modified": 1551360270
 }
