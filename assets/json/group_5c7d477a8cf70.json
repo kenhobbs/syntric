@@ -1,0 +1,347 @@
+{
+	"key": "group_5c7d477a8cf70",
+	"title": "Jumbotrons",
+	"fields": [
+		{
+			"key": "field_5c7d477aa23d9",
+			"label": "",
+			"name": "syntric_jumbotrons",
+			"type": "repeater",
+			"instructions": "Jumbotrons are attention-grabbing calls-to-action that sit on top of a page's banner image.  They are most effective when they introduce a topic concisely and link to a page with detailed information. There can be as many different Jumbotrons as there are pages in a site and any one can be scheduled to appear (and disappear) on any combination of pages.",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "field_598fd4fc82c7d",
+			"min": 0,
+			"max": 0,
+			"layout": "block",
+			"button_label": "Add Jumbotron",
+			"hide_collapse": 0,
+			"collapse_all_repeater": 1,
+			"btn-icon-only": 1,
+			"sub_fields": [
+				{
+					"key": "field_5c7d477aa9880",
+					"label": "Headline",
+					"name": "headline",
+					"type": "text",
+					"instructions": "Headline appears as large title text (max. 100 characters)",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "-collapsed-target",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": 100
+				},
+				{
+					"key": "field_5c7d477aaa42d",
+					"label": "Caption",
+					"name": "caption",
+					"type": "textarea",
+					"instructions": "Caption appears as smaller text under the headline (max. 250 characters)",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"maxlength": "",
+					"rows": 5,
+					"new_lines": ""
+				},
+				{
+					"key": "field_5c7d477aa9c5f",
+					"label": "Start Date\/Time",
+					"name": "start_datetime",
+					"type": "date_time_picker",
+					"instructions": "Time jumbotron appears",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"display_format": "n\/j\/Y g:i A",
+					"return_format": "n\/j\/Y g:i A",
+					"first_day": 1
+				},
+				{
+					"key": "field_5c7d477aaa0a5",
+					"label": "End Date\/Time",
+					"name": "end_datetime",
+					"type": "date_time_picker",
+					"instructions": "Time jumbotron disappears",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"display_format": "n\/j\/Y g:i A",
+					"return_format": "n\/j\/Y g:i A",
+					"first_day": 1
+				},
+				{
+					"key": "field_5c7d477aaa813",
+					"label": "Include Button",
+					"name": "include_button",
+					"type": "true_false",
+					"instructions": "Button links to another page",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "20",
+						"class": "",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_5c7d477aaaff6",
+					"label": "Button Text",
+					"name": "button_text",
+					"type": "text",
+					"instructions": "Text appears on button",
+					"required": 1,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5c7d477aaa813",
+								"operator": "==",
+								"value": "1"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "20",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": 30
+				},
+				{
+					"key": "field_5c7d477aaabf8",
+					"label": "Button Target",
+					"name": "button_target",
+					"type": "select",
+					"instructions": "Button links to internal or external URL",
+					"required": 1,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5c7d477aaa813",
+								"operator": "==",
+								"value": "1"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "20",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"page": "Internal link",
+						"url": "External link"
+					},
+					"default_value": [
+						"page"
+					],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"return_format": "value",
+					"ajax": 0,
+					"placeholder": ""
+				},
+				{
+					"key": "field_5c7d477aab3dc",
+					"label": "Button Page",
+					"name": "button_page",
+					"type": "page_link",
+					"instructions": "Page on this website",
+					"required": 1,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5c7d477aaa813",
+								"operator": "==",
+								"value": "1"
+							},
+							{
+								"field": "field_5c7d477aaabf8",
+								"operator": "==",
+								"value": "page"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "20",
+						"class": "",
+						"id": ""
+					},
+					"post_type": [
+						"page",
+						"post"
+					],
+					"taxonomy": "",
+					"allow_null": 0,
+					"allow_archives": 0,
+					"multiple": 0
+				},
+				{
+					"key": "field_5c7d477aab7f2",
+					"label": "Button URL",
+					"name": "button_url",
+					"type": "url",
+					"instructions": "URL to external page (include http:\/\/ or https:\/\/)",
+					"required": 1,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5c7d477aaa813",
+								"operator": "==",
+								"value": "1"
+							},
+							{
+								"field": "field_5c7d477aaabf8",
+								"operator": "==",
+								"value": "url"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "20",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": ""
+				},
+				{
+					"key": "field_5c7d477aabbfd",
+					"label": "New Window",
+					"name": "button_new_window",
+					"type": "true_false",
+					"instructions": "Open in same or new window",
+					"required": 0,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5c7d477aaa813",
+								"operator": "==",
+								"value": "1"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "20",
+						"class": "",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_5c9d7ea67fc5f",
+					"label": "Filters",
+					"name": "filters",
+					"type": "clone",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"clone": [
+						"group_599916cf361bb"
+					],
+					"display": "seamless",
+					"layout": "block",
+					"prefix_label": 0,
+					"prefix_name": 0
+				},
+				{
+					"key": "field_5ca72f36d50f7",
+					"label": "ID",
+					"name": "id",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "syntric-jumbotrons"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": [
+		"permalink",
+		"the_content",
+		"excerpt",
+		"discussion",
+		"comments",
+		"revisions",
+		"slug",
+		"author",
+		"format",
+		"page_attributes",
+		"featured_image",
+		"categories",
+		"tags",
+		"send-trackbacks"
+	],
+	"active": 1,
+	"description": "",
+	"modified": 1554485756
+}

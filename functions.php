@@ -14,8 +14,6 @@
 	 * Include global functions
 	 */
 	require get_template_directory() . '/inc/global-functions.php';
-	//$theme         = wp_get_theme();
-	//$current_theme = $theme -> get( 'Name' );
 	$current_theme = syntric_current_theme();
 	
 	/**
@@ -81,111 +79,6 @@
 		}
 		
 		/**
-		 * Register sidebars and widgets
-		 *
-		 * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
-		 */
-		add_action( 'widgets_init', 'syntric_sidebars_widgets_init' );
-		function syntric_sidebars_widgets_init() {
-			register_sidebar( [ 'name'          => __( 'Header 1', 'syntric' ),
-			                    'id'            => 'header-sidebar-1',
-			                    'description'   => __( 'Add widgets here to appear in the first header.', 'syntric' ),
-			                    'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			                    'after_widget'  => '</section>',
-			                    'before_title'  => '<h2 class="widget-title">',
-			                    'after_title'   => '</h2>', ] );
-			register_sidebar( [ 'name'          => __( 'Header 2', 'syntric' ),
-			                    'id'            => 'header-sidebar-2',
-			                    'description'   => __( 'Add widgets here to appear in the second header.', 'syntric' ),
-			                    'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			                    'after_widget'  => '</section>',
-			                    'before_title'  => '<h2 class="widget-title">',
-			                    'after_title'   => '</h2>', ] );
-			register_sidebar( [ 'name'          => __( 'Main Left', 'syntric' ),
-			                    'id'            => 'main-left-sidebar',
-			                    'description'   => __( 'Add widgets here to appear in the main left sidebar.', 'syntric' ),
-			                    'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			                    'after_widget'  => '</section>',
-			                    'before_title'  => '<h2 class="widget-title">',
-			                    'after_title'   => '</h2>', ] );
-			register_sidebar( [ 'name'          => __( 'Main Top', 'syntric' ),
-			                    'id'            => 'main-top-sidebar',
-			                    'description'   => __( 'Add widgets here to appear in the main top sidebar.', 'syntric' ),
-			                    'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			                    'after_widget'  => '</section>',
-			                    'before_title'  => '<h2 class="widget-title">',
-			                    'after_title'   => '</h2>', ] );
-			register_sidebar( [ 'name'          => __( 'Main Bottom', 'syntric' ),
-			                    'id'            => 'main-bottom-sidebar',
-			                    'description'   => __( 'Add widgets here to appear in the main bottom sidebar.', 'syntric' ),
-			                    'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			                    'after_widget'  => '</section>',
-			                    'before_title'  => '<h2 class="widget-title">',
-			                    'after_title'   => '</h2>', ] );
-			register_sidebar( [ 'name'          => __( 'Main Right', 'syntric' ),
-			                    'id'            => 'main-right-sidebar',
-			                    'description'   => __( 'Add widgets here to appear in the main right sidebar.', 'syntric' ),
-			                    'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			                    'after_widget'  => '</section>',
-			                    'before_title'  => '<h2 class="widget-title">',
-			                    'after_title'   => '</h2>', ] );
-			register_sidebar( [ 'name'          => __( 'Footer 1', 'syntric' ),
-			                    'id'            => 'footer-sidebar-1',
-			                    'description'   => __( 'Add widgets here to appear in the first footer.', 'syntric' ),
-			                    'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			                    'after_widget'  => '</section>',
-			                    'before_title'  => '<h2 class="widget-title">',
-			                    'after_title'   => '</h2>', ] );
-			register_sidebar( [ 'name'          => __( 'Footer 2', 'syntric' ),
-			                    'id'            => 'footer-sidebar-2',
-			                    'description'   => __( 'Add widgets here to appear in the second footer.', 'syntric' ),
-			                    'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			                    'after_widget'  => '</section>',
-			                    'before_title'  => '<h2 class="widget-title">',
-			                    'after_title'   => '</h2>', ] );
-			register_sidebar( [ 'name'          => __( 'Footer 3', 'syntric' ),
-			                    'id'            => 'footer-sidebar-3',
-			                    'description'   => __( 'Add widgets here to appear in the third footer.', 'syntric' ),
-			                    'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			                    'after_widget'  => '</section>',
-			                    'before_title'  => '<h2 class="widget-title">',
-			                    'after_title'   => '</h2>', ] );
-			
-			/**
-			 * Unregister unselected WP widgets according to option page
-			 */
-			$wp_widget_factory = $GLOBALS[ 'wp_widget_factory' ];
-			$wp_widgets        = $wp_widget_factory -> widgets;
-			$wp_widgets        = array_keys( $wp_widgets );
-			if( $wp_widgets ) {
-				$selected_wp_widgets = get_field( 'syn_widgets_wordpress', 'option' );
-				$selected_wp_widgets = ( $selected_wp_widgets ) ? $selected_wp_widgets : [];
-				for( $i = 0; $i < count( $wp_widgets ); $i ++ ) {
-					if( ! in_array( $wp_widgets[ $i ], $selected_wp_widgets ) ) {
-						unregister_widget( $wp_widgets[ $i ] );
-					}
-				}
-			}
-			/**
-			 * Register selected Syntric widgets according to option page
-			 */
-			$selected_syntric_widgets = get_field( 'syn_widgets_syntric', 'option' );
-			if( $selected_syntric_widgets ) {
-				$syntric_widgets = array_values( $selected_syntric_widgets );
-				if( $syntric_widgets ) {
-					foreach( $syntric_widgets as $syntric_widget ) {
-						$widget_class      = str_replace( '_', '-', $syntric_widget );
-						$widget_class_file = 'class-' . strtolower( $widget_class ) . '.php';
-						if( file_exists( get_template_directory() . '/syntric-apps/' . $widget_class_file ) ) {
-							require_once( get_template_directory() . '/syntric-apps/' . $widget_class_file );
-							register_widget( $syntric_widget );
-						}
-					}
-				}
-			}
-		}
-		
-		/**
 		 * Todo: Set the content width in pixels, based on the theme's design and stylesheet.
 		 *
 		 * Priority 0 to make it available to lower priority callbacks.
@@ -208,7 +101,7 @@
 		 * Admin customizations
 		 */
 		if( is_admin() ) {
-			require get_template_directory() . '/inc/admin.php';
+			//require get_template_directory() . '/inc/admin.php';
 		}
 		/**
 		 * Customizer customizations
@@ -244,7 +137,6 @@
 		if( is_plugin_active( 'advanced-custom-fields-pro/acf.php' ) ) {
 			// If ACF is loaded, include syntric-apps.php which in turn includes theme apps build with ACF
 			require get_template_directory() . '/syntric-apps/syntric-apps.php';
-			syntric_get_school();
 		} else {
 			// If ACF isn't loaded, present a "not configured" screen
 			$die_message = '<div style="text-align: center">';
@@ -254,8 +146,6 @@
 			wp_die( $die_message );
 		}
 	}
-	
-	
 	
 	/**
 	 * Relocated or excluded

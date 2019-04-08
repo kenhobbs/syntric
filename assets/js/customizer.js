@@ -9,11 +9,10 @@
 (function ($) {
 
 	// Update the site title in real time...
-	/*wp.customize('blogname', function (value) {
+	wp.customize('blogname', function (value) {
 		value.bind(function (newval) {
 			console.log(newval);
 			$('.navbar-header a').html(newval);
 		});
-	});*/
-
+	});
 })(jQuery);

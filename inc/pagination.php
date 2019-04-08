@@ -25,7 +25,9 @@
 			'prev_text'          => '<span class="sr-only">Previous Page</span><i class="fa fa-angle-left" aria-hidden="true"></i>',
 			'next_text'          => '<span class="sr-only">Next Page</span><i class="fa fa-angle-right" aria-hidden="true"></i>',
 			'before_page_number' => '<span class="sr-only">' . __( 'Page', 'syntric' ) . ' </span>',
-			'show_all'           => true,
+			'show_all'           => false,
+			'end_size'           => 2,
+			'mid_size'           => 2,
 		] );
 		echo '</nav>';
 	}

@@ -1,0 +1,106 @@
+{
+	"key": "group_5c9d66e1a144a",
+	"title": "Roster Widget",
+	"fields": [
+		{
+			"key": "field_5c9d66e1b468f",
+			"label": "",
+			"name": "syntric_roster_widget",
+			"type": "group",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"layout": "block",
+			"sub_fields": [
+				{
+					"key": "field_5c9d66e1bb3e9",
+					"label": "Title",
+					"name": "title",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5c9d67169852f",
+					"label": "People",
+					"name": "people",
+					"type": "repeater",
+					"instructions": "Contact not listed?  <a href=\"http:\/\/master.localhost\/wp-admin\/user-new.php\">Add a new user<\/a>",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"collapsed": "field_5c9d66e1bb7cc",
+					"min": 0,
+					"max": 0,
+					"layout": "table",
+					"button_label": "Add Person",
+					"hide_collapse": 1,
+					"collapse_all_repeater": 0,
+					"btn-icon-only": 0,
+					"sub_fields": [
+						{
+							"key": "field_5c9d66e1bb7cc",
+							"label": "Person",
+							"name": "person",
+							"type": "select",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"choices": [],
+							"default_value": [],
+							"allow_null": 1,
+							"multiple": 0,
+							"ui": 0,
+							"return_format": "value",
+							"ajax": 0,
+							"placeholder": ""
+						}
+					]
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "widget",
+				"operator": "==",
+				"value": "syntric-roster-widget"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1554299488
+}

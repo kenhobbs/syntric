@@ -157,11 +157,12 @@
 		/**
 		 * Reading settings
 		 */
-		$home_page  = syntric_get_home_page();
+		syntric_set_home_and_post_pages();
+		/*$home_page  = syntric_get_home_page();
 		$posts_page = syntric_get_posts_page();
 		update_option( 'show_on_front', 'page' );
 		update_option( 'page_on_front', $home_page -> ID );
-		update_option( 'page_for_posts', $posts_page -> ID );
+		update_option( 'page_for_posts', $posts_page -> ID );*/
 		/**
 		 * Writing settings
 		 */
@@ -275,4 +276,188 @@
 		 * wp_delete_category( $microblogs_term -> term_id );
 		 * // todo: Need to raise some kind of warning so that the microblog posts are not deleted silently
 		 */
+	}
+	
+	function syntric_setup_primary_menu() {
+		// Check if the menu exists
+		$menu_name   = 'Primary Menu';
+		$menu_exists = wp_get_nav_menu_object( $menu_name );
+		// If it doesn't exist, let's create it.
+		if( ! $menu_exists ) {
+			$menu_id = wp_create_nav_menu( $menu_name );
+			// Set up default menu items
+			wp_update_nav_menu_item( $menu_id, 0, [
+				'menu-item-title'   => __( 'Home', 'syntric' ),
+				'menu-item-classes' => 'home',
+				'menu-item-url'     => home_url( '/' ),
+				'menu-item-status'  => 'publish',
+			] );
+			
+			wp_update_nav_menu_item( $menu_id, 0, [
+				'menu-item-title'  => __( 'News', 'syntric' ),
+				'menu-item-url'    => home_url( '/news/' ),
+				'menu-item-status' => 'publish',
+			] );
+		}
+	}
+	
+	/**
+	 * Sets up theme defaults and register supports for various WordPress features.
+	 *
+	 * Note that this function is hooked into the after_setup_theme hook, which
+	 * runs before the init hook. The init hook is too late for some features, such
+	 * as indicating support for post thumbnails.
+	 */
+	add_action( 'after_setup_theme', 'syntric_after_setup_theme' );
+	if( ! function_exists( 'syntric_after_setup_theme' ) ) {
+		function syntric_after_setup_theme() {
+			//~~~~~~~~~ Add theme supports
+			/**
+			 * Add support for RSS feeds
+			 * Wordpress adds the feed tags to the document head automatically
+			 */
+			//add_theme_support( 'automatic-feed-links' );
+			/**
+			 * Add support for full-width and wide-alignment blocks in Gutenberg
+			 */
+			//add_theme_support( 'gutenberg', array('wide-images' => true ) );
+			/**
+			 * Optional Gutenberg-related theme supports
+			 */
+			//add_theme_support( 'align-wide' );
+			//add_theme_support('editor-styles');
+			//add_theme_support( 'dark-editor-style' );
+			//add_theme_support( 'wp-block-styles' );
+			//add_theme_support( 'responsive-embeds' );
+			
+			/**
+			 * Add support for title tag
+			 * WordPress manages the document title - remove <title> tag from document head.
+			 */
+			//add_theme_support( 'title-tag' );
+			/**
+			 * Add support for HTML5 forms
+			 */
+			//add_theme_support( 'html5', [ 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption', ] );
+			/**
+			 * Add support for post thumbnails (Featured Image) in posts (only)
+			 */
+			//add_theme_support( 'post-thumbnails', [ 'post', 'page', ] );
+			/**
+			 * Set default Post Thumbnail size
+			 */
+			//set_post_thumbnail_size( 'large' ); // 1920 x 500, cropped from center preferred size for banner (custom header)
+			/**
+			 * Add support for widget refreshing in the customizer
+			 */
+			//add_theme_support( 'customize-selective-refresh-widgets' );
+			/**
+			 * Add theme support for post formats
+			 */
+			//add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );
+			/**
+			 * Add theme support for custom background
+			 */
+			//add_theme_support( 'custom-background', apply_filters( 'syntric_custom_background_args', array( 'default-color' => 'ffffff', 'default-image' => '', ) ) );
+			/**
+			 * Add theme support for custom logo
+			 */
+			//add_theme_support( 'custom-logo' );
+			/**
+			 * Add support for custom header images
+			 */
+			/*add_theme_support( 'custom-header', [ 'default-image'  => get_template_directory_uri() . '/assets/images/default-header.png',
+			                                      'random-default' => true,
+			                                      'width'          => 1920,
+			                                      'height'         => 500,
+			                                      'flex-height'    => true,
+			                                      'flex-width'     => true,
+			                                      'uploads'        => true, ] );*/
+			/**
+			 * Add support for editor stylesheet
+			 *
+			 * This is deprecated.  Using add_editor_style() in admin_init action hook
+			 */
+			//add_theme_support( 'editor-style' );
+			//~~~~~~~~~ Misc theme features
+			/**
+			 * Additional image sizes that are auto-generated upon upload of an image into the Media Library
+			 */
+			/*add_image_size( 'icon', 50, 50, 1 );
+			//add_image_size( 'thumbnail', 100, 100, true );
+			update_option( 'thumbnail_size_w', 100 );
+			update_option( 'thumbnail_size_h', 100 );
+			update_option( 'thumbnail_crop', 1 );
+			//add_image_size( 'medium', 200, 200, true );
+			update_option( 'medium_size_w', 200 );
+			update_option( 'medium_size_h', 200 );
+			update_option( 'medium_crop', 0 );
+			//add_image_size( 'medium_large', 400, 400, 1 );
+			update_option( 'medium_large_size_w', 400 );
+			update_option( 'medium_large_size_h', 400 );
+			update_option( 'medium_large_crop', 0 );
+			//add_image_size( 'large', 800, 800, true );
+			update_option( 'large_size_w', 800 );
+			update_option( 'large_size_h', 800 );
+			update_option( 'large_crop', 0 );
+			add_image_size( 'banner', 1920, 500, 0 );*/
+			/**
+			 * Add ability to integrate translations using textdomain
+			 * Translations can be filed in the /assets/languages/ directory.
+			 */
+			//load_theme_textdomain( 'syntric', get_template_directory() . '/assets/languages' );
+			//~~~~~~~~~ Register theme features
+			/**
+			 * Register nav menu locations
+			 */
+			/*register_nav_menus( [ 'primary' => __( 'Primary Menu', 'syntric' ),
+			                      //'notices' => __( 'Notices Menu', 'syntric' ),
+			                      //'quick'   => __( 'Quick Menu', 'syntric' ),
+			                      //'sitemap' => __( 'Sitemap', 'syntric' ),
+			] );*/
+			/**
+			 * Register multiple default headers when randomizing headers by default
+			 */
+			/*register_default_headers( [ 'header-1' => [ 'url'           => get_template_directory_uri() . '/assets/images/default-header.png',
+			                                            'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header.png',
+			                                            'description'   => __( 'Default header', 'syntric' ), ],
+			                            'header-2' => [
+														   'url'           => get_template_directory_uri() . '/assets/images/default-header-2.png',
+														   'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-2.png',
+														   'description'   => __( 'Default header 2', 'syntric' ),
+													   ],
+													   'header-3' => [
+														   'url'           => get_template_directory_uri() . '/assets/images/default-header-3.png',
+														   'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-3.png',
+														   'description'   => __( 'Default header 3', 'syntric' ),
+													   ],
+													   'header-4' => [
+														   'url'           => get_template_directory_uri() . '/assets/images/default-header-4.png',
+														   'thumbnail_url' => get_template_directory_uri() . '/assets/images/default-header-4.png',
+														   'description'   => __( 'Default header 4', 'syntric' ),
+													   ], ] );*/
+			//~~~~~~~~~ Setup defaults for customizer settings
+			// todo: can these be eliminated?
+			/**
+			 * Default body container width
+			 */
+			/*$syntric_container_type = get_theme_mod( 'syntric_container_type' );
+			if( '' == $syntric_container_type ) {
+				set_theme_mod( 'syntric_container_type', 'container-fluid' );
+			}*/
+			/**
+			 * Default page template
+			 */
+			/*$syntric_sidebar_position = get_theme_mod( 'syntric_sidebar_position' );
+			if( '' == $syntric_sidebar_position ) {
+				set_theme_mod( 'syntric_sidebar_position', 'left' );
+			}*/
+			/**
+			 * Default theme css - base css available are blue, green, grey, orange, purple, red & teal
+			 */
+			/*$syntric_theme_css = get_theme_mod( 'syntric_theme_css' );
+			if( '' == $syntric_theme_css ) {
+				set_theme_mod( 'syntric_theme_css', 'blue' );
+			}*/
+		}
 	}

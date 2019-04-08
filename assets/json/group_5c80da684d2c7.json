@@ -1,0 +1,144 @@
+{
+	"key": "group_5c80da684d2c7",
+	"title": "Contact Widget",
+	"fields": [
+		{
+			"key": "field_5c8c99092f8f5",
+			"label": "Contact Widget",
+			"name": "syntric_contact_widget",
+			"type": "group",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"layout": "block",
+			"sub_fields": [
+				{
+					"key": "field_5c80da686a2ae",
+					"label": "Title",
+					"name": "title",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5ca1534b6091a",
+					"label": "Contact Type",
+					"name": "contact_type",
+					"type": "radio",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"person": "Person",
+						"organization": "Organization"
+					},
+					"allow_null": 0,
+					"other_choice": 0,
+					"default_value": "",
+					"layout": "horizontal",
+					"return_format": "value",
+					"save_other_choice": 0
+				},
+				{
+					"key": "field_5c80da686ae5e",
+					"label": "Person",
+					"name": "person",
+					"type": "select",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5ca1534b6091a",
+								"operator": "==",
+								"value": "person"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": [],
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"return_format": "value",
+					"ajax": 0,
+					"placeholder": ""
+				},
+				{
+					"key": "field_5ca1538c6091b",
+					"label": "Organization",
+					"name": "organization",
+					"type": "select",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5ca1534b6091a",
+								"operator": "==",
+								"value": "organization"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": [],
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"return_format": "value",
+					"ajax": 0,
+					"placeholder": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "widget",
+				"operator": "==",
+				"value": "syntric-contact-widget"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "seamless",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1554176299
+}

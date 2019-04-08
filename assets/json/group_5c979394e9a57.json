@@ -1,0 +1,108 @@
+{
+	"key": "group_5c979394e9a57",
+	"title": "Rooms",
+	"fields": [
+		{
+			"key": "field_5c6fa8e318dec",
+			"label": "",
+			"name": "syntric_rooms",
+			"type": "repeater",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "field_5c6fadb3bbd69",
+			"min": 0,
+			"max": 0,
+			"layout": "table",
+			"button_label": "Add Room",
+			"hide_collapse": 1,
+			"collapse_all_repeater": 1,
+			"btn-icon-only": 1,
+			"sub_fields": [
+				{
+					"key": "field_5c6fada5bbd68",
+					"label": "Building",
+					"name": "building",
+					"type": "select",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "45",
+						"class": "",
+						"id": ""
+					},
+					"choices": [],
+					"default_value": [],
+					"allow_null": 0,
+					"multiple": 0,
+					"ui": 0,
+					"return_format": "array",
+					"ajax": 0,
+					"placeholder": ""
+				},
+				{
+					"key": "field_5c6fadb3bbd69",
+					"label": "Room",
+					"name": "room",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "45",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5ca71498bc0ab",
+					"label": "ID",
+					"name": "id",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "10",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "syntric-rooms"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "seamless",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1554486605
+}

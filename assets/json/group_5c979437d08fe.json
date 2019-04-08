@@ -1,0 +1,173 @@
+{
+	"key": "group_5c979437d08fe",
+	"title": "Courses",
+	"fields": [
+		{
+			"key": "field_5c6fa90a18def",
+			"label": "",
+			"name": "syntric_courses",
+			"type": "repeater",
+			"instructions": "Enter school courses. <a href=\"\/wp-admin\/tools.php?page=syntric-data-functions\">Import from a CSV file<\/a>",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "field_5c6fae26bbd6c",
+			"min": 0,
+			"max": 0,
+			"layout": "block",
+			"button_label": "Add Course",
+			"hide_collapse": 0,
+			"collapse_all_repeater": 0,
+			"btn-icon-only": 1,
+			"sub_fields": [
+				{
+					"key": "field_5c6fae26bbd6c",
+					"label": "Course",
+					"name": "course",
+					"type": "text",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "90",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5ca72c4ff7e31",
+					"label": "ID",
+					"name": "id",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "10",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5c6fae31bbd6d",
+					"label": "Department",
+					"name": "department",
+					"type": "select",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"choices": [],
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"return_format": "value",
+					"ajax": 0,
+					"placeholder": ""
+				},
+				{
+					"key": "field_5c8d61c9bf065",
+					"label": " ",
+					"name": "graduation_requirement",
+					"type": "checkbox",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "25",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"1": "Graduation requirement"
+					},
+					"allow_custom": 0,
+					"default_value": [],
+					"layout": "vertical",
+					"toggle": 0,
+					"return_format": "value",
+					"save_custom": 0
+				},
+				{
+					"key": "field_5c8d6201bf066",
+					"label": " ",
+					"name": "college_requirement",
+					"type": "checkbox",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "25",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"1": "College requirement"
+					},
+					"allow_custom": 0,
+					"default_value": [],
+					"layout": "vertical",
+					"toggle": 0,
+					"return_format": "value",
+					"save_custom": 0
+				},
+				{
+					"key": "field_5c8d605eb1677",
+					"label": "Description",
+					"name": "description",
+					"type": "textarea",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"maxlength": "",
+					"rows": "",
+					"new_lines": "wpautop"
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "syntric-courses"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "seamless",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1554485325
+}

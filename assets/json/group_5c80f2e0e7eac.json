@@ -1,0 +1,394 @@
+{
+	"key": "group_5c80f2e0e7eac",
+	"title": "Data Functions",
+	"fields": [
+		{
+			"key": "field_5c80f303c7316",
+			"label": "Data Functions",
+			"name": "syntric_data_functions",
+			"type": "group",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"layout": "block",
+			"sub_fields": [
+				{
+					"key": "field_5c80f2e10e392",
+					"label": "Run Orphan Scan",
+					"name": "run_orphan_scan",
+					"type": "true_false",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "25",
+						"class": "hidden",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_5c80f2e10e7c8",
+					"label": "Delete Orphans",
+					"name": "delete_orphans",
+					"type": "true_false",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5c80f2e10e392",
+								"operator": "==",
+								"value": "1"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "75",
+						"class": "hidden",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_5c80f2e10ebad",
+					"label": "Orphan Scan Console",
+					"name": "orphan_scan_console",
+					"type": "textarea",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "hidden",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"maxlength": "",
+					"rows": 20,
+					"new_lines": ""
+				},
+				{
+					"key": "field_5c80f2e10efaa",
+					"label": "Instructions",
+					"name": "",
+					"type": "message",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"message": "<p>Insert new users and update existing users from a CSV file.<\/p>\r\n<p>File columns<\/p>\r\n<ol>\r\n<li>ID (int, required) Enter 0 (zero) for new user<\/li>\r\n<li>Email (string, required)<\/li>\r\n<li>Role (string, required)<\/li>\r\n<li>Prefix (string, optional) Mr.\/Ms.\/Mrs.\/Dr.\/etc<\/li>\r\n<li>First Name (string, required)<\/li>\r\n<li>Last Name (string, required)<\/li>\r\n<li>Title (string, optional) Separate titles with a forward slash (\/)<\/li>\r\n<li>Phone (string, optional) Area code and phone number, numbers only<\/li>\r\n<li>Extension (string, optional) Numbers only<\/li>\r\n<li>Is Teacher (boolean, optional) If user is a teacher.  Will create a teacher page if true.<\/li>\r\n<\/ol>",
+					"new_lines": "",
+					"esc_html": 0
+				},
+				{
+					"key": "field_5c80f2e10f325",
+					"label": "Run Users Import",
+					"name": "run_users_import",
+					"type": "true_false",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "25",
+						"class": "",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_5c80f2e10f6e9",
+					"label": "Users File",
+					"name": "users_file",
+					"type": "file",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5c80f2e10f325",
+								"operator": "==",
+								"value": "1"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"return_format": "array",
+					"library": "all",
+					"min_size": "",
+					"max_size": "",
+					"mime_types": "csv"
+				},
+				{
+					"key": "field_5c80f2e10fad2",
+					"label": "Has Header Row",
+					"name": "users_file_has_header_row",
+					"type": "true_false",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5c80f2e10f325",
+								"operator": "==",
+								"value": "1"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "25",
+						"class": "",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_5c80f2e10fec9",
+					"label": "Run Users Export",
+					"name": "run_users_export",
+					"type": "true_false",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_5c80f2e1102b4",
+					"label": "Users Import\/Export Console",
+					"name": "users_import_console",
+					"type": "textarea",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"maxlength": "",
+					"rows": 12,
+					"new_lines": ""
+				},
+				{
+					"key": "field_5c80f2e1106b1",
+					"label": "Update Users Phone",
+					"name": "run_users_phone_update",
+					"type": "true_false",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "25",
+						"class": "",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_5c80f2e110a94",
+					"label": "Phone",
+					"name": "users_phone",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5c80f2e1106b1",
+								"operator": "==",
+								"value": "1"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "75",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5c80f2e110e75",
+					"label": "Update Users Password",
+					"name": "run_users_password_update",
+					"type": "true_false",
+					"instructions": "This will update all user passwords to their email address",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_5c80f2e1112c2",
+					"label": "Activate Contact Widgets",
+					"name": "run_activate_contact_widgets",
+					"type": "true_false",
+					"instructions": "This will forcefully activate and set the contact widgets on all teacher and class pages.  The contact will be set to the page author\/owner.",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_5c80f2e1116e4",
+					"label": "Reset User Capabilities",
+					"name": "run_reset_user_capabilities",
+					"type": "true_false",
+					"instructions": "This will reset corrupted wp_capabilities values in wp_usermeta.",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_5c80f2e111ad0",
+					"label": "Reset\/Optimize User Meta",
+					"name": "run_optimize_usermeta",
+					"type": "true_false",
+					"instructions": "Will reset admin UI settings such as hidden metaboxes, closed metaboxes, screen options, etc.  Also purges abandoned ACF user meta records that were left behind when a field name changed.",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"message": "Reset admin UI and purge abandoned ACF user meta",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_5c80f2e111ec5",
+					"label": "Initialize Syntric Theme",
+					"name": "run_theme_init",
+					"type": "true_false",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_5c80f2e1122b1",
+					"label": "Run Calendar Migation",
+					"name": "run_calendar_migration",
+					"type": "true_false",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"message": "Migrate syn_calendar to syntric_calendar. Moves all syn_calendar and syn_event to trash.",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "syntric-data-functions"
+			}
+		]
+	],
+	"menu_order": 10,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1554176748
+}

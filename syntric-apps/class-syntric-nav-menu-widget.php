@@ -40,19 +40,19 @@
 				//$sidebar     = syntric_widget_sidebar( $args[ 'widget_id' ] );
 				$depth = get_field( 'syn_nav_menu_widget_depth', 'widget_' . $args[ 'widget_id' ] );
 				// don't output a nav menu for a top level nav with no children
-				$sidebar_class = syntric_get_sidebar_class( $args[ 'widget_id' ] );
-				$lb            = syntric_linebreak();
-				$tab           = syntric_tab();
+				//$sidebar_class = syntric_get_sidebar_class( $args[ 'widget_id' ] );
+				
+				;
 				echo $lb;
-				echo $args[ 'before_widget' ] . $lb;
-				echo $args[ 'before_title' ] . $ancestor -> post_title . '<span class="sr-only"> section navigiation</span>' . $args[ 'after_title' ] . $lb;
+				echo $args[ 'before_widget' ];
+				echo $args[ 'before_title' ] . $ancestor -> post_title . '<span class="sr-only"> section navigation</span>' . $args[ 'after_title' ];
 				$nav_menu_args          = [
 					'container'   => '',
 					'menu'        => $nav_menu,
-					'menu_id'     => syntric_generate_permanent_id(),
+					'menu_id'     => syntric_unique_id(),
 					//'menu_class' => 'nav',
-					'menu_class'  => 'list-group ' . $sidebar_class,
-					'items_wrap'  => '<div id="%1$s" class="%2$s">%3$s</div>',
+					'menu_class'  => 'list-group',
+					'items_wrap'  => '<ul id="%1$s" class="%2$s">%3$s</ul>',
 					'before_link' => '',
 					'after_link'  => '',
 					'depth'       => $depth,
@@ -60,7 +60,7 @@
 				];
 				$nav_menu_filtered_args = apply_filters( 'widget_nav_menu_args', $nav_menu_args, $nav_menu, $args, $instance );
 				wp_nav_menu( $nav_menu_filtered_args );
-				echo $args[ 'after_widget' ] . $lb;
+				echo $args[ 'after_widget' ];
 			endif;
 		}
 		

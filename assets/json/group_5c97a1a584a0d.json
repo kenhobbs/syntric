@@ -1,0 +1,249 @@
+{
+	"key": "group_5c97a1a584a0d",
+	"title": "Schedules",
+	"fields": [
+		{
+			"key": "field_5c8065cb8cc55",
+			"label": "",
+			"name": "syntric_schedules",
+			"type": "repeater",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "field_5c99ffcfe2419",
+			"min": 0,
+			"max": 0,
+			"layout": "block",
+			"button_label": "Add Schedule",
+			"hide_collapse": 0,
+			"collapse_all_repeater": 0,
+			"btn-icon-only": 1,
+			"sub_fields": [
+				{
+					"key": "field_5c99ffcfe2419",
+					"label": "Name",
+					"name": "name",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "45",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5c8065cb94829",
+					"label": "Schedule Type",
+					"name": "schedule_type",
+					"type": "select",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "45",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"regular": "Regular Schedule",
+						"minimum": "Minimum Day Schedule",
+						"other": "Other"
+					},
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"return_format": "value",
+					"ajax": 0,
+					"placeholder": ""
+				},
+				{
+					"key": "field_5ca73096978ee",
+					"label": "ID",
+					"name": "id",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "10",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5c8065cb94b8d",
+					"label": "",
+					"name": "schedule",
+					"type": "repeater",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5c8065cb94829",
+								"operator": "!=",
+								"value": ""
+							}
+						]
+					],
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"collapsed": "field_5bd853679f92b",
+					"min": 0,
+					"max": 0,
+					"layout": "table",
+					"button_label": "Add Period",
+					"hide_collapse": 1,
+					"collapse_all_repeater": 0,
+					"btn-icon-only": 1,
+					"sub_fields": [
+						{
+							"key": "field_5c8065cba1a9d",
+							"label": "Period",
+							"name": "period",
+							"type": "text",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "20",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": "",
+							"maxlength": ""
+						},
+						{
+							"key": "field_5c97a3382d476",
+							"label": "Days of Week",
+							"name": "dow",
+							"type": "checkbox",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "45",
+								"class": "",
+								"id": ""
+							},
+							"choices": {
+								"Monday": "Mon",
+								"Tuesday": "Tue",
+								"Wednesday": "Wed",
+								"Thursday": "Thu",
+								"Friday": "Fri",
+								"Saturday": "Sat",
+								"Sunday": "Sun"
+							},
+							"allow_custom": 0,
+							"default_value": [
+								"Monday",
+								"Tuesday",
+								"Wednesday",
+								"Thursday",
+								"Friday"
+							],
+							"layout": "horizontal",
+							"toggle": 0,
+							"return_format": "value",
+							"save_custom": 0
+						},
+						{
+							"key": "field_5c8065cba1e5a",
+							"label": "Start Time",
+							"name": "start_time",
+							"type": "time_picker",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "10",
+								"class": "",
+								"id": ""
+							},
+							"display_format": "g:i A",
+							"return_format": "g:i A"
+						},
+						{
+							"key": "field_5c8065cba2055",
+							"label": "End Time",
+							"name": "end_time",
+							"type": "time_picker",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "10",
+								"class": "",
+								"id": ""
+							},
+							"display_format": "g:i A",
+							"return_format": "g:i A"
+						},
+						{
+							"key": "field_5c84dc97c944c",
+							"label": "Instructional Period",
+							"name": "instructional_period",
+							"type": "true_false",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "15",
+								"class": "",
+								"id": ""
+							},
+							"message": "",
+							"default_value": 0,
+							"ui": 1,
+							"ui_on_text": "",
+							"ui_off_text": ""
+						}
+					]
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "syntric-schedules"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "seamless",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1554488117
+}

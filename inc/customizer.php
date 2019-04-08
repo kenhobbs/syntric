@@ -12,6 +12,7 @@
 	 *
 	 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
 	 */
+	add_action( 'customize_register', 'syntric_customize_register' );
 	function syntric_customize_register( $wp_customize ) {
 		$wp_customize -> get_setting( 'blogname' ) -> transport        = 'postMessage';
 		$wp_customize -> get_setting( 'blogdescription' ) -> transport = 'postMessage';
@@ -183,8 +184,9 @@
 	/**
 	 * Binds javascript handlers causing theme customizer preview to refresh when a setting is changed
 	 */
+	add_action( 'customize_preview_init', 'syntric_customize_preview_init' );
 	function syntric_customize_preview_init() {
 		wp_enqueue_script( 'syntric_customizer', get_template_directory_uri() . '/assets/js/customizer.js', [ 'customize-preview' ], date( 'YmdHis' ), true );
 	}
 	
-	add_action( 'customize_preview_init', 'syntric_customize_preview_init' );
+	

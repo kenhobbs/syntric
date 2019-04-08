@@ -1,0 +1,748 @@
+{
+	"key": "group_5c80fb97b1577",
+	"title": "Settings",
+	"fields": [
+		{
+			"key": "field_5c80fb9ff275c",
+			"label": "",
+			"name": "syntric_settings",
+			"type": "group",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"layout": "block",
+			"sub_fields": [
+				{
+					"key": "field_5c810951f7949",
+					"label": "Configuration",
+					"name": "",
+					"type": "tab",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"placement": "top",
+					"endpoint": 0
+				},
+				{
+					"key": "field_5c810968f794a",
+					"label": "Organization Type",
+					"name": "organization_type",
+					"type": "select",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"elementary_school": "Elementary School",
+						"middle_school": "Middle School",
+						"jr_high_school": "Jr High School",
+						"high_school": "High School",
+						"alt_school": "Alternative School",
+						"adult_school": "Adult School",
+						"community_school": "Community School",
+						"district": "School District",
+						"coe": "County Office of Education",
+						"other": "Other Organization"
+					},
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"return_format": "value",
+					"ajax": 0,
+					"placeholder": ""
+				},
+				{
+					"key": "field_5c6faca520cf8",
+					"label": "Term Type",
+					"name": "term_type",
+					"type": "select",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "elementary_school"
+							}
+						],
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "middle_school"
+							}
+						],
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "jr_high_school"
+							}
+						],
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "high_school"
+							}
+						],
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "alt_school"
+							}
+						],
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "adult_school"
+							}
+						],
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "community_school"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "33",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"semester": "Semester",
+						"trimester": "Trimester",
+						"quarter": "Quarter"
+					},
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"return_format": "value",
+					"ajax": 0,
+					"placeholder": ""
+				},
+				{
+					"key": "field_5c6faccb20cf9",
+					"label": "Turnover Month",
+					"name": "school_year_turnover_month",
+					"type": "select",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "elementary_school"
+							}
+						],
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "middle_school"
+							}
+						],
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "jr_high_school"
+							}
+						],
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "high_school"
+							}
+						],
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "alt_school"
+							}
+						],
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "adult_school"
+							}
+						],
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "community_school"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "33",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"January": "January",
+						"February": "February",
+						"March": "March",
+						"April": "April",
+						"May": "May",
+						"June": "June",
+						"July": "July",
+						"August": "August",
+						"September": "September",
+						"October": "October",
+						"November": "November",
+						"December": "December"
+					},
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"return_format": "value",
+					"ajax": 0,
+					"placeholder": ""
+				},
+				{
+					"key": "field_5c6facd720cfa",
+					"label": "Turnover Day",
+					"name": "school_year_turnover_day",
+					"type": "select",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "elementary_school"
+							}
+						],
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "middle_school"
+							}
+						],
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "jr_high_school"
+							}
+						],
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "high_school"
+							}
+						],
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "alt_school"
+							}
+						],
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "adult_school"
+							}
+						],
+						[
+							{
+								"field": "field_5c810968f794a",
+								"operator": "==",
+								"value": "community_school"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "34",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"1": "1",
+						"2": "2",
+						"3": "3",
+						"4": "4",
+						"5": "5",
+						"6": "6",
+						"7": "7",
+						"8": "8",
+						"9": "9",
+						"10": "10",
+						"11": "11",
+						"12": "12",
+						"13": "13",
+						"14": "14",
+						"15": "15",
+						"16": "16",
+						"17": "17",
+						"18": "18",
+						"19": "19",
+						"20": "20",
+						"21": "21",
+						"22": "22",
+						"23": "23",
+						"24": "24",
+						"25": "25",
+						"26": "26",
+						"27": "27",
+						"28": "28",
+						"29": "29",
+						"30": "30",
+						"31": "31"
+					},
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"return_format": "value",
+					"ajax": 0,
+					"placeholder": ""
+				},
+				{
+					"key": "field_5c9ccaffbfe4e",
+					"label": "Integrations",
+					"name": "",
+					"type": "tab",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"placement": "top",
+					"endpoint": 0
+				},
+				{
+					"key": "field_5c8eb02a04b54",
+					"label": "Google",
+					"name": "google",
+					"type": "group",
+					"instructions": "API Keys are available at <a href=\"https:\/\/console.developers.google.com\" target=\"_blank\">Google Developers Console<\/a> and Analytics Tracking ID at <a href=\"https:\/\/analytics.google.com\/analytics\" target=\"_blank\">Google Analytics<\/a>",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"layout": "block",
+					"sub_fields": [
+						{
+							"key": "field_5c80ddf0790e1",
+							"label": "Google API Key",
+							"name": "api_key",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": "",
+							"maxlength": ""
+						},
+						{
+							"key": "field_5c80ddf07989f",
+							"label": "Google Analytics Tracking ID",
+							"name": "analytics_tracking_id",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": "UA-#########-#",
+							"prepend": "",
+							"append": "",
+							"maxlength": ""
+						},
+						{
+							"key": "field_5ca5982183e1c",
+							"label": "Google Classroom Client ID",
+							"name": "google_classroom_client_id",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": "",
+							"maxlength": ""
+						},
+						{
+							"key": "field_5ca5989783e1e",
+							"label": "Google Classroom Client Secret",
+							"name": "google_classroom_client_secret",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": "",
+							"maxlength": ""
+						}
+					]
+				},
+				{
+					"key": "field_5c8eb03804b55",
+					"label": "Facebook",
+					"name": "facebook",
+					"type": "group",
+					"instructions": "App ID and App Secret  are available at <a href=\"https:\/\/developers.facebook.com\" target=\"_blank\">Facebook for Developers<\/a>.",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"layout": "block",
+					"sub_fields": [
+						{
+							"key": "field_5c8eaf3073676",
+							"label": "Facebook App ID",
+							"name": "app_id",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": "",
+							"maxlength": ""
+						},
+						{
+							"key": "field_5c8eaf5873677",
+							"label": "Facebook App Secret",
+							"name": "app_secret",
+							"type": "text",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"default_value": "",
+							"placeholder": "",
+							"prepend": "",
+							"append": "",
+							"maxlength": ""
+						}
+					]
+				},
+				{
+					"key": "field_59bb99fbf6200",
+					"label": "Blocks, Sidebars & Widgets",
+					"name": "",
+					"type": "tab",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"placement": "top",
+					"endpoint": 0
+				},
+				{
+					"key": "field_5c845b7533a28",
+					"label": "WordPress Blocks",
+					"name": "wordpress_blocks",
+					"type": "checkbox",
+					"instructions": "Check to enable block",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "25",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"core\/image": "Image",
+						"core\/gallery": "Gallery",
+						"core\/heading": "Heading",
+						"core\/quote": "Quote",
+						"core\/list": "List",
+						"core\/cover": "Cover",
+						"core\/video": "Video",
+						"core\/audio": "Audio",
+						"core\/paragraph": "Paragraph",
+						"core\/file": "File",
+						"core\/pullquote": "Pullquote",
+						"core\/table": "Table",
+						"core\/preformatted": "Preformatted",
+						"core\/code": "Code",
+						"core\/classic": "Classic",
+						"core\/html": "Custom HTML",
+						"core\/verse": "Verse",
+						"core\/media-text": "Media & Text",
+						"core\/separator": "Separator",
+						"core\/more": "More",
+						"core\/button": "Button",
+						"core\/columns": "Columns",
+						"core\/nextpage": "Next Page",
+						"core\/spacer": "Spacer",
+						"core\/shortcode": "Shortcode",
+						"core\/latest-posts": "Latest Posts",
+						"core\/latest-comments": "Latest Comments",
+						"core\/categories": "Categories",
+						"core\/archives": "Archives",
+						"core\/embed": "Embed",
+						"core-embed\/twitter": "Twitter",
+						"core-embed\/youtube": "YouTube",
+						"core-embed\/facebook": "Facebook",
+						"core-embed\/instagram": "Instagram",
+						"core-embed\/wordpress": "WordPress",
+						"core-embed\/soundcloud": "SoundCloud",
+						"core-embed\/spotify": "Spotify",
+						"core-embed\/flickr": "Flickr",
+						"core-embed\/vimeo": "Vimeo",
+						"core-embed\/animoto": "Animoto",
+						"core-embed\/cloudup": "Cloudup",
+						"core-embed\/collegehumor": "CollegeHumor",
+						"core-embed\/dailymotion": "Dialymotion",
+						"core-embed\/funnyordie": "Funny or Die",
+						"core-embed\/hulu": "Hulu",
+						"core-embed\/imgur": "Imgur",
+						"core-embed\/issuu": "Issuu",
+						"core-embed\/kickstarter": "Kickstarter",
+						"core-embed\/meetup-com": "Meetup.com",
+						"core-embed\/mixcloud": "Mixcloud",
+						"core-embed\/photobucket": "Photobucket",
+						"core-embed\/reddit": "Reddit",
+						"core-embed\/reverbnation": "ReverbNation",
+						"core-embed\/screencast": "Screencast",
+						"core-embed\/scribd": "Scribd",
+						"core-embed\/slideshare": "Slideshare",
+						"core-embed\/smugmug": "SmugMug",
+						"core-embed\/speaker-deck": "Speaker Deck",
+						"core-embed\/ted": "Ted",
+						"core-embed\/tumblr": "Tumblr",
+						"core-embed\/videopress": "VideoPress",
+						"core-embed\/wordpress-tv": "Wordpress.tv"
+					},
+					"allow_custom": 0,
+					"default_value": [],
+					"layout": "vertical",
+					"toggle": 0,
+					"return_format": "value",
+					"save_custom": 0
+				},
+				{
+					"key": "field_5c84563f94ead",
+					"label": "Syntric Blocks",
+					"name": "blocks",
+					"type": "checkbox",
+					"instructions": "Check to enable block",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "25",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"syntric\/upcoming-events": "Upcoming Events",
+						"syntric\/recent-posts": "Recent Posts",
+						"syntric\/recent-pages": "Recent Pages",
+						"syntric\/nav-menu": "Nav Menu",
+						"syntric\/teacher-classes": "Teacher Classes",
+						"syntric\/department-classes": "Department Classes",
+						"syntric\/all-classes": "All Classes",
+						"syntric\/roster": "Staff Roster",
+						"syntric\/contact": "Contact",
+						"syntric\/youtube-playlist": "YouTube Playlist",
+						"syntric\/youtube-video": "YouTube Video",
+						"syntric\/google-classroom-stream": "Google Classroom Stream",
+						"syntric\/google-classroom-classwork": "Google Classroom Classwork",
+						"syntric\/google-classroom-calendar": "Google Classroom Calendar",
+						"syntric\/google-classroom-student-roster": "Google Classroom Student Roster",
+						"syntric\/google-classroom-teacher-roster": "Google Classroom Teacher Roster",
+						"syntric\/google-classroom-drive-folder": "Google Classroom Drive Folder",
+						"syntric\/google-form": "Google Form",
+						"syntric\/google-doc": "Google Doc",
+						"syntric\/google-sheet": "Google Sheet",
+						"syntric\/google-slide": "Google Slides",
+						"syntric\/google-calendar": "Google Calendar",
+						"syntric\/google-map": "Google Map",
+						"syntric\/teacher-roster": "Teacher Roster",
+						"syntric\/table": "Table (accessible)"
+					},
+					"allow_custom": 0,
+					"default_value": [],
+					"layout": "vertical",
+					"toggle": 0,
+					"return_format": "value",
+					"save_custom": 0
+				},
+				{
+					"key": "field_5c8eb32e50835",
+					"label": "Sidebars",
+					"name": "sidebars",
+					"type": "checkbox",
+					"instructions": "Check to enable sidebar",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "25",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"super-header-sidebar": "Super Header (header.super-header-sidebar)",
+						"header-sidebar-1": "Header 1 (section.header-sidebar.header-sidebar-1)",
+						"header-sidebar-2": "Header 2  (section.header-sidebar.header-sidebar-2)",
+						"header-sidebar-3": "Header 3  (section.header-sidebar.header-sidebar-3)",
+						"main-left-sidebar": "Main Left (aside.main-left-sidebar)",
+						"main-top-sidebar": "Main Top (section.main-top-sidebar)",
+						"main-bottom-sidebar": "Main Bottom (section.main-bottom-sidebar)",
+						"main-right-sidebar": "Main Right (aside.main-right-sidebar)",
+						"footer-sidebar-1": "Footer 1 (section.footer-sidebar.footer-sidebar-1)",
+						"footer-sidebar-2": "Footer 2 (section.footer-sidebar.footer-sidebar-2)",
+						"footer-sidebar-3": "Footer 3 (section.footer-sidebar.footer-sidebar-3)",
+						"sub-footer-sidebar": "Sub-Footer  (footer.sub-footer-sidebar)"
+					},
+					"allow_custom": 0,
+					"default_value": [],
+					"layout": "vertical",
+					"toggle": 0,
+					"return_format": "array",
+					"save_custom": 0
+				},
+				{
+					"key": "field_59a0cae0eccce",
+					"label": "Widgets",
+					"name": "widgets",
+					"type": "checkbox",
+					"instructions": "Check to enable widget",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "25",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"Syntric_Calendars_Menu_Widget": "Calendars Menu",
+						"Syntric_Contact_Widget": "Contact",
+						"Syntric_Facebook_Page_Widget": "Facebook Page",
+						"Syntric_Google_Map_Widget": "Google Map",
+						"Syntric_Roster_Widget": "Roster",
+						"Syntric_Upcoming_Events_Widget": "Upcoming Events",
+						"Syntric_Recent_Posts_Widget": "Recent Posts"
+					},
+					"allow_custom": 0,
+					"default_value": [],
+					"layout": "vertical",
+					"toggle": 0,
+					"return_format": "value",
+					"save_custom": 0
+				},
+				{
+					"key": "field_5ca5988083e1d",
+					"label": "",
+					"name": "",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "syntric-settings"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1554384641
+}

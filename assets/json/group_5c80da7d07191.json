@@ -1,0 +1,93 @@
+{
+	"key": "group_5c80da7d07191",
+	"title": "Google Map Widget",
+	"fields": [
+		{
+			"key": "field_5c8cada54700c",
+			"label": "Google Map Widget",
+			"name": "syntric_google_map_widget",
+			"type": "group",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"layout": "block",
+			"sub_fields": [
+				{
+					"key": "field_5c80da7d203ad",
+					"label": "Title",
+					"name": "title",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "Map",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5c8cad8e4700b",
+					"label": "Map",
+					"name": "map",
+					"type": "google_map",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"center_lat": "",
+					"center_lng": "",
+					"zoom": "",
+					"height": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "widget",
+				"operator": "==",
+				"value": "syntric-google-map-widget"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": [
+		"permalink",
+		"the_content",
+		"excerpt",
+		"discussion",
+		"comments",
+		"revisions",
+		"slug",
+		"author",
+		"format",
+		"page_attributes",
+		"featured_image",
+		"categories",
+		"tags",
+		"send-trackbacks"
+	],
+	"active": 1,
+	"description": "",
+	"modified": 1553844267
+}

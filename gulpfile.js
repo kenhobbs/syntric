@@ -202,12 +202,16 @@ var admin = [
 ];*/
 
 var domains = dirs.src_sass + '*.+(org|com).scss';
+var dev = dirs.src_sass + '*.+(localhost).scss';
 var colors = dirs.src_sass + 'color.*.scss';
 var base = dirs.src_sass + '_*.scss';
 var admin = dirs.src_sass + '*-admin.scss';
+var css = dirs.dest_css + '*.min.css';
 
 var js = dirs.src_js + 'syntric.js';
-var js_admin = dirs.src_sass + 'syntric-admin.js';
+var js_admin = dirs.src_js + 'syntric-admin.js';
+var js_customizer = dirs.src_js + 'customizer.js';
+var js_google_maps = dirs.src_js + 'google-maps.js';
 
 /**
  * Watchers
@@ -224,17 +228,26 @@ gulp.task('watch', function () {
 	// base change, run all
 	gulp.watch(domains, ['compileDomain']);
 	// domain or color change, run only it
+	gulp.watch(dev, ['compileDev']);
+	// domain or color change, run only it
 	gulp.watch(colors, ['compileColor']);
 	// admin change, run only it
 	gulp.watch(admin, ['compileAdmin']);
 	// base change, run domains and colors
 	gulp.watch(base, ['compileAll']);
+	// rename *.min.css in dest for staging server (schooltechpro.com)
+	gulp.watch(css, ['compileCSS']);
 
 	// Javascript watchers
 	// change to front-end js - currently syntric.js
 	gulp.watch(js, ['compileFrontendJS']);
 	// change to admin js - currently syntric-admin.js
 	gulp.watch(js_admin, ['compileAdminJS']);
+	// customizer.js change
+	gulp.watch(js_customizer, ['compileCustomizer']);
+	// google-maps.js change
+	gulp.watch(js_google_maps, ['compileGoogleMaps']);
+
 
 	// Javascript watchers
 	//gulp.watch([dirs.src_js + 'syntric.js'], {ignoreInitial: false}, ['compileJS']);
@@ -243,6 +256,22 @@ gulp.task('watch', function () {
 	// Image watchers
 	//gulp.watch(dirs.src_img + '*.*', watcherArgs, ['compressImages']);
 	//gulp.watch(dirs.src_img + '*.*', watcherArgs, ['compressAdminImages']);
+});
+
+// Dev file watcher
+gulp.task('watchDev', function () {
+	// SASS watchers
+	gulp.watch(dev, ['compileDev']);
+	gulp.watch(admin, ['compileAdmin']);
+	gulp.watch(base, ['compileDev']);
+	gulp.watch(css, ['compileCSS']);
+	// Javascript watchers
+	// change to front-end js - currently syntric.js
+	gulp.watch(js, ['compileFrontendJS']);
+	// change to admin js - currently syntric-admin.js
+	gulp.watch(js_admin, ['compileAdminJS']);
+	gulp.watch(js_customizer, ['compileCustomizer']);
+	gulp.watch(js_google_maps, ['compileGoogleMaps']);
 });
 
 /*
@@ -262,15 +291,60 @@ gulp.task('compileDomain', function () {
 		.pipe(gulp.dest(dirs.dest_css))
 		.pipe(plumber())
 		.pipe(rename(function (path) {
-			console.log(path);
+			console.log(path.basename);
 			path.basename = domains[path.basename];
 		}))
 		.pipe(gulp.dest(dirs.dest_css))
 		.pipe(plumber())
 		.pipe(rename({prefix: ''}))
 		.pipe(gulp.dest(dirs.dest_css));
-	}
-);
+});
+gulp.task('compileDev', function () {
+	console.log('compileDev running');
+	return gulp.src(dev)
+	//.pipe(changed(dirs.dest_css))
+	.pipe(compileSASS())
+	.pipe(gulp.dest(dirs.dest_css))
+	.pipe(plumber())
+	.pipe(sourcemaps.init({loadMaps: true}))
+	.pipe(rename({suffix: '.min'}))
+	.pipe(minifyCSS({discardComments: {removeAll: true}}))
+	.pipe(sourcemaps.write('./'))
+	.pipe(gulp.dest(dirs.dest_css))
+	.pipe(plumber())
+	.pipe(rename(function (path) {
+		console.log(path.basename);
+		path.basename = domains[path.basename];
+	}))
+	.pipe(gulp.dest(dirs.dest_css))
+	.pipe(plumber())
+	.pipe(rename({prefix: ''}))
+	.pipe(gulp.dest(dirs.dest_css));
+});
+gulp.task('compileCSS', function () {
+	console.log('compileCSS running');
+	return gulp.src(css)
+	//.pipe(changed(dirs.dest_css))
+	//.pipe(compileSASS())
+	//.pipe(gulp.dest(dirs.dest_css))
+	//.pipe(plumber())
+	//.pipe(sourcemaps.init({loadMaps: true}))
+	//.pipe(rename({suffix: '.min'}))
+	//.pipe(minifyCSS({discardComments: {removeAll: true}}))
+	//.pipe(sourcemaps.write('./'))
+	//.pipe(gulp.dest(dirs.dest_css))
+	//.pipe(plumber())
+	.pipe(rename(function (path) {
+		//console.log(path.basename);
+		//path.basename = domains[path.basename];
+		var pathArr = path.basename.split('.');
+		path.basename = pathArr[0] + '.schooltechpro.com.min';
+	}))
+	.pipe(gulp.dest(dirs.dest_css));
+	//.pipe(plumber())
+	//.pipe(rename({prefix: ''}))
+	//.pipe(gulp.dest(dirs.dest_css));
+});
 gulp.task('compileColor', function () {
 		console.log('compileColor running');
 		return gulp.src(colors)
@@ -285,15 +359,14 @@ gulp.task('compileColor', function () {
 		.pipe(gulp.dest(dirs.dest_css))
 		.pipe(plumber())
 		.pipe(rename(function (path) {
-			console.log(path);
+			console.log(path.basename);
 			path.basename = domains[path.basename];
 		}))
 		.pipe(gulp.dest(dirs.dest_css))
 		.pipe(plumber())
 		.pipe(rename({prefix: ''}))
 		.pipe(gulp.dest(dirs.dest_css));
-	}
-);
+});
 gulp.task('compileAdmin', function () {
 		console.log('compileAdmin running');
 		return gulp.src(admin)
@@ -308,18 +381,17 @@ gulp.task('compileAdmin', function () {
 		.pipe(gulp.dest(dirs.dest_css))
 		.pipe(plumber())
 		.pipe(rename(function (path) {
-			console.log(path);
+			console.log(path.basename);
 			path.basename = domains[path.basename];
 		}))
 		.pipe(gulp.dest(dirs.dest_css))
 		.pipe(plumber())
 		.pipe(rename({prefix: ''}))
 		.pipe(gulp.dest(dirs.dest_css));
-	}
-);
+});
 gulp.task('compileAll', function () {
 		console.log('compileAll running');
-		return gulp.src([domains, colors])
+	return gulp.src([domains, colors, dev])
 		//.pipe(changed(dirs.dest_css))
 		.pipe(compileSASS())
 		.pipe(gulp.dest(dirs.dest_css))
@@ -331,15 +403,14 @@ gulp.task('compileAll', function () {
 		.pipe(gulp.dest(dirs.dest_css))
 		.pipe(plumber())
 		.pipe(rename(function (path) {
-			console.log(path);
+			console.log(path.basename);
 			path.basename = domains[path.basename];
 		}))
 		.pipe(gulp.dest(dirs.dest_css))
 		.pipe(plumber())
 		.pipe(rename({prefix: ''}))
 		.pipe(gulp.dest(dirs.dest_css));
-	}
-);
+});
 /*gulp.task('compileDomain', function () {
 	//var dependents = domains.concat(colors);
 	return gulp.src(domains)
@@ -410,9 +481,8 @@ gulp.task('compileSASS', function () {
 	.pipe(gulp.dest(dirs.dest_css))
 	.pipe(plumber())
 	.pipe(rename(function (path) {
-		//console.log(path);
-		path.basename = domainMappings[path.basename];
 		console.log(path.basename);
+		path.basename = domainMappings[path.basename];
 	}))
 	.pipe(gulp.dest(dirs.dest_css))
 	.pipe(plumber())
@@ -439,7 +509,7 @@ gulp.task('compileFrontendJS', function () {
 });
 
 gulp.task('compileAdminJS', function () {
-	return gulp.src(dirs.src_js + '*-admin.js')
+	return gulp.src(js_admin)
 	.pipe(cached('jsAdminFiles'))
 	.pipe(plumber())
 	.pipe(concat(theme + '-admin.js'))
@@ -449,13 +519,23 @@ gulp.task('compileAdminJS', function () {
 	.pipe(uglify())
 	.pipe(gulp.dest(dirs.dest_js));
 });
-gulp.task('compileCustomizerJS', function () {
-	return gulp.src(dirs.src_js + 'customizer.js')
+gulp.task('compileCustomizer', function () {
+	return gulp.src(js_customizer)
 	.pipe(cached('jsCustomizerFiles'))
 	.pipe(plumber())
 	.pipe(gulp.dest(dirs.dest_js))
 	.pipe(plumber())
-	.pipe(rename('customizer.min'))
+	.pipe(rename('customizer.min.js'))
+	.pipe(uglify())
+	.pipe(gulp.dest(dirs.dest_js));
+});
+gulp.task('compileGoogleMaps', function () {
+	return gulp.src(js_google_maps)
+	.pipe(cached('jsGoogleMapsFiles'))
+	.pipe(plumber())
+	.pipe(gulp.dest(dirs.dest_js))
+	.pipe(plumber())
+	.pipe(rename('google-maps.min.js'))
 	.pipe(uglify())
 	.pipe(gulp.dest(dirs.dest_js));
 });

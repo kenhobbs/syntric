@@ -6,6 +6,37 @@
 		return $theme -> get( 'Name' );
 	}
 	
+	function syntric_set_home_and_post_pages() {
+		$show_on_front = get_option( 'show_on_front' );
+		if( 'page' != $show_on_front ) {
+			$temp_home_page  = syntric_create_temp_home_page();
+			$temp_posts_page = syntric_create_temp_posts_page();
+			if( $temp_home_page instanceof WP_Post && $temp_posts_page instanceof WP_Post ) {
+				update_option( 'show_on_front', 'page' );
+				update_option( 'page_on_front', $temp_home_page -> ID );
+				update_option( 'page_for_posts', $temp_posts_page -> ID );
+			}
+		}
+		
+		return true;
+	}
+	
+	function syntric_create_temp_home_page() {
+		$temp_home_props = [ 'post_title'   => 'Temp Home',
+		                     'post_content' => '',
+		                     'post_type'    => 'page',
+		                     'post_name'    => 'temp-home',
+		                     'post_status'  => 'publish',
+		                     'post_author'  => get_current_user_id(),
+		                     'post_parent'  => 0,
+		                     'menu_order'   => 0, ];
+		$temp_home_id    = wp_insert_post( $temp_home_props );
+		$temp_home_page  = get_post( $temp_home_id, OBJECT );
+		update_post_meta( $temp_home_id, '_np_nav_status', 'hide' );
+		
+		return $temp_home_page;
+	}
+	
 	function syntric_get_home_page() {
 		$home_page = get_page_by_path( 'home' );
 		if( ! $home_page instanceof WP_Post ) {
@@ -23,6 +54,22 @@
 		}
 		
 		return $home_page;
+	}
+	
+	function syntric_create_temp_posts_page() {
+		$temp_posts_props = [ 'post_title'   => 'Temp Posts',
+		                      'post_content' => '',
+		                      'post_type'    => 'page',
+		                      'post_name'    => 'temp-posts',
+		                      'post_status'  => 'publish',
+		                      'post_author'  => get_current_user_id(),
+		                      'post_parent'  => 0,
+		                      'menu_order'   => 0, ];
+		$temp_posts_id    = wp_insert_post( $temp_posts_props );
+		$temp_posts_page  = get_post( $temp_posts_id, OBJECT );
+		update_post_meta( $temp_posts_id, '_np_nav_status', 'hide' );
+		
+		return $temp_posts_page;
 	}
 	
 	function syntric_get_posts_page() {
@@ -80,9 +127,9 @@
 	
 	// todo: improve the next 3 (syntric_is_dev, syntric_is_staging, syntric_remove_whitespace), they get run every request
 	function syntric_is_dev() {
-		$host_parts     = explode( '.', $_SERVER[ 'HTTP_HOST' ] );
-		$last_host_part = $host_parts[ count( $host_parts ) - 1 ];
-		if( 'localhost' == $last_host_part || $_SERVER[ 'SERVER_ADDR' ] == '127.0.0.1' || '::1' == $_SERVER[ 'SERVER_ADDR' ] ) {
+		$host_parts = explode( '.', $_SERVER[ 'HTTP_HOST' ] );
+		$last_part  = $host_parts[ count( $host_parts ) - 1 ];
+		if( 'localhost' == $last_part || $_SERVER[ 'SERVER_ADDR' ] == '127.0.0.1' || '::1' == $_SERVER[ 'SERVER_ADDR' ] ) {
 			return true;
 		}
 		
@@ -90,16 +137,10 @@
 	}
 	
 	function syntric_is_staging() {
-		$host_parts             = explode( '.', $_SERVER[ 'HTTP_HOST' ] );
-		$next_to_last_host_part = $host_parts[ count( $host_parts ) - 2 ];
-		$last_host_part         = $host_parts[ count( $host_parts ) - 1 ];
-		if( 'www.syntric.com' == $_SERVER[ 'HTTP_HOST' ] || 'syntric.com' == $_SERVER[ 'HTTP_HOST' ] ) {
-			return false;
-		}
-		if( 'localhost' == $last_host_part ) {
-			return false;
-		}
-		if( 3 == count( $host_parts ) && 'syntric' == $next_to_last_host_part && 'com' == $last_host_part ) {
+		$host_parts        = explode( '.', $_SERVER[ 'HTTP_HOST' ] );
+		$next_to_last_part = $host_parts[ count( $host_parts ) - 2 ];
+		$last_part         = $host_parts[ count( $host_parts ) - 1 ];
+		if( 3 == count( $host_parts ) && ( ( 'syntric' == $next_to_last_part && 'com' == $last_part ) || 'syntric' == $next_to_last_part && 'school' == $last_part ) ) {
 			return true;
 		}
 		
@@ -107,7 +148,10 @@
 	}
 	
 	function syntric_remove_whitespace() {
+		// Temporary
 		if( ! syntric_is_dev() || is_admin() ) {
+			return true;
+		} else {
 			return true;
 		}
 		
@@ -125,13 +169,11 @@
 		return $post_id;
 	}
 	
-	function syntric_generate_permanent_id() {
-		$random1 = mt_rand( 1, mt_getrandmax() );
-		$random2 = mt_rand( 1000, mt_getrandmax() );
-		$random3 = mt_rand( 1000000, mt_getrandmax() );
-		$value   = 'id-' . $random1 . '-' . $random2 . '-' . $random3;
+	function syntric_unique_id() {
+		// generates similar to this fEmG5ca72ad3f13678.91924460
+		$rp = wp_generate_password( 4, true, true );
 		
-		return $value;
+		return uniqid( $rp, true );
 	}
 	
 	function syntric_generate_random_number( $min = 1, $max = 10000 ) {
@@ -140,8 +182,8 @@
 		return $random;
 	}
 	
-	function syntric_generate_password() {
-		return wp_generate_password( 12, true );
+	function syntric_generate_password( $length = 8 ) {
+		return wp_generate_password( $length, true, true );
 	}
 	
 	function syntric_sanitize_string_to_class( $string ) {
@@ -175,24 +217,17 @@
 		return $ret;
 	}
 	
-	add_filter( 'get_the_archive_title', 'syntric_get_archive_title' );
-	function syntric_get_archive_title( $title ) {
-		if( is_archive() ) {
-			//$title = post_type_archive_title();
-			$title = single_cat_title( '', false );
-		} elseif( is_category() ) {
-			$title = single_cat_title( '', false );
-		} elseif( is_tag() ) {
-			$title = single_tag_title( '', false );
-		} elseif( is_author() ) {
-			$title = '<span class="vcard">' . get_the_author() . '</span>';
-		} elseif( is_post_type_archive() ) {
-			$title = post_type_archive_title( '', false );
-		} elseif( is_tax() ) {
-			$title = single_term_title( '', false );
+	function syntric_resolve_post_id( $post_id ) {
+		global $post;
+		if( null == $post_id ) {
+			return $post -> ID;
+		} elseif( $post_id instanceof WP_Post ) {
+			return $post_id -> ID;
+		} elseif( is_numeric( $post_id ) ) {
+			return (int) $post_id;
 		}
 		
-		return $title;
+		return 0;
 	}
 	
 	function slog( $log, $js = 0 ) {
@@ -219,4 +254,8 @@
 	function syntric_protected_title_format( $prepend, $post ) {
 		//return '%s <i class="fa fa-lock" aria-hidden="true"></i><span class="sr-only">(Protected)</span>';
 		return '%s';
+	}
+	
+	function syntric_posts_distinct() {
+		return 'DISTINCT';
 	}

@@ -18,6 +18,28 @@
 			"layout": "block",
 			"sub_fields": [
 				{
+					"key": "field_5c7784d37dc09",
+					"label": "Calendar",
+					"name": "calendar_id",
+					"type": "post_object",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"post_type": [
+						"syntric_calendar"
+					],
+					"taxonomy": "",
+					"allow_null": 0,
+					"multiple": 0,
+					"return_format": "id",
+					"ui": 1
+				},
+				{
 					"key": "field_5c7784d37c702",
 					"label": "Start Date",
 					"name": "start_date",
@@ -26,7 +48,7 @@
 					"required": 1,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "50",
+						"width": "25",
 						"class": "",
 						"id": ""
 					},
@@ -43,7 +65,7 @@
 					"required": 0,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "50",
+						"width": "25",
 						"class": "",
 						"id": ""
 					},
@@ -59,7 +81,7 @@
 					"required": 1,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "50",
+						"width": "25",
 						"class": "",
 						"id": ""
 					},
@@ -76,7 +98,7 @@
 					"required": 0,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "50",
+						"width": "25",
 						"class": "",
 						"id": ""
 					},
@@ -112,7 +134,7 @@
 					"conditional_logic": 0,
 					"wrapper": {
 						"width": "",
-						"class": "",
+						"class": "hidden",
 						"id": ""
 					},
 					"default_value": "",
@@ -131,7 +153,7 @@
 					"conditional_logic": 0,
 					"wrapper": {
 						"width": "",
-						"class": "",
+						"class": "hidden",
 						"id": ""
 					},
 					"default_value": "",
@@ -139,28 +161,6 @@
 					"prepend": "",
 					"append": "",
 					"maxlength": ""
-				},
-				{
-					"key": "field_5c7784d37dc09",
-					"label": "Calendar ID",
-					"name": "google_calendar_id",
-					"type": "post_object",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "50",
-						"class": "",
-						"id": ""
-					},
-					"post_type": [
-						"syn_calendar"
-					],
-					"taxonomy": "",
-					"allow_null": 0,
-					"multiple": 0,
-					"return_format": "id",
-					"ui": 1
 				},
 				{
 					"key": "field_5c7784d37e3cb",
@@ -172,7 +172,7 @@
 					"conditional_logic": 0,
 					"wrapper": {
 						"width": "",
-						"class": "",
+						"class": "hidden",
 						"id": ""
 					},
 					"default_value": "",
@@ -201,5 +201,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1551365960
+	"modified": 1554075891
 }

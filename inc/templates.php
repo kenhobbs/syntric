@@ -1,96 +1,126 @@
 <?php
 	
-	function syntric_header() {
-		$lb  = syntric_linebreak();
-		$tab = syntric_tab();
-		// todo: need a page/post/calendar/etc-specific cap check based on role and author
-		/*if ( is_user_logged_in() && syntric_current_user_can_edit() ) {
-			syntric_editor();
-		}*/
-		echo '<div id="fb-root"></div>';
-		echo '<div class="print-header print-header-name d-print-block" aria-hidden="true">' . get_bloginfo( 'name', 'display' ) . '</div>' . $lb;
-		echo '<a class="sr-only sr-only-focusable skip-to-content-link" href="#content">' . esc_html( 'Skip to content', 'syntric' ) . '</a>' . $lb;
-		/*if ( 'school_district' == syntric_get_organization_type() && ( 'www.amadorcoe.org' == $_SERVER[ 'HTTP_HOST' ] || 'amadorcoe.org' == $_SERVER[ 'HTTP_HOST' ] || 'www.acusd.org' == $_SERVER[ 'HTTP_HOST' ] || 'acusd.org' == $_SERVER[ 'HTTP_HOST' ] ) ) {
-			echo '<header class="head">' . $lb;
-			echo $tab . '<div class="container-fluid">' . $lb;
-			echo $tab . $tab . '<div class="row">' . $lb;
-			echo $tab . $tab . $tab . '<div class="col">' . $lb;
-			echo $tab . $tab . $tab . $tab . '<nav class="portal-links" aria-label="Portal links">' . $lb;
-			echo $tab . $tab . $tab . $tab . $tab . '<a href="https://amadorcusd.asp.aeries.net/teacher/Login.aspx?page=default.aspx" class="teacher-portal" target="_blank">Teacher Portal <span class="fa fa-sign-in"></span></a>' . $lb;
-			echo $tab . $tab . $tab . $tab . $tab . '<a href="https://amadorcusd.asp.aeries.net/student/LoginParent.aspx?page=default.aspx" class="parent-portal" target="_blank">Parent Portal <span class="fa fa-sign-in"></span></a>' . $lb;
-			echo $tab . $tab . $tab . $tab . '</nav>' . $lb;
-			echo $tab . $tab . $tab . '</div>' . $lb;
-			echo $tab . $tab . '</div>' . $lb;
-			echo $tab . '</div>' . $lb;
-			echo '</header>' . $lb;
-		}*/
-		syntric_primary_nav();
-		get_search_form();
-		syntric_banner();
-		syntric_breadcrumbs();
-		//syntric_sidebar( 'header' );
-	}
+	/**
+	 * Moved syntric_header() into header.php
+	 * function syntric_header() {
+	 *
+	 * ;
+	 * // todo: need a page/post/calendar/etc-specific cap check based on role and author
+	 * //if ( is_user_logged_in() && syntric_current_user_can_edit() ) {
+	 * //syntric_editor();
+	 * //}
+	 * echo '<div id="fb-root"></div>';
+	 * echo '<div class="print-header print-header-name d-print-block" aria-hidden="true">' . get_bloginfo( 'name', 'display' ) . '</div>';
+	 * echo '<a class="sr-only sr-only-focusable skip-to-content-link" href="#content">' . esc_html( 'Skip to content', 'syntric' ) . '</a>';
+	 * if ( 'school_district' == syntric_get_organization_type() && ( 'www.amadorcoe.org' == $_SERVER[ 'HTTP_HOST' ] || 'amadorcoe.org' == $_SERVER[ 'HTTP_HOST' ] || 'www.acusd.org' == $_SERVER[ 'HTTP_HOST' ] || 'acusd.org' == $_SERVER[ 'HTTP_HOST' ] ) ) {
+	 * echo '<header class="head">';
+	 * echo  '<div class="container-fluid">';
+	 * echo   '<div class="row">';
+	 * echo    '<div class="col">';
+	 * echo     '<nav class="portal-links" aria-label="Portal links">';
+	 * echo      '<a href="https://amadorcusd.asp.aeries.net/teacher/Login.aspx?page=default.aspx" class="teacher-portal" target="_blank">Teacher Portal <span class="fa fa-sign-in"></span></a>';
+	 * echo      '<a href="https://amadorcusd.asp.aeries.net/student/LoginParent.aspx?page=default.aspx" class="parent-portal" target="_blank">Parent Portal <span class="fa fa-sign-in"></span></a>';
+	 * echo     '</nav>';
+	 * echo    '</div>';
+	 * echo   '</div>';
+	 * echo  '</div>';
+	 * echo '</header>';
+	 * }
+	 * syntric_primary_nav();
+	 * get_search_form();
+	 * syntric_banner();
+	 * syntric_breadcrumbs();
+	 * }
+	 */
 	
-	function syntric_banner() {
-		global $post;
-		// todo: come back and fix this...kinda clunky
-		if( has_header_image() ) {
-			$header_image           = get_header_image();
-			$banner_style_attribute = ' style="background-image: url(' . $header_image . ');" ';
-		} else {
-			$banner_style_attribute = ' style="min-height: 0;" ';
-		}
-		$jumbotrons = get_field( 'syn_jumbotrons', 'option' );
-		if( has_header_image() || $jumbotrons ) {
-			$lb  = syntric_linebreak();
-			$tab = syntric_tab();
-			echo '<div class="banner-wrapper" aria-hidden="true"' . $banner_style_attribute . 'role="banner">' . $lb;
-			if( 'syntric' == strtolower( syntric_current_theme() ) ) {
-				echo syntric_jumbotron();
-			}
-			echo '</div>' . $lb;
-		}
-	}
+	/**
+	 * Moved syntric_banner() into header.php
+	 * function syntric_banner() {
+	 * global $post;
+	 * // todo: come back and fix this...kinda clunky
+	 * if( has_header_image() ) {
+	 * $header_image           = get_header_image();
+	 * $banner_style_attribute = ' style="background-image: url(' . $header_image . ');" ';
+	 * } else {
+	 * $banner_style_attribute = ' style="min-height: 0;" ';
+	 * }
+	 * $jumbotrons = get_field( 'syn_jumbotrons', 'option' );
+	 * if( has_header_image() || $jumbotrons ) {
+	 *
+	 * ;
+	 * echo '<div class="banner-wrapper" aria-hidden="true"' . $banner_style_attribute . 'role="banner">';
+	 * if( 'syntric' == strtolower( syntric_current_theme() ) ) {
+	 * echo syntric_jumbotron();
+	 * }
+	 * echo '</div>';
+	 * }
+	 * }*/
 	
-	function syntric_jumbotron() {
-		global $post;
-		if( ! $post ) {
-			return;
-		}
-		$jumbotrons = get_field( 'syn_jumbotrons', 'option' );
-		if( $jumbotrons ) {
-			$jumbotron = false;
-			foreach( $jumbotrons as $_jumbotron ) {
-				$filters        = $_jumbotron[ 'filters' ];
-				$start_datetime = $_jumbotron[ 'start_datetime' ];
-				$end_datetime   = $_jumbotron[ 'end_datetime' ];
-				$pass_filters   = ( 0 < count( $filters ) ) ? syntric_process_filters( $filters, $post ) : true;
-				$pass_schedule  = ( $start_datetime || $end_datetime ) ? syntric_process_schedule( $start_datetime, $end_datetime ) : true;
-				if( $pass_filters && $pass_schedule ) {
-					$jumbotron = $_jumbotron;
-					break;
-				}
-			}
-			if( $jumbotron ) {
-				$lb  = syntric_linebreak();
-				$tab = syntric_tab();
-				echo '<div class="jumbotron-wrapper">' . $lb;
-				echo $tab . '<h1 class="jumbotron-headline">' . $jumbotron[ 'headline' ] . '</h1>' . $lb;
-				echo $tab . '<div class="jumbotron-caption">' . $jumbotron[ 'caption' ] . '</div>' . $lb;
-				if( $jumbotron[ 'include_button' ] ) {
-					$button_href   = ( 'page' == $jumbotron[ 'button_target' ] ) ? $jumbotron[ 'button_page' ] : $jumbotron[ 'button_url' ];
-					$window_target = ( 'page' == $jumbotron[ 'button_target' ] ) ? '_self' : '_blank';
-					echo $tab . '<a href="' . $button_href . '" class="btn btn-lg btn-primary jumbotron-button" target="' . $window_target . '">' . $jumbotron[ 'button_text' ] . '</a>' . $lb;
-				}
-				echo '</div>' . $lb;
-			}
-		}
-	}
+	/**
+	 * Moved syntric_jumbotron() into header.php
+	 * function syntric_jumbotron() {
+	 * global $post;
+	 * if( ! $post ) {
+	 * return;
+	 * }
+	 * $jumbotrons = get_field( 'syn_jumbotrons', 'option' );
+	 * if( $jumbotrons ) {
+	 * $jumbotron = false;
+	 * foreach( $jumbotrons as $_jumbotron ) {
+	 * $filters        = $_jumbotron[ 'filters' ];
+	 * $start_datetime = $_jumbotron[ 'start_datetime' ];
+	 * $end_datetime   = $_jumbotron[ 'end_datetime' ];
+	 * $pass_filters   = ( 0 < count( $filters ) ) ? syntric_process_filters( $filters, $post ) : true;
+	 * $pass_schedule  = ( $start_datetime || $end_datetime ) ? syntric_process_schedule( $start_datetime, $end_datetime ) : true;
+	 * if( $pass_filters && $pass_schedule ) {
+	 * $jumbotron = $_jumbotron;
+	 * break;
+	 * }
+	 * }
+	 * if( $jumbotron ) {
+	 *
+	 * ;
+	 * echo '<div class="jumbotron-wrapper">';
+	 * echo  '<h1 class="jumbotron-headline">' . $jumbotron[ 'headline' ] . '</h1>';
+	 * echo  '<div class="jumbotron-caption">' . $jumbotron[ 'caption' ] . '</div>';
+	 * if( $jumbotron[ 'include_button' ] ) {
+	 * $button_href   = ( 'page' == $jumbotron[ 'button_target' ] ) ? $jumbotron[ 'button_page' ] : $jumbotron[ 'button_url' ];
+	 * $window_target = ( 'page' == $jumbotron[ 'button_target' ] ) ? '_self' : '_blank';
+	 * echo  '<a href="' . $button_href . '" class="btn btn-lg btn-primary jumbotron-button" target="' . $window_target . '">' . $jumbotron[ 'button_text' ] . '</a>';
+	 * }
+	 * echo '</div>';
+	 * }
+	 * }
+	 * }
+	 */
+	
 	
 	/**
 	 * Template related functions - post formats, page templates and custom template tags
 	 */
+	
 	//
+	// Archive Title
+	add_filter( 'get_the_archive_title', 'syntric_get_archive_title' );
+	function syntric_get_archive_title( $title ) {
+		if( is_archive() ) {
+			//$title = post_type_archive_title();
+			$title = single_cat_title( '', false );
+		} elseif( is_category() ) {
+			$title = single_cat_title( '', false );
+		} elseif( is_tag() ) {
+			$title = single_tag_title( '', false );
+		} elseif( is_author() ) {
+			$title = '<span class="vcard">' . get_the_author() . '</span>';
+		} elseif( is_post_type_archive() ) {
+			$title = post_type_archive_title( '', false );
+		} elseif( is_tax() ) {
+			$title = single_term_title( '', false );
+		}
+		
+		return $title;
+	}
+	
 	// Page templates *********************************************************
 	/**
 	 * Filter the theme page templates.
@@ -103,9 +133,9 @@
 	 */
 	add_filter( 'theme_page_templates', 'syntric_filter_theme_page_templates', 20, 3 );
 	function syntric_filter_theme_page_templates( $page_templates, $theme, $post ) {
-		$organization_is_school = syntric_organization_is_school();
+		$is_school = syntric_organization_is_school();
 		// filter page templates according to organization type
-		if( ! $organization_is_school ) {
+		if( ! $is_school ) {
 			unset( $page_templates[ 'page-templates/department.php' ] );
 			unset( $page_templates[ 'page-templates/teachers.php' ] );
 			unset( $page_templates[ 'page-templates/teacher.php' ] );
@@ -117,8 +147,6 @@
 		
 		return $page_templates;
 	}
-	
-	//
 	// Excerpt related functions **********************************************
 	add_filter( 'excerpt_more', 'syntric_custom_excerpt_more', 99 );
 	if( ! function_exists( 'syntric_custom_excerpt_more' ) ) {

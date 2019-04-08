@@ -1,0 +1,86 @@
+{
+	"key": "group_5c9793e23d818",
+	"title": "Departments",
+	"fields": [
+		{
+			"key": "field_5c6fa8f118ded",
+			"label": "",
+			"name": "syntric_departments",
+			"type": "repeater",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "field_5c6fade4bbd6a",
+			"min": 0,
+			"max": 0,
+			"layout": "table",
+			"button_label": "Add Department",
+			"hide_collapse": 0,
+			"collapse_all_repeater": 0,
+			"btn-icon-only": 1,
+			"sub_fields": [
+				{
+					"key": "field_5c6fade4bbd6a",
+					"label": "Department",
+					"name": "department",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "90",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5ca7153439aee",
+					"label": "ID",
+					"name": "id",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "10",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "syntric-departments"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "seamless",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1554485809
+}

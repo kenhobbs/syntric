@@ -4,7 +4,7 @@
 	"fields": [
 		{
 			"key": "field_59c5b229f02a9",
-			"label": "Classes",
+			"label": "",
 			"name": "syntric_classes",
 			"type": "repeater",
 			"instructions": "",
@@ -17,33 +17,51 @@
 			},
 			"collapsed": "field_59c5b1d230ea1",
 			"min": 0,
-			"max": 100,
+			"max": 1000,
 			"layout": "table",
 			"button_label": "Add Class",
-			"hide_collapse": 1,
+			"hide_collapse": 0,
 			"collapse_all_repeater": 0,
 			"btn-icon-only": 1,
 			"sub_fields": [
 				{
-					"key": "field_59c5b18a30e9f",
-					"label": "Term",
-					"name": "term",
+					"key": "field_5c97627e29cf1",
+					"label": "Teacher",
+					"name": "teacher",
+					"type": "user",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "20",
+						"class": "",
+						"id": ""
+					},
+					"role": "",
+					"allow_null": 0,
+					"multiple": 0,
+					"return_format": "object"
+				},
+				{
+					"key": "field_59c5b1d230ea1",
+					"label": "Course",
+					"name": "course",
 					"type": "select",
 					"instructions": "",
 					"required": 1,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "",
+						"width": "15",
 						"class": "",
 						"id": ""
 					},
-					"choices": null,
+					"choices": [],
 					"default_value": [],
 					"allow_null": 1,
 					"multiple": 0,
 					"ui": 0,
+					"return_format": "array",
 					"ajax": 0,
-					"return_format": "value",
 					"placeholder": ""
 				},
 				{
@@ -55,43 +73,21 @@
 					"required": 0,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "",
+						"width": "10",
 						"class": "",
 						"id": ""
 					},
-					"choices": null,
+					"choices": [],
 					"default_value": [],
 					"allow_null": 1,
 					"multiple": 0,
 					"ui": 0,
+					"return_format": "array",
 					"ajax": 0,
-					"return_format": "value",
 					"placeholder": ""
 				},
 				{
-					"key": "field_59c5b1d230ea1",
-					"label": "Course",
-					"name": "course",
-					"type": "select",
-					"instructions": "",
-					"required": 1,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "",
-						"class": "",
-						"id": ""
-					},
-					"choices": null,
-					"default_value": [],
-					"allow_null": 1,
-					"multiple": 0,
-					"ui": 0,
-					"ajax": 0,
-					"return_format": "value",
-					"placeholder": ""
-				},
-				{
-					"key": "field_59c5b1e130ea2",
+					"key": "field_5c955f106f433",
 					"label": "Room",
 					"name": "room",
 					"type": "select",
@@ -99,66 +95,106 @@
 					"required": 0,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "",
+						"width": "10",
 						"class": "",
 						"id": ""
 					},
-					"choices": null,
+					"choices": [],
 					"default_value": [],
 					"allow_null": 1,
 					"multiple": 0,
 					"ui": 0,
+					"return_format": "array",
 					"ajax": 0,
-					"return_format": "value",
 					"placeholder": ""
 				},
 				{
 					"key": "field_59d16c8161f7d",
 					"label": "Class page?",
 					"name": "include_page",
-					"type": "true_false",
+					"type": "checkbox",
 					"instructions": "",
 					"required": 0,
-					"conditional_logic": 0,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5c818736f2d1f",
+								"operator": "==empty"
+							}
+						]
+					],
 					"wrapper": {
-						"width": "",
+						"width": "10",
 						"class": "",
 						"id": ""
 					},
-					"message": "",
-					"default_value": 0,
-					"ui": 1,
-					"ui_on_text": "",
-					"ui_off_text": ""
+					"choices": {
+						"1": "Yes"
+					},
+					"allow_custom": 0,
+					"default_value": [],
+					"layout": "vertical",
+					"toggle": 0,
+					"return_format": "array",
+					"save_custom": 0
 				},
 				{
-					"key": "field_59d127e512d9a",
+					"key": "field_5c818736f2d1f",
 					"label": "Class Page",
-					"name": "",
-					"type": "message",
+					"name": "class_page",
+					"type": "post_object",
 					"instructions": "",
 					"required": 0,
-					"conditional_logic": 0,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_59d16c8161f7d",
+								"operator": "!=empty"
+							}
+						]
+					],
 					"wrapper": {
-						"width": "",
+						"width": "15",
 						"class": "",
 						"id": ""
 					},
-					"message": "",
-					"new_lines": "",
-					"esc_html": 0
+					"post_type": "",
+					"taxonomy": "",
+					"allow_null": 0,
+					"multiple": 0,
+					"return_format": "object",
+					"ui": 1
 				},
 				{
-					"key": "field_59c5b1f230ea3",
-					"label": "Class ID",
-					"name": "class_id",
+					"key": "field_5ca5a97ae4c18",
+					"label": "Google Classroom ID",
+					"name": "google_classroom_id",
 					"type": "text",
 					"instructions": "",
 					"required": 0,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "1",
-						"class": "hidden",
+						"width": "15",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5ca70e38107d6",
+					"label": "ID",
+					"name": "id",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "5",
+						"class": "",
 						"id": ""
 					},
 					"default_value": "",
@@ -173,31 +209,33 @@
 	"location": [
 		[
 			{
-				"param": "post_type",
+				"param": "options_page",
 				"operator": "==",
-				"value": "page"
-			},
-			{
-				"param": "page_template",
-				"operator": "==",
-				"value": "page-templates\/teacher.php"
+				"value": "syntric-classes"
 			}
 		],
 		[
 			{
 				"param": "options_page",
 				"operator": "==",
-				"value": "syntric-clonables"
+				"value": "syntric-my-classes"
+			}
+		],
+		[
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "teacher.php"
 			}
 		]
 	],
 	"menu_order": 1,
 	"position": "normal",
-	"style": "default",
+	"style": "seamless",
 	"label_placement": "top",
 	"instruction_placement": "label",
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1547811039
+	"modified": 1554551239
 }

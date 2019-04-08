@@ -1,16 +1,19 @@
-<?php get_header(); ?>
-	<div id="404-wrapper" class="content-wrapper <?php echo get_post_type(); ?>-wrapper">
-		<div class="<?php echo esc_html( get_theme_mod( 'syntric_container_type' ) ); ?>">
-			<div class="row">
-				<?php syntric_sidebar( 'main', 'left' ); ?>
-				<main id="content" class="col content-area content">
-					<h1 class="page-title" role="heading">Page Not Found</h1>
-					<?php syntric_sidebar( 'main', 'top' ); ?>
-					<?php get_template_part( 'loop-templates/content-none' ); ?>
-					<?php syntric_sidebar( 'main', 'bottom' ); ?>
-				</main>
-				<?php syntric_sidebar( 'main', 'right' ); ?>
-			</div>
-		</div>
-	</div>
-<?php get_footer(); ?>
+<?php
+	/*
+	;
+	get_header();
+	echo '<div id="404-wrapper" class="content-wrapper ' . get_post_type() . '-wrapper">';
+	echo  '<div class="container-fluid">';
+	echo    '<div class="row">';
+	syntric_sidebar( 'main-left-sidebar' );
+	echo     '<main id="content" class="col content-area content">';
+	echo      '<h1 class="page-title" role="heading">Content Not Found</h1>';
+	syntric_sidebar( 'main-top-sidebar' );
+	echo      'The requested content can not be found';
+	syntric_sidebar( 'main-bottom-sidebar' );
+	echo     '</main>';
+	syntric_sidebar( 'main-right-sidebar' );
+	echo    '</div>';
+	echo   '</div>';
+	echo '</div>';
+	get_footer();*/

@@ -1,0 +1,111 @@
+{
+	"key": "group_5c9e026742544",
+	"title": "Nav Menu Widget",
+	"fields": [
+		{
+			"key": "field_5c9e028257a42",
+			"label": "",
+			"name": "syntric_nav_menu_widget",
+			"type": "group",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"layout": "block",
+			"sub_fields": [
+				{
+					"key": "field_5c9e026755ea0",
+					"label": "Menu",
+					"name": "menu",
+					"type": "select",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"139": "Notices Menu",
+						"14": "Primary Menu"
+					},
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"return_format": "value",
+					"ajax": 0,
+					"placeholder": ""
+				},
+				{
+					"key": "field_5c9e02675626f",
+					"label": "Depth",
+					"name": "depth",
+					"type": "select",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"999": "No limit",
+						"1": "1",
+						"2": "2",
+						"3": "3",
+						"4": "4"
+					},
+					"default_value": [
+						999
+					],
+					"allow_null": 0,
+					"multiple": 0,
+					"ui": 0,
+					"return_format": "value",
+					"ajax": 0,
+					"placeholder": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "widget",
+				"operator": "==",
+				"value": "syn-nav-menu-widget"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "left",
+	"instruction_placement": "label",
+	"hide_on_screen": [
+		"permalink",
+		"the_content",
+		"excerpt",
+		"discussion",
+		"comments",
+		"revisions",
+		"slug",
+		"author",
+		"format",
+		"page_attributes",
+		"featured_image",
+		"categories",
+		"tags",
+		"send-trackbacks"
+	],
+	"active": 1,
+	"description": "",
+	"modified": 1553891064
+}

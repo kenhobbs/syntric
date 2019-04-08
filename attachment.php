@@ -1,43 +1,38 @@
 <?php
 	
+	;
 	get_header();
-	$lb  = syntric_linebreak();
-	$tab = syntric_tab();
-	echo '<div id="attachment-wrapper" class="content-wrapper ' . get_post_type() . '-wrapper">' . $lb;
-	echo '<div class="' . esc_html( get_theme_mod( 'syntric_container_type' ) ) . '">' . $lb;
-	echo '<div class="row">' . $lb;
-	syntric_sidebar( 'main', 'left' );
-	echo '<main id="content" class="col content-area content">' . $lb;
-	echo '<h1 class="page-title" role="heading">' . get_the_title() . '</h1>' . $lb;
-	syntric_sidebar( 'main', 'top' );
+	echo '<div id="attachment-wrapper" class="content-wrapper ' . get_post_type() . '-wrapper">';
+	echo '<div class="container-fluid">';
+	echo '<div class="row">';
+	syntric_sidebar( 'main-left-sidebar' );
+	echo '<main id="content" class="col content-area content">';
+	echo '<h1 class="page-title" role="heading">' . get_the_title() . '</h1>';
+	syntric_sidebar( 'main-top-sidebar' );
 	if( have_posts() ) :
 		while( have_posts() ) : the_post();
-			//if ( syntric_has_content( $post->post_content ) ) :
 			$images      = [];
 			$image_sizes = get_intermediate_image_sizes();
 			array_unshift( $image_sizes, 'full' );
-			//print_r( $images );
 			foreach( $image_sizes as $image_size ) {
 				$image    = wp_get_attachment_image_src( get_the_ID(), $image_size );
 				$name     = $image[ 1 ] . 'x' . $image[ 2 ];
 				$images[] = '<a href="' . $image[ 0 ] . '">' . $name . '</a>';
 			}
-			//var_dump( $images );
-			echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post -> ID . '">' . $lb;
+			echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post -> ID . '">';
 			echo wp_get_attachment_image( get_the_ID(), 'medium_large' );
 			echo '<div class="mt-3">';
 			echo '<h2>Sizes</h2>';
 			echo '<p>Dimensions are in pixels.</p>';
 			echo implode( ' / ', $images );
 			echo '</div>';
-			echo '</article>' . $lb;
-			//endif;
+			echo '</article>';
 		endwhile;
 	endif;
-	syntric_sidebar( 'main', 'bottom' );
-	echo '</main>' . $lb;
-	syntric_sidebar( 'main', 'right' );
-	echo '</div>' . $lb;
-	echo '</div>' . $lb;
-	echo '</div>' . $lb;
+	syntric_sidebar( 'main-bottom-sidebar' );
+	echo '</main>';
+	syntric_sidebar( 'main-right-sidebar' );
+	echo '</div>';
+	echo '</div>';
+	echo '</div>';
 	get_footer();

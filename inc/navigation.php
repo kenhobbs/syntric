@@ -3,9 +3,9 @@
 	/**
 	 * Echo the primary nav which is a Bootstrap 4 navbar
 	 */
-	function syntric_primary_nav() {
-		$lb   = syntric_linebreak();
-		$tab  = syntric_tab();
+	/*function syntric_primary_nav() {
+		
+		;
 		$args = [
 			'theme_location'  => 'primary',
 			'container'       => 'ul',
@@ -15,36 +15,36 @@
 			'depth'           => 2,
 			'item_spacing'    => ( syntric_remove_whitespace() ) ? 'discard' : 'preserve',
 		];
-		//echo '<nav id="primary-navbar" class="navbar navbar-expand-xl navbar-light sticky-top">' . $lb;
-		echo '<nav id="primary-navbar" class="navbar">' . $lb;
-		echo $tab . '<div class="navbar-brand-toggler">' . $lb;
-		echo $tab . $tab . '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#' . $args[ 'container_id' ] . '" aria-controls="' . $args[ 'container_id' ] . '" aria-expanded="false" aria-label="Toggle navigation">' . $lb;
-		echo $tab . $tab . $tab . '<span class="fa fa-bars"></span>' . $lb;
-		echo $tab . $tab . '</button>' . $lb;
+		//echo '<nav id="primary-navbar" class="navbar navbar-expand-xl navbar-light sticky-top">';
+		echo '<nav id="primary-navbar" class="navbar">';
+		echo  '<div class="navbar-brand-toggler">';
+		echo   '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#' . $args[ 'container_id' ] . '" aria-controls="' . $args[ 'container_id' ] . '" aria-expanded="false" aria-label="Toggle navigation">';
+		echo    '<span class="fa fa-bars"></span>';
+		echo   '</button>';
 		if( has_custom_logo() || display_header_text() ) {
-			//echo $tab . $tab . '<a class="navbar-brand" href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . $lb;
-			echo $tab . $tab . '<div class="navbar-brand">' . $lb;
+			//echo   '<a class="navbar-brand" href="' . esc_url( home_url( '/' ) ) . '" rel="home">';
+			echo   '<div class="navbar-brand">';
 			if( has_custom_logo() ) {
 				echo wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'thumbnail', false, [ 'class' => 'brand-logo', 'alt' => 'Logo' ] );
 			}
 			if( display_header_text() ) {
 				$name    = esc_attr( get_bloginfo( 'name', 'display' ) );
 				$tagline = esc_attr( get_bloginfo( 'description', 'display' ) );
-				//echo $tab . $tab . $tab . '<div>' . $lb;
+				//echo    '<div>';
 				if( ! empty( $name ) ) {
-					echo $tab . $tab . $tab . '<div class="site-title">' . $lb;
-					echo $tab . $tab . $tab . $tab . '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . $name . '</a>' . $lb;
-					echo $tab . $tab . $tab . '</div>' . $lb;
+					echo    '<div class="site-title">';
+					echo     '<a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . $name . '</a>';
+					echo    '</div>';
 				}
 				if( ! empty( $tagline ) ) {
-					echo $tab . $tab . $tab . $tab . '<div class="site-description">' . $tagline . '</div>' . $lb;
+					echo     '<div class="site-description">' . $tagline . '</div>';
 				}
-				//echo $tab . $tab . $tab . '</div>' . $lb;
+				//echo    '</div>';
 			}
-			echo $tab . $tab . '</div>' . $lb;
-			//echo $tab . $tab . '</a>' . $lb;
+			echo   '</div>';
+			//echo   '</a>';
 		}
-		echo $tab . '</div>' . $lb;
+		echo  '</div>';
 		wp_nav_menu( $args );
-		echo '</nav>' . $lb;
-	}
+		echo '</nav>';
+	}*/

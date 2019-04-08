@@ -1,15 +1,12 @@
 <?php
-	
 	get_header();
-	$lb  = syntric_linebreak();
-	$tab = syntric_tab();
 	echo '<div id="single-wrapper" class="content-wrapper ' . get_post_type() . '-wrapper">';
-	echo '<div class="' . esc_html( get_theme_mod( 'syntric_container_type' ) ) . '">';
+	echo '<div class="container-fluid">';
 	echo '<div class="row">';
-	syntric_sidebar( 'main', 'left' );
+	syntric_sidebar( 'main-left-sidebar' );
 	echo '<main id="content" class="col content-area content">';
 	echo '<h1 class="page-title" role="heading">' . get_the_title() . syntric_get_post_badges() . '</h1>';
-	syntric_sidebar( 'main', 'top' );
+	syntric_sidebar( 'main-top-sidebar' );
 	if( have_posts() ) {
 		while( have_posts() ) : the_post();
 			if( 'syntric_calendar' == get_post_type() ) :
@@ -18,8 +15,8 @@
 				echo '</div>';
 			elseif( 'syntric_event' == get_post_type() ) :
 				$dates    = syntric_get_event_dates( get_the_ID() );
-				$location = get_field( 'syn_event_location', get_the_ID() );
-				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post -> ID . '">' . $lb;
+				$location = get_field( 'location', get_the_ID() );
+				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post -> ID . '">';
 				echo '<header class="post-header">';
 				echo '<span class="post-date">' . $dates . '</span>';
 				if( ! empty( $location ) ) :
@@ -31,22 +28,22 @@
 				echo '</div>';
 				echo '</article>';
 			else :
-				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post -> ID . '">' . $lb;
+				echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post -> ID . '">';
 				echo '<header class="post-header">';
 				echo '<span class="post-date">' . get_the_date() . '</span>';
 				echo '</header>';
-				echo '<div id="-post-content" class="post-content">';
+				echo '<div class="post-content">';
 				the_content();
 				echo '</div>';
 				echo '</article>';
 			endif;
 		endwhile;
 	} else {
-		get_template_part( 'loop-templates/content', 'none' );
+		echo '<p>The requested content can not be found</p>';
 	}
-	syntric_sidebar( 'main', 'bottom' );
+	syntric_sidebar( 'main-bottom-sidebar' );
 	echo '</main>';
-	syntric_sidebar( 'main', 'right' );
+	syntric_sidebar( 'main-right-sidebar' );
 	echo '</div>';
 	echo '</div>';
 	echo '</div>';

@@ -4,7 +4,7 @@
 	"fields": [
 		{
 			"key": "field_5c770d872bcdf",
-			"label": "Calendar",
+			"label": "",
 			"name": "syntric_calendar",
 			"type": "group",
 			"instructions": "",
@@ -18,7 +18,7 @@
 			"layout": "block",
 			"sub_fields": [
 				{
-					"key": "field_5c770d3f3a718",
+					"key": "field_5c97d929f1c34",
 					"label": "Settings",
 					"name": "",
 					"type": "tab",
@@ -38,7 +38,7 @@
 					"label": "Google Calendar ID",
 					"name": "google_calendar_id",
 					"type": "text",
-					"instructions": "",
+					"instructions": "Go to the Instructions tab above for directions on how to retrieve a Google Calendar ID.",
 					"required": 1,
 					"conditional_logic": 0,
 					"wrapper": {
@@ -53,34 +53,15 @@
 					"maxlength": ""
 				},
 				{
-					"key": "field_5c770d3f3aedd",
-					"label": "Purge Calendar",
-					"name": "purge",
-					"type": "true_false",
-					"instructions": "Deletes all events from calendar",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "",
-						"class": "",
-						"id": ""
-					},
-					"message": "Delete all events from calendar",
-					"default_value": 0,
-					"ui": 1,
-					"ui_on_text": "",
-					"ui_off_text": ""
-				},
-				{
 					"key": "field_5c770d3f3b2c5",
-					"label": "Schedule Sync",
+					"label": "Auto Sync",
 					"name": "schedule_sync",
 					"type": "true_false",
-					"instructions": "Automatically sync every 24 hours",
+					"instructions": "Calendar will be scheduled to sync hourly starting in 60 seconds.",
 					"required": 0,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "20",
+						"width": "50",
 						"class": "",
 						"id": ""
 					},
@@ -91,50 +72,65 @@
 					"ui_off_text": ""
 				},
 				{
-					"key": "field_5c770d3f3b711",
-					"label": "Sync Frequency",
-					"name": "sync_frequency",
-					"type": "select",
+					"key": "field_5ca122c6b37e4",
+					"label": "",
+					"name": "",
+					"type": "message",
 					"instructions": "",
 					"required": 0,
 					"conditional_logic": [
 						[
 							{
-								"field": "field_5c770d3f3b2c5",
-								"operator": "==",
-								"value": "1"
+								"field": "field_5c86c19e08f4c",
+								"operator": "==empty"
 							}
 						]
 					],
 					"wrapper": {
-						"width": "",
-						"class": "hidden",
+						"width": "50",
+						"class": "",
 						"id": ""
 					},
-					"choices": {
-						"hourly": "Hourly",
-						"daily": "Daily"
-					},
-					"default_value": [
-						"daily"
+					"message": "",
+					"new_lines": "wpautop",
+					"esc_html": 0
+				},
+				{
+					"key": "field_5c770d3f3aedd",
+					"label": "Purge Calendar",
+					"name": "purge",
+					"type": "true_false",
+					"instructions": "Deletes all events in the calendar upon update.  Deletes events in the past, present and future.",
+					"required": 0,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5c86c19e08f4c",
+								"operator": "!=empty"
+							}
+						]
 					],
-					"allow_null": 0,
-					"multiple": 0,
-					"ui": 0,
-					"return_format": "value",
-					"ajax": 0,
-					"placeholder": ""
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
 				},
 				{
 					"key": "field_5c770d3f3ba90",
 					"label": "Sync Now",
 					"name": "sync_now",
 					"type": "true_false",
-					"instructions": "Sync on publish\/update",
+					"instructions": "Syncs immediately upon update.",
 					"required": 0,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "20",
+						"width": "25",
 						"class": "",
 						"id": ""
 					},
@@ -145,11 +141,36 @@
 					"ui_off_text": ""
 				},
 				{
+					"key": "field_5c8310addb7ae",
+					"label": "",
+					"name": "",
+					"type": "message",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5c770d3f3ba90",
+								"operator": "!=",
+								"value": "1"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "75",
+						"class": "",
+						"id": ""
+					},
+					"message": "",
+					"new_lines": "wpautop",
+					"esc_html": 0
+				},
+				{
 					"key": "field_5c770d3f3be76",
-					"label": "Sync Backwards",
-					"name": "sync_back",
+					"label": "Sync Past Events",
+					"name": "sync_past",
 					"type": "true_false",
-					"instructions": "Purge and sync past months",
+					"instructions": "Syncs past events immediately upon update.",
 					"required": 0,
 					"conditional_logic": [
 						[
@@ -161,7 +182,7 @@
 						]
 					],
 					"wrapper": {
-						"width": "20",
+						"width": "25",
 						"class": "",
 						"id": ""
 					},
@@ -172,11 +193,41 @@
 					"ui_off_text": ""
 				},
 				{
+					"key": "field_5c8310eedb7af",
+					"label": "",
+					"name": "",
+					"type": "message",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5c770d3f3ba90",
+								"operator": "==",
+								"value": "1"
+							},
+							{
+								"field": "field_5c770d3f3be76",
+								"operator": "!=",
+								"value": "1"
+							}
+						]
+					],
+					"wrapper": {
+						"width": "50",
+						"class": "",
+						"id": ""
+					},
+					"message": "",
+					"new_lines": "wpautop",
+					"esc_html": 0
+				},
+				{
 					"key": "field_5c770d3f3c251",
-					"label": "Months Past",
-					"name": "sync_back_months",
-					"type": "select",
-					"instructions": "Number of months to sync backwards",
+					"label": "Sync Past Events Period",
+					"name": "sync_past_period",
+					"type": "radio",
+					"instructions": "Period  for syncing past events.",
 					"required": 0,
 					"conditional_logic": [
 						[
@@ -193,150 +244,25 @@
 						]
 					],
 					"wrapper": {
-						"width": "20",
+						"width": "50",
 						"class": "",
 						"id": ""
 					},
 					"choices": {
-						"1": "1",
-						"2": "2",
-						"3": "3",
-						"4": "4",
-						"5": "5",
-						"6": "6",
-						"7": "7",
-						"8": "8",
-						"9": "9",
-						"10": "10",
-						"11": "11",
-						"12": "12"
+						"1": "1 month",
+						"3": "3 months",
+						"6": "6 months",
+						"12": "1 year"
 					},
-					"default_value": [],
-					"allow_null": 1,
-					"multiple": 0,
-					"ui": 0,
-					"return_format": "value",
-					"ajax": 0,
-					"placeholder": ""
-				},
-				{
-					"key": "field_5c770d3f3c5e1",
-					"label": "Sync Range",
-					"name": "sync_range",
-					"type": "select",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": [
-						[
-							{
-								"field": "field_5c770d3f3b2c5",
-								"operator": "==",
-								"value": "1"
-							}
-						]
-					],
-					"wrapper": {
-						"width": "",
-						"class": "hidden",
-						"id": ""
-					},
-					"choices": {
-						"1 year": "Sync 1 year forward",
-						"2 years": "Sync 2 years forward"
-					},
-					"default_value": [
-						"1 year"
-					],
 					"allow_null": 0,
-					"multiple": 0,
-					"ui": 0,
+					"other_choice": 0,
+					"default_value": "",
+					"layout": "horizontal",
 					"return_format": "value",
-					"ajax": 0,
-					"placeholder": ""
+					"save_other_choice": 0
 				},
 				{
-					"key": "field_5c770d3f3ca0b",
-					"label": "Delete Events",
-					"name": "delete_events",
-					"type": "true_false",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "",
-						"class": "hidden",
-						"id": ""
-					},
-					"message": "",
-					"default_value": 1,
-					"ui": 0,
-					"ui_on_text": "",
-					"ui_off_text": ""
-				},
-				{
-					"key": "field_5c770d3f3cdf2",
-					"label": "Delete After",
-					"name": "delete_after",
-					"type": "select",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "",
-						"class": "hidden",
-						"id": ""
-					},
-					"choices": {
-						"1 month": "Delete after 1 month",
-						"3 months": "Delete after 3 months",
-						"6 months": "Delete after 6 months",
-						"1 year": "Delete after 1 year",
-						"2 years": "Delete after 2 years"
-					},
-					"default_value": [
-						"1 year"
-					],
-					"allow_null": 0,
-					"multiple": 0,
-					"ui": 0,
-					"return_format": "value",
-					"ajax": 0,
-					"placeholder": ""
-				},
-				{
-					"key": "field_5c770d3f3d1d9",
-					"label": "Synced Events",
-					"name": "",
-					"type": "tab",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "",
-						"class": "",
-						"id": ""
-					},
-					"placement": "top",
-					"endpoint": 0
-				},
-				{
-					"key": "field_5c7781ff35dee",
-					"label": "Events",
-					"name": "",
-					"type": "enhanced_message",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "",
-						"class": "",
-						"id": ""
-					},
-					"enhanced_message": "This calendar type has not been registered.  There should be no events.",
-					"hide_label": "no"
-				},
-				{
-					"key": "field_5c770d3f3d9ca",
+					"key": "field_5c97d936f1c35",
 					"label": "Last Sync",
 					"name": "",
 					"type": "tab",
@@ -352,15 +278,15 @@
 					"endpoint": 0
 				},
 				{
-					"key": "field_5c770d3f3ddb3",
-					"label": "Last Synced",
+					"key": "field_5c86c19e08f4c",
+					"label": "Last Sync",
 					"name": "last_sync",
 					"type": "text",
 					"instructions": "",
 					"required": 0,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "",
+						"width": "50",
 						"class": "",
 						"id": ""
 					},
@@ -371,7 +297,7 @@
 					"maxlength": ""
 				},
 				{
-					"key": "field_5c770d3f3e207",
+					"key": "field_5c86c1ac08f4d",
 					"label": "Last Sync Result",
 					"name": "last_sync_result",
 					"type": "textarea",
@@ -386,8 +312,73 @@
 					"default_value": "",
 					"placeholder": "",
 					"maxlength": "",
-					"rows": 12,
+					"rows": 20,
 					"new_lines": ""
+				},
+				{
+					"key": "field_5c97dbfe97477",
+					"label": "Events",
+					"name": "",
+					"type": "tab",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"placement": "top",
+					"endpoint": 0
+				},
+				{
+					"key": "field_5c97dc0f97478",
+					"label": "Events",
+					"name": "",
+					"type": "enhanced_message",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"enhanced_message": "<?php\r\n$post_id = get_the_ID();\r\n$args = array(\r\n\t'numberposts' => - 1,\r\n\t'post_type'   => 'syntric_event',\r\n\t'post_status' => 'publish',\r\n\t'meta_key'    => 'syntric_event_start_date',\r\n\t'orderby'     => 'meta_value',\r\n\t'order'       => 'ASC',\r\n\t'meta_query'  => array(\r\n\t\tarray(\r\n\t\t\t'key'     => 'syntric_event_calendar_id',\r\n\t\t\t'value'   => $post_id ,\r\n\t\t\t'compare' => '=',\r\n\t\t)\r\n\t)\r\n);\r\n$events = get_posts( $args ); \r\n\r\nif ( $events ) :\r\n?>\r\n\r\n\r\n<table width=\"100%\" cellpadding=\"6\" cellspacing=\"0\" border=\"1\" frame=\"void\" rules=\"rows\" sortable=\"sortable\" style=\"border-color: #eee;\">\r\n<thead>\r\n<tr align=\"left\">\r\n<th>Event<\/th>\r\n<th>Date\/Time<\/th>\r\n<th>Location<\/th>\r\n<\/tr>\r\n<\/thead>\r\n<tbody>\r\n\r\n<?php\r\nforeach ( $events as $event ) : \r\n$event_id = $event->ID;\r\n$dates = syntric_get_event_dates( $event_id );\r\n?>\r\n\r\n<tr>\r\n<td nowrap><a href=\"\/wp-admin\/post.php?post=<?php echo $event_id; ?>&action=edit\"><?php echo get_the_title( $event_id ); ?><\/a><\/td>\r\n<td nowrap><?php echo $dates; ?><\/td>\r\n<td><?php echo get_field( 'syntric_event_location', $event_id  ); ?><\/td>\r\n<\/tr>\r\n\r\n<?php \r\nendforeach;\r\n ?>\r\n\r\n<\/tbody>\r\n<\/table>\r\n\r\n<?php\r\nelse :\r\necho '<p>No events<\/p>';\r\nendif;\r\n?>",
+					"hide_label": "no"
+				},
+				{
+					"key": "field_5c97db27ef913",
+					"label": "Instructions",
+					"name": "",
+					"type": "tab",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"placement": "top",
+					"endpoint": 0
+				},
+				{
+					"key": "field_5c97da3afeed2",
+					"label": "Instructions",
+					"name": "",
+					"type": "message",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"message": "<p>To set up a calendar complete the following steps:<\/p>\r\n<ol>\r\n<li>Go to <a href=\"https:\/\/calendar.google.com\/calendar\/r\/settings\" target=\"_blank\">Google Calendar Settings<\/a> <\/li>\r\n<li>Select the calendar you would like to sync on the left under \"Settings for my calendars\"<\/li>\r\n<li>Scroll down and ensure the setting \"Access permissions\" is set to \"Make available to public\" and \"See all event details\".<\/li>\r\n<li>Scroll down further and find the heading \"Integrate calendar\" and copy the value listed under \"Calendar ID\" and paste it into the Google Calendar ID field below<\/li>\r\n<li>Select \"Schedule Sync to have the calendar refresh automatically<\/li>\r\n<\/ol>",
+					"new_lines": "wpautop",
+					"esc_html": 0
 				}
 			]
 		}
@@ -405,23 +396,9 @@
 	"position": "acf_after_title",
 	"style": "default",
 	"label_placement": "top",
-	"instruction_placement": "field",
-	"hide_on_screen": [
-		"the_content",
-		"excerpt",
-		"discussion",
-		"comments",
-		"revisions",
-		"slug",
-		"author",
-		"format",
-		"page_attributes",
-		"featured_image",
-		"categories",
-		"tags",
-		"send-trackbacks"
-	],
+	"instruction_placement": "label",
+	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1551365943
+	"modified": 1554100167
 }
