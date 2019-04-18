@@ -1,0 +1,236 @@
+{
+	"key": "group_5cb5b9d690650",
+	"title": "Classes",
+	"fields": [
+		{
+			"key": "field_5cb5b9eac5f21",
+			"label": "",
+			"name": "syntric_classes",
+			"type": "repeater",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"collapsed": "field_5cb5ba20c5f23",
+			"min": 0,
+			"max": 0,
+			"layout": "table",
+			"button_label": "",
+			"hide_collapse": 1,
+			"collapse_all_repeater": 0,
+			"btn-icon-only": 0,
+			"sub_fields": [
+				{
+					"key": "field_5cb6d14cff0bd",
+					"label": "Teacher",
+					"name": "teacher",
+					"type": "select",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "20",
+						"class": "-collapsed-target",
+						"id": ""
+					},
+					"choices": [],
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"return_format": "array",
+					"ajax": 0,
+					"placeholder": ""
+				},
+				{
+					"key": "field_5cb5ba20c5f23",
+					"label": "Course",
+					"name": "course",
+					"type": "select",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "20",
+						"class": "-collapsed-target",
+						"id": ""
+					},
+					"choices": {
+						"-<e75cb1a39c89cf16.39352909": "Algebra 1",
+						"^J:s5cb1a39c995920.93261962": "Algebra 2",
+						"h:V 5cb1a39ca98666.41851673": "Geometry",
+						"T1A:5cb1a633a753e8.26675055": "AP Calculus"
+					},
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"return_format": "array",
+					"ajax": 0,
+					"placeholder": ""
+				},
+				{
+					"key": "field_5cb5ba2fc5f24",
+					"label": "Period",
+					"name": "period",
+					"type": "select",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "10",
+						"class": "-collapsed-target",
+						"id": ""
+					},
+					"choices": {
+						"1A": "1A",
+						"1B": "1B",
+						"2A": "2A",
+						"2B": "2B",
+						"3A": "3A",
+						"3B": "3B",
+						"4A": "4A",
+						"4B": "4B"
+					},
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"return_format": "array",
+					"ajax": 0,
+					"placeholder": ""
+				},
+				{
+					"key": "field_5cb5ba41c5f25",
+					"label": "Room",
+					"name": "room",
+					"type": "select",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "10",
+						"class": "-collapsed-target",
+						"id": ""
+					},
+					"choices": {
+						"1": "A1",
+						"2": "A2",
+						"3": "A3",
+						"4": "A4",
+						"5": "B1",
+						"6": "B2"
+					},
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"return_format": "array",
+					"ajax": 0,
+					"placeholder": ""
+				},
+				{
+					"key": "field_5cb5ba4ec5f26",
+					"label": "Include Page",
+					"name": "include_page",
+					"type": "true_false",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "10",
+						"class": "-collapsed-target",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_5cb5ba89c5f27",
+					"label": "Class Page",
+					"name": "class_page",
+					"type": "post_object",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "15",
+						"class": "",
+						"id": ""
+					},
+					"post_type": [
+						"page"
+					],
+					"taxonomy": "",
+					"allow_null": 0,
+					"multiple": 0,
+					"return_format": "object",
+					"ui": 1
+				},
+				{
+					"key": "field_5cb5bab8c5f28",
+					"label": "Archive",
+					"name": "archive",
+					"type": "true_false",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "10",
+						"class": "-collapsed-target",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_5cb5bac9c5f29",
+					"label": "ID",
+					"name": "id",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "5",
+						"class": "-collapsed-target",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "syntric-classes"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1555586066
+}

@@ -1,0 +1,133 @@
+{
+	"key": "group_5cad7e2a99273",
+	"title": "Roster",
+	"fields": [
+		{
+			"key": "field_5cad7e2aacc2d",
+			"label": "",
+			"name": "syntric_roster",
+			"type": "group",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"layout": "block",
+			"sub_fields": [
+				{
+					"key": "field_5cad7e2ab4520",
+					"label": "Title",
+					"name": "title",
+					"type": "text",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5cad80ec6d02d",
+					"label": "Display",
+					"name": "display",
+					"type": "checkbox",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"email": "Email",
+						"phone": "Phone"
+					},
+					"allow_custom": 0,
+					"default_value": [
+						"email",
+						"phone"
+					],
+					"layout": "horizontal",
+					"toggle": 0,
+					"return_format": "value",
+					"save_custom": 0
+				},
+				{
+					"key": "field_5cad7e2ab4912",
+					"label": "People",
+					"name": "people",
+					"type": "repeater",
+					"instructions": "Contact not listed?  <a href=\"http:\/\/master.localhost\/wp-admin\/user-new.php\">Add a new user<\/a>",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"collapsed": "field_5c9d66e1bb7cc",
+					"min": 0,
+					"max": 0,
+					"layout": "table",
+					"button_label": "Add Person",
+					"hide_collapse": 1,
+					"collapse_all_repeater": 0,
+					"btn-icon-only": 0,
+					"sub_fields": [
+						{
+							"key": "field_5cad7e2ac1814",
+							"label": "Person",
+							"name": "person",
+							"type": "select",
+							"instructions": "",
+							"required": 1,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "",
+								"class": "",
+								"id": ""
+							},
+							"choices": [],
+							"default_value": [],
+							"allow_null": 1,
+							"multiple": 0,
+							"ui": 0,
+							"return_format": "value",
+							"ajax": 0,
+							"placeholder": ""
+						}
+					]
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "roster.php"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "side",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1554899853
+}

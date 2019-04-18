@@ -1,0 +1,63 @@
+{
+	"key": "group_5cb5bce5792d3",
+	"title": "Class Page",
+	"fields": [
+		{
+			"key": "field_5cb5bcee723f2",
+			"label": "",
+			"name": "syntric_class_page",
+			"type": "group",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"layout": "block",
+			"sub_fields": [
+				{
+					"key": "field_5cb5bd08723f3",
+					"label": "Class",
+					"name": "class",
+					"type": "select",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": [],
+					"default_value": [],
+					"allow_null": 1,
+					"multiple": 0,
+					"ui": 0,
+					"return_format": "value",
+					"ajax": 0,
+					"placeholder": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "post_template",
+				"operator": "==",
+				"value": "class.php"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "side",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"hide_on_screen": "",
+	"active": 1,
+	"description": "",
+	"modified": 1555444379
+}
