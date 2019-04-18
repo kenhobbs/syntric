@@ -15,7 +15,7 @@
 				"class": "",
 				"id": ""
 			},
-			"collapsed": "field_598fd4fc82c7d",
+			"collapsed": "field_5c7d477aa9880",
 			"min": 0,
 			"max": 0,
 			"layout": "block",
@@ -299,7 +299,7 @@
 					"conditional_logic": 0,
 					"wrapper": {
 						"width": "",
-						"class": "",
+						"class": "hidden",
 						"id": ""
 					},
 					"default_value": "",
@@ -343,5 +343,5 @@
 	],
 	"active": 1,
 	"description": "",
-	"modified": 1554485756
+	"modified": 1554901328
 }

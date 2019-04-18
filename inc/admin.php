@@ -6,6 +6,7 @@
 	
 	add_action( 'admin_menu', 'syntric_admin_menu', 999 );
 	function syntric_admin_menu() {
+		return;
 		// Remove for everyone
 		remove_menu_page( 'link-manager.php' ); // Links
 		remove_submenu_page( 'themes.php', 'theme-editor.php' );
@@ -289,7 +290,10 @@
 		                 'edit.php?post_type=page_nestedpages',
 		                 'edit.php?page=nestedpages',
 		                 'nestedpages',
-		                 // Pages (Nested Pages)
+		                 // My Pages
+		                 'syntric-my-pages',
+		                 // My Classes
+		                 'syntric-my-classes',
 		                 // Posts
 		                 'edit.php',
 		                 // School
@@ -386,11 +390,11 @@
 		//$recently_published_posts_title = 'Recently Published Posts';
 		add_meta_box( 'syntric_recently_published_posts_dashboard_widget', $recently_published_posts_title, 'syntric_list_recently_published', 'dashboard', 'normal', 'core', [ 'post_type' => 'post' ] );
 		// Classes
-		if( syntric_organization_is_school() ) {
+		/*if( syntric_organization_is_school() ) {
 			$class_list_title = ( get_field( 'syntric_user_is_teacher', 'user_' . get_current_user_id() ) ) ? 'My Classes' : 'Teachers + Classes';
 			//$class_list_title = 'Teachers + Classes';
 			add_meta_box( 'class_list_dashboard_widget', $class_list_title, 'syntric_list_classes', 'dashboard', 'normal', 'core' );
-		}
+		}*/
 	}
 	
 	/**

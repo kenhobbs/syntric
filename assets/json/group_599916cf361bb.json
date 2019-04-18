@@ -114,7 +114,13 @@
 								"class": "",
 								"id": ""
 							},
-							"choices": [],
+							"choices": {
+								"post": "Post",
+								"page": "Page",
+								"attachment": "Media",
+								"syntric_calendar": "Calendar",
+								"syntric_event": "Event"
+							},
 							"default_value": [],
 							"allow_null": 1,
 							"multiple": 0,
@@ -204,7 +210,15 @@
 								"class": "",
 								"id": ""
 							},
-							"choices": [],
+							"choices": {
+								"class.php": "Class",
+								"course.php": "Course",
+								"department.php": "Department",
+								"roster.php": "Roster",
+								"schedules.php": "Schedules",
+								"teacher.php": "Teacher",
+								"teachers.php": "Teachers"
+							},
 							"default_value": [
 								"Select the page template to filter"
 							],
@@ -248,7 +262,7 @@
 						{
 							"key": "field_5c9947af26a7c",
 							"label": "",
-							"name": "page_type",
+							"name": "page_type_value",
 							"type": "select",
 							"instructions": "",
 							"required": 0,
@@ -303,5 +317,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1554269388
+	"modified": 1554955309
 }

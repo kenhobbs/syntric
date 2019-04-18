@@ -1,21 +1,25 @@
 (function ($) {
 
-	// disable syntric_calendar last_sync and last_sync_result form fields
-	$('#acf-field_5c770d872bcdf-field_5c86c1ac08f4d').attr('disabled', 'disabled');
-	$('#acf-field_5c770d872bcdf-field_5c86c19e08f4c').attr('disabled', 'disabled');
-	$('#acf-field_5c770d872bcdf-field_5ca13b24e0bf5').attr('disabled', 'disabled');
-	$('#acf-field_5c873b64763cd-field_5c80dc4a54a41').attr('disabled', 'disabled');
-	//$('td[data-name=id] input').attr('disabled', 'disabled');
-	//$('div[data-name=syntric_classes] td[data-name=class_page] select').attr('disabled', 'disabled');
-	//$('div[data-name=course] div[data-name=id] input').attr('disabled', 'disabled');
-
-	var idFields = $('*[data-name=id] input');
+	// if new record hide ID field, if has value disable it
+	var idFields = $('.acf-field[data-name=id] input');
+	//console.log(idFields);
 	for (var i = 0; i < idFields.length; i++) {
-		idField = $(idFields[i]);
+		var idField = $(idFields[i]);
 		if (idField.val()) {
 			idField.attr('disabled', 'disabled');
 		} else {
 			idField.hide();
+		}
+	}
+	var pageFields = [];
+	pageFields[] = $('.acf-field[data-name=course_page]');
+	pageFields[] = $('.acf-field[data-name=department_page]');
+	pageFields[] = $('.acf-field[data-name=class_page]');
+	for (var i = 0; i < pageFields.length; i++) {
+		if (pageFields[i].val()) {
+			pageFields[i].attr('disabled', 'disabled');
+		} else {
+			pageFields[i].hide();
 		}
 	}
 

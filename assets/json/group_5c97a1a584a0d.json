@@ -33,8 +33,8 @@
 					"required": 0,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "45",
-						"class": "",
+						"width": "33",
+						"class": "-collapsed-target",
 						"id": ""
 					},
 					"default_value": "",
@@ -52,8 +52,8 @@
 					"required": 0,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "45",
-						"class": "",
+						"width": "33",
+						"class": "-collapsed-target",
 						"id": ""
 					},
 					"choices": {
@@ -70,27 +70,35 @@
 					"placeholder": ""
 				},
 				{
-					"key": "field_5ca73096978ee",
-					"label": "ID",
-					"name": "id",
-					"type": "text",
+					"key": "field_5cad787f8e65b",
+					"label": "Display",
+					"name": "display",
+					"type": "checkbox",
 					"instructions": "",
 					"required": 0,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "10",
-						"class": "",
+						"width": "34",
+						"class": "-collapsed-target",
 						"id": ""
 					},
-					"default_value": "",
-					"placeholder": "",
-					"prepend": "",
-					"append": "",
-					"maxlength": ""
+					"choices": {
+						"dow": "Days of Week",
+						"instructional_period": "Instructional Period"
+					},
+					"allow_custom": 0,
+					"default_value": [
+						"dow",
+						"instructional_period"
+					],
+					"layout": "horizontal",
+					"toggle": 0,
+					"return_format": "value",
+					"save_custom": 0
 				},
 				{
 					"key": "field_5c8065cb94b8d",
-					"label": "",
+					"label": "Periods",
 					"name": "schedule",
 					"type": "repeater",
 					"instructions": "",
@@ -109,7 +117,7 @@
 						"class": "",
 						"id": ""
 					},
-					"collapsed": "field_5bd853679f92b",
+					"collapsed": "field_5c8065cba1a9d",
 					"min": 0,
 					"max": 0,
 					"layout": "table",
@@ -127,7 +135,7 @@
 							"required": 1,
 							"conditional_logic": 0,
 							"wrapper": {
-								"width": "20",
+								"width": "",
 								"class": "",
 								"id": ""
 							},
@@ -138,41 +146,6 @@
 							"maxlength": ""
 						},
 						{
-							"key": "field_5c97a3382d476",
-							"label": "Days of Week",
-							"name": "dow",
-							"type": "checkbox",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": 0,
-							"wrapper": {
-								"width": "45",
-								"class": "",
-								"id": ""
-							},
-							"choices": {
-								"Monday": "Mon",
-								"Tuesday": "Tue",
-								"Wednesday": "Wed",
-								"Thursday": "Thu",
-								"Friday": "Fri",
-								"Saturday": "Sat",
-								"Sunday": "Sun"
-							},
-							"allow_custom": 0,
-							"default_value": [
-								"Monday",
-								"Tuesday",
-								"Wednesday",
-								"Thursday",
-								"Friday"
-							],
-							"layout": "horizontal",
-							"toggle": 0,
-							"return_format": "value",
-							"save_custom": 0
-						},
-						{
 							"key": "field_5c8065cba1e5a",
 							"label": "Start Time",
 							"name": "start_time",
@@ -181,7 +154,7 @@
 							"required": 1,
 							"conditional_logic": 0,
 							"wrapper": {
-								"width": "10",
+								"width": "15",
 								"class": "",
 								"id": ""
 							},
@@ -197,12 +170,49 @@
 							"required": 1,
 							"conditional_logic": 0,
 							"wrapper": {
-								"width": "10",
+								"width": "15",
 								"class": "",
 								"id": ""
 							},
 							"display_format": "g:i A",
 							"return_format": "g:i A"
+						},
+						{
+							"key": "field_5c97a3382d476",
+							"label": "Days of Week",
+							"name": "dow",
+							"type": "checkbox",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "35",
+								"class": "",
+								"id": ""
+							},
+							"choices": {
+								"Monday": "M",
+								"Tuesday": "Tu",
+								"Wednesday": "W",
+								"Thursday": "Th",
+								"Friday": "F",
+								"Saturday": "Sa",
+								"Sunday": "Su"
+							},
+							"allow_custom": 0,
+							"default_value": [
+								"Monday",
+								"Tuesday",
+								"Wednesday",
+								"Thursday",
+								"Friday",
+								"Saturday",
+								"Sunday"
+							],
+							"layout": "horizontal",
+							"toggle": 0,
+							"return_format": "value",
+							"save_custom": 0
 						},
 						{
 							"key": "field_5c84dc97c944c",
@@ -224,6 +234,25 @@
 							"ui_off_text": ""
 						}
 					]
+				},
+				{
+					"key": "field_5ca73096978ee",
+					"label": "ID",
+					"name": "id",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "hidden",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
 				}
 			]
 		}
@@ -245,5 +274,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1554488117
+	"modified": 1555433798
 }

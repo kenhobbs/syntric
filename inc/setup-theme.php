@@ -1,149 +1,150 @@
 <?php
 	
 	add_action( 'after_setup_theme', 'syntric_setup_theme' );
-	if( ! function_exists( 'syntric_setup_theme' ) ) :
-		/**
-		 * Remove emoji stuff
-		 */
-		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
-		remove_action( 'wp_print_styles', 'print_emoji_styles' );
-		remove_action( 'admin_print_styles', 'print_emoji_styles' );
-		
-		/**
-		 * Sets up theme defaults and registers support for various WordPress features.
-		 *
-		 * Note that this function is hooked into the after_setup_theme hook, which
-		 * runs before the init hook. The init hook is too late for some features, such
-		 * as indicating support for post thumbnails.
-		 */
-		function syntric_setup_theme() {
-			/*
-			 * Make theme available for translation.
-			 * Translations can be filed in the /languages/ directory.
-			 * If you're building a theme based on Twenty Nineteen, use a find and replace
-			 * to change 'syntric' to the name of your theme in all the template files.
-			 */
-			load_theme_textdomain( 'syntric', get_template_directory() . '/assets/languages' );
-			// Add default posts and comments RSS feed links to head.
-			//add_theme_support( 'automatic-feed-links' );
-			/*
-			 * Let WordPress manage the document title.
-			 * By adding theme support, we declare that this theme does not use a
-			 * hard-coded <title> tag in the document head, and expect WordPress to
-			 * provide it for us.
-			 */
-			add_theme_support( 'title-tag' );
-			/*
-			 * Enable support for Post Thumbnails on posts and pages.
-			 *
-			 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-			 */
-			add_theme_support( 'post-thumbnails' );
-			/**
-			 * Additional image sizes that are auto-generated upon upload of an image into the Media Library
-			 */
-			add_image_size( 'icon', 50, 50, 1 );
-			//add_image_size( 'thumbnail', 100, 100, true );
-			update_option( 'thumbnail_size_w', 100 );
-			update_option( 'thumbnail_size_h', 100 );
-			update_option( 'thumbnail_crop', 1 );
-			//add_image_size( 'medium', 200, 200, true );
-			update_option( 'medium_size_w', 200 );
-			update_option( 'medium_size_h', 200 );
-			update_option( 'medium_crop', 0 );
-			//add_image_size( 'medium_large', 400, 400, 1 );
-			update_option( 'medium_large_size_w', 400 );
-			update_option( 'medium_large_size_h', 400 );
-			update_option( 'medium_large_crop', 0 );
-			//add_image_size( 'large', 800, 800, true );
-			update_option( 'large_size_w', 800 );
-			update_option( 'large_size_h', 800 );
-			update_option( 'large_crop', 0 );
-			add_image_size( 'banner', 1920, 500, 0 );
-			// set_post_thumbnail_size( 1568, 9999 ); this is set above with update_option()
-			// Register nav menu locations
-			register_nav_menus( [ 'primary' => __( 'Primary Menu', 'syntric' ),
-			                      //'notices' => __( 'Notices Menu', 'syntric' ),
-			                      //'quick'   => __( 'Quick Menu', 'syntric' ),
-			                      //'sitemap' => __( 'Sitemap', 'syntric' ),
-			] );
-			/*
-			 * Switch default core markup for search form, comment form, and comments
-			 * to output valid HTML5.
-			 */
-			add_theme_support( 'html5', [ 'search-form',
-			                              'comment-form',
-			                              'comment-list',
-			                              'gallery',
-			                              'caption', ] );
-			/**
-			 * Add support for core custom logo.
-			 *
-			 * @link https://codex.wordpress.org/Theme_Logo
-			 */
-			add_theme_support( 'custom-logo', [ 'height'      => 100,
-			                                    'width'       => 100,
-			                                    'flex-width'  => false,
-			                                    'flex-height' => false, ] );
-			// Add theme support for custom header images
-			add_theme_support( 'custom-header', [ 'default-header' => get_template_directory_uri() . '/assets/images/default-header.png',
-			                                      'random-default' => true,
-			                                      'width'          => 1920,
-			                                      'height'         => 500,
-			                                      'flex-height'    => true,
-			                                      'flex-width'     => true,
-			                                      'uploads'        => true, ] );
-			// Add theme support for selective refresh for widgets.
-			add_theme_support( 'customize-selective-refresh-widgets' );
-			// Add support for Block Styles.
-			add_theme_support( 'wp-block-styles' );
-			// Add support for full and wide align images.
-			add_theme_support( 'align-wide' );
-			// Add support for editor styles
-			add_theme_support( 'editor-styles' );
-			// Add custom editor font sizes.
-			/*add_theme_support(
-				'editor-font-sizes',
-				array(
-					array(
-						'name'      => __( 'Small', 'syntric' ),
-						'shortName' => __( 'S', 'syntric' ),
-						'size'      => 19.5,
-						'slug'      => 'small',
-					),
-					array(
-						'name'      => __( 'Normal', 'syntric' ),
-						'shortName' => __( 'M', 'syntric' ),
-						'size'      => 22,
-						'slug'      => 'normal',
-					),
-					array(
-						'name'      => __( 'Large', 'syntric' ),
-						'shortName' => __( 'L', 'syntric' ),
-						'size'      => 36.5,
-						'slug'      => 'large',
-					),
-					array(
-						'name'      => __( 'Huge', 'syntric' ),
-						'shortName' => __( 'XL', 'syntric' ),
-						'size'      => 49.5,
-						'slug'      => 'huge',
-					),
-				)
-			);*/
-			// Disable support for custom font sizes
-			add_theme_support( 'disable-custom-font-sizes' );
-			// Disable support for custom colors
-			add_theme_support( 'disable-custom-colors' );
-			// Add support for responsive embedded content.
-			add_theme_support( 'responsive-embeds' );
-			/**
-			 * Remove tag from posts (entirely)
-			 */
-			unregister_taxonomy_for_object_type( 'post_tag', 'post' );
-		}
-	endif;
+/**
+ * Remove emoji stuff
+ */
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+remove_action( 'wp_print_styles', 'print_emoji_styles' );
+remove_action( 'admin_print_styles', 'print_emoji_styles' );
+
+/**
+ * Sets up theme defaults and registers support for various WordPress features.
+ *
+ * Note that this function is hooked into the after_setup_theme hook, which
+ * runs before the init hook. The init hook is too late for some features, such
+ * as indicating support for post thumbnails.
+ */
+function syntric_setup_theme() {
+	/*
+	 * Make theme available for translation.
+	 * Translations can be filed in the /languages/ directory.
+	 * If you're building a theme based on Twenty Nineteen, use a find and replace
+	 * to change 'syntric' to the name of your theme in all the template files.
+	 */
+	load_theme_textdomain( 'syntric', get_template_directory() . '/assets/languages' );
+	// Add default posts and comments RSS feed links to head.
+	//add_theme_support( 'automatic-feed-links' );
+	/*
+	 * Let WordPress manage the document title.
+	 * By adding theme support, we declare that this theme does not use a
+	 * hard-coded <title> tag in the document head, and expect WordPress to
+	 * provide it for us.
+	 */
+	add_theme_support( 'title-tag' );
+	/*
+	 * Enable support for Post Thumbnails on posts and pages.
+	 *
+	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+	 */
+	add_theme_support( 'post-thumbnails' );
+	/**
+	 * Additional image sizes that are auto-generated upon upload of an image into the Media Library
+	 */
+	add_image_size( 'icon', 50, 50, 1 );
+	//add_image_size( 'thumbnail', 100, 100, true );
+	update_option( 'thumbnail_size_w', 100 );
+	update_option( 'thumbnail_size_h', 100 );
+	update_option( 'thumbnail_crop', 1 );
+	//add_image_size( 'medium', 200, 200, true );
+	update_option( 'medium_size_w', 200 );
+	update_option( 'medium_size_h', 200 );
+	update_option( 'medium_crop', 0 );
+	//add_image_size( 'medium_large', 400, 400, 1 );
+	update_option( 'medium_large_size_w', 400 );
+	update_option( 'medium_large_size_h', 400 );
+	update_option( 'medium_large_crop', 0 );
+	//add_image_size( 'large', 800, 800, true );
+	update_option( 'large_size_w', 800 );
+	update_option( 'large_size_h', 800 );
+	update_option( 'large_crop', 0 );
+	add_image_size( 'banner', 1920, 500, 0 );
+	// set_post_thumbnail_size( 1568, 9999 ); this is set above with update_option()
+	// Register nav menu locations
+	register_nav_menus( [ 'primary' => __( 'Primary Menu', 'syntric' ),
+	                      'notices' => __( 'Notices Menu', 'syntric' ),
+	                      //'quick'   => __( 'Quick Menu', 'syntric' ),
+	                      //'sitemap' => __( 'Sitemap', 'syntric' ),
+	] );
+	/*
+	 * Switch default core markup for search form, comment form, and comments
+	 * to output valid HTML5.
+	 */
+	add_theme_support( 'html5', [ 'search-form',
+	                              'comment-form',
+	                              'comment-list',
+	                              'gallery',
+	                              'caption', ] );
+	/**
+	 * Add support for core custom logo.
+	 *
+	 * @link https://codex.wordpress.org/Theme_Logo
+	 */
+	add_theme_support( 'custom-logo', [ 'height'      => 100,
+	                                    'width'       => 100,
+	                                    'flex-width'  => false,
+	                                    'flex-height' => false, ] );
+	// Add theme support for custom header images
+	add_theme_support( 'custom-header', [ 'default-header' => get_template_directory_uri() . '/assets/images/default-header.png',
+	                                      'random-default' => true,
+	                                      'width'          => 1920,
+	                                      'height'         => 500,
+	                                      'flex-height'    => true,
+	                                      'flex-width'     => true,
+	                                      'uploads'        => true, ] );
+	// Add theme support for selective refresh for widgets.
+	add_theme_support( 'customize-selective-refresh-widgets' );
+	// Add support for Block Styles.
+	add_theme_support( 'wp-block-styles' );
+	// Add support for full and wide align images.
+	add_theme_support( 'align-wide' );
+	// Add support for editor styles
+	add_theme_support( 'editor-styles' );
+	// Add custom editor font sizes.
+	/*add_theme_support(
+		'editor-font-sizes',
+		array(
+			array(
+				'name'      => __( 'Small', 'syntric' ),
+				'shortName' => __( 'S', 'syntric' ),
+				'size'      => 19.5,
+				'slug'      => 'small',
+			),
+			array(
+				'name'      => __( 'Normal', 'syntric' ),
+				'shortName' => __( 'M', 'syntric' ),
+				'size'      => 22,
+				'slug'      => 'normal',
+			),
+			array(
+				'name'      => __( 'Large', 'syntric' ),
+				'shortName' => __( 'L', 'syntric' ),
+				'size'      => 36.5,
+				'slug'      => 'large',
+			),
+			array(
+				'name'      => __( 'Huge', 'syntric' ),
+				'shortName' => __( 'XL', 'syntric' ),
+				'size'      => 49.5,
+				'slug'      => 'huge',
+			),
+		)
+	);*/
+	// Disable support for custom font sizes
+	add_theme_support( 'disable-custom-font-sizes' );
+	// Disable support for custom colors
+	add_theme_support( 'disable-custom-colors' );
+	// Add support for responsive embedded content.
+	add_theme_support( 'responsive-embeds' );
+	/**
+	 * Remove tag from posts (entirely)
+	 */
+}
+
+add_action( 'init', function() {
+	unregister_taxonomy_for_object_type( 'post_tag', 'post' );
+} );
 	
 	/**
 	 * Set site options for Syntric theme on initial setup and when theme is switched

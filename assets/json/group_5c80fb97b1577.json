@@ -694,7 +694,6 @@
 						"Syntric_Contact_Widget": "Contact",
 						"Syntric_Facebook_Page_Widget": "Facebook Page",
 						"Syntric_Google_Map_Widget": "Google Map",
-						"Syntric_Roster_Widget": "Roster",
 						"Syntric_Upcoming_Events_Widget": "Upcoming Events",
 						"Syntric_Recent_Posts_Widget": "Recent Posts"
 					},
@@ -723,6 +722,137 @@
 					"prepend": "",
 					"append": "",
 					"maxlength": ""
+				},
+				{
+					"key": "field_5cabd3be46674",
+					"label": "Features",
+					"name": "",
+					"type": "tab",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"placement": "top",
+					"endpoint": 0
+				},
+				{
+					"key": "field_5cabd3ce46675",
+					"label": "Buildings",
+					"name": "buildings_active",
+					"type": "checkbox",
+					"instructions": "Buildings are typically used with schools where students change classes like middle schools, jr. high schools, high schools and colleges. When active classes are assigned and listed with their building and room location (e.g. Mathematics Building - Room M1).",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"1": "Activate buildings"
+					},
+					"allow_custom": 0,
+					"default_value": [],
+					"layout": "vertical",
+					"toggle": 0,
+					"return_format": "value",
+					"save_custom": 0
+				},
+				{
+					"key": "field_5cabd58d46676",
+					"label": "Rooms",
+					"name": "rooms_active",
+					"type": "checkbox",
+					"instructions": "Rooms are typically used with schools where students change classes like middle schools, jr. high schools, high schools and colleges. When active classes are listed with their room location (e.g. Room 155).",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"1": "Activate rooms"
+					},
+					"allow_custom": 0,
+					"default_value": [],
+					"layout": "vertical",
+					"toggle": 0,
+					"return_format": "value",
+					"save_custom": 0
+				},
+				{
+					"key": "field_5cabd6c9bd5f4",
+					"label": "Departments",
+					"name": "departments_active",
+					"type": "checkbox",
+					"instructions": "Departments are used to categorize courses typical of middle schools, jr. high schools, high schools and colleges. When active courses are listed under their department on the website.",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"1": "Activate rooms"
+					},
+					"allow_custom": 0,
+					"default_value": [],
+					"layout": "vertical",
+					"toggle": 0,
+					"return_format": "value",
+					"save_custom": 0
+				},
+				{
+					"key": "field_5cabd796bd5f5",
+					"label": "Grade Levels",
+					"name": "grade_levels_active",
+					"type": "checkbox",
+					"instructions": "Grade levels are typical of elementary schools. When active courses are treated as grade level classes such as 1st Grade, 2nd Grade and so on.",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"1": "Activate grade levels"
+					},
+					"allow_custom": 0,
+					"default_value": [],
+					"layout": "vertical",
+					"toggle": 0,
+					"return_format": "value",
+					"save_custom": 0
+				},
+				{
+					"key": "field_5cabd850bd5f6",
+					"label": "Grade Levels",
+					"name": "grade_levels",
+					"type": "checkbox",
+					"instructions": "Grade levels are typical of elementary schools. When active courses are treated as grade level classes such as 1st Grade, 2nd Grade and so on.",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"choices": {
+						"1": "Activate grade levels"
+					},
+					"allow_custom": 0,
+					"default_value": [],
+					"layout": "vertical",
+					"toggle": 0,
+					"return_format": "value",
+					"save_custom": 0
 				}
 			]
 		}
@@ -744,5 +874,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1554384641
+	"modified": 1554900440
 }

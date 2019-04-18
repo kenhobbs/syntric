@@ -1,5 +1,4 @@
 <?php
-	
 	get_header();
 	echo '<div id="page-wrapper" class="content-wrapper ' . get_post_type() . '-wrapper">';
 	echo '<div class="container-fluid">';

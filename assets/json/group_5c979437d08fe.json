@@ -18,50 +18,12 @@
 			"collapsed": "field_5c6fae26bbd6c",
 			"min": 0,
 			"max": 0,
-			"layout": "block",
+			"layout": "table",
 			"button_label": "Add Course",
-			"hide_collapse": 0,
+			"hide_collapse": 1,
 			"collapse_all_repeater": 0,
 			"btn-icon-only": 1,
 			"sub_fields": [
-				{
-					"key": "field_5c6fae26bbd6c",
-					"label": "Course",
-					"name": "course",
-					"type": "text",
-					"instructions": "",
-					"required": 1,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "90",
-						"class": "",
-						"id": ""
-					},
-					"default_value": "",
-					"placeholder": "",
-					"prepend": "",
-					"append": "",
-					"maxlength": ""
-				},
-				{
-					"key": "field_5ca72c4ff7e31",
-					"label": "ID",
-					"name": "id",
-					"type": "text",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "10",
-						"class": "",
-						"id": ""
-					},
-					"default_value": "",
-					"placeholder": "",
-					"prepend": "",
-					"append": "",
-					"maxlength": ""
-				},
 				{
 					"key": "field_5c6fae31bbd6d",
 					"label": "Department",
@@ -71,64 +33,46 @@
 					"required": 0,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "50",
-						"class": "",
+						"width": "15",
+						"class": "-collapsed-target",
 						"id": ""
 					},
-					"choices": [],
+					"choices": {
+						"3Bw<5cb16393bd4a93.27635660": "Arts & Music",
+						"3[+$5cb16393c1eaa9.74839659": "CTE",
+						"`tLS5cb16393c692e4.92824661": "Health & Fitness",
+						"*X]&5cb16393cc2246.66783089": "Language Arts",
+						"$S=+5cb163b1cbf689.39815965": "Mathematics",
+						"ilZ%5cb163b1d0e702.48036008": "Science",
+						"Lwf:5cb163b1d59e65.32422004": "Social Studies",
+						"1D)b5cb16393db5c70.53187941": "Special Education"
+					},
 					"default_value": [],
 					"allow_null": 1,
 					"multiple": 0,
 					"ui": 0,
-					"return_format": "value",
+					"return_format": "array",
 					"ajax": 0,
 					"placeholder": ""
 				},
 				{
-					"key": "field_5c8d61c9bf065",
-					"label": " ",
-					"name": "graduation_requirement",
-					"type": "checkbox",
+					"key": "field_5c6fae26bbd6c",
+					"label": "Course",
+					"name": "course",
+					"type": "text",
 					"instructions": "",
-					"required": 0,
+					"required": 1,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "25",
-						"class": "",
+						"width": "15",
+						"class": "-collapsed-target",
 						"id": ""
 					},
-					"choices": {
-						"1": "Graduation requirement"
-					},
-					"allow_custom": 0,
-					"default_value": [],
-					"layout": "vertical",
-					"toggle": 0,
-					"return_format": "value",
-					"save_custom": 0
-				},
-				{
-					"key": "field_5c8d6201bf066",
-					"label": " ",
-					"name": "college_requirement",
-					"type": "checkbox",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "25",
-						"class": "",
-						"id": ""
-					},
-					"choices": {
-						"1": "College requirement"
-					},
-					"allow_custom": 0,
-					"default_value": [],
-					"layout": "vertical",
-					"toggle": 0,
-					"return_format": "value",
-					"save_custom": 0
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
 				},
 				{
 					"key": "field_5c8d605eb1677",
@@ -140,14 +84,98 @@
 					"conditional_logic": 0,
 					"wrapper": {
 						"width": "",
-						"class": "",
+						"class": "-collapsed-target",
 						"id": ""
 					},
 					"default_value": "",
 					"placeholder": "",
 					"maxlength": "",
-					"rows": "",
+					"rows": 2,
 					"new_lines": "wpautop"
+				},
+				{
+					"key": "field_5c8d61c9bf065",
+					"label": "Meta",
+					"name": "meta",
+					"type": "checkbox",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "15",
+						"class": "-collapsed-target",
+						"id": ""
+					},
+					"choices": {
+						"graduation_requirement": "Graduation Requirement",
+						"college_requirement": "College Requirement"
+					},
+					"allow_custom": 0,
+					"default_value": [],
+					"layout": "vertical",
+					"toggle": 0,
+					"return_format": "array",
+					"save_custom": 0
+				},
+				{
+					"key": "field_5cb7e829236b6",
+					"label": "Include Page",
+					"name": "include_page",
+					"type": "true_false",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "10",
+						"class": "",
+						"id": ""
+					},
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
+				},
+				{
+					"key": "field_5ca72c4ff7e31",
+					"label": "ID",
+					"name": "id",
+					"type": "text",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "5",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5cb7e848236b7",
+					"label": "Course Page",
+					"name": "course_page",
+					"type": "post_object",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"post_type": [
+						"page"
+					],
+					"taxonomy": "",
+					"allow_null": 1,
+					"multiple": 0,
+					"return_format": "object",
+					"ui": 1
 				}
 			]
 		}
@@ -169,5 +197,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1554485325
+	"modified": 1555592101
 }

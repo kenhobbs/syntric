@@ -7,7 +7,7 @@
 	echo '<main id="content" class="col content-area content">';
 	echo '<h1 class="page-title" role="heading">' . get_the_title() . syntric_get_post_badges() . '</h1>';
 	syntric_sidebar( 'main-top-sidebar' );
-	if( have_posts() ) {
+if( have_posts() ) :
 		while( have_posts() ) : the_post();
 			if( 'syntric_calendar' == get_post_type() ) :
 				echo '<div id="fullcalendar">';
@@ -38,9 +38,7 @@
 				echo '</article>';
 			endif;
 		endwhile;
-	} else {
-		echo '<p>The requested content can not be found</p>';
-	}
+endif;
 	syntric_sidebar( 'main-bottom-sidebar' );
 	echo '</main>';
 	syntric_sidebar( 'main-right-sidebar' );
