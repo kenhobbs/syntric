@@ -463,7 +463,7 @@ axs.constants.ARIA_ROLES = {
 	landmark: {'abstract': !0, namefrom: ['contents', 'author'], namerequired: !1, parent: ['region']},
 	link: {namefrom: ['contents', 'author'], namerequired: !0, parent: ['command'], properties: ['aria-expanded']},
 	list: {mustcontain: ['group', 'listitem'], namefrom: ['author'], parent: ['region']},
-	listbox: {mustcontain: ['option'], namefrom: ['author'], namerequired: !0, parent: ['list', 'select'], properties: ['aria-multiselectable', 'aria-required']},
+	listbox: {mustcontain: ['options'], namefrom: ['author'], namerequired: !0, parent: ['list', 'select'], properties: ['aria-multiselectable', 'aria-required']},
 	listitem: {namefrom: ['contents', 'author'], namerequired: !0, parent: ['section'], properties: ['aria-level', 'aria-posinset', 'aria-setsize']},
 	log: {namefrom: [' author'], namerequired: !0, parent: ['region']},
 	main: {namefrom: ['author'], parent: ['landmark']},
@@ -485,7 +485,7 @@ axs.constants.ARIA_ROLES = {
 	option: {namefrom: ['contents', 'author'], namerequired: !0, parent: ['input'], properties: ['aria-checked', 'aria-posinset', 'aria-selected', 'aria-setsize']},
 	presentation: {parent: ['structure']},
 	progressbar: {childpresentational: !0, namefrom: ['author'], namerequired: !0, parent: ['range']},
-	radio: {namefrom: ['contents', 'author'], namerequired: !0, parent: ['checkbox', 'option']},
+	radio: {namefrom: ['contents', 'author'], namerequired: !0, parent: ['checkbox', 'options']},
 	radiogroup: {
 		mustcontain: ['radio'], namefrom: ['author'],
 		namerequired: !0, parent: ['select'], properties: ['aria-required']
@@ -530,7 +530,7 @@ axs.constants.ARIA_ROLES = {
 		mustcontain: ['row'], namefrom: ['author'],
 		namerequired: !0, parent: ['grid', 'tree']
 	},
-	treeitem: {namefrom: ['contents', 'author'], namerequired: !0, parent: ['listitem', 'option']},
+	treeitem: {namefrom: ['contents', 'author'], namerequired: !0, parent: ['listitem', 'options']},
 	widget: {'abstract': !0, parent: ['roletype']},
 	window: {'abstract': !0, namefrom: [' author'], parent: ['roletype'], properties: ['aria-expanded']}
 };

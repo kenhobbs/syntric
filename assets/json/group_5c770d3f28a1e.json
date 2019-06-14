@@ -34,6 +34,23 @@
 					"endpoint": 0
 				},
 				{
+					"key": "field_5c97da3afeed2",
+					"label": "Instructions",
+					"name": "",
+					"type": "message",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"message": "<p>To set up a calendar complete the following steps:<\/p>\r\n<ol>\r\n<li>Go to <a href=\"https:\/\/calendar.google.com\/calendar\/r\/settings\" target=\"_blank\">Google Calendar Settings<\/a> <\/li>\r\n<li>Select the calendar you would like to sync on the left under \"Settings for my calendars\"<\/li>\r\n<li>Scroll down and ensure the setting \"Access permissions\" is set to \"Make available to public\" and \"See all event details\".<\/li>\r\n<li>Scroll down further and find the heading \"Integrate calendar\" and copy the value listed under \"Calendar ID\" and paste it into the Google Calendar ID field below<\/li>\r\n<li>Select \"Schedule Sync to have the calendar refresh automatically<\/li>\r\n<\/ol>",
+					"new_lines": "wpautop",
+					"esc_html": 0
+				},
+				{
 					"key": "field_5c770d3f3aadc",
 					"label": "Google Calendar ID",
 					"name": "google_calendar_id",
@@ -57,11 +74,11 @@
 					"label": "Auto Sync",
 					"name": "schedule_sync",
 					"type": "true_false",
-					"instructions": "Calendar will be scheduled to sync hourly starting in 60 seconds.",
+					"instructions": "Calendar will be scheduled to sync hourly.  First sync will be in 60 seconds.",
 					"required": 0,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "50",
+						"width": "",
 						"class": "",
 						"id": ""
 					},
@@ -70,30 +87,6 @@
 					"ui": 1,
 					"ui_on_text": "",
 					"ui_off_text": ""
-				},
-				{
-					"key": "field_5ca122c6b37e4",
-					"label": "",
-					"name": "",
-					"type": "message",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": [
-						[
-							{
-								"field": "field_5c86c19e08f4c",
-								"operator": "==empty"
-							}
-						]
-					],
-					"wrapper": {
-						"width": "50",
-						"class": "",
-						"id": ""
-					},
-					"message": "",
-					"new_lines": "wpautop",
-					"esc_html": 0
 				},
 				{
 					"key": "field_5c770d3f3aedd",
@@ -111,7 +104,7 @@
 						]
 					],
 					"wrapper": {
-						"width": "50",
+						"width": "",
 						"class": "",
 						"id": ""
 					},
@@ -262,6 +255,38 @@
 					"save_other_choice": 0
 				},
 				{
+					"key": "field_5c97dbfe97477",
+					"label": "Events",
+					"name": "",
+					"type": "tab",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"placement": "top",
+					"endpoint": 0
+				},
+				{
+					"key": "field_5c97dc0f97478",
+					"label": "Events",
+					"name": "",
+					"type": "enhanced_message",
+					"instructions": "",
+					"required": 0,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"enhanced_message": "<?php\r\n$post_id = get_the_ID();\r\n$args = array(\r\n\t'numberposts' => - 1,\r\n\t'post_type'   => 'syntric_event',\r\n\t'post_status' => 'publish',\r\n\t'meta_key'    => 'syntric_event_start_date',\r\n\t'orderby'     => 'meta_value',\r\n\t'order'       => 'ASC',\r\n\t'meta_query'  => array(\r\n\t\tarray(\r\n\t\t\t'key'     => 'syntric_event_calendar_id',\r\n\t\t\t'value'   => $post_id ,\r\n\t\t\t'compare' => '=',\r\n\t\t)\r\n\t)\r\n);\r\n$events = get_posts( $args ); \r\n\r\nif ( $events ) :\r\n?>\r\n\r\n\r\n<table width=\"100%\" cellpadding=\"6\" cellspacing=\"0\" border=\"1\" frame=\"void\" rules=\"rows\" sortable=\"sortable\" style=\"border-color: #eee;\">\r\n<thead>\r\n<tr align=\"left\">\r\n<th>Event<\/th>\r\n<th>Date\/Time<\/th>\r\n<th>Location<\/th>\r\n<\/tr>\r\n<\/thead>\r\n<tbody>\r\n\r\n<?php\r\nforeach ( $events as $event ) : \r\n$event_id = $event->ID;\r\n$dates = syntric_get_event_dates( $event_id );\r\n?>\r\n\r\n<tr>\r\n<td nowrap><a href=\"\/wp-admin\/post.php?post=<?php echo $event_id; ?>&action=edit\"><?php echo get_the_title( $event_id ); ?><\/a><\/td>\r\n<td nowrap><?php echo $dates; ?><\/td>\r\n<td><?php echo get_field( 'syntric_event_location', $event_id  ); ?><\/td>\r\n<\/tr>\r\n\r\n<?php \r\nendforeach;\r\n ?>\r\n\r\n<\/tbody>\r\n<\/table>\r\n\r\n<?php\r\nelse :\r\necho '<p>No events<\/p>';\r\nendif;\r\n?>",
+					"hide_label": "no"
+				},
+				{
 					"key": "field_5c97d936f1c35",
 					"label": "Last Sync",
 					"name": "",
@@ -314,71 +339,6 @@
 					"maxlength": "",
 					"rows": 20,
 					"new_lines": ""
-				},
-				{
-					"key": "field_5c97dbfe97477",
-					"label": "Events",
-					"name": "",
-					"type": "tab",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "",
-						"class": "",
-						"id": ""
-					},
-					"placement": "top",
-					"endpoint": 0
-				},
-				{
-					"key": "field_5c97dc0f97478",
-					"label": "Events",
-					"name": "",
-					"type": "enhanced_message",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "",
-						"class": "",
-						"id": ""
-					},
-					"enhanced_message": "<?php\r\n$post_id = get_the_ID();\r\n$args = array(\r\n\t'numberposts' => - 1,\r\n\t'post_type'   => 'syntric_event',\r\n\t'post_status' => 'publish',\r\n\t'meta_key'    => 'syntric_event_start_date',\r\n\t'orderby'     => 'meta_value',\r\n\t'order'       => 'ASC',\r\n\t'meta_query'  => array(\r\n\t\tarray(\r\n\t\t\t'key'     => 'syntric_event_calendar_id',\r\n\t\t\t'value'   => $post_id ,\r\n\t\t\t'compare' => '=',\r\n\t\t)\r\n\t)\r\n);\r\n$events = get_posts( $args ); \r\n\r\nif ( $events ) :\r\n?>\r\n\r\n\r\n<table width=\"100%\" cellpadding=\"6\" cellspacing=\"0\" border=\"1\" frame=\"void\" rules=\"rows\" sortable=\"sortable\" style=\"border-color: #eee;\">\r\n<thead>\r\n<tr align=\"left\">\r\n<th>Event<\/th>\r\n<th>Date\/Time<\/th>\r\n<th>Location<\/th>\r\n<\/tr>\r\n<\/thead>\r\n<tbody>\r\n\r\n<?php\r\nforeach ( $events as $event ) : \r\n$event_id = $event->ID;\r\n$dates = syntric_get_event_dates( $event_id );\r\n?>\r\n\r\n<tr>\r\n<td nowrap><a href=\"\/wp-admin\/post.php?post=<?php echo $event_id; ?>&action=edit\"><?php echo get_the_title( $event_id ); ?><\/a><\/td>\r\n<td nowrap><?php echo $dates; ?><\/td>\r\n<td><?php echo get_field( 'syntric_event_location', $event_id  ); ?><\/td>\r\n<\/tr>\r\n\r\n<?php \r\nendforeach;\r\n ?>\r\n\r\n<\/tbody>\r\n<\/table>\r\n\r\n<?php\r\nelse :\r\necho '<p>No events<\/p>';\r\nendif;\r\n?>",
-					"hide_label": "no"
-				},
-				{
-					"key": "field_5c97db27ef913",
-					"label": "Instructions",
-					"name": "",
-					"type": "tab",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "",
-						"class": "",
-						"id": ""
-					},
-					"placement": "top",
-					"endpoint": 0
-				},
-				{
-					"key": "field_5c97da3afeed2",
-					"label": "Instructions",
-					"name": "",
-					"type": "message",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "",
-						"class": "",
-						"id": ""
-					},
-					"message": "<p>To set up a calendar complete the following steps:<\/p>\r\n<ol>\r\n<li>Go to <a href=\"https:\/\/calendar.google.com\/calendar\/r\/settings\" target=\"_blank\">Google Calendar Settings<\/a> <\/li>\r\n<li>Select the calendar you would like to sync on the left under \"Settings for my calendars\"<\/li>\r\n<li>Scroll down and ensure the setting \"Access permissions\" is set to \"Make available to public\" and \"See all event details\".<\/li>\r\n<li>Scroll down further and find the heading \"Integrate calendar\" and copy the value listed under \"Calendar ID\" and paste it into the Google Calendar ID field below<\/li>\r\n<li>Select \"Schedule Sync to have the calendar refresh automatically<\/li>\r\n<\/ol>",
-					"new_lines": "wpautop",
-					"esc_html": 0
 				}
 			]
 		}
@@ -400,5 +360,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1554100167
+	"modified": 1556159565
 }

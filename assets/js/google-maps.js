@@ -21,9 +21,51 @@
 		// vars
 		var args = {
 			zoom: 16,
+			zoomControl: true,
 			center: new google.maps.LatLng(0, 0),
-			mapTypeId: google.maps.MapTypeId.ROADMAP
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			disableDefaultUI: true,
+			disableDoubleClickZoom: false,
+			draggable: true,
+			fullscreenControl: true,
+			eading: 0,
+			keyboardShortcuts: false,
+			mapTypeControl: true,
+			mapTypeControlOptions: ['roadmap', 'satellite'],
+			panControl: true,
+			rotateControl: true,
+			scaleControl: false,
+			scrollwheel: false,
+			signInControl: true,
+			streetViewControl: true,
+			tilt: 0
 		};
+
+		/*
+		var args = {
+				center: center,
+				disableDefaultUI: true,
+				disableDoubleClickZoom: true,
+				draggable: true,
+				fullscreenControl: false,
+				fullscreenControlOptions: {position: 'LEFT_TOP'},
+				heading: 0,
+				keyboardShortcuts: false,
+				mapTypeControl: mapTypeControl,
+				mapTypeControlOptions: ['roadmap', 'satellite'],
+				mapTypeId: mapTypeId,
+				panControl: false,
+				rotateControl: false,
+				scaleControl: false,
+				scrollwheel: false,
+				signInControl: false,
+				streetViewControl: streetViewControl,
+				styles: styles,
+				tilt: 0,
+				zoom: zoom,
+				zoomControl: zoomControl
+			};
+		 */
 
 		// create map
 		var map = new google.maps.Map($el[0], args);

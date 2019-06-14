@@ -39,23 +39,7 @@
  *
  */
 
-/**
- * Add syntric_nav_menu_widget to $nav_menu_args so widget can be caught with hooks
- */
-/*add_filter( 'widget_nav_menu_args', 'syntric_widget_nav_menu_args', 10, 4 );
-function syntric_widget_nav_menu_args( $nav_menu_args, $nav_menu, $args, $instance ) {
-	$menu_classes = explode( ' ', $nav_menu_args[ 'menu_class' ] );
-	if( ! in_array( 'navbar-nav', $menu_classes ) ) {
-		$nav_menu_args[ 'container' ] = '';
-	}
-	$nav_menu_args[ 'item_spacing' ] = ( syntric_remove_whitespace() ) ? 'discard' : 'preserve';
-
-	return $nav_menu_args;
-}*/
-
 function syntric_primary_nav() {
-	;
-
 	$args = [
 		'theme_location'  => 'primary',
 		'container'       => 'div',
@@ -88,6 +72,9 @@ function syntric_primary_nav() {
 	echo '</a>';
 	wp_nav_menu( $args );
 	echo '</nav>';
+}
+
+function syntric_nav_menu_location( $location ) {
 }
 
 add_filter( 'wp_nav_menu_args', 'syntric_wp_nav_menu_args', 10, 4 );
@@ -140,17 +127,19 @@ function syntric_nav_menu_objects( $sorted_menu_items, $args ) {
 			$sorted_menu_items[ $i ] -> classes = $classes;
 			$i ++;
 		}
+		//return $sorted_menu_items;
 
-		return $sorted_menu_items;
 	} elseif( in_array( 'menu', $menu_classes ) || in_array( 'list-group', $menu_classes ) ) {
 		$top_ancestor_id = syntric_get_top_ancestor_id( $post -> ID );
 		$in_ancestor     = 0;
 		$smi             = [];
+		//slog( $args );
 		for( $j = 1; $j <= count( $sorted_menu_items ); $j ++ ) {
 			$mi             = get_post( $sorted_menu_items[ $j ] -> object_id );
 			$is_custom_link = ( 'custom' == $sorted_menu_items[ $j ] -> type );
 			$is_published   = ( $mi instanceof WP_Post && 'publish' == $mi -> post_status ) ? true : false;
 			if( $in_ancestor && ( $is_custom_link || $is_published ) ) {
+				//slog( 'in_ancestor || is_custom_link || is_published');
 				if( ! $is_custom_link && 0 == wp_get_post_parent_id( $sorted_menu_items[ $j ] -> object_id ) ) {
 					break;
 				}
@@ -174,6 +163,7 @@ function syntric_nav_menu_objects( $sorted_menu_items, $args ) {
 				$smi[]                              = $sorted_menu_items[ $j ];
 			}
 			if( ! $in_ancestor && $top_ancestor_id == $sorted_menu_items[ $j ] -> object_id ) {
+				//slog( 'in_ancestor = 1');
 				$in_ancestor = 1;
 			}
 		}
@@ -265,7 +255,7 @@ function syntric_nav_menu_submenu_css_class( $classes, $args, $depth ) {
 	return $classes;
 }
 
-function syntric_nav_menu_children_count( $post_id ) {
+function ___syntric_nav_menu_children_count( $post_id ) {
 	$ancestor_id = syntric_get_top_ancestor_id( $post_id );
 	$children    = get_posts( [
 		'post_parent' => $ancestor_id,
@@ -275,24 +265,4 @@ function syntric_nav_menu_children_count( $post_id ) {
 	] );
 
 	return count( $children );
-}
-
-/**
- * Set widget titles as required.
- *
- * nav_menu objects sometimes have variable titles.  For example, a left side nav for a section will have a title of the top
- * ancestor for the section it is in.
- *
- */
-add_filter( 'widget_title', 'syntric_widget_title', 10, 3 );
-function syntric_widget_title( $title, $instance, $widget_id ) {
-	global $post;
-	if( 'nav_menu' == $widget_id && empty( $title ) ) {
-		$top_ancestor_id = syntric_get_top_ancestor_id( $post -> ID );
-		$top_ancestor    = get_post( $top_ancestor_id );
-
-		return $top_ancestor -> post_title;
-	}
-
-	return $title;
 }

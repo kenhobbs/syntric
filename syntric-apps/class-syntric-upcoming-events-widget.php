@@ -12,7 +12,7 @@ class Syntric_Upcoming_Events_Widget extends WP_Widget {
 		                'description'                 => __( 'Displays upcoming calendar events.' ),
 		                'customize_selective_refresh' => true,
 		];
-		parent ::__construct( 'syntric-upcoming-events-widget', __( 'Upcoming Events' ), $widget_ops );
+		parent ::__construct( 'syntric-upcoming-events-widget', __( 'Syntric Upcoming Events' ), $widget_ops );
 		$this -> alt_option_name = 'syntric-upcoming-events-widget';
 	}
 
@@ -24,10 +24,11 @@ class Syntric_Upcoming_Events_Widget extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 		global $post;
-		$widget_id         = ( isset( $args[ 'widget_id' ] ) ) ? $args[ 'widget_id' ] : $this -> id;
-		$title             = get_field( 'syntric_upcoming_events_widget_title', 'widget_' . $widget_id );
-		$calendar          = get_field( 'syntric_upcoming_events_widget_calendar', 'widget_' . $widget_id );
-		$events_to_display = get_field( 'syntric_upcoming_events_widget_events_to_display', 'widget_' . $widget_id );;
+		$widget_id              = ( isset( $args[ 'widget_id' ] ) ) ? $args[ 'widget_id' ] : $this -> id;
+		$upcoming_events_widget = get_field( 'field_5c95be43f6563', 'widget_' . $widget_id );
+		$title                  = $upcoming_events_widget[ 'title' ];
+		$calendar               = $upcoming_events_widget[ 'calendar' ];
+		$events_to_display      = $upcoming_events_widget[ 'events_to_display' ];
 		echo $args[ 'before_widget' ];
 		if( ! empty( $title ) ) :
 			echo $args[ 'before_title' ] . $title . $args[ 'after_title' ];
@@ -36,10 +37,13 @@ class Syntric_Upcoming_Events_Widget extends WP_Widget {
 		echo '<div class="list-group">';
 		if( $events ) {
 			foreach( $events as $event ) :
-				$dates       = syntric_get_event_dates( $event -> ID );
-				$start_date  = get_field( 'syntric_event_start_date', $event -> ID );
+				$event_cf = get_field( 'field_5c778521b7d99', $event -> ID );
+				$dates    = syntric_get_event_dates( $event -> ID );
+				//$start_date  = get_field( 'syntric_event_start_date', $event -> ID );
+				$start_date  = $event_cf[ 'start_date' ];
 				$_start_date = date_create( $start_date );
-				$location    = get_field( 'syntric_event_location', $event -> ID );
+				//$location    = get_field( 'syntric_event_location', $event -> ID );
+				$location = $event_cf[ 'location' ];
 				if( ! empty( $event -> post_content ) ) :
 					echo '<a href="' . get_the_permalink( $event -> ID ) . '" class="list-group-item list-group-item-action">';
 				else :

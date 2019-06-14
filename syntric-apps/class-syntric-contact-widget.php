@@ -14,7 +14,7 @@ class Syntric_Contact_Widget extends WP_Widget {
 		                'description'                 => __( 'Displays contact info for an individual or organization' ),
 		                'customize_selective_refresh' => true,
 		];
-		parent ::__construct( 'syntric-contact-widget', __( 'Contact' ), $widget_ops );
+		parent ::__construct( 'syntric-contact-widget', __( 'Syntric Contact' ), $widget_ops );
 		$this -> alt_option_name = 'syntric-contact-widget';
 	}
 
@@ -25,8 +25,8 @@ class Syntric_Contact_Widget extends WP_Widget {
 	 * @param array $instance Settings for the current widget instance.
 	 */
 	public function widget( $args, $instance ) {
-		$widget_id = ( isset( $args[ 'widget_id' ] ) ) ? $args[ 'widget_id' ] : $this -> id;;
-		$contact_widget = get_field( 'syntric_contact_widget', 'widget_' . $widget_id );
+		$widget_id      = ( isset( $args[ 'widget_id' ] ) ) ? $args[ 'widget_id' ] : $this -> id;
+		$contact_widget = get_field( 'field_5c8c99092f8f5', 'widget_' . $widget_id );
 		$title          = $contact_widget[ 'title' ];
 		$contact_type   = $contact_widget[ 'contact_type' ];
 		echo $args[ 'before_widget' ];
@@ -38,7 +38,7 @@ class Syntric_Contact_Widget extends WP_Widget {
 				$user_id = $contact_widget[ 'person' ]; // returns User ID
 				$user    = get_user_by( 'ID', $user_id );
 				if( $user instanceof WP_User ) {
-					$user_custom_fields = get_field( 'syntric_user', 'user_' . $user_id );
+					$user_custom_fields = get_field( 'field_5c873b64763cd', 'user_' . $user_id );
 					$phone              = $user_custom_fields[ 'phone' ];
 					$phone              .= ( isset( $user_custom_fields[ 'ext' ] ) && ! empty( $user_custom_fields[ 'ext' ] ) ) ? ' x' . $user_custom_fields[ 'ext' ] : '';
 					echo '<div class="contact d-flex flex-row">';
@@ -64,11 +64,11 @@ class Syntric_Contact_Widget extends WP_Widget {
 			break;
 			case 'organization' :
 				$contact_organization = $contact_widget[ 'organization' ];
-				$organization         = get_field( 'syntric_organization', 'option' );
+				$organization         = get_field( 'field_5c9a588f36054', 'options' );
 				if( $organization && $contact_organization == $organization[ 'name' ] ) {
 					$contact = $organization;
 				} else {
-					$organizations = get_field( 'syntric_organizations', 'option' );
+					$organizations = get_field( 'field_5ca27332537bc', 'options' );
 					if( $organizations ) {
 						foreach( $organizations as $organization ) {
 							if( $contact_organization == $organization[ 'name' ] ) {

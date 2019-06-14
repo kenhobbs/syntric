@@ -44,7 +44,7 @@
 	 * } else {
 	 * $banner_style_attribute = ' style="min-height: 0;" ';
 	 * }
-	 * $jumbotrons = get_field( 'syn_jumbotrons', 'option' );
+	 * $jumbotrons = get_field( 'syn_jumbotrons', 'options' );
 	 * if( has_header_image() || $jumbotrons ) {
 	 *
 	 * ;
@@ -63,7 +63,7 @@
 	 * if( ! $post ) {
 	 * return;
 	 * }
-	 * $jumbotrons = get_field( 'syn_jumbotrons', 'option' );
+	 * $jumbotrons = get_field( 'syn_jumbotrons', 'options' );
 	 * if( $jumbotrons ) {
 	 * $jumbotron = false;
 	 * foreach( $jumbotrons as $_jumbotron ) {

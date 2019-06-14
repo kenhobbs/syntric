@@ -2,7 +2,6 @@
 /**
  * syntric_calendar and syntric_event - calendar and event app with Google Calendar sync features
  */
-
 /**
  * Force local time zone for all syntric_calendar and syntric_event operations
  */
@@ -61,13 +60,34 @@ function syntric_register_calendar() {
 	register_post_type( 'syntric_calendar', $args );
 }
 
-/**
- * Force complete deletion of syntric_calendar and syntric_event post types
- */
-//add_action( 'wp_trash_post', 'syntric_force_delete_calcpts' );
-function syntric_force_delete_calcpts( $post_id ) {
-	if( get_post_type( $post_id ) == 'syntric_calendar' || 'syntric_event' == get_post_type( $post_id ) ) {
-		wp_delete_post( $post_id, true );
+add_action( 'acf/save_post', 'syntric_on_save_calendar', 20 );
+function syntric_on_save_calendar( $post_id ) {
+	global $post_type;
+// Exit if no ACF fields, revision or AUTOSAVE
+	if( ! isset( $_POST[ 'acf' ] ) || wp_is_post_revision( $post_id ) || ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) ) {
+		return;
+	}
+	if( 'syntric_calendar' == $post_type ) {
+		//slog( 'acf/save_post in syntric-calendar.php' );
+		$calendar = get_field( 'syntric_calendar', $post_id );
+		if( ! $calendar ) {
+			return;
+		}
+		if( isset( $calendar[ 'purge' ] ) && $calendar[ 'purge' ] ) {
+			syntric_purge_calendar( $post_id );
+			update_field( 'syntric_calendar_purge', 0, $post_id );
+		}
+		if( isset( $calendar[ 'schedule_sync' ] ) && $calendar[ 'schedule_sync' ] ) {
+			syntric_schedule_calendar_sync( $post_id );
+		} else {
+			wp_clear_scheduled_hook( 'syntric_calendar_sync', [ 'post_id' => $post_id ] );
+		}
+		if( isset( $calendar[ 'sync_now' ] ) && $calendar[ 'sync_now' ] ) {
+			syntric_sync_calendar( $post_id, 'now', $calendar[ 'sync_past' ], $calendar[ 'sync_past_period' ] );
+			update_field( 'syntric_calendar_sync_now', 0, $post_id );
+			update_field( 'syntric_calendar_sync_past', 0, $post_id );
+			update_field( 'syntric_calendar_sync_past_period', 1, $post_id );
+		}
 	}
 }
 
@@ -76,20 +96,21 @@ function syntric_force_delete_calcpts( $post_id ) {
  */
 add_action( 'syntric_calendar_sync', 'syntric_sync_calendar' );
 function syntric_sync_calendar( $calendar_post_id, $sync_type = 'scheduled', $sync_past = 0, $sync_past_period = 0 ) {
-	$post = get_post( $calendar_post_id );
-	//$syntric_calendar = get_field( 'syntric_calendar', $calendar_post_id );
-	//$syntric_settings = get_field( 'syntric_settings', 'option' );
-	$log = 'Sync started at ' . date( 'n/j/Y g:i A' ) . ' for calendar ' . $post -> post_title . "\n";
-	//$cal_meta         = get_field( 'syntric_calendar', $calendar_post_id );
+	$post     = get_post( $calendar_post_id );
+	$past_log = get_field( 'syntric_calendar_last_sync_result', $calendar_post_id );
+	$log      = '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~' . "\n";
+	$log      .= 'Sync started at ' . date( 'n/j/Y g:i A' ) . ' for ' . $post -> post_title . "\n";
+	$log      .= '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~' . "\n";
 	if( 'now' == $sync_type ) {
-		$log .= 'Sync now' . "\n";
+		$log .= 'Sync initiated by Sync Now';
 		if( $sync_past && $sync_past_period ) {
-			$log .= 'Syncing past ' . $sync_past_period . ' months' . "\n";
+			$log .= ' with Sync Past Events period of ' . $sync_past_period . ' months';
 		}
+		$log .= "\n";
 	} elseif( 'scheduled' == $sync_type ) {
-		$log .= 'Scheduled sync' . "\n";
+		$log .= 'Sync initiated by hourly Auto Sync' . "\n";
 	}
-	update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
+	//update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
 
 	// Set up timeMin and timeMax which define date range of events to sync
 	$time_min = date_create();
@@ -103,18 +124,19 @@ function syntric_sync_calendar( $calendar_post_id, $sync_type = 'scheduled', $sy
 
 	// Construct URL for API call
 	$google_calendar_id = get_field( 'syntric_calendar_google_calendar_id', $calendar_post_id );
-	$api_key            = get_field( 'syntric_settings_google_api_key', 'option' );
-	$url                = trailingslashit( 'https://www.googleapis.com/calendar/v3/calendars/' ) . $google_calendar_id . '/events?key=' . $api_key . '&singleEvents=true&orderBy=startTime&maxResults=200' . '&timeMin=' . $time_min . '&timeMax=' . $time_max;
-	$log                .= 'URL for API call constructed as ' . $url . "\n";
-	update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
+	$api_key            = get_field( 'syntric_settings_google_api_key', 'options' );
+	$url                = trailingslashit( 'https://www.googleapis.com/calendar/v3/calendars/' ) . $google_calendar_id . '/events?key=' . $api_key . '&singleEvents=true&orderBy=startTime&maxResults=400' . '&timeMin=' . $time_min . '&timeMax=' . $time_max;
+	//$log                .= 'URL for API call constructed as ' . $url . "\n";
+	//update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
 
 	// Call the calendar API
 	$response = wp_remote_get( $url );
+	$log      .= 'Request sent to Google Calendar API' . "\n";
 
 	if( $response ) {
 		// received response
-		$log .= 'Response received from remote host' . "\n";
-		update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
+		//$log .= 'Response received from remote host' . "\n";
+		//update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
 
 		// JSON decode the response
 		$body = wp_remote_retrieve_body( $response );
@@ -127,8 +149,9 @@ function syntric_sync_calendar( $calendar_post_id, $sync_type = 'scheduled', $sy
 			foreach( $errors as $_error ) {
 				$reason = $_error -> reason;
 			}
-			$log .= "\n" . 'Response includes the following error: ' . $reason . "\n";
+			$log .= 'Response includes the following error: ' . $reason . "\n";
 			$log .= 'Exiting sync' . "\n";
+			$log .= $log . "\n" . $past_log;
 			update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
 			update_field( 'syntric_calendar_last_sync', date( 'F j, Y g:i A' ), $calendar_post_id );
 
@@ -136,8 +159,8 @@ function syntric_sync_calendar( $calendar_post_id, $sync_type = 'scheduled', $sy
 		}
 	} else {
 		// did not receive response
-		$log .= 'No response received from remote host' . "\n";
-		$log .= 'Exiting sync' . "\n";
+		$log .= 'No response was received, exiting sync' . "\n";
+		$log .= $log . "\n" . $past_log;
 		update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
 		update_field( 'syntric_calendar_last_sync', date( 'F j, Y g:i A' ), $calendar_post_id );
 
@@ -153,8 +176,8 @@ function syntric_sync_calendar( $calendar_post_id, $sync_type = 'scheduled', $sy
 		$remote_last_updated    = date_add( $remote_last_updated, date_interval_create_from_date_string( $remote_timezone_offset . ' seconds' ) );
 		$refresh                = date_format( $local_last_updated, 'YmdHi' ) < date_format( $remote_last_updated, 'YmdHi' );
 		if( ! $refresh ) {
-			$log .= 'Remote calendar has not be updated since last sync' . "\n";
-			$log .= 'Exiting sync' . "\n";
+			$log .= 'No changes to remote calendar since last successful sync, exiting sync' . "\n";
+			$log .= $log . "\n" . $past_log;
 			update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
 			update_field( 'syntric_calendar_last_sync', date( 'F j, Y g:i A' ), $calendar_post_id );
 
@@ -162,8 +185,8 @@ function syntric_sync_calendar( $calendar_post_id, $sync_type = 'scheduled', $sy
 		}
 	}
 
-	$log .= 'Syncing response to local database' . "\n";
-	update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
+	$log .= 'Response is valid, updating local database' . "\n";
+	//update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
 
 	// purge events that start on or after $time_min
 	/*$time_min_array = explode( 'T', $time_min );
@@ -250,6 +273,8 @@ function syntric_sync_calendar( $calendar_post_id, $sync_type = 'scheduled', $sy
 
 	// Delete dupe events (same event id but no recurring id)
 	$event_count = 0;
+	$log         .= 'Event log' . "\n";
+	//$log .= '---------' . "\n";
 	foreach( $events as $event ) {
 		// Set up to insert event
 		$args          = [
@@ -262,8 +287,8 @@ function syntric_sync_calendar( $calendar_post_id, $sync_type = 'scheduled', $sy
 
 		// if insertion was successful
 		if( $event_post_id ) {
-			$log .= 'Inserted event ID ' . $event_post_id . "\n";
-			update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
+			$log .= '---- Saving event ' . $event -> summary . ' (ID ' . $event_post_id . ')' . "\n";
+			//update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
 
 			$eventId     = $event -> id;
 			$startDate   = ( isset( $event -> start -> dateTime ) ) ? $event -> start -> dateTime : $event -> start -> date;
@@ -288,12 +313,12 @@ function syntric_sync_calendar( $calendar_post_id, $sync_type = 'scheduled', $sy
 				],
 			] );
 			if( $dupe_events ) {
-				$log .= 'Deleting dupe events' . "\n";
-				update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
+				//$log .= 'Deleting dupe events' . "\n";
+				//update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
 				foreach( $dupe_events as $dupe_event ) {
 					wp_delete_post( $dupe_event -> ID, true );
-					$log .= 'Dupe event ' . $event -> summary . ' deleted' . "\n";
-					update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
+					//$log .= 'Dupe event ' . $event -> summary . ' deleted' . "\n";
+					//update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
 				}
 			}
 
@@ -307,8 +332,8 @@ function syntric_sync_calendar( $calendar_post_id, $sync_type = 'scheduled', $sy
 			update_field( 'syntric_event_event_id', $eventId, $event_post_id );
 			update_field( 'syntric_event_recurring_id', $recurringId, $event_post_id );
 			update_field( 'syntric_event_last_sync', date( 'F j, Y g:i A' ), $event_post_id );
-			$log .= 'Event ID ' . $event_post_id . ' meta data updated' . "\n";
-			update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
+			//$log .= 'Event ID ' . $event_post_id . ' meta data updated' . "\n";
+			//update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
 			/*foreach( $event_fields as $event_field ) {
 				$value         = '';
 				$syntric_event = get_field( 'syntric_event', $event_id );
@@ -356,10 +381,11 @@ function syntric_sync_calendar( $calendar_post_id, $sync_type = 'scheduled', $sy
 
 		$event_count = $event_count + 1;
 	}
-
-	update_field( 'syntric_calendar_last_sync', date( 'F j, Y g:i A' ), $calendar_post_id );
+	//$log .= '---------' . "\n";
 	$log .= 'Sync completed with ' . $event_count . ' events' . "\n";
+	$log .= $log . "\n" . "\n" . $past_log;
 	update_field( 'syntric_calendar_last_sync_result', $log, $calendar_post_id );
+	update_field( 'syntric_calendar_last_sync', date( 'F j, Y g:i A' ), $calendar_post_id );
 
 	return true;
 }
@@ -456,81 +482,32 @@ function syntric_schedule_calendar_sync( $post_id ) {
 	wp_clear_scheduled_hook( 'syntric_calendar_sync', $args );
 	wp_schedule_event( time() + 60, 'hourly', 'syntric_calendar_sync', $args );
 	update_field( 'syntric_calendar_last_sync', 'Scheduled', $post_id );
-	update_field( 'syntric_calendar_last_sync_result', 'Calendar scheduled to sync hourly', $post_id );
-}
-
-function syntric_get_calendar_next_scheduled( $post_id ) {
-	$next_scheduled = wp_next_scheduled( 'syntric_calendar_sync', [
-		[
-			'post_id' => $post_id,
-		],
-	] );
-
-	return $next_scheduled;
-}
-
-function syntric_get_calendar_sync_schedule( $post_id ) {
-	$schedule = wp_get_schedule( 'syntric_calendar_sync', [
-		[
-			'post_id' => $post_id,
-		],
-	] );
-
-	return $schedule;
-}
-
-function syntric_get_calendar_last_sync( $post_id ) {
-	//$syntric_calendar = get_field( 'syntric_calendar', $post_id );
-	$schedule_sync = get_field( 'syntric_calendar_schedule_sync', $post_id );
-	$last_sync     = get_field( 'syntric_calendar_last_sync', $post_id );
-	if( ! $schedule_sync ) {
-		return false;
-	} else {
-		$minutes_ago = syntric_calculate_time_difference( date_create(), $last_sync, 'minutes' );
-
-		return (int) $minutes_ago;
-	}
-}
-
-function syntric_get_calendar_next_sync( $post_id ) {
-	$schedule_sync = get_field( 'syntric_calendar_schedule_sync', $post_id );
-	$next_sync     = syntric_get_calendar_next_scheduled( $post_id );
-	if( ! $schedule_sync ) {
-		return false;
-	} else {
-		$in_minutes = syntric_calculate_time_difference( date_create(), date( 'c', $next_sync ), 'minutes' );
-
-		return $in_minutes;
-	}
-}
-
-function syntric_get_calendar_ids( $post_status = 'publish' ) {
-	$args = [
-		'numberposts'      => - 1,
-		'post_type'        => 'syntric_calendar',
-		'post_status'      => $post_status,
-		'orderby'          => [ 'post_title' => 'ASC' ],
-		'suppress_filters' => false,
-		'no_found_rows'    => true,
-		'fields'           => 'ids',
-	];
-	add_filter( 'posts_distinct', 'syntric_posts_distinct' );
-	$post_ids = get_posts( $args );
-	remove_filter( 'posts_distinct', 'syntric_posts_distinct' );
-
-	return $post_ids;
+	$past_log = get_field( 'syntric_calendar_last_sync_result', $post_id );
+	$log      = 'Calendar scheduled to sync hourly' . "\n";
+	$log      .= $log . "\n" . "\n" . $past_log;
+	update_field( 'syntric_calendar_last_sync_result', $log, $post_id );
 }
 
 function syntric_purge_calendar( $post_id ) {
+	global $post;
+	$past_log    = get_field( 'syntric_calendar_last_sync_result', $post_id );
+	$log         = '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~' . "\n";
+	$log         .= 'Purge started at ' . date( 'n/j/Y g:i A' ) . ' for ' . $post -> post_title . "\n";
+	$log         .= '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~' . "\n";
 	$events      = syntric_get_calendar_events( $post_id, null, 'all' );
-	$log         = count( $events ) . ' events to be purged' . "\n";
-	$event_count = 0;
-	foreach( $events as $event ) {
-		wp_delete_post( $event -> ID, true );
-		$log .= $event -> post_title . ' purged' . "\n";
-		$event_count ++;
+	//$log         .= count( $events ) . ' events to be purged' . "\n";
+	if( $events ) {
+		$event_count = 0;
+		foreach( $events as $event ) {
+			wp_delete_post( $event -> ID, true );
+			//$log .= $event -> post_title . ' purged' . "\n";
+			$event_count ++;
+		}
+		$log .= 'Calendar had ' . $event_count . ' events purged' . "\n";
+	} else {
+		$log .= 'Calendar has no events to purge' . "\n";
 	}
-	$log .= $event_count . ' events purged in total' . "\n";
+	$log .= $log . "\n" . "\n" . $past_log;
 	update_field( 'syntric_calendar_last_sync_result', $log, $post_id );
 
 	return true;
@@ -694,38 +671,6 @@ function syntric_get_event_dates( $post_id ) {
 	return $dates;
 }
 
-function syntric_event_date_time_display( $event_id, $date_type, $date_format = '' ) {
-	if( ! isset( $event_id ) || ! isset( $date_type ) ) {
-		return false;
-	}
-	$date_format = ( ! empty( $date_format ) ) ? $date_format : 'F j, Y';
-	$date_field  = '';
-	$time_field  = '';
-	$ret         = '';
-	if( 'start' == $date_type || 'start_date' == $date_type ) {
-		$date_field = 'syntric_event_start_date';
-		$time_field = 'syntric_event_start_time';
-	} elseif( 'end' == $date_type || 'end_date' == $date_type ) {
-		$date_field = 'syntric_event_end_date';
-		$time_field = 'syntric_event_end_time';
-	}
-	if( empty( $date_field ) || empty( $time_field ) ) {
-		return false;
-	}
-	$event_date = get_field( $date_field, $event_id, false );
-	$event_date = date_create_from_format( 'Ymd', $event_date );
-	if( ! is_a( $event_date, 'DateTime' ) ) {
-		return false;
-	}
-	$ret        = date_format( $event_date, $date_format );
-	$event_time = get_field( $time_field, $event_id, true );
-	if( $event_time && ! empty( $event_time ) ) {
-		$ret .= ' @ ' . $event_time;
-	}
-
-	return $ret;
-}
-
 function syntric_get_calendars() {
 	$args      = [
 		'numberposts'      => - 1,
@@ -738,4 +683,12 @@ function syntric_get_calendars() {
 	$calendars = get_posts( $args );
 
 	return $calendars;
+}
+
+// Add schwag to the list tables
+add_filter( 'views_edit-syntric_calendar', 'syntric_views_edit_syntric_calendar', 10, 1 );
+function syntric_views_edit_syntric_calendar( $views ) {
+	$views[ 'google_calendar' ] = '<a href="http://calendar.google.com" target="_blank">Go to Google Calendar</a>';
+
+	return $views;
 }

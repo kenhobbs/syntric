@@ -1,17 +1,5 @@
 <?php
-/*add_filter( 'wp_handle_upload_prefilter', 'syntric_handle_upload_prefilter' );
-function syntric_handle_upload_prefilter( $file ) {
-	add_filter( 'upload_dir', 'syntric_upload_dir' );
 
-	return $file;
-}
-
-add_filter( 'wp_handle_upload', 'syntric_handle_upload' );
-function syntric_handle_upload( $fileinfo ) {
-	remove_filter( 'upload_dir', 'syntric_upload_dir' );
-
-	return $fileinfo;
-}*/
 
 /**
  * Register Media Categories and File Types taxonomies
@@ -249,55 +237,6 @@ function syntric_handle_upload_prefilter( $file ) {
 	}
 
 	return $file;
-}
-
-//add_filter( 'upload_mimes', 'syntric_upload_mimes' );
-function syntric_upload_mimes( $mimes ) {
-	/*
-	 *  Array
-		(
-			[jpg|jpeg|jpe] => image/jpeg
-			[png] => image/png
-			[gif] => image/gif
-			[mov|qt] => video/quicktime
-			[avi] => video/avi
-			[mpeg|mpg|mpe] => video/mpeg
-			[3gp|3gpp] => video/3gpp
-			[3g2|3gp2] => video/3gpp2
-			[mid|midi] => audio/midi
-			[pdf] => application/pdf
-			[doc] => application/msword
-			[docx] => application/vnd.openxmlformats-officedocument.wordprocessingml.document
-			[docm] => application/vnd.ms-word.document.macroEnabled.12
-			[pot|pps|ppt] => application/vnd.ms-powerpoint
-			[pptx] => application/vnd.openxmlformats-officedocument.presentationml.presentation
-			[pptm] => application/vnd.ms-powerpoint.presentation.macroEnabled.12
-			[odt] => application/vnd.oasis.opendocument.text
-			[ppsx] => application/vnd.openxmlformats-officedocument.presentationml.slideshow
-			[ppsm] => application/vnd.ms-powerpoint.slideshow.macroEnabled.12
-			[xla|xls|xlt|xlw] => application/vnd.ms-excel
-			[xlsx] => application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
-			[xlsm] => application/vnd.ms-excel.sheet.macroEnabled.12
-			[xlsb] => application/vnd.ms-excel.sheet.binary.macroEnabled.12
-			[key] => application/vnd.apple.keynote
-			[mp3|m4a|m4b] => audio/mpeg
-			[ogg|oga] => audio/ogg
-			[flac] => audio/flac
-			[wav] => audio/wav
-			[mp4|m4v] => video/mp4
-			[webm] => video/webm
-			[ogv] => video/ogg
-			[flv] => video/x-flv
-		)
-	 */
-	foreach( $mimes as $key => $value ) {
-		$mime_arr    = explode( '/', $value );
-		$mime_cat    = $mime_arr[ 0 ];
-		$mime_subcat = $mime_arr[ 1 ];
-		if( ! in_array( $mime_cat, [ 'image', 'audio', 'video', 'text' ] ) ) {
-			$mime_exts = explode( '|', $key );
-		}
-	}
 }
 
 /**

@@ -30,7 +30,7 @@
 					"name": "department",
 					"type": "select",
 					"instructions": "",
-					"required": 0,
+					"required": 1,
 					"conditional_logic": 0,
 					"wrapper": {
 						"width": "15",
@@ -38,14 +38,10 @@
 						"id": ""
 					},
 					"choices": {
-						"3Bw<5cb16393bd4a93.27635660": "Arts & Music",
-						"3[+$5cb16393c1eaa9.74839659": "CTE",
-						"`tLS5cb16393c692e4.92824661": "Health & Fitness",
-						"*X]&5cb16393cc2246.66783089": "Language Arts",
-						"$S=+5cb163b1cbf689.39815965": "Mathematics",
-						"ilZ%5cb163b1d0e702.48036008": "Science",
-						"Lwf:5cb163b1d59e65.32422004": "Social Studies",
-						"1D)b5cb16393db5c70.53187941": "Special Education"
+						"15572678355677": "Health & Physical Education",
+						"15575108163650": "Math",
+						"15575123124107": "Science",
+						"15585415474200": "Social Studies"
 					},
 					"default_value": [],
 					"allow_null": 1,
@@ -94,37 +90,20 @@
 					"new_lines": "wpautop"
 				},
 				{
-					"key": "field_5c8d61c9bf065",
-					"label": "Meta",
-					"name": "meta",
-					"type": "checkbox",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "15",
-						"class": "-collapsed-target",
-						"id": ""
-					},
-					"choices": {
-						"graduation_requirement": "Graduation Requirement",
-						"college_requirement": "College Requirement"
-					},
-					"allow_custom": 0,
-					"default_value": [],
-					"layout": "vertical",
-					"toggle": 0,
-					"return_format": "array",
-					"save_custom": 0
-				},
-				{
 					"key": "field_5cb7e829236b6",
 					"label": "Include Page",
 					"name": "include_page",
 					"type": "true_false",
 					"instructions": "",
 					"required": 0,
-					"conditional_logic": 0,
+					"conditional_logic": [
+						[
+							{
+								"field": "field_5c6fae31bbd6d",
+								"operator": "!=empty"
+							}
+						]
+					],
 					"wrapper": {
 						"width": "10",
 						"class": "",
@@ -154,28 +133,6 @@
 					"prepend": "",
 					"append": "",
 					"maxlength": ""
-				},
-				{
-					"key": "field_5cb7e848236b7",
-					"label": "Course Page",
-					"name": "course_page",
-					"type": "post_object",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "",
-						"class": "",
-						"id": ""
-					},
-					"post_type": [
-						"page"
-					],
-					"taxonomy": "",
-					"allow_null": 1,
-					"multiple": 0,
-					"return_format": "object",
-					"ui": 1
 				}
 			]
 		}
@@ -197,5 +154,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1555592101
+	"modified": 1560106191
 }

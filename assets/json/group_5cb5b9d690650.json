@@ -19,7 +19,7 @@
 			"min": 0,
 			"max": 0,
 			"layout": "table",
-			"button_label": "",
+			"button_label": "Add Class",
 			"hide_collapse": 1,
 			"collapse_all_repeater": 0,
 			"btn-icon-only": 0,
@@ -37,7 +37,12 @@
 						"class": "-collapsed-target",
 						"id": ""
 					},
-					"choices": [],
+					"choices": {
+						"242": "David Davis",
+						"239": "Edward Edwards",
+						"240": "Thomas Thomas",
+						"230": "Willie Williams"
+					},
 					"default_value": [],
 					"allow_null": 1,
 					"multiple": 0,
@@ -60,10 +65,13 @@
 						"id": ""
 					},
 					"choices": {
-						"-<e75cb1a39c89cf16.39352909": "Algebra 1",
-						"^J:s5cb1a39c995920.93261962": "Algebra 2",
-						"h:V 5cb1a39ca98666.41851673": "Geometry",
-						"T1A:5cb1a633a753e8.26675055": "AP Calculus"
+						"15580658117955": "Algebra",
+						"15580658124272": "Calculus",
+						"15580658125487": "Chemistry",
+						"15580658127615": "Physics",
+						"15580658122226": "PE",
+						"15580658126508": "US History",
+						"15580658123780": "World History"
 					},
 					"default_value": [],
 					"allow_null": 1,
@@ -82,7 +90,7 @@
 					"required": 1,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "10",
+						"width": "20",
 						"class": "-collapsed-target",
 						"id": ""
 					},
@@ -113,7 +121,7 @@
 					"required": 1,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "10",
+						"width": "20",
 						"class": "-collapsed-target",
 						"id": ""
 					},
@@ -137,47 +145,6 @@
 					"key": "field_5cb5ba4ec5f26",
 					"label": "Include Page",
 					"name": "include_page",
-					"type": "true_false",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "10",
-						"class": "-collapsed-target",
-						"id": ""
-					},
-					"message": "",
-					"default_value": 0,
-					"ui": 1,
-					"ui_on_text": "",
-					"ui_off_text": ""
-				},
-				{
-					"key": "field_5cb5ba89c5f27",
-					"label": "Class Page",
-					"name": "class_page",
-					"type": "post_object",
-					"instructions": "",
-					"required": 0,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "15",
-						"class": "",
-						"id": ""
-					},
-					"post_type": [
-						"page"
-					],
-					"taxonomy": "",
-					"allow_null": 0,
-					"multiple": 0,
-					"return_format": "object",
-					"ui": 1
-				},
-				{
-					"key": "field_5cb5bab8c5f28",
-					"label": "Archive",
-					"name": "archive",
 					"type": "true_false",
 					"instructions": "",
 					"required": 0,
@@ -226,11 +193,11 @@
 	],
 	"menu_order": 0,
 	"position": "normal",
-	"style": "default",
+	"style": "seamless",
 	"label_placement": "top",
 	"instruction_placement": "label",
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1555586066
+	"modified": 1560106228
 }

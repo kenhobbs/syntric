@@ -10,14 +10,9 @@ echo '<h1 class="page-title" role="heading">' . get_the_title() . syntric_get_po
 syntric_sidebar( 'main-top-sidebar' );
 if( have_posts() ) :
 	while( have_posts() ) : the_post();
-		echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post -> ID . '">';
-		echo '<header class="post-header">';
-		echo '<span class="post-date">' . get_the_date() . '</span>';
-		echo '</header>';
-		echo '<div class="post-content">';
-		the_content();
+		echo '<div id="fullcalendar">';
+		echo '<span>Calendar is loading</span>';
 		echo '</div>';
-		echo '</article>';
 	endwhile;
 endif;
 syntric_sidebar( 'main-bottom-sidebar' );

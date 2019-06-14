@@ -145,10 +145,10 @@
 					"ui_off_text": ""
 				},
 				{
-					"key": "field_5cadbcc82bd79",
-					"label": "Teacher Page",
-					"name": "teacher_page",
-					"type": "post_object",
+					"key": "field_5cc50130ecf29",
+					"label": "Include Page",
+					"name": "include_page",
+					"type": "true_false",
 					"instructions": "",
 					"required": 0,
 					"conditional_logic": [
@@ -165,12 +165,11 @@
 						"class": "",
 						"id": ""
 					},
-					"post_type": "",
-					"taxonomy": "",
-					"allow_null": 0,
-					"multiple": 0,
-					"return_format": "object",
-					"ui": 1
+					"message": "",
+					"default_value": 0,
+					"ui": 1,
+					"ui_on_text": "",
+					"ui_off_text": ""
 				}
 			]
 		}
@@ -192,5 +191,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1555586131
+	"modified": 1560103028
 }

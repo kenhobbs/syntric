@@ -1,11 +1,11 @@
 {
-	"key": "group_5c80dbcb8e873",
-	"title": "Upcoming Events Widget",
+	"key": "group_5d02d2f899992",
+	"title": "Roster Block",
 	"fields": [
 		{
-			"key": "field_5c95be43f6563",
+			"key": "field_5d02d2f8aa310",
 			"label": "",
-			"name": "syntric_upcoming_events_widget",
+			"name": "syntric_roster",
 			"type": "group",
 			"instructions": "",
 			"required": 0,
@@ -18,10 +18,29 @@
 			"layout": "block",
 			"sub_fields": [
 				{
-					"key": "field_5c80dbcba52f6",
+					"key": "field_5d02d2f8b1c19",
 					"label": "Title",
 					"name": "title",
 					"type": "text",
+					"instructions": "",
+					"required": 1,
+					"conditional_logic": 0,
+					"wrapper": {
+						"width": "",
+						"class": "",
+						"id": ""
+					},
+					"default_value": "",
+					"placeholder": "",
+					"prepend": "",
+					"append": "",
+					"maxlength": ""
+				},
+				{
+					"key": "field_5d02d2f8b1ffe",
+					"label": "Display",
+					"name": "display",
+					"type": "checkbox",
 					"instructions": "",
 					"required": 0,
 					"conditional_logic": 0,
@@ -30,42 +49,26 @@
 						"class": "",
 						"id": ""
 					},
-					"default_value": "Upcoming Events",
-					"placeholder": "",
-					"prepend": "",
-					"append": "",
-					"maxlength": ""
-				},
-				{
-					"key": "field_5c80dbcba56dc",
-					"label": "Calendar",
-					"name": "calendar",
-					"type": "select",
-					"instructions": "",
-					"required": 1,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "",
-						"class": "",
-						"id": ""
-					},
 					"choices": {
-						"29358": "Test Calendar"
+						"email": "Email",
+						"phone": "Phone"
 					},
-					"default_value": [],
-					"allow_null": 1,
-					"multiple": 0,
-					"ui": 0,
+					"allow_custom": 0,
+					"default_value": [
+						"email",
+						"phone"
+					],
+					"layout": "horizontal",
+					"toggle": 0,
 					"return_format": "value",
-					"ajax": 0,
-					"placeholder": ""
+					"save_custom": 0
 				},
 				{
-					"key": "field_5c80dbcba5a5d",
-					"label": "Events to display",
-					"name": "events_to_display",
-					"type": "number",
-					"instructions": "",
+					"key": "field_5d02d2f8b23e0",
+					"label": "People",
+					"name": "people",
+					"type": "user",
+					"instructions": "Not listed?  <a href=\"http:\/\/master.localhost\/wp-admin\/user-new.php\">Add a new user<\/a>",
 					"required": 1,
 					"conditional_logic": 0,
 					"wrapper": {
@@ -73,13 +76,10 @@
 						"class": "",
 						"id": ""
 					},
-					"default_value": 5,
-					"placeholder": "",
-					"prepend": "",
-					"append": "",
-					"min": 1,
-					"max": "",
-					"step": 1
+					"role": "",
+					"allow_null": 0,
+					"multiple": 1,
+					"return_format": "object"
 				}
 			]
 		}
@@ -87,26 +87,19 @@
 	"location": [
 		[
 			{
-				"param": "widget",
-				"operator": "==",
-				"value": "syntric-upcoming-events-widget"
-			}
-		],
-		[
-			{
 				"param": "block",
 				"operator": "==",
-				"value": "acf\/syntric-calendar"
+				"value": "acf\/syntric-roster"
 			}
 		]
 	],
 	"menu_order": 0,
-	"position": "normal",
+	"position": "acf_after_title",
 	"style": "default",
-	"label_placement": "left",
+	"label_placement": "top",
 	"instruction_placement": "label",
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1560425945
+	"modified": 1560491450
 }

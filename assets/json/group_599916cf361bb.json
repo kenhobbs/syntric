@@ -3,11 +3,11 @@
 	"title": "Filters",
 	"fields": [
 		{
-			"key": "field_59a1e3cb53654",
+			"key": "field_5cca3b3111d0f",
 			"label": "Filters",
-			"name": "filters",
+			"name": "syntric_filters",
 			"type": "repeater",
-			"instructions": "Filters are rules that specify where content is shown.",
+			"instructions": "",
 			"required": 0,
 			"conditional_logic": 0,
 			"wrapper": {
@@ -15,111 +15,56 @@
 				"class": "",
 				"id": ""
 			},
-			"collapsed": "field_59a1e3e053655",
+			"collapsed": "field_59a1e3cb53654",
 			"min": 0,
 			"max": 0,
-			"layout": "table",
-			"button_label": "Add Rule",
+			"layout": "block",
+			"button_label": "Add Filter Group",
 			"hide_collapse": 1,
 			"collapse_all_repeater": 0,
-			"btn-icon-only": 1,
+			"btn-icon-only": 0,
 			"sub_fields": [
 				{
-					"key": "field_59a1e3e053655",
-					"label": "Parameter",
-					"name": "parameter",
-					"type": "select",
-					"instructions": "",
-					"required": 1,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "30",
-						"class": "",
-						"id": ""
-					},
-					"choices": {
-						"post_type": "Post, page, calendar or event",
-						"page": "Specific page",
-						"post": "Specific post",
-						"page_template": "Page template",
-						"post_category": "Post category",
-						"page_type": "Miscellaneous"
-					},
-					"default_value": [],
-					"allow_null": 1,
-					"multiple": 0,
-					"ui": 0,
-					"return_format": "value",
-					"ajax": 0,
-					"placeholder": ""
-				},
-				{
-					"key": "field_59a1e46953656",
-					"label": "Operator",
-					"name": "operator",
-					"type": "select",
-					"instructions": "",
-					"required": 1,
-					"conditional_logic": 0,
-					"wrapper": {
-						"width": "20",
-						"class": "",
-						"id": ""
-					},
-					"choices": {
-						"is": "is\/are",
-						"is_not": "is not\/are not"
-					},
-					"default_value": [],
-					"allow_null": 1,
-					"multiple": 0,
-					"ui": 0,
-					"return_format": "value",
-					"ajax": 0,
-					"placeholder": ""
-				},
-				{
-					"key": "field_5c9bf0755507a",
-					"label": "Value",
-					"name": "value",
-					"type": "group",
+					"key": "field_59a1e3cb53654",
+					"label": "Filter Group",
+					"name": "filter_group",
+					"type": "repeater",
 					"instructions": "",
 					"required": 0,
 					"conditional_logic": 0,
 					"wrapper": {
-						"width": "50",
+						"width": "",
 						"class": "",
 						"id": ""
 					},
-					"layout": "block",
+					"collapsed": "field_59a1e3e053655",
+					"min": 0,
+					"max": 0,
+					"layout": "table",
+					"button_label": "Add Filter",
+					"hide_collapse": 1,
+					"collapse_all_repeater": 0,
+					"btn-icon-only": 1,
 					"sub_fields": [
 						{
-							"key": "field_59a1f43953657",
-							"label": "",
-							"name": "post_type_value",
+							"key": "field_59a1e3e053655",
+							"label": "Parameter",
+							"name": "parameter",
 							"type": "select",
 							"instructions": "",
-							"required": 0,
-							"conditional_logic": [
-								[
-									{
-										"field": "field_59a1e3e053655",
-										"operator": "==",
-										"value": "post_type"
-									}
-								]
-							],
+							"required": 1,
+							"conditional_logic": 0,
 							"wrapper": {
-								"width": "",
+								"width": "30",
 								"class": "",
 								"id": ""
 							},
 							"choices": {
 								"post": "Post",
+								"post_type": "Post Type",
+								"post_category": "Post Category",
 								"page": "Page",
-								"attachment": "Media",
-								"syntric_calendar": "Calendar",
-								"syntric_event": "Event"
+								"page_template": "Page Template"
 							},
 							"default_value": [],
 							"allow_null": 1,
@@ -130,162 +75,21 @@
 							"placeholder": ""
 						},
 						{
-							"key": "field_59a1f8455365d",
-							"label": "",
-							"name": "page_value",
-							"type": "post_object",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": [
-								[
-									{
-										"field": "field_59a1e3e053655",
-										"operator": "==",
-										"value": "page"
-									}
-								]
-							],
-							"wrapper": {
-								"width": "",
-								"class": "",
-								"id": ""
-							},
-							"post_type": [
-								"page"
-							],
-							"taxonomy": "",
-							"allow_null": 1,
-							"multiple": 0,
-							"return_format": "id",
-							"ui": 1
-						},
-						{
-							"key": "field_59a1f6305365a",
-							"label": "",
-							"name": "post_value",
-							"type": "post_object",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": [
-								[
-									{
-										"field": "field_59a1e3e053655",
-										"operator": "==",
-										"value": "post"
-									}
-								]
-							],
-							"wrapper": {
-								"width": "",
-								"class": "",
-								"id": ""
-							},
-							"post_type": [
-								"post"
-							],
-							"taxonomy": "",
-							"allow_null": 1,
-							"multiple": 0,
-							"return_format": "id",
-							"ui": 1
-						},
-						{
-							"key": "field_59a1f76e5365c",
-							"label": "",
-							"name": "page_template_value",
+							"key": "field_59a1e46953656",
+							"label": "Operator",
+							"name": "operator",
 							"type": "select",
 							"instructions": "",
-							"required": 0,
-							"conditional_logic": [
-								[
-									{
-										"field": "field_59a1e3e053655",
-										"operator": "==",
-										"value": "page_template"
-									}
-								]
-							],
+							"required": 1,
+							"conditional_logic": 0,
 							"wrapper": {
-								"width": "",
+								"width": "20",
 								"class": "",
 								"id": ""
 							},
 							"choices": {
-								"class.php": "Class",
-								"course.php": "Course",
-								"department.php": "Department",
-								"roster.php": "Roster",
-								"schedules.php": "Schedules",
-								"teacher.php": "Teacher",
-								"teachers.php": "Teachers"
-							},
-							"default_value": [
-								"Select the page template to filter"
-							],
-							"allow_null": 1,
-							"multiple": 0,
-							"ui": 0,
-							"return_format": "value",
-							"ajax": 0,
-							"placeholder": ""
-						},
-						{
-							"key": "field_59a1f5f853659",
-							"label": "",
-							"name": "post_category_value",
-							"type": "taxonomy",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": [
-								[
-									{
-										"field": "field_59a1e3e053655",
-										"operator": "==",
-										"value": "post_category"
-									}
-								]
-							],
-							"wrapper": {
-								"width": "",
-								"class": "",
-								"id": ""
-							},
-							"taxonomy": "category",
-							"field_type": "select",
-							"allow_null": 0,
-							"add_term": 0,
-							"save_terms": 0,
-							"load_terms": 0,
-							"return_format": "id",
-							"multiple": 0
-						},
-						{
-							"key": "field_5c9947af26a7c",
-							"label": "",
-							"name": "page_type_value",
-							"type": "select",
-							"instructions": "",
-							"required": 0,
-							"conditional_logic": [
-								[
-									{
-										"field": "field_59a1e3e053655",
-										"operator": "==",
-										"value": "page_type"
-									}
-								]
-							],
-							"wrapper": {
-								"width": "",
-								"class": "",
-								"id": ""
-							},
-							"choices": {
-								"home": "Home Page",
-								"section": "Section Page (top ancestor)",
-								"news": "News Page",
-								"calendar": "Calendars Page",
-								"events": "Events Page"
+								"is": "is",
+								"is_not": "is not"
 							},
 							"default_value": [],
 							"allow_null": 1,
@@ -294,6 +98,179 @@
 							"return_format": "value",
 							"ajax": 0,
 							"placeholder": ""
+						},
+						{
+							"key": "field_5c9bf0755507a",
+							"label": "Value",
+							"name": "value",
+							"type": "group",
+							"instructions": "",
+							"required": 0,
+							"conditional_logic": 0,
+							"wrapper": {
+								"width": "50",
+								"class": "",
+								"id": ""
+							},
+							"layout": "block",
+							"sub_fields": [
+								{
+									"key": "field_59a1f6305365a",
+									"label": "",
+									"name": "post_value",
+									"type": "post_object",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": [
+										[
+											{
+												"field": "field_59a1e3e053655",
+												"operator": "==",
+												"value": "post"
+											}
+										]
+									],
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"post_type": [
+										"post"
+									],
+									"taxonomy": "",
+									"allow_null": 1,
+									"multiple": 0,
+									"return_format": "id",
+									"ui": 1
+								},
+								{
+									"key": "field_59a1f43953657",
+									"label": "",
+									"name": "post_type_value",
+									"type": "select",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": [
+										[
+											{
+												"field": "field_59a1e3e053655",
+												"operator": "==",
+												"value": "post_type"
+											}
+										]
+									],
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"choices": {
+										"post": "Post",
+										"page": "Page",
+										"attachment": "Media",
+										"syntric_calendar": "Calendar",
+										"syntric_event": "Event"
+									},
+									"default_value": [],
+									"allow_null": 1,
+									"multiple": 0,
+									"ui": 0,
+									"return_format": "value",
+									"ajax": 0,
+									"placeholder": ""
+								},
+								{
+									"key": "field_59a1f5f853659",
+									"label": "",
+									"name": "post_category_value",
+									"type": "taxonomy",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": [
+										[
+											{
+												"field": "field_59a1e3e053655",
+												"operator": "==",
+												"value": "post_category"
+											}
+										]
+									],
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"taxonomy": "category",
+									"field_type": "select",
+									"allow_null": 0,
+									"add_term": 0,
+									"save_terms": 0,
+									"load_terms": 0,
+									"return_format": "id",
+									"multiple": 0
+								},
+								{
+									"key": "field_59a1f8455365d",
+									"label": "",
+									"name": "page_value",
+									"type": "post_object",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": [
+										[
+											{
+												"field": "field_59a1e3e053655",
+												"operator": "==",
+												"value": "page"
+											}
+										]
+									],
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"post_type": [
+										"page"
+									],
+									"taxonomy": "",
+									"allow_null": 1,
+									"multiple": 0,
+									"return_format": "id",
+									"ui": 1
+								},
+								{
+									"key": "field_59a1f76e5365c",
+									"label": "",
+									"name": "page_template_value",
+									"type": "select",
+									"instructions": "",
+									"required": 0,
+									"conditional_logic": [
+										[
+											{
+												"field": "field_59a1e3e053655",
+												"operator": "==",
+												"value": "page_template"
+											}
+										]
+									],
+									"wrapper": {
+										"width": "",
+										"class": "",
+										"id": ""
+									},
+									"choices": [],
+									"default_value": [],
+									"allow_null": 1,
+									"multiple": 0,
+									"ui": 0,
+									"return_format": "value",
+									"ajax": 0,
+									"placeholder": ""
+								}
+							]
 						}
 					]
 				}
@@ -317,5 +294,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1554955309
+	"modified": 1556849445
 }

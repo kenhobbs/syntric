@@ -24,7 +24,6 @@
 			endif;
 		endwhile;
 	endif;
-	syntric_display_teacher_classes();
 	syntric_sidebar( 'main-bottom-sidebar' );
 	echo '</main>';
 	syntric_sidebar( 'main-right-sidebar' );

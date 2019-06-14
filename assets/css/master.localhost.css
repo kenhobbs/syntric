@@ -10616,7 +10616,6 @@ main.content article .post-excerpt .read-more-link {
 	margin-bottom: 0;
 	overflow-x: visible; }
 
-.widget .list-group-item,
 .widget li > a {
 	display: flex;
 	margin: 0;
@@ -10625,16 +10624,13 @@ main.content article .post-excerpt .read-more-link {
 	border-radius: 0;
 	background-color: transparent; }
 
-.widget .list-group-item .list-group-item-feature,
 .widget li > a .list-group-item-feature {
 	margin-right: 1rem; }
 
-.widget .list-group-item .list-group-item-feature img,
 .widget li > a .list-group-item-feature img {
 	max-width: 75px;
 	height: auto; }
 
-.widget .list-group-item p:last-child,
 .widget li > a p:last-child {
 	margin-bottom: 0; }
 
@@ -10769,9 +10765,7 @@ main.content article .post-excerpt .read-more-link {
 	border-bottom-left-radius: 0.2rem;
 	border-bottom-right-radius: 0.2rem; }
 
-.main-left-sidebar .widget .list-group-item,
 .main-left-sidebar .widget li > a,
-.main-right-sidebar .widget .list-group-item,
 .main-right-sidebar .widget li > a {
 	padding: 0.5rem 1rem;
 	margin: 0; }
@@ -10943,6 +10937,10 @@ body > section.sidebar:nth-of-type(odd) .widget h2 {
 body > section.sidebar:nth-of-type(odd) .widget a {
 	color: #fff; }
 
+body > section.sidebar:nth-of-type(odd) .widget a:not(.user-email):hover {
+	background-color: rgba(0, 0, 0, 0.1);
+	text-decoration: none; }
+
 body > section.sidebar:nth-of-type(odd) .widget.widget_media_image h2, body > section.sidebar:nth-of-type(odd) .widget.syntric-video-widget h2, body > section.sidebar:nth-of-type(odd) .widget.widget_media_video h2, body > section.sidebar:nth-of-type(odd) .widget.syntric-embed-widget h2, body > section.sidebar:nth-of-type(odd) .widget.syntric-google-map-widget h2 {
 	background-color: #069; }
 
@@ -10957,6 +10955,10 @@ body > section.sidebar:nth-of-type(even) .widget h2 {
 
 body > section.sidebar:nth-of-type(even) .widget a {
 	color: #fff; }
+
+body > section.sidebar:nth-of-type(even) .widget a:not(.user-email):hover {
+	background-color: rgba(0, 0, 0, 0.1);
+	text-decoration: none; }
 
 body > section.sidebar:nth-of-type(even) .widget.widget_media_image h2, body > section.sidebar:nth-of-type(even) .widget.syntric-video-widget h2, body > section.sidebar:nth-of-type(even) .widget.widget_media_video h2, body > section.sidebar:nth-of-type(even) .widget.syntric-embed-widget h2, body > section.sidebar:nth-of-type(even) .widget.syntric-google-map-widget h2 {
 	background-color: #099; }
@@ -10984,7 +10986,7 @@ body > section.sidebar .widget > ul {
 	border-bottom-left-radius: 0.2rem;
 	border-bottom-right-radius: 0.2rem; }
 
-body > section.sidebar .widget a:hover:not(.btn):not(.gad-widget-search-form .gad-widget-search-btn) {
+body > section.sidebar .widget a:not(.btn):not(.gad-widget-search-form .gad-widget-search-btn):hover {
 	background-color: rgba(0, 0, 0, 0.1);
 	text-decoration: none; }
 
@@ -11004,18 +11006,19 @@ body > section.sidebar .widget:nth-child(even) {
 				right  : 0;
 			}*/ }
 
-	body > section.sidebar .widget .list-group-item {
-		padding: 1rem; }
+	body > section.sidebar .widget .list-group .list-group-item {
+		padding: 0.5rem 1rem; }
 
-	body > section.sidebar .widget li > a {
-		padding: 0.5rem 2rem; }
+	body > section.sidebar .widget .list-group .list-group-item a {
+		width: 100%; }
 
-	body > section.sidebar .widget a:hover {
+	body > section.sidebar .widget .list-group .list-group-item a:not(.user-email):hover {
+		background-color: rgba(0, 0, 0, 0.1); }
+
+	body > section.sidebar .widget a:not(.user-email):hover {
 		text-decoration: none; }
 
 	body > section.sidebar .widget.widget_media_image, body > section.sidebar .widget.syntric-video-widget, body > section.sidebar .widget.widget_media_video, body > section.sidebar .widget.syntric-embed-widget, body > section.sidebar .widget.syntric-google-map-widget {
-		min-height: 400px;
-		height: 100%;
 		padding: 0; }
 
 	body > section.sidebar .widget.widget_media_image h2, body > section.sidebar .widget.syntric-video-widget h2, body > section.sidebar .widget.widget_media_video h2, body > section.sidebar .widget.syntric-embed-widget h2, body > section.sidebar .widget.syntric-google-map-widget h2 {
@@ -11065,12 +11068,18 @@ body.blog .content > .list-group > .list-group-item .list-group-item-content h2.
 
 .widget > div,
 .widget > ul {
-	padding: 1rem;
+	padding: 0.5rem 0;
 	margin-bottom: 1rem;
 	overflow-x: hidden; }
 
-.widget .list-group-item,
-.widget li > a {
+.widget .list-group-item {
+	padding: 0.5rem 1rem;
+	margin: 0;
+	border: none;
+	border-radius: 0;
+	background-color: transparent; }
+
+.widget li > a:not(.list-group-item) {
 	display: flex;
 	margin: 0;
 	padding: 0.5rem 1rem;
@@ -11078,17 +11087,14 @@ body.blog .content > .list-group > .list-group-item .list-group-item-content h2.
 	border-radius: 0;
 	background-color: transparent; }
 
-.widget .list-group-item .list-group-item-feature,
-.widget li > a .list-group-item-feature {
+.widget li > a:not(.list-group-item) .list-group-item-feature {
 	margin-right: 1rem; }
 
-.widget .list-group-item .list-group-item-feature img,
-.widget li > a .list-group-item-feature img {
+.widget li > a:not(.list-group-item) .list-group-item-feature img {
 	max-width: 75px;
 	height: auto; }
 
-.widget .list-group-item p:last-child,
-.widget li > a p:last-child {
+.widget li > a:not(.list-group-item) p:last-child {
 	margin-bottom: 0; }
 
 .widget > table {
@@ -11419,6 +11425,13 @@ body.blog .content > .list-group > .list-group-item .list-group-item-content h2.
 .widget.syntric-google-map-widget > .map:only-child {
 	width: 100%;
 	height: 100%; }
+
+.widget.syntric-calendar-menu-widget .calendar-color {
+	height: 20px;
+	width: 20px;
+	margin-right: 0.5rem;
+	vertical-align: baseline;
+	border: solid 1px white; }
 
 .circle-photo {
 	max-height: 100px;

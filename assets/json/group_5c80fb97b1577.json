@@ -690,15 +690,25 @@
 						"id": ""
 					},
 					"choices": {
-						"Syntric_Calendars_Menu_Widget": "Calendars Menu",
+						"Syntric_Calendar_Menu_Widget": "Calendar Menu",
 						"Syntric_Contact_Widget": "Contact",
 						"Syntric_Facebook_Page_Widget": "Facebook Page",
 						"Syntric_Google_Map_Widget": "Google Map",
 						"Syntric_Upcoming_Events_Widget": "Upcoming Events",
-						"Syntric_Recent_Posts_Widget": "Recent Posts"
+						"Syntric_Recent_Posts_Widget": "Recent Posts",
+						"Syntric_Teacher_Class_List_Widget": "Teacher Class List",
+						"Syntric_Teacher_Classes_Widget": "Teacher Classes"
 					},
 					"allow_custom": 0,
-					"default_value": [],
+					"default_value": [
+						"Syntric_Calendar_Menu_Widget",
+						"Syntric_Contact_Widget",
+						"Syntric_Facebook_Page_Widget",
+						"Syntric_Google_Map_Widget",
+						"Syntric_Upcoming_Events_Widget",
+						"Syntric_Recent_Posts_Widget",
+						"Syntric_Teacher_Class_List_Widget"
+					],
 					"layout": "vertical",
 					"toggle": 0,
 					"return_format": "value",
@@ -874,5 +884,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1554900440
+	"modified": 1560382200
 }

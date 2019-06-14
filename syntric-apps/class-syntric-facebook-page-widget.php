@@ -13,7 +13,7 @@ class Syntric_Facebook_Page_Widget extends WP_Widget {
 			'description'                 => __( 'Displays posts from a Facebook page.' ),
 			'customize_selective_refresh' => true,
 		];
-		parent ::__construct( 'syntric-facebook-page-widget', __( 'Facebook Page' ), $widget_ops );
+		parent ::__construct( 'syntric-facebook-page-widget', __( 'Syntric Facebook Page' ), $widget_ops );
 		$this -> alt_option_name = 'syntric-facebook-page-widget';
 	}
 
@@ -25,14 +25,13 @@ class Syntric_Facebook_Page_Widget extends WP_Widget {
 		 * @param array $instance Settings for the current widget instance.
 		 */
 		$widget_id       = ( isset( $args[ 'widget_id' ] ) ) ? $args[ 'widget_id' ] : $this -> id;
-		$facebook_widget = get_field( 'syntric_facebook_widget', 'widget_' . $widget_id );
+		$facebook_widget = get_field( 'field_5c9d666abd2e1', 'widget_' . $widget_id );
 		if( isset( $facebook_widget ) && ! empty( $facebook_widget ) ) {
-			$title            = $facebook_widget[ 'title' ];
-			$facebook_page    = $facebook_widget[ 'facebook_page' ];
-			$posts_to_display = $facebook_widget[ 'posts_to_display' ];
-			$include_image    = $facebook_widget[ 'include_image' ];
-			//$facebook_posts   = syntric_get_facebook_page_posts( $facebook_page, $posts_to_display );
-			$settings          = get_field( 'syntric_settings', 'option' );
+			$title             = $facebook_widget[ 'title' ];
+			$facebook_page     = $facebook_widget[ 'facebook_page' ];
+			$posts_to_display  = $facebook_widget[ 'posts_to_display' ];
+			$include_image     = $facebook_widget[ 'include_image' ];
+			$settings          = get_field( 'syntric_settings', 'options' );
 			$facebook_settings = $settings[ 'facebook' ];
 			$app_id            = $facebook_settings[ 'app_id' ];
 			$app_secret        = $facebook_settings[ 'app_secret' ];
@@ -48,7 +47,6 @@ class Syntric_Facebook_Page_Widget extends WP_Widget {
 				}
 			}
 			if( $facebook_posts ) {
-				;
 				echo $args[ 'before_widget' ];
 				if( ! empty( $title ) ) :
 					echo $args[ 'before_title' ] . $title . $args[ 'after_title' ];
@@ -68,11 +66,27 @@ class Syntric_Facebook_Page_Widget extends WP_Widget {
 							$publish_date = date_format( $publish_date, 'F j, Y' );
 							echo '<div class="list-group-item-content">';
 							echo '<div class="fb-date small">' . $publish_date . '</div> ';
-							$more = ( 300 < strlen( $facebook_post -> message ) ) ? '...<span class="read-more-link">More</span>' : '';
+							$more = ( 300 < strlen( $facebook_post -> message ) ) ? '... <span class="read-more-link">More</span>' : '';
 							echo '<p class="fb-message">' . substr( $facebook_post -> message, 0, 300 ) . $more . '</p> ';
 							echo '</div>';
 							echo '</a>';
 						}
+						/**
+						 * todo: revisit this
+						 * Abandoned - download the full picture from Facebook and store in the media library
+						 * if( property_exists( $facebook_post, 'full_picture' ) ) {
+						 * $upload_dir = wp_get_upload_dir();
+						 * if( ! file_exists( $upload_dir[ 'path' ] . basename( $facebook_post -> full_picture ) ) ) {
+						 * require_once( ABSPATH . 'wp-admin/includes/file.php' );
+						 * $temp_file = download_url( $facebook_post -> full_picture, 5 );
+						 * if( ! is_wp_error( $temp_file ) ) {
+						 * $file = [
+						 * 'name' => basename( $facebook_post -> full_picture ),
+						 * 'type' => wp_check_filetype_and_ext()
+						 * ];
+						 * }
+						 * }
+						 * }*/
 						if( $post_counter == $posts_to_display ) {
 							break;
 						}

@@ -101,10 +101,15 @@ div#widgets-right .sidebars-column-2 {
 .admin-list .list-group-header {
 	background-color: rgba(0, 133, 186, 0.1) !important; }
 
-.acf-repeater > table.acf-table thead th[data-name=class_page],
-.acf-repeater > table.acf-table thead th[data-name=department_page],
-.acf-repeater > table.acf-table thead th[data-name=course_page] {
+.acf-repeater > table.acf-table td.acf-field[data-name=id],
+.acf-repeater > table.acf-table th[data-name=id] {
 	display: none; }
+
+.acf-field input:disabled,
+.acf-field textarea:disabled,
+.acf-field select:disabled {
+	background: #f5f5f5 !important;
+	color: #32373c; }
 
 .widefat td {
 	font-size: 14px !important; }

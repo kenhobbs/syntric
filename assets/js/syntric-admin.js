@@ -1,28 +1,37 @@
 (function ($) {
+	var fieldsToDisable = [];
+	fieldsToDisable.push('.acf-field[data-name=id] input');
+	fieldsToDisable.push('.acf-field[data-name=last_sync] input');
+	fieldsToDisable.push('.acf-field[data-name=last_sync_result] textarea');
+	fieldsToDisable.push('.acf-field[data-name=course_page]');
+	fieldsToDisable.push('.acf-field[data-name=department_page]');
+	fieldsToDisable.push('.acf-field[data-name=class_page]');
 
-	// if new record hide ID field, if has value disable it
-	var idFields = $('.acf-field[data-name=id] input');
-	//console.log(idFields);
-	for (var i = 0; i < idFields.length; i++) {
-		var idField = $(idFields[i]);
-		if (idField.val()) {
-			idField.attr('disabled', 'disabled');
-		} else {
-			idField.hide();
+	// Class fields that are populated
+	fieldsToDisable.push('.acf-field[data-key=field_5cb6d14cff0bd] select');
+	fieldsToDisable.push('.acf-field[data-key=field_5cb5ba20c5f23] select');
+	fieldsToDisable.push('.acf-field[data-key=field_5cb5ba2fc5f24] select');
+	fieldsToDisable.push('.acf-field[data-key=field_5cb5ba41c5f25] select');
+
+	// Course fields
+	fieldsToDisable.push('.acf-field[data-key=field_5c6fae31bbd6d] select');
+	fieldsToDisable.push('.acf-field[data-key=field_5c6fae26bbd6c] input');
+
+	disableFields(fieldsToDisable);
+
+	/*var disabledField;
+	for (var i = 0; i < disabledFields.length; i++) {
+		disabledField = $(disabledFields[i]);
+		disabledField.attr('disabled', 'disabled');
+	}*/
+
+	function disableFields(fieldsToDisable) {
+		var fieldToDisable;
+		for (var i = 0; i < fieldsToDisable.length; i++) {
+			fieldToDisable = $(fieldsToDisable[i]);
+			fieldToDisable.attr('disabled', 'disabled');
 		}
 	}
-	var pageFields = [];
-	pageFields[] = $('.acf-field[data-name=course_page]');
-	pageFields[] = $('.acf-field[data-name=department_page]');
-	pageFields[] = $('.acf-field[data-name=class_page]');
-	for (var i = 0; i < pageFields.length; i++) {
-		if (pageFields[i].val()) {
-			pageFields[i].attr('disabled', 'disabled');
-		} else {
-			pageFields[i].hide();
-		}
-	}
-
 })(jQuery);
 
 ///////////////////////////////////////////////////////////////////////////// Boneyard

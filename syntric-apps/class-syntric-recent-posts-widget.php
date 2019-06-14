@@ -13,7 +13,7 @@ class Syntric_Recent_Posts_Widget extends WP_Widget {
 			'description'                 => __( 'Displays posts from one or more categories.' ),
 			'customize_selective_refresh' => true,
 		];
-		parent ::__construct( 'syntric-recent-posts-widget', __( 'Recent Posts' ), $widget_ops );
+		parent ::__construct( 'syntric-recent-posts-widget', __( 'Syntric Recent Posts' ), $widget_ops );
 		$this -> alt_option_name = 'syntric-recent-posts-widget';
 	}
 
@@ -27,21 +27,23 @@ class Syntric_Recent_Posts_Widget extends WP_Widget {
 		if( ! isset( $args[ 'widget_id' ] ) ) {
 			$args[ 'widget_id' ] = $this -> id;
 		}
-		$category_ids = get_field( 'syntric_recent_posts_widget_categories', 'widget_' . $args[ 'widget_id' ] );
-		//$category    = get_category( $category_id );
-		$posts_to_display = get_field( 'syntric_recent_posts_widget_posts_to_display', 'widget_' . $args[ 'widget_id' ] );
-		$posts            = new WP_Query( apply_filters( 'widget_posts_args', [
+		$recent_posts_widget = get_field( 'field_5ca2821de55e2', 'widget_' . $args[ 'widget_id' ] );
+		$title               = ! empty( $recent_posts_widget[ 'title' ] ) ? $recent_posts_widget[ 'title' ] : '';
+		echo $args[ 'before_widget' ];
+		if( $title ) {
+			echo $args[ 'before_title' ] . $title . $args[ 'after_title' ];
+		}
+		$category_ids     = $recent_posts_widget[ 'categories' ];
+		$posts_to_display = $recent_posts_widget[ 'posts_to_display' ];
+
+		$posts = new WP_Query( apply_filters( 'widget_posts_args', [
 			'posts_per_page'      => $posts_to_display,
 			'no_found_rows'       => true,
 			'post_status'         => 'publish',
 			'ignore_sticky_posts' => true,
 			'category__in'        => ( is_array( $category_ids ) ) ? $category_ids : [ $category_ids ],
-		] ) );;
-		$title = get_field( 'syntric_recent_posts_widget_title', 'widget_' . $args[ 'widget_id' ] );
-		echo $args[ 'before_widget' ];
-		if( ! empty( $title ) ) :
-			echo $args[ 'before_title' ] . $title . $args[ 'after_title' ];
-		endif;
+		] ) );
+
 		echo '<div class="list-group">';
 		if( $posts -> have_posts() ) :
 			while( $posts -> have_posts() ) : $posts -> the_post();
@@ -63,7 +65,6 @@ class Syntric_Recent_Posts_Widget extends WP_Widget {
 				echo '<div class="list-group-item-content">';
 				echo '<div class="post-title">' . get_the_title() . '</div>';
 				echo '<div class="post-date small">' . $post_date . '</div>';
-				//echo    '<div class="post-content">' . get_the_excerpt() . '</div>';
 				echo '</div>';
 				echo '</a>';
 			endwhile;
@@ -73,8 +74,6 @@ class Syntric_Recent_Posts_Widget extends WP_Widget {
 		endif;
 		echo '</div>';
 		echo $args[ 'after_widget' ];
-		wp_reset_postdata();
-		wp_reset_query();
 	}
 
 	/**

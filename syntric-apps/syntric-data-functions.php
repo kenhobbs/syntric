@@ -1,23 +1,25 @@
 <?php
 
+//  todo: finish up checking this page, hide what can't be used and convert to keys rather than field names.
+
 add_action( 'acf/save_post', 'syntric_save_data_functions', 20 );
 function syntric_save_data_functions() {
 	if( is_admin() && isset( $_REQUEST[ 'page' ] ) && 'syntric-data-functions' == $_REQUEST[ 'page' ] ) {
 		// do stuff
-		$data_functions               = get_field( 'syntric_data_functions', 'option' );
-		$run_orphan_scan              = get_field( 'run_orphan_scan', 'option' );
-		$run_users_import             = get_field( 'run_users_import', 'option' );
-		$run_users_export             = get_field( 'run_users_export', 'option' );
-		$run_users_phone_update       = get_field( 'run_users_phone_update', 'option' );
-		$run_users_password_update    = get_field( 'run_users_password_update', 'option' );
-		$run_activate_contact_widgets = get_field( 'run_activate_contact_widgets', 'option' );
-		$run_reset_user_capabilities  = get_field( 'run_reset_user_capabilities', 'option' );
-		$run_dedupe_events            = get_field( 'run_dedupe_events', 'option' );
-		$run_optimize_usermeta        = get_field( 'run_optimize_usermeta', 'option' );
+		$data_functions               = get_field( 'field_5c80f303c7316', 'options' );
+		$run_orphan_scan              = $data_functions[ 'run_orphan_scan' ];
+		$run_users_import             = $data_functions[ 'run_users_import' ];
+		$run_users_export             = $data_functions[ 'run_users_export' ];
+		$run_users_phone_update       = $data_functions[ 'run_users_phone_update' ];
+		$run_users_password_update    = $data_functions[ 'run_users_password_update' ];
+		$run_activate_contact_widgets = $data_functions[ 'run_activate_contact_widgets' ];
+		$run_reset_user_capabilities  = $data_functions[ 'run_reset_user_capabilities' ];
+		$run_dedupe_events            = $data_functions[ 'run_dedupe_events' ];
+		$run_optimize_usermeta        = $data_functions[ 'run_optimize_usermeta' ];
 		$run_theme_init               = $data_functions[ 'run_theme_init' ];
-		$run_calendar_migration       = get_field( 'run_calendar_migration', 'option' );
+		$run_calendar_migration       = $data_functions[ 'run_calendar_migration' ];
 		if( $run_orphan_scan ) {
-			$delete_orphans = get_field( 'delete_orphans', 'option' );
+			$delete_orphans = $data_functions[ 'delete_orphans' ];
 			syntric_scan_orphans( $delete_orphans );
 		}
 		if( $run_users_import ) {
@@ -27,8 +29,8 @@ function syntric_save_data_functions() {
 			syntric_export_users();
 		}
 		if( $run_users_phone_update ) {
-			$phone = get_field( 'users_phone', 'option' );
-			syntric_update_users_phone( $phone );
+			//$phone = get_field( 'users_phone', 'options' );
+			//syntric_update_users_phone( $phone );
 		}
 		if( $run_users_password_update ) {
 			syntric_update_users_password();
@@ -53,21 +55,71 @@ function syntric_save_data_functions() {
 		}
 	}
 	// clear/reset all fields, except orphan scan console
-	update_field( 'run_orphan_scan', 0, 'option' );
-	update_field( 'delete_orphans', 0, 'option' );
-	update_field( 'run_users_import', 0, 'option' );
-	update_field( 'users_file', null, 'option' );
-	update_field( 'users_file_has_header_row', 0, 'option' );
-	update_field( 'run_users_phone_update', 0, 'option' );
-	update_field( 'users_phone', null, 'option' );
-	update_field( 'run_users_password_update', 0, 'option' );
-	update_field( 'run_activate_contact_widgets', 0, 'option' );
-	update_field( 'run_reset_user_capabilities', 0, 'option' );
-	update_field( 'run_dedupe_events', 0, 'option' );
-	update_field( 'run_optimize_usermeta', 0, 'option' );
-	update_field( 'syntric_data_functions_run_theme_init', 0, 'option' );
-	update_field( 'run_calendar_migration', 0, 'option' );
+	update_field( 'run_orphan_scan', 0, 'options' );
+	update_field( 'delete_orphans', 0, 'options' );
+	update_field( 'run_users_import', 0, 'options' );
+	update_field( 'users_file', null, 'options' );
+	update_field( 'users_file_has_header_row', 0, 'options' );
+	update_field( 'run_users_phone_update', 0, 'options' );
+	update_field( 'users_phone', null, 'options' );
+	update_field( 'run_users_password_update', 0, 'options' );
+	update_field( 'run_activate_contact_widgets', 0, 'options' );
+	update_field( 'run_reset_user_capabilities', 0, 'options' );
+	update_field( 'run_dedupe_events', 0, 'options' );
+	update_field( 'run_optimize_usermeta', 0, 'options' );
+	update_field( 'syntric_data_functions_run_theme_init', 0, 'options' );
+	update_field( 'run_calendar_migration', 0, 'options' );
 }
+
+// User custom fields
+/*
+		'key' => 'group_5c80dc4a3af53',
+		'title' => 'User',
+		'fields' => array(
+			array(
+				'key' => 'field_5c873b64763cd',
+				'label' => '',
+				'name' => 'syntric_user',
+				'type' => 'group',
+
+				'
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					
+					
+					
+				),
+
+				'sub_fields'
+
+						'key' => 'field_5c80dc4a53446',
+						'label' => 'Photo',
+						'name' => 'photo',
+
+						'key' => 'field_5c80dc4a536bd',
+						'label' => 'Prefix',
+						'name' => 'prefix',
+
+						'key' => 'field_5c80dc4a53a9d',
+						'label' => 'Title',
+						'name' => 'title',
+
+						'key' => 'field_5c80dc4a53e83',
+						'label' => 'Phone',
+						'name' => 'phone',
+
+						'key' => 'field_5c80dc4a542ce',
+						'label' => 'Ext',
+						'name' => 'extension',
+
+						'key' => 'field_5c80dc4a54653',
+						'label' => 'Teacher?',
+						'name' => 'is_teacher',
+
+						'key' => 'field_5cc50130ecf29',
+						'label' => 'Archive',
+						'name' => 'archive',
+*/
 
 function syntric_stringify_array( $array ) {
 	$ret = '';
@@ -302,9 +354,9 @@ function syntric_scan_orphans( $delete_orphans = false ) {
 	} else {
 		array_push( $console_output, 'No user meta orphans' );
 	}
-	update_field( 'run_orphan_scan', '', 'option' );
-	update_field( 'delete_orphans', '', 'option' );
-	update_field( 'orphan_scan_console', implode( "\n", $console_output ), 'option' );
+	update_field( 'run_orphan_scan', '', 'options' );
+	update_field( 'delete_orphans', '', 'options' );
+	update_field( 'orphan_scan_console', implode( "\n", $console_output ), 'options' );
 
 	return;
 }
@@ -322,21 +374,21 @@ function syntric_export_users() {
 		$user_is_teacher  = get_field( 'syntric_user_is_teacher', 'user_' . $user -> ID );
 		$console_output[] = $user -> ID . ',' . $user -> data -> user_email . ',' . $user -> roles[ 0 ] . ',' . $user_prefix . ',' . $usermeta[ 'first_name' ][ 0 ] . ',' . $usermeta[ 'last_name' ][ 0 ] . ',' . $user_title . ',' . $user_phone . ',' . $user_ext . ',' . $user_is_teacher;
 	}
-	update_field( 'users_import_console', implode( "\n", $console_output ), 'option' );
-	update_field( 'run_users_export', 0, 'option' );
+	update_field( 'users_import_console', implode( "\n", $console_output ), 'options' );
+	update_field( 'run_users_export', 0, 'options' );
 }
 
 // import users from a CSV upload
 function syntric_import_users() {
-	//$run_users_import = get_field( 'run_users_import', 'option' );
+	//$run_users_import = get_field( 'run_users_import', 'options' );
 	//if ( $run_users_import ) {
 	$console_output  = [ date( 'c' ) ];
-	$users_file      = get_field( 'users_file', 'option' );
+	$users_file      = get_field( 'users_file', 'options' );
 	$upload_dir      = wp_get_upload_dir();
 	$users_file_path = str_replace( $upload_dir[ 'url' ], $upload_dir[ 'path' ], $users_file[ 'url' ] );
 	$file            = fopen( $users_file_path, 'r' );
 	if( $file ) {
-		$header_row  = get_field( 'users_file_has_header_row', 'option' );
+		$header_row  = get_field( 'users_file_has_header_row', 'options' );
 		$row_counter = 0;
 		while( ! feof( $file ) ) {
 			$user_row = fgetcsv( $file );
@@ -415,11 +467,11 @@ function syntric_import_users() {
 		}
 	}
 	fclose( $file );
-	update_field( 'users_import_console', implode( "\n", $console_output ), 'option' );
+	update_field( 'users_import_console', implode( "\n", $console_output ), 'options' );
 	//}
-	update_field( 'run_users_import', 0, 'option' );
-	update_field( 'users_file', null, 'option' );
-	update_field( 'users_file_has_header_row', 0, 'option' );
+	update_field( 'run_users_import', 0, 'options' );
+	update_field( 'users_file', null, 'options' );
+	update_field( 'users_file_has_header_row', 0, 'options' );
 
 	return;
 }
@@ -432,8 +484,8 @@ function syntric_update_users_phone( $phone ) {
 			update_field( 'syntric_user_phone', $phone, 'user_' . $value );
 		}
 	endif;
-	update_field( 'users_phone', null, 'option' );
-	update_field( 'run_users_phone_update', 0, 'option' );
+	update_field( 'users_phone', null, 'options' );
+	update_field( 'run_users_phone_update', 0, 'options' );
 }
 
 // Reset corrupted wp_usermeta.wp_capabilities
@@ -472,7 +524,7 @@ function syntric_update_users_password() {
 			}
 		}
 	}
-	update_field( 'run_users_password_update', 0, 'option' );
+	update_field( 'run_users_password_update', 0, 'options' );
 }
 
 // Dedupe events (existing prior to calendar sync bug fix)
@@ -656,4 +708,28 @@ function syntric_migrate_calendars() {
 			'meta_compare'     => '=',
 		] );
 	}*/
+}
+
+// todo: eliminate this function and convert all teacher classes by page to classes with teacher_id
+function syntric_get_teachers_classes() {
+	$teacher_pages = syntric_get_teacher_pages();
+	$classes       = [];
+	foreach( $teacher_pages as $teacher_page ) {
+		$teacher_classes = syntric_get_teacher_classes( $teacher_page -> ID );
+		$classes         = array_merge( $classes, $teacher_classes );
+	}
+
+	return $classes;
+}
+
+function syntric_get_teacher_classes( $user_id ) {
+	$classes         = get_field( 'syntric_classes', 'options' );
+	$teacher_classes = [];
+	foreach( $classes as $class ) {
+		if( $user_id == $class[ 'teacher' ][ 'value' ] ) {
+			$teacher_classes[] = $class;
+		}
+	}
+
+	return $teacher_classes;
 }

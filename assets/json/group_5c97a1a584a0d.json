@@ -83,7 +83,7 @@
 						"id": ""
 					},
 					"choices": {
-						"dow": "Days of Week",
+						"dow": "Days Of Week",
 						"instructional_period": "Instructional Period"
 					},
 					"allow_custom": 0,
@@ -274,5 +274,5 @@
 	"hide_on_screen": "",
 	"active": 1,
 	"description": "",
-	"modified": 1555433798
+	"modified": 1559766296
 }

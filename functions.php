@@ -1,36 +1,19 @@
 <?php
-	
+
+// Theme check
+$theme      = wp_get_theme();
+$theme_name = $theme -> get( 'Name' );
+
 	/**
-	 * Syntric theme+framework functions and definitions
-	 *
-	 * @link       https://developer.wordpress.org/themes/basics/theme-functions/
-	 *
-	 * @package    WordPress
-	 * @subpackage Syntric
-	 * @since      1.0.0
+	 * Only run if theme is Syntric
 	 */
-	
-	/**
-	 * Include global functions
-	 */
+if( 'syntric' == strtolower( $theme_name ) ) {
+	// Backwards compatibility check
+	require get_template_directory() . '/inc/backwards-compatibility.php';
+
 	require get_template_directory() . '/inc/global-functions.php';
-	$current_theme = syntric_current_theme();
-	
-	/**
-	 * Skip all if Syntric is not the current theme
-	 */
-	if( 'syntric' == strtolower( $current_theme ) ) {
 		/**
-		 * Require WordPress 4.7 or later.
-		 */
-		if( version_compare( $GLOBALS[ 'wp_version' ], '4.7', '<' ) ) {
-			require get_template_directory() . '/inc/back-compat.php';
-			
-			return;
-		}
-		
-		/**
-		 * Setup theme including
+		 * Setup theme including:
 		 *
 		 * Theme supports
 		 * Defaults (categories, settings, etc.)
@@ -146,6 +129,8 @@
 			wp_die( $die_message );
 		}
 	}
+
+// todo: what is all this?
 	
 	/**
 	 * Relocated or excluded

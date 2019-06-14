@@ -13,7 +13,7 @@ class Syntric_Google_Map_Widget extends WP_Widget {
 			'description'                 => __( 'Displays a Google Map.' ),
 			'customize_selective_refresh' => true,
 		];
-		parent ::__construct( 'syntric-google-map-widget', __( 'Google Map' ), $widget_ops );
+		parent ::__construct( 'syntric-google-map-widget', __( 'Syntric Google Map' ), $widget_ops );
 		$this -> alt_option_name = 'syntric-google-map-widget';
 	}
 
@@ -25,10 +25,9 @@ class Syntric_Google_Map_Widget extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 		$widget_id         = ( isset( $args[ 'widget_id' ] ) ) ? $args[ 'widget_id' ] : $this -> id;
-		$google_map_widget = get_field( 'syntric_google_map_widget', 'widget_' . $widget_id );
+		$google_map_widget = get_field( 'field_5c8cada54700c', 'widget_' . $widget_id );
 		$map               = $google_map_widget[ 'map' ];
 		if( isset( $map[ 'lat' ] ) && ! empty( $map[ 'lat' ] ) && isset( $map[ 'lng' ] ) && ! empty( $map[ 'lng' ] ) ) {
-			;
 			//syntric_google_api_key( $api );
 			$title   = $google_map_widget[ 'title' ];
 			$id      = syntric_unique_id();

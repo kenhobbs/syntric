@@ -10,9 +10,14 @@ echo '<h1 class="page-title" role="heading">' . get_the_title() . syntric_get_po
 syntric_sidebar( 'main-top-sidebar' );
 if( have_posts() ) :
 	while( have_posts() ) : the_post();
+		$dates    = syntric_get_event_dates( get_the_ID() );
+		$location = get_field( 'location', get_the_ID() );
 		echo '<article class="' . implode( ' ', get_post_class() ) . '" id="post-' . $post -> ID . '">';
 		echo '<header class="post-header">';
-		echo '<span class="post-date">' . get_the_date() . '</span>';
+		echo '<span class="post-date">' . $dates . '</span>';
+		if( ! empty( $location ) ) :
+			echo '<span class="post-location">' . $location . '</span>';
+		endif;
 		echo '</header>';
 		echo '<div class="post-content">';
 		the_content();
